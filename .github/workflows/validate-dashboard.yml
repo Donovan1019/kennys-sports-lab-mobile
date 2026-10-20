@@ -1,0 +1,40 @@
+name: Validate mobile dashboard
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate Python source
+        run: python -m py_compile scripts/fetch_odds.py
+      - name: Validate JavaScript syntax
+        run: |
+          node --check all_sports.js
+          node --check manual_odds_refresh.js
+          node --check comparison_lab.js
+          node --check simulation_lab.js
+          node --check kennys_sgp.js
+      - name: Validate snapshot schema and links
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          html=Path("index.html").read_text()
+          for js in ["all_sports.js","manual_odds_refresh.js","comparison_lab.js","simulation_lab.js","kennys_sgp.js"]:
+              assert Path(js).is_file(), js
+              assert 'src="'+js+'"' in html, js
+          for path in Path("feed").glob("*.json"):
+              data=json.loads(path.read_text())
+              assert data["source"]=="the-odds-api-v4"
+              assert isinstance(data["odds"],list)
+              assert data.get("fetched_at")
+          print("Dashboard references and available snapshot schema: PASS")
+          PY
