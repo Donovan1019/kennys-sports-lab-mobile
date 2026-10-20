@@ -1,0 +1,39 @@
+name: Build NFL experimental forecasts
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate Python and regression tests
+        run: |
+          python -m py_compile scripts/connect_nfl_team_scores.py scripts/matchup_monte_carlo.py scripts/model_predictions.py
+          python -m unittest discover -s tests -p "test_*.py"
+      - name: Fetch completed NFL scores and prepare experimental inputs
+        run: python scripts/connect_nfl_team_scores.py
+      - name: Simulate 10000 outcomes per eligible game
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from scripts.matchup_monte_carlo import build_forecasts
+          inp=json.loads(Path("feed/independent_game_inputs.json").read_text())
+          odds=json.loads(Path("feed/americanfootball_nfl.json").read_text())
+          out=build_forecasts(inp,odds)
+          Path("feed/model_candidates.json").write_text(json.dumps(out,indent=2)+"\n")
+          print("Experimental selections:",len(out["predictions"]))
+          PY
+      - name: Enforce calibration gate before publishing
+        run: python scripts/model_predictions.py
+      - name: Commit inputs and safe prediction feed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add feed/independent_game_inputs.json feed/model_candidates.json feed/model_predictions.json
+          git diff --cached --quiet || (git commit -m "Refresh independent NFL scoring inputs and experimental simulations" && git push)
