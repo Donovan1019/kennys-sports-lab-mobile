@@ -49,7 +49,13 @@ jobs:
               if path.name=="nfl_props.json":
                   assert data["source"]=="the-odds-api-v4-event-props"
                   assert isinstance(data["odds"],list)
-              elif path.name in ("nba_player_stats.json","nhl_player_stats.json"):\n                  assert data["source"]=="espn-public-boxscore"\n                  assert isinstance(data["players"],list)\n              elif path.name=="nfl_player_stats.json":
+              elif path.name in ("nba_player_stats.json","nhl_player_stats.json"):
+                  assert data["source"]=="espn-public-boxscore"
+                  assert isinstance(data["players"],list)
+              elif path.name=="nhl_official_player_stats.json":
+                  assert data["source"]=="nhl-official-boxscore"
+                  assert isinstance(data["players"],list)
+              elif path.name=="nfl_player_stats.json":
                   assert data["source"]=="nflverse-stats-player-week"
                   assert isinstance(data["players"],list)
               else:
