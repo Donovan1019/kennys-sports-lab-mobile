@@ -21,7 +21,7 @@ MARKETS={
 }
 def parse(source):
     reader=csv.DictReader(io.StringIO(source))
-    required={"season","week","player_display_name","player_id","recent_team"}|set(MARKETS.values())
+    required={"season","week","player_id"}|set(MARKETS.values())\n    columns=set(reader.fieldnames or [])\n    name_column=next((x for x in ("player_display_name","player_name") if x in columns),None)\n    team_column=next((x for x in ("recent_team","team") if x in columns),None)\n    if not name_column or not team_column:\n        raise ValueError("Missing player name/team column: "+str(sorted(columns)))
     if not required.issubset(reader.fieldnames or []):
         raise ValueError("nflverse source schema mismatch: "+str(sorted(required-set(reader.fieldnames or []))))
     rows=[]
@@ -32,8 +32,8 @@ def parse(source):
             values={name:float(r[col]) for name,col in MARKETS.items() if r.get(col) not in ("",None)}
         except (ValueError,TypeError,KeyError):
             continue
-        if not r.get("player_id") or not r.get("player_display_name") or not values:continue
-        rows.append({"id":r["player_id"],"name":r["player_display_name"],"team":r["recent_team"],"season":year,"week":week,"season_type":r["season_type"],"values":values})
+        if not r.get("player_id") or not r.get(name_column) or not values:continue
+        rows.append({"id":r["player_id"],"name":r[name_column],"team":r[team_column],"season":year,"week":week,"season_type":r["season_type"],"values":values})
     return rows
 
 def fetch(year):
