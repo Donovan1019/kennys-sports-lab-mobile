@@ -3,7 +3,7 @@
 Data source: nflverse/nflverse-data stats_player GitHub release.
 Only observed regular/postseason weekly stats, never projections.
 """
-import csv, gzip, io, json, urllib.request
+import csv, io, json, urllib.request
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
@@ -30,6 +30,8 @@ def parse(source):
     if not required.issubset(columns):
         raise ValueError("nflverse source schema mismatch: "+str(sorted(required-columns)))
     rows=[]
+    if not any(col in columns for col in MARKETS.values()):
+        raise ValueError("No supported stat columns found")
     for r in reader:
         if r.get("season_type") not in ("REG","POST"):continue
         try:
