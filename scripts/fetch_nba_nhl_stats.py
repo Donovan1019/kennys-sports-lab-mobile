@@ -68,8 +68,11 @@ def main():
     league=os.getenv("PLAYER_SPORT","nba").lower()
     if league not in LEAGUES:raise ValueError("Choose nba or nhl")
     days=int(os.getenv("LOOKBACK_DAYS","7"))
-    if not 1<=days<=31:raise ValueError("Lookback limited to 1–31 days")
-    today=date.today()
+    start_text=os.getenv("START_DATE","").strip()
+    start_day=date.fromisoformat(start_text) if start_text else date.today()
+    if start_day>date.today():raise ValueError("START_DATE cannot be in the future")
+    if not 1<=days<=31:raise ValueError("Lookback limited to 1–31 days per batch")
+    today=start_day
     path=Path("feed")/f"{league}_player_stats.json"
     prior={}
     if path.exists():
@@ -82,6 +85,7 @@ def main():
     errors=[];scanned=0;parsed=0
     for offset in range(days):
         day=today-timedelta(days=offset)
+        if league=="nba" and not (date(2025,10,1)<=day<=date.today()):continue
         stamp=day.strftime("%Y%m%d")
         base=f"https://site.api.espn.com/apis/site/v2/sports/{sport}/{code}"
         try:
@@ -94,12 +98,20 @@ def main():
             state=((event.get("status") or {}).get("type") or {}).get("completed",False)
             gid=str(event.get("id") or "")
             if not gid or not state:continue
+            season_meta=event.get("season") or {}
+            season_type=(event.get("seasonType") or {}).get("type") or season_meta.get("type")
+            # ESPN NBA season type 2 = regular season, 3 = postseason; exclude preseason.
+            if league=="nba" and season_type is not None and str(season_type) not in ("2","3"):continue
             scanned+=1
             try:
                 data=request(f"{base}/summary?event={gid}")
                 rows=parse_summary(data,league,gid,day.isoformat())
                 if not rows:raise ValueError("No usable athlete statistics")
-                for row in rows:prior[(row["id"],gid)]=row
+                for row in rows:
+                    if league=="nba":
+                        row["season"]="2025-26" if day<date(2026,7,1) else "2026-27"
+                        row["season_type"]="postseason" if str(season_type)=="3" else "regular"
+                    prior[(row["id"],gid)]=row
                 parsed+=1
             except Exception as exc:
                 errors.append({"event":gid,"error":type(exc).__name__})
@@ -114,12 +126,17 @@ def main():
         raise SystemExit("No verified player game logs; previous snapshot left unchanged")
     grouped={}
     for row in prior.values():
+        if league=="nba" and not (row.get("season") in ("2025-26","2026-27") and row.get("season_type") in ("regular","postseason")):continue
         pid=row["id"];p=grouped.setdefault(pid,{"id":pid,"name":row["name"],"team":row["team"],"games":[]})
         p["name"]=row["name"];p["team"]=row["team"]
-        p["games"].append({"game_id":row["game_id"],"date":row["date"],"values":row["values"]})
-    for p in grouped.values():p["games"].sort(key=lambda g:(g["date"],g["game_id"]))
+        p["games"].append({"game_id":row["game_id"],"date":row["date"],"season":row.get("season"),"season_type":row.get("season_type"),"values":row["values"]})
+    if not grouped:raise SystemExit("No season-tagged regular/postseason player logs; preserving existing snapshot")
+    for p in grouped.values():
+        p["games"].sort(key=lambda g:(g["date"],g["game_id"]))
+        if league=="nba":
+            p["games"]=[g for g in p["games"] if g.get("season") in ("2025-26","2026-27") and g.get("season_type") in ("regular","postseason")]
     output={"source":"espn-public-boxscore","sport":league,"fetched_at":datetime.now(timezone.utc).isoformat(),
-            "lookback_days":days,"completed_games_checked":scanned,"games_parsed":parsed,
+            "lookback_days":days,"batch_start_date":start_day.isoformat(),"seasons":["2025-26","2026-27"] if league=="nba" else [],"completed_games_checked":scanned,"games_parsed":parsed,
             "errors":errors[:100],"unverified_markets":(["Shots on goal"] if league=="nhl" else []),"players":sorted(grouped.values(),key=lambda p:p["name"])}
     path.parent.mkdir(exist_ok=True)
     path.write_text(json.dumps(output,separators=(",",":"))+"\n")
