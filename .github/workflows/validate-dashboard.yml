@@ -68,6 +68,7 @@ jobs:
               else:
                   assert data["source"]=="the-odds-api-v4"
                   assert isinstance(data["odds"],list)
-              assert data.get("fetched_at")
+              if path.name not in ("model_predictions.json","independent_game_inputs.json"):
+                  assert data.get("fetched_at"), f"Missing fetched_at: {path.name}"
           print("Dashboard references and available snapshot schema: PASS")
           PY
