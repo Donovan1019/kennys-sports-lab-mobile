@@ -10,6 +10,13 @@ class OfficialNHLTests(unittest.TestCase):
   self.assertEqual(skater["values"]["Points"],3)
   self.assertEqual(skater["home_away"],"away")
   self.assertEqual(next(x for x in rows if x["id"]=="777")["values"]["Saves"],31)
+ def test_quarantine_impossible_sog(self):
+  d={"awayTeam":{"abbrev":"VGK"},"playerByGameStats":{"awayTeam":{"forwards":[{"playerId":999,"name":{"default":"Sample"},"goals":1,"assists":0,"sog":0}]}}}
+  row=parse_boxscore(d,"2026020134","2026-10-17")[0]
+  self.assertEqual(row["values"]["Goals"],1)
+  self.assertEqual(row["values"]["Points"],1)
+  self.assertNotIn("Shots on goal",row["values"])
+  self.assertIn("sog_below_goals",row["quality_flags"])
  def test_no_fabricated_values(self):
   self.assertEqual(parse_boxscore({"playerByGameStats":{}},"1","2026-10-20"),[])
 if __name__=="__main__":unittest.main()
