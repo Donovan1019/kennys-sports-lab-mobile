@@ -12,7 +12,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Validate Python source
-        run: python -m py_compile scripts/fetch_odds.py scripts/fetch_nfl_stats.py scripts/market_math.py scripts/fetch_nfl_props.py
+        run: python -m py_compile scripts/fetch_odds.py scripts/fetch_nfl_stats.py scripts/market_math.py scripts/fetch_nfl_props.py scripts/analytics_core.py
       - name: Validate JavaScript syntax
         run: |
           node --check all_sports.js
@@ -32,6 +32,8 @@ jobs:
           node --check player_profile.js
           node --check player_page_pro.js
           node --check mobile_navigation.js
+      - name: Run independent analytics tests
+        run: python -m unittest discover -s tests -p "test_analytics_core.py" -v
       - name: Validate snapshot schema and links
         run: |
           python - <<'PY'
@@ -40,7 +42,7 @@ jobs:
           html=Path("index.html").read_text()
           for js in ["all_sports.js","manual_odds_refresh.js","comparison_lab.js","simulation_lab.js","kennys_sgp.js","nfl_player_stats.js","nfl_prop_research.js","nfl_prop_odds.js","nfl_prop_model.js","feature_roadmap.js","nfl_trends_board.js","reference_research.js","nba_research.js","nhl_research.js","player_profile.js","player_page_pro.js","mobile_navigation.js"]:
               assert Path(js).is_file(), js
-              assert 'src="'+js+'"' in html, js
+              assert 'src="'+js+'"' in html or 'src="'+js+'?' in html, js
           for path in Path("feed").glob("*.json"):
               data=json.loads(path.read_text())
               if path.name=="nfl_props.json":
