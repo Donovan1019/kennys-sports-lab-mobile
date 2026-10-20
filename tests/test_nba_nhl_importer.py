@@ -8,6 +8,7 @@ class ImportTests(unittest.TestCase):
   self.assertEqual(r[0]["values"]["PRA"],36)
   self.assertEqual(r[0]["values"]["Minutes"],32.5)
   self.assertEqual(r[0]["values"]["Threes"],3)
+  self.assertEqual(r[0]["values"]["Double-double (PTS/REB/AST)"],0)
  def test_nhl(self):
   d={"boxscore":{"players":[{"team":{"abbreviation":"BOS"},"statistics":[{"labels":["G","A","PTS","SOG"],"athletes":[{"athlete":{"id":"7","displayName":"Skater"},"stats":["1","2","3","5"]}]}]}]}}
   r=parse_summary(d,"nhl","9","2026-10-20")
