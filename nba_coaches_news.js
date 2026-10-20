@@ -14,5 +14,5 @@ for(const [name,url] of [['Open Full Court Press','https://fcp.news/']]){
  const a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener noreferrer';a.textContent=name+' ↗';links.append(a);
 }
 const note=document.createElement('p');note.className='ksl-fcp-note';note.textContent='Research source: Full Court Press (fcp.news), an independent third-party website. Quotes are not official lineup or injury designations. Some content requires a free account. This panel does not scrape content or automatically adjust model probabilities.';
-section.append(heading,intro,links,note);parent.append(section);
+section.append(heading,intro,links,note);parent.prepend(section);
 })();
