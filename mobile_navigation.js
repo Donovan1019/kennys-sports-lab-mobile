@@ -1,13 +1,13 @@
 /* Mobile-first navigation. Existing panels remain intact but no longer clutter one page. */
 (()=>{'use strict';const sections=[
-['Home',[]],
+['Home',[]],['Players',['ksl-player-page']],
 ['NFL',['ksl-trends','ksl-real-stats','ksl-prop-odds','ksl-model','ksl-sgp','ksl-prop-research']],
 ['NBA',['ksl-nba']],['NHL',['ksl-nhl']],
 ['NCAA Football',[]],['NCAA Basketball',[]],['WNBA',[]],['International Basketball',[]],
 ['MLB',[]],['International Baseball',[]],['International Hockey',[]],['NCAA Hockey',[]],
 ['Soccer',[]],['Tennis',[]],['UFC',[]],['DWCS',[]],['PFL',[]],
 ['Table Tennis',[]],['Esports CS2',[]],['Esports Valorant',[]],['Esports LoL',[]],['Esports Dota 2',[]],
-['Players',['ksl-player-page']],['Research',['ksl-research','ksl-comparison','ksl-simulation','ksl-odds','ksl-refresh']],['More',['ksl-features']]
+['Research',['ksl-research','ksl-comparison','ksl-simulation','ksl-odds','ksl-refresh']],['More',['ksl-features']]
 ];
 const main=document.querySelector('main');if(!main)return;
 const style=document.createElement('style');style.textContent='header{position:sticky;top:0;z-index:30;display:block;padding:12px 14px;background:#080f0c}header h1{font-size:19px}header>small{display:none}#ksl-menu{display:flex;gap:7px;overflow-x:auto;padding:12px 0 2px;scrollbar-width:thin}#ksl-menu button{flex:0 0 auto;min-height:42px;padding:10px 15px;border:1px solid #31513d;border-radius:20px;background:#17231c;color:#c2d5c6;font-weight:700}#ksl-menu button[aria-current="page"]{background:#44dd65;color:#06130b;border-color:#44dd65}main>section[hidden],main>.ksl-nav-legacy[hidden]{display:none!important}#ksl-landing{background:linear-gradient(120deg,#112b21,#09140f);border:1px solid #2e5b3d;border-radius:14px;padding:18px;margin:16px 0}#ksl-landing h2{color:#71f587}#ksl-landing p{color:#b7cbbd}';style.textContent+='#ksl-sport-chooser{display:flex;align-items:center;gap:10px;padding:12px 0 3px}#ksl-sport-chooser label{font-size:13px;font-weight:800;color:#9ae6ae;white-space:nowrap}#ksl-sport-select{width:100%;min-width:0;max-width:480px;background:#15251b;border:1px solid #4f9b60;color:white;font-size:16px;font-weight:700;min-height:48px;border-radius:10px;padding:9px}';document.head.append(style);
