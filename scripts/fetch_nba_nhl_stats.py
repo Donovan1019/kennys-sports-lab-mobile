@@ -56,7 +56,12 @@ def parse_summary(data,league,game_id,game_date):
                     if "Points" in stats and "Rebounds" in stats:stats["Pts+Reb"]=stats["Points"]+stats["Rebounds"]
                     if "Points" in stats and "Assists" in stats:stats["Pts+Ast"]=stats["Points"]+stats["Assists"]
                     if "Rebounds" in stats and "Assists" in stats:stats["Reb+Ast"]=stats["Rebounds"]+stats["Assists"]
-                    if all(x in stats for x in ("Points","Rebounds","Assists")):stats["PRA"]=stats["Points"]+stats["Rebounds"]+stats["Assists"]
+                    if all(x in stats for x in ("Points","Rebounds","Assists")):
+                        stats["PRA"]=stats["Points"]+stats["Rebounds"]+stats["Assists"]
+                        double_digits=sum(stats[x]>=10 for x in ("Points","Rebounds","Assists"))
+                        stats["Double-double (PTS/REB/AST)"]=int(double_digits>=2)
+                        stats["Triple-double (PTS/REB/AST)"]=int(double_digits>=3)
+                    if "Steals" in stats and "Blocks" in stats:stats["Stocks"]=stats["Steals"]+stats["Blocks"]
                 if stats:output.append({"id":ident,"name":name,"team":team_code,"game_id":game_id,"date":game_date,"values":stats})
     return output
 def main():
