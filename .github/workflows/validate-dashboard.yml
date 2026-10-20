@@ -62,10 +62,14 @@ jobs:
               elif path.name in ("nba_backtest.json","nhl_backtest.json"):
                   assert data["source"]=="walk-forward-league-monte-carlo"
                   assert isinstance(data["results"],list)
-              elif path.name in ("nba_independent_game_inputs.json","nhl_independent_game_inputs.json","nba_model_candidates.json","nhl_model_candidates.json"):
+              elif path.name in ("nba_independent_game_inputs.json","nhl_independent_game_inputs.json"):
                   assert data["source"]=="verified-independent-team-scoring"
                   assert isinstance(data["games"],list)
-              elif path.name=="nfl_completed_games.json":
+              elif path.name in ("nfl_market_validation.json","nba_market_validation.json","nhl_market_validation.json"):
+                  assert data["league"] in ("nfl","nba","nhl")
+                  assert isinstance(data["sample_size"],int)
+                  assert data["ats_backtest"]=="UNAVAILABLE_NO_HISTORICAL_MARKET_LINES"
+    elif path.name=="nfl_completed_games.json":
                   assert data["source"]=="espn-public-completed-nfl-games"
                   assert isinstance(data["games"],list)
               elif path.name=="nfl_backtest.json":
@@ -89,7 +93,7 @@ jobs:
               else:
                   assert data["source"]=="the-odds-api-v4"
                   assert isinstance(data["odds"],list)
-              if path.name not in ("model_predictions.json","model_candidates.json","independent_game_inputs.json","nba_independent_game_inputs.json","nhl_independent_game_inputs.json"):
+              if path.name not in ("model_predictions.json","model_candidates.json","nba_model_candidates.json","nhl_model_candidates.json","independent_game_inputs.json","nba_independent_game_inputs.json","nhl_independent_game_inputs.json","nfl_backtest.json","nba_backtest.json","nhl_backtest.json","nfl_market_validation.json","nba_market_validation.json","nhl_market_validation.json"):
                   assert data.get("fetched_at"), f"Missing fetched_at: {path.name}"
           print("Dashboard references and available snapshot schema: PASS")
           PY
