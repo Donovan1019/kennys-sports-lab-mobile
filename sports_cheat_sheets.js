@@ -30,7 +30,7 @@ const scroll=document.createElement('div');scroll.className='ksl-cheat-scroll';s
 const table=document.createElement('table');const thead=document.createElement('thead');const tr=document.createElement('tr');
 for(const h of (cfg.sport==='NFL'?['#','Player / Team','Market / Selection','Book odds','Market implied','Sportsbook','Updated']:['#','Player / Team','Threshold','Games','Trend grade','Trend score','Season avg','Last 5 avg','Last 10 avg','Last 5','Last 10','Consistency'])){const th=document.createElement('th');th.textContent=h;tr.append(th)}thead.append(tr);const tbody=document.createElement('tbody');table.append(thead,tbody);scroll.append(table);
 const note=document.createElement('p');note.className='ksl-cheat-status';note.textContent='Observed hit rates are historical only, not future hit probabilities. Trend grades (A+ 95–100, A 90–94, B+ 85–89, B 75–84, C 65–74, D below 65) are based ONLY on smoothed historical hit rates from at least five games. They are NOT Pick Grades or predictive model probabilities. Market-implied probabilities are derived from saved sportsbook odds. Unverified market statistics are unavailable, never invented.';
-section.append(top,filters,status,controls,scroll,note);requestAnimationFrame(sync);parent.prepend(section);
+section.append(top,filters,status,controls,scroll,note);requestAnimationFrame(sync);parent.append(section);
 let feed=null;
 function td(row,value,cls){const cell=document.createElement('td');if(cls)cell.className=cls;cell.textContent=String(value);row.append(cell);return cell}
 function draw(){
