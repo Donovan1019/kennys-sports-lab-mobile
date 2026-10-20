@@ -28,13 +28,14 @@ jobs:
           node --check nfl_trends_board.js
           node --check reference_research.js
           node --check nba_research.js
+          node --check nhl_research.js
       - name: Validate snapshot schema and links
         run: |
           python - <<'PY'
           import json
           from pathlib import Path
           html=Path("index.html").read_text()
-          for js in ["all_sports.js","manual_odds_refresh.js","comparison_lab.js","simulation_lab.js","kennys_sgp.js","nfl_player_stats.js","nfl_prop_research.js","nfl_prop_odds.js","nfl_prop_model.js","feature_roadmap.js","nfl_trends_board.js","reference_research.js","nba_research.js"]:
+          for js in ["all_sports.js","manual_odds_refresh.js","comparison_lab.js","simulation_lab.js","kennys_sgp.js","nfl_player_stats.js","nfl_prop_research.js","nfl_prop_odds.js","nfl_prop_model.js","feature_roadmap.js","nfl_trends_board.js","reference_research.js","nba_research.js","nhl_research.js"]:
               assert Path(js).is_file(), js
               assert 'src="'+js+'"' in html, js
           for path in Path("feed").glob("*.json"):
