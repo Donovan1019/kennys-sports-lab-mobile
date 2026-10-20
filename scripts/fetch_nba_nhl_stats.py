@@ -71,7 +71,7 @@ def main():
     start_text=os.getenv("START_DATE","").strip()
     start_day=date.fromisoformat(start_text) if start_text else date.today()
     if start_day>date.today():raise ValueError("START_DATE cannot be in the future")
-    if not 1<=days<=31:raise ValueError("Lookback limited to 1–31 days per batch")
+    if not 1<=days<=(400 if league=="nba" else 31):raise ValueError("Lookback must be 1–400 days for NBA or 1–31 for NHL")
     today=start_day
     path=Path("feed")/f"{league}_player_stats.json"
     prior={}
@@ -82,7 +82,7 @@ def main():
                 for g in p.get("games",[]):
                     prior[(str(p["id"]),str(g["game_id"]))]={"id":str(p["id"]),"name":p["name"],"team":p.get("team",""),**g}
     sport,code=LEAGUES[league]
-    errors=[];scanned=0;parsed=0
+    errors=[];scanned=0;parsed=0;skipped_existing=0
     for offset in range(days):
         day=today-timedelta(days=offset)
         if league=="nba" and not (date(2025,10,1)<=day<=date.today()):continue
@@ -104,6 +104,11 @@ def main():
             # ESPN NBA season type 2 = regular season, 3 = postseason; exclude preseason.
             if league=="nba" and str(season_type) not in ("2","3"):continue
             scanned+=1
+            # Resume safely: existing verified game logs are retained between runs.
+            # Avoid refetching a game already present in the saved dataset.
+            if league=="nba" and any(key[1]==gid and value.get("season_type") in ("regular","postseason") for key,value in prior.items()):
+                skipped_existing+=1
+                continue
             try:
                 data=request(f"{base}/summary?event={gid}")
                 rows=parse_summary(data,league,gid,day.isoformat())
@@ -141,6 +146,6 @@ def main():
             "errors":errors[:100],"unverified_markets":(["Shots on goal"] if league=="nhl" else []),"players":sorted(grouped.values(),key=lambda p:p["name"])}
     path.parent.mkdir(exist_ok=True)
     path.write_text(json.dumps(output,separators=(",",":"))+"\n")
-    print(f"{league.upper()}: {len(grouped)} players; {parsed}/{scanned} completed games parsed; {len(errors)} errors")
+    print(f"{league.upper()}: {len(grouped)} players; {parsed}/{scanned} completed games parsed; {skipped_existing} already cached; {len(errors)} errors")
     return 0
 if __name__=="__main__":sys.exit(main())
