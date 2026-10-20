@@ -99,9 +99,10 @@ def main():
             gid=str(event.get("id") or "")
             if not gid or not state:continue
             season_meta=event.get("season") or {}
-            season_type=(event.get("seasonType") or {}).get("type") or season_meta.get("type")
+            season_type=(event.get("seasonType") or {}).get("type") if isinstance(event.get("seasonType"),dict) else event.get("seasonType")
+            season_type=season_type or season_meta.get("type")
             # ESPN NBA season type 2 = regular season, 3 = postseason; exclude preseason.
-            if league=="nba" and season_type is not None and str(season_type) not in ("2","3"):continue
+            if league=="nba" and str(season_type) not in ("2","3"):continue
             scanned+=1
             try:
                 data=request(f"{base}/summary?event={gid}")
