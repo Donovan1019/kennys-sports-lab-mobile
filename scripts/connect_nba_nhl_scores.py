@@ -7,7 +7,7 @@ from scripts.backtest_nfl import evaluate
 
 LEAGUES={"nba":("basketball","basketball_nba"),"nhl":("hockey","icehockey_nhl")}
 def parse_league(data):
-    return [g for event in data.get("events",[]) if (event.get("season") or {}).get("type")==2 for g in parse_scoreboard({"events":[event]})]
+    return [g for event in data.get("events",[]) if str((event.get("season") or {}).get("type"))=="2" for g in parse_scoreboard({"events":[event]})]
 def build_inputs(games,odds,sport,now):
     rows=[{**r,"sport":"americanfootball_nfl"} for r in odds.get("odds",[]) if r.get("sport")==sport]
     out=assemble(games,{"odds":rows},now)
