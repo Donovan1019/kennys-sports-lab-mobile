@@ -62,7 +62,7 @@ jobs:
               elif path.name in ("nba_backtest.json","nhl_backtest.json"):
                   assert data["source"]=="walk-forward-league-monte-carlo"
                   assert isinstance(data["results"],list)
-              elif path.name in ("nba_independent_game_inputs.json","nhl_independent_game_inputs.json"):
+              elif path.name in ("nba_independent_game_inputs.json","nhl_independent_game_inputs.json","nba_model_candidates.json","nhl_model_candidates.json"):
                   assert data["source"]=="verified-independent-team-scoring"
                   assert isinstance(data["games"],list)
               elif path.name=="nfl_completed_games.json":
@@ -71,6 +71,9 @@ jobs:
               elif path.name=="nfl_backtest.json":
                   assert data["source"]=="walk-forward-nfl-monte-carlo"
                   assert isinstance(data["results"],list)
+              elif path.name in ("nba_model_candidates.json","nhl_model_candidates.json"):
+                  assert data["schema_version"]==1
+                  assert isinstance(data["predictions"],list)
               elif path.name=="model_candidates.json":
                   assert data["schema_version"]==1
                   assert isinstance(data["predictions"],list)
