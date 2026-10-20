@@ -17,6 +17,13 @@ class OfficialNHLTests(unittest.TestCase):
   self.assertEqual(row["values"]["Points"],1)
   self.assertNotIn("Shots on goal",row["values"])
   self.assertIn("sog_below_goals",row["quality_flags"])
+ def test_extended_markets(self):
+  d={"awayTeam":{"abbrev":"BOS"},"playerByGameStats":{"awayTeam":{"forwards":[{"playerId":9,"name":{"default":"Example"},"goals":2,"assists":1,"sog":5,"blockedShots":3,"hits":2,"powerPlayGoals":1,"powerPlayPoints":2}]}}}
+  v=parse_boxscore(d,"1","2026-10-20")[0]["values"]
+  self.assertEqual(v["Anytime goal"],1)
+  self.assertEqual(v["Multi-point game"],1)
+  self.assertEqual(v["Blocked shots"],3)
+  self.assertEqual(v["Power-play goals"],1)
  def test_no_fabricated_values(self):
   self.assertEqual(parse_boxscore({"playerByGameStats":{}},"1","2026-10-20"),[])
 if __name__=="__main__":unittest.main()
