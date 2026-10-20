@@ -4,6 +4,7 @@ from datetime import datetime,timezone
 from pathlib import Path
 from scripts.connect_nfl_team_scores import parse_scoreboard,assemble
 from scripts.backtest_nfl import evaluate
+from scripts.matchup_monte_carlo import build_forecasts
 
 LEAGUES={"nba":("basketball","basketball_nba"),"nhl":("hockey","icehockey_nhl")}
 def parse_league(data):
@@ -29,7 +30,15 @@ def main():
         odds=json.loads(odds_path.read_text()) if odds_path.exists() else {"odds":[]}
         inputs=build_inputs(games,odds,sport,now.isoformat())
         Path(f"feed/{league}_independent_game_inputs.json").write_text(json.dumps(inputs,indent=2)+"\n")
+        # NHL settlement includes OT/shootouts: continuous-score MC is not a valid NHL moneyline engine.
         report=evaluate(games,trials=10000)
+        report["production_ready"]=False
+        report["limitations"]=(["Overtime/shootout outcomes not explicitly modeled","Spread and total markets not independently validated"] if league=="nhl" else ["Spread and total markets not independently validated","No independently verified market-specific calibration"])
+        if odds.get("source")=="the-odds-api-v4" and inputs["games"] and league=="nba":
+            candidates=build_forecasts(inputs,odds)
+        else:
+            candidates={"schema_version":1,"predictions":[],"model_status":"experimental-no-eligible-odds-or-nhl-settlement-unsupported"}
+        Path(f"feed/{league}_model_candidates.json").write_text(json.dumps(candidates,indent=2)+"\n")
         Path(f"feed/{league}_backtest.json").write_text(json.dumps({"source":"walk-forward-league-monte-carlo","league":league,"generated_at":now.isoformat(),**report},indent=2)+"\n")
         print(league.upper(),"completed:",len(games),"backtest:",report["sample_size"],"Brier:",report["brier"],"passed:",report["passed"],"eligible odds events:",len(inputs["games"]))
 if __name__=="__main__":main()
