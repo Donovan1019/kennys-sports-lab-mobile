@@ -14,28 +14,59 @@ URLS=[
 CITY={"ATL":"Atlanta","BOS":"Boston","BKN":"Brooklyn, NY","CHA":"Charlotte","CHI":"Chicago","CLE":"Cleveland","DAL":"Dallas","DEN":"Denver","DET":"Detroit","GSW":"San Francisco","HOU":"Houston","IND":"Indianapolis","LAC":"Inglewood, CA","LAL":"Los Angeles","MEM":"Memphis","MIA":"Miami","MIL":"Milwaukee","MIN":"Minneapolis","NOP":"New Orleans","NYK":"New York","OKC":"Oklahoma City","ORL":"Orlando","PHI":"Philadelphia","PHX":"Phoenix","POR":"Portland, OR","SAC":"Sacramento","SAS":"San Antonio","TOR":"Toronto","UTA":"Salt Lake City","WAS":"Washington, DC"}
 
 def schedule():
-    last_error=None
+    """ESPN public calendar fallback: one request per team, deduplicate event IDs."""
+    errors=[]
     for url in URLS:
         try:
-            req=urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0 (compatible; KennySportsLab/1.0)"})
-            with urllib.request.urlopen(req,timeout=35) as resp:
+            req=urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0"})
+            with urllib.request.urlopen(req,timeout=25) as resp:
                 payload=json.load(resp)
             league=payload.get("leagueSchedule") or payload.get("schedule") or {}
-            dates=league.get("gameDates") or []
             games=[]
-            for group in dates:
+            for group in league.get("gameDates") or []:
                 for game in group.get("games",[]):
                     home=(game.get("homeTeam") or {}).get("teamTricode")
                     away=(game.get("awayTeam") or {}).get("teamTricode")
-                    stamp=game.get("gameDateEst") or group.get("gameDate") or game.get("gameDateTimeEst") or game.get("gameDateTimeUTC")
-                    if not home or not away or not stamp: continue
-                    dt=str(stamp)[:10]
-                    if not ("2026-10-20"<=dt<="2027-04-11"):continue
-                    games.append({"date":dt,"home":home,"away":away,"game_id":str(game.get("gameId") or "")})
-            if len(games)<1000:raise ValueError(f"Unexpected schedule size: {len(games)}; refusing incomplete season")
-            return games,url
-        except Exception as exc:last_error=exc
-    raise RuntimeError(f"Official NBA schedule unavailable: {last_error}")
+                    stamp=game.get("gameDateEst") or group.get("gameDate") or game.get("gameDateTimeEst")
+                    if home and away and stamp:
+                        dt=str(stamp)[:10]
+                        if "2026-10-20"<=dt<="2027-04-11":
+                            games.append({"date":dt,"home":home,"away":away,"game_id":str(game.get("gameId") or "")})
+            if len(games)>=1000:return games,url
+            errors.append(f"NBA CDN incomplete ({len(games)} games)")
+        except Exception as exc:errors.append(f"NBA CDN: {exc}")
+    import time
+    from zoneinfo import ZoneInfo
+    teams=list(CITY)
+    found={}
+    for team in teams:
+        url=f"https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/{team.lower()}/schedule?season=2027&seasontype=2&limit=100"
+        try:
+            req=urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0","Accept":"application/json"})
+            with urllib.request.urlopen(req,timeout=25) as resp:
+                data=json.load(resp)
+            for event in data.get("events") or []:
+                eid=str(event.get("id") or "")
+                competition=(event.get("competitions") or [{}])[0]
+                competitors=competition.get("competitors") or []
+                home=next((x for x in competitors if x.get("homeAway")=="home"),None)
+                away=next((x for x in competitors if x.get("homeAway")=="away"),None)
+                if not home or not away:continue
+                h=(home.get("team") or {}).get("abbreviation","").upper()
+                a=(away.get("team") or {}).get("abbreviation","").upper()
+                h={"NY":"NYK","GS":"GSW","SA":"SAS","NO":"NOP","UTAH":"UTA"}.get(h,h)
+                a={"NY":"NYK","GS":"GSW","SA":"SAS","NO":"NOP","UTAH":"UTA"}.get(a,a)
+                if h not in CITY or a not in CITY:continue
+                stamp=event.get("date")
+                if not stamp:continue
+                dt=datetime.fromisoformat(stamp.replace("Z","+00:00")).astimezone(ZoneInfo("America/New_York")).date().isoformat()
+                if "2026-10-20"<=dt<="2027-04-11":
+                    found[eid or f"{dt}-{h}-{a}"]={"date":dt,"home":h,"away":a,"game_id":eid}
+        except Exception as exc:errors.append(f"ESPN {team}: {exc}")
+        time.sleep(.1)
+    if len(found)<1000:
+        raise RuntimeError(f"NBA schedule incomplete ({len(found)} games); refusing to publish. Errors: {errors[:6]}")
+    return list(found.values()),"ESPN public NBA team schedules (NBA league schedule cross-reference)"
 
 def build(games):
     last={};out=[]
