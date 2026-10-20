@@ -36,7 +36,7 @@ def parse(source):
         if r.get("season_type") not in ("REG","POST"):continue
         try:
             year=int(r["season"]);week=int(r["week"])
-            values={name:float(r[col]) for name,col in MARKETS.items() if col in columns and r.get(col) not in ("",None)}
+            values={name:float(r[col]) for name,col in MARKETS.items() if col in columns and r.get(col) not in ("",None)}\n            if any(not __import__("math").isfinite(v) or v<0 for v in values.values()):continue
         except (ValueError,TypeError,KeyError):
             continue
         if not r.get("player_id") or not r.get(name_column) or not values:continue
