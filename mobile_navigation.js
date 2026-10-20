@@ -2,7 +2,7 @@
 (()=>{'use strict';const sections=[
 ['Home',[]],['Players',['ksl-player-page']],
 ['NFL',['ksl-trends','ksl-real-stats','ksl-prop-odds','ksl-model','ksl-sgp','ksl-prop-research']],
-['NBA',['ksl-nba-b2b-lab','ksl-nba']],['NBA Travel',['ksl-nba-b2b-lab']],['NHL',['ksl-nhl']],
+['NBA',['ksl-nba-travel-embed','ksl-nba']],['NBA Travel',['ksl-nba-travel-embed']],['NHL',['ksl-nhl']],
 ['NCAA Football',[]],['NCAA Basketball',[]],['WNBA',[]],['International Basketball',[]],
 ['MLB',[]],['International Baseball',[]],['International Hockey',[]],['NCAA Hockey',[]],
 ['Soccer',[]],['Tennis',[]],['UFC',[]],['DWCS',[]],['PFL',[]],
