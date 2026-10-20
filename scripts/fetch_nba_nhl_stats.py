@@ -44,9 +44,9 @@ def parse_summary(data,league,game_id,game_date):
                 if not ident or not name or not isinstance(values,list):continue
                 stats={}
                 for i,raw in enumerate(values):
-                    label=str(keys[i] if i<len(keys) else labels[i] if i<len(labels) else "").upper()
+                    label=str(labels[i] if i<len(labels) else keys[i] if i<len(keys) else "").upper()
                     if league=="nba":
-                        aliases={"PTS":"Points","REB":"Rebounds","AST":"Assists","3PT":"Threes","3PM":"Threes","MIN":"Minutes","STL":"Steals","BLK":"Blocks","TO":"Turnovers"}
+                        aliases={"PTS":"Points","POINTS":"Points","REB":"Rebounds","REBOUNDS":"Rebounds","AST":"Assists","ASSISTS":"Assists","3PT":"Threes","3PM":"Threes","3-PT":"Threes","MIN":"Minutes","MINUTES":"Minutes","STL":"Steals","STEALS":"Steals","BLK":"Blocks","BLOCKS":"Blocks","TO":"Turnovers","TURNOVERS":"Turnovers"}
                     else:
                         aliases={"G":"Goals","GOALS":"Goals","A":"Assists","AST":"Assists","PTS":"Points","SOG":"Shots on goal","SHOTS":"Shots on goal","SV":"Saves","SAVES":"Saves"}
                     metric=aliases.get(label)
