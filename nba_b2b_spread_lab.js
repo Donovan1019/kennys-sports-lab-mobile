@@ -17,7 +17,7 @@ function exposeTravelLab(){
  let nav=document.getElementById('ksl-nba-travel-jump');
  if(!nav){nav=document.createElement('button');nav.id='ksl-nba-travel-jump';nav.type='button';nav.textContent='✈ NBA Travel & Back-to-Back Lab ↓';nav.setAttribute('aria-label','Jump to NBA travel and back-to-back spread research');nav.style.cssText='display:block;width:100%;margin:8px 0 12px;min-height:48px;padding:10px 12px;background:#1c7457;border:2px solid #8ef4b3;border-radius:10px;color:#fff;font-size:15px;font-weight:900;text-align:center';nav.onclick=()=>{window.kslNavigate?.('NBA');panel.scrollIntoView({behavior:'smooth',block:'start'})}}
  const chooser=document.getElementById('ksl-sport-chooser');
- if(chooser&&nav.parentElement!==chooser.parentElement)chooser.insertAdjacentElement('afterend',nav);
+ if(chooser&&nav.previousElementSibling!==chooser)chooser.insertAdjacentElement('afterend',nav);
  const show=()=>{const selection=document.getElementById('ksl-sport-select');nav.hidden=selection?.value!=='NBA'};
  document.getElementById('ksl-sport-select')?.addEventListener('change',show);
  window.addEventListener('hashchange',show);show();
