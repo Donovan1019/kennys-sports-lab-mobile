@@ -12,7 +12,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Validate Python source
-        run: python -m py_compile scripts/fetch_odds.py scripts/fetch_nfl_stats.py scripts/market_math.py scripts/fetch_nfl_props.py scripts/analytics_core.py scripts/fetch_nba_nhl_stats.py scripts/fetch_nhl_official_stats.py scripts/matchup_monte_carlo.py scripts/model_predictions.py scripts/connect_nfl_team_scores.py scripts/backtest_nfl.py scripts/connect_nba_nhl_scores.py
+        run: python -m py_compile scripts/fetch_odds.py scripts/fetch_nfl_stats.py scripts/market_math.py scripts/fetch_nfl_props.py scripts/analytics_core.py scripts/fetch_nba_nhl_stats.py scripts/fetch_nhl_official_stats.py scripts/matchup_monte_carlo.py scripts/model_predictions.py scripts/connect_nfl_team_scores.py scripts/backtest_nfl.py scripts/connect_nba_nhl_scores.py scripts/sport_simulation.py scripts/market_backtest.py
       - name: Validate JavaScript syntax
         run: |
           node --check all_sports.js
