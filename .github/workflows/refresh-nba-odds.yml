@@ -1,0 +1,48 @@
+name: Refresh NBA sportsbook odds
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '15 16 * * *'
+permissions:
+  contents: write
+concurrency:
+  group: nba-odds-refresh
+  cancel-in-progress: false
+jobs:
+  nba:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Collect verified NBA markets
+        env:
+          THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
+          ODDS_SPORT: basketball_nba
+          ODDS_MARKETS: h2h,spreads,totals
+        run: python scripts/fetch_odds.py
+      - name: Validate NBA feed
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('feed/basketball_nba.json').read_text())
+          assert d['sport']=='basketball_nba'
+          assert d['source']=='the-odds-api-v4'
+          assert isinstance(d['odds'],list)
+          assert all(r['sport']=='basketball_nba' and r['market'] in ('h2h','spreads','totals') for r in d['odds'])
+          print('NBA feed valid:',len(d['odds']),'selections')
+          PY
+      - name: Publish NBA snapshot
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add feed/basketball_nba.json feed/latest.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Refresh verified NBA odds snapshot"
+            git pull --rebase
+            git push
+          fi
