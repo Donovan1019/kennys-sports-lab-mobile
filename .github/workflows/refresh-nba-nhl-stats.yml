@@ -10,6 +10,11 @@ on:
         options:
           - nba
           - nhl
+      start_date:
+        description: "End date for historical backfill batch (YYYY-MM-DD); blank = today"
+        required: false
+        type: string
+        default: ''
       lookback_days:
         description: "Completed games to check (1-31 days)"
         type: choice
@@ -38,6 +43,7 @@ jobs:
         env:
           PLAYER_SPORT: ${{ inputs.sport }}
           LOOKBACK_DAYS: ${{ inputs.lookback_days }}
+          START_DATE: ${{ inputs.start_date }}
         run: python scripts/fetch_nba_nhl_stats.py
       - name: Commit verified league snapshot
         run: |
