@@ -37,8 +37,14 @@ def parse_boxscore(payload,game_id,game_date):
                     v=integer(player.get(source))
                     if v is not None:vals[target]=v
                 if "Goals" in vals and "Assists" in vals:vals["Points"]=vals["Goals"]+vals["Assists"]
+                # A credited goal with fewer recorded SOG is an inconsistent source row.
+                # Quarantine only the SOG field, not the independently reported goal.
+                quality_flags=[]
+                if "Goals" in vals and "Shots on goal" in vals and vals["Shots on goal"]<vals["Goals"]:
+                    quality_flags.append("sog_below_goals")
+                    vals.pop("Shots on goal")
                 if not vals:continue
-                rows.append({"id":str(pid),"name":name,"team":team_code,"game_id":str(game_id),"date":game_date,"values":vals,"home_away":"home" if side=="homeTeam" else "away","position_group":position})
+                rows.append({"id":str(pid),"name":name,"team":team_code,"game_id":str(game_id),"date":game_date,"values":vals,"home_away":"home" if side=="homeTeam" else "away","position_group":position,"quality_flags":quality_flags})
     return rows
 def main():
     days=int(os.environ.get("LOOKBACK_DAYS","14"))
@@ -77,16 +83,18 @@ def main():
         pid=row["id"]
         p=players.setdefault(pid,{"id":pid,"name":row["name"],"team":row["team"],"games":[]})
         p["name"]=row["name"];p["team"]=row["team"]
-        p["games"].append({k:row[k] for k in ("game_id","date","values","home_away","position_group") if k in row})
+        p["games"].append({k:row[k] for k in ("game_id","date","values","home_away","position_group","quality_flags") if k in row})
     for p in players.values():p["games"].sort(key=lambda g:(g["date"],g["game_id"]))
+    flags=[{"player":p["name"],"game_id":g["game_id"],"date":g["date"],"flags":g["quality_flags"]} for p in players.values() for g in p["games"] if g.get("quality_flags")]
     sog=[g["values"]["Shots on goal"] for p in players.values() for g in p["games"] if "Shots on goal" in g["values"]]
     if not sog or not any(x>0 for x in sog):
         raise SystemExit(f"NHL SOG sanity check failed: records={len(sog)} nonzero={sum(x>0 for x in sog)} parsed_games={parsed} checked={checked} sample_errors={errors[:3]}; official snapshot not overwritten")
     output={"source":"nhl-official-boxscore","sport":"nhl","fetched_at":datetime.now(timezone.utc).isoformat(),
             "completed_games_checked":checked,"games_parsed":parsed,"errors":errors[:100],
             "sog_observations":len(sog),"sog_nonzero":sum(x>0 for x in sog),
+            "quality_exceptions":flags[:100],"quality_exception_count":len(flags),
             "players":sorted(players.values(),key=lambda p:p["name"])}
     path.parent.mkdir(exist_ok=True)
     path.write_text(json.dumps(output,separators=(",",":"))+"\n")
-    print(f"NHL OFFICIAL: players={len(players)}, games={parsed}/{checked}, SOG records={len(sog)}, nonzero={sum(x>0 for x in sog)}, errors={len(errors)}")
+    print(f"NHL OFFICIAL: players={len(players)}, games={parsed}/{checked}, SOG records={len(sog)}, nonzero={sum(x>0 for x in sog)}, errors={len(errors)}, flagged={len(flags)}")
 if __name__=="__main__":sys.exit(main())
