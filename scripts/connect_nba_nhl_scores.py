@@ -9,9 +9,9 @@ from scripts.matchup_monte_carlo import build_forecasts
 LEAGUES={"nba":("basketball","basketball_nba"),"nhl":("hockey","icehockey_nhl")}
 def parse_league(data):
     return [g for event in data.get("events",[]) if str((event.get("season") or {}).get("type"))=="2" for g in parse_scoreboard({"events":[event]})]
-def build_inputs(games,odds,sport,now):
+def build_inputs(games,odds,sport,now,upcoming=None):
     rows=[{**r,"sport":"americanfootball_nfl"} for r in odds.get("odds",[]) if r.get("sport")==sport]
-    out=assemble(games,{"odds":rows},now)
+    out=assemble(games,{"odds":rows},now,upcoming=upcoming)
     for g in out["games"]:g["sport"]=sport
     return out
 def main():
@@ -28,7 +28,19 @@ def main():
         Path(f"feed/{league}_completed_games.json").write_text(json.dumps({"source":"espn-public-completed-league-games","league":league,"fetched_at":now.isoformat(),"games":games},indent=2)+"\n")
         odds_path=Path(f"feed/{sport}.json")
         odds=json.loads(odds_path.read_text()) if odds_path.exists() else {"odds":[]}
-        inputs=build_inputs(games,odds,sport,now.isoformat())
+        # Verify future tipoff/puck drop independently of sportsbook snapshot.
+        schedule_url=f"https://site.api.espn.com/apis/site/v2/sports/{category}/{league}/scoreboard"
+        with urllib.request.urlopen(urllib.request.Request(schedule_url,headers={"User-Agent":"KennysSportsLab/1.0"}),timeout=60) as response:schedule=json.load(response)
+        upcoming=set()
+        for event in schedule.get("events",[]):
+            try:
+                tip=datetime.fromisoformat(event["date"].replace("Z","+00:00"))
+                sides=event["competitions"][0]["competitors"]
+                away=next(x["team"]["displayName"] for x in sides if x["homeAway"]=="away")
+                home=next(x["team"]["displayName"] for x in sides if x["homeAway"]=="home")
+                if tip>now:upcoming.add((away,home))
+            except (KeyError,ValueError,TypeError,StopIteration):continue
+        inputs=build_inputs(games,odds,sport,now.isoformat(),upcoming=upcoming)
         Path(f"feed/{league}_independent_game_inputs.json").write_text(json.dumps(inputs,indent=2)+"\n")
         # NHL settlement includes OT/shootouts: continuous-score MC is not a valid NHL moneyline engine.
         report=evaluate(games,trials=10000,sport=sport)
