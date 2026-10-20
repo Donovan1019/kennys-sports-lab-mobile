@@ -10,7 +10,7 @@ document.head.append(css);
 const heading=document.createElement('h3');heading.textContent='NBA · Coaches News | Full Court Press';
 const intro=document.createElement('p');intro.textContent='Coach and player interviews, beat-reporter updates, rotation plans, minutes and usage, injury recovery, and gameplan comments. Open the original source to verify context and timestamps.';
 const links=document.createElement('div');links.className='ksl-fcp-links';
-for(const [name,url] of [['Latest coach news','https://fcp.news/'],['Coachspeak','https://fcp.news/coachspeak'],['Injury updates','https://fcp.news/injury'],['Press conferences','https://fcp.news/pressers'],['Teams','https://fcp.news/teams']]){
+for(const [name,url] of [['Open Full Court Press','https://fcp.news/']]){
  const a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener noreferrer';a.textContent=name+' ↗';links.append(a);
 }
 const note=document.createElement('p');note.className='ksl-fcp-note';note.textContent='Research source: Full Court Press (fcp.news), an independent third-party website. Quotes are not official lineup or injury designations. Some content requires a free account. This panel does not scrape content or automatically adjust model probabilities.';
