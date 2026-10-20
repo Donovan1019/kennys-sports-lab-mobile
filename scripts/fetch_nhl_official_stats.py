@@ -33,10 +33,12 @@ def parse_boxscore(payload,game_id,game_date):
                 if not name:name=((player.get("firstName") or {}).get("default","")+" "+(player.get("lastName") or {}).get("default","")).strip()
                 if not pid or not name:continue
                 vals={}
-                for source,target in (("goals","Goals"),("assists","Assists"),("sog","Shots on goal"),("saves","Saves")):
+                for source,target in (("goals","Goals"),("assists","Assists"),("sog","Shots on goal"),("saves","Saves"),("blockedShots","Blocked shots"),("hits","Hits"),("powerPlayGoals","Power-play goals"),("powerPlayPoints","Power-play points"),("shotsAgainst","Shots against")):
                     v=integer(player.get(source))
                     if v is not None:vals[target]=v
                 if "Goals" in vals and "Assists" in vals:vals["Points"]=vals["Goals"]+vals["Assists"]
+                if "Goals" in vals:vals["Anytime goal"]=int(vals["Goals"]>=1)
+                if "Points" in vals:vals["Multi-point game"]=int(vals["Points"]>=2)
                 # A credited goal with fewer recorded SOG is an inconsistent source row.
                 # Quarantine only the SOG field, not the independently reported goal.
                 quality_flags=[]
