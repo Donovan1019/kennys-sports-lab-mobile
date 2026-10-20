@@ -14,6 +14,17 @@ controls.append(sport,market,sort,refresh);root.append(controls);
 const status=document.createElement('p');status.className='ksl-top10-note';status.setAttribute('role','status');root.append(status);
 const host=document.createElement('div');host.className='ksl-top10-list';root.append(host);
 const landing=document.getElementById('ksl-landing');if(!landing)return;landing.after(root);
+// The Top 10 is created after mobile_navigation.js snapshots page sections.
+// Independently synchronize its visibility with the selected page.
+function syncHomeOnly(){
+ const chooser=document.getElementById('ksl-sport-select');
+ const selected=chooser?.value || decodeURIComponent(location.hash.slice(1)).toLowerCase() || 'home';
+ root.hidden=String(selected).toLowerCase()!=='home';
+}
+syncHomeOnly();
+document.getElementById('ksl-sport-select')?.addEventListener('change',syncHomeOnly);
+window.addEventListener('hashchange',syncHomeOnly);
+
 let records=[],loaded=[],missing=[];
 const pct=price=>price<0?(-price)/((-price)+100):100/(price+100);
 const eastern=value=>{const d=new Date(value);return Number.isFinite(d.getTime())?new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'}).format(d):'unknown time'};
