@@ -1,0 +1,37 @@
+name: Refresh NHL Official Player Stats
+on:
+  workflow_dispatch:
+    inputs:
+      lookback_days:
+        description: "Completed NHL games to check"
+        type: choice
+        required: true
+        default: '14'
+        options:
+          - '7'
+          - '14'
+          - '31'
+permissions:
+  contents: write
+concurrency:
+  group: nhl-official-stats
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Import and validate NHL official boxscores
+        env:
+          LOOKBACK_DAYS: ${{ inputs.lookback_days }}
+        run: python scripts/fetch_nhl_official_stats.py
+      - name: Publish official NHL snapshot
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add feed/nhl_official_player_stats.json
+          git diff --cached --quiet || (git commit -m "Refresh NHL official player stats" && git push)
