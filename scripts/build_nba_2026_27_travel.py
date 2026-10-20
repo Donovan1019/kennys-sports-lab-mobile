@@ -27,12 +27,12 @@ def schedule():
                 for game in group.get("games",[]):
                     home=(game.get("homeTeam") or {}).get("teamTricode")
                     away=(game.get("awayTeam") or {}).get("teamTricode")
-                    stamp=game.get("gameDateTimeUTC") or game.get("gameDateTimeEst") or group.get("gameDate")
+                    stamp=game.get("gameDateEst") or group.get("gameDate") or game.get("gameDateTimeEst") or game.get("gameDateTimeUTC")
                     if not home or not away or not stamp: continue
                     dt=str(stamp)[:10]
                     if not ("2026-10-20"<=dt<="2027-04-11"):continue
                     games.append({"date":dt,"home":home,"away":away,"game_id":str(game.get("gameId") or "")})
-            if len(games)<800:raise ValueError(f"Unexpected schedule size: {len(games)}")
+            if len(games)<1000:raise ValueError(f"Unexpected schedule size: {len(games)}; refusing incomplete season")
             return games,url
         except Exception as exc:last_error=exc
     raise RuntimeError(f"Official NBA schedule unavailable: {last_error}")
@@ -45,7 +45,7 @@ def build(games):
             team=game[side];old=last.get(team)
             if old and (day-old["date"]).days==1:
                 frm=CITY.get(old["venue"],old["venue"]);to=CITY.get(game["home"],game["home"])
-                out.append({"date":game["date"],"team":team,"opponent":game["away" if side=="home" else "home"],"from":frm,"to":to,"from_venue":old["venue"],"to_venue":game["home"],"changed_venue":old["venue"]!=game["home"],"pattern":old["side"]+" → "+side,"game_id":game["game_id"],"status":"SCHEDULED"})
+                out.append({"previous_date":old["date"].isoformat(),"date":game["date"],"team":team,"opponent":game["away" if side=="home" else "home"],"from":frm,"to":to,"from_venue":old["venue"],"to_venue":game["home"],"changed_venue":old["venue"]!=game["home"],"pattern":old["side"]+" → "+side,"game_id":game["game_id"],"status":"SCHEDULED"})
             last[team]={"date":day,"venue":game["home"],"side":side}
     return out
 
