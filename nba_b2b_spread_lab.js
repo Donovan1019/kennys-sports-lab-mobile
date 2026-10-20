@@ -7,4 +7,21 @@ const $=id=>document.getElementById(id);const day=x=>{const d=new Date(x);return
 function analyze(games){const last=new Map(),out=[];for(const g of [...games].sort((a,b)=>String(a.date).localeCompare(String(b.date)))){const date=day(g.date);if(!date||!Number.isFinite(g.home_score)||!Number.isFinite(g.away_score))continue;for(const side of ['home','away']){const team=g[side],venue=g.home;if(!team||!venue)continue;const prev=last.get(team);if(prev&&diff(date,prev.date)===1)out.push({date,team,from:cities[prev.venue]||prev.venue,to:cities[venue]||venue,changed:prev.venue!==venue,pattern:prev.side+' → '+side,margin:side==='home'?g.home_score-g.away_score:g.away_score-g.home_score});last.set(team,{date,venue,side})}}return out}
 $('ksl-b2b-load').onclick=async()=>{const button=$('ksl-b2b-load');button.disabled=true;$('ksl-b2b-status').textContent='Loading verified NBA game history…';try{const r=await fetch('./feed/nba_completed_games.json',{cache:'no-store'});if(!r.ok)throw Error('Historical results feed missing');const d=await r.json();if(d.league!=='nba'||!Array.isArray(d.games))throw Error('Invalid NBA feed');const rows=analyze(d.games),body=$('ksl-b2b-rows');body.replaceChildren();const count=rows.filter(x=>x.changed).length;$('ksl-b2b-stats').textContent=rows.length+' back-to-back team appearances · '+count+' changed home-team venues · '+(rows.length-count)+' stayed at same home-team venue · snapshot '+(d.fetched_at||'unknown');for(const x of rows.slice(-150).reverse()){const tr=document.createElement('tr');for(const v of [x.date,x.team,x.from,x.to,x.changed?'Changed city/venue':'Same venue',x.pattern,(x.margin>0?'+':'')+x.margin]){const td=document.createElement('td');td.textContent=v;tr.append(td)}body.append(tr)}$('ksl-b2b-status').textContent='Showing '+Math.min(150,rows.length)+' most recent historical team appearances. From → To shows actual scheduled game cities, not a flight itinerary.'}catch(e){$('ksl-b2b-status').textContent='UNAVAILABLE: '+e.message}finally{button.disabled=false}};
 if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',()=>$('ksl-b2b-load')?.click(),{once:true})}else{$('ksl-b2b-load')?.click()}
+
+// Keep travel lab prominent after other NBA modules prepend their own panels.
+function exposeTravelLab(){
+ const panel=document.getElementById('ksl-nba-b2b-lab');
+ const nba=document.getElementById('ksl-nba');
+ if(!panel||!nba)return;
+ if(nba.firstElementChild!==panel)nba.prepend(panel);
+ let nav=document.getElementById('ksl-nba-travel-jump');
+ if(!nav){nav=document.createElement('button');nav.id='ksl-nba-travel-jump';nav.type='button';nav.textContent='✈ NBA Travel & Back-to-Back Lab ↓';nav.setAttribute('aria-label','Jump to NBA travel and back-to-back spread research');nav.style.cssText='display:block;width:100%;margin:8px 0 12px;min-height:48px;padding:10px 12px;background:#1c7457;border:2px solid #8ef4b3;border-radius:10px;color:#fff;font-size:15px;font-weight:900;text-align:center';nav.onclick=()=>{window.kslNavigate?.('NBA');panel.scrollIntoView({behavior:'smooth',block:'start'})}}
+ const chooser=document.getElementById('ksl-sport-chooser');
+ if(chooser&&nav.parentElement!==chooser.parentElement)chooser.insertAdjacentElement('afterend',nav);
+ const show=()=>{const selection=document.getElementById('ksl-sport-select');nav.hidden=selection?.value!=='NBA'};
+ document.getElementById('ksl-sport-select')?.addEventListener('change',show);
+ window.addEventListener('hashchange',show);show();
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',exposeTravelLab,{once:true});else exposeTravelLab();
+
 })();
