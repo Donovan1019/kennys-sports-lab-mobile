@@ -36,7 +36,8 @@ def build_forecasts(inputs,odds):
     for game in inputs["games"]:
         if game.get("validated") is not True or game.get("sample_size",0)<8:continue
         try:
-            scores=simulate_game(game["away_mean"],game["home_mean"],game["away_sd"],game["home_sd"],seed=42)
+            from scripts.sport_simulation import simulate_sport
+            scores=simulate_sport(game["sport"],game["away_mean"],game["home_mean"],game["away_sd"],game["home_sd"],seed=42)
         except (KeyError,TypeError,ValueError):continue
         for row in odds.get("odds",[]):
             if row.get("event_id")!=game.get("event_id") or row.get("sport")!=game.get("sport"):continue
