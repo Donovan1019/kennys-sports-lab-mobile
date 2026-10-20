@@ -7,7 +7,7 @@ from pathlib import Path
 from scripts.connect_nfl_team_scores import team_parameters
 from scripts.matchup_monte_carlo import simulate_game
 
-def evaluate(games,*,trials=10000,minimum=100):
+def evaluate(games,*,trials=10000,minimum=100,sport="americanfootball_nfl"):
     ordered=sorted(games,key=lambda g:g["date"])
     results=[]
     for i,g in enumerate(ordered):
@@ -19,7 +19,8 @@ def evaluate(games,*,trials=10000,minimum=100):
         hm=(home["for_mean"]+away["against_mean"])/2
         ads=math.sqrt((away["for_sd"]**2+home["against_sd"]**2)/2)
         hds=math.sqrt((home["for_sd"]**2+away["against_sd"]**2)/2)
-        sim=simulate_game(am,hm,ads,hds,trials=trials,seed=1000+i)
+        from scripts.sport_simulation import simulate_sport
+        sim=simulate_sport(sport,am,hm,ads,hds,trials=trials,seed=1000+i)
         decisive=[(a,h) for a,h in sim if abs(a-h)>1e-9]
         if not decisive:continue
         p=sum(h>a for a,h in decisive)/len(decisive)
@@ -40,7 +41,7 @@ def evaluate(games,*,trials=10000,minimum=100):
         selected=[r for r in results if low<=r["predicted_home_win"]<(low+.2 if low<.8 else 1.00001)]
         bins.append({"range":[low,round(low+.2,1)],"n":len(selected),"mean_predicted":statistics.mean(r["predicted_home_win"] for r in selected) if selected else None,"actual_rate":statistics.mean(r["actual_home_win"] for r in selected) if selected else None})
     passed=n>=minimum and brier is not None and baseline is not None and brier<baseline
-    return {"method":"walk_forward","model_version":"independent-scoring-mc-v1","sample_size":n,"trials_per_game":trials,
+    return {"method":"walk_forward","model_version":("nhl-poisson-ot-proxy-v1" if sport=="icehockey_nhl" else "independent-scoring-mc-v1"),"sample_size":n,"trials_per_game":trials,
             "brier":brier,"constant_home_baseline_brier":baseline,"mean_team_score_absolute_error":mae,
             "passed":passed,"criteria":"at least 100 strictly chronological out-of-sample games and Brier lower than constant home-win baseline",
             "calibration_bins":bins,"evaluation_start":results[0]["date"] if results else None,
