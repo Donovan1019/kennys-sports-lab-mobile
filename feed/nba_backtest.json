@@ -1,7 +1,7 @@
 {
   "source": "walk-forward-league-monte-carlo",
   "league": "nba",
-  "generated_at": "2026-10-20T11:26:56.854786+00:00",
+  "generated_at": "2026-10-20T11:37:11.931784+00:00",
   "method": "walk_forward",
   "model_version": "independent-scoring-mc-v1",
   "sample_size": 1441,
@@ -18794,5 +18794,10 @@
       "actual_away_points": 110.0,
       "squared_error": 0.07524049
     }
+  ],
+  "production_ready": false,
+  "limitations": [
+    "Spread and total markets not independently validated",
+    "No independently verified market-specific calibration"
   ]
 }
