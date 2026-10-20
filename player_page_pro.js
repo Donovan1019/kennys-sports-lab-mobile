@@ -44,7 +44,7 @@ $('ksl-p-status').textContent='Verified player history: '+(statsFeed.fetched_at|
 async function refresh(){if(loading)return;loading=true;try{await fetchFeeds();render()}catch(e){$('ksl-p-status').textContent='UNAVAILABLE: '+e.message}finally{loading=false}}
 $('ks-pro-minus').onclick=()=>{const input=$('ksl-p-line');input.value=Math.max(0,Number(input.value)-(Number(input.step)||.5));input.dispatchEvent(new Event('change'));render()};
 $('ks-pro-plus').onclick=()=>{const input=$('ksl-p-line');input.value=Number(input.value)+(Number(input.step)||.5);input.dispatchEvent(new Event('change'));render()};
-for(const b of actions.children)b.onclick=()=>{venue=b.id.replace('ks-pro-','');if(venue!=='all'){venue='all';$('ksl-p-status').textContent='Home/away game labels are not present in the verified feed; showing all games.'}render()};
+for(const b of actions.children){if(b.id==='ks-pro-home'||b.id==='ks-pro-away'){b.disabled=true;b.title='Home/away labels not present in verified player feed';b.style.opacity='.4'}else b.onclick=()=>{venue='all';render()}}
 for(const b of splitTabs.children)b.onclick=()=>{view=b.dataset.mode;render()};
 for(const id of ['ksl-p-find','ksl-p-market','ksl-p-line','ksl-p-season','ksl-p-window'])$(id).addEventListener('change',()=>{venue='all';refresh()});
 $('ksl-p-load').addEventListener('click',()=>setTimeout(refresh,0));
