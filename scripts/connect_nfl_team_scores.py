@@ -32,13 +32,14 @@ def team_parameters(games,team,as_of,limit=12):
     if len(scored)<8:return None
     return {"for_mean":statistics.mean(scored),"against_mean":statistics.mean(allowed),"for_sd":max(3,statistics.stdev(scored)),"against_sd":max(3,statistics.stdev(allowed)),"games":len(scored)}
 
-def assemble(games,odds,as_of):
+def assemble(games,odds,as_of,upcoming=None):
     events={}
     for r in odds.get("odds",[]):
         if r.get("sport")!="americanfootball_nfl" or r.get("event_id") in events:continue
         names=(r.get("event") or "").split(" @ ")
         if len(names)!=2:continue
         away,home=names
+        if upcoming is not None and (away,home) not in upcoming:continue
         a,h=team_parameters(games,away,as_of),team_parameters(games,home,as_of)
         if a is None or h is None:continue
         events[r["event_id"]]={"event_id":r["event_id"],"sport":"americanfootball_nfl","away_team":away,"home_team":home,
@@ -59,7 +60,19 @@ def main():
     games.sort(key=lambda g:g["date"])
     Path("feed/nfl_completed_games.json").write_text(json.dumps({"source":"espn-public-completed-nfl-games","fetched_at":now,"games":games},indent=2)+"\n")
     odds=json.loads(Path("feed/americanfootball_nfl.json").read_text())
-    result=assemble(games,odds,now)
+    # Do not treat a saved odds event as upcoming without a verified future kickoff.
+    schedule_url="https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard"
+    with urllib.request.urlopen(urllib.request.Request(schedule_url,headers={"User-Agent":"KennysSportsLab/1.0"}),timeout=45) as res:schedule=json.load(res)
+    upcoming=set()
+    for event in schedule.get("events",[]):
+        try:
+            kickoff=datetime.fromisoformat(event["date"].replace("Z","+00:00"))
+            sides=event["competitions"][0]["competitors"]
+            away=next(x["team"]["displayName"] for x in sides if x["homeAway"]=="away")
+            home=next(x["team"]["displayName"] for x in sides if x["homeAway"]=="home")
+            if kickoff>datetime.fromisoformat(now):upcoming.add((away,home))
+        except (KeyError,ValueError,TypeError,StopIteration):continue
+    result=assemble(games,odds,now,upcoming=upcoming)
     Path("feed/independent_game_inputs.json").write_text(json.dumps(result,indent=2)+"\n")
     print("Verified completed NFL games:",len(games),"eligible upcoming matchups:",len(result["games"]))
 if __name__=="__main__":main()
