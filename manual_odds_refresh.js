@@ -13,22 +13,22 @@ const css=document.createElement('style');css.textContent=`
 #odds-refresh-panel .muted{color:#b5c4ba;font-size:12px;line-height:1.5}
 `;document.head.append(css);
 const panel=document.createElement('section');panel.id='odds-refresh-panel';
-panel.innerHTML='<h2>Live Odds · Published Feed</h2><p class="muted">Manual refresh checks the most recently published authorized feed. It cannot collect new FanDuel or DraftKings prices by itself.</p><label for="odds-refresh-book">Sportsbook</label><select id="odds-refresh-book"><option value="best">Best available</option><option value="fanduel">FanDuel</option><option value="draftkings">DraftKings</option></select><button id="odds-refresh-button" type="button">Refresh odds now</button><p class="muted" id="odds-refresh-status" role="status" aria-live="polite">No odds feed checked yet.</p><div class="scroll"><table><thead><tr><th>Event / Player</th><th>Market</th><th>Line</th><th>Book</th><th>Odds</th></tr></thead><tbody id="odds-refresh-results"></tbody></table></div>';
+panel.innerHTML='<h2>Live Odds · Published Feed</h2><p class="muted">Manual refresh checks the most recently published authorized feed. It cannot collect new FanDuel or DraftKings prices by itself.</p><label for="odds-refresh-sport">Sport</label><select id="odds-refresh-sport"><option value="latest">Most recently updated</option><option value="americanfootball_nfl">NFL</option><option value="americanfootball_ncaaf">NCAA Football</option><option value="basketball_nba">NBA</option><option value="basketball_ncaab">NCAA Basketball</option><option value="baseball_mlb">MLB</option><option value="icehockey_nhl">NHL</option><option value="soccer_epl">Premier League</option></select><label for="odds-refresh-market">Market</label><select id="odds-refresh-market"><option value="all">All available</option><option value="h2h">Moneyline</option><option value="spreads">Spread</option><option value="totals">Total</option></select><label for="odds-refresh-book">Sportsbook</label><select id="odds-refresh-book"><option value="best">Best available</option><option value="fanduel">FanDuel</option><option value="draftkings">DraftKings</option></select><button id="odds-refresh-button" type="button">Refresh odds now</button><p class="muted" id="odds-refresh-status" role="status" aria-live="polite">No odds feed checked yet.</p><div class="scroll"><table><thead><tr><th>Event / Player</th><th>Market</th><th>Line</th><th>Book</th><th>Odds</th></tr></thead><tbody id="odds-refresh-results"></tbody></table></div>';
 (document.querySelector('main')||document.body).prepend(panel);
-const button=$('odds-refresh-button'),status=$('odds-refresh-status'),tbody=$('odds-refresh-results'),book=$('odds-refresh-book');
+const button=$('odds-refresh-button'),status=$('odds-refresh-status'),tbody=$('odds-refresh-results'),book=$('odds-refresh-book'),sport=$('odds-refresh-sport'),market=$('odds-refresh-market');
 let snapshot=null;
 const clean=v=>String(v??'—');
 function render(){tbody.replaceChildren();if(!snapshot)return;
-const rows=snapshot.odds.filter(x=>book.value==='best'||String(x.bookmaker||x.book||'').toLowerCase().includes(book.value));
+const rows=snapshot.odds.filter(x=>(market.value==='all'||x.market===market.value)&&(book.value==='best'||String(x.bookmaker||x.book||'').toLowerCase().includes(book.value)));
 for(const x of rows){const tr=document.createElement('tr');for(const val of [x.event||x.player||x.description,x.market,x.point??x.line,x.bookmaker||x.book,x.price??x.odds]){const td=document.createElement('td');td.textContent=clean(val);tr.append(td)}tbody.append(tr)}
 if(!rows.length)status.textContent+=' · No selections for '+book.options[book.selectedIndex].text;
 }
-book.addEventListener('change',render);
+book.addEventListener('change',render);market.addEventListener('change',render);
 button.addEventListener('click',async()=>{button.disabled=true;button.textContent='Checking feed…';tbody.replaceChildren();snapshot=null;
-try{const response=await fetch('./feed/latest.json?checked='+Date.now(),{cache:'no-store'});if(!response.ok)throw Error('No published feed available');
+try{const response=await fetch('./feed/'+(sport.value==='latest'?'latest':sport.value)+'.json?checked='+Date.now(),{cache:'no-store'});if(!response.ok)throw Error('No published feed available');
 const data=await response.json();if(!data||!Array.isArray(data.odds)||data.source!=='the-odds-api-v4')throw Error('Unrecognized feed format');
 const time=Date.parse(data.fetched_at);const age=(Date.now()-time)/60000;const stale=!Number.isFinite(age)||age>15||age< -2;
-snapshot=data;status.textContent=(stale?'STALE SNAPSHOT':'PUBLISHED SNAPSHOT')+' · Feed timestamp: '+clean(data.fetched_at)+' · '+data.odds.length+' selections. Checked '+new Date().toLocaleTimeString()+'.';render();
+snapshot=data;status.textContent=(stale?'STALE SNAPSHOT':'PUBLISHED SNAPSHOT')+' · Feed timestamp: '+clean(data.fetched_at)+' · '+clean(data.sport||'Unknown sport')+' · '+data.odds.length+' selections. Checked '+new Date().toLocaleTimeString()+'.';render();
 }catch(err){status.textContent='UNAVAILABLE — '+err.message+'. No live sportsbook prices were retrieved.'}
 finally{button.disabled=false;button.textContent='Refresh odds now';}});
 })();
