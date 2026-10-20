@@ -2,7 +2,7 @@ import unittest
 from scripts.fetch_nhl_official_stats import parse_boxscore
 class OfficialNHLTests(unittest.TestCase):
  def test_shots_and_points(self):
-  d={"awayTeam":{"abbrev":"BOS"},"homeTeam":{"abbrev":"NYR"},"playerByGameStats":{"awayTeam":{"forwards":[{"playerId":123,"name":{"default":"Test Skater"},"goals":1,"assists":2,"shots":5}],"goalies":[{"playerId":777,"name":{"default":"Test Goalie"},"saves":31}]},"homeTeam":{"defense":[{"playerId":888,"name":{"default":"Test Defender"},"goals":0,"assists":1,"shots":3}]}}}
+  d={"awayTeam":{"abbrev":"BOS"},"homeTeam":{"abbrev":"NYR"},"playerByGameStats":{"awayTeam":{"forwards":[{"playerId":123,"name":{"default":"Test Skater"},"goals":1,"assists":2,"sog":5}],"goalies":[{"playerId":777,"name":{"default":"Test Goalie"},"saves":31}]},"homeTeam":{"defense":[{"playerId":888,"name":{"default":"Test Defender"},"goals":0,"assists":1,"sog":3}]}}}
   rows=parse_boxscore(d,"1","2026-10-20")
   self.assertEqual(len(rows),3)
   skater=next(x for x in rows if x["id"]=="123")
