@@ -33,7 +33,7 @@ def parse_boxscore(payload,game_id,game_date):
                 if not name:name=((player.get("firstName") or {}).get("default","")+" "+(player.get("lastName") or {}).get("default","")).strip()
                 if not pid or not name:continue
                 vals={}
-                for source,target in (("goals","Goals"),("assists","Assists"),("shots","Shots on goal"),("saves","Saves")):
+                for source,target in (("goals","Goals"),("assists","Assists"),("sog","Shots on goal"),("saves","Saves")):
                     v=integer(player.get(source))
                     if v is not None:vals[target]=v
                 if "Goals" in vals and "Assists" in vals:vals["Points"]=vals["Goals"]+vals["Assists"]
@@ -81,7 +81,7 @@ def main():
     for p in players.values():p["games"].sort(key=lambda g:(g["date"],g["game_id"]))
     sog=[g["values"]["Shots on goal"] for p in players.values() for g in p["games"] if "Shots on goal" in g["values"]]
     if not sog or not any(x>0 for x in sog):
-        raise SystemExit("NHL SOG sanity check failed; official snapshot not overwritten")
+        raise SystemExit(f"NHL SOG sanity check failed: records={len(sog)} nonzero={sum(x>0 for x in sog)} parsed_games={parsed} checked={checked} sample_errors={errors[:3]}; official snapshot not overwritten")
     output={"source":"nhl-official-boxscore","sport":"nhl","fetched_at":datetime.now(timezone.utc).isoformat(),
             "completed_games_checked":checked,"games_parsed":parsed,"errors":errors[:100],
             "sog_observations":len(sog),"sog_nonzero":sum(x>0 for x in sog),
