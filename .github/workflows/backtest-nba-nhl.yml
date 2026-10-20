@@ -13,13 +13,15 @@ jobs:
           python-version: '3.12'
       - name: Compile and run regression tests
         run: |
-          python -m py_compile scripts/connect_nba_nhl_scores.py scripts/backtest_nfl.py
+          python -m py_compile scripts/connect_nba_nhl_scores.py scripts/backtest_nfl.py scripts/sport_simulation.py scripts/market_backtest.py
           python -m unittest discover -s tests -p "test_*.py"
       - name: Import completed NBA and NHL games and run 10000-trial backtests
         run: python -m scripts.connect_nba_nhl_scores
+      - name: Validate historical margin and total errors
+        run: python -m scripts.market_backtest
       - name: Commit backtest results
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add feed/nba_model_candidates.json feed/nhl_model_candidates.json feed/nba_completed_games.json feed/nhl_completed_games.json feed/nba_backtest.json feed/nhl_backtest.json feed/nba_independent_game_inputs.json feed/nhl_independent_game_inputs.json
+          git add feed/nfl_market_validation.json feed/nba_market_validation.json feed/nhl_market_validation.json feed/nba_model_candidates.json feed/nhl_model_candidates.json feed/nba_completed_games.json feed/nhl_completed_games.json feed/nba_backtest.json feed/nhl_backtest.json feed/nba_independent_game_inputs.json feed/nhl_independent_game_inputs.json
           git diff --cached --quiet || (git commit -m "Publish independent NBA NHL score backtests" && git push)
