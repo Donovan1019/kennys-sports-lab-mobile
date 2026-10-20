@@ -21,7 +21,7 @@ MARKETS={
 }
 def parse(source):
     reader=csv.DictReader(io.StringIO(source))
-    required={"season","week","player_id"}|set(MARKETS.values())
+    required={"season","week","player_id"}
     columns=set(reader.fieldnames or [])
     name_column=next((x for x in ("player_display_name","player_name") if x in columns),None)
     team_column=next((x for x in ("recent_team","team") if x in columns),None)
@@ -34,7 +34,7 @@ def parse(source):
         if r.get("season_type") not in ("REG","POST"):continue
         try:
             year=int(r["season"]);week=int(r["week"])
-            values={name:float(r[col]) for name,col in MARKETS.items() if r.get(col) not in ("",None)}
+            values={name:float(r[col]) for name,col in MARKETS.items() if col in columns and r.get(col) not in ("",None)}
         except (ValueError,TypeError,KeyError):
             continue
         if not r.get("player_id") or not r.get(name_column) or not values:continue
