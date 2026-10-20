@@ -6,6 +6,7 @@ from pathlib import Path
 
 SPORTS={"americanfootball_nfl","americanfootball_ncaaf","basketball_nba","basketball_ncaab","baseball_mlb","icehockey_nhl","soccer_epl"}
 MARKETS={"h2h","spreads","totals"}
+PROP_MARKETS={"player_pass_yds","player_pass_tds","player_rush_yds","player_reception_yds","player_receptions","player_anytime_td"}
 def main():
     key=os.environ.get("THE_ODDS_API_KEY")
     if not key:
@@ -15,6 +16,9 @@ def main():
     markets=os.getenv("ODDS_MARKETS","h2h")
     if sport not in SPORTS or not set(markets.split(",")).issubset(MARKETS):
         print("Unsupported sport or market selection");return 2
+    if set(markets.split(",")) & PROP_MARKETS:
+        print("Player props require event-level endpoint and separate credit accounting; no unsupported request sent")
+        return 2
     params=urllib.parse.urlencode({"apiKey":key,"regions":"us","bookmakers":"fanduel,draftkings","markets":markets,"oddsFormat":"american"})
     req=urllib.request.Request("https://api.the-odds-api.com/v4/sports/"+sport+"/odds?"+params,headers={"User-Agent":"KennysSportsLab/1.0"})
     try:
