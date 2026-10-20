@@ -1,0 +1,50 @@
+name: Refresh public odds snapshot
+on:
+  workflow_dispatch:
+    inputs:
+      sport:
+        description: Sport
+        required: true
+        default: americanfootball_nfl
+        type: choice
+        options:
+          - americanfootball_nfl
+          - americanfootball_ncaaf
+          - basketball_nba
+          - basketball_ncaab
+          - baseball_mlb
+          - icehockey_nhl
+          - soccer_epl
+      markets:
+        description: Featured markets (availability and credits vary)
+        required: true
+        default: h2h
+        type: choice
+        options:
+          - h2h
+          - h2h,spreads,totals
+permissions:
+  contents: write
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fetch authorized sportsbook odds
+        env:
+          THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
+          ODDS_SPORT: ${{ inputs.sport }}
+          ODDS_MARKETS: ${{ inputs.markets }}
+        run: python scripts/fetch_odds.py
+      - name: Publish snapshot
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add feed/latest.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Update public odds snapshot"
+            git push
+          fi
