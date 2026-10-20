@@ -39,7 +39,7 @@ def main():
             if book.get("key") not in ("fanduel","draftkings"):continue
             for market in book.get("markets",[]):
                 for outcome in market.get("outcomes",[]):
-                    rows.append({"event":str(event.get("away_team",""))+" @ "+str(event.get("home_team","")),"event_id":event.get("id"),"sport":sport,"market":market.get("key"),"description":outcome.get("description"),"player":outcome.get("description"),"selection":outcome.get("name"),"point":outcome.get("point"),"price":outcome.get("price"),"bookmaker":book.get("key"),"updated_at":market.get("last_update") or book.get("last_update")})
+                    rows.append({"event":str(event.get("away_team",""))+" @ "+str(event.get("home_team","")),"event_id":event.get("id"),"commence_time":event.get("commence_time"),"sport":sport,"market":market.get("key"),"description":outcome.get("description"),"player":outcome.get("description"),"selection":outcome.get("name"),"point":outcome.get("point"),"price":outcome.get("price"),"bookmaker":book.get("key"),"updated_at":market.get("last_update") or book.get("last_update")})
     output={"source":"the-odds-api-v4","status":"ok","sport":sport,"markets_requested":markets.split(","),"fetched_at":datetime.now(timezone.utc).isoformat(),"remaining_credits":remaining,"odds":rows}
     path=Path("feed") / (sport + ".json")
     path.parent.mkdir(parents=True,exist_ok=True)
