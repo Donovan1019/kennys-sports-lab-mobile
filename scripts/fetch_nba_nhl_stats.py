@@ -98,6 +98,11 @@ def main():
                 parsed+=1
             except Exception as exc:
                 errors.append({"event":gid,"error":type(exc).__name__})
+    if league=="nhl":
+        # ESPN's SOG column has proven unreliable in the initial snapshot.
+        # Remove it rather than publishing fabricated zero-shot histories.
+        for row in prior.values():
+            row["values"].pop("Shots on goal",None)
     if not prior:
         print(f"DIAGNOSTICS sport={league} lookback={days} completed_games={scanned} parsed_games={parsed} errors={len(errors)}",flush=True)
         print("SOURCE_ERRORS="+json.dumps(errors[:10]),flush=True)
@@ -110,7 +115,7 @@ def main():
     for p in grouped.values():p["games"].sort(key=lambda g:(g["date"],g["game_id"]))
     output={"source":"espn-public-boxscore","sport":league,"fetched_at":datetime.now(timezone.utc).isoformat(),
             "lookback_days":days,"completed_games_checked":scanned,"games_parsed":parsed,
-            "errors":errors[:100],"players":sorted(grouped.values(),key=lambda p:p["name"])}
+            "errors":errors[:100],"unverified_markets":(["Shots on goal"] if league=="nhl" else []),"players":sorted(grouped.values(),key=lambda p:p["name"])}
     path.parent.mkdir(exist_ok=True)
     path.write_text(json.dumps(output,separators=(",",":"))+"\n")
     print(f"{league.upper()}: {len(grouped)} players; {parsed}/{scanned} completed games parsed; {len(errors)} errors")
