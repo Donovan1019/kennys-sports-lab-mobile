@@ -11,7 +11,7 @@ def evaluate(games,*,trials=10000,minimum=100):
     ordered=sorted(games,key=lambda g:g["date"])
     results=[]
     for i,g in enumerate(ordered):
-        past=ordered[:i]
+        past=[x for x in ordered[:i] if x["date"]<g["date"]]
         away=team_parameters(past,g["away"],g["date"])
         home=team_parameters(past,g["home"],g["date"])
         if not away or not home:continue
