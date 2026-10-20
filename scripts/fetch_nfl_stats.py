@@ -22,7 +22,11 @@ MARKETS={
 def parse(source):
     reader=csv.DictReader(io.StringIO(source))
     required={"season","week","player_id"}|set(MARKETS.values())
-    columns=set(reader.fieldnames or [])\n    name_column=next((x for x in ("player_display_name","player_name") if x in columns),None)\n    team_column=next((x for x in ("recent_team","team") if x in columns),None)\n    if not name_column or not team_column:\n        raise ValueError("Missing player name/team column: "+str(sorted(columns)))
+    columns=set(reader.fieldnames or [])
+    name_column=next((x for x in ("player_display_name","player_name") if x in columns),None)
+    team_column=next((x for x in ("recent_team","team") if x in columns),None)
+    if not name_column or not team_column:
+        raise ValueError("Missing player name/team column: "+str(sorted(columns)))
     if not required.issubset(columns):
         raise ValueError("nflverse source schema mismatch: "+str(sorted(required-columns)))
     rows=[]
