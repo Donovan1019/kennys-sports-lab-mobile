@@ -37,9 +37,10 @@ def main():
                 for outcome in market.get("outcomes",[]):
                     rows.append({"event":str(event.get("away_team",""))+" @ "+str(event.get("home_team","")),"event_id":event.get("id"),"sport":sport,"market":market.get("key"),"description":outcome.get("description"),"player":outcome.get("description"),"selection":outcome.get("name"),"point":outcome.get("point"),"price":outcome.get("price"),"bookmaker":book.get("key"),"updated_at":market.get("last_update") or book.get("last_update")})
     output={"source":"the-odds-api-v4","status":"ok","sport":sport,"markets_requested":markets.split(","),"fetched_at":datetime.now(timezone.utc).isoformat(),"remaining_credits":remaining,"odds":rows}
-    path=Path("feed/latest.json")
+    path=Path("feed") / (sport + ".json")
     path.parent.mkdir(parents=True,exist_ok=True)
     path.write_text(json.dumps(output,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+    Path("feed/latest.json").write_text(json.dumps(output,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print("Saved",len(rows),"selections. Remaining free credits:",remaining)
     return 0
 if __name__=="__main__":sys.exit(main())
