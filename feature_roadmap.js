@@ -4,7 +4,7 @@ const features=[
 ['Player Board','Verified 2025/2026 game logs, threshold hit rates','available'],
 ['Sportsbook Odds','FanDuel/DraftKings core lines and NFL player props','available'],
 ['NFL Prop Monte Carlo','Historical bootstrap; not calibrated predictive simulation','experimental'],
-['Top Trends','Ranked verified 5/5, 8/10, 10/10 streaks by market','partial'],
+['Top Trends','Verified threshold heatmap, ranked frequencies and game charts; streak labeling pending','partial'],
 ['Team Board','Every matchup, season trends, game projections','missing'],
 ['Match Simulations · Teams','Win %, scores, totals, spreads, uncertainty','missing'],
 ['Match Simulations · Players','Distribution and alternate-line probabilities','missing'],
