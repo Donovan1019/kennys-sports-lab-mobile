@@ -1,0 +1,25 @@
+name: Backtest NBA and NHL scoring models
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile and run regression tests
+        run: |
+          python -m py_compile scripts/connect_nba_nhl_scores.py scripts/backtest_nfl.py
+          python -m unittest discover -s tests -p "test_*.py"
+      - name: Import completed NBA and NHL games and run 10000-trial backtests
+        run: python -m scripts.connect_nba_nhl_scores
+      - name: Commit backtest results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add feed/nba_completed_games.json feed/nhl_completed_games.json feed/nba_backtest.json feed/nhl_backtest.json feed/nba_independent_game_inputs.json feed/nhl_independent_game_inputs.json
+          git diff --cached --quiet || (git commit -m "Publish independent NBA NHL score backtests" && git push)
