@@ -2,7 +2,7 @@
 (()=>{'use strict';const sections=[
 ['Home',[]],['Players',['ksl-player-page']],
 ['NFL',['ksl-trends','ksl-real-stats','ksl-prop-odds','ksl-model','ksl-sgp','ksl-prop-research']],
-['NBA',['ksl-nba']],['NHL',['ksl-nhl']],
+['NBA',['ksl-nba-b2b-lab','ksl-nba']],['NBA Travel',['ksl-nba-b2b-lab']],['NHL',['ksl-nhl']],
 ['NCAA Football',[]],['NCAA Basketball',[]],['WNBA',[]],['International Basketball',[]],
 ['MLB',[]],['International Baseball',[]],['International Hockey',[]],['NCAA Hockey',[]],
 ['Soccer',[]],['Tennis',[]],['UFC',[]],['DWCS',[]],['PFL',[]],
@@ -16,6 +16,10 @@ const chooser=document.createElement('div');chooser.id='ksl-sport-chooser';choos
 const landing=document.createElement('section');landing.id='ksl-landing';landing.innerHTML='<h2>Welcome to Kenny’s Sports Lab</h2><p>Choose a sport from the top menu. Swipe the menu horizontally to see all sports. Player pages and research have dedicated tabs. Saved odds are snapshots, not live prices. Historical hit rates are not predictive probabilities.</p>';main.prepend(landing);
 const legacy=[];for(const node of [...main.children]){if(node===landing||node.tagName==='SECTION')continue;node.classList.add('ksl-nav-legacy');legacy.push(node)}
 const coming=document.createElement('section');coming.id='ksl-sport-coming';coming.innerHTML='<h2 id="ksl-coming-title"></h2><p>Sport-specific dashboard workspace. Verified odds, player statistics, matchup analytics, and simulations will appear here as their data sources and models are connected. No placeholder predictions are shown.</p><p id="ksl-coming-status" role="status">DATA NOT CONNECTED — this sport does not yet have a verified dashboard feed.</p>';main.append(coming);
+// Travel research must be a first-class page panel, not buried in nested NBA sections.
+const travelPanel=document.getElementById('ksl-nba-b2b-lab');
+const nbaPanel=document.getElementById('ksl-nba');
+if(travelPanel&&nbaPanel){main.insertBefore(travelPanel,nbaPanel);travelPanel.hidden=false;}
 const allPanels=[...main.querySelectorAll(':scope > section')].filter(x=>x!==landing);const assigned=new Set([...sections.flatMap(x=>x[1]),'ksl-sport-coming']);const map=new Map(sections);
 function activate(tab){for(const p of allPanels){let show=tab==='More'?!assigned.has(p.id):tab==='Home'?p.id==='ksl-home-top10':(map.get(tab)||[]).includes(p.id);p.hidden=!show}const missingSport=tab!=='Home'&&tab!=='More'&&(map.get(tab)||[]).length===0;coming.hidden=!missingSport;if(missingSport)document.getElementById('ksl-coming-title').textContent=tab+' Research Lab';landing.hidden=tab!=='Home';for(const node of legacy)node.hidden=tab!=='More';document.getElementById('ksl-sport-select').value=tab;try{history.replaceState(null,'','#'+encodeURIComponent(tab.toLowerCase()))}catch{}window.scrollTo({top:0,behavior:'instant'})}
 for(const [name] of sections){const opt=document.createElement('option');opt.value=name;opt.textContent=name;document.getElementById('ksl-sport-select').append(opt);}
