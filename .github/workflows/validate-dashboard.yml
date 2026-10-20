@@ -12,7 +12,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Validate Python source
-        run: python -m py_compile scripts/fetch_odds.py
+        run: python -m py_compile scripts/fetch_odds.py scripts/fetch_nfl_stats.py scripts/market_math.py
       - name: Validate JavaScript syntax
         run: |
           node --check all_sports.js
@@ -20,19 +20,24 @@ jobs:
           node --check comparison_lab.js
           node --check simulation_lab.js
           node --check kennys_sgp.js
+          node --check nfl_player_stats.js
       - name: Validate snapshot schema and links
         run: |
           python - <<'PY'
           import json
           from pathlib import Path
           html=Path("index.html").read_text()
-          for js in ["all_sports.js","manual_odds_refresh.js","comparison_lab.js","simulation_lab.js","kennys_sgp.js"]:
+          for js in ["all_sports.js","manual_odds_refresh.js","comparison_lab.js","simulation_lab.js","kennys_sgp.js","nfl_player_stats.js"]:
               assert Path(js).is_file(), js
               assert 'src="'+js+'"' in html, js
           for path in Path("feed").glob("*.json"):
               data=json.loads(path.read_text())
-              assert data["source"]=="the-odds-api-v4"
-              assert isinstance(data["odds"],list)
+              if path.name=="nfl_player_stats.json":
+                  assert data["source"]=="nflverse-stats-player-week"
+                  assert isinstance(data["players"],list)
+              else:
+                  assert data["source"]=="the-odds-api-v4"
+                  assert isinstance(data["odds"],list)
               assert data.get("fetched_at")
           print("Dashboard references and available snapshot schema: PASS")
           PY
