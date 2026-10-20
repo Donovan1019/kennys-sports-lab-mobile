@@ -16,7 +16,7 @@ on:
         type: string
         default: ''
       lookback_days:
-        description: "Completed games to check (1-31 days)"
+        description: "Calendar days to scan (NBA up to 400, NHL up to 31)"
         type: choice
         required: true
         default: '7'
@@ -25,6 +25,10 @@ on:
           - '7'
           - '14'
           - '31'
+          - '90'
+          - '180'
+          - '365'
+          - '400'
 permissions:
   contents: write
 concurrency:
@@ -33,7 +37,7 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
