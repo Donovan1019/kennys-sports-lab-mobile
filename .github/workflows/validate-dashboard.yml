@@ -12,7 +12,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Validate Python source
-        run: python -m py_compile scripts/fetch_odds.py scripts/fetch_nfl_stats.py scripts/market_math.py scripts/fetch_nfl_props.py scripts/analytics_core.py scripts/fetch_nba_nhl_stats.py scripts/fetch_nhl_official_stats.py scripts/matchup_monte_carlo.py scripts/model_predictions.py scripts/connect_nfl_team_scores.py scripts/backtest_nfl.py
+        run: python -m py_compile scripts/fetch_odds.py scripts/fetch_nfl_stats.py scripts/market_math.py scripts/fetch_nfl_props.py scripts/analytics_core.py scripts/fetch_nba_nhl_stats.py scripts/fetch_nhl_official_stats.py scripts/matchup_monte_carlo.py scripts/model_predictions.py scripts/connect_nfl_team_scores.py scripts/backtest_nfl.py scripts/connect_nba_nhl_scores.py
       - name: Validate JavaScript syntax
         run: |
           node --check all_sports.js
@@ -56,6 +56,15 @@ jobs:
               elif path.name=="nhl_official_player_stats.json":
                   assert data["source"]=="nhl-official-boxscore"
                   assert isinstance(data["players"],list)
+              elif path.name in ("nba_completed_games.json","nhl_completed_games.json"):
+                  assert data["source"]=="espn-public-completed-league-games"
+                  assert isinstance(data["games"],list)
+              elif path.name in ("nba_backtest.json","nhl_backtest.json"):
+                  assert data["source"]=="walk-forward-league-monte-carlo"
+                  assert isinstance(data["results"],list)
+              elif path.name in ("nba_independent_game_inputs.json","nhl_independent_game_inputs.json"):
+                  assert data["source"]=="verified-independent-team-scoring"
+                  assert isinstance(data["games"],list)
               elif path.name=="nfl_completed_games.json":
                   assert data["source"]=="espn-public-completed-nfl-games"
                   assert isinstance(data["games"],list)
@@ -77,7 +86,7 @@ jobs:
               else:
                   assert data["source"]=="the-odds-api-v4"
                   assert isinstance(data["odds"],list)
-              if path.name not in ("model_predictions.json","model_candidates.json","independent_game_inputs.json"):
+              if path.name not in ("model_predictions.json","model_candidates.json","independent_game_inputs.json","nba_independent_game_inputs.json","nhl_independent_game_inputs.json"):
                   assert data.get("fetched_at"), f"Missing fetched_at: {path.name}"
           print("Dashboard references and available snapshot schema: PASS")
           PY
