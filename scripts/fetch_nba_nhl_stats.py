@@ -99,6 +99,8 @@ def main():
             except Exception as exc:
                 errors.append({"event":gid,"error":type(exc).__name__})
     if not prior:
+        print(f"DIAGNOSTICS sport={league} lookback={days} completed_games={scanned} parsed_games={parsed} errors={len(errors)}",flush=True)
+        print("SOURCE_ERRORS="+json.dumps(errors[:10]),flush=True)
         raise SystemExit("No verified player game logs; previous snapshot left unchanged")
     grouped={}
     for row in prior.values():
