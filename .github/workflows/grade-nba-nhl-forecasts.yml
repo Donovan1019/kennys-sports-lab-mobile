@@ -18,7 +18,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Validate outcome matching and refresh adapters
-        run: python -m compileall -q scripts tests && python -m unittest tests.test_forecast_ledger tests.test_refresh_recent_results tests.test_nfl_pregame_research tests.test_advanced_forecast_evaluation tests.test_correlated_score_simulation
+        run: python -m compileall -q scripts tests && python -m unittest tests.test_forecast_ledger tests.test_refresh_recent_results tests.test_nfl_pregame_research tests.test_advanced_forecast_evaluation tests.test_correlated_score_simulation tests.test_score_correlation_research
       - name: Refresh final scores from free ESPN endpoints
         run: python -m scripts.refresh_recent_results
       - name: Build fresh cross-book market consensus from archived quotes
@@ -29,6 +29,8 @@ jobs:
         run: python -m scripts.forecast_ledger
       - name: Evaluate forecast calibration and uncertainty
         run: python -m scripts.advanced_forecast_evaluation
+      - name: Estimate historical score correlations for research
+        run: python -m scripts.score_correlation_research
       - name: Publish verified outcomes without Odds API usage
         run: |
           git config user.name "github-actions[bot]"
@@ -45,6 +47,9 @@ jobs:
             if [ -f "$file" ]; then git add "$file"; fi
           done
           for file in feed/basketball_nba_advanced_evaluation.json feed/icehockey_nhl_advanced_evaluation.json feed/americanfootball_nfl_advanced_evaluation.json; do
+            if [ -f "$file" ]; then git add "$file"; fi
+          done
+          for file in feed/americanfootball_nfl_score_correlation_research.json feed/basketball_nba_score_correlation_research.json; do
             if [ -f "$file" ]; then git add "$file"; fi
           done
           git diff --cached --quiet || (git commit -m "Grade archived NBA NHL forecasts against verified final scores" && git push)
