@@ -1,5 +1,6 @@
 """Free-first input integrity report. No paid API calls or betting picks."""
 import json
+import math
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -54,7 +55,7 @@ def assess(now=None, root=Path(".")):
                     or not row.get("market") or not row.get("selection")
                     or not quote_at or not event_at
                     or not isinstance(price, (int, float)) or isinstance(price, bool)
-                    or not -100000 <= price <= 100000 or price == 0):
+                    or not math.isfinite(price) or not -100000 <= price <= 100000 or price == 0):
                 invalid_rows += 1
                 continue
             valid_rows += 1
