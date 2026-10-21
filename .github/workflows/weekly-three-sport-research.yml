@@ -1,0 +1,38 @@
+name: Weekly NBA NHL NFL historical model research
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '40 10 * * 0'
+permissions:
+  contents: write
+concurrency:
+  group: nba-nhl-score-publish
+  cancel-in-progress: false
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Validate historical research modules
+        run: python -m unittest tests.test_score_correlation_research tests.test_correlation_walkforward tests.test_model_validation
+      - name: Estimate historical score correlations
+        run: python -m scripts.score_correlation_research
+      - name: Walk-forward Monte Carlo research
+        run: python -m scripts.correlation_walkforward
+      - name: Season stability and bootstrap uncertainty
+        run: python -m scripts.model_validation
+      - name: Publish weekly research results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for sport in basketball_nba americanfootball_nfl; do
+            for suffix in score_correlation_research correlation_backtest model_validation; do
+              file="feed/${sport}_${suffix}.json"
+              if [ -f "$file" ]; then git add "$file"; fi
+            done
+          done
+          git diff --cached --quiet || (git commit -m "Refresh weekly NBA NFL historical model research" && git push)
