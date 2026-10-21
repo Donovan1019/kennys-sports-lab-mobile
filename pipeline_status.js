@@ -11,6 +11,10 @@ function mount(){
   section.setAttribute('aria-label','Pipeline status');
   section.innerHTML='<div class="ksl-status-head"><h2>⚙ Pipeline Status</h2><button type="button" id="ksl-status-refresh">↻ Check status</button></div><p class="ksl-status-sub">Latest verified GitHub Actions runs · NBA / NHL / NFL</p><div id="ksl-status-list" aria-live="polite">Loading workflow status…</div><p class="ksl-status-foot">GitHub schedules may start late. Manual runs are labeled; an older successful run does not prove today’s scheduled run completed.</p>';
   main.prepend(section);
+  // Other homepage modules prepend asynchronously; keep status first.
+  const prioritize=()=>{if(section.parentElement===main&&main.firstElementChild!==section)main.prepend(section)};
+  new MutationObserver(prioritize).observe(main,{childList:true});
+  prioritize();
   const list=section.querySelector('#ksl-status-list');
   const refresh=section.querySelector('#ksl-status-refresh');
   const fmt=iso=>iso?new Date(iso).toLocaleString('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'}):'—';
@@ -37,6 +41,23 @@ function mount(){
         const sched=document.createElement('p');sched.className='ksl-status-meta';
         sched.textContent='Last scheduled: '+(scheduled?status(scheduled)+' · '+fmt(scheduled.created_at):'not yet observed');
         card.append(sched);
+        if(w.id==='grade-nba-nhl-forecasts.yml'){
+          const localParts=iso=>{const d=new Date(iso);const parts=new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',hourCycle:'h23'}).formatToParts(d);return Object.fromEntries(parts.map(p=>[p.type,p.value]))};
+          const dateKey=p=>p.year+'-'+p.month+'-'+p.day;
+          const today=dateKey(localParts(new Date().toISOString()));
+          const todaysScheduled=runs.filter(r=>r.event==='schedule'&&dateKey(localParts(r.created_at))===today);
+          for(const name of ['Morning','Afternoon']){
+            const slot=todaysScheduled.find(r=>{const h=Number(localParts(r.created_at).hour);return name==='Morning'?h<12:h>=12});
+            const line=document.createElement('p');line.className='ksl-status-slot';
+            const label=document.createElement('strong');label.textContent=name+': ';
+            const value=document.createElement('span');value.textContent=slot?status(slot)+' · '+fmt(slot.updated_at||slot.created_at):'NOT OBSERVED';
+            value.className=slot?.conclusion==='success'?'ksl-run-ok':slot?.conclusion==='failure'?'ksl-run-fail':'ksl-run-pending';
+            line.append(label,value);
+            if(slot?.html_url){const a=document.createElement('a');a.href=slot.html_url;a.target='_blank';a.rel='noopener noreferrer';a.textContent=' logs ↗';line.append(a)}
+            card.append(line);
+          }
+          const caveat=document.createElement('small');caveat.textContent='Today’s scheduled runs only. A missing run may be delayed; manual runs do not count.';card.append(caveat);
+        }
         const link=document.createElement('a');link.href=latest?.html_url||'https://github.com/'+repo+'/actions/workflows/'+w.id;link.target='_blank';link.rel='noopener noreferrer';link.textContent='View GitHub logs ↗';card.append(link);
       }catch(err){const warning=document.createElement('p');warning.className='ksl-run-state';warning.textContent='STATUS UNAVAILABLE — '+err.message;card.append(warning);
         const link=document.createElement('a');link.href='https://github.com/'+repo+'/actions/workflows/'+w.id;link.textContent='Open workflow ↗';card.append(link)}
