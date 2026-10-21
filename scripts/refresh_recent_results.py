@@ -8,8 +8,9 @@ from datetime import datetime,timezone,timedelta
 from pathlib import Path
 from urllib.request import Request,urlopen
 from scripts.connect_nba_nhl_scores import parse_league
+from scripts.connect_nfl_team_scores import parse_scoreboard
 
-LEAGUES={"nba":"basketball","nhl":"hockey"}
+LEAGUES={"nba":"basketball","nhl":"hockey","nfl":"football"}
 
 def merge(existing,incoming):
     by_key={}
@@ -35,9 +36,12 @@ def refresh(league,now,days=8):
         req=Request(url,headers={"User-Agent":"KennysSportsLab/1.0","Accept":"application/json"})
         with urlopen(req,timeout=25) as response:payload=json.load(response)
         if not isinstance(payload.get("events"),list):raise ValueError(f"{league}: malformed ESPN scoreboard on {day}")
-        incoming.extend(parse_league(payload))
+        incoming.extend(parse_scoreboard(payload) if league=="nfl" else parse_league(payload))
     merged=merge(old.get("games",[]),incoming)
-    if not merged:raise ValueError(f"{league}: no verified games; refusing empty overwrite")
+    if not merged:
+        if league=="nfl" and not incoming and not old.get("games"):
+            return 0,0
+        raise ValueError(f"{league}: no verified games; refusing empty overwrite")
     result={"source":"espn-public-completed-league-games","league":league,"fetched_at":now.isoformat(),"games":merged}
     path.write_text(json.dumps(result,indent=2)+"\n")
     return len(incoming),len(merged)
