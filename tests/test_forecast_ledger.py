@@ -12,6 +12,17 @@ class LedgerTests(unittest.TestCase):
  def test_no_post_start_forecast(self):
   f,o=data(-1)
   self.assertEqual(record({"forecasts":[]},f,o,NOW)["added"],0)
+ def test_backdated_after_actual_start_rejected(self):
+  f,o=data(-1)
+  f["events"][0]["asof"]=(NOW-timedelta(hours=2)).isoformat()
+  self.assertEqual(record({"forecasts":[]},f,o,NOW)["added"],0)
+ def test_invalid_earliest_snapshot_does_not_hide_valid_snapshot(self):
+  f,o=data()
+  ledger=record({"forecasts":[]},f,o,NOW)
+  invalid=dict(ledger["forecasts"][0],forecast_id="bad",forecast_at=(NOW-timedelta(minutes=1)).isoformat(),home_probability=1.5)
+  ledger["forecasts"].append(invalid)
+  game={"event_id":"espn","date":(NOW+timedelta(hours=2)).isoformat(),"home":"H","away":"A","home_score":3,"away_score":2}
+  self.assertEqual(score(ledger,{"games":[game]})["matched_forecasts"],1)
  def test_exact_id_only(self):
   f,o=data();ledger=record({"forecasts":[]},f,o,NOW)
   self.assertEqual(score(ledger,{"games":[{"event_id":"other","home":"H","away":"A","home_score":3,"away_score":2}]})["matched_forecasts"],0)
