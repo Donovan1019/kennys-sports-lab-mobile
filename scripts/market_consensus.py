@@ -26,7 +26,7 @@ def summarize(archive, now=None, max_snapshot_age=3600):
     for (event,away,home),books in grouped.items():
         if len(books)<2:continue
         ps=[p for _,p in books.values()]
-        results.append({"event_id":event,"away":away,"home":home,"bookmaker_count":len(books),"home_consensus_no_vig":round(median(ps),6),"home_probability_range_pp":round(100*(max(ps)-min(ps)),3),"highest_quote_age_seconds":round(max((now-t).total_seconds() for t,_ in books.values())),"status":"research_only_not_model_edge"})
+        results.append({"event_id":event,"away":away,"home":home,"bookmaker_count":len(books),"home_consensus_no_vig":round(median(ps),6),"home_probability_range_pp":round(100*(max(ps)-min(ps)),3),"highest_quote_age_seconds":round(max((now-t).total_seconds() for t,_ in books.values())),"verified_quote_at":max(t for t,_ in books.values()).isoformat(),"earliest_quote_at":min(t for t,_ in books.values()).isoformat(),"status":"research_only_not_model_edge"})
     return {"status":"research_only","events_with_2plus_books":len(results),"events":sorted(results,key=lambda r:(-r["home_probability_range_pp"],r["event_id"]))}
 
 def main():
