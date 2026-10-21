@@ -1,0 +1,12 @@
+/* Homepage top-priority status widget */
+#ksl-pipeline-status{background:linear-gradient(145deg,#102b24,#102239);border:1px solid #418c78;border-radius:14px;padding:15px;margin:0 0 18px;color:#edf8f4}
+.ksl-status-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.ksl-status-head h2{margin:0;color:#9ef5bd;font-size:19px}
+#ksl-status-refresh{font-size:12px;padding:8px 11px}
+.ksl-status-sub,.ksl-status-foot{font-size:12px;color:#bdd4cf;margin:8px 0}
+#ksl-status-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:10px;margin-top:12px}
+.ksl-status-card{background:#0b1a20;border:1px solid #315b57;border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.ksl-status-card small,.ksl-status-meta{font-size:12px;color:#afc9c7;margin:0}
+.ksl-run-state{font-weight:800;margin:3px 0;color:#ffcc8e}
+.ksl-run-ok{color:#84f0aa}.ksl-run-fail{color:#ff9393}
+.ksl-status-card a{color:#94c8ff;font-size:13px;min-height:30px}
