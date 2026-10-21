@@ -1,5 +1,6 @@
 """Import independent NBA/NHL regular-season game scores from free ESPN endpoints."""
-import json,urllib.request
+import json,urllib.request,time,random
+from datetime import date,timedelta
 from datetime import datetime,timezone
 from pathlib import Path
 from scripts.connect_nfl_team_scores import parse_scoreboard,assemble
@@ -18,10 +19,30 @@ def main():
     now=datetime.now(timezone.utc)
     for league,(category,sport) in LEAGUES.items():
         games=[]
-        for year in (now.year-1,now.year):
-            url=f"https://site.api.espn.com/apis/site/v2/sports/{category}/{league}/scoreboard?dates={year}&limit=1000"
-            req=urllib.request.Request(url,headers={"User-Agent":"KennysSportsLab/1.0"})
-            with urllib.request.urlopen(req,timeout=60) as response:games.extend(parse_league(json.load(response)))
+        # ESPN annual scoreboard requests can silently truncate at their event limit.
+        # Query bounded calendar windows and fail closed if any window is unavailable.
+        first=date(now.year-1,1,1)
+        last=now.date()
+        cursor=first
+        failures=[]
+        while cursor<=last:
+            end=min(cursor+timedelta(days=13),last)
+            dates=cursor.strftime("%Y%m%d")+"-"+end.strftime("%Y%m%d")
+            url=f"https://site.api.espn.com/apis/site/v2/sports/{category}/{league}/scoreboard?dates={dates}&limit=500"
+            for attempt in range(3):
+                try:
+                    req=urllib.request.Request(url,headers={"User-Agent":"KennysSportsLab/1.0","Accept":"application/json"})
+                    with urllib.request.urlopen(req,timeout=60) as response:
+                        payload=json.load(response)
+                    if not isinstance(payload.get("events"),list):raise ValueError("Missing events")
+                    games.extend(parse_league(payload))
+                    break
+                except (OSError,ValueError) as exc:
+                    if attempt==2:failures.append({"window":dates,"error":type(exc).__name__})
+                    else:time.sleep(1.5*(attempt+1))
+            cursor=end+timedelta(days=1)
+        if failures:
+            raise RuntimeError(f"{league}: {len(failures)} scoreboard windows failed; preserving prior published feed: {failures[:5]}")
         games=list({(g["date"],g["away"],g["home"]):g for g in games}.values())
         games.sort(key=lambda x:x["date"])
         if not games:raise RuntimeError(f"No verified {league} games")
