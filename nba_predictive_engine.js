@@ -15,18 +15,18 @@ async function load(){
 try{
 const [games,players,odds]=await Promise.all(['nba_completed_games.json','nba_player_stats.json','basketball_nba.json'].map(async n=>{const r=await fetch('./feed/'+n+'?v='+Date.now(),{cache:'no-store'});if(!r.ok)throw Error(n+' HTTP '+r.status);return r.json()}));
 if(!Array.isArray(games.games)||!Array.isArray(players.players)||!Array.isArray(odds.odds))throw Error('Invalid feed schema');
-const historical=games.games.filter(valid).filter(g=>date(g.date)>='2025-10-01'&&date(g.date)<date(new Date()));
+const historical=games.games.filter(valid).filter(g=>date(g.date)>='2025-10-01'&&Date.parse(g.date)<Date.now());
 const leaguePoints=historical.flatMap(g=>[g.home_score,g.away_score]);if(historical.length<100)throw Error('Insufficient completed NBA game history');
 const leagueAvg=average(leaguePoints);
 const teamHistory=new Map();for(const g of historical){for(const [team,scored,allowed] of [[g.home,g.home_score,g.away_score],[g.away,g.away_score,g.home_score]]){if(!teamHistory.has(team))teamHistory.set(team,[]);teamHistory.get(team).push({date:date(g.date),scored,allowed})}}
 for(const rows of teamHistory.values())rows.sort((a,b)=>a.date.localeCompare(b.date));
 const teamCodes={'Atlanta Hawks':'ATL','Boston Celtics':'BOS','Brooklyn Nets':'BKN','Charlotte Hornets':'CHA','Chicago Bulls':'CHI','Cleveland Cavaliers':'CLE','Dallas Mavericks':'DAL','Denver Nuggets':'DEN','Detroit Pistons':'DET','Golden State Warriors':'GS','Houston Rockets':'HOU','Indiana Pacers':'IND','LA Clippers':'LAC','Los Angeles Clippers':'LAC','Los Angeles Lakers':'LAL','Memphis Grizzlies':'MEM','Miami Heat':'MIA','Milwaukee Bucks':'MIL','Minnesota Timberwolves':'MIN','New Orleans Pelicans':'NO','New York Knicks':'NY','Oklahoma City Thunder':'OKC','Orlando Magic':'ORL','Philadelphia 76ers':'PHI','Phoenix Suns':'PHX','Portland Trail Blazers':'POR','Sacramento Kings':'SAC','San Antonio Spurs':'SA','Toronto Raptors':'TOR','Utah Jazz':'UTAH','Washington Wizards':'WSH'};
-const upcoming=[...new Map(odds.odds.filter(x=>x.event_id&&x.commence_time&&Date.parse(x.commence_time)>Date.now()-7200000).map(x=>[x.event_id,x])).values()].sort((a,b)=>Date.parse(a.commence_time)-Date.parse(b.commence_time)).slice(0,18);
+const upcoming=[...new Map(odds.odds.filter(x=>x.event_id&&x.commence_time&&Date.parse(x.commence_time)>Date.now()).map(x=>[x.event_id,x])).values()].sort((a,b)=>Date.parse(a.commence_time)-Date.parse(b.commence_time)).slice(0,18);
 const out=el('nba-predict-results');out.replaceChildren();
 let n=0;
 for(const game of upcoming){
 const parts=game.event.split(' @ ');if(parts.length!==2)continue;
-const [away,home]=parts;const ah=teamHistory.get(away)||[],hh=teamHistory.get(home)||[];if(ah.length<15||hh.length<15){write(out,'p',game.event+' · PASS: fewer than 15 historical team games');continue}
+const [away,home]=parts;const cutoff=date(game.commence_time);const ah=(teamHistory.get(away)||[]).filter(r=>r.date<cutoff),hh=(teamHistory.get(home)||[]).filter(r=>r.date<cutoff);if(ah.length<15||hh.length<15){write(out,'p',game.event+' · PASS: fewer than 15 historical team games');continue}
 const rate=(rows,key)=>{const sample=rows.slice(-40);return average(sample.map(r=>r[key]))};
 const awayMean=(rate(ah,'scored')+rate(hh,'allowed'))/2,homeMean=(rate(hh,'scored')+rate(ah,'allowed'))/2+2;
 const variance=Math.max(9,sd(leaguePoints)*.85);
