@@ -1,12 +1,12 @@
 {
   "method": "strict-prior-day-walk-forward",
   "status": "experimental_uncalibrated",
-  "samples": 1001,
+  "samples": 1002,
   "date_start": "2025-11-21",
-  "date_end": "2026-10-20",
-  "brier": 0.22112,
+  "date_end": "2026-10-21",
+  "brier": 0.22122,
   "constant_50pct_brier": 0.25,
-  "team_score_mae": 9.882,
+  "team_score_mae": 9.88,
   "calibration_bins": [
     {
       "probability_bin": "30-40%",
@@ -22,9 +22,9 @@
     },
     {
       "probability_bin": "50-60%",
-      "n": 413,
+      "n": 414,
       "mean_predicted": 0.549,
-      "actual_home_win_rate": 0.622
+      "actual_home_win_rate": 0.621
     },
     {
       "probability_bin": "60-70%",
@@ -41,14 +41,14 @@
   ],
   "chronological_holdout": {
     "train_games": 695,
-    "test_games": 306,
+    "test_games": 307,
     "train_end": "2026-03-05",
     "test_start": "2026-03-06",
     "logistic_scale": 6.5,
-    "holdout_brier_calibrated": 0.18451,
-    "holdout_brier_fixed_scale": 0.20539,
+    "holdout_brier_calibrated": 0.1852,
+    "holdout_brier_fixed_scale": 0.20578,
     "holdout_brier_constant_50pct": 0.25,
-    "holdout_brier_historical_home_rate": 0.24487,
+    "holdout_brier_historical_home_rate": 0.24497,
     "holdout_pass": true
   },
   "notes": [

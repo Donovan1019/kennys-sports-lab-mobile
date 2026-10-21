@@ -1,14 +1,14 @@
 {
   "source": "walk-forward-league-monte-carlo",
   "league": "nhl",
-  "generated_at": "2026-10-21T02:11:34.105673+00:00",
+  "generated_at": "2026-10-21T05:25:14.053293+00:00",
   "method": "walk_forward",
   "model_version": "nhl-poisson-ot-proxy-v1",
-  "sample_size": 1937,
+  "sample_size": 1943,
   "trials_per_game": 10000,
-  "brier": 0.2510316465926691,
-  "constant_home_baseline_brier": 0.2480516230278022,
-  "mean_team_score_absolute_error": 1.4150772372668345,
+  "brier": 0.25092656103448274,
+  "constant_home_baseline_brier": 0.24801807774798432,
+  "mean_team_score_absolute_error": 1.4144066436365714,
   "passed": false,
   "criteria": "at least 100 strictly chronological out-of-sample games and Brier lower than constant home-win baseline",
   "calibration_bins": [
@@ -26,27 +26,27 @@
         0.2,
         0.4
       ],
-      "n": 348,
-      "mean_predicted": 0.344548275862069,
-      "actual_rate": 0.4827586206896552
+      "n": 349,
+      "mean_predicted": 0.3444151862464183,
+      "actual_rate": 0.4813753581661891
     },
     {
       "range": [
         0.4,
         0.6
       ],
-      "n": 1276,
-      "mean_predicted": 0.5018217084639498,
-      "actual_rate": 0.5454545454545454
+      "n": 1278,
+      "mean_predicted": 0.5018137715179969,
+      "actual_rate": 0.5461658841940532
     },
     {
       "range": [
         0.6,
         0.8
       ],
-      "n": 313,
-      "mean_predicted": 0.6501162939297125,
-      "actual_rate": 0.6070287539936102
+      "n": 316,
+      "mean_predicted": 0.6500721518987341,
+      "actual_rate": 0.6075949367088608
     },
     {
       "range": [
@@ -59,7 +59,7 @@
     }
   ],
   "evaluation_start": "2025-01-17T00:00:00+00:00",
-  "evaluation_end": "2026-10-20T23:00:00+00:00",
+  "evaluation_end": "2026-10-21T02:45:00+00:00",
   "results": [
     {
       "date": "2025-01-17T00:00:00+00:00",
@@ -25241,6 +25241,84 @@
       "actual_home_points": 2.0,
       "actual_away_points": 6.0,
       "squared_error": 0.22278399999999998
+    },
+    {
+      "date": "2026-10-21T00:00:00+00:00",
+      "event_id": "401892544",
+      "home": "St. Louis Blues",
+      "away": "Winnipeg Jets",
+      "predicted_home_win": 0.6731,
+      "actual_home_win": 1,
+      "home_projected_points": 4.083333333333334,
+      "away_projected_points": 3.0,
+      "actual_home_points": 2.0,
+      "actual_away_points": 1.0,
+      "squared_error": 0.10686360999999998
+    },
+    {
+      "date": "2026-10-21T00:00:00+00:00",
+      "event_id": "401892545",
+      "home": "Dallas Stars",
+      "away": "Boston Bruins",
+      "predicted_home_win": 0.4367,
+      "actual_home_win": 1,
+      "home_projected_points": 2.5,
+      "away_projected_points": 2.791666666666667,
+      "actual_home_points": 3.0,
+      "actual_away_points": 2.0,
+      "squared_error": 0.31730689
+    },
+    {
+      "date": "2026-10-21T01:00:00+00:00",
+      "event_id": "401892546",
+      "home": "Edmonton Oilers",
+      "away": "Minnesota Wild",
+      "predicted_home_win": 0.6035,
+      "actual_home_win": 1,
+      "home_projected_points": 3.333333333333333,
+      "away_projected_points": 2.708333333333333,
+      "actual_home_points": 4.0,
+      "actual_away_points": 3.0,
+      "squared_error": 0.15721224999999997
+    },
+    {
+      "date": "2026-10-21T01:40:00+00:00",
+      "event_id": "401892547",
+      "home": "Seattle Kraken",
+      "away": "Detroit Red Wings",
+      "predicted_home_win": 0.5568,
+      "actual_home_win": 1,
+      "home_projected_points": 3.458333333333333,
+      "away_projected_points": 3.125,
+      "actual_home_points": 4.0,
+      "actual_away_points": 3.0,
+      "squared_error": 0.19642624000000003
+    },
+    {
+      "date": "2026-10-21T02:00:00+00:00",
+      "event_id": "401892548",
+      "home": "Vancouver Canucks",
+      "away": "Carolina Hurricanes",
+      "predicted_home_win": 0.2981,
+      "actual_home_win": 0,
+      "home_projected_points": 2.625,
+      "away_projected_points": 3.916666666666667,
+      "actual_home_points": 3.0,
+      "actual_away_points": 6.0,
+      "squared_error": 0.08886360999999998
+    },
+    {
+      "date": "2026-10-21T02:45:00+00:00",
+      "event_id": "401892549",
+      "home": "Vegas Golden Knights",
+      "away": "Tampa Bay Lightning",
+      "predicted_home_win": 0.6598,
+      "actual_home_win": 0,
+      "home_projected_points": 3.458333333333333,
+      "away_projected_points": 2.541666666666667,
+      "actual_home_points": 2.0,
+      "actual_away_points": 6.0,
+      "squared_error": 0.4353360400000001
     }
   ],
   "production_ready": false,
