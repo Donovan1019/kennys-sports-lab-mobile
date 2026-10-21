@@ -7,6 +7,9 @@ jobs:
   backtest:
     runs-on: ubuntu-latest
     timeout-minutes: 45
+    concurrency:
+      group: nba-nhl-backtest-publish
+      cancel-in-progress: false
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -14,7 +17,7 @@ jobs:
           python-version: '3.12'
       - name: Compile and run regression tests
         run: |
-          python -m py_compile scripts/connect_nba_nhl_scores.py scripts/backtest_nfl.py scripts/sport_simulation.py scripts/market_backtest.py
+          python -m py_compile scripts/connect_nba_nhl_scores.py scripts/backtest_nfl.py scripts/sport_simulation.py scripts/market_backtest.py scripts/backtest_nba.py
           python -m unittest discover -s tests -p "test_*.py"
       - name: Import completed NBA and NHL games and run 10000-trial backtests
         run: python -m scripts.connect_nba_nhl_scores
@@ -22,6 +25,20 @@ jobs:
         run: python scripts/backtest_nba.py
       - name: Validate historical margin and total errors
         run: python -m scripts.market_backtest
+      - name: Verify history recovery and output integrity
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          for league in ('nba','nhl'):
+              games=json.loads(Path(f'feed/{league}_completed_games.json').read_text())['games']
+              assert len(games)>1000, f'{league}: too few games'
+              ids=[(g['date'],g['home'],g['away']) for g in games]
+              assert len(ids)==len(set(ids)),f'{league}: duplicate games'
+              months={g['date'][:7] for g in games}
+              assert '2025-11' in months and '2025-12' in months, f'{league}: 2025 historical gap remains'
+              print(league, len(games), 'games; November and December present; unique game keys')
+          PY
       - name: Commit backtest results
         run: |
           git config user.name "github-actions[bot]"
