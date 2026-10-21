@@ -1,8 +1,9 @@
-name: Grade archived NBA NHL NFL forecasts
+name: NBA NHL NFL unified pregame and postgame pipeline
 on:
   workflow_dispatch:
   schedule:
     - cron: '20 11 * * *'
+    - cron: '15 21 * * *'
 permissions:
   contents: write
 concurrency:
@@ -19,6 +20,12 @@ jobs:
           python-version: '3.12'
       - name: Validate outcome matching and refresh adapters
         run: python -m compileall -q scripts tests && python -m unittest tests.test_forecast_ledger tests.test_refresh_recent_results tests.test_nfl_pregame_research tests.test_advanced_forecast_evaluation tests.test_correlated_score_simulation tests.test_score_correlation_research tests.test_correlation_walkforward tests.test_model_validation tests.test_three_sport_champion tests.test_three_sport_quote_provenance tests.test_three_sport_lifecycle
+      - name: Apply archived market quality screens
+        run: |
+          python -m scripts.market_quality_screen
+          python -m scripts.line_movement_research
+      - name: Generate NBA NHL NFL pregame research from archived quotes
+        run: python -m scripts.pregame_research
       - name: Refresh final scores from free ESPN endpoints
         run: python -m scripts.refresh_recent_results
       - name: Build fresh cross-book market consensus from archived quotes
@@ -46,6 +53,12 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add feed/nba_completed_games.json feed/nhl_completed_games.json
+          for sport in basketball_nba icehockey_nhl americanfootball_nfl; do
+            for suffix in market_screen line_movement pregame_research; do
+              file="feed/${sport}_${suffix}.json"
+              if [ -f "$file" ]; then git add "$file"; fi
+            done
+          done
           for file in feed/basketball_nba_market_consensus.json feed/icehockey_nhl_market_consensus.json feed/americanfootball_nfl_market_consensus.json feed/americanfootball_nfl_pregame_research.json; do
             if [ -f "$file" ]; then git add "$file"; fi
           done
