@@ -27,14 +27,37 @@ for(const cfg of config){
  const marketState=document.createElement('p');marketState.className='ksl-best-market-state';marketState.setAttribute('role','status');browser.append(marketState);
  function updateMarket(){
   const name=picker.value;
-  marketState.textContent=name==='Moneyline'?'MONEYLINE · archived model-versus-consensus research below. Live price, simulation and eligibility remain unverified.':'DATA NOT CONNECTED · '+name+' has no event-matched, verified odds/projection/simulation feed in this Best Plays module. Not an available pick.';
+  marketState.textContent=(cfg.sport==='NFL'&&nflPropCategories[name]?'ARCHIVED REFERENCE QUOTES ONLY · historical external-book prices; not live, no verified model edge.':name==='Moneyline'?'MONEYLINE · archived model-versus-consensus research below. Live price, simulation and eligibility remain unverified.':'DATA NOT CONNECTED · '+name+' has no event-matched, verified odds/projection/simulation feed in this Best Plays module. Not an available pick.');
  }
  picker.addEventListener('change',()=>{updateMarket();renderMarket();});updateMarket();
  panel.insertBefore(browser,panel.querySelector('.ksl-best-pass'));
  const status=panel.querySelector('.ksl-best-pass'),results=panel.querySelector('.ksl-best-results');
  let currentEvents=[],currentConsensus=null,currentAsOf=null;
+ let archivedProps=null;
+ const nflPropCategories={
+  'QB Passing Yards':['player_pass_yds'],'QB Passing TDs':['player_pass_tds'],
+  'RB Rushing Yards':['player_rush_yds'],'QB Rushing':['player_rush_yds'],
+  'RB Receiving':['player_reception_yds','player_receptions'],
+  'WR / TE Receiving Yards':['player_reception_yds'],'Receptions':['player_receptions'],
+  'Anytime TD':['player_anytime_td']
+ };
+
  function renderMarket(){
   results.replaceChildren();const name=picker.value;
+  if(cfg.sport==='NFL'&&nflPropCategories[name]){
+   const matches=(archivedProps?.odds||[]).filter(q=>nflPropCategories[name].includes(q.market));
+   const heading=document.createElement('h3');heading.textContent=name+' · archived reference quotes';results.append(heading);
+   const warning=document.createElement('p');warning.textContent='Historical external-book snapshots only, NOT current or verified Onyx availability. These are quoted lines, not projections, simulations, or betting recommendations.';results.append(warning);
+   if(!matches.length){const empty=document.createElement('p');empty.textContent='No archived reference quotes for this market.';results.append(empty);return;}
+   const date=document.createElement('p');date.textContent='Snapshot: '+(archivedProps?.fetched_at?new Date(archivedProps.fetched_at).toLocaleString():'unknown')+' · '+matches.length+' quote rows';results.append(date);
+   for(const q of matches.slice(0,30)){
+    const row=document.createElement('div');row.className='ksl-best-row';
+    const title=document.createElement('strong');title.textContent=(q.player||'Unknown player')+' · '+(q.selection||'')+(q.point==null?'':' '+q.point);row.append(title);
+    const details=document.createElement('p');details.textContent=(q.event||'Event unverified')+' | '+(q.bookmaker||'unknown book')+' '+(q.price>0?'+':'')+q.price+' | '+(q.updated_at||'quote time unknown');row.append(details);results.append(row);
+   }
+   if(matches.length>30){const more=document.createElement('p');more.textContent='Showing first 30 quotes of '+matches.length+'; no player-level filtering or bet ranking yet.';results.append(more);}
+   return;
+  }
   if(name!=='Moneyline'){
    const message=document.createElement('p');message.textContent=name+' · no verified event-matched market lines, prices, and projections have been published to this module. Selection remains unavailable; other market research elsewhere on this site does not establish betting eligibility.';results.append(message);return;
   }
@@ -56,6 +79,7 @@ for(const cfg of config){
    status.textContent=eligible.length?'VERIFIED CANDIDATES — review market freshness':'NO VERIFIED PLAY — '+events.length+' researched matchup'+(events.length===1?'':'s')+', 0 fully qualified picks';
    currentEvents=events;currentAsOf=data.asof||null;
    try{const response=await fetch('./feed/'+cfg.feed+'_market_consensus.json',{cache:'no-store'});currentConsensus=response.ok?await response.json():null;}catch(err){currentConsensus=null;}
+   if(cfg.sport==='NFL'&&!archivedProps){try{const p=await fetch('./feed/nfl_props.json',{cache:'no-store'});archivedProps=p.ok?await p.json():null;}catch(err){archivedProps=null;}}
    renderMarket();
    const meta=panel.querySelector('.ksl-best-meta');meta.textContent='Archived research as of '+(data.asof?new Date(data.asof).toLocaleString():'unknown')+'. Not live sportsbook pricing. Diamond Plays, builders, and SGP remain unavailable until all required inputs are verified.';
   }catch(error){status.textContent='NO VERIFIED PLAY — research feed unavailable';results.textContent=error.message;}
