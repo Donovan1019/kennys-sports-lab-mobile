@@ -8,7 +8,7 @@ from urllib.request import Request, urlopen
 from scripts.paired_moneyline_market import paired_moneylines
 from scripts.archive_paired_moneylines import append_snapshot
 
-SPORTS=("basketball_nba","icehockey_nhl")
+SPORTS=("basketball_nba","icehockey_nhl","americanfootball_nfl")
 def normalize(sport,events):
     rows=[]
     for e in events:
