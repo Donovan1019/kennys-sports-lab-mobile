@@ -1,0 +1,29 @@
+name: Validate NBA Predictions
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'scripts/backtest_nba.py'
+      - 'feed/nba_completed_games.json'
+permissions:
+  contents: write
+concurrency:
+  group: nba-model-validation
+  cancel-in-progress: false
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run leakage-resistant NBA backtest
+        run: python scripts/backtest_nba.py
+      - name: Commit validation results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add feed/nba_backtest.json
+          git diff --cached --quiet || (git commit -m "Update NBA walk-forward validation" && git push)
