@@ -29,9 +29,23 @@ for(const cfg of config){
   const name=picker.value;
   marketState.textContent=name==='Moneyline'?'MONEYLINE · archived model-versus-consensus research below. Live price, simulation and eligibility remain unverified.':'DATA NOT CONNECTED · '+name+' has no event-matched, verified odds/projection/simulation feed in this Best Plays module. Not an available pick.';
  }
- picker.addEventListener('change',updateMarket);updateMarket();
+ picker.addEventListener('change',()=>{updateMarket();renderMarket();});updateMarket();
  panel.insertBefore(browser,panel.querySelector('.ksl-best-pass'));
  const status=panel.querySelector('.ksl-best-pass'),results=panel.querySelector('.ksl-best-results');
+ let currentEvents=[],currentConsensus=null,currentAsOf=null;
+ function renderMarket(){
+  results.replaceChildren();const name=picker.value;
+  if(name!=='Moneyline'){
+   const message=document.createElement('p');message.textContent=name+' · no verified event-matched market lines, prices, and projections have been published to this module. Selection remains unavailable; other market research elsewhere on this site does not establish betting eligibility.';results.append(message);return;
+  }
+  const byId=new Map((currentConsensus?.events||[]).map(x=>[x.event_id,x]));
+  const ranked=currentEvents.map(e=>{const c=byId.get(e.event_id),p=e.model_probability,q=c?.home_consensus_no_vig;if(!Number.isFinite(p)||!Number.isFinite(q)||p<=0||p>=1||q<=0||q>=1)return null;const diff=(p-q)*100;return {e,c,side:diff>=0?'home':'away',gap:Math.abs(diff)};}).filter(Boolean).sort((a,b)=>b.gap-a.gap).slice(0,5);
+  if(!ranked.length){results.textContent='No matched model and archived consensus records for moneylines.';return;}
+  const title=document.createElement('h3');title.textContent='Moneyline · model vs archived market';results.append(title);
+  const caution=document.createElement('p');caution.textContent='Research-only gaps; not expected value, live prices, or validated picks. NOT BET ELIGIBLE.';results.append(caution);
+  for(const r of ranked){const row=document.createElement('div');row.className='ksl-best-row';const label=document.createElement('strong');label.textContent=(r.side==='home'?r.e.home:r.e.away)+' · research lean';row.append(label);const detail=document.createElement('p');detail.textContent=r.e.away+' @ '+r.e.home+' | model '+(100*(r.side==='home'?r.e.model_probability:1-r.e.model_probability)).toFixed(1)+'% | archived consensus '+(100*(r.side==='home'?r.c.home_consensus_no_vig:1-r.c.home_consensus_no_vig)).toFixed(1)+'% | difference '+r.gap.toFixed(1)+' pp | '+r.c.bookmaker_count+' books';row.append(detail);results.append(row);}
+ }
+
  async function load(){
   status.textContent='Checking archived research…';results.replaceChildren();
   try{
@@ -40,41 +54,9 @@ for(const cfg of config){
    const data=await response.json(),events=Array.isArray(data.events)?data.events:[];
    const eligible=events.filter(e=>e.bet_eligible===true&&e.status==='verified'&&e.verified_market===true&&e.simulation_verified===true&&Number.isFinite(e.hit_probability)&&Number.isFinite(e.market_odds_american)&&Number.isFinite(e.expected_value)&&e.expected_value>0);
    status.textContent=eligible.length?'VERIFIED CANDIDATES — review market freshness':'NO VERIFIED PLAY — '+events.length+' researched matchup'+(events.length===1?'':'s')+', 0 fully qualified picks';
-   if(eligible.length){
-    eligible.sort((a,b)=>b.expected_value-a.expected_value);
-    for(const e of eligible.slice(0,10)){
-     const row=document.createElement('div');row.className='ksl-best-row';
-     row.innerHTML='<strong>'+safe(e.away)+' @ '+safe(e.home)+'</strong><p>'+safe(e.selection)+' · '+safe(e.market)+' · '+safe(e.market_odds_american)+' · Model '+(100*e.hit_probability).toFixed(1)+'% · EV '+(100*e.expected_value).toFixed(1)+'%</p>';results.append(row);
-    }
-   }else{
-    const reasons=[...new Set(events.map(e=>e.reason).filter(Boolean))].slice(0,2);
-    const info=document.createElement('p');info.textContent=reasons.length?'Why picks are withheld: '+reasons.join(' | '):'No eligible selections in the published research feed.';results.append(info);
-   }
-   // Independently rank research-only moneyline comparisons using archived cross-book consensus.
-   // These are NOT betting recommendations: no verified price, calibration or simulator.
-   try{
-    const consensusResponse=await fetch('./feed/'+cfg.feed+'_market_consensus.json',{cache:'no-store'});
-    if(consensusResponse.ok){
-     const consensus=await consensusResponse.json();
-     const byId=new Map((consensus.events||[]).map(x=>[x.event_id,x]));
-     const ranked=events.map(e=>{
-      const c=byId.get(e.event_id),p=e.model_probability,q=c?.home_consensus_no_vig;
-      if(!Number.isFinite(p)||!Number.isFinite(q)||p<=0||p>=1||q<=0||q>=1)return null;
-      const homeDiff=(p-q)*100;
-      return {e,c,homeDiff,side:homeDiff>=0?'home':'away',gap:Math.abs(homeDiff)};
-     }).filter(Boolean).sort((a,b)=>b.gap-a.gap).slice(0,5);
-     if(ranked.length){
-      const heading=document.createElement('h3');heading.textContent='Model vs market · research watchlist';results.append(heading);
-      const notice=document.createElement('p');notice.textContent='Ranked by absolute percentage-point difference against archived no-vig consensus, NOT expected value or chance of winning. No live price or simulation verified. NOT BET ELIGIBLE.';results.append(notice);
-      for(const r of ranked){
-       const row=document.createElement('div');row.className='ksl-best-row';
-       const label=document.createElement('strong');label.textContent=(r.side==='home'?r.e.home:r.e.away)+' · research lean';row.append(label);
-       const detail=document.createElement('p');detail.textContent=r.e.away+' @ '+r.e.home+' | model '+(100*(r.side==='home'?r.e.model_probability:1-r.e.model_probability)).toFixed(1)+'% | archived market '+(100*(r.side==='home'?r.c.home_consensus_no_vig:1-r.c.home_consensus_no_vig)).toFixed(1)+'% | gap '+r.gap.toFixed(1)+' pp | '+r.c.bookmaker_count+' books';row.append(detail);
-       results.append(row);
-      }
-     }
-    }
-   }catch(err){const note=document.createElement('p');note.textContent='Archived consensus comparison unavailable.';results.append(note);}
+   currentEvents=events;currentAsOf=data.asof||null;
+   try{const response=await fetch('./feed/'+cfg.feed+'_market_consensus.json',{cache:'no-store'});currentConsensus=response.ok?await response.json():null;}catch(err){currentConsensus=null;}
+   renderMarket();
    const meta=panel.querySelector('.ksl-best-meta');meta.textContent='Archived research as of '+(data.asof?new Date(data.asof).toLocaleString():'unknown')+'. Not live sportsbook pricing. Diamond Plays, builders, and SGP remain unavailable until all required inputs are verified.';
   }catch(error){status.textContent='NO VERIFIED PLAY — research feed unavailable';results.textContent=error.message;}
  }
