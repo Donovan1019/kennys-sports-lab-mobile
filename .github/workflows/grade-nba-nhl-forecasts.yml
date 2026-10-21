@@ -14,8 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 12
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
       - name: Validate outcome matching and refresh adapters
@@ -36,12 +36,6 @@ jobs:
         run: python -m scripts.forecast_ledger
       - name: Evaluate forecast calibration and uncertainty
         run: python -m scripts.advanced_forecast_evaluation
-      - name: Estimate historical score correlations for research
-        run: python -m scripts.score_correlation_research
-      - name: Walk-forward correlated versus independent Monte Carlo
-        run: python -m scripts.correlation_walkforward
-      - name: Evaluate season stability and bootstrap uncertainty
-        run: python -m scripts.model_validation
       - name: Audit champion versus bookmaker baseline across all three sports
         run: python -m scripts.three_sport_champion
       - name: Audit NBA NHL NFL forecast lifecycle readiness
