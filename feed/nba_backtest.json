@@ -1,12 +1,12 @@
 {
   "method": "strict-prior-day-walk-forward",
   "status": "experimental_uncalibrated",
-  "samples": 588,
+  "samples": 589,
   "date_start": "2026-01-19",
-  "date_end": "2026-04-13",
-  "brier": 0.21506,
+  "date_end": "2026-10-20",
+  "brier": 0.21504,
   "constant_50pct_brier": 0.25,
-  "team_score_mae": 9.901,
+  "team_score_mae": 9.893,
   "calibration_bins": [
     {
       "probability_bin": "30-40%",
@@ -22,9 +22,9 @@
     },
     {
       "probability_bin": "50-60%",
-      "n": 246,
+      "n": 247,
       "mean_predicted": 0.55,
-      "actual_home_win_rate": 0.61
+      "actual_home_win_rate": 0.611
     },
     {
       "probability_bin": "60-70%",
