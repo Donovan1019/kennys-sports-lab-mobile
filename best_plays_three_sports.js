@@ -10,6 +10,13 @@ const marketCatalog={
  NBA:['Moneyline','Spread','Alternate Spreads','Game Total','Alternate Game Totals','Team Totals','Alternate Team Totals','1H / 2H','1H / 2H Team Totals','Quarters','Quarter Team Totals','Race to Points','Winning Margin','First Basket / First Team Basket','Player Points','Player Rebounds','Player Assists','P+R / P+A / R+A / PRA','Threes Made','Threes Attempted','Steals / Blocks','Turnovers','Player Minutes','Field Goals / Free Throws','Double-Doubles','Triple-Doubles','Player First Basket','Player 1Q / 1H Props','Player Milestones / Alternates','Top Scorer / Matchup Props','Live / Halftime','SGP / Builders','SGP Magic / Halftime Magic','Futures'],
  NHL:['Moneyline','3-Way Regulation','Puck Line','Alternate Puck Lines','Game Total','Alternate Game Totals','Team Totals','Alternate Team Totals','1P / 2P / 3P','Period Team Totals','Period 3-Way / Puck Lines','Race to Goals','First / Last Goal Team','Winning Margin','Overtime / Shootout','Player Shots on Goal','Alternate Shots on Goal','Goalie Saves','Alternate Goalie Saves','Player Points / Assists','Player Goals','Anytime Goal','First / Last Goal Scorer','Multiple Goals / Hat Trick','Blocked Shots','Power Play','Player Power-Play Points','Faceoff Wins','Goalie Shutout','Live / Intermission','SGP / Builders','SGP Magic / Intermission Magic','Futures']
 };
+// Deterministic empirical resampling of completed games. Descriptive only, NOT calibrated forecasts.
+function historyBootstrap(values,threshold,trials=10000){
+ if(!Array.isArray(values)||values.length<3||values.some(x=>!Number.isFinite(x)||x<0))return null;
+ let state=20261021,over=0;
+ for(let i=0;i<trials;i++){state=(Math.imul(1664525,state)+1013904223)>>>0;const sample=values[Math.floor((state/4294967296)*values.length)];if(sample>threshold)over++;}
+ return over/trials;
+}
 const main=document.querySelector('main');if(!main)return;
 const safe=(value)=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const style=document.createElement('style');style.textContent='.ksl-best-plays{border:1px solid #397c65;border-radius:14px;background:linear-gradient(140deg,#102c24,#0b1b2b);padding:16px;margin:14px 0 20px}.ksl-best-plays h2{color:#99f4ba;margin:0 0 8px}.ksl-best-plays p{font-size:13px;color:#bed3cb;line-height:1.55}.ksl-best-plays .ksl-best-pass{border:1px solid #775d36;background:#332b1d;color:#ffe2a0;border-radius:9px;padding:12px;font-weight:800;margin:12px 0}.ksl-best-plays .ksl-best-meta{font-size:12px;color:#a6c1bc}.ksl-best-plays button{min-height:40px}.ksl-best-plays .ksl-best-row{border:1px solid #315d51;border-radius:9px;padding:12px;margin:10px 0;background:#0c211d}.ksl-best-plays .ksl-best-row strong{color:#b6ffd1}'.concat('.ksl-best-market-browser{border:1px solid #315b55;border-radius:10px;padding:12px;margin:12px 0;background:#0c2024}.ksl-best-market-browser h3{margin:0 0 6px;color:#a3efc3}.ksl-best-market-browser select{width:100%;max-width:100%;min-height:45px}.ksl-best-market-state{padding:9px;border-radius:8px;background:#172c31;color:#f1d59c!important}');document.head.append(style);
@@ -56,7 +63,13 @@ for(const cfg of config){
    const warning=document.createElement('p');warning.textContent='Historical completed-game statistics only. Ranked by last-five observed average, not projected hit probability or EV. No verified prop line or Onyx availability. NOT BET ELIGIBLE.';results.append(warning);
    const meta=document.createElement('p');meta.textContent='Official NHL archive collected '+(nhlHistory?.fetched_at?new Date(nhlHistory.fetched_at).toLocaleString():'unknown')+' · minimum 3 recorded games';results.append(meta);
    if(!players.length){const empty=document.createElement('p');empty.textContent='No verified historical observations available for '+metric+'.';results.append(empty);return;}
-   for(const x of players){const row=document.createElement('div');row.className='ksl-best-row';const title=document.createElement('strong');title.textContent=x.p.name+' ('+x.p.team+') · '+x.avg.toFixed(2)+' '+metric+' / game';row.append(title);const detail=document.createElement('p');detail.textContent='Recent '+x.games.length+' games: '+x.games.map(g=>g.values[metric]).join(', ')+' | '+x.games[0].date+' latest';row.append(detail);results.append(row);}
+   for(const x of players){const row=document.createElement('div');row.className='ksl-best-row';const title=document.createElement('strong');title.textContent=x.p.name+' ('+x.p.team+') · '+x.avg.toFixed(2)+' '+metric+' / game';row.append(title);const detail=document.createElement('p');detail.textContent='Recent '+x.games.length+' games: '+x.games.map(g=>g.values[metric]).join(', ')+' | '+x.games[0].date+' latest';row.append(detail);
+    if(metric==='Shots on goal'||metric==='Saves'){
+     const threshold=metric==='Shots on goal'?2.5:24.5;
+     const rate=historyBootstrap(x.games.map(g=>g.values[metric]),threshold);
+     if(rate!==null){const sim=document.createElement('p');sim.textContent='10,000-draw historical bootstrap: '+(rate*100).toFixed(1)+'% of resamples exceeded '+threshold+'. NOT a projected hit rate, verified line, or betting edge.';row.append(sim);}
+    }
+    results.append(row);}
    return;
   }
   if(cfg.sport==='NFL'&&nflPropCategories[name]){
