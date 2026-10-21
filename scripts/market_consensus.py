@@ -31,7 +31,7 @@ def summarize(archive, now=None, max_snapshot_age=3600):
 
 def main():
     now=datetime.now(timezone.utc)
-    for sport in ("basketball_nba","icehockey_nhl"):
+    for sport in ("basketball_nba","icehockey_nhl","americanfootball_nfl"):
         path=Path(f"feed/{sport}_paired_moneyline_archive.json")
         if not path.exists():continue
         report=summarize(json.loads(path.read_text()),now)
