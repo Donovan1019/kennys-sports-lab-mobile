@@ -6,6 +6,7 @@ permissions:
 jobs:
   backtest:
     runs-on: ubuntu-latest
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -17,6 +18,8 @@ jobs:
           python -m unittest discover -s tests -p "test_*.py"
       - name: Import completed NBA and NHL games and run 10000-trial backtests
         run: python -m scripts.connect_nba_nhl_scores
+      - name: Validate NBA strict-prior-day probabilities on refreshed scores
+        run: python scripts/backtest_nba.py
       - name: Validate historical margin and total errors
         run: python -m scripts.market_backtest
       - name: Commit backtest results
