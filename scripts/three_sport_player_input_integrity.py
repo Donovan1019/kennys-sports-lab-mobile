@@ -29,37 +29,51 @@ def assess(now=None, root=Path(".")):
     for sport, (slug, history) in SPORTS.items():
         hist = load(root / "feed" / history)
         odds = load(root / "feed" / (slug + ".json"))
-        quotes = odds.get("events", [])
-        if not isinstance(quotes, list):
-            quotes = []
-        if not quotes and isinstance(odds.get("data"), list):
-            quotes = odds["data"]
+        rows = odds.get("odds", [])
+        if not isinstance(rows, list):
+            rows = []
         markets = set()
         latest = None
-        for event in quotes:
-            if not isinstance(event, dict):
+        valid_rows = 0
+        invalid_rows = 0
+        future_event_ids = set()
+        books = set()
+        for row in rows:
+            if not isinstance(row, dict):
+                invalid_rows += 1
                 continue
-            for book in event.get("bookmakers", []) or []:
-                if not isinstance(book, dict):
-                    continue
-                for market in book.get("markets", []) or []:
-                    if not isinstance(market, dict):
-                        continue
-                    key = market.get("key")
-                    if isinstance(key, str):
-                        markets.add(key)
-                    dt = timestamp(market.get("last_update") or book.get("last_update"))
-                    if dt and (latest is None or dt > latest):
-                        latest = dt
+            quote_at = timestamp(row.get("updated_at"))
+            event_at = timestamp(row.get("commence_time"))
+            price = row.get("price")
+            if (not row.get("event_id") or not row.get("bookmaker")
+                    or not row.get("market") or not row.get("selection")
+                    or not quote_at or not event_at
+                    or not isinstance(price, (int, float)) or isinstance(price, bool)
+                    or not -100000 <= price <= 100000 or price == 0):
+                invalid_rows += 1
+                continue
+            valid_rows += 1
+            markets.add(row["market"])
+            books.add(row["bookmaker"])
+            if event_at > now:
+                future_event_ids.add(row["event_id"])
+            if latest is None or quote_at > latest:
+                latest = quote_at
         age = (now - latest).total_seconds() / 60 if latest else None
         players = hist.get("players", [])
         result["sports"][sport] = {
             "player_history_present": isinstance(players, list) and len(players) > 0,
             "player_history_count": len(players) if isinstance(players, list) else 0,
             "archived_market_types": sorted(markets),
+            "archived_quote_rows": len(rows),
+            "valid_archived_quote_rows": valid_rows,
+            "invalid_archived_quote_rows": invalid_rows,
+            "archived_bookmakers": sorted(books),
+            "future_event_count_with_archived_quotes": len(future_event_ids),
             "archived_quote_last_update": latest.isoformat() if latest else None,
             "archived_quote_age_minutes": round(age, 1) if age is not None else None,
             "fresh_quote_timestamp_within_60m": age is not None and 0 <= age <= 60,
+            "fresh_quote_is_not_live_market_verification": True,
             "live_event_matched_player_props_verified": False,
             "independent_player_team_and_lineup_verified": False,
             "injury_adjusted_player_projection_validated": False,
