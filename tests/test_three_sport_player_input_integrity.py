@@ -6,6 +6,25 @@ from pathlib import Path
 from scripts.three_sport_player_input_integrity import assess
 
 class InputIntegrityTests(unittest.TestCase):
+    def test_invalid_nonfinite_quote_and_event_conflict(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "feed").mkdir()
+            base = {"event_id": "same", "event": "A @ B", "bookmaker": "book",
+                    "market": "h2h", "selection": "A", "price": -110,
+                    "updated_at": "2026-10-21T14:00:00Z",
+                    "commence_time": "2026-10-22T00:00:00Z"}
+            conflicting = dict(base, event="C @ D", updated_at="2026-10-21T15:00:00Z")
+            invalid = dict(base, price=float("nan"))
+            (root / "feed" / "americanfootball_nfl.json").write_text(
+                json.dumps({"odds": [base, conflicting, invalid]}))
+            row = assess(datetime(2026, 10, 21, 14, 30, tzinfo=timezone.utc), root)["sports"]["NFL"]
+            self.assertEqual(row["valid_archived_quote_rows"], 2)
+            self.assertEqual(row["invalid_archived_quote_rows"], 1)
+            self.assertEqual(row["inconsistent_event_metadata_rows"], 1)
+            self.assertEqual(row["future_dated_quote_rows"], 1)
+            self.assertEqual(row["upcoming_events_by_market"], {"h2h": 1})
+
     def test_flattened_quote_feed_and_invalid_rows(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
@@ -31,6 +50,9 @@ class InputIntegrityTests(unittest.TestCase):
                 self.assertEqual(row["valid_archived_quote_rows"], 1)
                 self.assertEqual(row["invalid_archived_quote_rows"], 1)
                 self.assertEqual(row["future_event_count_with_archived_quotes"], 1)
+                self.assertEqual(row["upcoming_events_by_market"], {"h2h": 1})
+                self.assertEqual(row["inconsistent_event_metadata_rows"], 0)
+                self.assertEqual(row["future_dated_quote_rows"], 0)
                 self.assertTrue(row["fresh_quote_timestamp_within_60m"])
                 self.assertFalse(row["live_event_matched_player_props_verified"])
                 self.assertEqual(row["verified_betting_recommendations"], 0)
