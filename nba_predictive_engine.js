@@ -21,7 +21,10 @@ const leagueAvg=average(leaguePoints);
 const teamHistory=new Map();for(const g of historical){for(const [team,scored,allowed] of [[g.home,g.home_score,g.away_score],[g.away,g.away_score,g.home_score]]){if(!teamHistory.has(team))teamHistory.set(team,[]);teamHistory.get(team).push({date:date(g.date),scored,allowed})}}
 for(const rows of teamHistory.values())rows.sort((a,b)=>a.date.localeCompare(b.date));
 const teamCodes={'Atlanta Hawks':'ATL','Boston Celtics':'BOS','Brooklyn Nets':'BKN','Charlotte Hornets':'CHA','Chicago Bulls':'CHI','Cleveland Cavaliers':'CLE','Dallas Mavericks':'DAL','Denver Nuggets':'DEN','Detroit Pistons':'DET','Golden State Warriors':'GS','Houston Rockets':'HOU','Indiana Pacers':'IND','LA Clippers':'LAC','Los Angeles Clippers':'LAC','Los Angeles Lakers':'LAL','Memphis Grizzlies':'MEM','Miami Heat':'MIA','Milwaukee Bucks':'MIL','Minnesota Timberwolves':'MIN','New Orleans Pelicans':'NO','New York Knicks':'NY','Oklahoma City Thunder':'OKC','Orlando Magic':'ORL','Philadelphia 76ers':'PHI','Phoenix Suns':'PHX','Portland Trail Blazers':'POR','Sacramento Kings':'SAC','San Antonio Spurs':'SA','Toronto Raptors':'TOR','Utah Jazz':'UTAH','Washington Wizards':'WSH'};
-const upcoming=[...new Map(odds.odds.filter(x=>x.event_id&&x.commence_time&&Date.parse(x.commence_time)>Date.now()).map(x=>[x.event_id,x])).values()].sort((a,b)=>Date.parse(a.commence_time)-Date.parse(b.commence_time)).slice(0,18);
+// Never use arbitrary spreads/totals rows as the event identity or an old quote as live pricing.
+const now=Date.now(),freshRows=odds.odds.filter(x=>x.event_id&&x.event&&x.market==='h2h'&&x.bookmaker&&x.selection&&Number.isFinite(x.price)&&Math.abs(x.price)>=100&&x.commence_time&&x.updated_at&&Date.parse(x.commence_time)>now&&Date.parse(x.updated_at)<=now&&now-Date.parse(x.updated_at)<=15*60*1000);
+const grouped=new Map();for(const x of freshRows){if(!grouped.has(x.event_id))grouped.set(x.event_id,[]);grouped.get(x.event_id).push(x)}
+const upcoming=[...grouped.values()].filter(rows=>{const teams=rows[0].event.split(' @ ');return teams.length===2&&teams.every(team=>rows.some(r=>r.selection===team))}).map(rows=>rows[0]).sort((a,b)=>Date.parse(a.commence_time)-Date.parse(b.commence_time)).slice(0,18);
 const out=el('nba-predict-results');out.replaceChildren();
 let n=0;
 for(const game of upcoming){
@@ -42,7 +45,7 @@ if(!candidates)write(section,'p','Player projections unavailable: no qualifying 
 n++;
 }
 el('nba-predict-status').textContent='Loaded '+historical.length+' historical completed games · '+players.players.length+' player histories · '+n+' upcoming matchups. Research model only; no verified sportsbook EV, injury, or lineup adjustments.';
-if(!n)write(out,'p','No future NBA games found in the saved odds snapshot. Re-run the odds refresh to populate matchups.');
+if(!n)write(out,'p','No fresh pregame NBA moneyline quotes with both teams found. Refresh odds before tipoff; stale or incomplete markets are excluded.');
 }catch(e){el('nba-predict-status').textContent='PREDICTIVE ENGINE UNAVAILABLE: '+e.message}
 }
 load();
