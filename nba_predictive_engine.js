@@ -15,7 +15,7 @@ async function load(){
 try{
 const [games,players,odds]=await Promise.all(['nba_completed_games.json','nba_player_stats.json','basketball_nba.json'].map(async n=>{const r=await fetch('./feed/'+n+'?v='+Date.now(),{cache:'no-store'});if(!r.ok)throw Error(n+' HTTP '+r.status);return r.json()}));
 if(!Array.isArray(games.games)||!Array.isArray(players.players)||!Array.isArray(odds.odds))throw Error('Invalid feed schema');
-const historical=games.games.filter(valid).filter(g=>date(g.date)>='2025-10-01'&&date(g.date)<='2026-06-30');
+const historical=games.games.filter(valid).filter(g=>date(g.date)>='2025-10-01'&&date(g.date)<date(new Date()));
 const leaguePoints=historical.flatMap(g=>[g.home_score,g.away_score]);if(historical.length<100)throw Error('Insufficient completed NBA game history');
 const leagueAvg=average(leaguePoints);
 const teamHistory=new Map();for(const g of historical){for(const [team,scored,allowed] of [[g.home,g.home_score,g.away_score],[g.away,g.away_score,g.home_score]]){if(!teamHistory.has(team))teamHistory.set(team,[]);teamHistory.get(team).push({date:date(g.date),scored,allowed})}}
@@ -27,7 +27,7 @@ let n=0;
 for(const game of upcoming){
 const parts=game.event.split(' @ ');if(parts.length!==2)continue;
 const [away,home]=parts;const ah=teamHistory.get(away)||[],hh=teamHistory.get(home)||[];if(ah.length<15||hh.length<15){write(out,'p',game.event+' · PASS: fewer than 15 historical team games');continue}
-const shrink=10;const rate=(rows,key)=>(rows.slice(-40).reduce((s,r)=>s+r[key],0)+shrink*leagueAvg)/(Math.min(40,rows.length)+shrink);
+const rate=(rows,key)=>{const sample=rows.slice(-40);return average(sample.map(r=>r[key]))};
 const awayMean=(rate(ah,'scored')+rate(hh,'allowed'))/2,homeMean=(rate(hh,'scored')+rate(ah,'allowed'))/2+2;
 const variance=Math.max(9,sd(leaguePoints)*.85);
 const rand=rng([...game.event].reduce((s,c)=>Math.imul(s,31)+c.charCodeAt(0),12345));
