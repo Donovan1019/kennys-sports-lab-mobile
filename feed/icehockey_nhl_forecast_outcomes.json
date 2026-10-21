@@ -1,7 +1,9 @@
 {
   "status": "research_only",
   "matched_forecasts": 0,
+  "unique_events_in_ledger": 2,
+  "unmatched_events": 2,
   "mean_brier": null,
-  "notes": "Strict exact teams and unique start-time proximity; ambiguous or unverified results excluded",
+  "notes": "One earliest forecast per event; strict exact teams and unique start-time proximity; ambiguous or unverified results excluded",
   "scored": []
 }
