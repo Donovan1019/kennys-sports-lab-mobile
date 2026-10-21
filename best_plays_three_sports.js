@@ -29,7 +29,7 @@ for(const cfg of config){
   const name=picker.value;
   marketState.textContent=(cfg.sport==='NHL'&&['Player Shots on Goal','Goalie Saves','Player Points / Assists','Anytime Goal'].includes(name)?'OFFICIAL NHL HISTORICAL STATS · no current prop odds or simulations.':cfg.sport==='NFL'&&nflPropCategories[name]?'ARCHIVED REFERENCE QUOTES ONLY · historical external-book prices; not live, no verified model edge.':name==='Moneyline'?'MONEYLINE · archived model-versus-consensus research below. Live price, simulation and eligibility remain unverified.':'DATA NOT CONNECTED · '+name+' has no event-matched, verified odds/projection/simulation feed in this Best Plays module. Not an available pick.');
  }
- picker.addEventListener('change',()=>{updateMarket();renderMarket();});updateMarket();
+ picker.addEventListener('change',()=>{updateMarket();renderMarket();});
  panel.insertBefore(browser,panel.querySelector('.ksl-best-pass'));
  const status=panel.querySelector('.ksl-best-pass'),results=panel.querySelector('.ksl-best-results');
  let currentEvents=[],currentConsensus=null,currentAsOf=null;
@@ -41,6 +41,8 @@ for(const cfg of config){
   'WR / TE Receiving Yards':['player_reception_yds'],'Receptions':['player_receptions'],
   'Anytime TD':['player_anytime_td']
  };
+
+ updateMarket();
 
  function renderMarket(){
   results.replaceChildren();const name=picker.value;
