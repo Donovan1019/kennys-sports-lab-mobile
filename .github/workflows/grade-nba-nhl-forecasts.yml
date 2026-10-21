@@ -18,7 +18,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Validate outcome matching and refresh adapters
-        run: python -m compileall -q scripts tests && python -m unittest tests.test_forecast_ledger tests.test_refresh_recent_results tests.test_nfl_pregame_research tests.test_advanced_forecast_evaluation
+        run: python -m compileall -q scripts tests && python -m unittest tests.test_forecast_ledger tests.test_refresh_recent_results tests.test_nfl_pregame_research tests.test_advanced_forecast_evaluation tests.test_correlated_score_simulation
       - name: Refresh final scores from free ESPN endpoints
         run: python -m scripts.refresh_recent_results
       - name: Build fresh cross-book market consensus from archived quotes
