@@ -1,32 +1,21 @@
-/* Visible, independent top-of-page player research for NFL, NBA, NHL. */
+/* Top Players: display only independently verified, eligible player betting recommendations. */
 (()=>{'use strict';
 const main=document.querySelector('main');if(!main)return;
-const sports=['NFL','NBA','NHL'];
-const config={NFL:{feed:'nfl_props.json'},NBA:{feed:'nba_player_stats.json',metric:'Points'},NHL:{feed:'nhl_official_player_stats.json',metric:'Shots on goal'}};
-for(const sport of sports){
- const root=document.createElement('section');root.id='ksl-'+sport.toLowerCase()+'-top-players';root.className='ksl-top-players';
- root.style.cssText='border:2px solid #4ca96d;border-radius:14px;padding:16px;margin:12px 0 16px;background:#10221d;color:#ecfff0';
- const title=document.createElement('h2');title.textContent=sport+' · Top Players Research';root.append(title);
- const note=document.createElement('p');note.textContent='Historical evidence only. Not a list of verified betting plays or live sportsbook lines.';root.append(note);
- const state=document.createElement('p');state.textContent='Loading player research…';state.setAttribute('role','status');root.append(state);
- const list=document.createElement('div');root.append(list);
- main.prepend(root);
- (async()=>{
- try{
-  const response=await fetch('./feed/'+config[sport].feed,{cache:'no-store'});if(!response.ok)throw Error('Feed unavailable');
-  const data=await response.json();let rows=[];
-  if(sport==='NFL'){
-   const byPlayer=new Map();
-   for(const q of data.odds||[]){if(!q.player||!q.market)continue;const key=q.player;const record=byPlayer.get(key)||{name:key,markets:new Set(),quotes:0};record.markets.add(q.market);record.quotes++;byPlayer.set(key,record);}
-   rows=[...byPlayer.values()].sort((a,b)=>b.markets.size-a.markets.size||b.quotes-a.quotes||a.name.localeCompare(b.name)).slice(0,10).map(p=>({name:p.name,detail:p.markets.size+' archived market types · '+p.quotes+' quotes'}));
-   state.textContent=rows.length?'Archived NFL player market coverage · '+(data.fetched_at||'unknown snapshot'):'No archived NFL player quotes available.';
-  }else{
-   const metric=config[sport].metric;
-   rows=(data.players||[]).map(p=>{const games=(p.games||[]).filter(g=>Number.isFinite(g.values?.[metric])&&!(g.quality_flags||[]).length).sort((a,b)=>String(b.date).localeCompare(String(a.date))).slice(0,5);return {name:p.name+' ('+(p.team||'team unknown')+')',games,avg:games.length?games.reduce((v,g)=>v+g.values[metric],0)/games.length:0};}).filter(p=>p.games.length>=3).sort((a,b)=>b.avg-a.avg).slice(0,10).map(p=>({name:p.name,detail:p.avg.toFixed(2)+' '+metric+'/game · last '+p.games.length+' recorded games'}));
-   state.textContent=rows.length?'Top recorded '+metric+' averages · '+(data.fetched_at||'unknown snapshot'):'No qualifying player history yet. Feed collection may still be pending.';
-  }
-  for(const [i,p] of rows.entries()){const line=document.createElement('div');line.style.cssText='border-top:1px solid #365e49;padding:10px 0';const strong=document.createElement('strong');strong.textContent=(i+1)+'. '+p.name;const detail=document.createElement('div');detail.textContent=p.detail;detail.style.cssText='font-size:13px;color:#b7d3bf';line.append(strong,detail);list.append(line);}
- }catch(err){state.textContent='Player research unavailable; no results invented.';}
- })();
+const sports=[['NFL','americanfootball_nfl'],['NBA','basketball_nba'],['NHL','icehockey_nhl']];
+const decimalProfit=odds=>odds>0?odds/100:100/(-odds);
+const valid=e=>e&&e.bet_eligible===true&&e.status==='verified'&&e.verified_market===true&&e.simulation_verified===true&&e.lineup_verified===true&&e.market_fresh===true&&e.is_player_prop===true&&typeof e.player==='string'&&e.player.trim()&&typeof e.market==='string'&&e.market.trim()&&typeof e.selection==='string'&&e.selection.trim()&&Number.isFinite(e.point)&&Number.isFinite(e.hit_probability)&&e.hit_probability>0&&e.hit_probability<1&&Number.isFinite(e.market_odds_american)&&e.market_odds_american!==0&&Number.isFinite(e.expected_value)&&e.expected_value>0&&Math.abs(e.hit_probability*decimalProfit(e.market_odds_american)-(1-e.hit_probability)-e.expected_value)<0.02&&typeof e.verified_at==='string'&&Number.isFinite(Date.parse(e.verified_at))&&Date.now()-Date.parse(e.verified_at)<3600000&&Date.parse(e.verified_at)<=Date.now();
+for(const [sport,slug] of sports){
+ const root=document.createElement('section');root.id='ksl-'+sport.toLowerCase()+'-top-players';root.className='ksl-top-players';root.style.cssText='border:2px solid #4ca96d;border-radius:14px;padding:16px;margin:12px 0 16px;background:#10221d;color:#ecfff0';
+ const title=document.createElement('h2');title.textContent=sport+' · Top Players · Verified Betting Recommendations';root.append(title);
+ const note=document.createElement('p');note.textContent='Strictly verified player props only: current line and odds, player status, validated simulation, probability, positive EV, and recent verification. Archived trends alone never qualify.';root.append(note);
+ const status=document.createElement('p');status.setAttribute('role','status');status.textContent='Checking verified player recommendations…';root.append(status);
+ const list=document.createElement('div');root.append(list);main.prepend(root);
+ (async()=>{try{
+  const response=await fetch('./feed/'+slug+'_pregame_research.json',{cache:'no-store'});if(!response.ok)throw Error('Research unavailable');
+  const data=await response.json();const eligible=(data.events||[]).filter(valid).sort((a,b)=>b.expected_value-a.expected_value).slice(0,10);
+  if(!eligible.length){status.textContent='NO VERIFIED PLAYER BETTING RECOMMENDATIONS — current data does not meet required eligibility checks.';return;}
+  status.textContent=eligible.length+' verified player recommendation'+(eligible.length===1?'':'s')+' · confirm prices again before betting';
+  for(const [i,e] of eligible.entries()){const row=document.createElement('div');row.style.cssText='border-top:1px solid #365e49;padding:10px 0';const heading=document.createElement('strong');heading.textContent=(i+1)+'. '+e.player+' · '+e.market+' '+e.selection+' '+e.point;const details=document.createElement('div');details.textContent='Odds '+(e.market_odds_american>0?'+':'')+e.market_odds_american+' · model '+(e.hit_probability*100).toFixed(1)+'% · EV '+(e.expected_value*100).toFixed(1)+'% · verified '+e.verified_at;details.style.cssText='font-size:13px;color:#b7d3bf';row.append(heading,details);list.append(row);}
+ }catch(err){status.textContent='NO VERIFIED PLAYER BETTING RECOMMENDATIONS — unable to verify current source.';}})();
 }
 })();
