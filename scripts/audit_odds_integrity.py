@@ -34,7 +34,9 @@ def audit(feed,now=None):
         else:
             valid.append(r)
     events=len({r["event_id"] for r in valid})
-    return {"status":"research_only","generated_at":now.isoformat(),"sport":feed.get("sport"),"total_rows":len(rows),"eligible_pregame_rows":len(valid),"eligible_events":events,"excluded_by_reason":dict(reasons),"betting_ready":False,"notes":["Snapshot is not a historical closing-line database","No wager is approved without verified lineup, model calibration, market settlement and risk checks","Price freshness threshold is 15 minutes; in-play prices are excluded"]}
+    from scripts.paired_moneyline_market import paired_moneylines
+    pairs=paired_moneylines({"odds":valid},now)
+    return {"status":"research_only","generated_at":now.isoformat(),"sport":feed.get("sport"),"total_rows":len(rows),"eligible_pregame_rows":len(valid),"eligible_events":events,"paired_moneyline_markets":len(pairs),"paired_moneyline_events":len({p['event_id'] for p in pairs}),"excluded_by_reason":dict(reasons),"betting_ready":False,"notes":["Snapshot is not a historical closing-line database","No wager is approved without verified lineup, model calibration, market settlement and risk checks","Price freshness threshold is 15 minutes; in-play prices are excluded"]}
 
 def main():
     for sport in ("basketball_nba","icehockey_nhl"):
