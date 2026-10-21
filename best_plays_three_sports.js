@@ -31,6 +31,31 @@ for(const cfg of config){
     const reasons=[...new Set(events.map(e=>e.reason).filter(Boolean))].slice(0,2);
     const info=document.createElement('p');info.textContent=reasons.length?'Why picks are withheld: '+reasons.join(' | '):'No eligible selections in the published research feed.';results.append(info);
    }
+   // Independently rank research-only moneyline comparisons using archived cross-book consensus.
+   // These are NOT betting recommendations: no verified price, calibration or simulator.
+   try{
+    const consensusResponse=await fetch('./feed/'+cfg.feed+'_market_consensus.json',{cache:'no-store'});
+    if(consensusResponse.ok){
+     const consensus=await consensusResponse.json();
+     const byId=new Map((consensus.events||[]).map(x=>[x.event_id,x]));
+     const ranked=events.map(e=>{
+      const c=byId.get(e.event_id),p=e.model_probability,q=c?.home_consensus_no_vig;
+      if(!Number.isFinite(p)||!Number.isFinite(q)||p<=0||p>=1||q<=0||q>=1)return null;
+      const homeDiff=(p-q)*100;
+      return {e,c,homeDiff,side:homeDiff>=0?'home':'away',gap:Math.abs(homeDiff)};
+     }).filter(Boolean).sort((a,b)=>b.gap-a.gap).slice(0,5);
+     if(ranked.length){
+      const heading=document.createElement('h3');heading.textContent='Model vs market · research watchlist';results.append(heading);
+      const notice=document.createElement('p');notice.textContent='Ranked by absolute percentage-point difference against archived no-vig consensus, NOT expected value or chance of winning. No live price or simulation verified. NOT BET ELIGIBLE.';results.append(notice);
+      for(const r of ranked){
+       const row=document.createElement('div');row.className='ksl-best-row';
+       const label=document.createElement('strong');label.textContent=(r.side==='home'?r.e.home:r.e.away)+' · research lean';row.append(label);
+       const detail=document.createElement('p');detail.textContent=r.e.away+' @ '+r.e.home+' | model '+(100*(r.side==='home'?r.e.model_probability:1-r.e.model_probability)).toFixed(1)+'% | archived market '+(100*(r.side==='home'?r.c.home_consensus_no_vig:1-r.c.home_consensus_no_vig)).toFixed(1)+'% | gap '+r.gap.toFixed(1)+' pp | '+r.c.bookmaker_count+' books';row.append(detail);
+       results.append(row);
+      }
+     }
+    }
+   }catch(err){const note=document.createElement('p');note.textContent='Archived consensus comparison unavailable.';results.append(note);}
    const meta=panel.querySelector('.ksl-best-meta');meta.textContent='Archived research as of '+(data.asof?new Date(data.asof).toLocaleString():'unknown')+'. Not live sportsbook pricing. Diamond Plays, builders, and SGP remain unavailable until all required inputs are verified.';
   }catch(error){status.textContent='NO VERIFIED PLAY — research feed unavailable';results.textContent=error.message;}
  }
