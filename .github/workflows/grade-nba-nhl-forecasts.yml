@@ -21,7 +21,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Validate outcome matching and refresh adapters
-        run: python -m compileall -q scripts tests && python -m unittest tests.test_forecast_ledger tests.test_refresh_recent_results tests.test_nfl_pregame_research tests.test_advanced_forecast_evaluation tests.test_correlated_score_simulation tests.test_score_correlation_research tests.test_correlation_walkforward tests.test_model_validation tests.test_three_sport_champion tests.test_three_sport_quote_provenance tests.test_three_sport_lifecycle tests.test_three_sport_player_input_integrity
+        run: python -m compileall -q scripts tests && python -m unittest tests.test_forecast_ledger tests.test_refresh_recent_results tests.test_nfl_pregame_research tests.test_advanced_forecast_evaluation tests.test_correlated_score_simulation tests.test_score_correlation_research tests.test_correlation_walkforward tests.test_model_validation tests.test_three_sport_champion tests.test_three_sport_quote_provenance tests.test_three_sport_lifecycle tests.test_three_sport_player_input_integrity tests.test_nfl_prop_event_match_gates
       - name: Apply archived market quality screens
         run: |
           python -m scripts.market_quality_screen
