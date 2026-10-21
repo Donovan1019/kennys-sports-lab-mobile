@@ -27,13 +27,13 @@ for(const cfg of config){
  const marketState=document.createElement('p');marketState.className='ksl-best-market-state';marketState.setAttribute('role','status');browser.append(marketState);
  function updateMarket(){
   const name=picker.value;
-  marketState.textContent=(cfg.sport==='NFL'&&nflPropCategories[name]?'ARCHIVED REFERENCE QUOTES ONLY · historical external-book prices; not live, no verified model edge.':name==='Moneyline'?'MONEYLINE · archived model-versus-consensus research below. Live price, simulation and eligibility remain unverified.':'DATA NOT CONNECTED · '+name+' has no event-matched, verified odds/projection/simulation feed in this Best Plays module. Not an available pick.');
+  marketState.textContent=(cfg.sport==='NHL'&&['Player Shots on Goal','Goalie Saves','Player Points / Assists','Anytime Goal'].includes(name)?'OFFICIAL NHL HISTORICAL STATS · no current prop odds or simulations.':cfg.sport==='NFL'&&nflPropCategories[name]?'ARCHIVED REFERENCE QUOTES ONLY · historical external-book prices; not live, no verified model edge.':name==='Moneyline'?'MONEYLINE · archived model-versus-consensus research below. Live price, simulation and eligibility remain unverified.':'DATA NOT CONNECTED · '+name+' has no event-matched, verified odds/projection/simulation feed in this Best Plays module. Not an available pick.');
  }
  picker.addEventListener('change',()=>{updateMarket();renderMarket();});updateMarket();
  panel.insertBefore(browser,panel.querySelector('.ksl-best-pass'));
  const status=panel.querySelector('.ksl-best-pass'),results=panel.querySelector('.ksl-best-results');
  let currentEvents=[],currentConsensus=null,currentAsOf=null;
- let archivedProps=null;
+ let archivedProps=null,nhlHistory=null;
  const nflPropCategories={
   'QB Passing Yards':['player_pass_yds'],'QB Passing TDs':['player_pass_tds'],
   'RB Rushing Yards':['player_rush_yds'],'QB Rushing':['player_rush_yds'],
@@ -44,6 +44,19 @@ for(const cfg of config){
 
  function renderMarket(){
   results.replaceChildren();const name=picker.value;
+  const nhlStatFields={'Player Shots on Goal':'Shots on goal','Goalie Saves':'Saves','Player Points / Assists':'Points','Anytime Goal':'Goals'};
+  if(cfg.sport==='NHL'&&nhlStatFields[name]){
+   const metric=nhlStatFields[name];const players=(nhlHistory?.players||[]).map(p=>{
+    const games=(p.games||[]).filter(g=>Number.isFinite(g.values?.[metric])&&!(g.quality_flags||[]).length).sort((a,b)=>String(b.date).localeCompare(String(a.date))).slice(0,5);
+    return {p,games,avg:games.length?games.reduce((sum,g)=>sum+g.values[metric],0)/games.length:null};
+   }).filter(x=>x.games.length>=3).sort((a,b)=>b.avg-a.avg).slice(0,20);
+   const heading=document.createElement('h3');heading.textContent=name+' · official NHL historical stats';results.append(heading);
+   const warning=document.createElement('p');warning.textContent='Historical completed-game statistics only. Ranked by last-five observed average, not projected hit probability or EV. No verified prop line or Onyx availability. NOT BET ELIGIBLE.';results.append(warning);
+   const meta=document.createElement('p');meta.textContent='Official NHL archive collected '+(nhlHistory?.fetched_at?new Date(nhlHistory.fetched_at).toLocaleString():'unknown')+' · minimum 3 recorded games';results.append(meta);
+   if(!players.length){const empty=document.createElement('p');empty.textContent='No verified historical observations available for '+metric+'.';results.append(empty);return;}
+   for(const x of players){const row=document.createElement('div');row.className='ksl-best-row';const title=document.createElement('strong');title.textContent=x.p.name+' ('+x.p.team+') · '+x.avg.toFixed(2)+' '+metric+' / game';row.append(title);const detail=document.createElement('p');detail.textContent='Recent '+x.games.length+' games: '+x.games.map(g=>g.values[metric]).join(', ')+' | '+x.games[0].date+' latest';row.append(detail);results.append(row);}
+   return;
+  }
   if(cfg.sport==='NFL'&&nflPropCategories[name]){
    const matches=(archivedProps?.odds||[]).filter(q=>nflPropCategories[name].includes(q.market));
    const heading=document.createElement('h3');heading.textContent=name+' · archived reference quotes';results.append(heading);
@@ -79,6 +92,7 @@ for(const cfg of config){
    status.textContent=eligible.length?'VERIFIED CANDIDATES — review market freshness':'NO VERIFIED PLAY — '+events.length+' researched matchup'+(events.length===1?'':'s')+', 0 fully qualified picks';
    currentEvents=events;currentAsOf=data.asof||null;
    try{const response=await fetch('./feed/'+cfg.feed+'_market_consensus.json',{cache:'no-store'});currentConsensus=response.ok?await response.json():null;}catch(err){currentConsensus=null;}
+   if(cfg.sport==='NHL'&&!nhlHistory){try{const p=await fetch('./feed/nhl_official_player_stats.json',{cache:'no-store'});nhlHistory=p.ok?await p.json():null;}catch(err){nhlHistory=null;}}
    if(cfg.sport==='NFL'&&!archivedProps){try{const p=await fetch('./feed/nfl_props.json',{cache:'no-store'});archivedProps=p.ok?await p.json():null;}catch(err){archivedProps=null;}}
    renderMarket();
    const meta=panel.querySelector('.ksl-best-meta');meta.textContent='Archived research as of '+(data.asof?new Date(data.asof).toLocaleString():'unknown')+'. Not live sportsbook pricing. Diamond Plays, builders, and SGP remain unavailable until all required inputs are verified.';
