@@ -36,22 +36,33 @@ def record(ledger,forecasts,odds,now):
     return {"status":"immutable_research_ledger","forecasts":sorted(entries.values(),key=lambda r:r["forecast_id"]),"added":added}
 
 def score(ledger,completed):
-    by_id={str(g.get("event_id")):g for g in completed.get("games",[]) if g.get("event_id")}
+    """Match provider IDs only via unique exact teams + start within 20 minutes.
+
+    Reject ambiguous candidates, swapped home/away, missing start times, and
+    games whose result timestamps cannot be tied to the forecast event.
+    """
+    games=completed.get("games",[])
     scored=[]
     for row in ledger.get("forecasts",[]):
-        g=by_id.get(str(row.get("event_id")))
-        if not g:continue
-        # The ESPN event ID may differ from the sportsbook event ID. Never
-        # match by approximate team name or retrospectively guess outcomes.
         try:
-            if g["home"]!=row["home"] or g["away"]!=row["away"]:continue
-            if type(g["home_score"]) not in (int,float) or type(g["away_score"]) not in (int,float):continue
+            start=timestamp(row["event_start"])
+            forecast_at=timestamp(row["forecast_at"])
             p=row["home_probability"]
-            if not 0<p<1 or not timestamp(row["forecast_at"])<timestamp(row["event_start"]):continue
+            if not start or not forecast_at or not forecast_at<start or type(p) not in (int,float) or not math.isfinite(p) or not 0<p<1:continue
+            candidates=[]
+            for g in games:
+                if g.get("home")!=row["home"] or g.get("away")!=row["away"]:continue
+                game_start=timestamp(g.get("date"))
+                if not game_start or abs((game_start-start).total_seconds())>1200:continue
+                hs,aws=g.get("home_score"),g.get("away_score")
+                if type(hs) not in (int,float) or type(aws) not in (int,float) or not math.isfinite(hs) or not math.isfinite(aws) or hs==aws:continue
+                candidates.append(g)
+            if len(candidates)!=1:continue
+            g=candidates[0]
             y=int(g["home_score"]>g["away_score"])
-            scored.append({"forecast_id":row["forecast_id"],"home_probability":p,"home_won":y,"brier":round((p-y)**2,6)})
+            scored.append({"forecast_id":row["forecast_id"],"provider_event_id":str(g.get("event_id","")),"match_method":"exact_teams_unique_start_within_20m","home_probability":p,"home_won":y,"brier":round((p-y)**2,6)})
         except (KeyError,TypeError,ValueError):continue
-    return {"status":"research_only","matched_forecasts":len(scored),"mean_brier":round(sum(x["brier"] for x in scored)/len(scored),6) if scored else None,"notes":"Only exact event IDs and team names are scored; missing cross-provider IDs remain unmatched","scored":scored}
+    return {"status":"research_only","matched_forecasts":len(scored),"mean_brier":round(sum(x["brier"] for x in scored)/len(scored),6) if scored else None,"notes":"Strict exact teams and unique start-time proximity; ambiguous or unverified results excluded","scored":scored}
 
 def main():
     now=datetime.now(timezone.utc)
@@ -68,5 +79,5 @@ def main():
         if completed_path.exists():
             audit=score(result,json.loads(completed_path.read_text()))
             Path(f"feed/{sport}_forecast_outcomes.json").write_text(json.dumps(audit,indent=2)+"\n")
-            print(sport,"immutable forecasts added:",added,"exact-ID outcomes:",audit["matched_forecasts"])
+            print(sport,"immutable forecasts added:",added,"strict cross-provider outcomes:",audit["matched_forecasts"])
 if __name__=="__main__":main()
