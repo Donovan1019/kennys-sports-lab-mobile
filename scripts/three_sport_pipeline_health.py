@@ -30,12 +30,37 @@ def audit(root=Path("feed"), now=None):
             forecasts = []
         if not forecasts:
             errors.append("no_archived_forecasts")
+        # Detect a stopped forecast pipeline using explicit forecast creation times.
+        # Missing/unparseable timestamps remain unknown rather than falsely stale.
+        timestamps = []
+        for row in forecasts:
+            if not isinstance(row, dict):
+                continue
+            raw = row.get("forecast_at") or row.get("created_at") or row.get("asof")
+            if not isinstance(raw, str):
+                continue
+            try:
+                stamp = datetime.fromisoformat(raw.replace("Z", "+00:00"))
+                if stamp.tzinfo is not None:
+                    timestamps.append(stamp.astimezone(timezone.utc))
+            except ValueError:
+                pass
+        newest = max(timestamps) if timestamps else None
+        # NBA/NHL can be off-season, and NFL has weekly gaps. Mark as warning
+        # only when recent market events demonstrate an active upcoming slate.
+        market_events = files.get("market_consensus", {}).get("events", [])
+        if not isinstance(market_events, list):
+            errors.append("invalid_market_events")
+            market_events = []
+        if newest and market_events and now - newest > timedelta(days=8):
+            errors.append("stale_forecasts_over_8_days_with_market_events")
         outcomes = files.get("forecast_outcomes", {}).get("scored", [])
         if not isinstance(outcomes, list):
             errors.append("invalid_scored_list")
             outcomes = []
         reports.append({"sport": sport, "status": "attention_required" if errors else "operational",
                         "forecast_count": len(forecasts), "scored_count": len(outcomes),
+                        "newest_forecast_at": newest.isoformat() if newest else None,
                         "issues": errors,
                         "note": "Zero scored forecasts alone is not an error; future games may be pending."})
     return {"checked_at": now.isoformat(), "status": "attention_required" if any(r["issues"] for r in reports) else "operational",
