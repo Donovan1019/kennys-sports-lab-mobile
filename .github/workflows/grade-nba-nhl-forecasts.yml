@@ -18,7 +18,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Validate outcome matching and refresh adapters
-        run: python -m unittest tests.test_forecast_ledger tests.test_refresh_recent_results
+        run: python -m compileall -q scripts tests && python -m unittest tests.test_forecast_ledger tests.test_refresh_recent_results
       - name: Refresh final scores from free ESPN endpoints
         run: python -m scripts.refresh_recent_results
       - name: Score previously archived pregame forecasts
