@@ -35,6 +35,20 @@ bins=[]
 for lo in range(0,100,10):
     selected=[p for p in predictions if lo<=p['home_win_probability']*100<(lo+10)]
     if selected:bins.append({'probability_bin':f'{lo}-{lo+10}%','n':len(selected),'mean_predicted':round(sum(p['home_win_probability'] for p in selected)/len(selected),3),'actual_home_win_rate':round(sum(p['home_won'] for p in selected)/len(selected),3)})
-report={'method':'strict-prior-day-walk-forward','status':'experimental_uncalibrated','samples':n,'date_start':predictions[0]['date'],'date_end':predictions[-1]['date'],'brier':round(brier,5),'constant_50pct_brier':round(baseline,5),'team_score_mae':round(mae,3),'calibration_bins':bins,'notes':['No closing odds, lineup/injury inputs or bookmaker vig comparison','Fixed logistic scale 12 is not trained or calibrated','Only historical scores strictly prior to game date used']}
+# Chronological holdout calibration: fit only on the earlier 70% of games.
+# Optimize logistic temperature without using any holdout outcomes.
+split=int(n*.70)
+train,test=predictions[:split],predictions[split:]
+def score(rows,scale):
+    return sum((1/(1+math.exp(-((p['home_score_prediction']-p['away_score_prediction'])/scale)))-p['home_won'])**2 for p in rows)/len(rows)
+scales=[x/2 for x in range(6,81)]
+best_scale=min(scales,key=lambda scale:score(train,scale))
+holdout_brier=score(test,best_scale)
+holdout_raw=score(test,12)
+holdout_constant=.25
+holdout_home_rate=sum(p['home_won'] for p in train)/len(train)
+holdout_home_baseline=sum((holdout_home_rate-p['home_won'])**2 for p in test)/len(test)
+calibration={'train_games':len(train),'test_games':len(test),'train_end':train[-1]['date'],'test_start':test[0]['date'],'logistic_scale':best_scale,'holdout_brier_calibrated':round(holdout_brier,5),'holdout_brier_fixed_scale':round(holdout_raw,5),'holdout_brier_constant_50pct':holdout_constant,'holdout_brier_historical_home_rate':round(holdout_home_baseline,5),'holdout_pass':holdout_brier<min(holdout_raw,holdout_home_baseline,holdout_constant)}
+report={'method':'strict-prior-day-walk-forward','status':'experimental_uncalibrated','samples':n,'date_start':predictions[0]['date'],'date_end':predictions[-1]['date'],'brier':round(brier,5),'constant_50pct_brier':round(baseline,5),'team_score_mae':round(mae,3),'calibration_bins':bins,'chronological_holdout':calibration,'notes':['No closing odds, lineup/injury inputs or bookmaker vig comparison','Fixed logistic scale 12 is not trained or calibrated','Only historical scores strictly prior to game date used']}
 Path('feed/nba_backtest.json').write_text(json.dumps(report,indent=2)+'\n')
 print(json.dumps(report,indent=2))
