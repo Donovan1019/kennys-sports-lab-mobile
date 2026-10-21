@@ -17,12 +17,14 @@ jobs:
           python-version: '3.12'
       - name: Compile and run regression tests
         run: |
-          python -m py_compile scripts/connect_nba_nhl_scores.py scripts/backtest_nfl.py scripts/sport_simulation.py scripts/market_backtest.py scripts/backtest_nba.py
+          python -m py_compile scripts/connect_nba_nhl_scores.py scripts/backtest_nfl.py scripts/sport_simulation.py scripts/market_backtest.py scripts/backtest_nba.py scripts/audit_odds_integrity.py scripts/betting_market_math.py
           python -m unittest discover -s tests -p "test_*.py"
       - name: Import completed NBA and NHL games and run 10000-trial backtests
         run: python -m scripts.connect_nba_nhl_scores
       - name: Validate NBA strict-prior-day probabilities on refreshed scores
         run: python scripts/backtest_nba.py
+      - name: Audit market timestamps and exclude live or stale quotes
+        run: python -m scripts.audit_odds_integrity
       - name: Validate historical margin and total errors
         run: python -m scripts.market_backtest
       - name: Verify history recovery and output integrity
@@ -43,5 +45,5 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add feed/nfl_market_validation.json feed/nba_market_validation.json feed/nhl_market_validation.json feed/nba_model_candidates.json feed/nhl_model_candidates.json feed/nba_completed_games.json feed/nhl_completed_games.json feed/nba_backtest.json feed/nhl_backtest.json feed/nba_independent_game_inputs.json feed/nhl_independent_game_inputs.json
+          git add feed/basketball_nba_odds_integrity.json feed/icehockey_nhl_odds_integrity.json feed/nfl_market_validation.json feed/nba_market_validation.json feed/nhl_market_validation.json feed/nba_model_candidates.json feed/nhl_model_candidates.json feed/nba_completed_games.json feed/nhl_completed_games.json feed/nba_backtest.json feed/nhl_backtest.json feed/nba_independent_game_inputs.json feed/nhl_independent_game_inputs.json
           git diff --cached --quiet || (git commit -m "Publish independent NBA NHL score backtests" && git push)
