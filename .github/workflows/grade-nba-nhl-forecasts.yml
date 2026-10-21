@@ -2,8 +2,10 @@ name: NBA NHL NFL unified pregame and postgame pipeline
 on:
   workflow_dispatch:
   schedule:
-    - cron: '20 11 * * *'
-    - cron: '15 21 * * *'
+    # Offset from common :00/:15/:20 boundaries to reduce scheduler contention.
+    # Times are UTC; Eastern local display changes with daylight saving time.
+    - cron: '23 11 * * *'
+    - cron: '17 21 * * *'
 permissions:
   contents: write
 concurrency:
