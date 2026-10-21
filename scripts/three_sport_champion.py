@@ -26,15 +26,17 @@ def capture(existing,ledger,consensus):
         captured=timestamp(f.get("forecast_at"))
         if type(p) not in (int,float) or not math.isfinite(p) or not 0<p<1 or not start or not captured or captured>=start:
             continue
-        # Consensus summaries lack per-quote timestamp; never infer that an
-        # old summary was available at the historical forecast timestamp.
-        # Only attach to forecasts captured in this same collection cycle.
+        # Consensus summaries do not retain verified quote timestamps.
+        # Reject rather than backfill market probabilities retrospectively.
+        quote_at=timestamp(q.get("verified_quote_at"))
+        if not quote_at or quote_at>captured or quote_at>=start:
+            continue
         entries[fid]={"forecast_id":fid,"event_id":f["event_id"],
                       "home_probability":p,"source":"multi_book_no_vig_consensus",
                       "forecast_at":f["forecast_at"],"event_start":f["event_start"],
-                      "status":"unverified_quote_time_research_only"}
+                      "quote_at":quote_at.isoformat(),"status":"verified_pregame_quote"}
         added+=1
-    return {"status":"research_only_unverified_quote_timing","baselines":list(entries.values()),"added":added}
+    return {"status":"research_only_verified_quote_time_required","baselines":list(entries.values()),"added":added}
 
 def evaluate(outcomes,baselines,*,minimum=100):
     lookup={r.get("forecast_id"):r for r in baselines.get("baselines",[])}
