@@ -61,7 +61,8 @@ def main():
             for field in audit(e):
                 counts[field]=counts.get(field,0)+1
         output["sports"][sport]={"researched_events":len(events),"fully_verified_player_recommendations":0,"missing_field_counts":counts,"note":"Event-level pregame research does not establish verified player-specific props; no betting selections issued."}
-    output["source_integrity"]={"NFL_archived_player_props":inspect_nfl_quote_archive(Path("feed/nfl_props.json"))}\n    path=Path("feed/player_recommendation_readiness.json")
+    output["source_integrity"]={"NFL_archived_player_props":inspect_nfl_quote_archive(Path("feed/nfl_props.json"))}
+    path=Path("feed/player_recommendation_readiness.json")
     path.write_text(json.dumps(output,indent=2)+"\n")
     print("Player recommendation audit: "+", ".join(f"{k} {v['researched_events']} events, 0 verified props" for k,v in output["sports"].items()))
 if __name__=="__main__":main()
