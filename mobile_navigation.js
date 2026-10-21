@@ -1,8 +1,8 @@
 /* Mobile-first navigation. Existing panels remain intact but no longer clutter one page. */
 (()=>{'use strict';const sections=[
 ['Home',[]],['Players',['ksl-player-page']],
-['NFL',['ksl-trends','ksl-real-stats','ksl-prop-odds','ksl-model','ksl-sgp','ksl-prop-research']],
-['NBA',['ksl-nba','ksl-nba-travel-embed','ksl-nba-b2b-lab']],['NBA Travel',['ksl-nba-travel-embed']],['NHL',['ksl-nhl']],
+['NFL',['ksl-nfl-best-plays','ksl-trends','ksl-real-stats','ksl-prop-odds','ksl-model','ksl-sgp','ksl-prop-research']],
+['NBA',['ksl-nba-best-plays','ksl-nba','ksl-nba-travel-embed','ksl-nba-b2b-lab']],['NBA Travel',['ksl-nba-travel-embed']],['NHL',['ksl-nhl-best-plays','ksl-nhl']],
 ['NCAA Football',[]],['NCAA Basketball',[]],['WNBA',[]],['International Basketball',[]],
 ['MLB',[]],['International Baseball',[]],['International Hockey',[]],['NCAA Hockey',[]],
 ['Soccer',[]],['Tennis',[]],['UFC',[]],['DWCS',[]],['PFL',[]],
