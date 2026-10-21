@@ -32,6 +32,8 @@ def assess(now=None, root=Path(".")):
         quotes = odds.get("events", [])
         if not isinstance(quotes, list):
             quotes = []
+        if not quotes and isinstance(odds.get("data"), list):
+            quotes = odds["data"]
         markets = set()
         latest = None
         for event in quotes:
