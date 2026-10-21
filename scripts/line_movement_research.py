@@ -31,7 +31,7 @@ def movement(archive):
     return {"status":"research_only_not_closing_line_value","paired_bookmaker_series":len(changes),"series":sorted(changes,key=lambda x:(-abs(x["home_probability_change_pp"]),x["event_id"],x["bookmaker"]))}
 
 def main():
-    for sport in ("basketball_nba","icehockey_nhl"):
+    for sport in ("basketball_nba","icehockey_nhl","americanfootball_nfl"):
         src=Path(f"feed/{sport}_paired_moneyline_archive.json")
         if not src.exists():continue
         report=movement(json.loads(src.read_text()))
