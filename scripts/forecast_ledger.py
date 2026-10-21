@@ -86,7 +86,7 @@ def score(ledger,completed):
 
 def main():
     now=datetime.now(timezone.utc)
-    for sport,completed in (("basketball_nba","nba"),("icehockey_nhl","nhl")):
+    for sport,completed in (("basketball_nba","nba"),("icehockey_nhl","nhl"),("americanfootball_nfl","nfl")):
         forecast_path=Path(f"feed/{sport}_pregame_research.json")
         odds_path=Path(f"feed/{sport}.json")
         if not forecast_path.exists() or not odds_path.exists():continue
