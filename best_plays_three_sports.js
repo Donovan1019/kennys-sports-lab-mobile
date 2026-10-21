@@ -32,6 +32,7 @@ for(const cfg of config){
  for(const name of marketCatalog[cfg.sport]){const option=document.createElement('option');option.value=name;option.textContent=name;picker.append(option);}
  browser.append(picker);
  const marketState=document.createElement('p');marketState.className='ksl-best-market-state';marketState.setAttribute('role','status');browser.append(marketState);
+ const integrity=document.createElement('p');integrity.className='ksl-best-market-state';integrity.setAttribute('role','status');integrity.textContent='Checking player-prop input integrity…';browser.append(integrity);
  function updateMarket(){
   const name=picker.value;
   marketState.textContent=(cfg.sport==='NHL'&&['Player Shots on Goal','Goalie Saves','Player Points / Assists','Anytime Goal'].includes(name)?'OFFICIAL NHL HISTORICAL STATS · no current prop odds or simulations.':cfg.sport==='NFL'&&nflPropCategories[name]?'ARCHIVED REFERENCE QUOTES ONLY · historical external-book prices; not live, no verified model edge.':name==='Moneyline'?'MONEYLINE · archived model-versus-consensus research below. Live price, simulation and eligibility remain unverified.':'DATA NOT CONNECTED · '+name+' has no event-matched, verified odds/projection/simulation feed in this Best Plays module. Not an available pick.');
@@ -132,6 +133,16 @@ for(const cfg of config){
    }
    if(cfg.sport==='NHL'&&!nhlHistory){try{const p=await fetch('./feed/nhl_official_player_stats.json',{cache:'no-store'});nhlHistory=p.ok?await p.json():null;}catch(err){nhlHistory=null;}}
    if(cfg.sport==='NFL'&&!archivedProps){try{const p=await fetch('./feed/nfl_props.json',{cache:'no-store'});archivedProps=p.ok?await p.json():null;}catch(err){archivedProps=null;}}
+   try{
+    const response=await fetch('./feed/player_recommendation_readiness.json',{cache:'no-store'});
+    if(response.ok){
+     const report=await response.json(),audit=report.sports?.[cfg.sport];
+     if(audit){
+      const n=audit.fully_verified_player_recommendations||0;
+      integrity.textContent='PLAYER-PROP READINESS · '+n+' verified recommendations · '+(audit.researched_events||0)+' researched events · lineup verification, fresh prices, calibrated simulations and EV must all pass before picks.';
+     }else integrity.textContent='PLAYER-PROP READINESS · no sport audit available. No verified recommendations.';
+    }else integrity.textContent='PLAYER-PROP READINESS · audit not published; no verified recommendations.';
+   }catch(err){integrity.textContent='PLAYER-PROP READINESS · audit unavailable; no verified recommendations.';}
    renderMarket();
    const meta=panel.querySelector('.ksl-best-meta');meta.textContent='Archived research as of '+(data.asof?new Date(data.asof).toLocaleString():'unknown')+'. Not live sportsbook pricing. Diamond Plays, builders, and SGP remain unavailable until all required inputs are verified.';
   }catch(error){status.textContent='NO VERIFIED PLAY — research feed unavailable';results.textContent=error.message;}
