@@ -60,6 +60,8 @@ jobs:
         run: python -m scripts.three_sport_champion
       - name: Audit NBA NHL NFL forecast lifecycle readiness
         run: python -m scripts.three_sport_lifecycle
+      - name: Audit historical player inputs and sportsbook quote freshness
+        run: python -m scripts.three_sport_player_input_integrity
       - name: Audit verified player recommendation readiness
         run: python -m scripts.player_recommendation_readiness
       - name: Audit free-first pipeline health
@@ -109,5 +111,6 @@ jobs:
           if [ -f feed/three_sport_lifecycle_readiness.json ]; then git add feed/three_sport_lifecycle_readiness.json; fi
           if [ -f feed/three_sport_pipeline_health.json ]; then git add feed/three_sport_pipeline_health.json; fi
           if [ -f feed/player_recommendation_readiness.json ]; then git add feed/player_recommendation_readiness.json; fi
+          if [ -f feed/three_sport_player_input_integrity.json ]; then git add feed/three_sport_player_input_integrity.json; fi
           if [ -f feed/three_sport_grading_coverage.json ]; then git add feed/three_sport_grading_coverage.json; fi
           git diff --cached --quiet || (git commit -m "Grade archived NBA NHL forecasts against verified final scores" && git push)
