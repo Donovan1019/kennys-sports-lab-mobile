@@ -18,7 +18,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Validate outcome matching and refresh adapters
-        run: python -m compileall -q scripts tests && python -m unittest tests.test_forecast_ledger tests.test_refresh_recent_results tests.test_nfl_pregame_research tests.test_advanced_forecast_evaluation tests.test_correlated_score_simulation tests.test_score_correlation_research tests.test_correlation_walkforward
+        run: python -m compileall -q scripts tests && python -m unittest tests.test_forecast_ledger tests.test_refresh_recent_results tests.test_nfl_pregame_research tests.test_advanced_forecast_evaluation tests.test_correlated_score_simulation tests.test_score_correlation_research tests.test_correlation_walkforward tests.test_model_validation
       - name: Refresh final scores from free ESPN endpoints
         run: python -m scripts.refresh_recent_results
       - name: Build fresh cross-book market consensus from archived quotes
@@ -33,6 +33,8 @@ jobs:
         run: python -m scripts.score_correlation_research
       - name: Walk-forward correlated versus independent Monte Carlo
         run: python -m scripts.correlation_walkforward
+      - name: Evaluate season stability and bootstrap uncertainty
+        run: python -m scripts.model_validation
       - name: Publish verified outcomes without Odds API usage
         run: |
           git config user.name "github-actions[bot]"
@@ -55,6 +57,9 @@ jobs:
             if [ -f "$file" ]; then git add "$file"; fi
           done
           for file in feed/americanfootball_nfl_correlation_backtest.json feed/basketball_nba_correlation_backtest.json; do
+            if [ -f "$file" ]; then git add "$file"; fi
+          done
+          for file in feed/americanfootball_nfl_model_validation.json feed/basketball_nba_model_validation.json; do
             if [ -f "$file" ]; then git add "$file"; fi
           done
           git diff --cached --quiet || (git commit -m "Grade archived NBA NHL forecasts against verified final scores" && git push)
