@@ -13,16 +13,21 @@ jobs:
         with:
           python-version: '3.12'
       - name: Verify adapter tests
-        run: python -m unittest tests.test_collect_the_odds_api tests.test_paired_moneyline_market tests.test_archive_paired_moneylines
+        run: python -m unittest tests.test_collect_the_odds_api tests.test_paired_moneyline_market tests.test_archive_paired_moneylines tests.test_market_consensus
       - name: Fetch fresh odds (requires repository secret)
         env:
           THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
         run: python -m scripts.collect_the_odds_api
+      - name: Evaluate independent bookmaker consensus
+        run: python -m scripts.market_consensus
       - name: Publish only verified fresh snapshots
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           for file in feed/basketball_nba.json feed/icehockey_nhl.json feed/basketball_nba_paired_moneyline_archive.json feed/icehockey_nhl_paired_moneyline_archive.json; do
+            if [ -f "$file" ]; then git add "$file"; fi
+          done
+          for file in feed/basketball_nba_market_consensus.json feed/icehockey_nhl_market_consensus.json; do
             if [ -f "$file" ]; then git add "$file"; fi
           done
           git diff --cached --quiet || (git commit -m "Archive fresh verified NBA NHL odds snapshots" && git push)
