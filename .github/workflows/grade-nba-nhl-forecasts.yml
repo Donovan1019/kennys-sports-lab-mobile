@@ -27,6 +27,8 @@ jobs:
         run: python -m scripts.nfl_pregame_research
       - name: Score previously archived pregame forecasts
         run: python -m scripts.forecast_ledger
+      - name: Evaluate forecast calibration and uncertainty
+        run: python -m scripts.advanced_forecast_evaluation
       - name: Publish verified outcomes without Odds API usage
         run: |
           git config user.name "github-actions[bot]"
@@ -40,6 +42,9 @@ jobs:
           done
           if [ -f feed/nfl_completed_games.json ]; then git add feed/nfl_completed_games.json; fi
           for file in feed/basketball_nba_forecast_outcomes.json feed/icehockey_nhl_forecast_outcomes.json feed/americanfootball_nfl_forecast_outcomes.json; do
+            if [ -f "$file" ]; then git add "$file"; fi
+          done
+          for file in feed/basketball_nba_advanced_evaluation.json feed/icehockey_nhl_advanced_evaluation.json feed/americanfootball_nfl_advanced_evaluation.json; do
             if [ -f "$file" ]; then git add "$file"; fi
           done
           git diff --cached --quiet || (git commit -m "Grade archived NBA NHL forecasts against verified final scores" && git push)
