@@ -143,6 +143,17 @@ for(const cfg of config){
      }else integrity.textContent='PLAYER-PROP READINESS · no sport audit available. No verified recommendations.';
     }else integrity.textContent='PLAYER-PROP READINESS · audit not published; no verified recommendations.';
    }catch(err){integrity.textContent='PLAYER-PROP READINESS · audit unavailable; no verified recommendations.';}
+   try{
+    const resp=await fetch('./feed/three_sport_player_input_integrity.json',{cache:'no-store'});
+    if(resp.ok){
+     const info=(await resp.json()).sports?.[cfg.sport];
+     if(info){
+      const extra=document.createElement('p');extra.className='ksl-best-market-state';
+      extra.textContent='SOURCE CHECK · '+info.player_history_count+' historical players · archived market types: '+(info.archived_market_types.join(', ')||'none')+' · quote freshness: '+(info.fresh_quote_timestamp_within_60m?'recent timestamp, NOT verified live player odds':'not verified fresh')+' · lineup, injury-adjusted projection, and calibration: UNVERIFIED.';
+      browser.append(extra);
+     }
+    }
+   }catch(err){/* Optional audit may not yet be published. */}
    renderMarket();
    const meta=panel.querySelector('.ksl-best-meta');meta.textContent='Archived research as of '+(data.asof?new Date(data.asof).toLocaleString():'unknown')+'. Not live sportsbook pricing. Diamond Plays, builders, and SGP remain unavailable until all required inputs are verified.';
   }catch(error){status.textContent='NO VERIFIED PLAY — research feed unavailable';results.textContent=error.message;}
