@@ -1,0 +1,34 @@
+name: Grade archived NBA NHL forecasts
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '20 11 * * *'
+permissions:
+  contents: write
+concurrency:
+  group: nba-nhl-score-publish
+  cancel-in-progress: false
+jobs:
+  grade:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate outcome matching and refresh adapters
+        run: python -m unittest tests.test_forecast_ledger tests.test_refresh_recent_results
+      - name: Refresh final scores from free ESPN endpoints
+        run: python -m scripts.refresh_recent_results
+      - name: Score previously archived pregame forecasts
+        run: python -m scripts.forecast_ledger
+      - name: Publish verified outcomes without Odds API usage
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add feed/nba_completed_games.json feed/nhl_completed_games.json
+          for file in feed/basketball_nba_forecast_outcomes.json feed/icehockey_nhl_forecast_outcomes.json; do
+            if [ -f "$file" ]; then git add "$file"; fi
+          done
+          git diff --cached --quiet || (git commit -m "Grade archived NBA NHL forecasts against verified final scores" && git push)
