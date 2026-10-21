@@ -1,4 +1,4 @@
-name: Collect NBA NHL pregame odds
+name: Collect NBA NHL NFL pregame odds
 on:
   workflow_dispatch:
 permissions:
@@ -25,7 +25,9 @@ jobs:
       - name: Analyze archived bookmaker line movement
         run: python -m scripts.line_movement_research
       - name: Generate strict-prior-day experimental model forecasts
-        run: python -m scripts.pregame_research
+        run: |
+          python -m scripts.pregame_research
+          python -m scripts.nfl_pregame_research
       - name: Refresh recent verified NBA NHL completed results
         run: python -m scripts.refresh_recent_results
       - name: Archive timestamped pregame forecasts and audit exact-ID outcomes
@@ -34,23 +36,24 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          for file in feed/basketball_nba.json feed/icehockey_nhl.json feed/basketball_nba_paired_moneyline_archive.json feed/icehockey_nhl_paired_moneyline_archive.json; do
+          for file in feed/basketball_nba.json feed/icehockey_nhl.json feed/basketball_nba_paired_moneyline_archive.json feed/icehockey_nhl_paired_moneyline_archive.json feed/americanfootball_nfl.json feed/americanfootball_nfl_paired_moneyline_archive.json; do
             if [ -f "$file" ]; then git add "$file"; fi
           done
-          for file in feed/basketball_nba_market_consensus.json feed/icehockey_nhl_market_consensus.json; do
+          for file in feed/basketball_nba_market_consensus.json feed/icehockey_nhl_market_consensus.json feed/americanfootball_nfl_market_consensus.json; do
             if [ -f "$file" ]; then git add "$file"; fi
           done
-          for file in feed/basketball_nba_market_screen.json feed/icehockey_nhl_market_screen.json; do
+          for file in feed/basketball_nba_market_screen.json feed/icehockey_nhl_market_screen.json feed/americanfootball_nfl_market_screen.json; do
             if [ -f "$file" ]; then git add "$file"; fi
           done
-          for file in feed/basketball_nba_line_movement.json feed/icehockey_nhl_line_movement.json; do
+          for file in feed/basketball_nba_line_movement.json feed/icehockey_nhl_line_movement.json feed/americanfootball_nfl_line_movement.json; do
             if [ -f "$file" ]; then git add "$file"; fi
           done
-          for file in feed/basketball_nba_pregame_research.json feed/icehockey_nhl_pregame_research.json; do
+          for file in feed/basketball_nba_pregame_research.json feed/icehockey_nhl_pregame_research.json feed/americanfootball_nfl_pregame_research.json; do
             if [ -f "$file" ]; then git add "$file"; fi
           done
-          for file in feed/basketball_nba_forecast_ledger.json feed/icehockey_nhl_forecast_ledger.json feed/basketball_nba_forecast_outcomes.json feed/icehockey_nhl_forecast_outcomes.json; do
+          for file in feed/basketball_nba_forecast_ledger.json feed/icehockey_nhl_forecast_ledger.json feed/basketball_nba_forecast_outcomes.json feed/icehockey_nhl_forecast_outcomes.json feed/americanfootball_nfl_forecast_ledger.json feed/americanfootball_nfl_forecast_outcomes.json; do
             if [ -f "$file" ]; then git add "$file"; fi
           done
           git add feed/nba_completed_games.json feed/nhl_completed_games.json
+          if [ -f feed/nfl_completed_games.json ]; then git add feed/nfl_completed_games.json; fi
           git diff --cached --quiet || (git commit -m "Archive fresh verified NBA NHL odds snapshots" && git push)
