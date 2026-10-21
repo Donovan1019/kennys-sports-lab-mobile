@@ -25,9 +25,33 @@ def main():
         games=list(old)
         valid_dates=[g["date"][:10] for g in old if g.get("date")]
         last_seen=date.fromisoformat(max(valid_dates)) if valid_dates else date(now.year-1,1,1)
-        cursor=max(date(now.year-1,1,1),last_seen-timedelta(days=2))
+        # Repair missing historical months in bounded batches, rather than
+        # assuming a recent last_seen date implies complete historical coverage.
+        monthly_counts={}
+        for stamp in valid_dates:
+            month=stamp[:7]
+            monthly_counts[month]=monthly_counts.get(month,0)+1
+        missing_months=[]
+        month=date(now.year-1,1,1)
+        while month<=now.date().replace(day=1):
+            key=month.strftime("%Y-%m")
+            # Months with under 40 completed NBA games (or 25 NHL games)
+            # are suspicious except the current month; re-fetch them.
+            threshold=40 if league=="nba" else 25
+            if month<now.date().replace(day=1) and monthly_counts.get(key,0)<threshold:
+                missing_months.append(month)
+            month=(month.replace(day=28)+timedelta(days=4)).replace(day=1)
+        # Limit recovery to one missing month per run to bound API requests.
+        if missing_months:
+            cursor=missing_months[0]
+            next_month=(cursor.replace(day=28)+timedelta(days=4)).replace(day=1)
+            stop=min(next_month-timedelta(days=1),now.date())
+            print(f"{league}: recovering sparse month {cursor:%Y-%m}",flush=True)
+        else:
+            cursor=max(date(now.year-1,1,1),last_seen-timedelta(days=2))
+            stop=now.date()
         failures=[]
-        while cursor<=now.date():
+        while cursor<=stop:
             stamp=cursor.strftime("%Y%m%d")
             url=f"https://site.api.espn.com/apis/site/v2/sports/{category}/{league}/scoreboard?dates={stamp}"
             for attempt in range(3):
