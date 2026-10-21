@@ -1,0 +1,34 @@
+{
+  "status": "research_only",
+  "sample_size": 1853,
+  "block_count": 12,
+  "bootstrap_replicates": 2000,
+  "block_method": "NFL calendar week / NBA calendar month",
+  "correlated_minus_independent_brier": -0.001242,
+  "paired_block_bootstrap_95_interval": [
+    -0.002004,
+    -0.000415
+  ],
+  "seasons": [
+    {
+      "season": "2024-25",
+      "games": 619,
+      "correlated_minus_independent_brier": -0.001256,
+      "winner": "correlated"
+    },
+    {
+      "season": "2025-26",
+      "games": 1231,
+      "correlated_minus_independent_brier": -0.001242,
+      "winner": "correlated"
+    },
+    {
+      "season": "2026-27",
+      "games": 3,
+      "correlated_minus_independent_brier": 0.001978,
+      "winner": "independent"
+    }
+  ],
+  "promotion_approved": false,
+  "warning": "Block bootstrap is descriptive and does not correct model-selection bias or establish a betting edge. Independent validation is required."
+}
