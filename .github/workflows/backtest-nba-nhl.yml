@@ -17,7 +17,7 @@ jobs:
           python-version: '3.12'
       - name: Compile and run regression tests
         run: |
-          python -m py_compile scripts/connect_nba_nhl_scores.py scripts/backtest_nfl.py scripts/sport_simulation.py scripts/market_backtest.py scripts/backtest_nba.py scripts/audit_odds_integrity.py scripts/betting_market_math.py scripts/nhl_moneyline_model.py scripts/backtest_nhl_independent.py scripts/paired_moneyline_market.py
+          python -m py_compile scripts/connect_nba_nhl_scores.py scripts/backtest_nfl.py scripts/sport_simulation.py scripts/market_backtest.py scripts/backtest_nba.py scripts/audit_odds_integrity.py scripts/betting_market_math.py scripts/nhl_moneyline_model.py scripts/backtest_nhl_independent.py scripts/paired_moneyline_market.py scripts/archive_paired_moneylines.py
           python -m unittest discover -s tests -p "test_*.py"
       - name: Import completed NBA and NHL games and run 10000-trial backtests
         run: python -m scripts.connect_nba_nhl_scores
@@ -27,6 +27,8 @@ jobs:
         run: python -m scripts.backtest_nhl_independent
       - name: Audit market timestamps and exclude live or stale quotes
         run: python -m scripts.audit_odds_integrity
+      - name: Archive fresh paired pregame quotes if present
+        run: python -m scripts.archive_paired_moneylines
       - name: Validate historical margin and total errors
         run: python -m scripts.market_backtest
       - name: Verify history recovery and output integrity
@@ -51,5 +53,8 @@ jobs:
           # Stage optional audit reports only when their source odds feeds exist.
           for report in feed/basketball_nba_odds_integrity.json feed/icehockey_nhl_odds_integrity.json; do
             if [ -f "$report" ]; then git add "$report"; fi
+          done
+          for archive in feed/basketball_nba_paired_moneyline_archive.json feed/icehockey_nhl_paired_moneyline_archive.json; do
+            if [ -f "$archive" ]; then git add "$archive"; fi
           done
           git diff --cached --quiet || (git commit -m "Publish independent NBA NHL score backtests" && git push)
