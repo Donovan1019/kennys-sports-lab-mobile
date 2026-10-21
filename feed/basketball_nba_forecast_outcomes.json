@@ -1,6 +1,11 @@
 {
   "status": "research_only",
   "matched_forecasts": 0,
+  "metrics_sample_size": 0,
+  "log_loss": null,
+  "empirical_home_rate_baseline_brier": null,
+  "calibration_bins": [],
+  "calibration_warning": "Small samples and in-sample baseline cannot establish predictive edge",
   "unique_events_in_ledger": 18,
   "unmatched_events": 18,
   "mean_brier": null,
