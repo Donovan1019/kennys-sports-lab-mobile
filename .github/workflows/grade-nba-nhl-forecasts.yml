@@ -1,4 +1,4 @@
-name: Grade archived NBA NHL forecasts
+name: Grade archived NBA NHL NFL forecasts
 on:
   workflow_dispatch:
   schedule:
@@ -28,7 +28,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add feed/nba_completed_games.json feed/nhl_completed_games.json
-          for file in feed/basketball_nba_forecast_outcomes.json feed/icehockey_nhl_forecast_outcomes.json; do
+          if [ -f feed/nfl_completed_games.json ]; then git add feed/nfl_completed_games.json; fi
+          for file in feed/basketball_nba_forecast_outcomes.json feed/icehockey_nhl_forecast_outcomes.json feed/americanfootball_nfl_forecast_outcomes.json; do
             if [ -f "$file" ]; then git add "$file"; fi
           done
           git diff --cached --quiet || (git commit -m "Grade archived NBA NHL forecasts against verified final scores" && git push)
