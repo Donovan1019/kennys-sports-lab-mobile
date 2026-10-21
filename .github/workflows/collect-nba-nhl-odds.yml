@@ -13,7 +13,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Verify adapter tests
-        run: python -m unittest tests.test_collect_the_odds_api tests.test_paired_moneyline_market tests.test_archive_paired_moneylines tests.test_market_consensus tests.test_market_quality_screen tests.test_line_movement_research tests.test_pregame_research tests.test_forecast_ledger tests.test_refresh_recent_results
+        run: python -m unittest tests.test_collect_the_odds_api tests.test_paired_moneyline_market tests.test_archive_paired_moneylines tests.test_market_consensus tests.test_market_quality_screen tests.test_line_movement_research tests.test_pregame_research tests.test_forecast_ledger tests.test_refresh_recent_results tests.test_nfl_pregame_research
       - name: Fetch fresh odds (requires repository secret)
         env:
           THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
