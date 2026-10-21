@@ -18,31 +18,32 @@ def build_inputs(games,odds,sport,now,upcoming=None):
 def main():
     now=datetime.now(timezone.utc)
     for league,(category,sport) in LEAGUES.items():
-        games=[]
-        # ESPN annual scoreboard requests can silently truncate at their event limit.
-        # Query bounded calendar windows and fail closed if any window is unavailable.
-        first=date(now.year-1,1,1)
-        last=now.date()
-        cursor=first
+        # Incrementally extend previously verified history with ESPN's supported
+        # single-date scoreboard query (YYYYMMDD). Avoid unsupported date ranges.
+        old_path=Path(f"feed/{league}_completed_games.json")
+        old=json.loads(old_path.read_text()).get("games",[]) if old_path.exists() else []
+        games=list(old)
+        valid_dates=[g["date"][:10] for g in old if g.get("date")]
+        last_seen=date.fromisoformat(max(valid_dates)) if valid_dates else date(now.year-1,1,1)
+        cursor=max(date(now.year-1,1,1),last_seen-timedelta(days=2))
         failures=[]
-        while cursor<=last:
-            end=min(cursor+timedelta(days=13),last)
-            dates=cursor.strftime("%Y%m%d")+"-"+end.strftime("%Y%m%d")
-            url=f"https://site.api.espn.com/apis/site/v2/sports/{category}/{league}/scoreboard?dates={dates}&limit=500"
+        while cursor<=now.date():
+            stamp=cursor.strftime("%Y%m%d")
+            url=f"https://site.api.espn.com/apis/site/v2/sports/{category}/{league}/scoreboard?dates={stamp}"
             for attempt in range(3):
                 try:
                     req=urllib.request.Request(url,headers={"User-Agent":"KennysSportsLab/1.0","Accept":"application/json"})
-                    with urllib.request.urlopen(req,timeout=60) as response:
+                    with urllib.request.urlopen(req,timeout=25) as response:
                         payload=json.load(response)
                     if not isinstance(payload.get("events"),list):raise ValueError("Missing events")
                     games.extend(parse_league(payload))
                     break
                 except (OSError,ValueError) as exc:
-                    if attempt==2:failures.append({"window":dates,"error":type(exc).__name__})
-                    else:time.sleep(1.5*(attempt+1))
-            cursor=end+timedelta(days=1)
+                    if attempt==2:failures.append({"date":stamp,"error":type(exc).__name__})
+                    else:time.sleep(attempt+1)
+            cursor+=timedelta(days=1)
         if failures:
-            raise RuntimeError(f"{league}: {len(failures)} scoreboard windows failed; preserving prior published feed: {failures[:5]}")
+            raise RuntimeError(f"{league}: {len(failures)} daily scoreboards failed; prior published feed preserved: {failures[:5]}")
         games=list({(g["date"],g["away"],g["home"]):g for g in games}.values())
         games.sort(key=lambda x:x["date"])
         if not games:raise RuntimeError(f"No verified {league} games")
