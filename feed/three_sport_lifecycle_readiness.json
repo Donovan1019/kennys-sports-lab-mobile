@@ -1,0 +1,44 @@
+{
+  "status": "research_only",
+  "sports": [
+    {
+      "sport": "basketball_nba",
+      "status": "awaiting_verified_pairs",
+      "immutable_forecasts": 90,
+      "scored_forecasts": 0,
+      "consensus_events": 19,
+      "verified_market_baselines": 18,
+      "verified_paired_games": 0,
+      "blockers": [
+        "no_verified_completed_forecast_matches"
+      ],
+      "note": "A successful workflow is not evidence of predictive advantage."
+    },
+    {
+      "sport": "icehockey_nhl",
+      "status": "awaiting_verified_pairs",
+      "immutable_forecasts": 10,
+      "scored_forecasts": 0,
+      "consensus_events": 2,
+      "verified_market_baselines": 2,
+      "verified_paired_games": 0,
+      "blockers": [
+        "no_verified_completed_forecast_matches"
+      ],
+      "note": "A successful workflow is not evidence of predictive advantage."
+    },
+    {
+      "sport": "americanfootball_nfl",
+      "status": "awaiting_verified_pairs",
+      "immutable_forecasts": 196,
+      "scored_forecasts": 0,
+      "consensus_events": 28,
+      "verified_market_baselines": 196,
+      "verified_paired_games": 0,
+      "blockers": [
+        "no_verified_completed_forecast_matches"
+      ],
+      "note": "A successful workflow is not evidence of predictive advantage."
+    }
+  ]
+}
