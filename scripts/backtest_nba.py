@@ -38,7 +38,11 @@ for lo in range(0,100,10):
 # Chronological holdout calibration: fit only on the earlier 70% of games.
 # Optimize logistic temperature without using any holdout outcomes.
 split=int(n*.70)
-train,test=predictions[:split],predictions[split:]
+# Keep every game from a given date on the same side of the split.
+cutoff=predictions[split]['date']
+train=[p for p in predictions if p['date']<cutoff]
+test=[p for p in predictions if p['date']>=cutoff]
+assert len(train)>=200 and len(test)>=200 and train[-1]['date']<test[0]['date']
 def score(rows,scale):
     return sum((1/(1+math.exp(-((p['home_score_prediction']-p['away_score_prediction'])/scale)))-p['home_won'])**2 for p in rows)/len(rows)
 scales=[x/2 for x in range(6,81)]
