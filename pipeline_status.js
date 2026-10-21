@@ -2,7 +2,7 @@
 (()=>{'use strict';
 const repo='Donovan1019/kennys-sports-lab-mobile';
 const workflows=[
-  {id:'grade-nba-nhl-forecasts.yml',label:'NBA · NHL · NFL Daily',schedule:'7:20 AM / 5:15 PM EDT · 6:20 AM / 4:15 PM EST'},
+  {id:'grade-nba-nhl-forecasts.yml',label:'NBA · NHL · NFL Daily',schedule:'7:23 AM / 5:17 PM EDT · 6:23 AM / 4:17 PM EST'},
   {id:'weekly-three-sport-research.yml',label:'Historical Research',schedule:'Sunday · 6:40 AM EDT / 5:40 AM EST'}
 ];
 function mount(){
@@ -12,7 +12,7 @@ function mount(){
   section.innerHTML='<div class="ksl-status-head"><h2>⚙ Pipeline Status</h2><button type="button" id="ksl-status-refresh">↻ Check status</button></div><p class="ksl-status-sub">Latest verified GitHub Actions runs · NBA / NHL / NFL</p><div id="ksl-status-list" aria-live="polite">Loading workflow status…</div><p class="ksl-status-foot">GitHub schedules may start late. Manual runs are labeled; an older successful run does not prove today’s scheduled run completed.</p>';
   main.prepend(section);
   // Other homepage modules prepend asynchronously; keep status first.
-  const prioritize=()=>{if(section.parentElement===main&&main.firstElementChild!==section)main.prepend(section)};
+  const prioritize=()=>{if(section.parentElement===main&&main.firstElementChild!==section)main.prepend(section);const selected=document.getElementById('ksl-sport-select');section.hidden=!!selected&&selected.value!=='Home'};
   new MutationObserver(prioritize).observe(main,{childList:true});
   prioritize();
   const list=section.querySelector('#ksl-status-list');
