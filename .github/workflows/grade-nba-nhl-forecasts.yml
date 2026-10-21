@@ -21,6 +21,8 @@ jobs:
         run: python -m compileall -q scripts tests && python -m unittest tests.test_forecast_ledger tests.test_refresh_recent_results tests.test_nfl_pregame_research
       - name: Refresh final scores from free ESPN endpoints
         run: python -m scripts.refresh_recent_results
+      - name: Build fresh cross-book market consensus from archived quotes
+        run: python -m scripts.market_consensus
       - name: Capture NFL pregame research when verified consensus is available
         run: python -m scripts.nfl_pregame_research
       - name: Score previously archived pregame forecasts
@@ -30,7 +32,9 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add feed/nba_completed_games.json feed/nhl_completed_games.json
-          if [ -f feed/americanfootball_nfl_pregame_research.json ]; then git add feed/americanfootball_nfl_pregame_research.json; fi
+          for file in feed/basketball_nba_market_consensus.json feed/icehockey_nhl_market_consensus.json feed/americanfootball_nfl_market_consensus.json feed/americanfootball_nfl_pregame_research.json; do
+            if [ -f "$file" ]; then git add "$file"; fi
+          done
           for file in feed/basketball_nba_forecast_ledger.json feed/icehockey_nhl_forecast_ledger.json feed/americanfootball_nfl_forecast_ledger.json; do
             if [ -f "$file" ]; then git add "$file"; fi
           done
