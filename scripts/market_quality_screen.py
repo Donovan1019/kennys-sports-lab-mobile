@@ -16,7 +16,7 @@ def screen(archive,consensus,min_books=3,max_range_pp=3.0):
     return {"status":"research_only_no_betting_recommendations","minimum_independent_books":min_books,"events_evaluated":len(events),"events":sorted(events,key=lambda x:(x["market_disagreement_pp"],-x["bookmakers"]))}
 
 def main():
-    for sport in ("basketball_nba","icehockey_nhl"):
+    for sport in ("basketball_nba","icehockey_nhl","americanfootball_nfl"):
         p=Path(f"feed/{sport}_market_consensus.json")
         if not p.exists():continue
         result=screen(None,json.loads(p.read_text()))
