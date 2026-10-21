@@ -25,34 +25,36 @@ def main():
         games=list(old)
         valid_dates=[g["date"][:10] for g in old if g.get("date")]
         last_seen=date.fromisoformat(max(valid_dates)) if valid_dates else date(now.year-1,1,1)
-        # Repair missing historical months in bounded batches, rather than
-        # assuming a recent last_seen date implies complete historical coverage.
+        # Audit regular-season months and always refresh recent results.
+        # A successful run must not silently skip the current schedule.
         monthly_counts={}
         for stamp in valid_dates:
-            month=stamp[:7]
-            monthly_counts[month]=monthly_counts.get(month,0)+1
-        missing_months=[]
+            key=stamp[:7]
+            monthly_counts[key]=monthly_counts.get(key,0)+1
+        missing=[]
         month=date(now.year-1,1,1)
-        while month<=now.date().replace(day=1):
-            key=month.strftime("%Y-%m")
-            # Only flag regular-season core months; offseason and preseason
-            # are legitimately empty. October and April are partial months.
-            core_month=month.month in (11,12,1,2,3)
-            threshold=40 if league=="nba" else 25
-            if core_month and month<now.date().replace(day=1) and monthly_counts.get(key,0)<threshold:
-                missing_months.append(month)
+        while month<now.date().replace(day=1):
+            if month.month in (11,12,1,2,3):
+                threshold=40 if league=="nba" else 25
+                if monthly_counts.get(month.strftime("%Y-%m"),0)<threshold:
+                    missing.append(month)
             month=(month.replace(day=28)+timedelta(days=4)).replace(day=1)
-        # Recover the earliest sparse regular-season month per run to restore chronology.
-        if missing_months:
-            cursor=missing_months[0]
-            next_month=(cursor.replace(day=28)+timedelta(days=4)).replace(day=1)
-            stop=min(next_month-timedelta(days=1),now.date())
-            print(f"{league}: recovering sparse month {cursor:%Y-%m}",flush=True)
-        else:
-            cursor=max(date(now.year-1,1,1),last_seen-timedelta(days=2))
-            stop=now.date()
+        # Two sparse months per run (e.g. November AND December), plus
+        # recent games. This avoids repeated runs on a single stale month.
+        dates=set()
+        for month in missing[:2]:
+            end=(month.replace(day=28)+timedelta(days=4)).replace(day=1)
+            cursor=month
+            while cursor<end and cursor<=now.date():
+                dates.add(cursor)
+                cursor+=timedelta(days=1)
+        cursor=max(date(now.year-1,1,1),last_seen-timedelta(days=2),now.date()-timedelta(days=3))
+        while cursor<=now.date():
+            dates.add(cursor)
+            cursor+=timedelta(days=1)
+        print(f"{league}: repairing {[m.strftime('%Y-%m') for m in missing[:2]]}; checking {len(dates)} dates",flush=True)
         failures=[]
-        while cursor<=stop:
+        for cursor in sorted(dates):
             stamp=cursor.strftime("%Y%m%d")
             url=f"https://site.api.espn.com/apis/site/v2/sports/{category}/{league}/scoreboard?dates={stamp}"
             for attempt in range(3):
@@ -66,7 +68,6 @@ def main():
                 except (OSError,ValueError) as exc:
                     if attempt==2:failures.append({"date":stamp,"error":type(exc).__name__})
                     else:time.sleep(attempt+1)
-            cursor+=timedelta(days=1)
         if failures:
             raise RuntimeError(f"{league}: {len(failures)} daily scoreboards failed; prior published feed preserved: {failures[:5]}")
         games=list({(g["date"],g["away"],g["home"]):g for g in games}.values())
