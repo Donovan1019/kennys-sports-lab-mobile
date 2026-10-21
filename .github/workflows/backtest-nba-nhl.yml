@@ -17,7 +17,7 @@ jobs:
           python-version: '3.12'
       - name: Compile and run regression tests
         run: |
-          python -m py_compile scripts/connect_nba_nhl_scores.py scripts/backtest_nfl.py scripts/sport_simulation.py scripts/market_backtest.py scripts/backtest_nba.py scripts/audit_odds_integrity.py scripts/betting_market_math.py scripts/nhl_moneyline_model.py scripts/backtest_nhl_independent.py
+          python -m py_compile scripts/connect_nba_nhl_scores.py scripts/backtest_nfl.py scripts/sport_simulation.py scripts/market_backtest.py scripts/backtest_nba.py scripts/audit_odds_integrity.py scripts/betting_market_math.py scripts/nhl_moneyline_model.py scripts/backtest_nhl_independent.py scripts/paired_moneyline_market.py
           python -m unittest discover -s tests -p "test_*.py"
       - name: Import completed NBA and NHL games and run 10000-trial backtests
         run: python -m scripts.connect_nba_nhl_scores
