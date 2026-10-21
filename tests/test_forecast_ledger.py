@@ -20,6 +20,9 @@ class LedgerTests(unittest.TestCase):
   result=score(ledger,{"games":[{"event_id":"espn-123","date":(NOW+timedelta(hours=2)).isoformat(),"home":"H","away":"A","home_score":3,"away_score":2}]})
   self.assertEqual(result["matched_forecasts"],1)
   self.assertAlmostEqual(result["mean_brier"],.16)
+  self.assertAlmostEqual(result["log_loss"],-__import__("math").log(.6))
+  self.assertEqual(result["metrics_sample_size"],1)
+  self.assertEqual(result["calibration_bins"][0]["count"],1)
  def test_ambiguous_matching_fails_closed(self):
   f,o=data();ledger=record({"forecasts":[]},f,o,NOW)
   game={"event_id":"provider","date":(NOW+timedelta(hours=2)).isoformat(),"home":"H","away":"A","home_score":3,"away_score":2}
