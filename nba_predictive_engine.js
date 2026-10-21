@@ -19,7 +19,7 @@ const historical=games.games.filter(valid).filter(g=>date(g.date)>='2025-10-01'&
 const leaguePoints=historical.flatMap(g=>[g.home_score,g.away_score]);if(historical.length<100)throw Error('Insufficient completed NBA game history');
 const leagueAvg=average(leaguePoints);
 const teamHistory=new Map();for(const g of historical){for(const [team,scored,allowed] of [[g.home,g.home_score,g.away_score],[g.away,g.away_score,g.home_score]]){if(!teamHistory.has(team))teamHistory.set(team,[]);teamHistory.get(team).push({date:date(g.date),scored,allowed})}}
-for(const rows of teamHistory.values())rows.sort((a,b)=>b.date.localeCompare(a.date));
+for(const rows of teamHistory.values())rows.sort((a,b)=>a.date.localeCompare(b.date));
 const teamCodes={'Atlanta Hawks':'ATL','Boston Celtics':'BOS','Brooklyn Nets':'BKN','Charlotte Hornets':'CHA','Chicago Bulls':'CHI','Cleveland Cavaliers':'CLE','Dallas Mavericks':'DAL','Denver Nuggets':'DEN','Detroit Pistons':'DET','Golden State Warriors':'GS','Houston Rockets':'HOU','Indiana Pacers':'IND','LA Clippers':'LAC','Los Angeles Clippers':'LAC','Los Angeles Lakers':'LAL','Memphis Grizzlies':'MEM','Miami Heat':'MIA','Milwaukee Bucks':'MIL','Minnesota Timberwolves':'MIN','New Orleans Pelicans':'NO','New York Knicks':'NY','Oklahoma City Thunder':'OKC','Orlando Magic':'ORL','Philadelphia 76ers':'PHI','Phoenix Suns':'PHX','Portland Trail Blazers':'POR','Sacramento Kings':'SAC','San Antonio Spurs':'SA','Toronto Raptors':'TOR','Utah Jazz':'UTAH','Washington Wizards':'WSH'};
 const upcoming=[...new Map(odds.odds.filter(x=>x.event_id&&x.commence_time&&Date.parse(x.commence_time)>Date.now()-7200000).map(x=>[x.event_id,x])).values()].sort((a,b)=>Date.parse(a.commence_time)-Date.parse(b.commence_time)).slice(0,18);
 const out=el('nba-predict-results');out.replaceChildren();
@@ -27,15 +27,15 @@ let n=0;
 for(const game of upcoming){
 const parts=game.event.split(' @ ');if(parts.length!==2)continue;
 const [away,home]=parts;const ah=teamHistory.get(away)||[],hh=teamHistory.get(home)||[];if(ah.length<15||hh.length<15){write(out,'p',game.event+' · PASS: fewer than 15 historical team games');continue}
-const shrink=10;const rate=(rows,key)=>(rows.slice(0,50).reduce((s,r)=>s+r[key],0)+shrink*leagueAvg)/(Math.min(50,rows.length)+shrink);
+const shrink=10;const rate=(rows,key)=>(rows.slice(-40).reduce((s,r)=>s+r[key],0)+shrink*leagueAvg)/(Math.min(40,rows.length)+shrink);
 const awayMean=(rate(ah,'scored')+rate(hh,'allowed'))/2,homeMean=(rate(hh,'scored')+rate(ah,'allowed'))/2+2;
 const variance=Math.max(9,sd(leaguePoints)*.85);
 const rand=rng([...game.event].reduce((s,c)=>Math.imul(s,31)+c.charCodeAt(0),12345));
 let wins=0,totals=[],margins=[];
 for(let i=0;i<10000;i++){const gauss=()=>Math.sqrt(-2*Math.log(Math.max(rand(),1e-9)))*Math.cos(2*Math.PI*rand());const a=awayMean+gauss()*variance,h=homeMean+gauss()*variance;wins+=h>a;totals.push(a+h);margins.push(h-a)}
-const homeProb=wins/10000,section=write(out,'details','');section.open=n<2;write(section,'summary',game.event+' · '+new Date(game.commence_time).toLocaleString('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})+' ET');
+const homeProb=1/(1+Math.exp(-(homeMean-awayMean)/12)),simHomeProb=wins/10000,section=write(out,'details','');section.open=n<2;write(section,'summary',game.event+' · '+new Date(game.commence_time).toLocaleString('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})+' ET');
 write(section,'p','Model: '+away+' '+fmt(awayMean)+' – '+home+' '+fmt(homeMean)+' · Total '+fmt(awayMean+homeMean)+' · '+home+' win '+fmt(homeProb*100)+'% (fair '+american(Math.min(.999,Math.max(.001,homeProb)))+')');
-write(section,'p','Simulation: 10,000 synthetic game outcomes · mean total '+fmt(average(totals))+' · mean home margin '+fmt(average(margins))+' · model uncertainty not independently calibrated.');
+write(section,'p','Simulation: 10,000 synthetic game outcomes · mean total '+fmt(average(totals))+' · mean home margin '+fmt(average(margins))+' · synthetic win rate '+fmt(simHomeProb*100)+'% · dashboard fair line uses backtest logistic formula; simulation uncertainty remains uncalibrated.');
 const codes=[teamCodes[home],teamCodes[away]].filter(Boolean);const roster=players.players.filter(p=>codes.includes(p.team));
 let candidates=0;for(const p of roster){const rows=p.games.filter(g=>(g.season==='2025-26'||g.season==='2026-27')&&g.season_type==='regular'&&g.date<=date(game.commence_time)).sort((a,b)=>b.date.localeCompare(a.date)).slice(0,30);if(rows.length<10)continue;const values=rows.map(g=>g.values.Points).filter(Number.isFinite);if(values.length<10)continue;const mean=average(values),hit=values.filter(v=>v>=15).length/values.length;write(section,'p',p.name+' ('+p.team+') · '+values.length+' games · PTS avg '+fmt(mean)+' · 15+ PTS '+fmt(hit*100)+'% historical (not priced; not opponent-adjusted)');if(++candidates>=8)break}
 if(!candidates)write(section,'p','Player projections unavailable: no qualifying game logs for mapped teams.');
