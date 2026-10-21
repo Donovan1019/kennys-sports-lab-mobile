@@ -1,5 +1,6 @@
 """Audit player betting recommendation readiness without inventing selections or consuming paid APIs."""
 import json
+import math
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -18,13 +19,25 @@ def audit(feed):
     for field in ("point","hit_probability","market_odds_american","expected_value"):
         if isinstance(feed.get(field),bool) or not isinstance(feed.get(field),(float,int)):missing.append(field+"_numeric")
     return sorted(set(missing))
-def inspect_nfl_quote_archive(path):
+def inspect_nfl_quote_archive(path, event_feed_path=Path("feed/americanfootball_nfl.json"), now=None):
     """Check free, already archived quotes; never infer player team from event name."""
     if not path.exists():
         return {"status":"unavailable","quotes":0,"fresh_quotes":0,"event_count":0,"unverified_player_team_assignments":0}
     data=json.loads(path.read_text())
     rows=data.get("odds",[])
-    now=datetime.now(timezone.utc)
+    now=now or datetime.now(timezone.utc)
+    event_data=json.loads(event_feed_path.read_text()) if event_feed_path.exists() else {}
+    event_rows=event_data.get("odds",[])
+    known_events={}
+    for event_row in event_rows:
+        if not isinstance(event_row,dict):continue
+        eid=event_row.get("event_id")
+        identity=(event_row.get("event"),event_row.get("commence_time"))
+        if eid and all(identity):known_events.setdefault(eid,set()).add(identity)
+    matched_event_rows=0
+    unmatched_event_rows=0
+    event_conflict_rows=0
+    future_dated_rows=0
     valid=0
     events=set()
     invalid=0
@@ -33,13 +46,19 @@ def inspect_nfl_quote_archive(path):
             when=datetime.fromisoformat(row["updated_at"].replace("Z","+00:00"))
             start=datetime.fromisoformat(row["commence_time"].replace("Z","+00:00"))
             price=row["price"]
-            if not isinstance(price,(int,float)) or isinstance(price,bool) or price==0:
+            if not isinstance(price,(int,float)) or isinstance(price,bool) or not math.isfinite(price) or price==0:
                 invalid+=1
                 continue
             if not row.get("player") or not row.get("bookmaker") or not row.get("market") or not row.get("event_id"):
                 invalid+=1
                 continue
             events.add(row["event_id"])
+            identity=(row.get("event"),row.get("commence_time"))
+            candidates=known_events.get(row["event_id"],set())
+            if not candidates:unmatched_event_rows+=1
+            elif identity not in candidates or len(candidates)!=1:event_conflict_rows+=1
+            else:matched_event_rows+=1
+            if when>now:future_dated_rows+=1
             if 0<=(now-when).total_seconds()<=3600 and start>now:
                 valid+=1
         except (KeyError,ValueError,TypeError,AttributeError):
@@ -47,6 +66,12 @@ def inspect_nfl_quote_archive(path):
     return {"status":"archived_reference_only_not_bet_eligible","quotes":len(rows),
             "fresh_quotes":valid,"event_count":len(events),"invalid_quote_rows":invalid,
             "unverified_player_team_assignments":len(rows),
+            "matched_archived_event_rows":matched_event_rows,
+            "unmatched_archived_event_rows":unmatched_event_rows,
+            "conflicting_archived_event_rows":event_conflict_rows,
+            "future_dated_quote_rows":future_dated_rows,
+            "current_roster_source_connected":False,
+            "verified_player_team_assignments":0,
             "warning":"No independent player-team roster matching, lineup confirmation, player projections, or simulations. Do not promote quotes to betting picks."}
 
 def main():
