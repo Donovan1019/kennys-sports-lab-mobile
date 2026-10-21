@@ -21,7 +21,8 @@ class PregameTests(unittest.TestCase):
   r=forecasts("basketball_nba",games(),MARKET,NOW,None)
   self.assertEqual(r["forecast_count"],0)
  def test_nhl_proxy(self):
-  r=forecasts("icehockey_nhl",games(),MARKET,NOW)
+  hockey=[dict(g,home_score=3,away_score=2) for g in games()]
+  r=forecasts("icehockey_nhl",hockey,MARKET,NOW)
   self.assertEqual(r["forecast_count"],1)
   self.assertFalse(r["events"][0]["bet_eligible"])
 if __name__=="__main__":unittest.main()
