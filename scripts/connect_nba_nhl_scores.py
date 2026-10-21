@@ -41,9 +41,9 @@ def main():
             if month<now.date().replace(day=1) and monthly_counts.get(key,0)<threshold:
                 missing_months.append(month)
             month=(month.replace(day=28)+timedelta(days=4)).replace(day=1)
-        # Limit recovery to one missing month per run to bound API requests.
+        # Recover the most recent sparse month per run to prioritize current-season coverage.
         if missing_months:
-            cursor=missing_months[0]
+            cursor=missing_months[-1]
             next_month=(cursor.replace(day=28)+timedelta(days=4)).replace(day=1)
             stop=min(next_month-timedelta(days=1),now.date())
             print(f"{league}: recovering sparse month {cursor:%Y-%m}",flush=True)
