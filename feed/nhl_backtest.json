@@ -1,14 +1,14 @@
 {
   "source": "walk-forward-league-monte-carlo",
   "league": "nhl",
-  "generated_at": "2026-10-21T01:32:06.539298+00:00",
+  "generated_at": "2026-10-21T02:11:34.105673+00:00",
   "method": "walk_forward",
   "model_version": "nhl-poisson-ot-proxy-v1",
-  "sample_size": 1932,
+  "sample_size": 1937,
   "trials_per_game": 10000,
-  "brier": 0.2508367650258799,
-  "constant_home_baseline_brier": 0.24801855209632687,
-  "mean_team_score_absolute_error": 1.4156662052721836,
+  "brier": 0.2510316465926691,
+  "constant_home_baseline_brier": 0.2480516230278022,
+  "mean_team_score_absolute_error": 1.4150772372668345,
   "passed": false,
   "criteria": "at least 100 strictly chronological out-of-sample games and Brier lower than constant home-win baseline",
   "calibration_bins": [
@@ -26,27 +26,27 @@
         0.2,
         0.4
       ],
-      "n": 347,
-      "mean_predicted": 0.3445550432276657,
-      "actual_rate": 0.4812680115273775
+      "n": 348,
+      "mean_predicted": 0.344548275862069,
+      "actual_rate": 0.4827586206896552
     },
     {
       "range": [
         0.4,
         0.6
       ],
-      "n": 1273,
-      "mean_predicted": 0.5018477611940299,
-      "actual_rate": 0.5459544383346425
+      "n": 1276,
+      "mean_predicted": 0.5018217084639498,
+      "actual_rate": 0.5454545454545454
     },
     {
       "range": [
         0.6,
         0.8
       ],
-      "n": 312,
-      "mean_predicted": 0.6500272435897436,
-      "actual_rate": 0.6089743589743589
+      "n": 313,
+      "mean_predicted": 0.6501162939297125,
+      "actual_rate": 0.6070287539936102
     },
     {
       "range": [
@@ -59,7 +59,7 @@
     }
   ],
   "evaluation_start": "2025-01-17T00:00:00+00:00",
-  "evaluation_end": "2026-10-20T01:00:00+00:00",
+  "evaluation_end": "2026-10-20T23:00:00+00:00",
   "results": [
     {
       "date": "2025-01-17T00:00:00+00:00",
@@ -25176,6 +25176,71 @@
       "actual_home_points": 5.0,
       "actual_away_points": 4.0,
       "squared_error": 0.15634115999999998
+    },
+    {
+      "date": "2026-10-20T23:00:00+00:00",
+      "event_id": "401892539",
+      "home": "Montreal Canadiens",
+      "away": "San Jose Sharks",
+      "predicted_home_win": 0.5084,
+      "actual_home_win": 0,
+      "home_projected_points": 3.2083333333333335,
+      "away_projected_points": 3.125,
+      "actual_home_points": 3.0,
+      "actual_away_points": 4.0,
+      "squared_error": 0.25847055999999996
+    },
+    {
+      "date": "2026-10-20T23:00:00+00:00",
+      "event_id": "401892540",
+      "home": "New Jersey Devils",
+      "away": "Colorado Avalanche",
+      "predicted_home_win": 0.3422,
+      "actual_home_win": 1,
+      "home_projected_points": 2.708333333333333,
+      "away_projected_points": 3.625,
+      "actual_home_points": 4.0,
+      "actual_away_points": 3.0,
+      "squared_error": 0.4327008399999999
+    },
+    {
+      "date": "2026-10-20T23:00:00+00:00",
+      "event_id": "401892541",
+      "home": "New York Islanders",
+      "away": "Anaheim Ducks",
+      "predicted_home_win": 0.4919,
+      "actual_home_win": 1,
+      "home_projected_points": 2.875,
+      "away_projected_points": 2.916666666666667,
+      "actual_home_points": 3.0,
+      "actual_away_points": 2.0,
+      "squared_error": 0.25816561
+    },
+    {
+      "date": "2026-10-20T23:00:00+00:00",
+      "event_id": "401892542",
+      "home": "Washington Capitals",
+      "away": "Los Angeles Kings",
+      "predicted_home_win": 0.6779,
+      "actual_home_win": 0,
+      "home_projected_points": 3.375,
+      "away_projected_points": 2.375,
+      "actual_home_points": 2.0,
+      "actual_away_points": 5.0,
+      "squared_error": 0.4595484099999999
+    },
+    {
+      "date": "2026-10-20T23:00:00+00:00",
+      "event_id": "401892543",
+      "home": "Columbus Blue Jackets",
+      "away": "Toronto Maple Leafs",
+      "predicted_home_win": 0.472,
+      "actual_home_win": 0,
+      "home_projected_points": 3.0,
+      "away_projected_points": 3.1666666666666665,
+      "actual_home_points": 2.0,
+      "actual_away_points": 6.0,
+      "squared_error": 0.22278399999999998
     }
   ],
   "production_ready": false,

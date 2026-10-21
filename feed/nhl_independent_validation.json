@@ -1,0 +1,16 @@
+{
+  "method": "nhl-strict-prior-day-independent-poisson-ot-proxy",
+  "status": "experimental",
+  "train_games": 806,
+  "holdout_games": 362,
+  "train_end": "2026-03-20",
+  "holdout_start": "2026-03-21",
+  "holdout_brier": 0.242166,
+  "historical_home_rate_brier": 0.24858,
+  "holdout_pass": true,
+  "limitations": [
+    "OT/shootout resolution is a proxy, not independently fitted",
+    "Final score data includes OT/SO goals",
+    "No verified closing market odds or goalie/lineup adjustments"
+  ]
+}
