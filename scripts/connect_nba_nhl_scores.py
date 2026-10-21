@@ -35,15 +35,16 @@ def main():
         month=date(now.year-1,1,1)
         while month<=now.date().replace(day=1):
             key=month.strftime("%Y-%m")
-            # Months with under 40 completed NBA games (or 25 NHL games)
-            # are suspicious except the current month; re-fetch them.
+            # Only flag regular-season core months; offseason and preseason
+            # are legitimately empty. October and April are partial months.
+            core_month=month.month in (11,12,1,2,3)
             threshold=40 if league=="nba" else 25
-            if month<now.date().replace(day=1) and monthly_counts.get(key,0)<threshold:
+            if core_month and month<now.date().replace(day=1) and monthly_counts.get(key,0)<threshold:
                 missing_months.append(month)
             month=(month.replace(day=28)+timedelta(days=4)).replace(day=1)
-        # Recover the most recent sparse month per run to prioritize current-season coverage.
+        # Recover the earliest sparse regular-season month per run to restore chronology.
         if missing_months:
-            cursor=missing_months[-1]
+            cursor=missing_months[0]
             next_month=(cursor.replace(day=28)+timedelta(days=4)).replace(day=1)
             stop=min(next_month-timedelta(days=1),now.date())
             print(f"{league}: recovering sparse month {cursor:%Y-%m}",flush=True)
