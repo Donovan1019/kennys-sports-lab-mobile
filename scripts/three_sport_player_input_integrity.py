@@ -38,6 +38,11 @@ def assess(now=None, root=Path(".")):
         invalid_rows = 0
         future_event_ids = set()
         books = set()
+        stale_rows = 0
+        future_dated_rows = 0
+        event_metadata = {}
+        inconsistent_event_rows = 0
+        future_event_market_coverage = {}
         for row in rows:
             if not isinstance(row, dict):
                 invalid_rows += 1
@@ -53,10 +58,21 @@ def assess(now=None, root=Path(".")):
                 invalid_rows += 1
                 continue
             valid_rows += 1
+            if quote_at > now:
+                future_dated_rows += 1
+            if (now - quote_at).total_seconds() > 3600:
+                stale_rows += 1
+            identity = (row.get("event"), row.get("commence_time"))
+            event_id = row["event_id"]
+            if event_id in event_metadata and event_metadata[event_id] != identity:
+                inconsistent_event_rows += 1
+            else:
+                event_metadata[event_id] = identity
             markets.add(row["market"])
             books.add(row["bookmaker"])
             if event_at > now:
-                future_event_ids.add(row["event_id"])
+                future_event_ids.add(event_id)
+                future_event_market_coverage.setdefault(row["market"], set()).add(event_id)
             if latest is None or quote_at > latest:
                 latest = quote_at
         age = (now - latest).total_seconds() / 60 if latest else None
@@ -69,6 +85,10 @@ def assess(now=None, root=Path(".")):
             "valid_archived_quote_rows": valid_rows,
             "invalid_archived_quote_rows": invalid_rows,
             "archived_bookmakers": sorted(books),
+            "stale_archived_quote_rows_over_60m": stale_rows,
+            "future_dated_quote_rows": future_dated_rows,
+            "inconsistent_event_metadata_rows": inconsistent_event_rows,
+            "upcoming_events_by_market": {market: len(ids) for market, ids in sorted(future_event_market_coverage.items())},
             "future_event_count_with_archived_quotes": len(future_event_ids),
             "archived_quote_last_update": latest.isoformat() if latest else None,
             "archived_quote_age_minutes": round(age, 1) if age is not None else None,
