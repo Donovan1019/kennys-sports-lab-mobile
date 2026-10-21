@@ -70,7 +70,16 @@ def score(ledger,completed):
             y=int(g["home_score"]>g["away_score"])
             scored.append({"forecast_id":row["forecast_id"],"provider_event_id":str(g.get("event_id","")),"match_method":"exact_teams_unique_start_within_20m","home_probability":p,"home_won":y,"brier":round((p-y)**2,6)})
         except (KeyError,TypeError,ValueError):continue
-    return {"status":"research_only","matched_forecasts":len(scored),"unique_events_in_ledger":len(earliest),"unmatched_events":len(earliest)-len(scored),"mean_brier":round(sum(x["brier"] for x in scored)/len(scored),6) if scored else None,"notes":"One earliest forecast per event; strict exact teams and unique start-time proximity; ambiguous or unverified results excluded","scored":scored}
+    n=len(scored)
+    mean_brier=sum(x["brier"] for x in scored)/n if n else None
+    baseline=sum(x["home_won"] for x in scored)/n if n else None
+    baseline_brier=sum((baseline-x["home_won"])**2 for x in scored)/n if n else None
+    log_loss= -sum(x["home_won"]*math.log(x["home_probability"])+(1-x["home_won"])*math.log1p(-x["home_probability"]) for x in scored)/n if n else None
+    buckets=[]
+    for low,high in ((0,.2),(.2,.4),(.4,.6),(.6,.8),(.8,1.000001)):
+        subset=[x for x in scored if low<=x["home_probability"]<high]
+        if subset:buckets.append({"range":[low,min(high,1)],"count":len(subset),"mean_predicted":round(sum(x["home_probability"] for x in subset)/len(subset),6),"observed_home_win_rate":round(sum(x["home_won"] for x in subset)/len(subset),6)})
+    return {"status":"research_only","matched_forecasts":len(scored),"metrics_sample_size":n,"log_loss":round(log_loss,6) if n else None,"empirical_home_rate_baseline_brier":round(baseline_brier,6) if n else None,"calibration_bins":buckets,"calibration_warning":"Small samples and in-sample baseline cannot establish predictive edge" if n<100 else "Compare with independent pregame bookmaker baselines before claiming edge",,"unique_events_in_ledger":len(earliest),"unmatched_events":len(earliest)-len(scored),"mean_brier":round(sum(x["brier"] for x in scored)/len(scored),6) if scored else None,"notes":"One earliest forecast per event; strict exact teams and unique start-time proximity; ambiguous or unverified results excluded","scored":scored}
 
 def main():
     now=datetime.now(timezone.utc)
