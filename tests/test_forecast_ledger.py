@@ -24,6 +24,14 @@ class LedgerTests(unittest.TestCase):
   f,o=data();ledger=record({"forecasts":[]},f,o,NOW)
   game={"event_id":"provider","date":(NOW+timedelta(hours=2)).isoformat(),"home":"H","away":"A","home_score":3,"away_score":2}
   self.assertEqual(score(ledger,{"games":[game,dict(game,event_id="duplicate")]})["matched_forecasts"],0)
+ def test_repeated_snapshots_count_once(self):
+  f,o=data();first=record({"forecasts":[]},f,o,NOW)
+  second=record(first,{"events":[dict(f["events"][0],asof=(NOW+timedelta(minutes=1)).isoformat())]},o,NOW+timedelta(minutes=1))
+  game={"event_id":"provider","date":(NOW+timedelta(hours=2)).isoformat(),"home":"H","away":"A","home_score":3,"away_score":2}
+  result=score(second,{"games":[game]})
+  self.assertEqual(len(second["forecasts"]),2)
+  self.assertEqual(result["matched_forecasts"],1)
+  self.assertEqual(result["unique_events_in_ledger"],1)
  def test_different_start_rejected(self):
   f,o=data();ledger=record({"forecasts":[]},f,o,NOW)
   game={"event_id":"provider","date":(NOW+timedelta(hours=3)).isoformat(),"home":"H","away":"A","home_score":3,"away_score":2}
