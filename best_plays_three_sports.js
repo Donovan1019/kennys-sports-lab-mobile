@@ -40,7 +40,7 @@ for(const cfg of config){
  panel.insertBefore(browser,panel.querySelector('.ksl-best-pass'));
  const status=panel.querySelector('.ksl-best-pass'),results=panel.querySelector('.ksl-best-results');
  let currentEvents=[],currentConsensus=null,currentAsOf=null;
- let archivedProps=null,nhlHistory=null;
+ let archivedProps=null,nhlHistory=null,playerHistory=null;
  const nflPropCategories={
   'QB Passing Yards':['player_pass_yds'],'QB Passing TDs':['player_pass_tds'],
   'RB Rushing Yards':['player_rush_yds'],'QB Rushing':['player_rush_yds'],
@@ -54,6 +54,26 @@ for(const cfg of config){
  function renderMarket(){
   results.replaceChildren();const name=picker.value;
   const nhlStatFields={'Player Shots on Goal':'Shots on goal','Goalie Saves':'Saves','Player Points / Assists':'Points','Anytime Goal':'Goals'};
+  const nflFields={'QB Passing Yards':'Passing yards','QB Passing TDs':'Passing touchdowns','RB Rushing Yards':'Rushing yards','QB Rushing':'Rushing yards','WR / TE Receiving Yards':'Receiving yards','Receptions':'Receptions','Anytime TD':'Receiving touchdowns'};
+  const nbaFields={'Player Points':'Points','Player Rebounds':'Rebounds','Player Assists':'Assists','Threes Made':'3-pointers made'};
+  const historyField=cfg.sport==='NFL'?nflFields[name]:cfg.sport==='NBA'?nbaFields[name]:null;
+  if(historyField){
+   const players=(playerHistory?.players||[]).map(p=>{
+    const games=(p.games||[]).filter(g=>Number.isFinite(g.values?.[historyField])&&g.values[historyField]>=0).sort((a,b)=>cfg.sport==='NFL'?(b.season-a.season)||(b.week-a.week):String(b.date).localeCompare(String(a.date))).slice(0,5);
+    return {p,games,avg:games.length?games.reduce((sum,g)=>sum+g.values[historyField],0)/games.length:0};
+   }).filter(x=>x.games.length>=3).sort((a,b)=>b.avg-a.avg).slice(0,15);
+   const h=document.createElement('h3');h.textContent=name+' · observed player game logs';results.append(h);
+   const note=document.createElement('p');note.textContent='10,000-draw empirical bootstrap of up to five past games. Illustrative historical resampling ONLY, not a forecast, current line, Onyx availability, or bet recommendation.';results.append(note);
+   if(!players.length){const msg=document.createElement('p');msg.textContent='No usable player game logs for this market. DATA NOT CONNECTED.';results.append(msg);return;}
+   for(const x of players){
+    const row=document.createElement('div');row.className='ksl-best-row';
+    const title=document.createElement('strong');title.textContent=x.p.name+' ('+x.p.team+') · '+x.avg.toFixed(1)+' '+historyField+' / game';row.append(title);
+    const vals=x.games.map(g=>g.values[historyField]);const threshold=Math.floor(x.avg)+0.5;
+    const rate=historyBootstrap(vals,threshold);
+    const info=document.createElement('p');info.textContent='Last '+vals.length+' observations: '+vals.join(', ')+' · 10,000 historical draws above illustrative '+threshold+': '+(rate*100).toFixed(1)+'%. NOT BET ELIGIBLE.';row.append(info);results.append(row);
+   }
+   return;
+  }
   if(cfg.sport==='NHL'&&nhlStatFields[name]){
    const metric=nhlStatFields[name];const players=(nhlHistory?.players||[]).map(p=>{
     const games=(p.games||[]).filter(g=>Number.isFinite(g.values?.[metric])&&!(g.quality_flags||[]).length).sort((a,b)=>String(b.date).localeCompare(String(a.date))).slice(0,5);
@@ -107,6 +127,9 @@ for(const cfg of config){
    status.textContent=eligible.length?'VERIFIED CANDIDATES — review market freshness':'NO VERIFIED PLAY — '+events.length+' researched matchup'+(events.length===1?'':'s')+', 0 fully qualified picks';
    currentEvents=events;currentAsOf=data.asof||null;
    try{const response=await fetch('./feed/'+cfg.feed+'_market_consensus.json',{cache:'no-store'});currentConsensus=response.ok?await response.json():null;}catch(err){currentConsensus=null;}
+   if((cfg.sport==='NFL'||cfg.sport==='NBA')&&!playerHistory){
+    try{const file=cfg.sport==='NFL'?'nfl_player_stats.json':'nba_player_stats.json';const p=await fetch('./feed/'+file,{cache:'no-store'});playerHistory=p.ok?await p.json():null;}catch(err){playerHistory=null;}
+   }
    if(cfg.sport==='NHL'&&!nhlHistory){try{const p=await fetch('./feed/nhl_official_player_stats.json',{cache:'no-store'});nhlHistory=p.ok?await p.json():null;}catch(err){nhlHistory=null;}}
    if(cfg.sport==='NFL'&&!archivedProps){try{const p=await fetch('./feed/nfl_props.json',{cache:'no-store'});archivedProps=p.ok?await p.json():null;}catch(err){archivedProps=null;}}
    renderMarket();
