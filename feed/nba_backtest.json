@@ -40,15 +40,15 @@
     }
   ],
   "chronological_holdout": {
-    "train_games": 700,
-    "test_games": 300,
-    "train_end": "2026-03-06",
+    "train_games": 695,
+    "test_games": 305,
+    "train_end": "2026-03-05",
     "test_start": "2026-03-06",
-    "logistic_scale": 6.0,
-    "holdout_brier_calibrated": 0.18029,
-    "holdout_brier_fixed_scale": 0.20446,
+    "logistic_scale": 6.5,
+    "holdout_brier_calibrated": 0.18323,
+    "holdout_brier_fixed_scale": 0.20467,
     "holdout_brier_constant_50pct": 0.25,
-    "holdout_brier_historical_home_rate": 0.24466,
+    "holdout_brier_historical_home_rate": 0.24477,
     "holdout_pass": true
   },
   "notes": [
