@@ -43,7 +43,15 @@ def score(ledger,completed):
     """
     games=completed.get("games",[])
     scored=[]
+    # Freeze the earliest valid pregame prediction per event for unbiased scoring.
+    earliest={}
     for row in ledger.get("forecasts",[]):
+        event=row.get("event_id")
+        stamp=timestamp(row.get("forecast_at"))
+        if not event or not stamp:continue
+        previous=earliest.get(event)
+        if previous is None or stamp<timestamp(previous["forecast_at"]):earliest[event]=row
+    for row in earliest.values():
         try:
             start=timestamp(row["event_start"])
             forecast_at=timestamp(row["forecast_at"])
@@ -62,7 +70,7 @@ def score(ledger,completed):
             y=int(g["home_score"]>g["away_score"])
             scored.append({"forecast_id":row["forecast_id"],"provider_event_id":str(g.get("event_id","")),"match_method":"exact_teams_unique_start_within_20m","home_probability":p,"home_won":y,"brier":round((p-y)**2,6)})
         except (KeyError,TypeError,ValueError):continue
-    return {"status":"research_only","matched_forecasts":len(scored),"mean_brier":round(sum(x["brier"] for x in scored)/len(scored),6) if scored else None,"notes":"Strict exact teams and unique start-time proximity; ambiguous or unverified results excluded","scored":scored}
+    return {"status":"research_only","matched_forecasts":len(scored),"unique_events_in_ledger":len(earliest),"unmatched_events":len(earliest)-len(scored),"mean_brier":round(sum(x["brier"] for x in scored)/len(scored),6) if scored else None,"notes":"One earliest forecast per event; strict exact teams and unique start-time proximity; ambiguous or unverified results excluded","scored":scored}
 
 def main():
     now=datetime.now(timezone.utc)
