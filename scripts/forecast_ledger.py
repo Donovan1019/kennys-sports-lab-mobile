@@ -28,7 +28,7 @@ def record(ledger,forecasts,odds,now):
         event=row.get("event_id")
         asof=timestamp(row.get("asof"))
         start=by_id.get(event)
-        if type(p) not in (float,int) or not math.isfinite(p) or not 0<p<1 or not asof or not start or asof>now or not asof<start:continue
+        if type(p) not in (float,int) or not math.isfinite(p) or not 0<p<1 or not asof or not start or asof>now or not now<start or not asof<start:continue
         key=f"{event}|{asof.isoformat()}"
         if key in entries:continue
         entries[key]={"forecast_id":key,"event_id":event,"away":row["away"],"home":row["home"],"forecast_at":asof.isoformat(),"event_start":start.isoformat(),"home_probability":p,"status":"experimental_research_only"}
@@ -49,6 +49,9 @@ def score(ledger,completed):
         event=row.get("event_id")
         stamp=timestamp(row.get("forecast_at"))
         if not event or not stamp:continue
+        start=timestamp(row.get("event_start"))
+        p=row.get("home_probability")
+        if not start or not stamp<start or type(p) not in (int,float) or not math.isfinite(p) or not 0<p<1:continue
         previous=earliest.get(event)
         if previous is None or stamp<timestamp(previous["forecast_at"]):earliest[event]=row
     for row in earliest.values():
