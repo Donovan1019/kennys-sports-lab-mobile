@@ -1,0 +1,91 @@
+{
+  "generated_at": "2026-10-21T14:08:41.697581+00:00",
+  "status": "research_only_until_verified",
+  "sports": {
+    "NFL": {
+      "researched_events": 0,
+      "fully_verified_player_recommendations": 0,
+      "missing_field_counts": {},
+      "note": "Event-level pregame research does not establish verified player-specific props; no betting selections issued."
+    },
+    "NBA": {
+      "researched_events": 19,
+      "fully_verified_player_recommendations": 0,
+      "missing_field_counts": {
+        "bet_eligible_true": 19,
+        "expected_value": 19,
+        "expected_value_numeric": 19,
+        "hit_probability": 19,
+        "hit_probability_numeric": 19,
+        "is_player_prop": 19,
+        "is_player_prop_true": 19,
+        "lineup_verified": 19,
+        "lineup_verified_true": 19,
+        "market": 19,
+        "market_fresh": 19,
+        "market_fresh_true": 19,
+        "market_odds_american": 19,
+        "market_odds_american_numeric": 19,
+        "market_value": 19,
+        "player": 19,
+        "player_value": 19,
+        "point": 19,
+        "point_numeric": 19,
+        "selection": 19,
+        "selection_value": 19,
+        "simulation_verified": 19,
+        "simulation_verified_true": 19,
+        "status_verified": 19,
+        "verified_at": 19,
+        "verified_market": 19,
+        "verified_market_true": 19
+      },
+      "note": "Event-level pregame research does not establish verified player-specific props; no betting selections issued."
+    },
+    "NHL": {
+      "researched_events": 2,
+      "fully_verified_player_recommendations": 0,
+      "missing_field_counts": {
+        "bet_eligible_true": 2,
+        "expected_value": 2,
+        "expected_value_numeric": 2,
+        "hit_probability": 2,
+        "hit_probability_numeric": 2,
+        "is_player_prop": 2,
+        "is_player_prop_true": 2,
+        "lineup_verified": 2,
+        "lineup_verified_true": 2,
+        "market": 2,
+        "market_fresh": 2,
+        "market_fresh_true": 2,
+        "market_odds_american": 2,
+        "market_odds_american_numeric": 2,
+        "market_value": 2,
+        "player": 2,
+        "player_value": 2,
+        "point": 2,
+        "point_numeric": 2,
+        "selection": 2,
+        "selection_value": 2,
+        "simulation_verified": 2,
+        "simulation_verified_true": 2,
+        "status_verified": 2,
+        "verified_at": 2,
+        "verified_market": 2,
+        "verified_market_true": 2
+      },
+      "note": "Event-level pregame research does not establish verified player-specific props; no betting selections issued."
+    }
+  },
+  "source_integrity": {
+    "NFL_archived_player_props": {
+      "status": "archived_reference_only_not_bet_eligible",
+      "quotes": 164,
+      "fresh_quotes": 0,
+      "event_count": 1,
+      "invalid_quote_rows": 0,
+      "unverified_player_team_assignments": 164,
+      "warning": "No independent player-team roster matching, lineup confirmation, player projections, or simulations. Do not promote quotes to betting picks."
+    }
+  }
+}

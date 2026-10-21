@@ -1,0 +1,40 @@
+{
+  "checked_at": "2026-10-21T14:08:41.184750+00:00",
+  "sports": [
+    {
+      "sport": "basketball_nba",
+      "unique_events": 18,
+      "counts": {
+        "scored": 0,
+        "upcoming": 18,
+        "awaiting_final_result": 0,
+        "completed_unmatched": 0
+      },
+      "unmatched_examples": []
+    },
+    {
+      "sport": "icehockey_nhl",
+      "unique_events": 2,
+      "counts": {
+        "scored": 0,
+        "upcoming": 2,
+        "awaiting_final_result": 0,
+        "completed_unmatched": 0
+      },
+      "unmatched_examples": []
+    },
+    {
+      "sport": "americanfootball_nfl",
+      "unique_events": 28,
+      "counts": {
+        "scored": 0,
+        "upcoming": 28,
+        "awaiting_final_result": 0,
+        "completed_unmatched": 0
+      },
+      "unmatched_examples": []
+    }
+  ],
+  "paid_api_calls": 0,
+  "note": "Awaiting final result also includes missing or mismatched result identifiers; no unverified game is scored."
+}
