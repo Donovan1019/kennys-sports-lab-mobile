@@ -17,7 +17,15 @@ class LedgerTests(unittest.TestCase):
   self.assertEqual(score(ledger,{"games":[{"event_id":"other","home":"H","away":"A","home_score":3,"away_score":2}]})["matched_forecasts"],0)
  def test_exact_outcome(self):
   f,o=data();ledger=record({"forecasts":[]},f,o,NOW)
-  result=score(ledger,{"games":[{"event_id":"e","home":"H","away":"A","home_score":3,"away_score":2}]})
+  result=score(ledger,{"games":[{"event_id":"espn-123","date":(NOW+timedelta(hours=2)).isoformat(),"home":"H","away":"A","home_score":3,"away_score":2}]})
   self.assertEqual(result["matched_forecasts"],1)
   self.assertAlmostEqual(result["mean_brier"],.16)
+ def test_ambiguous_matching_fails_closed(self):
+  f,o=data();ledger=record({"forecasts":[]},f,o,NOW)
+  game={"event_id":"provider","date":(NOW+timedelta(hours=2)).isoformat(),"home":"H","away":"A","home_score":3,"away_score":2}
+  self.assertEqual(score(ledger,{"games":[game,dict(game,event_id="duplicate")]})["matched_forecasts"],0)
+ def test_different_start_rejected(self):
+  f,o=data();ledger=record({"forecasts":[]},f,o,NOW)
+  game={"event_id":"provider","date":(NOW+timedelta(hours=3)).isoformat(),"home":"H","away":"A","home_score":3,"away_score":2}
+  self.assertEqual(score(ledger,{"games":[game]})["matched_forecasts"],0)
 if __name__=="__main__":unittest.main()
