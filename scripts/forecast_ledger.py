@@ -89,13 +89,18 @@ def main():
     for sport,completed in (("basketball_nba","nba"),("icehockey_nhl","nhl"),("americanfootball_nfl","nfl")):
         forecast_path=Path(f"feed/{sport}_pregame_research.json")
         odds_path=Path(f"feed/{sport}.json")
-        if not forecast_path.exists() or not odds_path.exists():continue
+        if not forecast_path.exists() or not odds_path.exists():
+            missing=[str(p) for p in (forecast_path,odds_path) if not p.exists()]
+            print(f"{sport} SKIPPED: missing required input(s): {', '.join(missing)}")
+            continue
         ledger_path=Path(f"feed/{sport}_forecast_ledger.json")
         old=json.loads(ledger_path.read_text()) if ledger_path.exists() else {"forecasts":[]}
         result=record(old,json.loads(forecast_path.read_text()),json.loads(odds_path.read_text()),now)
         added=result.pop("added")
         if added:ledger_path.write_text(json.dumps(result,indent=2)+"\n")
         completed_path=Path(f"feed/{completed}_completed_games.json")
+        if not completed_path.exists():
+            print(f"{sport} SKIPPED scoring: missing {completed_path}")
         if completed_path.exists():
             audit=score(result,json.loads(completed_path.read_text()))
             Path(f"feed/{sport}_forecast_outcomes.json").write_text(json.dumps(audit,indent=2)+"\n")
