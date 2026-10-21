@@ -5,13 +5,32 @@ const config=[
  {sport:'NBA',id:'ksl-nba-best-plays',feed:'basketball_nba',markets:'Moneyline · spread · totals · points · rebounds · assists · PRA'},
  {sport:'NHL',id:'ksl-nhl-best-plays',feed:'icehockey_nhl',markets:'Moneyline · puck line · totals · shots on goal · goalie saves · team totals'}
 ];
+const marketCatalog={
+ NFL:['Moneyline','Spread','Game Total','Team Totals','1H / 2H','Quarters','QB Passing Yards','QB Passing TDs','QB Completions / Attempts','QB Rushing','RB Rushing Yards','RB Receiving','WR / TE Receiving Yards','Receptions','Anytime TD','Kicker Points / FGs','Defense / Specials','Live / Halftime','SGP / Builders'],
+ NBA:['Moneyline','Spread','Game Total','Team Totals','1H / 2H','Quarters','Player Points','Player Rebounds','Player Assists','P+R / P+A / R+A / PRA','Threes Made','Steals / Blocks','Double-Doubles','Live / Halftime','SGP / Builders'],
+ NHL:['Moneyline','Puck Line','Game Total','Team Totals','1P / 2P / 3P','Player Shots on Goal','Goalie Saves','Player Points / Assists','Anytime Goal','Power Play','Live / Intermission','SGP / Builders']
+};
 const main=document.querySelector('main');if(!main)return;
 const safe=(value)=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const style=document.createElement('style');style.textContent='.ksl-best-plays{border:1px solid #397c65;border-radius:14px;background:linear-gradient(140deg,#102c24,#0b1b2b);padding:16px;margin:14px 0 20px}.ksl-best-plays h2{color:#99f4ba;margin:0 0 8px}.ksl-best-plays p{font-size:13px;color:#bed3cb;line-height:1.55}.ksl-best-plays .ksl-best-pass{border:1px solid #775d36;background:#332b1d;color:#ffe2a0;border-radius:9px;padding:12px;font-weight:800;margin:12px 0}.ksl-best-plays .ksl-best-meta{font-size:12px;color:#a6c1bc}.ksl-best-plays button{min-height:40px}.ksl-best-plays .ksl-best-row{border:1px solid #315d51;border-radius:9px;padding:12px;margin:10px 0;background:#0c211d}.ksl-best-plays .ksl-best-row strong{color:#b6ffd1}';document.head.append(style);
+const style=document.createElement('style');style.textContent='.ksl-best-plays{border:1px solid #397c65;border-radius:14px;background:linear-gradient(140deg,#102c24,#0b1b2b);padding:16px;margin:14px 0 20px}.ksl-best-plays h2{color:#99f4ba;margin:0 0 8px}.ksl-best-plays p{font-size:13px;color:#bed3cb;line-height:1.55}.ksl-best-plays .ksl-best-pass{border:1px solid #775d36;background:#332b1d;color:#ffe2a0;border-radius:9px;padding:12px;font-weight:800;margin:12px 0}.ksl-best-plays .ksl-best-meta{font-size:12px;color:#a6c1bc}.ksl-best-plays button{min-height:40px}.ksl-best-plays .ksl-best-row{border:1px solid #315d51;border-radius:9px;padding:12px;margin:10px 0;background:#0c211d}.ksl-best-plays .ksl-best-row strong{color:#b6ffd1}'.concat('.ksl-best-market-browser{border:1px solid #315b55;border-radius:10px;padding:12px;margin:12px 0;background:#0c2024}.ksl-best-market-browser h3{margin:0 0 6px;color:#a3efc3}.ksl-best-market-browser select{width:100%;max-width:100%;min-height:45px}.ksl-best-market-state{padding:9px;border-radius:8px;background:#172c31;color:#f1d59c!important}');document.head.append(style);
 for(const cfg of config){
  const panel=document.createElement('section');panel.id=cfg.id;panel.className='ksl-best-plays';panel.dataset.sport=cfg.sport;
  panel.innerHTML='<h2>'+cfg.sport+' · Best Plays Lab</h2><p>Sport-specific model research and market verification. Markets: '+cfg.markets+'.</p><div class="ksl-best-pass" role="status">NO VERIFIED PLAY — awaiting eligible data</div><div class="ksl-best-results"></div><p class="ksl-best-meta">Diamond Plays, safer builders and SGP candidates require verified odds, calibrated probabilities, relevant lineup/injury checks, and simulation evidence. Historical trends alone do not qualify.</p><button type="button" class="ksl-best-reload">Refresh research</button>';
  main.append(panel);
+ // Market coverage navigator: available market categories do not imply verified betting quotes.
+ const browser=document.createElement('div');browser.className='ksl-best-market-browser';
+ const heading=document.createElement('h3');heading.textContent='All markets · '+cfg.sport;browser.append(heading);
+ const expl=document.createElement('p');expl.textContent='Select a market to see its current research availability. Listed markets are coverage targets, not confirmed Onyx offerings.';browser.append(expl);
+ const picker=document.createElement('select');picker.setAttribute('aria-label',cfg.sport+' market category');
+ for(const name of marketCatalog[cfg.sport]){const option=document.createElement('option');option.value=name;option.textContent=name;picker.append(option);}
+ browser.append(picker);
+ const marketState=document.createElement('p');marketState.className='ksl-best-market-state';marketState.setAttribute('role','status');browser.append(marketState);
+ function updateMarket(){
+  const name=picker.value;
+  marketState.textContent=name==='Moneyline'?'MONEYLINE · archived model-versus-consensus research below. Live price, simulation and eligibility remain unverified.':'DATA NOT CONNECTED · '+name+' has no event-matched, verified odds/projection/simulation feed in this Best Plays module. Not an available pick.';
+ }
+ picker.addEventListener('change',updateMarket);updateMarket();
+ panel.insertBefore(browser,panel.querySelector('.ksl-best-pass'));
  const status=panel.querySelector('.ksl-best-pass'),results=panel.querySelector('.ksl-best-results');
  async function load(){
   status.textContent='Checking archived research…';results.replaceChildren();
