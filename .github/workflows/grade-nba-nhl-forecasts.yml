@@ -28,6 +28,14 @@ jobs:
           python -m scripts.line_movement_research
       - name: Generate NBA NHL NFL pregame research from archived quotes
         run: python -m scripts.pregame_research
+      - name: Refresh NFL observed player game logs from free nflverse
+        run: |
+          # Public historical statistics only; preserve the prior snapshot on failure.
+          python -m scripts.fetch_nfl_stats || echo "NFL player history unavailable; existing snapshot preserved"
+      - name: Refresh NHL official player histories
+        run: |
+          # Official NHL game logs, including shots on goal; no betting lines.
+          python -m scripts.fetch_nhl_official_stats || echo "NHL official player history unavailable; existing snapshot preserved"
       - name: Refresh NBA regular-season player boxscores from free ESPN data
         env:
           PLAYER_SPORT: nba
@@ -62,6 +70,8 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add feed/nba_completed_games.json feed/nhl_completed_games.json
           if [ -s feed/nba_player_stats.json ]; then git add feed/nba_player_stats.json; fi
+          if [ -s feed/nfl_player_stats.json ]; then git add feed/nfl_player_stats.json; fi
+          if [ -s feed/nhl_official_player_stats.json ]; then git add feed/nhl_official_player_stats.json; fi
           for sport in basketball_nba icehockey_nhl americanfootball_nfl; do
             for suffix in market_screen line_movement pregame_research; do
               file="feed/${sport}_${suffix}.json"
