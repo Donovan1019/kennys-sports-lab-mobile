@@ -13,7 +13,7 @@ const valid=g=>Number.isFinite(g.home_score)&&Number.isFinite(g.away_score);
 const date=x=>String(x).slice(0,10);
 async function load(){
 try{
-const [games,players,odds]=await Promise.all(['nba_completed_games.json','nba_player_stats.json','basketball_nba.json'].map(async n=>{const r=await fetch('./feed/'+n+'?v='+Date.now(),{cache:'no-store'});if(!r.ok)throw Error(n+' HTTP '+r.status);return r.json()}));
+const [games,players,odds,validation]=await Promise.all(['nba_completed_games.json','nba_player_stats.json','basketball_nba.json','nba_backtest.json'].map(async n=>{const r=await fetch('./feed/'+n+'?v='+Date.now(),{cache:'no-store'});if(!r.ok)throw Error(n+' HTTP '+r.status);return r.json()}));
 if(!Array.isArray(games.games)||!Array.isArray(players.players)||!Array.isArray(odds.odds))throw Error('Invalid feed schema');
 const historical=games.games.filter(valid).filter(g=>date(g.date)>='2025-10-01'&&Date.parse(g.date)<Date.now());
 const leaguePoints=historical.flatMap(g=>[g.home_score,g.away_score]);if(historical.length<100)throw Error('Insufficient completed NBA game history');
@@ -33,15 +33,15 @@ const variance=Math.max(9,sd(leaguePoints)*.85);
 const rand=rng([...game.event].reduce((s,c)=>Math.imul(s,31)+c.charCodeAt(0),12345));
 let wins=0,totals=[],margins=[];
 for(let i=0;i<10000;i++){const gauss=()=>Math.sqrt(-2*Math.log(Math.max(rand(),1e-9)))*Math.cos(2*Math.PI*rand());const a=awayMean+gauss()*variance,h=homeMean+gauss()*variance;wins+=h>a;totals.push(a+h);margins.push(h-a)}
-const homeProb=1/(1+Math.exp(-(homeMean-awayMean)/12)),simHomeProb=wins/10000,section=write(out,'details','');section.open=n<2;write(section,'summary',game.event+' · '+new Date(game.commence_time).toLocaleString('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})+' ET');
-write(section,'p','Model: '+away+' '+fmt(awayMean)+' – '+home+' '+fmt(homeMean)+' · Total '+fmt(awayMean+homeMean)+' · '+home+' win '+fmt(homeProb*100)+'% (fair '+american(Math.min(.999,Math.max(.001,homeProb)))+')');
+const calibrated=validation.chronological_holdout;const bettingReady=!!(calibrated&&calibrated.holdout_pass);const scale=bettingReady?calibrated.logistic_scale:12;const homeProb=1/(1+Math.exp(-(homeMean-awayMean)/scale)),simHomeProb=wins/10000,section=write(out,'details','');section.open=n<2;write(section,'summary',game.event+' · '+new Date(game.commence_time).toLocaleString('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})+' ET');
+write(section,'p',bettingReady?'Holdout-calibrated research probability; sportsbook price and lineup validation still required.':'BETTING PASS: holdout calibration unavailable or failed. Do not use fair odds as a wager recommendation.');write(section,'p','Model: '+away+' '+fmt(awayMean)+' – '+home+' '+fmt(homeMean)+' · Total '+fmt(awayMean+homeMean)+' · '+home+' win '+fmt(homeProb*100)+'% (fair '+american(Math.min(.999,Math.max(.001,homeProb)))+')');
 write(section,'p','Simulation: 10,000 synthetic game outcomes · mean total '+fmt(average(totals))+' · mean home margin '+fmt(average(margins))+' · synthetic win rate '+fmt(simHomeProb*100)+'% · dashboard fair line uses backtest logistic formula; simulation uncertainty remains uncalibrated.');
 const codes=[teamCodes[home],teamCodes[away]].filter(Boolean);const roster=players.players.filter(p=>codes.includes(p.team));
 let candidates=0;for(const p of roster){const rows=p.games.filter(g=>(g.season==='2025-26'||g.season==='2026-27')&&g.season_type==='regular'&&g.date<=date(game.commence_time)).sort((a,b)=>b.date.localeCompare(a.date)).slice(0,30);if(rows.length<10)continue;const values=rows.map(g=>g.values.Points).filter(Number.isFinite);if(values.length<10)continue;const mean=average(values),hit=values.filter(v=>v>=15).length/values.length;write(section,'p',p.name+' ('+p.team+') · '+values.length+' games · PTS avg '+fmt(mean)+' · 15+ PTS '+fmt(hit*100)+'% historical (not priced; not opponent-adjusted)');if(++candidates>=8)break}
 if(!candidates)write(section,'p','Player projections unavailable: no qualifying game logs for mapped teams.');
 n++;
 }
-el('nba-predict-status').textContent='Loaded '+historical.length+' historical completed games · '+players.players.length+' player histories · '+n+' upcoming matchups. Baseline model, no verified injury or live odds adjustments.';
+el('nba-predict-status').textContent='Loaded '+historical.length+' historical completed games · '+players.players.length+' player histories · '+n+' upcoming matchups. Research model only; no verified sportsbook EV, injury, or lineup adjustments.';
 if(!n)write(out,'p','No future NBA games found in the saved odds snapshot. Re-run the odds refresh to populate matchups.');
 }catch(e){el('nba-predict-status').textContent='PREDICTIVE ENGINE UNAVAILABLE: '+e.message}
 }
