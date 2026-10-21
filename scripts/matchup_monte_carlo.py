@@ -8,12 +8,23 @@ def probability_and_ev(p,american):
         raise ValueError("Invalid model probability or odds")
     return p*(american/100 if american>0 else 100/-american)-(1-p)
 
-def simulate_game(away_mean,home_mean,away_sd,home_sd,*,trials=10000,seed=42):
+def simulate_game(away_mean,home_mean,away_sd,home_sd,*,trials=10000,seed=42,score_correlation=0.0):
     values=(away_mean,home_mean,away_sd,home_sd)
     if any(not isinstance(v,(int,float)) or not math.isfinite(v) for v in values) or min(away_mean,home_mean)<0 or min(away_sd,home_sd)<=0 or not 1000<=trials<=100000:
         raise ValueError("Invalid simulation configuration")
+    if type(score_correlation) not in (int,float) or not math.isfinite(score_correlation) or not -0.95<=score_correlation<=0.95:
+        raise ValueError("Score correlation must be finite and between -0.95 and 0.95")
     rng=random.Random(seed)
-    return [(max(0,rng.gauss(away_mean,away_sd)),max(0,rng.gauss(home_mean,home_sd))) for _ in range(trials)]
+    if score_correlation == 0:
+        return [(max(0,rng.gauss(away_mean,away_sd)),max(0,rng.gauss(home_mean,home_sd))) for _ in range(trials)]
+    # Correlated standard normals: shared latent tempo plus independent residual.
+    residual=math.sqrt(1-score_correlation**2)
+    scores=[]
+    for _ in range(trials):
+        z_away=rng.gauss(0,1)
+        z_home=score_correlation*z_away+residual*rng.gauss(0,1)
+        scores.append((max(0,away_mean+away_sd*z_away),max(0,home_mean+home_sd*z_home)))
+    return scores
 
 def probability(scores,market,selection,point,away,home):
     if market not in ("h2h","spreads","totals"):raise ValueError("Unsupported market")

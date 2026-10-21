@@ -14,9 +14,11 @@ def poisson(rng,lam):
         n+=1;p*=lam/n;c+=p
     return n
 
-def simulate_sport(sport,away_mean,home_mean,away_sd,home_sd,*,trials=10000,seed=42):
+def simulate_sport(sport,away_mean,home_mean,away_sd,home_sd,*,trials=10000,seed=42,score_correlation=0.0):
     if sport!="icehockey_nhl":
-        return simulate_game(away_mean,home_mean,away_sd,home_sd,trials=trials,seed=seed)
+        return simulate_game(away_mean,home_mean,away_sd,home_sd,trials=trials,seed=seed,score_correlation=score_correlation)
+    if score_correlation != 0:
+        raise ValueError("NHL score correlation unsupported in Poisson OT proxy")
     if type(trials)!=int or not 1000<=trials<=100000:
         raise ValueError("Invalid trial count")
     if any(not isinstance(v,(int,float)) or not math.isfinite(v) for v in (away_mean,home_mean,away_sd,home_sd)):
