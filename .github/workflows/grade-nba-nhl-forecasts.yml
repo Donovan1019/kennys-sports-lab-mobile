@@ -39,7 +39,7 @@ jobs:
         run: python -m scripts.three_sport_champion
       - name: Audit NBA NHL NFL forecast lifecycle readiness
         run: python -m scripts.three_sport_lifecycle
-      - name: Publish verified outcomes without Odds API usage
+      - name: Audit free-first pipeline health\n        run: python -m unittest tests.test_three_sport_pipeline_health && python -m scripts.three_sport_pipeline_health\n      - name: Publish verified outcomes without Odds API usage
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -72,5 +72,5 @@ jobs:
               if [ -f "$file" ]; then git add "$file"; fi
             done
           done
-          if [ -f feed/three_sport_lifecycle_readiness.json ]; then git add feed/three_sport_lifecycle_readiness.json; fi
+          if [ -f feed/three_sport_lifecycle_readiness.json ]; then git add feed/three_sport_lifecycle_readiness.json; fi\n          if [ -f feed/three_sport_pipeline_health.json ]; then git add feed/three_sport_pipeline_health.json; fi
           git diff --cached --quiet || (git commit -m "Grade archived NBA NHL forecasts against verified final scores" && git push)
