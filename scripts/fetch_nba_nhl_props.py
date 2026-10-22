@@ -8,7 +8,7 @@ from urllib.error import HTTPError
 
 MARKETS={
  'nba':('basketball_nba',('player_points','player_rebounds','player_assists','player_threes','player_blocks','player_steals','player_points_rebounds_assists')),
- 'nhl':('icehockey_nhl',('player_points','player_goals','player_assists','player_shots_on_goal','player_saves')),
+ 'nhl':('icehockey_nhl',('player_points','player_goals','player_assists','player_shots_on_goal')),
 }
 BOOKS=('draftkings','fanduel')
 def get(url):
@@ -37,6 +37,9 @@ def collect(sport,limit,key):
   except HTTPError as exc:
    detail=exc.read(1200).decode('utf-8','replace')
    errors.append({'event_id':event['id'],'status':exc.code,'detail':detail});print(sport,'provider HTTP',exc.code,detail)
+   if exc.code==422 and 'INVALID_MARKET' in detail:
+    print('Invalid market in configured batch; aborting to avoid repeated API requests')
+    raise ValueError('Provider rejected configured market list: '+detail)
   except Exception as exc:
    errors.append({'event_id':event['id'],'error':type(exc).__name__,'detail':str(exc)});print(sport,'event unavailable',type(exc).__name__,str(exc))
  if not rows:raise ValueError('No valid player props; prior feed preserved')
