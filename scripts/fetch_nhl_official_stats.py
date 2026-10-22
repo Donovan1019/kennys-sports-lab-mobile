@@ -50,7 +50,10 @@ def parse_boxscore(payload,game_id,game_date):
     return rows
 def main():
     days=int(os.environ.get("LOOKBACK_DAYS","14"))
-    if not 1<=days<=31:raise ValueError("Lookback must be 1-31")
+    if not 1<=days<=400:raise ValueError("Lookback must be 1-400")
+    start_text=os.environ.get("START_DATE","").strip()
+    start_day=date.fromisoformat(start_text) if start_text else date.today()
+    if start_day>date.today():raise ValueError("START_DATE cannot be in the future")
     path=Path("feed/nhl_official_player_stats.json")
     prior={}
     if path.exists():
@@ -59,9 +62,10 @@ def main():
             for p in previous.get("players",[]):
                 for g in p.get("games",[]):
                     prior[(p["id"],g["game_id"])]={"id":p["id"],"name":p["name"],"team":p["team"],**g}
-    parsed=0;checked=0;errors=[]
+    parsed=0;checked=0;skipped=0;errors=[]
+    existing_games={gid for _,gid in prior}
     for offset in range(days):
-        day=date.today()-timedelta(days=offset)
+        day=start_day-timedelta(days=offset)
         try:
             schedule=fetch(f"{BASE}/score/{day.isoformat()}")
             games=schedule.get("games") or []
@@ -72,6 +76,9 @@ def main():
             state=game.get("gameState")
             if not gid or state not in ("FINAL","OFF"):continue
             checked+=1
+            if str(gid) in existing_games:
+                skipped+=1
+                continue
             try:
                 box=fetch(f"{BASE}/gamecenter/{gid}/boxscore")
                 rows=parse_boxscore(box,gid,day.isoformat())
@@ -92,11 +99,11 @@ def main():
     if not sog or not any(x>0 for x in sog):
         raise SystemExit(f"NHL SOG sanity check failed: records={len(sog)} nonzero={sum(x>0 for x in sog)} parsed_games={parsed} checked={checked} sample_errors={errors[:3]}; official snapshot not overwritten")
     output={"source":"nhl-official-boxscore","sport":"nhl","fetched_at":datetime.now(timezone.utc).isoformat(),
-            "completed_games_checked":checked,"games_parsed":parsed,"errors":errors[:100],
+            "completed_games_checked":checked,"games_parsed":parsed,"cached_games_skipped":skipped,"batch_start_date":start_day.isoformat(),"lookback_days":days,"errors":errors[:100],
             "sog_observations":len(sog),"sog_nonzero":sum(x>0 for x in sog),
             "quality_exceptions":flags[:100],"quality_exception_count":len(flags),
             "players":sorted(players.values(),key=lambda p:p["name"])}
     path.parent.mkdir(exist_ok=True)
     path.write_text(json.dumps(output,separators=(",",":"))+"\n")
-    print(f"NHL OFFICIAL: players={len(players)}, games={parsed}/{checked}, SOG records={len(sog)}, nonzero={sum(x>0 for x in sog)}, errors={len(errors)}, flagged={len(flags)}")
+    print(f"NHL OFFICIAL: players={len(players)}, games={parsed}/{checked}, cached={skipped}, SOG records={len(sog)}, nonzero={sum(x>0 for x in sog)}, errors={len(errors)}, flagged={len(flags)}")
 if __name__=="__main__":sys.exit(main())
