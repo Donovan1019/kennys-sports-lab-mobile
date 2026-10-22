@@ -71,7 +71,7 @@ def main():
     start_text=os.getenv("START_DATE","").strip()
     start_day=date.fromisoformat(start_text) if start_text else date.today()
     if start_day>date.today():raise ValueError("START_DATE cannot be in the future")
-    if not 1<=days<=(400 if league=="nba" else 31):raise ValueError("Lookback must be 1–400 days for NBA or 1–31 for NHL")
+    if not 1<=days<=400:raise ValueError("Lookback must be 1–400 days for NBA or NHL")
     today=start_day
     path=Path("feed")/f"{league}_player_stats.json"
     prior={}
@@ -106,7 +106,7 @@ def main():
             scanned+=1
             # Resume safely: existing verified game logs are retained between runs.
             # Avoid refetching a game already present in the saved dataset.
-            if league=="nba" and any(key[1]==gid and value.get("season_type") in ("regular","postseason") for key,value in prior.items()):
+            if any(key[1]==gid and (league=="nhl" or value.get("season_type") in ("regular","postseason")) for key,value in prior.items()):
                 skipped_existing+=1
                 continue
             try:
