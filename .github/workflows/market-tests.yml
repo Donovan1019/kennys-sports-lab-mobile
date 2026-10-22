@@ -1,6 +1,12 @@
 name: Market Math Tests
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - 'three_sport_*.js'
+      - 'matchup_market_audit.js'
+      - 'tests/three_sport_research.test.cjs'
+      - '.github/workflows/market-tests.yml'
 permissions:
   contents: read
 jobs:
