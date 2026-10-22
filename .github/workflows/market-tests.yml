@@ -23,6 +23,7 @@ jobs:
         run: python -m unittest discover -s tests -v
       - name: Validate three-sport JavaScript syntax
         run: |
+          node --check three_sport_player_projections.js
           node --check three_sport_bet_readiness.js
           node --check three_sport_probability_research.js
           node --check matchup_market_audit.js
