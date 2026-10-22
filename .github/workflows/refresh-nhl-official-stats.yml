@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       lookback_days:
-        description: "Completed NHL games to check"
+        description: "Calendar days in this NHL history batch"
         type: choice
         required: true
         default: '14'
@@ -11,6 +11,14 @@ on:
           - '7'
           - '14'
           - '31'
+          - '90'
+          - '180'
+          - '365'
+      start_date:
+        description: "Backfill batch end date (YYYY-MM-DD); blank = today"
+        type: string
+        required: false
+        default: ''
 permissions:
   contents: write
 concurrency:
@@ -19,7 +27,7 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -28,6 +36,7 @@ jobs:
       - name: Import and validate NHL official boxscores
         env:
           LOOKBACK_DAYS: ${{ inputs.lookback_days }}
+          START_DATE: ${{ inputs.start_date }}
         run: python scripts/fetch_nhl_official_stats.py
       - name: Publish official NHL snapshot
         run: |
