@@ -1,14 +1,123 @@
 {
   "status": "research_only",
-  "matched_forecasts": 0,
-  "metrics_sample_size": 0,
-  "log_loss": null,
-  "empirical_home_rate_baseline_brier": null,
-  "calibration_bins": [],
+  "matched_forecasts": 10,
+  "metrics_sample_size": 10,
+  "log_loss": 0.568837,
+  "empirical_home_rate_baseline_brier": 0.24,
+  "calibration_bins": [
+    {
+      "range": [
+        0,
+        0.2
+      ],
+      "count": 1,
+      "mean_predicted": 0.175642,
+      "observed_home_win_rate": 0.0
+    },
+    {
+      "range": [
+        0.4,
+        0.6
+      ],
+      "count": 3,
+      "mean_predicted": 0.502564,
+      "observed_home_win_rate": 0.666667
+    },
+    {
+      "range": [
+        0.6,
+        0.8
+      ],
+      "count": 6,
+      "mean_predicted": 0.697071,
+      "observed_home_win_rate": 0.666667
+    }
+  ],
   "calibration_warning": "Small samples and in-sample baseline cannot establish predictive edge",
   "unique_events_in_ledger": 18,
-  "unmatched_events": 18,
-  "mean_brier": null,
+  "unmatched_events": 8,
+  "mean_brier": 0.193944,
   "notes": "One earliest forecast per event; strict exact teams and unique start-time proximity; ambiguous or unverified results excluded",
-  "scored": []
+  "scored": [
+    {
+      "forecast_id": "164cc0396837d5ff433215ffd3279283|2026-10-21T06:22:56.869393+00:00",
+      "provider_event_id": "401909835",
+      "match_method": "exact_teams_unique_start_within_20m",
+      "home_probability": 0.507211,
+      "home_won": 1,
+      "brier": 0.242841
+    },
+    {
+      "forecast_id": "47cc511bb5ce50f715e3625ce5ef77ee|2026-10-21T06:22:56.869393+00:00",
+      "provider_event_id": "401909836",
+      "match_method": "exact_teams_unique_start_within_20m",
+      "home_probability": 0.175642,
+      "home_won": 0,
+      "brier": 0.03085
+    },
+    {
+      "forecast_id": "60431a347feac3f1c7ed925b8b769ec5|2026-10-21T06:22:56.869393+00:00",
+      "provider_event_id": "401909837",
+      "match_method": "exact_teams_unique_start_within_20m",
+      "home_probability": 0.768525,
+      "home_won": 1,
+      "brier": 0.053581
+    },
+    {
+      "forecast_id": "6fff70f4bf196dba25060a5775a03b54|2026-10-21T06:22:56.869393+00:00",
+      "provider_event_id": "401909092",
+      "match_method": "exact_teams_unique_start_within_20m",
+      "home_probability": 0.709762,
+      "home_won": 1,
+      "brier": 0.084238
+    },
+    {
+      "forecast_id": "71e24359951927c356bd8c852fb867dd|2026-10-21T06:22:56.869393+00:00",
+      "provider_event_id": "401909841",
+      "match_method": "exact_teams_unique_start_within_20m",
+      "home_probability": 0.611096,
+      "home_won": 1,
+      "brier": 0.151246
+    },
+    {
+      "forecast_id": "85e6e4e2404ef7268659739997758da1|2026-10-21T06:22:56.869393+00:00",
+      "provider_event_id": "401909834",
+      "match_method": "exact_teams_unique_start_within_20m",
+      "home_probability": 0.47598,
+      "home_won": 0,
+      "brier": 0.226557
+    },
+    {
+      "forecast_id": "93cdd8e4ade5697cfccf42ee42c4d207|2026-10-21T06:22:56.869393+00:00",
+      "provider_event_id": "401909091",
+      "match_method": "exact_teams_unique_start_within_20m",
+      "home_probability": 0.613835,
+      "home_won": 0,
+      "brier": 0.376793
+    },
+    {
+      "forecast_id": "af2f084075391e55ba2a596e7846bb40|2026-10-21T06:22:56.869393+00:00",
+      "provider_event_id": "401909840",
+      "match_method": "exact_teams_unique_start_within_20m",
+      "home_probability": 0.774625,
+      "home_won": 1,
+      "brier": 0.050794
+    },
+    {
+      "forecast_id": "e6769c813dd625b622df94c14a562ce2|2026-10-21T06:22:56.869393+00:00",
+      "provider_event_id": "401909838",
+      "match_method": "exact_teams_unique_start_within_20m",
+      "home_probability": 0.5245,
+      "home_won": 1,
+      "brier": 0.2261
+    },
+    {
+      "forecast_id": "fd33c09c84ab4c2fe6955d59f8dc5dd2|2026-10-21T06:22:56.869393+00:00",
+      "provider_event_id": "401909839",
+      "match_method": "exact_teams_unique_start_within_20m",
+      "home_probability": 0.704586,
+      "home_won": 0,
+      "brier": 0.496441
+    }
+  ]
 }
