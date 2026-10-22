@@ -24,9 +24,6 @@ return {awayMean:as/10000,homeMean:hs/10000,awayWin:aw/10000,homeWin:hw/10000,ti
 function attach(){
 const list=document.getElementById('ksl-context-games');if(!list)return;
 for(const item of list.querySelectorAll('details')){
-if(item.dataset.simReady)return;
-}
-for(const item of list.querySelectorAll('details')){
 if(item.dataset.simReady)continue;item.dataset.simReady='1';
 const summary=item.querySelector('summary');const event=summary?.textContent?.split(' · ')[0];
 const games=window.__kslMatchupGames||[];const game=games.find(g=>g.event===event);if(!game)continue;
