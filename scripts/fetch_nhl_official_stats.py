@@ -52,7 +52,16 @@ def main():
     days=int(os.environ.get("LOOKBACK_DAYS","14"))
     if not 1<=days<=400:raise ValueError("Lookback must be 1-400")
     start_text=os.environ.get("START_DATE","").strip()
-    start_day=date.fromisoformat(start_text) if start_text else date.today()
+    if start_text:
+        try:
+            start_day=date.fromisoformat(start_text)
+        except ValueError:
+            try:
+                start_day=datetime.strptime(start_text,"%B %d, %Y").date()
+            except ValueError as exc:
+                raise ValueError("START_DATE must be YYYY-MM-DD (e.g. 2026-10-06) or Month D, YYYY") from exc
+    else:
+        start_day=date.today()
     if start_day>date.today():raise ValueError("START_DATE cannot be in the future")
     path=Path("feed/nhl_official_player_stats.json")
     prior={}
