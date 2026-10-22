@@ -9,6 +9,8 @@ from urllib.error import HTTPError
 MARKETS={
  'nba':('basketball_nba',('player_points','player_rebounds','player_assists','player_threes','player_blocks','player_steals','player_points_rebounds_assists')),
  'nhl':('icehockey_nhl',('player_points','player_goals','player_assists','player_shots_on_goal')),
+ # Goalie saves remains supported in the projection UI. The Odds API rejects
+ # player_saves (HTTP 422); never add that invalid key to a batch request.
 }
 BOOKS=('draftkings','fanduel')
 def get(url):
