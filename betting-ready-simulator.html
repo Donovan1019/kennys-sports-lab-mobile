@@ -8,7 +8,7 @@ const id=++requestId,chosen=sport.value;status.textContent='Loading '+chosen+' m
 try{
 const response=await fetch('./feed/'+files[chosen],{cache:'no-store'});if(!response.ok)throw Error('HTTP '+response.status);
 const data=await response.json();if(id!==requestId)return;
-const all=Array.isArray(data.games)?data.games:[],future=all.filter(g=>g&&Number.isFinite(Date.parse(g.commence_time))&&Date.parse(g.commence_time)>Date.now()).sort((a,b)=>Date.parse(a.commence_time)-Date.parse(b.commence_time));
+const all=Array.isArray(data.games)?data.games:[];window.__kslMatchupGames=all;const future=all.filter(g=>g&&Number.isFinite(Date.parse(g.commence_time))&&Date.parse(g.commence_time)>Date.now()).sort((a,b)=>Date.parse(a.commence_time)-Date.parse(b.commence_time));
 status.textContent=chosen+': '+all.length+' saved matchup records; '+future.length+' upcoming. Historical team scoring only; injuries, lineups and player usage UNVERIFIED.';
 if(!future.length){list.textContent='No upcoming games in this saved feed. Data refresh needed. Historical or expired schedule entries are not live matchups.';return}
 for(const game of future.slice(0,12)){
@@ -21,4 +21,4 @@ list.append(item)
 }
 sport.addEventListener('change',render);render();
 })();
-</script><script src="./betting_ready_player_distribution.js?v=665b5cfa"></script></body></html>
+</script><script src="./matchup_research_simulator.js?v=8a1dac97"></script><script src="./betting_ready_player_distribution.js?v=665b5cfa"></script></body></html>
