@@ -20,5 +20,6 @@ jobs:
           node --check three_sport_bet_readiness.js
           node --check three_sport_probability_research.js
           node --check matchup_market_audit.js
+          node --check three_sport_market_health.js
       - name: Run three-sport research regression tests
         run: node tests/three_sport_research.test.cjs
