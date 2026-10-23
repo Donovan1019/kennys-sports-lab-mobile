@@ -2,6 +2,8 @@ name: Test UFC research tab
 on:
   pull_request:
     paths:
+      - 'scripts/ufc_event_ingest.py'
+      - 'tests/test_ufc_event_ingest.py'
       - 'ufc.html'
       - 'ufc_lab.js'
       - 'ufc_lab.css'
@@ -22,6 +24,6 @@ jobs:
         with:
           python-version: '3.11'
       - name: Verify UFC tab integration
-        run: python -m unittest discover -s tests -p 'test_ufc_tab.py' -v
+        run: python -m unittest discover -s tests -p 'test_ufc*.py' -v
       - name: Check browser JavaScript syntax
         run: node --check ufc_lab.js
