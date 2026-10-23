@@ -8,6 +8,10 @@ class Tests(unittest.TestCase):
  def test_directory(self):
   h='<a href="http://ufcstats.com/fighter-details/0123456789abcdef">José Aldo</a>'
   self.assertEqual(len(parse_directory(h)["jose aldo"]),1)
+ def test_split_first_last_name(self):
+  url='http://ufcstats.com/fighter-details/0123456789abcdef'
+  html='<a href="'+url+'">Alexander</a><a href="'+url+'">Volkanovski</a>'
+  self.assertEqual(parse_directory(html)['alexander volkanovski'],{url})
  def test_fighter(self):
   h='<li>SLpM: 4.21</li><li>SApM: 3.12</li><li>Str. Acc.: 49%</li><li>Str. Def.: 55%</li><li>TD Avg.: 1.20</li><li>TD Acc.: 40%</li><li>TD Def.: 70%</li><li>Sub. Avg.: 0.40</li>'
   p=parse_fighter(h)
