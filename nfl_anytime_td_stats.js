@@ -19,7 +19,7 @@ const metric=(values,label)=>{
  return rush+rec+(ret===null?0:ret);
 };
 function mount(){
- const host=document.getElementById('ksl-real-stats')||document.getElementById('ksl-nfl');
+ const host=document.getElementById('ksl-stat-root')||document.getElementById('ksl-real-stats')||document.getElementById('ksl-nfl');
  if(!host||document.getElementById('ksl-anytime-research'))return;
  const section=document.createElement('section');section.id='ksl-anytime-research';
  section.style.cssText='margin:16px 0;padding:15px;border:1px solid #427a70;border-radius:12px;background:#0c2431;color:#e9f5ff';
