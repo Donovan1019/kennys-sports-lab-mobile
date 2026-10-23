@@ -1,0 +1,35 @@
+name: UFC Historical Import Validation
+on:
+  push:
+    branches:
+      - feature/ufc-tidytuesday-csv-import-20261023
+  pull_request:
+    paths:
+      - 'scripts/ufc_tidytuesday_import.py'
+      - 'tests/test_ufc_tidytuesday_import.py'
+      - '.github/workflows/ufc-historical-import-validation.yml'
+  workflow_dispatch:
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Unit tests
+        run: python -m unittest discover -s tests -p test_ufc_tidytuesday_import.py -v
+      - name: Download and validate historical source CSVs
+        run: |
+          python scripts/ufc_tidytuesday_import.py --output /tmp/ufc_tidytuesday_research.json
+          python - <<'PY'
+          import json
+          p=json.load(open('/tmp/ufc_tidytuesday_research.json'))
+          print('Historical fight rows:',len(p['fight_history']['rows']))
+          print('Modeling rows:',len(p['modeling']['rows']))
+          print('Rejected historical:',p['fight_history']['rejected_count'])
+          print('Rejected modeling:',p['modeling']['rejected_count'])
+          assert len(p['fight_history']['rows'])>100
+          assert len(p['modeling']['rows'])>100
+          assert p['bet_eligible'] is False
+          PY
