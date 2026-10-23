@@ -51,7 +51,7 @@ def parse_fighter(html):
  text=" ".join(" ".join(p.text).split())
  result={}
  for label,field in FIELDS.items():
-  match=re.search(re.escape(label)+r"\s*([0-9]+(?:\.[0-9]+)?%?)",text,re.I)
+  match=re.search(re.escape(label)+r"\s*:?\s*([0-9]+(?:\.[0-9]+)?%?)",text,re.I)
   if match:
    v=match.group(1);result[field]=float(v[:-1])/100 if v.endswith("%") else float(v)
  return result
