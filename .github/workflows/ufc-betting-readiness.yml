@@ -1,0 +1,41 @@
+name: UFC Betting Readiness Research
+on:
+  push:
+    branches:
+      - feature/ufc-betting-readiness-audit-20261023
+  pull_request:
+    paths:
+      - 'scripts/ufc_betting_readiness_audit.py'
+      - 'tests/test_ufc_betting_readiness_audit.py'
+      - '.github/workflows/ufc-betting-readiness.yml'
+  workflow_dispatch:
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test readiness gates
+        run: python -m unittest discover -s tests -p test_ufc_betting_readiness_audit.py -v
+      - name: Matched-fight audit
+        run: |
+          python scripts/ufc_tidytuesday_import.py --output /tmp/ufc_history.json
+          python scripts/ufc_betting_readiness_audit.py --input /tmp/ufc_history.json --output /tmp/ufc_matched_audit.json
+          python - <<'PY'
+          import json
+          r=json.load(open('/tmp/ufc_matched_audit.json'))
+          assert r['matched_fights']>=100
+          assert r['bet_eligible'] is False
+          print('Matched holdout:',r['matched_fights'])
+          print('Brier K24:',r['original_k24']['brier'])
+          print('Brier K48:',r['tuned_k48']['brier'])
+          print('Brier gain:',r['brier_gain'])
+          print('Log loss gain:',r['log_loss_gain'])
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ufc-matched-betting-readiness-audit
+          path: /tmp/ufc_matched_audit.json
+          retention-days: 14
