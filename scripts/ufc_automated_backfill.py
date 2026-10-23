@@ -25,7 +25,7 @@ def select_days(existing,today):
         day+=dt.timedelta(days=1)
     return sorted(set(missing+recent)) if missing else sorted(set(recent))
 
-def run(existing,today,fetcher):
+def run(existing,today,fetcher,checkpoint=None):
     days=select_days(existing,today)
     current=existing
     for day in days:
@@ -34,14 +34,17 @@ def run(existing,today,fetcher):
             current=dict(current)
             current["successful_days"]=[x for x in current.get("successful_days",[]) if x!=day.isoformat()]
         current=backfill(day,day,current,fetcher=fetcher)
+        if checkpoint is not None:
+            checkpoint(current)
     return current
 
 def main():
     prior=json.loads(PATH.read_text()) if PATH.exists() else {}
-    result=run(prior,dt.datetime.now(dt.timezone.utc).date(),__import__("scripts.ufc_historical_source",fromlist=["fetch_day"]).fetch_day)
-    PATH.parent.mkdir(parents=True,exist_ok=True)
-    temp=PATH.with_suffix(".tmp")
-    temp.write_text(json.dumps(result,indent=2)+"\n")
-    temp.replace(PATH)
+    def checkpoint(result):
+        PATH.parent.mkdir(parents=True,exist_ok=True)
+        temp=PATH.with_suffix(".tmp")
+        temp.write_text(json.dumps(result,indent=2)+"\n")
+        temp.replace(PATH)
+    result=run(prior,dt.datetime.now(dt.timezone.utc).date(),__import__("scripts.ufc_historical_source",fromlist=["fetch_day"]).fetch_day,checkpoint=checkpoint)
     print("Verified fights:",result["verified_fights"],"successful days:",len(result["successful_days"]))
 if __name__=="__main__":main()

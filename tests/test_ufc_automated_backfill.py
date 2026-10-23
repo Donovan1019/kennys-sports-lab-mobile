@@ -15,6 +15,12 @@ class UFCAutomatedBackfillTests(unittest.TestCase):
         days=select_days(completed,TODAY)
         self.assertIn(dt.date(2024,1,3),days)
         self.assertNotIn(dt.date(2024,1,1),days)
+    def test_checkpoint_persists_each_day(self):
+        snapshots=[]
+        result=run({},TODAY,fetch,checkpoint=lambda state:snapshots.append(len(state['successful_days'])))
+        self.assertEqual(len(snapshots),97)
+        self.assertEqual(snapshots[-1],len(result['successful_days']))
+        self.assertEqual(snapshots,sorted(snapshots))
     def test_repeat_does_not_duplicate_checkpoint(self):
         result=run({},TODAY,fetch)
         repeated=run(result,TODAY,fetch)
