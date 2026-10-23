@@ -1,0 +1,28 @@
+name: UFC Mobile Projection Layout
+on:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify JavaScript
+        run: node --check ufc_fighter_projections.js
+      - name: Verify responsive mobile cards and accessible labels
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          h=Path('ufc.html').read_text()
+          j=Path('ufc_fighter_projections.js').read_text()
+          assert '@media(max-width:680px)' in h
+          assert '#ksl-ufc-projection tbody tr{display:grid' in h
+          assert 'content:attr(data-label)' in h
+          assert 'min-width:0;width:100%;display:block' in h
+          assert "td.setAttribute('data-label',labels[i])" in j
+          assert 'ufc_fighter_projections.js?v=3' in h
+          assert h.index('id="ksl-ufc-projection"')<h.index('id="ksl-shared-odds"')
+          PY
