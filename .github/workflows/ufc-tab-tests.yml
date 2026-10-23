@@ -2,6 +2,8 @@ name: Test UFC research tab
 on:
   pull_request:
     paths:
+      - 'scripts/ufc_camp_ablation.py'
+      - 'tests/test_ufc_camp_ablation.py'
       - 'scripts/ufc_camp_features.py'
       - 'tests/test_ufc_camp_features.py'
       - 'scripts/ufc_reliability.py'
