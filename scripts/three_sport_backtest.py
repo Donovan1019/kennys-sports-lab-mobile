@@ -73,8 +73,7 @@ def capture(now):
             previous=read(dest,{})
             report[sport]={'status':'immutable_existing','eligible_quotes':len(previous.get('quotes',[])),'rejected_quotes':len(previous.get('rejected_quotes',[]))}
         else:
-            dest.write_text(json.dumps(payload,indent=2,ensure_ascii=False)+'
-')
+            dest.write_text(json.dumps(payload,indent=2,ensure_ascii=False)+'\n')
             report[sport]={'status':'captured','eligible_quotes':len(good),'rejected_quotes':len(invalid)}
     return report
 
@@ -114,8 +113,7 @@ def main():
         result=grade(day)
         output=ROOT/'backtests'/'reports'/f'{day}.json'
         output.parent.mkdir(parents=True,exist_ok=True)
-        output.write_text(json.dumps(result,indent=2)+'
-')
+        output.write_text(json.dumps(result,indent=2)+'\n')
     print(json.dumps(result,indent=2))
 
 if __name__=='__main__':main()
