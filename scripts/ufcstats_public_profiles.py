@@ -84,6 +84,8 @@ def probe(card,fetch=get,robots=None,delay=1.5,max_fighters=32):
   directory=parse_directory(html)
   print("UFCStats directory diagnostic: html_bytes=",len(html),"parsed_keys=",len(directory),"fighter_details_links=",html.count("fighter-details/"))
  except Exception as e:return {"sport":"UFC","status":"DIRECTORY_UNAVAILABLE","error_type":type(e).__name__,"fighters":[],"bet_eligible":False}
+ if not directory:
+  return {"schema":1,"sport":"UFC","status":"DIRECTORY_NO_FIGHTER_LINKS","fighters":[],"bet_eligible":False,"limitations":["Public endpoint did not return usable fighter directory links; site access may be restricted"]}
  out=[]
  for name in names:
   matches=directory.get(key(name),set())
