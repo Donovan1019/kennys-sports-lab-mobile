@@ -1,0 +1,62 @@
+name: UFC historical backfill (manual)
+on:
+  workflow_dispatch:
+    inputs:
+      start_date:
+        description: 'UTC start YYYY-MM-DD (inclusive)'
+        required: true
+        default: '2026-01-01'
+        type: string
+      end_date:
+        description: 'UTC end YYYY-MM-DD (inclusive, before today)'
+        required: true
+        default: '2026-01-31'
+        type: string
+permissions:
+  contents: read
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate input date strings and maximum 31-day window
+        env:
+          START: ${{ inputs.start_date }}
+          END: ${{ inputs.end_date }}
+        run: |
+          python - <<'PY'
+          import datetime as dt
+          import os
+          s=dt.date.fromisoformat(os.environ['START'])
+          e=dt.date.fromisoformat(os.environ['END'])
+          if not s<=e<dt.datetime.now(dt.timezone.utc).date() or (e-s).days>30:
+              raise SystemExit("Expected past UTC dates within a maximum 31-day inclusive range")
+          print(f"Backfill {s} through {e}")
+          PY
+      - name: Download verified winner-only history
+        env:
+          START: ${{ inputs.start_date }}
+          END: ${{ inputs.end_date }}
+        run: |
+          python scripts/ufc_historical_backfill.py --start "$START" --end "$END" --output feed/ufc_historical_backfill.json
+      - name: Audit completeness and compute Elo/holdout
+        run: |
+          python scripts/ufc_winner_history.py --input feed/ufc_historical_backfill.json --output feed/ufc_winner_history.json
+          python scripts/ufc_elo_baseline.py --input feed/ufc_historical_backfill.json --output backtests/reports/ufc_elo_baseline.json
+          python scripts/ufc_holdout_readiness.py --input feed/ufc_historical_backfill.json --output backtests/reports/ufc_holdout_readiness.json
+      - name: Upload research data and audit as artifact (not production betting feed)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ufc-historical-research-${{ github.run_id }}
+          path: |
+            feed/ufc_historical_backfill.json
+            feed/ufc_winner_history.json
+            backtests/reports/ufc_elo_baseline.json
+            backtests/reports/ufc_holdout_readiness.json
+          if-no-files-found: warn
+          retention-days: 30
