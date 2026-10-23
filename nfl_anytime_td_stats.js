@@ -15,6 +15,7 @@ const metric=(values,label)=>{
  const rush=find('Rushing touchdowns'),rec=find('Receiving touchdowns'),ret=find('Return touchdowns');
  // Return TDs count when explicitly recorded; missing return data is not assumed zero.
  if(rush===null||rec===null)return null;
+ // Return TD coverage is not guaranteed by the weekly stats feed: expose the lower-bound, not an exact anytime scorer total.
  return rush+rec+(ret===null?0:ret);
 };
 function mount(){
@@ -22,7 +23,7 @@ function mount(){
  if(!host||document.getElementById('ksl-anytime-research'))return;
  const section=document.createElement('section');section.id='ksl-anytime-research';
  section.style.cssText='margin:16px 0;padding:15px;border:1px solid #427a70;border-radius:12px;background:#0c2431;color:#e9f5ff';
- section.innerHTML='<h3>🏈 NFL · Anytime TD & Touchdown Statistics</h3><p>Verified game-log hit rates, not projected probabilities. Passing TDs do not count toward anytime scorer. Return TDs are included only when explicitly recorded. Missing data is UNAVAILABLE, never zero.</p><label>Market <select id="ksl-atd-market"></select></label> <label>Recent games <select id="ksl-atd-window"><option>5</option><option selected>10</option><option>20</option></select></label> <label>Player <input id="ksl-atd-search" placeholder="Search player"></label><button id="ksl-atd-reload" type="button">Refresh verified stats</button><p id="ksl-atd-status" role="status">Loading…</p><div style="overflow-x:auto"><table style="width:100%;min-width:530px"><thead><tr><th>Player</th><th>Team</th><th>Games</th><th>TD games</th><th>Hit rate</th><th>Recent TDs</th></tr></thead><tbody id="ksl-atd-rows"></tbody></table></div>';
+ section.innerHTML='<h3>🏈 NFL · Anytime TD & Touchdown Statistics</h3><p>Verified game-log hit rates, not projected probabilities. Passing TDs do not count toward anytime scorer. Return TDs are included only when explicitly recorded. Missing data is UNAVAILABLE, never zero. Anytime TD combines recorded rushing and receiving touchdowns; return TDs may be absent. When return TD data is absent, anytime TD counts reflect rushing + receiving only and may undercount sportsbook-settled scorers.</p><label>Market <select id="ksl-atd-market"></select></label> <label>Recent games <select id="ksl-atd-window"><option>5</option><option selected>10</option><option>20</option></select></label> <label>Player <input id="ksl-atd-search" placeholder="Search player"></label><button id="ksl-atd-reload" type="button">Refresh verified stats</button><p id="ksl-atd-status" role="status">Loading…</p><div style="overflow-x:auto"><table style="width:100%;min-width:530px"><thead><tr><th>Player</th><th>Team</th><th>Games</th><th>TD games</th><th>Hit rate</th><th>Recent TDs</th></tr></thead><tbody id="ksl-atd-rows"></tbody></table></div>';
  host.prepend(section);
  const $=id=>document.getElementById(id),market=$('ksl-atd-market');
  for(const name of markets){const o=document.createElement('option');o.textContent=name;market.append(o)}
@@ -30,8 +31,8 @@ function mount(){
  let data=null;
  const render=()=>{const body=$('ksl-atd-rows');body.replaceChildren();if(!data)return;const name=$('ksl-atd-search').value.toLowerCase(),n=Number($('ksl-atd-window').value),label=market.value;let rows=0;
  for(const p of data.players){if(name&&!String(p.name||'').toLowerCase().includes(name))continue;
- const games=(p.games||[]).slice().sort((a,b)=>(Number(b.season)||0)-(Number(a.season)||0)||(Number(b.week)||0)-(Number(a.week)||0)).slice(0,n);
- const vals=games.map(g=>metric(g.values,label)).filter(v=>v!==null);
+ const games=(p.games||[]).slice().sort((a,b)=>(Number(b.season)||0)-(Number(a.season)||0)||(Number(b.week)||0)-(Number(a.week)||0));
+ const vals=games.map(g=>metric(g.values,label)).filter(v=>v!==null).slice(0,n);
  if(!vals.length)continue;const hits=vals.filter(v=>v>=1).length;const tr=make('tr','');
  for(const v of [p.name||'Unknown',p.team||'—',vals.length,hits,(100*hits/vals.length).toFixed(1)+'%',vals.join(', ')]){const td=make('td',v);td.style.cssText='padding:8px;border-bottom:1px solid #34536a';tr.append(td)}
  body.append(tr);rows++}
