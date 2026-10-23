@@ -2,6 +2,8 @@ name: Test UFC research tab
 on:
   pull_request:
     paths:
+      - 'scripts/ufc_fighter_history.py'
+      - 'tests/test_ufc_fighter_history.py'
       - 'scripts/ufc_monte_carlo.py'
       - 'tests/test_ufc_monte_carlo.py'
       - 'scripts/ufc_event_ingest.py'
