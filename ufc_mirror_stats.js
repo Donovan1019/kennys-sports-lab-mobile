@@ -1,0 +1,13 @@
+(()=>{'use strict';
+const root=document.getElementById('ufc-mirror-stats');if(!root)return;
+const el=(tag,txt)=>{const x=document.createElement(tag);if(txt!==undefined)x.textContent=txt;return x};
+root.append(el('h2','🥊 Upcoming UFC Fighter Statistics'));
+root.append(el('p','Career totals from a public UFCStats CSV mirror. Historical descriptive research only; no future-safe projection or betting signal.'));
+const status=el('p','Loading saved fighter stats…');status.setAttribute('role','status');root.append(status);
+const search=el('input');search.placeholder='Search card fighter';search.setAttribute('aria-label','Search card fighter');search.style.cssText='width:100%;max-width:350px;background:#10283a;color:white;padding:12px;border-radius:8px;border:1px solid #42677b';root.append(search);
+const wrap=el('div');wrap.style.overflowX='auto';const table=el('table');table.style.cssText='min-width:900px;width:100%;border-collapse:collapse';const head=el('tr');for(const v of ['Fighter','Match status','Recorded rounds','SIG landed / attempted','TD landed / attempted','Knockdowns','Submission attempts','Control time','Height / reach']){const th=el('th',v);th.style.padding='10px';head.append(th)}table.append(head);const tbody=el('tbody');table.append(tbody);wrap.append(table);root.append(wrap);
+let fighters=[];
+function render(){tbody.replaceChildren();for(const f of fighters.filter(x=>x.name.toLowerCase().includes(search.value.trim().toLowerCase()))){const t=f.career_round_totals||{};const row=el('tr');for(const v of [f.name,f.status,t.round_rows??'—',t.sig_landed===undefined?'—':t.sig_landed+' / '+t.sig_attempted,t.td_landed===undefined?'—':t.td_landed+' / '+t.td_attempted,t.knockdowns??'—',t.submission_attempts??'—',t.control_seconds===undefined?'—':Math.round(t.control_seconds/60)+' min',[f.height,f.reach].filter(Boolean).join(' / ')||'—']){const td=el('td',String(v));td.style.cssText='padding:10px;border-bottom:1px solid #345';row.append(td)}tbody.append(row)}}
+search.addEventListener('input',render);
+fetch('./feed/ufc_fighter_stats_mirror.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Source snapshot unavailable');return r.json()}).then(d=>{if(d.sport!=='UFC'||d.bet_eligible!==false||d.research_only!==true||!Array.isArray(d.fighters))throw Error('Source integrity mismatch');fighters=d.fighters;status.textContent=fighters.filter(x=>x.status==='MATCHED_HISTORICAL_STATS').length+' / '+fighters.length+' matched historical profiles · snapshot '+new Date(d.retrieved_at).toLocaleString('en-US',{timeZone:'America/New_York'})+' ET · not bet eligible';render()}).catch(e=>{status.textContent='UNAVAILABLE — '+e.message});
+})();
