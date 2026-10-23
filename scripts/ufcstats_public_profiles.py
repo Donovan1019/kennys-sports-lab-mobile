@@ -79,7 +79,10 @@ def probe(card,fetch=get,robots=None,delay=1.5,max_fighters=32):
   except Exception:return {"sport":"UFC","status":"ROBOTS_UNAVAILABLE","fighters":[],"bet_eligible":False}
  if not permitted(DIRECTORY,robots):
   return {"sport":"UFC","status":"ROBOTS_DISALLOW","fighters":[],"bet_eligible":False}
- try:directory=parse_directory(fetch(DIRECTORY))
+ try:
+  html=fetch(DIRECTORY)
+  directory=parse_directory(html)
+  print("UFCStats directory diagnostic: html_bytes=",len(html),"parsed_keys=",len(directory),"fighter_details_links=",html.count("fighter-details/"))
  except Exception as e:return {"sport":"UFC","status":"DIRECTORY_UNAVAILABLE","error_type":type(e).__name__,"fighters":[],"bet_eligible":False}
  out=[]
  for name in names:
