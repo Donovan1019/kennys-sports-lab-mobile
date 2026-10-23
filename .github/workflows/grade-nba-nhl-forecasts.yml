@@ -21,7 +21,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Validate outcome matching and refresh adapters
-        run: python -m compileall -q scripts tests && python -m unittest tests.test_forecast_ledger tests.test_refresh_recent_results tests.test_nfl_pregame_research tests.test_advanced_forecast_evaluation tests.test_correlated_score_simulation tests.test_score_correlation_research tests.test_correlation_walkforward tests.test_model_validation tests.test_three_sport_champion tests.test_three_sport_quote_provenance tests.test_three_sport_lifecycle tests.test_three_sport_player_input_integrity tests.test_nfl_prop_event_match_gates
+        run: python -m compileall -q scripts tests && python -m unittest tests.test_forecast_ledger tests.test_refresh_recent_results tests.test_nfl_pregame_research tests.test_advanced_forecast_evaluation tests.test_correlated_score_simulation tests.test_score_correlation_research tests.test_correlation_walkforward tests.test_model_validation tests.test_three_sport_champion tests.test_three_sport_quote_provenance tests.test_three_sport_lifecycle tests.test_three_sport_player_input_integrity tests.test_nfl_prop_event_match_gates tests.test_nfl_roster_crosscheck
       - name: Apply archived market quality screens
         run: |
           python -m scripts.market_quality_screen
@@ -32,6 +32,10 @@ jobs:
         run: |
           # Public historical statistics only; preserve the prior snapshot on failure.
           python -m scripts.fetch_nfl_stats || echo "NFL player history unavailable; existing snapshot preserved"
+      - name: Cross-check NFL archived props against free ESPN team rosters
+        run: |
+          # Independent roster research; no paid API or bet-eligible claims.
+          python -m scripts.nfl_roster_crosscheck
       - name: Refresh NHL official player histories
         run: |
           # Official NHL game logs, including shots on goal; no betting lines.
@@ -73,6 +77,7 @@ jobs:
           git add feed/nba_completed_games.json feed/nhl_completed_games.json
           if [ -s feed/nba_player_stats.json ]; then git add feed/nba_player_stats.json; fi
           if [ -s feed/nfl_player_stats.json ]; then git add feed/nfl_player_stats.json; fi
+          if [ -s feed/nfl_roster_crosscheck.json ]; then git add feed/nfl_roster_crosscheck.json; fi
           if [ -s feed/nhl_official_player_stats.json ]; then git add feed/nhl_official_player_stats.json; fi
           for sport in basketball_nba icehockey_nhl americanfootball_nfl; do
             for suffix in market_screen line_movement pregame_research; do
