@@ -1,0 +1,32 @@
+name: UFC Mobile Free Odds UI
+on:
+  push:
+    branches:
+      - feature/ufc-mobile-free-odds-20261023
+  pull_request:
+    paths:
+      - 'ufc.html'
+      - 'ufc_free_odds_ui.js'
+      - '.github/workflows/ufc-mobile-free-odds.yml'
+  workflow_dispatch:
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify UI integration and existing odds importer
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          html=Path('ufc.html').read_text()
+          js=Path('ufc_free_odds_ui.js').read_text()
+          assert 'ufc_free_odds_ui.js' in html
+          assert 'ufc-free-form' in html
+          assert 'ufc-free-comparison' in html
+          assert 'localStorage' in js
+          assert 'model probability' in js.lower()
+          PY
+          python -m unittest discover -s tests -p test_ufc_free_odds_entry.py -v
