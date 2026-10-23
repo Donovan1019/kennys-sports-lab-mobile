@@ -95,14 +95,14 @@ def settle_moneyline(prediction,games):
     event=prediction.get('event')
     selection=normalize_team(prediction.get('selection'))
     if not event or not selection:return None
-    parts=re.split(r'\\s+(?:@|at|vs\\.?|versus)\\s+',event,flags=re.I)
+    parts=re.split(r'\s+(?:@|at|vs\.?|versus)\s+',event,flags=re.I)
     if len(parts)!=2:return None
     expected={normalize_team(x) for x in parts}
     start=stamp(prediction.get('commence_time'))
     matches=[g for g in games if g.get('completed') and
              {normalize_team(g.get('home')),normalize_team(g.get('away'))}==expected and
-             start and stamp(g.get('commence_time')) and
-             abs((stamp(g.get('commence_time'))-start).total_seconds())<=86400]
+             (not start or not stamp(g.get('commence_time')) or
+              abs((stamp(g.get('commence_time'))-start).total_seconds())<=86400)]
     if len(matches)!=1:return None
     g=matches[0]
     home=normalize_team(g.get('home'));away=normalize_team(g.get('away'))
