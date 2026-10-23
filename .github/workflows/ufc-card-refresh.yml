@@ -29,11 +29,13 @@ jobs:
           python scripts/ufc_winner_history.py --input feed/ufc_historical_backfill.json --output feed/ufc_winner_history.json
           python -m scripts.ufc_elo_baseline --input feed/ufc_historical_backfill.json --output backtests/reports/ufc_elo_baseline.json
           python -m scripts.ufc_holdout_readiness --input feed/ufc_historical_backfill.json --output backtests/reports/ufc_holdout_readiness.json
+      - name: Audit real historical data readiness
+        run: python -m scripts.ufc_data_health
       - name: Commit changed UFC research outputs
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add feed/ufc_research.json feed/ufc_simulations.json feed/ufc_historical_backfill.json feed/ufc_winner_history.json backtests/reports/ufc_elo_baseline.json backtests/reports/ufc_holdout_readiness.json
+          git add feed/ufc_research.json feed/ufc_simulations.json feed/ufc_historical_backfill.json feed/ufc_winner_history.json backtests/reports/ufc_elo_baseline.json backtests/reports/ufc_holdout_readiness.json backtests/reports/ufc_data_health.json
           if ! git diff --cached --quiet; then
             git commit -m "Refresh UFC research data [skip ci]"
             git push

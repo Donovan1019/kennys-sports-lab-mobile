@@ -4,6 +4,8 @@ on:
     paths:
       - '.github/workflows/ufc-card-refresh.yml'
       - 'tests/test_ufc_production_workflow.py'
+      - 'scripts/ufc_data_health.py'
+      - 'tests/test_ufc_data_health.py'
       - 'scripts/ufc_automated_backfill.py'
       - 'tests/test_ufc_automated_backfill.py'
       - 'scripts/ufc_historical_backfill.py'
