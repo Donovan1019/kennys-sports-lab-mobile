@@ -41,10 +41,14 @@ def key(s):
  return " ".join("".join(c for c in unicodedata.normalize("NFKD",s.casefold()) if not unicodedata.combining(c)).split())
 def parse_directory(html):
  p=Page();p.feed(html)
- fighters={}
+ fighters={};grouped={}
  for href,name in p.links:
   if re.fullmatch(r"https?://ufcstats\.com/fighter-details/[0-9a-f]{16}",href or "") and name.strip():
-   fighters.setdefault(key(name),set()).add(href)
+   grouped.setdefault(href,[]).append(name.strip())
+ for href,parts in grouped.items():
+  # UFCStats commonly uses separate first-name and last-name links to one profile.
+  for candidate in set(parts+[" ".join(parts[:2])]):
+   fighters.setdefault(key(candidate),set()).add(href)
  return fighters
 def parse_fighter(html):
  p=Page();p.feed(html)
