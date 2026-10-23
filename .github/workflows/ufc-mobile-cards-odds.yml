@@ -1,0 +1,31 @@
+name: UFC Mobile Cards and Odds Snapshot
+on:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify UFC projections JavaScript
+        run: node --check ufc_fighter_projections.js
+      - name: Validate readable mobile cards and historical odds labels
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          h=Path('ufc.html').read_text()
+          j=Path('ufc_fighter_projections.js').read_text()
+          assert '.ksl-ufc-table-wrap{display:none!important}' in h
+          assert '.ksl-ufc-projection-cards{display:grid!important' in h
+          assert 'ufc_fighter_projections.js?v=4' in h
+          assert 'cards.append(card)' in j
+          assert 'Last odds capture:' in j
+          assert 'confirm current odds' in j
+          assert 'Date.parse(q.commence_time)>Date.now()' in j
+          odds=json.loads(Path('feed/mma_mixed_martial_arts.json').read_text())
+          assert odds['sport']=='mma_mixed_martial_arts'
+          PY
