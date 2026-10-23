@@ -2,22 +2,222 @@
   "schema": 1,
   "sport": "UFC",
   "model_version": "ufc-elo-baseline-v1",
-  "historical_bouts_used": 13,
+  "historical_bouts_used": 91,
   "pre_update_evaluated_fights": 0,
   "brier": null,
   "log_loss": null,
   "minimum_prior_bouts_per_fighter": 5,
   "ratings": {
-    "Chad Anheliger": {
+    "AJ Cunningham": {
       "elo": 1488.0,
       "historical_bouts": 1
     },
-    "Chelsea Chandler": {
+    "Abdul-Kareem Al-Selwady": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Aiemann Zahabi": {
       "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Alex Morono": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Alex Perez": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Alexander Hernandez": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Andre Lima": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Andre Petroski": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Andrea Lee": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Angel Pacheco": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Anton Turkalj": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Asu Almabayev": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Azat Maksum": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Bekzat Almakhan": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Bernardo Sopaj": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Blake Bilder": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Bogdan Guskov": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Bolaji Oki": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Brendan Allen": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Bruna Brasil": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Bryan Barberena": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "CJ Vergara": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Caol\u00e1n Loughran": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Carlos Prates": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Cesar Almeida": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Chad Anheliger": {
+      "elo": 1499.59,
+      "historical_bouts": 2
+    },
+    "Charalampos Grigoriou": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Charles Johnson": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Charlie Campbell": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Chelsea Chandler": {
+      "elo": 1523.59,
+      "historical_bouts": 2
+    },
+    "Chepe Mariscal": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Chris Curtis": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Christian Leroy Duncan": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Christian Rodriguez": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Christos Giagos": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Claudio Ribeiro": {
+      "elo": 1488.0,
       "historical_bouts": 1
     },
     "Cody Chovancek": {
       "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Cody Garbrandt": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Cody Gibson": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Connor Matthews": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Cory McKenna": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Court McGee": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Damon Jackson": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Dan Argueta": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Danny Barlow": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Danny Silva": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Daria Zhelezniakova": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Deiveson Figueiredo": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Dennis Buzukja": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Devin Clark": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Diana Belbita": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Dylan Budka": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Eryk Anders": {
+      "elo": 1512.0,
       "historical_bouts": 1
     },
     "Farid Basharat": {
@@ -28,15 +228,115 @@
       "elo": 1488.0,
       "historical_bouts": 1
     },
+    "Fernie Garcia": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
     "Gaston Bola\u00f1os": {
       "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Gerald Meerschaert": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Germaine de Randamie": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Herbert Burns": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Hyder Amil": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Ibo Aslan": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Ignacio Bahamondes": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Igor Severino": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Ion Cutelaba": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Isaac Dulgarian": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Jacob Malkoun": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Jafel Filho": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Jairzinho Rozenstruik": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Jalin Turner": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Jamal Pogues": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Jamall Emmers": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Jamie Pickett": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Jaqueline Amorim": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Jarno Errens": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Jasmine Jasudavicius": {
+      "elo": 1512.0,
       "historical_bouts": 1
     },
     "Javad Mahjoub": {
       "elo": 1488.0,
       "historical_bouts": 1
     },
+    "Javid Basharat": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Jean Matsumoto": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
     "Jean Silva": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "JeongYeong Lee": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Jeremiah Wells": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Jessica Andrade": {
       "elo": 1512.0,
       "historical_bouts": 1
     },
@@ -44,11 +344,43 @@
       "elo": 1488.0,
       "historical_bouts": 1
     },
+    "Jim Miller": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Jimmy Flick": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Joanne Wood": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
     "Joel Faglier": {
       "elo": 1512.0,
       "historical_bouts": 1
     },
+    "Josh Culibao": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Josh Parisian": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Josh Quinlan": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
     "Joshua Van": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Josiane Nunes": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Julian Erosa": {
       "elo": 1512.0,
       "historical_bouts": 1
     },
@@ -56,7 +388,55 @@
       "elo": 1488.0,
       "historical_bouts": 1
     },
+    "Julija Stoliarenko": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Julio Arce": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
     "Katlyn Cerminara": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Kennedy Nzechukwu": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "King Green": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Kurt Holobaugh": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Landon Qui\u00f1ones": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Loik Radzhabov": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Loma Lookboonmee": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Loopy God\u00ednez": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Luana Carolina": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Ludovit Klein": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Lukasz Brzeski": {
       "elo": 1512.0,
       "historical_bouts": 1
     },
@@ -64,16 +444,112 @@
       "elo": 1488.0,
       "historical_bouts": 1
     },
+    "Macy Chiasson": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Malcolm Gordon": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "MarQuel Mederos": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Marcin Prachnio": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Marcin Tybura": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
     "Marcus McGhee": {
       "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Marina Rodriguez": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Maryna Moroz": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Matt Schnell": {
+      "elo": 1488.0,
       "historical_bouts": 1
     },
     "Matthew Semelsberger": {
       "elo": 1488.0,
       "historical_bouts": 1
     },
+    "Max Griffin": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
     "Melissa Croden": {
+      "elo": 1488.41,
+      "historical_bouts": 1
+    },
+    "Melissa Mullins": {
       "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Michal Oleksiejczuk": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Michel Pereira": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Mick Parkin": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Mike Davis": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Miles Johns": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Miranda Maverick": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Mitch Ramirez": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Mohammed Usman": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Molly McCann": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Montse Rendon": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Morgan Charri\u00e8re": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Muhammad Mokaev": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Natan Levy": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Nate Landwehr": {
+      "elo": 1512.0,
       "historical_bouts": 1
     },
     "Nick Galanti": {
@@ -84,16 +560,88 @@
       "elo": 1512.0,
       "historical_bouts": 1
     },
+    "Nora Cornolle": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Norma Dumont": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Oban Elliott": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Ode' Osbourne": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Ovince Saint Preux": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Pannie Kianzad": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Pedro Falc\u00e3o": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Pete Rodriguez": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Philipe Lins": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
     "Preston Parsons": {
       "elo": 1512.0,
       "historical_bouts": 1
     },
-    "Steven Koslow": {
+    "Priscila Cachoeira": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Renato Moicano": {
       "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Ricardo Ramos": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Robelis Despaigne": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Sam Patterson": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Shamil Gaziev": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Steve Erceg": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Steven Koslow": {
+      "elo": 1512.41,
+      "historical_bouts": 1
+    },
+    "Steven Nguyen": {
+      "elo": 1488.0,
       "historical_bouts": 1
     },
     "SuYoung You": {
       "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Tai Tuivasa": {
+      "elo": 1488.0,
       "historical_bouts": 1
     },
     "Tanner Boser": {
@@ -104,11 +652,79 @@
       "elo": 1488.0,
       "historical_bouts": 1
     },
+    "Themba Gorimbo": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Thiago Mois\u00e9s": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Thomas Petersen": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Timmy Cuamba": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
     "Tom Nolan": {
       "elo": 1488.0,
       "historical_bouts": 1
     },
+    "Trevin Giles": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Trevor Peek": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Trey Ogden": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Tyson Pedro": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Umar Nurmagomedov": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Val Woodburn": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Valter Walker": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Victor Hugo": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Vinicius Oliveira": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Virna Jandiroba": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Vitor Petrino": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
     "Westin Wilson": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Yohan Lainesse": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Zac Pauga": {
       "elo": 1488.0,
       "historical_bouts": 1
     }
