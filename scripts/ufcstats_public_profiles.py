@@ -41,10 +41,14 @@ def key(s):
  return " ".join("".join(c for c in unicodedata.normalize("NFKD",s.casefold()) if not unicodedata.combining(c)).split())
 def parse_directory(html):
  p=Page();p.feed(html)
- fighters={}
+ fighters={};grouped={}
  for href,name in p.links:
-  if re.fullmatch(r"https?://ufcstats\.com/fighter-details/[0-9a-f]{16}",href or "") and name.strip():
-   fighters.setdefault(key(name),set()).add(href)
+  if re.fullmatch(r"https?://ufcstats\.com/fighter-details/[0-9a-f]{32}",href or "") and name.strip():
+   grouped.setdefault(href,[]).append(name.strip())
+ for href,parts in grouped.items():
+  # UFCStats commonly uses separate first-name and last-name links to one profile.
+  for candidate in set(parts+[" ".join(parts[:2])]):
+   fighters.setdefault(key(candidate),set()).add(href)
  return fighters
 def parse_fighter(html):
  p=Page();p.feed(html)
@@ -75,8 +79,13 @@ def probe(card,fetch=get,robots=None,delay=1.5,max_fighters=32):
   except Exception:return {"sport":"UFC","status":"ROBOTS_UNAVAILABLE","fighters":[],"bet_eligible":False}
  if not permitted(DIRECTORY,robots):
   return {"sport":"UFC","status":"ROBOTS_DISALLOW","fighters":[],"bet_eligible":False}
- try:directory=parse_directory(fetch(DIRECTORY))
+ try:
+  html=fetch(DIRECTORY)
+  directory=parse_directory(html)
+  print("UFCStats directory diagnostic: html_bytes=",len(html),"parsed_keys=",len(directory),"fighter_details_links=",html.count("fighter-details/"))
  except Exception as e:return {"sport":"UFC","status":"DIRECTORY_UNAVAILABLE","error_type":type(e).__name__,"fighters":[],"bet_eligible":False}
+ if not directory:
+  return {"schema":1,"sport":"UFC","status":"DIRECTORY_NO_FIGHTER_LINKS","fighters":[],"bet_eligible":False,"limitations":["Public endpoint did not return usable fighter directory links; site access may be restricted"]}
  out=[]
  for name in names:
   matches=directory.get(key(name),set())
@@ -107,4 +116,6 @@ def main():
  out=Path(args.output);out.parent.mkdir(parents=True,exist_ok=True)
  out.write_text(json.dumps(report,indent=2)+"\n")
  print("UFCStats:",report["status"],"profiles:",len(report["fighters"]),"complete:",sum(x["status"]=="PUBLIC_PROFILE_FOUND" for x in report["fighters"]))
+ from collections import Counter
+ print("Profile statuses:",dict(Counter(x["status"] for x in report["fighters"])))
 if __name__=="__main__":main()
