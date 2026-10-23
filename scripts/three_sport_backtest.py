@@ -52,7 +52,16 @@ def capture(now):
             item=dict(q)
             item['audit_flags']=reasons
             (invalid if reasons else good).append(item)
-        model_source=read(ROOT/'feed'/(sport.lower()+'_model_predictions.json'),{})\n        model_rows=model_source.get('predictions',[]) if isinstance(model_source,dict) else []\n        model_ok=[]\n        for p in model_rows:\n            if not isinstance(p,dict):continue\n            created=stamp(p.get('prediction_created_at'))\n            start=stamp(p.get('commence_time'))\n            if created and start and created<start and created<=now and p.get('model_version'):\n                model_ok.append(p)\n        payload={'schema':1,'sport':sport,'capture_at':now.isoformat(),
+        model_source=read(ROOT/'feed'/(sport.lower()+'_model_predictions.json'),{})
+        model_rows=model_source.get('predictions',[]) if isinstance(model_source,dict) else []
+        model_ok=[]
+        for p in model_rows:
+            if not isinstance(p,dict):continue
+            created=stamp(p.get('prediction_created_at'))
+            start=stamp(p.get('commence_time'))
+            if created and start and created<start and created<=now and p.get('model_version'):
+                model_ok.append(p)
+        payload={'schema':1,'sport':sport,'capture_at':now.isoformat(),
                  'source_file':str(source.relative_to(ROOT)),
                  'source_fetched_at':data.get('fetched_at'),
                  'quotes':good,'rejected_quotes':invalid,
@@ -64,7 +73,8 @@ def capture(now):
             previous=read(dest,{})
             report[sport]={'status':'immutable_existing','eligible_quotes':len(previous.get('quotes',[])),'rejected_quotes':len(previous.get('rejected_quotes',[]))}
         else:
-            dest.write_text(json.dumps(payload,indent=2,ensure_ascii=False)+'\n')
+            dest.write_text(json.dumps(payload,indent=2,ensure_ascii=False)+'
+')
             report[sport]={'status':'captured','eligible_quotes':len(good),'rejected_quotes':len(invalid)}
     return report
 
@@ -104,7 +114,8 @@ def main():
         result=grade(day)
         output=ROOT/'backtests'/'reports'/f'{day}.json'
         output.parent.mkdir(parents=True,exist_ok=True)
-        output.write_text(json.dumps(result,indent=2)+'\n')
+        output.write_text(json.dumps(result,indent=2)+'
+')
     print(json.dumps(result,indent=2))
 
 if __name__=='__main__':main()
