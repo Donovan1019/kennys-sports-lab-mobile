@@ -16,6 +16,25 @@ class ProviderTests(unittest.TestCase):
     def test_missing_feed(self):
         r=compare({"draftkings":snapshot("DraftKings")})
         self.assertEqual(r["providers"]["fanduel"]["status"],"MISSING_FEED")
+    def test_timestamp_skew_rejected(self):
+        dk=snapshot("DraftKings")
+        fd=snapshot("FanDuel")
+        fd["captured_at_utc"]="2026-10-23T12:08:00Z"
+        r=compare({"draftkings":dk,"fanduel":fd})
+        self.assertEqual(r["comparisons"][0]["status"],"CROSS_BOOK_TIMESTAMP_SKEW")
+        self.assertIsNone(r["comparisons"][0]["preferred_by_estimated_roi"])
+    def test_event_time_mismatch_rejected(self):
+        dk=snapshot("DraftKings")
+        fd=snapshot("FanDuel")
+        fd["moneylines"][0]["event_start_utc"]="2026-10-24T13:00:00Z"
+        r=compare({"draftkings":dk,"fanduel":fd})
+        self.assertEqual(r["comparisons"][0]["status"],"AMBIGUOUS_EVENT_MATCH")
+    def test_stale_quote_rejected(self):
+        dk=snapshot("DraftKings")
+        fd=snapshot("FanDuel")
+        fd["captured_at_utc"]="2026-10-23T12:12:00Z"
+        r=compare({"draftkings":dk,"fanduel":fd},max_quote_age_minutes=10,max_cross_book_skew_minutes=20)
+        self.assertEqual(r["comparisons"][0]["status"],"STALE_QUOTE")
     def test_no_fake_odds(self):
         r=compare({"draftkings":snapshot("DraftKings"),"fanduel":snapshot("FanDuel")})
         self.assertFalse(r["comparisons"][0]["bet_eligible"])
