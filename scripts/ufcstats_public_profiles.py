@@ -43,7 +43,7 @@ def parse_directory(html):
  p=Page();p.feed(html)
  fighters={};grouped={}
  for href,name in p.links:
-  if re.fullmatch(r"https?://ufcstats\.com/fighter-details/[0-9a-f]{16}",href or "") and name.strip():
+  if re.fullmatch(r"https?://ufcstats\.com/fighter-details/[0-9a-f]{32}",href or "") and name.strip():
    grouped.setdefault(href,[]).append(name.strip())
  for href,parts in grouped.items():
   # UFCStats commonly uses separate first-name and last-name links to one profile.
