@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "sport": "UFC",
+  "bet_eligible": false,
+  "sources": [
+    {
+      "name": "ESPN public scoreboard",
+      "role": "Existing schedule and verified winners",
+      "automated_collection": "EXISTING_REVIEW_REQUIRED",
+      "notes": "Partial historical coverage; do not assume full event completeness."
+    },
+    {
+      "name": "Tapology",
+      "role": "Manual research and cross-checking",
+      "automated_collection": "PROHIBITED_WITHOUT_PERMISSION",
+      "notes": "Published terms prohibit bots and data scraping; do not build an automated Tapology crawler."
+    },
+    {
+      "name": "UFC official website",
+      "role": "Manual source verification",
+      "automated_collection": "PROHIBITED_WITHOUT_PERMISSION",
+      "notes": "Published site terms restrict page scraping and automated access."
+    },
+    {
+      "name": "UFCServant",
+      "role": "Potential supplemental source",
+      "automated_collection": "UNVERIFIED",
+      "notes": "Data availability, provenance, permission, and license not yet established."
+    },
+    {
+      "name": "Third-party UFC statistics API",
+      "role": "Potential licensed structured fighter statistics",
+      "automated_collection": "PENDING_VERIFICATION",
+      "notes": "Verify maintainer, rights to redistribute, data freshness, fighter identity, and schema before ingestion."
+    }
+  ],
+  "required_before_model": [
+    "verified_fighter_identity",
+    "historical_fight_level_stats",
+    "scheduled_rounds",
+    "out_of_sample_calibration",
+    "independent_timestamped_odds",
+    "source_usage_permission"
+  ]
+}
