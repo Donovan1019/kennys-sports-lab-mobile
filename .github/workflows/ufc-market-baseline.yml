@@ -1,0 +1,27 @@
+name: UFC Market Baseline
+on:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify projection JS syntax
+        run: node --check ufc_fighter_projections.js
+      - name: Verify two-sided market probability fallback
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          j=Path('ufc_fighter_projections.js').read_text()
+          assert 'function implied(a)' in j
+          assert 'p/(p+q)' in j
+          assert 'market no-vig' in j
+          assert 'both sides' in j
+          assert 'NO ELO OR MATCHED ODDS' in j
+          assert 'marketBaseline(f,fighter)' in j
+          assert 'ufc_fighter_projections.js?v=5' in Path('ufc.html').read_text()
+          PY
