@@ -52,7 +52,7 @@ const row={book,eventId,fighter,opponent,fighterOdds,opponentOdds,eventStart:new
 const rows=load().filter(x=>!(x.book===book&&x.eventId===eventId&&x.fighter.toLowerCase()===fighter.toLowerCase()&&x.opponent.toLowerCase()===opponent.toLowerCase()));
 rows.push(row);save(rows);message("Saved locally. Price is user-entered and unverified; not a betting recommendation.");render()}
 function exportJson(){
-const rows=load(),capturedAt=now();
+const rows=load(),capturedAt=rows.length?new Date(Math.max(...rows.map(x=>Date.parse(x.capturedAt)))).toISOString():now();
 const data={captured_at_utc:capturedAt,entries:rows.map(x=>({book:x.book,event_id:x.eventId,fighter:x.fighter,opponent:x.opponent,fighter_odds:x.fighterOdds,opponent_odds:x.opponentOdds,event_start_utc:x.eventStart,observed_at_utc:x.capturedAt}))};
 const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
 const url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="ufc-free-odds.json";a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
