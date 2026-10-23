@@ -1,0 +1,43 @@
+name: UFC Elo Holdout Validation
+on:
+  push:
+    branches:
+      - feature/ufc-elo-chronological-holdout-20261023
+  pull_request:
+    paths:
+      - 'scripts/ufc_tidytuesday_holdout.py'
+      - 'tests/test_ufc_tidytuesday_holdout.py'
+      - '.github/workflows/ufc-elo-holdout.yml'
+  workflow_dispatch:
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test holdout date boundaries
+        run: python -m unittest discover -s tests -p test_ufc_tidytuesday_holdout.py -v
+      - name: Rebuild historical Elo and score chronological holdout
+        run: |
+          python scripts/ufc_tidytuesday_import.py --output /tmp/ufc_history.json
+          python scripts/ufc_tidytuesday_elo.py --input /tmp/ufc_history.json --output /tmp/ufc_elo.json
+          python scripts/ufc_tidytuesday_holdout.py --input /tmp/ufc_elo.json --output /tmp/ufc_holdout.json
+          python - <<'PY'
+          import json
+          r=json.load(open('/tmp/ufc_holdout.json'))
+          print('Holdout start:',r['holdout_start'])
+          print('Training n:',r['train']['n'])
+          print('Holdout n:',r['holdout']['n'])
+          print('Holdout Brier:',r['holdout']['brier'])
+          print('Holdout log loss:',r['holdout']['log_loss'])
+          print('Brier improvement vs 50/50:',r['holdout_brier_improvement'])
+          assert r['enough_holdout']
+          assert r['bet_eligible'] is False
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ufc-elo-chronological-holdout
+          path: /tmp/ufc_holdout.json
+          retention-days: 14
