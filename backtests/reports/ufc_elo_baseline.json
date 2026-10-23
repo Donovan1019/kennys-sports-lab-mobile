@@ -1,0 +1,124 @@
+{
+  "schema": 1,
+  "sport": "UFC",
+  "model_version": "ufc-elo-baseline-v1",
+  "historical_bouts_used": 13,
+  "pre_update_evaluated_fights": 0,
+  "brier": null,
+  "log_loss": null,
+  "minimum_prior_bouts_per_fighter": 5,
+  "ratings": {
+    "Chad Anheliger": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Chelsea Chandler": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Cody Chovancek": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Farid Basharat": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Felipe Bunes": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Gaston Bola\u00f1os": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Javad Mahjoub": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Jean Silva": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Jhonata Diniz": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Joel Faglier": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Joshua Van": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Julien LeBlanc": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Katlyn Cerminara": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Mackenzie Stiller": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Marcus McGhee": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Matthew Semelsberger": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Melissa Croden": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Nick Galanti": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Nikolas Motta": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Preston Parsons": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Steven Koslow": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "SuYoung You": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Tanner Boser": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Taylor Lapilus": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Tom Nolan": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Westin Wilson": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    }
+  },
+  "forecasts": [],
+  "bet_eligible": false,
+  "calibration_status": "INSUFFICIENT_SAMPLE",
+  "limitations": [
+    "Historical fights evaluated chronologically but same-event order may be uncertain",
+    "No fighter inactivity, age, weight class, injuries, or style adjustments",
+    "No archived odds or independent holdout validation"
+  ]
+}

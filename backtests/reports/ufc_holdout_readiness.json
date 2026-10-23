@@ -1,0 +1,18 @@
+{
+  "status": "INSUFFICIENT_HOLDOUT",
+  "train_rows": 6,
+  "holdout_n": 0,
+  "cutoff": "2026-10-17T21:00:00+00:00",
+  "brier": null,
+  "log_loss": null,
+  "coinflip_brier": 0.25,
+  "coinflip_log_loss": 0.6931471805599453,
+  "beats_coinflip_brier": null,
+  "bet_eligible": false,
+  "limitations": [
+    "Elo K-factor and minimum history must be frozen before true out-of-sample use",
+    "Holdout rows update Elo sequentially using previously settled holdout outcomes",
+    "Historical source completeness and identity verification not independently audited",
+    "No sportsbook odds, market calibration, or ROI proof"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "sport": "UFC",
+  "generated_at": "2026-10-23T10:04:13.266308+00:00",
+  "verified_fights": 13,
+  "successful_source_days": 21,
+  "failed_source_days": 0,
+  "invalid_rows": 0,
+  "holdout_n": 0,
+  "status": "BLOCKED",
+  "blockers": [
+    "INSUFFICIENT_HOLDOUT",
+    "NO_INDEPENDENT_PRICE_AND_CALIBRATION_APPROVAL"
+  ],
+  "bet_eligible": false,
+  "note": "Successful fetches are not proof of complete historical event coverage."
+}
