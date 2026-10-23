@@ -6,6 +6,8 @@ class UFCProductionWorkflowTests(unittest.TestCase):
         workflow=Path(".github/workflows/ufc-card-refresh.yml").read_text()
         self.assertIn("python -m scripts.ufc_automated_backfill",workflow)
         self.assertIn("python -m scripts.ufc_holdout_readiness",workflow)
+        self.assertIn("python -m scripts.ufc_winner_history",workflow)
+        self.assertIn("Verify UFC runtime module imports",workflow)
         self.assertIn("git add feed/ufc_research.json",workflow)
         self.assertIn("git diff --cached --quiet",workflow)
         self.assertIn("schedule:",workflow)
