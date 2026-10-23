@@ -1,0 +1,20 @@
+{
+  "sport": "NFL",
+  "date": "2026-10-22",
+  "games": [
+    {
+      "event_id": "401873010",
+      "event": "New England Patriots at Chicago Bears",
+      "commence_time": "2026-10-23T00:15Z",
+      "home": "Chicago Bears",
+      "away": "New England Patriots",
+      "home_score": 30,
+      "away_score": 24,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=20261022&limit=100"
+    }
+  ],
+  "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=20261022&limit=100"
+}
