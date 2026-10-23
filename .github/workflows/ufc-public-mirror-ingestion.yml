@@ -1,0 +1,25 @@
+name: UFC Public Mirror Ingestion
+on:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test source reconciliation
+        run: python -m unittest discover -s tests -p test_ufc_public_mirror_ingest.py -v
+      - name: Run real public UFCStats mirror ingestion
+        run: |
+          python scripts/ufc_public_mirror_ingest.py --output /tmp/ufc_fighter_stats_mirror.json
+          python - <<'PY'
+          import json
+          r=json.load(open('/tmp/ufc_fighter_stats_mirror.json'))
+          matched=sum(x['status']=='MATCHED_HISTORICAL_STATS' for x in r['fighters'])
+          print('MATCHED',matched,'OF',len(r['fighters']))
+          assert r['bet_eligible'] is False
+          assert len(r['fighters'])>0
+          PY
