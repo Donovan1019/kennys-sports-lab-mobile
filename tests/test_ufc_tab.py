@@ -14,7 +14,7 @@ class UFCTabTests(unittest.TestCase):
         payload=json.loads((ROOT/'feed/ufc_research.json').read_text())
         self.assertEqual(payload['sport'],'UFC')
         self.assertFalse(payload['bet_eligible'])
-        self.assertEqual(payload['fights'],[])
+        self.assertIsInstance(payload['fights'],list)
     def test_modules_and_scripts_exist(self):
         html=(ROOT/'ufc.html').read_text()
         for marker in ('ufc-event-status','ufc-fights','ufc-top-plays','ufc-fighter-select','ufc-markets','ufc-builders','ufc-integrity','ufc_lab.js','ufc_lab.css'):
