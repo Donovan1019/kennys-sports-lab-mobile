@@ -1,0 +1,27 @@
+name: UFC Uniform Dashboard
+on:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify UFC parity and no manual entry
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          html=Path('ufc.html').read_text()
+          js=Path('ufc_fighter_projections.js').read_text()
+          assert 'ufc-free-form' not in html
+          assert 'ufc_fighter_projections.js' in html
+          for x in ['Fighter Projections','Predictive Top 5','Fight Cheat Sheet','Sportsbook Line Comparison','Monte Carlo','SGP Magic','Diamond Plays']:
+              assert x in html or x in js, x
+          for x in ['Moneyline','Significant strikes','Takedowns','Submission','Knockdowns','Control time','Exact finish round','Alternate rounds','Live moneyline']:
+              assert x in js, x
+          assert 'UNAVAILABLE' in js
+          PY
+          python -m unittest discover -s tests -p test_ufc_free_odds_entry.py -v
