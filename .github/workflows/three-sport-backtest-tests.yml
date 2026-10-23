@@ -7,6 +7,8 @@ on:
       - 'tests/test_three_sport_results.py'
       - 'scripts/three_sport_results.py'
       - 'scripts/export_three_sport_predictions.py'
+      - 'scripts/nhl_team_history.py'
+      - 'tests/test_three_sport_nhl_matching.py'
       - 'tests/test_three_sport_prediction_export.py'
       - '.github/workflows/three-sport-backtest*.yml'
   workflow_dispatch:

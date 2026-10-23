@@ -18,7 +18,9 @@ UTC=dt.timezone.utc
 
 def stamp(s):
     if not s:return None
-    try:return dt.datetime.fromisoformat(str(s).replace('Z','+00:00')).astimezone(UTC)
+    try:
+        value=dt.datetime.fromisoformat(str(s).replace('Z','+00:00'))
+        return value.astimezone(UTC) if value.tzinfo else None
     except (ValueError,TypeError):return None
 
 def read(path,default=None):
@@ -93,8 +95,14 @@ def settle_moneyline(prediction,games):
     event=prediction.get('event')
     selection=normalize_team(prediction.get('selection'))
     if not event or not selection:return None
+    parts=re.split(r'\s+(?:@|at|vs\.?|versus)\s+',event,flags=re.I)
+    if len(parts)!=2:return None
+    expected={normalize_team(x) for x in parts}
+    start=stamp(prediction.get('commence_time'))
     matches=[g for g in games if g.get('completed') and
-             normalize_team(g.get('event'))==normalize_team(event)]
+             {normalize_team(g.get('home')),normalize_team(g.get('away'))}==expected and
+             (not start or not stamp(g.get('commence_time')) or
+              abs((stamp(g.get('commence_time'))-start).total_seconds())<=86400)]
     if len(matches)!=1:return None
     g=matches[0]
     home=normalize_team(g.get('home'));away=normalize_team(g.get('away'))
@@ -128,6 +136,11 @@ def grade(date):
         predictions=list(unique.values())
         results=read(ROOT/'backtests'/'results'/date/(sport.lower()+'.json'),{})
         games=results.get('games',[]) if isinstance(results,dict) else []
+        # UTC midnight can split an American evening slate across adjacent dates.
+        for adjacent in (-1,1):
+            neighbor=(dt.date.fromisoformat(date)+dt.timedelta(days=adjacent)).isoformat()
+            other=read(ROOT/'backtests'/'results'/neighbor/(sport.lower()+'.json'),{})
+            if isinstance(other,dict):games+=other.get('games',[])
         valid=[];blocked=[]
         for p in predictions:
             event=stamp(p.get('commence_time'))
