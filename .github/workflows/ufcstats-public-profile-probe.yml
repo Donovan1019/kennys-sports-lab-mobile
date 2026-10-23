@@ -1,0 +1,24 @@
+name: UFCStats Public Profile Probe
+on:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test safe public stats parsing
+        run: python -m unittest discover -s tests -p test_ufcstats_public_profiles.py -v
+      - name: Probe UFCStats with bounded access
+        run: |
+          python scripts/ufcstats_public_profiles.py --output /tmp/ufcstats_profiles.json
+          python - <<'PY'
+          import json
+          p=json.load(open('/tmp/ufcstats_profiles.json'))
+          assert p['bet_eligible'] is False
+          print('Status:',p['status'])
+          print('Complete profiles:',sum(x['status']=='PUBLIC_PROFILE_FOUND' for x in p['fighters']))
+          PY
