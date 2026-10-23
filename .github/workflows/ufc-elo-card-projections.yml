@@ -1,0 +1,26 @@
+name: UFC Elo Card Projections
+on:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test leakage and insufficient data guards
+        run: python -m unittest discover -s tests -p test_ufc_elo_card_projections.py -v
+      - name: Run real free historical source and project current saved card
+        run: |
+          python scripts/ufc_tidytuesday_import.py --output /tmp/ufc_tidytuesday_research.json
+          python -m scripts.ufc_elo_card_projections --snapshot /tmp/ufc_tidytuesday_research.json --output /tmp/ufc_elo_projections.json
+          python - <<'PY'
+          import json
+          r=json.load(open('/tmp/ufc_elo_projections.json'))
+          assert r['bet_eligible'] is False
+          assert r['historical_source_independently_verified'] is False
+          print('Matchups:',len(r['projections']))
+          print('Historical research probability coverage:',sum(x['red_research_probability'] is not None for x in r['projections']))
+          PY
