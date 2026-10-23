@@ -1,0 +1,35 @@
+name: UFC Projections First
+on:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check UFC projection JavaScript syntax
+        run: node --check ufc_fighter_projections.js
+      - name: Check top placement and research feed wiring
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          html=Path('ufc.html').read_text()
+          js=Path('ufc_fighter_projections.js').read_text()
+          assert html.index('id="ksl-ufc-projection"') < html.index('id="ksl-shared-odds"')
+          assert html.index('id="ksl-ufc-projection"') < html.index('id="ufc-mirror-stats"')
+          for f in ('ufc_research.json','ufc_elo_projections.json','ufc_fighter_stats_mirror.json','mma_mixed_martial_arts.json'):
+              assert f in js, f
+          for m in ('Significant strikes landed','Takedowns landed','Submission attempts','Control time','Moneyline'):
+              assert m in js, m
+          assert 'r.json()}).then(data' not in js
+          assert '15*60*1000' in js
+          odds=json.loads(Path('feed/mma_mixed_martial_arts.json').read_text())
+          stats=json.loads(Path('feed/ufc_fighter_stats_mirror.json').read_text())
+          assert odds['sport']=='mma_mixed_martial_arts'
+          assert stats['bet_eligible'] is False
+          print('UFC odds rows:',len(odds['odds']),'historical profiles:',len(stats['fighters']))
+          PY
