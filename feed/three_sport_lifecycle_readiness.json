@@ -5,7 +5,7 @@
       "sport": "basketball_nba",
       "status": "awaiting_verified_pairs",
       "immutable_forecasts": 144,
-      "scored_forecasts": 10,
+      "scored_forecasts": 12,
       "consensus_events": 0,
       "verified_market_baselines": 54,
       "verified_paired_games": 0,
@@ -31,15 +31,14 @@
     },
     {
       "sport": "americanfootball_nfl",
-      "status": "awaiting_verified_pairs",
+      "status": "paired_evaluation_available",
       "immutable_forecasts": 252,
-      "scored_forecasts": 0,
+      "scored_forecasts": 1,
       "consensus_events": 0,
       "verified_market_baselines": 252,
-      "verified_paired_games": 0,
+      "verified_paired_games": 1,
       "blockers": [
-        "no_eligible_multi_book_consensus",
-        "no_verified_completed_forecast_matches"
+        "no_eligible_multi_book_consensus"
       ],
       "note": "A successful workflow is not evidence of predictive advantage."
     }

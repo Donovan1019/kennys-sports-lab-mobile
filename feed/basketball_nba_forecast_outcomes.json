@@ -1,9 +1,9 @@
 {
   "status": "research_only",
-  "matched_forecasts": 10,
-  "metrics_sample_size": 10,
-  "log_loss": 0.568837,
-  "empirical_home_rate_baseline_brier": 0.24,
+  "matched_forecasts": 12,
+  "metrics_sample_size": 12,
+  "log_loss": 0.579236,
+  "empirical_home_rate_baseline_brier": 0.222222,
   "calibration_bins": [
     {
       "range": [
@@ -19,26 +19,34 @@
         0.4,
         0.6
       ],
-      "count": 3,
-      "mean_predicted": 0.502564,
-      "observed_home_win_rate": 0.666667
+      "count": 4,
+      "mean_predicted": 0.48626,
+      "observed_home_win_rate": 0.75
     },
     {
       "range": [
         0.6,
         0.8
       ],
-      "count": 6,
-      "mean_predicted": 0.697071,
-      "observed_home_win_rate": 0.666667
+      "count": 7,
+      "mean_predicted": 0.689915,
+      "observed_home_win_rate": 0.714286
     }
   ],
   "calibration_warning": "Small samples and in-sample baseline cannot establish predictive edge",
   "unique_events_in_ledger": 18,
-  "unmatched_events": 8,
-  "mean_brier": 0.193944,
+  "unmatched_events": 6,
+  "mean_brier": 0.198387,
   "notes": "One earliest forecast per event; strict exact teams and unique start-time proximity; ambiguous or unverified results excluded",
   "scored": [
+    {
+      "forecast_id": "110e33c79c5ec8c0377702aff685f83b|2026-10-21T06:22:56.869393+00:00",
+      "provider_event_id": "401909093",
+      "match_method": "exact_teams_unique_start_within_20m",
+      "home_probability": 0.43735,
+      "home_won": 1,
+      "brier": 0.316575
+    },
     {
       "forecast_id": "164cc0396837d5ff433215ffd3279283|2026-10-21T06:22:56.869393+00:00",
       "provider_event_id": "401909835",
@@ -46,6 +54,14 @@
       "home_probability": 0.507211,
       "home_won": 1,
       "brier": 0.242841
+    },
+    {
+      "forecast_id": "223b2883b9b05a67329ef246384b85f1|2026-10-21T06:22:56.869393+00:00",
+      "provider_event_id": "401909094",
+      "match_method": "exact_teams_unique_start_within_20m",
+      "home_probability": 0.646975,
+      "home_won": 1,
+      "brier": 0.124627
     },
     {
       "forecast_id": "47cc511bb5ce50f715e3625ce5ef77ee|2026-10-21T06:22:56.869393+00:00",
