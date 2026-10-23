@@ -17,13 +17,15 @@ jobs:
           python-version: '3.11'
       - name: Capture immutable sportsbook and model snapshots
         run: python scripts/three_sport_backtest.py capture
+      - name: Collect verified completed games from ESPN
+        run: python scripts/three_sport_results.py --date "$(date -u -d yesterday +%F)"
       - name: Generate previous UTC day audit
         run: python scripts/three_sport_backtest.py grade
       - name: Commit append-only snapshots and reports
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add backtests/snapshots backtests/reports
+          git add backtests/snapshots backtests/reports backtests/results
           if ! git diff --cached --quiet; then
             git commit -m "audit: archive three-sport pregame snapshots and backtest status"
             git push
