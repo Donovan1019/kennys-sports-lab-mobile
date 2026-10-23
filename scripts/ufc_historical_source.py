@@ -43,7 +43,7 @@ def parse_day(payload,day):
                 continue
             try:
                 when=dt.datetime.fromisoformat(date.replace("Z","+00:00"))
-                if when.tzinfo is None or when.date()>day:
+                if when.tzinfo is None or when.astimezone(dt.timezone.utc).date()!=day:
                     continue
             except (ValueError,AttributeError):
                 continue
