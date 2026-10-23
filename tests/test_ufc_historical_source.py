@@ -9,11 +9,16 @@ def payload(method=None,complete=True):
       "competitors":[{"winner":True,"athlete":{"displayName":"A"}},{"winner":False,"athlete":{"displayName":"B"}}]}]}]}
 class UFCHistoricalSourceTests(unittest.TestCase):
     def test_unverified_methods_not_ingested(self):
-        self.assertEqual(parse_day(payload(),DAY),[])
+        rows=parse_day(payload(),DAY)
+        self.assertEqual(len(rows),1)
+        self.assertIsNone(rows[0]["method"])
+        self.assertTrue(rows[0]["winner_verified"])
+        self.assertFalse(rows[0]["method_verified"])
     def test_completed_verified_bout(self):
         rows=parse_day(payload("KO/TKO"),DAY)
         self.assertEqual(len(rows),1)
         self.assertEqual(rows[0]["winner"],"A")
+        self.assertTrue(rows[0]["method_verified"])
     def test_incomplete_bout_excluded(self):
         self.assertEqual(parse_day(payload("Decision",False),DAY),[])
     def test_bounds_and_partial_failure(self):
