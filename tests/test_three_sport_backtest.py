@@ -23,6 +23,7 @@ class BacktestTests(unittest.TestCase):
                 second=m.capture(t)
                 self.assertEqual(first['NFL']['status'],'captured')
                 self.assertEqual(second['NFL']['status'],'immutable_existing')
+                self.assertEqual(len(list((m.ROOT/'backtests'/'snapshots'/'2026-10-22').glob('*/nfl.json'))),1)
             finally:m.ROOT=old
     def test_unverified_predictions_are_not_wins(self):
         with tempfile.TemporaryDirectory() as d:
