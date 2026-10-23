@@ -21,5 +21,6 @@ class Tests(unittest.TestCase):
   card={"fights":[{"red":"A","blue":"B"}]}
   report=probe(card,fetch=lambda url: "",robots=Robots(),delay=0)
   self.assertFalse(report["bet_eligible"])
-  self.assertEqual(len(report["fighters"]),2)
+  self.assertEqual(report["status"],"DIRECTORY_NO_FIGHTER_LINKS")
+  self.assertEqual(len(report["fighters"]),0)
 if __name__=="__main__":unittest.main()
