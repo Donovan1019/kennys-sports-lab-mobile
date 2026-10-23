@@ -23,5 +23,5 @@ jobs:
           assert 'both sides' in j
           assert 'NO ELO OR MATCHED ODDS' in j
           assert 'marketBaseline(f,fighter)' in j
-          assert 'ufc_fighter_projections.js?v=5' in Path('ufc.html').read_text()
+          assert 'ufc_fighter_projections.js?v=6' in Path('ufc.html').read_text()
           PY
