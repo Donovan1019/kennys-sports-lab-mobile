@@ -18,6 +18,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Generate pregame baseline forecasts locally (no API requests)
+        run: python scripts/export_three_sport_predictions.py
       - name: Capture immutable sportsbook and model snapshots
         run: python scripts/three_sport_backtest.py capture
       - name: Collect completed games from ESPN for today and yesterday

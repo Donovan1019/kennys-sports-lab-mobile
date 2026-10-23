@@ -6,6 +6,8 @@ on:
       - 'tests/test_three_sport_backtest.py'
       - 'tests/test_three_sport_results.py'
       - 'scripts/three_sport_results.py'
+      - 'scripts/export_three_sport_predictions.py'
+      - 'tests/test_three_sport_prediction_export.py'
       - '.github/workflows/three-sport-backtest*.yml'
   workflow_dispatch:
 permissions:

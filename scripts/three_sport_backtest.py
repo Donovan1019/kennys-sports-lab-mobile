@@ -61,7 +61,7 @@ def capture(now):
             if not isinstance(p,dict):continue
             created=stamp(p.get('prediction_created_at'))
             start=stamp(p.get('commence_time'))
-            if created and start and created<start and created<=now and p.get('model_version'):
+            if created and start and created<start and created<=now and p.get('model_version') and p.get('research_only') is True:
                 model_ok.append(p)
         payload={'schema':1,'sport':sport,'capture_at':now.isoformat(),
                  'source_file':str(source.relative_to(ROOT)),
@@ -133,7 +133,7 @@ def grade(date):
             event=stamp(p.get('commence_time'))
             created=stamp(p.get('prediction_created_at'))
             if not event or not created or created>=event:blocked.append({'prediction':p,'reason':'NO_VERIFIED_PREGAME_TIMESTAMP'});continue
-            if not p.get('model_version') or not p.get('market') or not p.get('selection'):blocked.append({'prediction':p,'reason':'MISSING_MODEL_METADATA'});continue
+            if not p.get('model_version') or not p.get('market') or not p.get('selection') or p.get('research_only') is not True:blocked.append({'prediction':p,'reason':'MISSING_MODEL_METADATA'});continue
             valid.append(p)
         settled=[]
         for p in valid:
