@@ -82,6 +82,27 @@ def capture(now):
             report[sport]={'status':'captured','eligible_quotes':len(good),'rejected_quotes':len(invalid)}
     return report
 
+
+def normalize_team(name):
+    return re.sub(r'[^a-z0-9]','',str(name or '').lower())
+
+def settle_moneyline(prediction,games):
+    """Only settle explicit full-game team moneylines against completed results."""
+    if prediction.get('market') not in ('h2h','moneyline','ml'):
+        return None
+    event=prediction.get('event')
+    selection=normalize_team(prediction.get('selection'))
+    if not event or not selection:return None
+    matches=[g for g in games if g.get('completed') and
+             normalize_team(g.get('event'))==normalize_team(event)]
+    if len(matches)!=1:return None
+    g=matches[0]
+    home=normalize_team(g.get('home'));away=normalize_team(g.get('away'))
+    if selection not in (home,away):return None
+    if g['home_score']==g['away_score']:return 'push'
+    winner=home if g['home_score']>g['away_score'] else away
+    return 'win' if selection==winner else 'loss'
+
 def grade(date):
     directory=ROOT/'backtests'/'snapshots'/date
     result={'date':date,'generated_at':dt.datetime.now(UTC).isoformat(),'sports':{},'summary':{'verified_picks':0,'wins':0,'losses':0,'pushes':0,'roi':None,'hit_rate':None}}
@@ -91,6 +112,8 @@ def grade(date):
             result['sports'][sport]={'status':'NO_SNAPSHOT','graded':0}
             continue
         predictions=snap.get('model_predictions',[])
+        results=read(ROOT/'backtests'/'results'/date/(sport.lower()+'.json'),{})
+        games=results.get('games',[]) if isinstance(results,dict) else []
         valid=[];blocked=[]
         for p in predictions:
             event=stamp(p.get('commence_time'))
@@ -98,11 +121,19 @@ def grade(date):
             if not event or not created or created>=event:blocked.append({'prediction':p,'reason':'NO_VERIFIED_PREGAME_TIMESTAMP'});continue
             if not p.get('model_version') or not p.get('market') or not p.get('selection'):blocked.append({'prediction':p,'reason':'MISSING_MODEL_METADATA'});continue
             valid.append(p)
-        # Outcome and sportsbook matching are intentionally not inferred.
-        # A separate immutable boxscore/result source is required to settle each pick.
-        result['sports'][sport]={'status':'OUTCOMES_UNVERIFIED' if valid else 'NO_VERIFIED_PREGAME_PREDICTIONS',
+        settled=[]
+        for p in valid:
+            outcome=settle_moneyline(p,games)
+            if outcome: settled.append({'event':p.get('event'),'market':p.get('market'),'selection':p.get('selection'),'outcome':outcome})
+        # Outcomes alone do not prove sportsbook quote matching, price, or wager placement.
+        # Never calculate betting ROI without a verified matched pregame book price.
+        result['summary']['verified_picks']+=len(settled)
+        for item in settled:result['summary'][{'win':'wins','loss':'losses','push':'pushes'}[item['outcome']]]+=1
+        result['sports'][sport]={'status':'PARTIALLY_SETTLED_MONEYLINES' if settled else ('OUTCOMES_UNVERIFIED' if valid else 'NO_VERIFIED_PREGAME_PREDICTIONS'),
             'saved_quotes':len(snap.get('quotes',[])),'eligible_predictions':len(valid),
-            'blocked_predictions':blocked,'graded':0,'pending':len(valid)}
+            'blocked_predictions':blocked,'graded':len(settled),'settled':settled,'pending':len(valid)-len(settled)}
+    completed=result['summary']['wins']+result['summary']['losses']
+    if completed:result['summary']['hit_rate']=result['summary']['wins']/completed
     return result
 
 def main():
