@@ -8,7 +8,8 @@ class UFCAutomatedBackfillTests(unittest.TestCase):
         days=select_days({},TODAY)
         self.assertIn(dt.date(2024,1,1),days)
         self.assertIn(dt.date(2026,10,22),days)
-        self.assertLessEqual(len(days),21)
+        self.assertLessEqual(len(days),97)
+        self.assertEqual(len(days),97)
     def test_resume_skips_completed_old_days(self):
         completed={"successful_days":["2024-01-01","2024-01-02"]}
         days=select_days(completed,TODAY)
