@@ -7,11 +7,13 @@ from scripts.ufc_historical_backfill import backfill
 
 PATH=Path("feed/ufc_historical_backfill.json")
 START=dt.date(2024,1,1)
-BATCH_DAYS=14
+BATCH_DAYS=90
 
 def select_days(existing,today):
     completed=set(existing.get("successful_days",[]))
     end=today-dt.timedelta(days=1)
+    # Query 90 older dates per daily run; this reduces the multi-year backfill
+    # from months to roughly two weeks at the expense of more public requests.
     # Always revisit the last 7 days to catch late-settling results, without
     # falsely treating a successful empty response as a confirmed complete card.
     recent=[end-dt.timedelta(days=i) for i in range(7)]
