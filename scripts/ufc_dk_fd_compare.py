@@ -7,11 +7,11 @@ import argparse
 import datetime as dt
 import json
 from pathlib import Path
-from scripts.ufc_odds_connector import normalize
+from scripts.ufc_odds_connector import normalize, parse_time
 
 PROVIDERS={"draftkings":"DraftKings","fanduel":"FanDuel"}
 
-def compare(snapshots):
+def compare(snapshots, max_quote_age_minutes=15, max_cross_book_skew_minutes=5):
     by_event={}
     results={}
     for key in PROVIDERS:
@@ -46,7 +46,36 @@ def compare(snapshots):
                                 "status":"MISSING_OTHER_BOOK","books":sorted(prices)})
             continue
         dk,fd=prices["draftkings"],prices["fanduel"]
-        if dk.get("model_probability")!=fd.get("model_probability"):
+        try:
+            dk_time=parse_time(results["draftkings"]["captured_at_utc"])
+            fd_time=parse_time(results["fanduel"]["captured_at_utc"])
+            event_times=[]
+            for provider in ("draftkings","fanduel"):
+                snapshot=snapshots[provider]
+                matches=[m for m in snapshot.get("moneylines",[])
+                         if m.get("event_id")==event_id and
+                         m.get("fighter","").casefold()==fighter and
+                         m.get("opponent","").casefold()==opponent]
+                if len(matches)!=1:
+                    raise ValueError("Ambiguous provider market")
+                event_times.append(parse_time(matches[0]["event_start_utc"]))
+            if event_times[0]!=event_times[1]:
+                raise ValueError("Event start mismatch")
+            event_time=event_times[0]
+            latest=max(dk_time,fd_time)
+            if abs((dk_time-fd_time).total_seconds())>max_cross_book_skew_minutes*60:
+                status="CROSS_BOOK_TIMESTAMP_SKEW"
+            elif (event_time-latest).total_seconds()<=0:
+                status="EVENT_ALREADY_STARTED"
+            elif any((latest-t).total_seconds()>max_quote_age_minutes*60 for t in (dk_time,fd_time)):
+                status="STALE_QUOTE"
+            else:
+                status=None
+        except (ValueError,TypeError,KeyError,AttributeError):
+            status="AMBIGUOUS_EVENT_MATCH"
+        if status is not None:
+            pass
+        elif dk.get("model_probability")!=fd.get("model_probability"):
             status="MODEL_PROBABILITY_MISMATCH"
         elif "expected_roi_per_unit" not in dk or "expected_roi_per_unit" not in fd:
             status="INCOMPLETE_MARKET"
