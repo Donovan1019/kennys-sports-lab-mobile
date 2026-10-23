@@ -64,7 +64,7 @@ def main():
     result = enrich(json.loads(Path(args.card).read_text()), json.loads(Path(args.stats).read_text()))
     out = Path(args.output)
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(result, indent=2) + "\\n")
+    out.write_text(json.dumps(result, indent=2) + "\n")
     print("Enriched UFC fights:", len(result["fights"]), "blocked:", len(result["blocked"]))
 
 if __name__ == "__main__":
