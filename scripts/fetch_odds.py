@@ -4,7 +4,7 @@ import json, os, sys, urllib.parse, urllib.request, urllib.error
 from datetime import datetime, timezone
 from pathlib import Path
 
-SPORTS={"americanfootball_nfl","americanfootball_ncaaf","basketball_nba","basketball_ncaab","baseball_mlb","icehockey_nhl","soccer_epl"}
+SPORTS={"americanfootball_nfl","americanfootball_ncaaf","basketball_nba","basketball_ncaab","baseball_mlb","icehockey_nhl","soccer_epl","mma_mixed_martial_arts"}
 MARKETS={"h2h","spreads","totals"}
 PROP_MARKETS={"player_pass_yds","player_pass_tds","player_rush_yds","player_reception_yds","player_receptions","player_anytime_td"}
 def main():
@@ -44,7 +44,8 @@ def main():
     path=Path("feed") / (sport + ".json")
     path.parent.mkdir(parents=True,exist_ok=True)
     path.write_text(json.dumps(output,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-    Path("feed/latest.json").write_text(json.dumps(output,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+    if sport != "mma_mixed_martial_arts":
+        Path("feed/latest.json").write_text(json.dumps(output,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print("Saved",len(rows),"selections. Remaining free credits:",remaining)
     return 0
 if __name__=="__main__":sys.exit(main())

@@ -1,0 +1,30 @@
+name: UFC Shared Sportsbook Integration
+on:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify shared UFC sportsbook wiring and safety
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import ast
+          source=Path('scripts/fetch_odds.py').read_text()
+          tree=ast.parse(source)
+          ns={}
+          exec(compile(tree,'scripts/fetch_odds.py','exec'),ns)
+          assert 'mma_mixed_martial_arts' in ns['SPORTS']
+          assert 'mma_mixed_martial_arts' in Path('.github/workflows/refresh-odds.yml').read_text()
+          html=Path('ufc.html').read_text()
+          js=Path('ufc_shared_odds.js').read_text()
+          assert 'ksl-shared-odds' in html and 'ufc_shared_odds.js' in html
+          assert 'mma_mixed_martial_arts.json' in js
+          assert '15*60*1000' in js and 'Date.parse(q.commence_time)<=now' in js
+          assert 'draftkings' in js and 'fanduel' in js
+          PY
