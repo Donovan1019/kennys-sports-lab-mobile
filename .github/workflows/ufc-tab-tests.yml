@@ -1,0 +1,27 @@
+name: Test UFC research tab
+on:
+  pull_request:
+    paths:
+      - 'ufc.html'
+      - 'ufc_lab.js'
+      - 'ufc_lab.css'
+      - 'feed/ufc_research.json'
+      - 'tests/test_ufc_tab.py'
+      - 'index.html'
+      - 'nfl.html'
+      - 'nba.html'
+      - 'nhl.html'
+      - '.github/workflows/ufc-tab-tests.yml'
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify UFC tab integration
+        run: python -m unittest discover -s tests -p 'test_ufc_tab.py' -v
+      - name: Check browser JavaScript syntax
+        run: node --check ufc_lab.js
