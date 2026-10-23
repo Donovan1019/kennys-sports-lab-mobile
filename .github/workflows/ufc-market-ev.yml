@@ -1,0 +1,21 @@
+name: UFC Market EV Validation
+on:
+  push:
+    branches:
+      - feature/ufc-market-ev-engine-20261023
+  pull_request:
+    paths:
+      - 'scripts/ufc_market_ev.py'
+      - 'tests/test_ufc_market_ev.py'
+      - '.github/workflows/ufc-market-ev.yml'
+  workflow_dispatch:
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test market math and verification gates
+        run: python -m unittest discover -s tests -p test_ufc_market_ev.py -v
