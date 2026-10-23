@@ -23,9 +23,9 @@ jobs:
           from pathlib import Path
           html=Path('ufc.html').read_text()
           js=Path('ufc_free_odds_ui.js').read_text()
-          assert 'ufc_free_odds_ui.js' in html
-          assert 'ufc-free-form' in html
-          assert 'ufc-free-comparison' in html
+          assert 'ufc_free_odds_ui.js' not in html
+          assert 'ufc-free-form' not in html
+          assert 'ufc-free-comparison' not in html
           assert 'localStorage' in js
           assert 'model probability' in js.lower()
           PY
