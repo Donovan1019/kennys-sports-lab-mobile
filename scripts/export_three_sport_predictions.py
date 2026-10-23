@@ -25,21 +25,27 @@ def model(sport,now):
     try:data=json.loads(path.read_text())
     except (OSError,ValueError):return []
     predictions=[]
+    nhl_history={}
+    if sport=='NHL':
+        try:nhl_history=json.loads((ROOT/'feed'/'nhl_team_score_history.json').read_text()).get('teams',{})
+        except (OSError,ValueError):pass
     for game in data.get('games',[]):
         kickoff=stamp(game.get('commence_time'))
         if not kickoff or kickoff<=now:continue
         teams=game.get('teams',[])
+        if sport=='NHL' and (not teams or len(teams)!=2):
+            teams=[{'team':name,'score_history':nhl_history.get(name,[])} for name in (game.get('home'),game.get('away'))]
         if not isinstance(teams,list) or len(teams)!=2:continue
         by_name={t.get('team'):t for t in teams if isinstance(t,dict)}
         home=game.get('home');away=game.get('away')
         if home not in by_name or away not in by_name:continue
         h=by_name[home];a=by_name[away]
-        if any(not isinstance(t.get('score_history'),list) or len(t['score_history'])<10 for t in (h,a)):continue
+        if any(not isinstance(t.get('score_history'),list) or len(t['score_history'])< (3 if sport=='NHL' else 10) for t in (h,a)):continue
         # Only use observations that were available before forecast creation.
         histories=[]
         for t in (h,a):
             rows=[r for r in t['score_history'] if stamp(r.get('date')) and stamp(r['date'])<now and isinstance(r.get('scored'),(int,float)) and isinstance(r.get('allowed'),(int,float))]
-            if len(rows)<10:break
+            if len(rows)<(3 if sport=='NHL' else 10):break
             histories.append(rows[-20:])
         if len(histories)!=2:continue
         def avg(rows,key):return sum(x[key] for x in rows)/len(rows)
