@@ -1,0 +1,44 @@
+name: UFC Elo Tuning Research
+on:
+  pull_request:
+    paths:
+      - 'scripts/ufc_elo_train_tuning.py'
+      - 'tests/test_ufc_elo_train_tuning.py'
+      - '.github/workflows/ufc-elo-tuning.yml'
+  push:
+    branches:
+      - feature/ufc-tuning-ci-20261023
+  workflow_dispatch:
+jobs:
+  tune:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test tuning
+        run: python -m unittest discover -s tests -p test_ufc_elo_train_tuning.py -v
+      - name: Import and tune historical UFC Elo
+        run: |
+          python scripts/ufc_tidytuesday_import.py --output /tmp/ufc_snapshot.json
+          python scripts/ufc_elo_train_tuning.py --input /tmp/ufc_snapshot.json --output /tmp/ufc_tuning.json
+          python - <<'PY'
+          import json
+          r=json.load(open('/tmp/ufc_tuning.json'))
+          print('Selected K:',r['selected']['k'])
+          print('Selected min history:',r['selected']['minimum_history'])
+          print('Train Brier:',r['selected']['train']['brier'])
+          print('Holdout n:',r['holdout']['n'])
+          print('Holdout Brier:',r['holdout']['brier'])
+          print('Holdout log loss:',r['holdout']['log_loss'])
+          print('Brier gain vs neutral:',r['holdout_brier_improvement'])
+          assert len(r['candidates'])==15
+          assert r['holdout']['n']>=100
+          assert r['bet_eligible'] is False
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ufc-elo-tuning-research
+          path: /tmp/ufc_tuning.json
+          retention-days: 14
