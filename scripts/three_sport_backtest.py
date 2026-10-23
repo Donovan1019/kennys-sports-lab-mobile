@@ -52,12 +52,12 @@ def capture(now):
             item=dict(q)
             item['audit_flags']=reasons
             (invalid if reasons else good).append(item)
-        payload={'schema':1,'sport':sport,'capture_at':now.isoformat(),
+        model_source=read(ROOT/'feed'/(sport.lower()+'_model_predictions.json'),{})\n        model_rows=model_source.get('predictions',[]) if isinstance(model_source,dict) else []\n        model_ok=[]\n        for p in model_rows:\n            if not isinstance(p,dict):continue\n            created=stamp(p.get('prediction_created_at'))\n            start=stamp(p.get('commence_time'))\n            if created and start and created<start and created<=now and p.get('model_version'):\n                model_ok.append(p)\n        payload={'schema':1,'sport':sport,'capture_at':now.isoformat(),
                  'source_file':str(source.relative_to(ROOT)),
                  'source_fetched_at':data.get('fetched_at'),
                  'quotes':good,'rejected_quotes':invalid,
-                 'model_predictions':[],
-                 'note':'Saved sportsbook quotes are not model predictions. Model predictions must be captured independently before kickoff.'}
+                 'model_predictions':model_ok,
+                 'note':'Saved sportsbook quotes are not model predictions. Independently timestamped model predictions are required before kickoff.'}
         payload['sha256']=hashlib.sha256(canonical({k:v for k,v in payload.items() if k!='sha256'}).encode()).hexdigest()
         dest=folder/(sport.lower()+'.json')
         if dest.exists():
