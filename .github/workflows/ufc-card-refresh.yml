@@ -20,12 +20,14 @@ jobs:
           python-version: '3.11'
       - name: Refresh free UFC card
         run: python scripts/ufc_event_ingest.py
+      - name: Export research-only UFC simulation audit
+        run: python scripts/ufc_monte_carlo.py
       - name: Commit only changed UFC feed
         run: |
-          if ! git diff --quiet -- feed/ufc_research.json; then
+          if ! git diff --quiet -- feed/ufc_research.json feed/ufc_simulations.json || [ ! -f feed/ufc_simulations.json ]; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add feed/ufc_research.json
+            git add feed/ufc_research.json feed/ufc_simulations.json
             git commit -m "Refresh UFC research fight card [skip ci]"
             git push
           fi
