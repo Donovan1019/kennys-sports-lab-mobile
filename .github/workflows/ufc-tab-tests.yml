@@ -2,6 +2,8 @@ name: Test UFC research tab
 on:
   pull_request:
     paths:
+      - 'scripts/ufc_holdout_readiness.py'
+      - 'tests/test_ufc_holdout_readiness.py'
       - 'scripts/ufc_odds_ev.py'
       - 'tests/test_ufc_odds_ev.py'
       - 'scripts/ufc_elo_baseline.py'
