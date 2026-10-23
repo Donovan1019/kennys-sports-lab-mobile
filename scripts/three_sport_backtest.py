@@ -29,7 +29,7 @@ def canonical(obj):return json.dumps(obj,sort_keys=True,separators=(',',':'),ens
 
 def capture(now):
     day=now.date().isoformat()
-    folder=ROOT/'backtests'/'snapshots'/day
+    folder=ROOT/'backtests'/'snapshots'/day/now.strftime('%H%M%S')
     folder.mkdir(parents=True,exist_ok=True)
     report={}
     for sport,file in SPORTS.items():
@@ -107,11 +107,25 @@ def grade(date):
     directory=ROOT/'backtests'/'snapshots'/date
     result={'date':date,'generated_at':dt.datetime.now(UTC).isoformat(),'sports':{},'summary':{'verified_picks':0,'wins':0,'losses':0,'pushes':0,'roi':None,'hit_rate':None}}
     for sport in SPORTS:
-        snap=read(directory/(sport.lower()+'.json'))
-        if not snap:
+        snapshot_paths=sorted(directory.glob('*/'+sport.lower()+'.json')) if directory.exists() else []
+        snapshots=[read(path) for path in snapshot_paths]
+        snapshots=[x for x in snapshots if isinstance(x,dict)]
+        snap={'quotes':[],'model_predictions':[]}
+        for snapshot in snapshots:
+            checksum=snapshot.get('sha256')
+            actual=hashlib.sha256(canonical({k:v for k,v in snapshot.items() if k!='sha256'}).encode()).hexdigest()
+            if not checksum or checksum!=actual:raise ValueError('Snapshot checksum mismatch during grading')
+            snap['quotes'].extend(snapshot.get('quotes',[]))
+            snap['model_predictions'].extend(snapshot.get('model_predictions',[]))
+        if not snapshots:
             result['sports'][sport]={'status':'NO_SNAPSHOT','graded':0}
             continue
         predictions=snap.get('model_predictions',[])
+        unique={}
+        for p in predictions:
+            key=canonical({k:v for k,v in p.items() if k not in ('captured_at',)})
+            unique[key]=p
+        predictions=list(unique.values())
         results=read(ROOT/'backtests'/'results'/date/(sport.lower()+'.json'),{})
         games=results.get('games',[]) if isinstance(results,dict) else []
         valid=[];blocked=[]
