@@ -21,6 +21,12 @@ class UFCHistoricalSourceTests(unittest.TestCase):
         self.assertTrue(rows[0]["method_verified"])
     def test_incomplete_bout_excluded(self):
         self.assertEqual(parse_day(payload("Decision",False),DAY),[])
+    def test_rejects_out_of_day_results(self):
+        sample=payload()
+        sample['events'][0]['competitions'][0]['date']='2026-10-21T20:00:00Z'
+        self.assertEqual(parse_day(sample,DAY),[])
+        sample['events'][0]['competitions'][0]['date']='2026-10-19T20:00:00Z'
+        self.assertEqual(parse_day(sample,DAY),[])
     def test_bounds_and_partial_failure(self):
         with self.assertRaises(ValueError):collect(DAY,DAY+dt.timedelta(days=32))
         with patch("scripts.ufc_historical_source.fetch_day",side_effect=OSError("network")):
