@@ -111,4 +111,6 @@ def main():
  out=Path(args.output);out.parent.mkdir(parents=True,exist_ok=True)
  out.write_text(json.dumps(report,indent=2)+"\n")
  print("UFCStats:",report["status"],"profiles:",len(report["fighters"]),"complete:",sum(x["status"]=="PUBLIC_PROFILE_FOUND" for x in report["fighters"]))
+ from collections import Counter
+ print("Profile statuses:",dict(Counter(x["status"] for x in report["fighters"])))
 if __name__=="__main__":main()
