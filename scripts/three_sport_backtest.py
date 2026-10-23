@@ -49,6 +49,8 @@ def capture(now):
             if fetched and fetched>now:reasons.append('future_feed_timestamp')
             if not all(q.get(k) for k in ('event','market','player','bookmaker')):reasons.append('missing_identity')
             if not isinstance(q.get('price'),(int,float)):reasons.append('missing_price')
+            if observed and fetched and observed>fetched:reasons.append('quote_after_feed_fetch')
+            if fetched and (now-fetched).total_seconds()>86400:reasons.append('stale_feed_over_24h')
             item=dict(q)
             item['audit_flags']=reasons
             (invalid if reasons else good).append(item)
@@ -71,6 +73,9 @@ def capture(now):
         dest=folder/(sport.lower()+'.json')
         if dest.exists():
             previous=read(dest,{})
+            expected=previous.get('sha256')
+            actual=hashlib.sha256(canonical({k:v for k,v in previous.items() if k!='sha256'}).encode()).hexdigest()
+            if not expected or expected!=actual:raise ValueError('Immutable snapshot checksum mismatch: '+str(dest))
             report[sport]={'status':'immutable_existing','eligible_quotes':len(previous.get('quotes',[])),'rejected_quotes':len(previous.get('rejected_quotes',[]))}
         else:
             dest.write_text(json.dumps(payload,indent=2,ensure_ascii=False)+'\n')
