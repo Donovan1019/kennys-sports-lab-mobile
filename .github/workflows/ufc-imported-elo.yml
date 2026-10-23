@@ -1,0 +1,43 @@
+name: UFC Imported Elo Research
+on:
+  push:
+    branches:
+      - feature/ufc-import-elo-research-20261023
+  pull_request:
+    paths:
+      - 'scripts/ufc_tidytuesday_elo.py'
+      - 'tests/test_ufc_tidytuesday_elo.py'
+      - '.github/workflows/ufc-imported-elo.yml'
+  workflow_dispatch:
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Unit tests
+        run: python -m unittest discover -s tests -p test_ufc_tidytuesday_elo.py -v
+      - name: Download historical snapshot and run chronological Elo
+        run: |
+          python scripts/ufc_tidytuesday_import.py --output /tmp/ufc_tidytuesday_research.json
+          python scripts/ufc_tidytuesday_elo.py --input /tmp/ufc_tidytuesday_research.json --output /tmp/ufc_tidytuesday_elo.json
+          python - <<'PY'
+          import json
+          report=json.load(open('/tmp/ufc_tidytuesday_elo.json'))
+          print('Bouts:',report['historical_bouts_used'])
+          print('Pre-event evaluations:',report['pre_event_evaluated_fights'])
+          print('Brier:',report['brier'])
+          print('Log loss:',report['log_loss'])
+          assert report['historical_bouts_used']>100
+          assert report['bet_eligible'] is False
+          assert report['independently_verified'] is False
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ufc-tidytuesday-elo-research
+          path: |
+            /tmp/ufc_tidytuesday_elo.json
+            /tmp/ufc_tidytuesday_research.json
+          retention-days: 14
