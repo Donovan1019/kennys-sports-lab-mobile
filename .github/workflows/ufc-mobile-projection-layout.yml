@@ -23,6 +23,6 @@ jobs:
           assert 'content:attr(data-label)' in h
           assert 'min-width:0;width:100%;display:block' in h
           assert "td.setAttribute('data-label',labels[i])" in j
-          assert 'ufc_fighter_projections.js?v=3' in h
+          assert 'ufc_fighter_projections.js?v=4' in h
           assert h.index('id="ksl-ufc-projection"')<h.index('id="ksl-shared-odds"')
           PY
