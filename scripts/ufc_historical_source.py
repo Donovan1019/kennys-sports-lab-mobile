@@ -50,14 +50,14 @@ def parse_day(payload,day):
             # ESPN status fields are not consistently mapped to official methods.
             # Only accept an explicit normalized method from verified details.
             method=bout.get("verified_method")
-            if method not in ("KO/TKO","Submission","Decision"):
-                continue
+            method_verified=method in ("KO/TKO","Submission","Decision")
             key=(eid,fid)
             if key in seen:
                 continue
             seen.add(key)
             rows.append({"event_id":eid,"fight_id":fid,"event_date":when.isoformat(),
-                         "winner":winner,"loser":loser,"method":method,
+                         "winner":winner,"loser":loser,"method":method if method_verified else None,
+                         "method_verified":method_verified,"winner_verified":True,
                          "source_url":BASE+"?"+urlencode({"dates":day.strftime("%Y%m%d")})})
     return rows
 
@@ -76,7 +76,7 @@ def collect(start,end,max_days=31):
         day+=dt.timedelta(days=1)
     return {"results":rows,"source":"ESPN public MMA scoreboard; strict method verification",
             "coverage_days":(end-start).days+1,"failed_days":errors,
-            "excluded_unverified_methods":True,"bet_eligible":False}
+            "unverified_methods_retained_as_null":True,"bet_eligible":False}
 
 def main():
     p=argparse.ArgumentParser()
@@ -92,6 +92,6 @@ def main():
     output=Path(args.output)
     output.parent.mkdir(parents=True,exist_ok=True)
     output.write_text(json.dumps(report,indent=2)+"\n")
-    print(f"Verified rows={len(report['results'])}; failed days={len(report['failed_days'])}; method-unverified fights excluded")
+    print(f"Verified rows={len(report['results'])}; failed days={len(report['failed_days'])}; unverified methods retained as null")
 if __name__=="__main__":
     main()
