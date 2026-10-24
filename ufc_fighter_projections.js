@@ -54,7 +54,54 @@ if(market.value==='Moneyline'){
 const projected=researchProjection(f,fighter,stat);
 return projected?projected.value.toFixed(1)+' '+projected.units:'NO MATCHED STAT SAMPLE';
 }
-function render(){tbody.replaceChildren();cards.replaceChildren();const chosen=fights.filter(f=>!bout.value||String(f.id)===bout.value);let withStats=0,withOdds=0;for(const f of chosen){for(const [fighter,opponent] of [[f.red,f.blue],[f.blue,f.red]]){const row=document.createElement('tr');const stat=statsByName.get(norm(fighter));const model=modelDisplay(f,fighter,stat);const price=market.value==='Moneyline'?bookPrices(f,fighter):'NO VERIFIED QUOTE';if(stat)withStats++;if(price!=='— / —'&&price!=='NO VERIFIED QUOTE')withOdds++;const independent=market.value==='Moneyline'?independentWinEstimate(f,fighter):null;const projection=market.value!=='Moneyline'?researchProjection(f,fighter,stat):null;const label=market.value==='Moneyline'?(independent?'Independent historical rate + Elo heuristic; UNCALIBRATED; matched rounds '+independent.rounds+'; reliability weight '+(independent.weight*100).toFixed(0)+'%':'No matched two-fighter stats for independent estimate'):(projection?'Historical 3-round equivalent from '+projection.rounds+' recorded rounds; NOT opponent-adjusted':'Insufficient fighter history or market not modeled');const baseline=market.value==='Moneyline'?marketBaseline(f,fighter):[];const marketPct=baseline.length?(baseline.reduce((a,x)=>a+x.novig,0)/baseline.length*100).toFixed(1)+'% no-vig market':'NO MARKET PROBABILITY';const values=[fighter,opponent,eastern(f.start_time),market.value,model,price,marketPct,label];const labels=['Fighter','Opponent','Start ET','Market','Model / history','DK / FD','Market probability','Status'];for(let i=0;i<values.length;i++){const td=document.createElement('td');td.textContent=values[i];td.setAttribute('data-label',labels[i]);row.append(td)}tbody.append(row);const card=document.createElement('article');card.className='ksl-ufc-projection-card';const title=document.createElement('h3');title.textContent=fighter;card.append(title);for(let i=1;i<values.length;i++){const line=document.createElement('div');line.className='ksl-ufc-projection-field';const k=document.createElement('span');k.textContent=labels[i];const v=document.createElement('strong');v.textContent=values[i];line.append(k,v);card.append(line)}cards.append(card)}}count.textContent=chosen.length+' upcoming matchups · '+withStats+' matched historical fighter profiles · '+withOdds+' price rows · no validated prop hit probabilities';if(!chosen.length)count.textContent='No upcoming UFC matchups available.'}
+function rateLeader(f,key){
+ const a=careerRate(statsByName.get(norm(f.red)),key),b=careerRate(statsByName.get(norm(f.blue)),key);
+ if(a===null||b===null)return {name:'Insufficient comparable history',detail:'Historical rates only'};
+ const pick=Math.abs(a-b)<0.0001?'Tied':a>b?f.red:f.blue;
+ return {name:pick,detail:f.red+' '+a.toFixed(2)+' vs '+f.blue+' '+b.toFixed(2)+' per recorded round'};
+}
+function boutAssessment(f){
+ const a=independentWinEstimate(f,f.red),b=independentWinEstimate(f,f.blue);
+ const qa=marketBaseline(f,f.red),qb=marketBaseline(f,f.blue);
+ const marketA=qa.length?qa.reduce((n,x)=>n+x.novig,0)/qa.length:null;
+ const modelPick=a&&b?(a.probability>=b.probability?f.red:f.blue):null;
+ const marketPick=marketA===null?null:marketA>=0.5?f.red:f.blue;
+ const modelPct=a&&b?Math.max(a.probability,b.probability)*100:null;
+ const marketPct=marketA===null?null:Math.max(marketA,1-marketA)*100;
+ // A lean is not a bet. No positive EV claim without a calibrated, independently validated model.
+ const decision=modelPick?'RESEARCH LEAN · '+modelPick:marketPick?'MARKET FAVORITE · '+marketPick:'NO RELIABLE PICK';
+ const basis=modelPick?'Uncalibrated fighter-stat model · '+modelPct.toFixed(1)+'%':marketPick?'Bookmaker consensus · '+marketPct.toFixed(1)+'% no-vig':'No matched model or sportsbook data';
+ return {decision,basis,modelPick,marketPick,marketPct,strikes:rateLeader(f,'sig_landed'),takedowns:rateLeader(f,'td_landed')};
+}
+function render(){
+ tbody.replaceChildren();cards.replaceChildren();
+ const chosen=fights.filter(f=>!bout.value||String(f.id)===bout.value);
+ let matched=0,priced=0;
+ const add=(parent,label,value)=>{const line=document.createElement('div');line.className='ksl-ufc-projection-field';const k=document.createElement('span');k.textContent=label;const v=document.createElement('strong');v.textContent=value;line.append(k,v);parent.append(line)};
+ for(const f of chosen){
+   const assess=boutAssessment(f),card=document.createElement('article');card.className='ksl-ufc-projection-card';
+   const title=document.createElement('h3');title.textContent=f.red+' vs '+f.blue;card.append(title);
+   add(card,'Start ET',eastern(f.start_time));add(card,'Winner assessment',assess.decision);add(card,'Prediction basis',assess.basis);
+   add(card,'Market favorite',assess.marketPick?assess.marketPick+' · '+assess.marketPct.toFixed(1)+'% no-vig':'No complete two-sided quote');
+   add(card,'Striking leader',assess.strikes.name);add(card,'Striking comparison',assess.strikes.detail);
+   add(card,'Takedown leader',assess.takedowns.name);add(card,'Takedown comparison',assess.takedowns.detail);
+   add(card,'Method / round','Not predicted — outcome and duration model not validated');
+   add(card,'Betting decision','RESEARCH ONLY · No calibrated edge or verified method/round price');
+   for(const fighter of [f.red,f.blue]){
+     const stat=statsByName.get(norm(fighter));if(stat)matched++;
+     const model=modelDisplay(f,fighter,stat),price=market.value==='Moneyline'?bookPrices(f,fighter):'No verified prop quote';
+     if(price!=='— / —'&&price!=='No verified prop quote')priced++;
+     const base=marketBaseline(f,fighter),marketPct=base.length?(base.reduce((n,x)=>n+x.novig,0)/base.length*100).toFixed(1)+'%':'No two-sided market';
+     const row=document.createElement('tr');
+     for(const val of [fighter,fighter===f.red?f.blue:f.red,eastern(f.start_time),market.value,model,price,marketPct,'Research only']){const td=document.createElement('td');td.textContent=val;row.append(td)}tbody.append(row);
+     add(card,fighter+' · '+market.value,model);
+     if(market.value==='Moneyline'){add(card,fighter+' · DK / FD',price);add(card,fighter+' · no-vig market',marketPct)}
+   }
+   cards.append(card);
+ }
+ count.textContent=chosen.length+' upcoming fights · '+matched+' historical fighter profiles · '+priced+' priced selections · one comparison card per fight';
+ if(!chosen.length)count.textContent='No upcoming UFC fights available.';
+}
 market.addEventListener('change',render);bout.addEventListener('change',render);
 const get=async path=>{const r=await fetch(path,{cache:'no-store'});if(!r.ok)throw Error(path+' unavailable');return r.json()};
 Promise.all([get('./feed/ufc_research.json'),get('./feed/ufc_elo_projections.json').catch(()=>null),get('./feed/ufc_fighter_stats_mirror.json').catch(()=>null),get('./feed/mma_mixed_martial_arts.json').catch(()=>null)]).then(([data,elo,stats,book])=>{
