@@ -90,9 +90,32 @@ def evaluate(rows,train_fraction=.7,lr=.04,reg=.0005):
        "weights":weights,"bet_eligible":False,
        "provenance":"RETROSPECTIVE_NOT_PIT_CERTIFIED",
        "limitations":"No historical source capture timestamps; no market odds or profitability verification."}
+def versioned_artifact(rows, result):
+    """Freeze the tested pre-cutoff model, not a refit or a live betting model."""
+    cutoff=result["cutoff_date"]
+    train=[r for r in rows if r["date"]<cutoff]
+    test=[r for r in rows if r["date"]>=cutoff]
+    if len(train)!=result["training_fights"] or len(test)!=result["test_fights"]:
+        raise ValueError("Training/test row mismatch; refusing to export artifact")
+    payload=json.dumps([{"fight_id":r["fight_id"],"date":r["date"],"x":r["x"],"y":r["y"]} for r in train],sort_keys=True,separators=(",",":"))
+    weights=result["weights"]
+    if len(weights)!=len(FIELDS)+1 or not all(math.isfinite(w) for w in weights):
+        raise ValueError("Invalid model weights")
+    return {"schema_version":1,"model_family":"logistic_opponent_differential",
+            "feature_names":list(FIELDS),"feature_scales":list(SCALE),
+            "minimum_prior_fights_per_fighter":2,"feature_clip":[-3,3],
+            "intercept":weights[0],"coefficients":weights[1:],
+            "training_cutoff_exclusive":cutoff,"training_fights":len(train),
+            "heldout_fights":len(test),"training_rows_sha256":hashlib.sha256(payload.encode()).hexdigest(),
+            "heldout_brier":result["test_brier"],"heldout_log_loss":result["test_log_loss"],
+            "historical_source_independently_verified":False,"point_in_time_certified":False,
+            "bet_eligible":False,"use_for_live_fighter_projections":False,
+            "limitations":"Retrospective training and evaluation only; feature-source capture times and live pre-fight availability unverified."}
+
 def main():
     ap=argparse.ArgumentParser()
     ap.add_argument("--output",type=Path,required=True)
+    ap.add_argument("--artifact-output",type=Path,help="Optional versioned research model artifact JSON")
     args=ap.parse_args()
     cross,_=fetch(BASE+"id_crosswalk_all.csv")
     wide,_=fetch(BASE+"ufc_all_fights_wide.csv")
