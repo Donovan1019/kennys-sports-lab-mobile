@@ -1,0 +1,20 @@
+name: UFC Native Fight Join
+on:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  fight-join:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m unittest discover -s tests -p test_ufc_native_fight_join.py -v
+      - name: Download real fight-level data and attempt native-ID join
+        run: python -m scripts.ufc_native_fight_join --output ufc_native_join_report.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ufc-native-fight-join
+          path: ufc_native_join_report.json
