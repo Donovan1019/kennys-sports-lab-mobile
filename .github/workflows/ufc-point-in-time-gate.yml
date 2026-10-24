@@ -1,0 +1,13 @@
+name: UFC Point-In-Time Leakage Gate
+on:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  point-in-time:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m unittest discover -s tests -p test_ufc_point_in_time_gate.py -v
