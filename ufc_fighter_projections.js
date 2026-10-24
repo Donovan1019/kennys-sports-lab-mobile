@@ -108,7 +108,7 @@ function render(){
  for(const f of chosen){
    const assess=boutAssessment(f),card=document.createElement('article');card.className='ksl-ufc-projection-card';
    const title=document.createElement('h3');title.textContent=f.red+' vs '+f.blue;card.append(title);
-   add(card,'Start ET',eastern(f.start_time));add(card,'Winner assessment',assess.decision);add(card,'Prediction basis',assess.basis);
+   add(card,'Start ET',eastern(f.start_time));add(card,'Fight status',Date.parse(f.start_time)<=Date.now()?'Scheduled start passed · live/result status UNVERIFIED':'Scheduled · not yet started by listed time');add(card,'Winner assessment',assess.decision);add(card,'Prediction basis',assess.basis);
    add(card,'Market favorite',assess.marketPick?assess.marketPick+' · '+assess.marketPct.toFixed(1)+'% no-vig':'No complete two-sided quote');
    add(card,'Striking leader',assess.strikes.name);add(card,'Striking comparison',assess.strikes.detail);
    add(card,'Takedown leader',assess.takedowns.name);add(card,'Takedown comparison',assess.takedowns.detail);
@@ -127,8 +127,8 @@ function render(){
    }
    cards.append(card);
  }
- count.textContent=chosen.length+' upcoming fights · '+matched+' matched fighter profiles · '+priced+' fresh priced selections · one comparison card per fight';
- if(!chosen.length)count.textContent='No upcoming UFC fights available.';
+ count.textContent=chosen.length+' scheduled card fights (start time does not confirm completion) · '+matched+' matched fighter profiles · '+priced+' fresh priced selections · one comparison card per fight';
+ if(!chosen.length)count.textContent='No scheduled UFC card fights in the current feed. Refresh the source feed to load the next event.';
 }
 market.addEventListener('change',render);bout.addEventListener('change',render);
 const get=async path=>{const r=await fetch(path,{cache:'no-store'});if(!r.ok)throw Error(path+' unavailable');return r.json()};
@@ -137,9 +137,9 @@ if(data.sport!=='UFC'||!Array.isArray(data.fights))throw Error('Invalid UFC card
 if(elo&&elo.sport==='UFC'&&Array.isArray(elo.projections))for(const item of elo.projections)if(item?.fight_id)eloById.set(String(item.fight_id),item);
 if(stats&&stats.sport==='UFC'&&Array.isArray(stats.fighters))for(const f of stats.fighters)if(f.status==='MATCHED_HISTORICAL_STATS'&&f.name)statsByName.set(norm(f.name),f);
 if(book&&book.sport==='mma_mixed_martial_arts'&&book.source==='the-odds-api-v4'&&book.status==='ok'&&Array.isArray(book.odds)&&Number.isFinite(Date.parse(book.fetched_at))&&Date.parse(book.fetched_at)<=Date.now()&&Date.now()-Date.parse(book.fetched_at)<=6*60*60*1000){odds=book.odds;oddsFetched=book.fetched_at}
-fights=data.fights.filter(f=>f&&f.red&&f.blue&&f.id&&Number.isFinite(Date.parse(f.start_time))&&Date.parse(f.start_time)>Date.now()).sort((a,b)=>Date.parse(a.start_time)-Date.parse(b.start_time));
+fights=data.fights.filter(f=>f&&f.red&&f.blue&&f.id&&Number.isFinite(Date.parse(f.start_time))&&Date.parse(f.start_time)>Date.now()-36*60*60*1000).sort((a,b)=>Date.parse(a.start_time)-Date.parse(b.start_time));
 for(const f of fights){const o=document.createElement('option');o.value=String(f.id);o.textContent=f.red+' vs '+f.blue+' · '+eastern(f.start_time);bout.append(o)}
-p.textContent='Historical strike projections are selected by default. Select another market to view available historical stats. Moneyline model is an independent uncalibrated historical striking/takedown/Elo heuristic when both fighters have data; sportsbook no-vig probability is shown separately. Strike/grappling figures are survival-adjusted research expectations using an illustrative, untrained 18% per-round finish hazard, not validated bout-specific duration or opponent-adjusted forecasts. DK / FD prices are timestamp-validated pre-fight snapshots, NOT a guarantee of currently executable odds; confirm current odds before any bet. No validated prop hit probabilities. Last odds capture: '+(oddsFetched?eastern(oddsFetched):'unavailable')+'.';
+p.textContent='Scheduled fights remain visible for 36 hours after listed start; this does not verify whether a fight is live or completed. Historical strike projections are selected by default. Select another market to view available historical stats. Moneyline model is an independent uncalibrated historical striking/takedown/Elo heuristic when both fighters have data; sportsbook no-vig probability is shown separately. Strike/grappling figures are survival-adjusted research expectations using an illustrative, untrained 18% per-round finish hazard, not validated bout-specific duration or opponent-adjusted forecasts. DK / FD prices are timestamp-validated pre-fight snapshots, NOT a guarantee of currently executable odds; confirm current odds before any bet. No validated prop hit probabilities. Last odds capture: '+(oddsFetched?eastern(oddsFetched):'unavailable')+'.';
 render();
 }).catch(e=>{count.textContent='UNAVAILABLE — '+e.message});
 })();
