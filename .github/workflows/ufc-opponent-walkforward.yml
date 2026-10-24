@@ -11,9 +11,29 @@ jobs:
         with:
           python-version: '3.11'
       - run: python -m unittest discover -s tests -p test_ufc_opponent_walkforward.py -v
-      - run: python -m scripts.ufc_opponent_walkforward --output ufc_opponent_walkforward_report.json
+      - run: python -m scripts.ufc_opponent_walkforward --output ufc_opponent_walkforward_report.json --artifact-output ufc_opponent_walkforward_model.json
+      - name: Verify model artifact integrity and provenance
+        run: |
+          python - <<'PY'
+          import json,math
+          from pathlib import Path
+          report=json.loads(Path('ufc_opponent_walkforward_report.json').read_text())
+          model=json.loads(Path('ufc_opponent_walkforward_model.json').read_text())
+          assert model['schema_version']==1
+          assert model['training_fights']==report['training_fights']
+          assert model['heldout_fights']==report['test_fights']
+          assert model['training_cutoff_exclusive']==report['cutoff_date']
+          assert len(model['coefficients'])==len(model['feature_names'])==len(model['feature_scales'])
+          assert all(math.isfinite(x) for x in [model['intercept'],*model['coefficients']])
+          assert len(model['training_rows_sha256'])==64
+          assert model['point_in_time_certified'] is False
+          assert model['bet_eligible'] is False
+          assert model['use_for_live_fighter_projections'] is False
+          PY
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: ufc-opponent-walkforward-research
-          path: ufc_opponent_walkforward_report.json
+          path: |
+            ufc_opponent_walkforward_report.json
+            ufc_opponent_walkforward_model.json
