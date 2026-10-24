@@ -1,0 +1,33 @@
+{
+  "sport": "NHL",
+  "date": "2026-10-23",
+  "games": [
+    {
+      "event_id": "401892564",
+      "event": "Montreal Canadiens at Chicago Blackhawks",
+      "commence_time": "2026-10-24T00:00Z",
+      "home": "Chicago Blackhawks",
+      "away": "Montreal Canadiens",
+      "home_score": 1,
+      "away_score": 4,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261023&limit=100"
+    },
+    {
+      "event_id": "401892565",
+      "event": "Tampa Bay Lightning at Colorado Avalanche",
+      "commence_time": "2026-10-24T01:00Z",
+      "home": "Colorado Avalanche",
+      "away": "Tampa Bay Lightning",
+      "home_score": 6,
+      "away_score": 3,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261023&limit=100"
+    }
+  ],
+  "source_url": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261023&limit=100"
+}

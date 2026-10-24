@@ -1,6 +1,6 @@
 {
   "date": "2026-10-23",
-  "generated_at": "2026-10-23T22:41:49.417620+00:00",
+  "generated_at": "2026-10-24T16:42:35.415557+00:00",
   "sports": {
     "NFL": {
       "status": "OUTCOMES_UNVERIFIED",
@@ -12,30 +12,152 @@
       "pending": 162
     },
     "NBA": {
-      "status": "OUTCOMES_UNVERIFIED",
+      "status": "PARTIALLY_SETTLED_MONEYLINES",
       "saved_quotes": 476,
       "eligible_predictions": 174,
       "blocked_predictions": [],
-      "graded": 0,
-      "settled": [],
-      "pending": 174
+      "graded": 12,
+      "settled": [
+        {
+          "event": "New York Knicks @ Boston Celtics",
+          "market": "h2h",
+          "selection": "Boston Celtics",
+          "outcome": "win"
+        },
+        {
+          "event": "New York Knicks @ Boston Celtics",
+          "market": "h2h",
+          "selection": "New York Knicks",
+          "outcome": "loss"
+        },
+        {
+          "event": "Houston Rockets @ San Antonio Spurs",
+          "market": "h2h",
+          "selection": "San Antonio Spurs",
+          "outcome": "loss"
+        },
+        {
+          "event": "Houston Rockets @ San Antonio Spurs",
+          "market": "h2h",
+          "selection": "Houston Rockets",
+          "outcome": "win"
+        },
+        {
+          "event": "New York Knicks @ Boston Celtics",
+          "market": "h2h",
+          "selection": "Boston Celtics",
+          "outcome": "win"
+        },
+        {
+          "event": "New York Knicks @ Boston Celtics",
+          "market": "h2h",
+          "selection": "New York Knicks",
+          "outcome": "loss"
+        },
+        {
+          "event": "Houston Rockets @ San Antonio Spurs",
+          "market": "h2h",
+          "selection": "San Antonio Spurs",
+          "outcome": "loss"
+        },
+        {
+          "event": "Houston Rockets @ San Antonio Spurs",
+          "market": "h2h",
+          "selection": "Houston Rockets",
+          "outcome": "win"
+        },
+        {
+          "event": "New York Knicks @ Boston Celtics",
+          "market": "h2h",
+          "selection": "Boston Celtics",
+          "outcome": "win"
+        },
+        {
+          "event": "New York Knicks @ Boston Celtics",
+          "market": "h2h",
+          "selection": "New York Knicks",
+          "outcome": "loss"
+        },
+        {
+          "event": "Houston Rockets @ San Antonio Spurs",
+          "market": "h2h",
+          "selection": "San Antonio Spurs",
+          "outcome": "loss"
+        },
+        {
+          "event": "Houston Rockets @ San Antonio Spurs",
+          "market": "h2h",
+          "selection": "Houston Rockets",
+          "outcome": "win"
+        }
+      ],
+      "pending": 162
     },
     "NHL": {
-      "status": "OUTCOMES_UNVERIFIED",
+      "status": "PARTIALLY_SETTLED_MONEYLINES",
       "saved_quotes": 272,
       "eligible_predictions": 204,
       "blocked_predictions": [],
-      "graded": 0,
-      "settled": [],
-      "pending": 204
+      "graded": 8,
+      "settled": [
+        {
+          "event": "Montreal Canadiens @ Chicago Blackhawks",
+          "market": "h2h",
+          "selection": "Chicago Blackhawks",
+          "outcome": "loss"
+        },
+        {
+          "event": "Montreal Canadiens @ Chicago Blackhawks",
+          "market": "h2h",
+          "selection": "Montreal Canadiens",
+          "outcome": "win"
+        },
+        {
+          "event": "Tampa Bay Lightning @ Colorado Avalanche",
+          "market": "h2h",
+          "selection": "Colorado Avalanche",
+          "outcome": "win"
+        },
+        {
+          "event": "Tampa Bay Lightning @ Colorado Avalanche",
+          "market": "h2h",
+          "selection": "Tampa Bay Lightning",
+          "outcome": "loss"
+        },
+        {
+          "event": "Montreal Canadiens @ Chicago Blackhawks",
+          "market": "h2h",
+          "selection": "Chicago Blackhawks",
+          "outcome": "loss"
+        },
+        {
+          "event": "Montreal Canadiens @ Chicago Blackhawks",
+          "market": "h2h",
+          "selection": "Montreal Canadiens",
+          "outcome": "win"
+        },
+        {
+          "event": "Tampa Bay Lightning @ Colorado Avalanche",
+          "market": "h2h",
+          "selection": "Colorado Avalanche",
+          "outcome": "win"
+        },
+        {
+          "event": "Tampa Bay Lightning @ Colorado Avalanche",
+          "market": "h2h",
+          "selection": "Tampa Bay Lightning",
+          "outcome": "loss"
+        }
+      ],
+      "pending": 196
     }
   },
   "summary": {
-    "verified_picks": 0,
-    "wins": 0,
-    "losses": 0,
+    "verified_picks": 20,
+    "wins": 10,
+    "losses": 10,
     "pushes": 0,
     "roi": null,
-    "hit_rate": null
+    "hit_rate": 0.5
   }
 }
