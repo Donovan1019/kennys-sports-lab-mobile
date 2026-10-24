@@ -12,6 +12,14 @@ class Tests(unittest.TestCase):
   self.assertEqual(result["fighters"][0]["career_round_totals"]["sig_landed"],8)
   self.assertEqual(result["fighters"][0]["career_round_totals"]["control_seconds"],65)
   self.assertFalse(result["bet_eligible"])
+ def test_empty_round_is_not_exposure(self):
+  card={"fights":[{"red":"Jane Doe","blue":"Other"}]}
+  d=[{"FIRST":"Jane","LAST":"Doe","URL":"http://ufcstats.com/fighter-details/abc"}]
+  t=[{"FIGHTER":"Jane Doe"}]
+  rows=[{"FIGHTER":"Jane Doe","SIG.STR.":"---","TD":"---","TOTAL STR.":"---","CTRL":"---"},
+        {"FIGHTER":"Jane Doe","SIG.STR.":"8 of 16","TD":"0 of 0","TOTAL STR.":"8 of 16","CTRL":"0:30"}]
+  f=build(card,d,t,rows)["fighters"][0]
+  self.assertEqual(f["career_round_totals"]["round_rows"],1)
  def test_ambiguous(self):
   card={"fights":[{"red":"Jane Doe","blue":"Other"}]}
   d=[{"FIRST":"Jane","LAST":"Doe","URL":"one"},{"FIRST":"Jane","LAST":"Doe","URL":"two"}]
