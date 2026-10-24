@@ -20,3 +20,6 @@ console.log('UFC probability math and quote-freshness tests passed');
 
 assert.ok(source.includes('f.scheduled_rounds===5?5:f.scheduled_rounds===3?3:null'),'research counts must respect scheduled rounds');
 assert.ok(source.includes('schedule unverified'),'missing bout duration must be labeled');
+
+assert.ok(source.includes('expectedRounds+=Math.pow(1-perRoundFinishHazard,i)'), 'finish survival must adjust expected rounds');
+assert.ok(source.includes('UNTRAINED 18% PER-ROUND FINISH HAZARD'), 'untrained duration assumption must be disclosed');

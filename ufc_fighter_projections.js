@@ -46,7 +46,13 @@ function researchProjection(f,fighter,stat){
   // conservative adjustment of 1.0, not a fabricated opponent defensive figure.
   const scheduled=f.scheduled_rounds===5?5:f.scheduled_rounds===3?3:null;
   const horizon=scheduled??3;
-  return {value:own*horizon,units:m==='control_seconds'?'sec / '+horizon+'-round maximum':'per '+horizon+'-round maximum',rounds:stat.career_round_totals.round_rows,scheduledVerified:scheduled!==null};
+  // Exploratory survival baseline, not a trained finish model: at a constant
+  // per-round finish hazard, expected active rounds is the sum of survival
+  // probabilities for each scheduled round.
+  const perRoundFinishHazard=0.18;
+  let expectedRounds=0;
+  for(let i=0;i<horizon;i++)expectedRounds+=Math.pow(1-perRoundFinishHazard,i);
+  return {value:own*expectedRounds,units:m==='control_seconds'?'sec expected':'expected',rounds:stat.career_round_totals.round_rows,scheduledVerified:scheduled!==null,expectedRounds,horizon,assumption:'UNTRAINED 18% PER-ROUND FINISH HAZARD'};
 }
 // Transparent analytical distribution for count props; NOT a calibrated betting model.
 function poissonTail(lambda,threshold){
@@ -71,7 +77,7 @@ if(market.value==='Moneyline'){
   return independent?(independent.probability*100).toFixed(1)+'% research estimate':'NO INDEPENDENT ESTIMATE';
 }
 const projected=modeledProp(f,fighter,stat);
-return projected?projected.value.toFixed(1)+' '+projected.units+(projected.scheduledVerified?'':' · schedule unverified')+(projected.distribution==='POISSON RESEARCH BASELINE'?' · exploratory count model · P(>'+Math.floor(projected.value)+'.5) '+(projected.overAtHalf*100).toFixed(1)+'%':''):'NO MATCHED STAT SAMPLE';
+return projected?projected.value.toFixed(1)+' '+projected.units+' ('+projected.expectedRounds.toFixed(2)+' expected rounds / '+projected.horizon+' scheduled; illustrative finish hazard 18% per round)' +(projected.scheduledVerified?'':' · schedule unverified')+(projected.distribution==='POISSON RESEARCH BASELINE'?' · exploratory count model · P(>'+Math.floor(projected.value)+'.5) '+(projected.overAtHalf*100).toFixed(1)+'%':''):'NO MATCHED STAT SAMPLE';
 }
 function rateLeader(f,key){
  const a=careerRate(statsByName.get(norm(f.red)),key),b=careerRate(statsByName.get(norm(f.blue)),key);
@@ -130,7 +136,7 @@ if(stats&&stats.sport==='UFC'&&Array.isArray(stats.fighters))for(const f of stat
 if(book&&book.sport==='mma_mixed_martial_arts'&&book.source==='the-odds-api-v4'&&book.status==='ok'&&Array.isArray(book.odds)&&Number.isFinite(Date.parse(book.fetched_at))&&Date.parse(book.fetched_at)<=Date.now()+60000&&Date.now()-Date.parse(book.fetched_at)<=6*60*60*1000){odds=book.odds;oddsFetched=book.fetched_at}
 fights=data.fights.filter(f=>f&&f.red&&f.blue&&f.id&&Number.isFinite(Date.parse(f.start_time))&&Date.parse(f.start_time)>Date.now()).sort((a,b)=>Date.parse(a.start_time)-Date.parse(b.start_time));
 for(const f of fights){const o=document.createElement('option');o.value=String(f.id);o.textContent=f.red+' vs '+f.blue+' · '+eastern(f.start_time);bout.append(o)}
-p.textContent='Historical strike projections are selected by default. Select another market to view available historical stats. Moneyline model is an independent uncalibrated historical striking/takedown/Elo heuristic when both fighters have data; sportsbook no-vig probability is shown separately. Strike/grappling figures are full scheduled-round upper-horizon equivalents where the bout duration is verified, otherwise three-round research equivalents; they are not expected realized counts or opponent-adjusted forecasts. DK / FD prices are last recorded sportsbook snapshots, NOT live quotes; confirm current odds before any bet. No validated prop hit probabilities. Last odds capture: '+(oddsFetched?eastern(oddsFetched):'unavailable')+'.';
+p.textContent='Historical strike projections are selected by default. Select another market to view available historical stats. Moneyline model is an independent uncalibrated historical striking/takedown/Elo heuristic when both fighters have data; sportsbook no-vig probability is shown separately. Strike/grappling figures are survival-adjusted research expectations using an illustrative, untrained 18% per-round finish hazard, not validated bout-specific duration or opponent-adjusted forecasts. DK / FD prices are last recorded sportsbook snapshots, NOT live quotes; confirm current odds before any bet. No validated prop hit probabilities. Last odds capture: '+(oddsFetched?eastern(oddsFetched):'unavailable')+'.';
 render();
 }).catch(e=>{count.textContent='UNAVAILABLE — '+e.message});
 })();
