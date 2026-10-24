@@ -1,41 +1,66 @@
 {
   "date": "2026-10-24",
-  "generated_at": "2026-10-24T16:42:35.480197+00:00",
+  "generated_at": "2026-10-24T22:40:21.920294+00:00",
   "sports": {
     "NFL": {
       "status": "OUTCOMES_UNVERIFIED",
       "saved_quotes": 0,
-      "eligible_predictions": 54,
+      "eligible_predictions": 108,
       "blocked_predictions": [],
       "graded": 0,
       "settled": [],
-      "pending": 54
+      "pending": 108
     },
     "NBA": {
       "status": "OUTCOMES_UNVERIFIED",
       "saved_quotes": 0,
-      "eligible_predictions": 54,
+      "eligible_predictions": 108,
       "blocked_predictions": [],
       "graded": 0,
       "settled": [],
-      "pending": 54
+      "pending": 108
     },
     "NHL": {
-      "status": "OUTCOMES_UNVERIFIED",
+      "status": "PARTIALLY_SETTLED_MONEYLINES",
       "saved_quotes": 0,
-      "eligible_predictions": 118,
+      "eligible_predictions": 232,
       "blocked_predictions": [],
-      "graded": 0,
-      "settled": [],
-      "pending": 118
+      "graded": 4,
+      "settled": [
+        {
+          "event": "Anaheim Ducks @ Philadelphia Flyers",
+          "market": "h2h",
+          "selection": "Philadelphia Flyers",
+          "outcome": "loss"
+        },
+        {
+          "event": "Anaheim Ducks @ Philadelphia Flyers",
+          "market": "h2h",
+          "selection": "Anaheim Ducks",
+          "outcome": "win"
+        },
+        {
+          "event": "Los Angeles Kings @ New Jersey Devils",
+          "market": "h2h",
+          "selection": "New Jersey Devils",
+          "outcome": "win"
+        },
+        {
+          "event": "Los Angeles Kings @ New Jersey Devils",
+          "market": "h2h",
+          "selection": "Los Angeles Kings",
+          "outcome": "loss"
+        }
+      ],
+      "pending": 228
     }
   },
   "summary": {
-    "verified_picks": 0,
-    "wins": 0,
-    "losses": 0,
+    "verified_picks": 4,
+    "wins": 2,
+    "losses": 2,
     "pushes": 0,
     "roi": null,
-    "hit_rate": null
+    "hit_rate": 0.5
   }
 }

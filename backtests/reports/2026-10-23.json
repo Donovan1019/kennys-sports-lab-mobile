@@ -1,6 +1,6 @@
 {
   "date": "2026-10-23",
-  "generated_at": "2026-10-24T16:42:35.415557+00:00",
+  "generated_at": "2026-10-24T22:40:21.838814+00:00",
   "sports": {
     "NFL": {
       "status": "OUTCOMES_UNVERIFIED",
@@ -98,7 +98,7 @@
       "saved_quotes": 272,
       "eligible_predictions": 204,
       "blocked_predictions": [],
-      "graded": 8,
+      "graded": 16,
       "settled": [
         {
           "event": "Montreal Canadiens @ Chicago Blackhawks",
@@ -125,6 +125,30 @@
           "outcome": "loss"
         },
         {
+          "event": "Anaheim Ducks @ Philadelphia Flyers",
+          "market": "h2h",
+          "selection": "Philadelphia Flyers",
+          "outcome": "loss"
+        },
+        {
+          "event": "Anaheim Ducks @ Philadelphia Flyers",
+          "market": "h2h",
+          "selection": "Anaheim Ducks",
+          "outcome": "win"
+        },
+        {
+          "event": "Los Angeles Kings @ New Jersey Devils",
+          "market": "h2h",
+          "selection": "New Jersey Devils",
+          "outcome": "win"
+        },
+        {
+          "event": "Los Angeles Kings @ New Jersey Devils",
+          "market": "h2h",
+          "selection": "Los Angeles Kings",
+          "outcome": "loss"
+        },
+        {
           "event": "Montreal Canadiens @ Chicago Blackhawks",
           "market": "h2h",
           "selection": "Chicago Blackhawks",
@@ -147,15 +171,39 @@
           "market": "h2h",
           "selection": "Tampa Bay Lightning",
           "outcome": "loss"
+        },
+        {
+          "event": "Anaheim Ducks @ Philadelphia Flyers",
+          "market": "h2h",
+          "selection": "Philadelphia Flyers",
+          "outcome": "loss"
+        },
+        {
+          "event": "Anaheim Ducks @ Philadelphia Flyers",
+          "market": "h2h",
+          "selection": "Anaheim Ducks",
+          "outcome": "win"
+        },
+        {
+          "event": "Los Angeles Kings @ New Jersey Devils",
+          "market": "h2h",
+          "selection": "New Jersey Devils",
+          "outcome": "win"
+        },
+        {
+          "event": "Los Angeles Kings @ New Jersey Devils",
+          "market": "h2h",
+          "selection": "Los Angeles Kings",
+          "outcome": "loss"
         }
       ],
-      "pending": 196
+      "pending": 188
     }
   },
   "summary": {
-    "verified_picks": 20,
-    "wins": 10,
-    "losses": 10,
+    "verified_picks": 28,
+    "wins": 14,
+    "losses": 14,
     "pushes": 0,
     "roi": null,
     "hit_rate": 0.5

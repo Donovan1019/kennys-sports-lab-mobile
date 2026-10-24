@@ -1,0 +1,33 @@
+{
+  "sport": "NHL",
+  "date": "2026-10-24",
+  "games": [
+    {
+      "event_id": "401892566",
+      "event": "Anaheim Ducks at Philadelphia Flyers",
+      "commence_time": "2026-10-24T17:00Z",
+      "home": "Philadelphia Flyers",
+      "away": "Anaheim Ducks",
+      "home_score": 4,
+      "away_score": 5,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261024&limit=100"
+    },
+    {
+      "event_id": "401892567",
+      "event": "Los Angeles Kings at New Jersey Devils",
+      "commence_time": "2026-10-24T19:30Z",
+      "home": "New Jersey Devils",
+      "away": "Los Angeles Kings",
+      "home_score": 3,
+      "away_score": 1,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261024&limit=100"
+    }
+  ],
+  "source_url": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261024&limit=100"
+}
