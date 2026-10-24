@@ -16,6 +16,13 @@ class UFCMonteCarloTests(unittest.TestCase):
         self.assertEqual(result["mean_active_rounds"],5)
         self.assertEqual(result["markets"]["sig_landed"]["mean"],0)
         self.assertEqual(poisson(random.Random(1),0),0)
+    def test_landed_never_exceeds_attempted_in_expectation(self):
+        result=simulate(RATES,5,draws=2000,seed=4)
+        self.assertLessEqual(result["markets"]["sig_landed"]["mean"],result["markets"]["sig_attempted"]["mean"])
+        self.assertLessEqual(result["markets"]["takedowns_landed"]["mean"],result["markets"]["takedowns_attempted"]["mean"])
+    def test_invalid_landed_rate(self):
+        with self.assertRaises(ValueError):
+            simulate({**RATES,"sig_landed":41},3)
     def test_invalid_inputs(self):
         for rounds in (0,4,None):
             with self.assertRaises(ValueError):simulate(RATES,rounds)
