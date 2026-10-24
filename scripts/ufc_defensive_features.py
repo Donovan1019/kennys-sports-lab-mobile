@@ -49,8 +49,9 @@ def prior_defense(records):
 def enrich(rows,records):
     defense=prior_defense(records)
     out=[];missing=0
+    lookup={r["ufcstats_fight_id"]:r for r in records}
     for row in rows:
-        rec=next((r for r in records if r["ufcstats_fight_id"]==row["fight_id"]),None)
+        rec=lookup.get(row["fight_id"])
         if not rec:missing+=1;continue
         a=defense.get((row["fight_id"],rec["fighter_1_ufcstats_id"]))
         b=defense.get((row["fight_id"],rec["fighter_2_ufcstats_id"]))
