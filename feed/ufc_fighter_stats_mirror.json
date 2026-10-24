@@ -2,7 +2,7 @@
   "schema": 1,
   "sport": "UFC",
   "source": "Greco1899/scrape_ufc_stats public CSV mirror",
-  "retrieved_at": "2026-10-24T10:01:19.014401+00:00",
+  "retrieved_at": "2026-10-24T15:34:37.465224+00:00",
   "source_files": [
     "ufc_fighter_details.csv",
     "ufc_fighter_tott.csv",
@@ -41,29 +41,6 @@
       "reach": null,
       "stance": null,
       "career_round_totals": null,
-      "fighter_status_verified": false,
-      "stats_asof_verified": false,
-      "bet_eligible": false
-    },
-    {
-      "name": "Abubakar Vagaev",
-      "status": "MATCHED_HISTORICAL_STATS",
-      "source_profile": "http://ufcstats.com/fighter-details/f7adc1fd115f8fdd",
-      "height": "--",
-      "weight": "170 lbs.",
-      "reach": "--",
-      "stance": "",
-      "career_round_totals": {
-        "round_rows": 3,
-        "sig_landed": 27,
-        "sig_attempted": 70,
-        "total_landed": 91,
-        "td_landed": 4,
-        "td_attempted": 10,
-        "submission_attempts": 0,
-        "knockdowns": 0,
-        "control_seconds": 466
-      },
       "fighter_status_verified": false,
       "stats_asof_verified": false,
       "bet_eligible": false
@@ -138,19 +115,6 @@
       "bet_eligible": false
     },
     {
-      "name": "Asaf Chopurov",
-      "status": "INSUFFICIENT_OR_AMBIGUOUS",
-      "source_profile": "http://ufcstats.com/fighter-details/a24bc9922ee76e9f",
-      "height": "--",
-      "weight": "135 lbs.",
-      "reach": "--",
-      "stance": "",
-      "career_round_totals": null,
-      "fighter_status_verified": false,
-      "stats_asof_verified": false,
-      "bet_eligible": false
-    },
-    {
       "name": "Azamat Murzakanov",
       "status": "MATCHED_HISTORICAL_STATS",
       "source_profile": "http://ufcstats.com/fighter-details/e90a2f22417af68e",
@@ -174,29 +138,6 @@
       "bet_eligible": false
     },
     {
-      "name": "Bolaji Oki",
-      "status": "MATCHED_HISTORICAL_STATS",
-      "source_profile": "http://ufcstats.com/fighter-details/4bdedbdeedff7d1d",
-      "height": "5' 10\"",
-      "weight": "155 lbs.",
-      "reach": "73\"",
-      "stance": "Orthodox",
-      "career_round_totals": {
-        "round_rows": 12,
-        "sig_landed": 346,
-        "sig_attempted": 774,
-        "total_landed": 374,
-        "td_landed": 4,
-        "td_attempted": 7,
-        "submission_attempts": 0,
-        "knockdowns": 0,
-        "control_seconds": 404
-      },
-      "fighter_status_verified": false,
-      "stats_asof_verified": false,
-      "bet_eligible": false
-    },
-    {
       "name": "Cam Rowston",
       "status": "MATCHED_HISTORICAL_STATS",
       "source_profile": "http://ufcstats.com/fighter-details/8ebc3a8da015d70c",
@@ -214,52 +155,6 @@
         "submission_attempts": 0,
         "knockdowns": 0,
         "control_seconds": 770
-      },
-      "fighter_status_verified": false,
-      "stats_asof_verified": false,
-      "bet_eligible": false
-    },
-    {
-      "name": "Colby Thicknesse",
-      "status": "MATCHED_HISTORICAL_STATS",
-      "source_profile": "http://ufcstats.com/fighter-details/ed7d329d7c29428d",
-      "height": "5' 7\"",
-      "weight": "135 lbs.",
-      "reach": "69\"",
-      "stance": "Orthodox",
-      "career_round_totals": {
-        "round_rows": 9,
-        "sig_landed": 146,
-        "sig_attempted": 355,
-        "total_landed": 223,
-        "td_landed": 2,
-        "td_attempted": 28,
-        "submission_attempts": 0,
-        "knockdowns": 0,
-        "control_seconds": 646
-      },
-      "fighter_status_verified": false,
-      "stats_asof_verified": false,
-      "bet_eligible": false
-    },
-    {
-      "name": "Daniel Santos",
-      "status": "MATCHED_HISTORICAL_STATS",
-      "source_profile": "http://ufcstats.com/fighter-details/b67d6bacc68d4c92",
-      "height": "5' 7\"",
-      "weight": "145 lbs.",
-      "reach": "67\"",
-      "stance": "Orthodox",
-      "career_round_totals": {
-        "round_rows": 15,
-        "sig_landed": 357,
-        "sig_attempted": 882,
-        "total_landed": 475,
-        "td_landed": 12,
-        "td_attempted": 36,
-        "submission_attempts": 0,
-        "knockdowns": 0,
-        "control_seconds": 1248
       },
       "fighter_status_verified": false,
       "stats_asof_verified": false,
@@ -306,75 +201,6 @@
         "submission_attempts": 0,
         "knockdowns": 0,
         "control_seconds": 6626
-      },
-      "fighter_status_verified": false,
-      "stats_asof_verified": false,
-      "bet_eligible": false
-    },
-    {
-      "name": "Iasmin Lucindo",
-      "status": "MATCHED_HISTORICAL_STATS",
-      "source_profile": "http://ufcstats.com/fighter-details/abcf2cc6efc42031",
-      "height": "5' 3\"",
-      "weight": "115 lbs.",
-      "reach": "66\"",
-      "stance": "Orthodox",
-      "career_round_totals": {
-        "round_rows": 20,
-        "sig_landed": 318,
-        "sig_attempted": 699,
-        "total_landed": 440,
-        "td_landed": 15,
-        "td_attempted": 27,
-        "submission_attempts": 0,
-        "knockdowns": 0,
-        "control_seconds": 1490
-      },
-      "fighter_status_verified": false,
-      "stats_asof_verified": false,
-      "bet_eligible": false
-    },
-    {
-      "name": "Jacob Malkoun",
-      "status": "MATCHED_HISTORICAL_STATS",
-      "source_profile": "http://ufcstats.com/fighter-details/d4270315cbcf2569",
-      "height": "5' 9\"",
-      "weight": "185 lbs.",
-      "reach": "73\"",
-      "stance": "Orthodox",
-      "career_round_totals": {
-        "round_rows": 22,
-        "sig_landed": 424,
-        "sig_attempted": 746,
-        "total_landed": 739,
-        "td_landed": 36,
-        "td_attempted": 84,
-        "submission_attempts": 0,
-        "knockdowns": 0,
-        "control_seconds": 2848
-      },
-      "fighter_status_verified": false,
-      "stats_asof_verified": false,
-      "bet_eligible": false
-    },
-    {
-      "name": "Kody Steele",
-      "status": "MATCHED_HISTORICAL_STATS",
-      "source_profile": "http://ufcstats.com/fighter-details/aebaa8cec15b083d",
-      "height": "5' 9\"",
-      "weight": "155 lbs.",
-      "reach": "71\"",
-      "stance": "Orthodox",
-      "career_round_totals": {
-        "round_rows": 4,
-        "sig_landed": 60,
-        "sig_attempted": 210,
-        "total_landed": 78,
-        "td_landed": 2,
-        "td_attempted": 5,
-        "submission_attempts": 0,
-        "knockdowns": 0,
-        "control_seconds": 110
       },
       "fighter_status_verified": false,
       "stats_asof_verified": false,
@@ -473,29 +299,6 @@
       "bet_eligible": false
     },
     {
-      "name": "Nicolle Caliari",
-      "status": "MATCHED_HISTORICAL_STATS",
-      "source_profile": "http://ufcstats.com/fighter-details/fc0a4053eb8a3a59",
-      "height": "5' 3\"",
-      "weight": "125 lbs.",
-      "reach": "62\"",
-      "stance": "Orthodox",
-      "career_round_totals": {
-        "round_rows": 9,
-        "sig_landed": 119,
-        "sig_attempted": 305,
-        "total_landed": 171,
-        "td_landed": 8,
-        "td_attempted": 31,
-        "submission_attempts": 0,
-        "knockdowns": 0,
-        "control_seconds": 832
-      },
-      "fighter_status_verified": false,
-      "stats_asof_verified": false,
-      "bet_eligible": false
-    },
-    {
       "name": "Nikita Krylov",
       "status": "MATCHED_HISTORICAL_STATS",
       "source_profile": "http://ufcstats.com/fighter-details/1091d4d957141094",
@@ -513,29 +316,6 @@
         "submission_attempts": 0,
         "knockdowns": 0,
         "control_seconds": 3338
-      },
-      "fighter_status_verified": false,
-      "stats_asof_verified": false,
-      "bet_eligible": false
-    },
-    {
-      "name": "Noah Gugnon",
-      "status": "MATCHED_HISTORICAL_STATS",
-      "source_profile": "http://ufcstats.com/fighter-details/6266abf6e4245c72",
-      "height": "--",
-      "weight": "155 lbs.",
-      "reach": "--",
-      "stance": "",
-      "career_round_totals": {
-        "round_rows": 1,
-        "sig_landed": 5,
-        "sig_attempted": 11,
-        "total_landed": 6,
-        "td_landed": 0,
-        "td_attempted": 0,
-        "submission_attempts": 0,
-        "knockdowns": 0,
-        "control_seconds": 40
       },
       "fighter_status_verified": false,
       "stats_asof_verified": false,
