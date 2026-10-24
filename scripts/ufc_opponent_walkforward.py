@@ -107,6 +107,8 @@ def main():
     result["temporal_robustness"]=temporal_robustness(rows)
     from scripts.ufc_market_benchmark import benchmark
     result["closing_market_comparison"]=benchmark(rows,linked["records"])
+    from scripts.ufc_market_blend import collect,blend_score
+    result["market_blend_research"]=blend_score(collect(rows,linked["records"]))
     result["eligible_examples"]=len(rows)
     result["excluded"]=excluded
     args.output.write_text(json.dumps(result,indent=2)+"\n")
