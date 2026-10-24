@@ -21,7 +21,7 @@ def evaluate(rows,min_prior=3,train_fraction=.8,opponent_weight=.25):
     if len(dated)<10:raise ValueError("insufficient fights")
     cutoff=dated[int(len(dated)*train_fraction)][0]
     if cutoff==dated[0][0]:raise ValueError("no earlier-date training fights")
-    offense=defaultdict(list);allowed=defaultdict(list);errors=defaultdict(list);excluded=defaultdict(int);duration_errors=[];duration_by_fight={}
+    offense=defaultdict(list);allowed=defaultdict(list);errors=defaultdict(list);excluded=defaultdict(int);duration_errors=[];duration_by_fight={};global_durations=[];duration_comparison={}
     for day in sorted({d for d,_,_ in dated}):
         batch=[x for x in dated if x[0]==day]
         for _,fid,group in batch:
@@ -34,7 +34,11 @@ def evaluate(rows,min_prior=3,train_fraction=.8,opponent_weight=.25):
                 # Pre-bout estimate: equal-weight fighter and opponent prior mean
                 # fight durations. Never inspect this bout's realized duration.
                 duration=.5*(own_exposure/len(own)+opp_exposure/len(opp))
-                duration_by_fight.setdefault(fid,[]).append((duration,float(fighter["active_seconds"])))
+                # Prior-only population shrinkage guards against short fighter histories.
+                # A fixed 50/50 candidate is compared against the unshrunk baseline.
+                global_mean=sum(global_durations)/len(global_durations) if global_durations else duration
+                shrunk=.5*duration+.5*global_mean
+                duration_by_fight.setdefault(fid,[]).append((duration,shrunk,float(fighter["active_seconds"])))
                 if min(own_exposure,opp_exposure,duration)<=0:
                     excluded["invalid_exposure"]+=1;continue
                 for key in MARKETS:
@@ -45,12 +49,21 @@ def evaluate(rows,min_prior=3,train_fraction=.8,opponent_weight=.25):
                     actual=float(fighter[key])
                     errors[key].append((baseline,adjusted,actual,fid))
         for _,_,group in batch:
+            if all(str(x["settled"]).lower()=="true" for x in group):
+                global_durations.append(float(group[0]["active_seconds"]))
             for fighter,opponent in ((group[0],group[1]),(group[1],group[0])):
                 if str(fighter["settled"]).lower()!="true":continue
                 duration=float(fighter["active_seconds"])
                 offense[fighter["fighter_id"]].append((duration,{k:float(fighter[k]) for k in MARKETS}))
                 allowed[opponent["fighter_id"]].append((duration,{k:float(fighter[k]) for k in MARKETS}))
-    duration_errors=[(sum(p for p,_ in v)/len(v),v[0][1]) for v in duration_by_fight.values()]
+    duration_errors=[(sum(p for p,_,_ in v)/len(v),sum(q for _,q,_ in v)/len(v),v[0][2]) for v in duration_by_fight.values()]
+    duration_comparison={
+      "unshrunk_mae_seconds":sum(abs(p-y) for p,q,y in duration_errors)/len(duration_errors) if duration_errors else None,
+      "shrunk_mae_seconds":sum(abs(q-y) for p,q,y in duration_errors)/len(duration_errors) if duration_errors else None,
+      "shrinkage_weight_fixed":0.5,
+      "weight_tuned_on_holdout":False,
+      "shrunk_outperforms_unshrunk":(sum(abs(q-y) for p,q,y in duration_errors)<sum(abs(p-y) for p,q,y in duration_errors)) if duration_errors else None
+    }
     metrics={}
     for key,items in errors.items():
         n=len(items)
@@ -66,12 +79,13 @@ def evaluate(rows,min_prior=3,train_fraction=.8,opponent_weight=.25):
     return {"schema":1,"holdout_start_date":cutoff,"opponent_weight_fixed":opponent_weight,
        "markets":metrics,"excluded":dict(excluded),"oracle_duration":False,
        "duration_prediction_method":"mean of each fighter prior bout mean duration",
-       "duration_mae_seconds":sum(abs(p-y) for p,y in duration_errors)/len(duration_errors) if duration_errors else None,
+       "duration_mae_seconds":sum(abs(p-y) for p,q,y in duration_errors)/len(duration_errors) if duration_errors else None,
        "duration_evaluated_fights":len(duration_errors),
-       "duration_rmse_seconds":math.sqrt(sum((p-y)**2 for p,y in duration_errors)/len(duration_errors)) if duration_errors else None,
+       "duration_shrinkage_candidate":duration_comparison,
+       "duration_rmse_seconds":math.sqrt(sum((p-y)**2 for p,q,y in duration_errors)/len(duration_errors)) if duration_errors else None,
        "weight_tuned_on_holdout":False,"point_in_time_certified":False,
        "calibrated":False,"bet_eligible":False,
-       "limitations":"Fixed illustrative blend weight not fitted. Same-date isolation; earlier holdout fights update histories. Duration predicted from prior bouts only; scheduled rounds unverified (3/5 mixed), retrospective capture timestamps unverified. This is not a point-in-time certified betting backtest."}
+       "limitations":"Fixed illustrative blend and shrinkage weights not fitted. Same-date isolation; earlier holdout fights update histories. Duration predicted from prior bouts only; scheduled rounds unverified (3/5 mixed), retrospective capture timestamps unverified. This is not a point-in-time certified betting backtest."}
 def main():
     p=argparse.ArgumentParser();p.add_argument("--output",type=Path,required=True);args=p.parse_args()
     cross,_=fetch(BASE+"id_crosswalk_all.csv");wide,_=fetch(BASE+"ufc_all_fights_wide.csv")
