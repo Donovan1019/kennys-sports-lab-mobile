@@ -1,0 +1,14 @@
+name: UFC EV Math
+on:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  ev-math:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --check ufc_market_math.js
+      - run: node tests/ufc_market_math.test.js
