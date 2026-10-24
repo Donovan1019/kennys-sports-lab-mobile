@@ -12,7 +12,7 @@ jobs:
           node-version: '22'
       - name: Check JS syntax
         run: node --check ufc_fighter_projections.js
-      - name: Check probability and labeling invariants
+      - name: Run numerical regression tests\n        run: node tests/ufc_prediction_math.test.js\n      - name: Check probability and labeling invariants
         run: |
           python - <<'PY'
           from pathlib import Path
