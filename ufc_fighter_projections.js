@@ -25,7 +25,7 @@ function independentWinEstimate(f,fighter){
   if(!self||!opp)return null;
   const sr=careerRate(self,'sig_landed'),or=careerRate(opp,'sig_landed'),st=careerRate(self,'td_landed'),ot=careerRate(opp,'td_landed');
   if(sr===null||or===null)return null;
-  const es=eloById.get(String(f.id));
+  const rawElo=eloById.get(String(f.id));const es=rawElo&&norm(rawElo.red)===norm(f.red)&&norm(rawElo.blue)===norm(f.blue)&&Date.parse(rawElo.start_time)===Date.parse(f.start_time)?rawElo:null;
   const selfElo=es?(fighter===f.red?es.red_elo:es.blue_elo):null;
   const oppElo=es?(fighter===f.red?es.blue_elo:es.red_elo):null;
   const eloTerm=Number.isFinite(selfElo)&&Number.isFinite(oppElo)?Math.max(-0.65,Math.min(0.65,(selfElo-oppElo)/500)):0;
