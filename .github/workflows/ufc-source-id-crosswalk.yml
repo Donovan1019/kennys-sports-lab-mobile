@@ -1,0 +1,31 @@
+name: UFC Source Identifier Crosswalk
+on:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  crosswalk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m unittest discover -s tests -p test_ufc_source_id_crosswalk.py -v
+      - name: Download and verify UFCStats fight ID crosswalk
+        run: python -m scripts.ufc_source_id_crosswalk --output ufc_crosswalk_research.json
+      - name: Verify match coverage
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('ufc_crosswalk_research.json'))
+          assert d['count']>1000
+          assert not d['bet_eligible']
+          assert d['source_sha256']
+          print('Crosswalk fights:',d['count'],'high-confidence links:',d['mma_decisions_high_confidence'])
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ufc-source-id-crosswalk
+          path: ufc_crosswalk_research.json
