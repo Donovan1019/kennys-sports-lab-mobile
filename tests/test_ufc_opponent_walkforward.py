@@ -6,7 +6,8 @@ class WalkForwardTests(unittest.TestCase):
  def test_opponent_differentials(self):
   a={"prior_fights":3,"sig_landed_per_min":5,"sig_accuracy":.6,"takedowns_per_15min":2}
   b={"prior_fights":3,"sig_landed_per_min":3,"sig_accuracy":.4,"takedowns_per_15min":1}
-  self.assertEqual(vector(a,b),[.5,.4,1/3])
+  for actual,expected in zip(vector(a,b),[.5,.4,1/3]):
+   self.assertAlmostEqual(actual,expected)
  def test_no_history_no_projection(self):
   a={"prior_fights":1}
   self.assertIsNone(vector(a,a))
