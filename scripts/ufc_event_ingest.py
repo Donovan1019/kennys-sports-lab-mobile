@@ -8,6 +8,7 @@ from urllib.request import Request, urlopen
 
 ENDPOINT = "https://site.api.espn.com/apis/site/v2/sports/mma/ufc/scoreboard"
 OUTPUT = Path("feed/ufc_research.json")
+CARD_RETENTION = dt.timedelta(hours=36)  # Retain scheduled cards; NOT a live/completion status signal.
 
 def get_json(url=ENDPOINT):
     with urlopen(Request(url, headers={"User-Agent": "KennysSportsLab/1.0 (public schedule research)"}), timeout=20) as response:
@@ -34,7 +35,7 @@ def parse(payload, now=None):
             date_str = competition.get("date") or event.get("date")
             try:
                 start = dt.datetime.fromisoformat(date_str.replace("Z", "+00:00"))
-                if start.tzinfo is None or start.astimezone(dt.timezone.utc) <= now:
+                if start.tzinfo is None or start.astimezone(dt.timezone.utc) <= now - CARD_RETENTION:
                     continue
             except (TypeError, ValueError, AttributeError):
                 continue
@@ -61,12 +62,14 @@ def main():
     result = {"schema": 1, "sport": "UFC", "source": "ESPN public UFC scoreboard",
               "generated_at": now.isoformat(), "fights": fights, "fighters": [], "bet_eligible": False,
               "integrity": {"fight_card_only": True, "odds": "UNAVAILABLE", "simulations": "UNAVAILABLE",
-                            "fighter_history": "UNAVAILABLE", "event_coverage": "ESPN returned events only; not a complete calendar"}}
+                            "fighter_history": "UNAVAILABLE", "event_coverage": "ESPN returned events only; not a complete calendar",
+                            "past_start_retention_hours": 36,
+                            "live_or_completed_status_verified": False}}
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     tmp = OUTPUT.with_suffix(".tmp")
     tmp.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
     os.replace(tmp, OUTPUT)
-    print(f"Saved {len(fights)} future UFC bouts; odds/model predictions remain unavailable")
+    print(f"Saved {len(fights)} scheduled UFC bouts (including past 36h); live/results unverified")
 
 if __name__ == "__main__":
     main()

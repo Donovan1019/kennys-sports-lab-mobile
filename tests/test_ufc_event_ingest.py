@@ -11,11 +11,12 @@ class UFCIngestTests(unittest.TestCase):
     def test_filters_past_incomplete_and_duplicate_bouts(self):
         future = bout("1", "2026-10-24T22:00:00Z")
         past = bout("2", "2026-10-22T22:00:00Z")
+        expired = bout("5", "2026-10-20T22:00:00Z")
         invalid = bout("3", "not-a-date")
-        feed = {"events": [{"name": "UFC test", "competitions": [future, future, past, invalid, {"id": "4", "competitors": []}]}]}
+        feed = {"events": [{"name": "UFC test", "competitions": [future, future, past, expired, invalid, {"id": "4", "competitors": []}]}]}
         result = parse(feed, NOW)
-        self.assertEqual(len(result), 1)
-        self.assertEqual(result[0]["id"], "1")
+        self.assertEqual(len(result), 2)
+        self.assertEqual([f["id"] for f in result], ["2", "1"])
         self.assertFalse(result[0]["bet_eligible"])
         self.assertFalse(result[0]["odds_verified"])
         self.assertIsNone(result[0]["scheduled_rounds"])
