@@ -81,7 +81,9 @@ def evaluate(rows,train_fraction=.7,lr=.04,reg=.0005):
     n=len(predictions)
     brier=sum((p-y)**2 for p,y,_,_ in predictions)/n
     loss=-sum(y*math.log(max(p,1e-12))+(1-y)*math.log(max(1-p,1e-12)) for p,y,_,_ in predictions)/n
-    return {"training_fights":train_n,"test_fights":n,"cutoff_date":cutoff,
+    from scripts.ufc_calibration_diagnostics import calibration
+    reliability=calibration([(p,y) for p,y,_,_ in predictions])
+    return {"calibration":reliability,"training_fights":train_n,"test_fights":n,"cutoff_date":cutoff,
        "test_brier":brier,"test_log_loss":loss,
        "test_accuracy":sum((p>=.5)==bool(y) for p,y,_,_ in predictions)/n,
        "baseline_brier_50pct":.25,"baseline_log_loss_50pct":math.log(2),
@@ -101,6 +103,8 @@ def main():
     rows,excluded=examples(linked["records"],features)
     if len(rows)<100:raise SystemExit("Insufficient source-native settled training examples: "+json.dumps(excluded))
     result=evaluate(rows)
+    from scripts.ufc_calibration_diagnostics import temporal_robustness
+    result["temporal_robustness"]=temporal_robustness(rows)
     result["eligible_examples"]=len(rows)
     result["excluded"]=excluded
     args.output.write_text(json.dumps(result,indent=2)+"\n")
