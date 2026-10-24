@@ -43,7 +43,7 @@ def benchmark(rows,records,train_fraction=.7,lr=.04,reg=.0005):
                 import hashlib
                 if int(hashlib.sha256(row["fight_id"].encode()).hexdigest(),16)%2:
                     market=1-market
-                paired.append((model,market,row["y"]))
+                paired.append((model,market,row["y"],day))
         else:
             for row in batch:
                 x=[1.0]+row["x"]
@@ -55,7 +55,9 @@ def benchmark(rows,records,train_fraction=.7,lr=.04,reg=.0005):
     def logloss(k):
         return -sum(y*math.log(max(1e-12,t[k]))+(1-y)*math.log(max(1e-12,1-t[k]))
                     for t in paired for y in [t[2]])/len(paired)
-    return {"test_cutoff":cutoff,"paired_test_fights":len(paired),"unpaired_test_fights":unpaired,
+    from scripts.ufc_market_gap_uncertainty import cluster_bootstrap
+    uncertainty=cluster_bootstrap(paired)
+    return {"paired_market_uncertainty":uncertainty,"test_cutoff":cutoff,"paired_test_fights":len(paired),"unpaired_test_fights":unpaired,
        "model_brier":brier(0),"market_brier":brier(1),
        "model_log_loss":logloss(0),"market_log_loss":logloss(1),
        "model_brier_minus_market":brier(0)-brier(1),
