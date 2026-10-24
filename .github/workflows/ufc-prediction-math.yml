@@ -1,0 +1,28 @@
+name: UFC Prediction Math
+on:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check JS syntax
+        run: node --check ufc_fighter_projections.js
+      - name: Run numerical regression tests
+        run: node tests/ufc_prediction_math.test.js
+      - name: Check probability and labeling invariants
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          s=Path('ufc_fighter_projections.js').read_text()
+          assert 'function poissonTail(lambda,threshold)' in s
+          assert 'function modeledProp(f,fighter,stat)' in s
+          assert 'POISSON RESEARCH BASELINE' in s
+          assert 'exploratory count model' in s
+          assert 'RESEARCH ONLY' in s
+          assert 'Not predicted' in s
+          PY
