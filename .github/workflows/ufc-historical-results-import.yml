@@ -1,0 +1,31 @@
+name: UFC Historical Results Import
+on:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m unittest discover -s tests -p test_ufc_historical_results_import.py -v
+      - name: Fetch and validate historical UFC results source
+        run: python -m scripts.ufc_historical_results_import --output ufc_historical_results_research.json
+      - name: Verify nonempty settled records and explicit research-only lineage
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open("ufc_historical_results_research.json"))
+          assert d["count"] > 1000, "historical source has unexpectedly few rows"
+          assert not d["bet_eligible"] and not d["training_pit_certified"]
+          assert all(x["red_won"] in (0,1) for x in d["fights"])
+          print("Validated settled fights:",d["count"])
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ufc-historical-results-research
+          path: ufc_historical_results_research.json
