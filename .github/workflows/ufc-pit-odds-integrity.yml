@@ -1,0 +1,19 @@
+name: UFC Point-in-Time Odds Integrity
+on:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  pit-odds:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m unittest discover -s tests -p test_ufc_pit_odds_integrity.py -v
+      - run: python -m scripts.ufc_pit_odds_integrity --output ufc_pit_odds_audit.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ufc-pit-odds-audit
+          path: ufc_pit_odds_audit.json
