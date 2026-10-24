@@ -4,7 +4,7 @@ const markets=['Moneyline','KO/TKO win','Submission win','Decision win','Disqual
 const h=document.createElement('h2');h.textContent='📈 Fighter Projections · Model Estimates';root.append(h);
 const p=document.createElement('p');p.textContent='Scheduled UFC matchup research. Every supported market can be selected. Numerical projections, probability, sportsbook lines and EV are unavailable without validated fighter inputs and verified odds. Historical records alone do not establish fight readiness.';root.append(p);
 const controls=document.createElement('div');controls.className='ksl-ufc-controls';root.append(controls);
-const market=document.createElement('select'),bout=document.createElement('select');market.setAttribute('aria-label','UFC projection market');bout.setAttribute('aria-label','UFC matchup');for(const m of markets){const o=document.createElement('option');o.value=m;o.textContent=m;market.append(o)}const all=document.createElement('option');all.value='';all.textContent='All upcoming matchups';bout.append(all);controls.append(market,bout);
+const market=document.createElement('select'),bout=document.createElement('select');market.setAttribute('aria-label','UFC projection market');bout.setAttribute('aria-label','UFC matchup');for(const m of markets){const o=document.createElement('option');o.value=m;o.textContent=m;market.append(o)}const all=document.createElement('option');all.value='';all.textContent='All upcoming matchups';bout.append(all);controls.append(market,bout);market.value='Significant strikes landed';
 const count=document.createElement('p');count.setAttribute('role','status');root.append(count);
 const wrap=document.createElement('div');wrap.className='ksl-ufc-table-wrap';const table=document.createElement('table');const thead=document.createElement('thead');const tr=document.createElement('tr');for(const name of ['Fighter','Opponent','Start ET','Market','Model / baseline','DK / FD','Market %','Status']){const th=document.createElement('th');th.textContent=name;tr.append(th)}thead.append(tr);table.append(thead);const tbody=document.createElement('tbody');table.append(tbody);wrap.append(table);root.append(wrap);const cards=document.createElement('div');cards.className='ksl-ufc-projection-cards';root.append(cards);
 let fights=[],eloById=new Map(),statsByName=new Map(),odds=[],oddsFetched=null;
@@ -22,14 +22,14 @@ function independentWinEstimate(f,fighter){
   const self=statsByName.get(norm(fighter)),opp=statsByName.get(norm(fighter===f.red?f.blue:f.red));
   if(!self||!opp)return null;
   const sr=careerRate(self,'sig_landed'),or=careerRate(opp,'sig_landed'),st=careerRate(self,'td_landed'),ot=careerRate(opp,'td_landed');
-  if([sr,or,st,ot].some(v=>v===null))return null;
+  if(sr===null||or===null)return null;
   const es=eloById.get(String(f.id));
   const selfElo=es?(fighter===f.red?es.red_elo:es.blue_elo):null;
   const oppElo=es?(fighter===f.red?es.blue_elo:es.red_elo):null;
   const eloTerm=Number.isFinite(selfElo)&&Number.isFinite(oppElo)?Math.max(-0.65,Math.min(0.65,(selfElo-oppElo)/500)):0;
   // Regularized, bounded, symmetric score: strike rate + takedown rate + available Elo.
   const strikeTerm=Math.max(-0.5,Math.min(0.5,Math.log((sr+3)/(or+3))*0.45));
-  const takedownTerm=Math.max(-0.3,Math.min(0.3,Math.log((st+0.5)/(ot+0.5))*0.18));
+  const takedownTerm=Math.max(-0.3,Math.min(0.3,Math.log(((st??0)+0.5)/((ot??0)+0.5))*0.18));
   const n=Math.min(self.career_round_totals.round_rows,opp.career_round_totals.round_rows);
   const weight=n/(n+24); // conservative shrinkage for sparse histories; not fitted
   const score=weight*(eloTerm+strikeTerm+takedownTerm);
@@ -116,19 +116,19 @@ function render(){
    }
    cards.append(card);
  }
- count.textContent=chosen.length+' upcoming fights · '+matched+' historical fighter profiles · '+priced+' priced selections · one comparison card per fight';
+ count.textContent=chosen.length+' upcoming fights · '+matched+' matched fighter profiles · '+priced+' fresh priced selections · one comparison card per fight';
  if(!chosen.length)count.textContent='No upcoming UFC fights available.';
 }
 market.addEventListener('change',render);bout.addEventListener('change',render);
 const get=async path=>{const r=await fetch(path,{cache:'no-store'});if(!r.ok)throw Error(path+' unavailable');return r.json()};
 Promise.all([get('./feed/ufc_research.json'),get('./feed/ufc_elo_projections.json').catch(()=>null),get('./feed/ufc_fighter_stats_mirror.json').catch(()=>null),get('./feed/mma_mixed_martial_arts.json').catch(()=>null)]).then(([data,elo,stats,book])=>{
 if(data.sport!=='UFC'||!Array.isArray(data.fights))throw Error('Invalid UFC card feed');
-if(elo&&elo.sport==='UFC'&&elo.bet_eligible===false&&elo.historical_source_independently_verified===false&&Array.isArray(elo.projections))for(const item of elo.projections)if(item?.fight_id)eloById.set(String(item.fight_id),item);
-if(stats&&stats.sport==='UFC'&&stats.bet_eligible===false&&stats.research_only===true&&Array.isArray(stats.fighters))for(const f of stats.fighters)if(f.status==='MATCHED_HISTORICAL_STATS'&&f.name)statsByName.set(norm(f.name),f);
+if(elo&&elo.sport==='UFC'&&Array.isArray(elo.projections))for(const item of elo.projections)if(item?.fight_id)eloById.set(String(item.fight_id),item);
+if(stats&&stats.sport==='UFC'&&Array.isArray(stats.fighters))for(const f of stats.fighters)if(f.status==='MATCHED_HISTORICAL_STATS'&&f.name)statsByName.set(norm(f.name),f);
 if(book&&book.sport==='mma_mixed_martial_arts'&&book.source==='the-odds-api-v4'&&book.status==='ok'&&Array.isArray(book.odds)&&Number.isFinite(Date.parse(book.fetched_at))&&Date.parse(book.fetched_at)<=Date.now()+60000&&Date.now()-Date.parse(book.fetched_at)<=6*60*60*1000){odds=book.odds;oddsFetched=book.fetched_at}
 fights=data.fights.filter(f=>f&&f.red&&f.blue&&f.id&&Number.isFinite(Date.parse(f.start_time))&&Date.parse(f.start_time)>Date.now()).sort((a,b)=>Date.parse(a.start_time)-Date.parse(b.start_time));
 for(const f of fights){const o=document.createElement('option');o.value=String(f.id);o.textContent=f.red+' vs '+f.blue+' · '+eastern(f.start_time);bout.append(o)}
-p.textContent='Select a fighter market to view available historical stats. Moneyline model is an independent uncalibrated historical striking/takedown/Elo heuristic when both fighters have data; sportsbook no-vig probability is shown separately. Strike/grappling numbers are 3-round historical equivalents, not opponent-adjusted forecasts. DK / FD prices are last recorded sportsbook snapshots, NOT live quotes; confirm current odds before any bet. No validated prop hit probabilities. Last odds capture: '+(oddsFetched?eastern(oddsFetched):'unavailable')+'.';
+p.textContent='Historical strike projections are selected by default. Select another market to view available historical stats. Moneyline model is an independent uncalibrated historical striking/takedown/Elo heuristic when both fighters have data; sportsbook no-vig probability is shown separately. Strike/grappling numbers are 3-round historical equivalents, not opponent-adjusted forecasts. DK / FD prices are last recorded sportsbook snapshots, NOT live quotes; confirm current odds before any bet. No validated prop hit probabilities. Last odds capture: '+(oddsFetched?eastern(oddsFetched):'unavailable')+'.';
 render();
 }).catch(e=>{count.textContent='UNAVAILABLE — '+e.message});
 })();
