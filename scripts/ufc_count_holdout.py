@@ -20,6 +20,7 @@ def evaluate(rows,min_prior=3,train_fraction=.8):
     dated.sort()
     if len(dated)<10:raise ValueError("insufficient fights")
     cutoff=dated[int(len(dated)*train_fraction)][0]
+    if cutoff==dated[0][0]:raise ValueError("no earlier-date training fights for holdout")
     history=defaultdict(list);metrics=defaultdict(list);excluded=defaultdict(int)
     for day in sorted(set(x[0] for x in dated)):
         batch=[x for x in dated if x[0]==day]
