@@ -134,6 +134,8 @@ def main():
     result["market_blend_research"]=blend_score(collect(rows,linked["records"]))
     result["eligible_examples"]=len(rows)
     result["excluded"]=excluded
+    if args.artifact_output:
+        args.artifact_output.write_text(json.dumps(versioned_artifact(rows,result),indent=2)+"\n")
     args.output.write_text(json.dumps(result,indent=2)+"\n")
     print(json.dumps(result,indent=2))
 if __name__=="__main__":main()
