@@ -128,18 +128,20 @@ function render(){
    cards.append(card);
  }
  count.textContent=chosen.length+' scheduled card fights (start time does not confirm completion) · '+matched+' matched fighter profiles · '+priced+' fresh priced selections · one comparison card per fight';
- if(!chosen.length)count.textContent='No scheduled UFC card fights in the current feed. Refresh the source feed to load the next event.';
+ if(!chosen.length)count.textContent='No scheduled UFC card fights in the current feed. This may reflect missing ESPN event coverage or a stale refresh, not an empty UFC calendar.';
 }
 market.addEventListener('change',render);bout.addEventListener('change',render);
 const get=async path=>{const r=await fetch(path,{cache:'no-store'});if(!r.ok)throw Error(path+' unavailable');return r.json()};
 Promise.all([get('./feed/ufc_research.json'),get('./feed/ufc_elo_projections.json').catch(()=>null),get('./feed/ufc_fighter_stats_mirror.json').catch(()=>null),get('./feed/mma_mixed_martial_arts.json').catch(()=>null)]).then(([data,elo,stats,book])=>{
 if(data.sport!=='UFC'||!Array.isArray(data.fights))throw Error('Invalid UFC card feed');
+const cardGenerated=Date.parse(data.generated_at),cardAgeHours=Number.isFinite(cardGenerated)?(Date.now()-cardGenerated)/3600000:null;
+const cardFeedState=cardAgeHours===null||cardAgeHours<0?'CARD FEED TIMESTAMP UNVERIFIED':cardAgeHours>24?'STALE CARD FEED ('+cardAgeHours.toFixed(1)+'h old)':'Card feed updated '+cardAgeHours.toFixed(1)+'h ago';
 if(elo&&elo.sport==='UFC'&&Array.isArray(elo.projections))for(const item of elo.projections)if(item?.fight_id)eloById.set(String(item.fight_id),item);
 if(stats&&stats.sport==='UFC'&&Array.isArray(stats.fighters))for(const f of stats.fighters)if(f.status==='MATCHED_HISTORICAL_STATS'&&f.name)statsByName.set(norm(f.name),f);
 if(book&&book.sport==='mma_mixed_martial_arts'&&book.source==='the-odds-api-v4'&&book.status==='ok'&&Array.isArray(book.odds)&&Number.isFinite(Date.parse(book.fetched_at))&&Date.parse(book.fetched_at)<=Date.now()&&Date.now()-Date.parse(book.fetched_at)<=6*60*60*1000){odds=book.odds;oddsFetched=book.fetched_at}
 fights=data.fights.filter(f=>f&&f.red&&f.blue&&f.id&&Number.isFinite(Date.parse(f.start_time))&&Date.parse(f.start_time)>Date.now()-36*60*60*1000).sort((a,b)=>Date.parse(a.start_time)-Date.parse(b.start_time));
 for(const f of fights){const o=document.createElement('option');o.value=String(f.id);o.textContent=f.red+' vs '+f.blue+' · '+eastern(f.start_time);bout.append(o)}
-p.textContent='Scheduled fights remain visible for 36 hours after listed start; this does not verify whether a fight is live or completed. Historical strike projections are selected by default. Select another market to view available historical stats. Moneyline model is an independent uncalibrated historical striking/takedown/Elo heuristic when both fighters have data; sportsbook no-vig probability is shown separately. Strike/grappling figures are survival-adjusted research expectations using an illustrative, untrained 18% per-round finish hazard, not validated bout-specific duration or opponent-adjusted forecasts. DK / FD prices are timestamp-validated pre-fight snapshots, NOT a guarantee of currently executable odds; confirm current odds before any bet. No validated prop hit probabilities. Last odds capture: '+(oddsFetched?eastern(oddsFetched):'unavailable')+'.';
+p.textContent=cardFeedState+'. Scheduled fights remain visible for 36 hours after listed start; this does not verify whether a fight is live or completed. Historical strike projections are selected by default. Select another market to view available historical stats. Moneyline model is an independent uncalibrated historical striking/takedown/Elo heuristic when both fighters have data; sportsbook no-vig probability is shown separately. Strike/grappling figures are survival-adjusted research expectations using an illustrative, untrained 18% per-round finish hazard, not validated bout-specific duration or opponent-adjusted forecasts. DK / FD prices are timestamp-validated pre-fight snapshots, NOT a guarantee of currently executable odds; confirm current odds before any bet. No validated prop hit probabilities. Last odds capture: '+(oddsFetched?eastern(oddsFetched):'unavailable')+'.';
 render();
 }).catch(e=>{count.textContent='UNAVAILABLE — '+e.message});
 })();
