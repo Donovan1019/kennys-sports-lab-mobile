@@ -105,6 +105,8 @@ def main():
     result=evaluate(rows)
     from scripts.ufc_calibration_diagnostics import temporal_robustness
     result["temporal_robustness"]=temporal_robustness(rows)
+    from scripts.ufc_market_benchmark import benchmark
+    result["closing_market_comparison"]=benchmark(rows,linked["records"])
     result["eligible_examples"]=len(rows)
     result["excluded"]=excluded
     args.output.write_text(json.dumps(result,indent=2)+"\n")

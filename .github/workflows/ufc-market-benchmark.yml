@@ -1,0 +1,19 @@
+name: UFC Closing Market Benchmark
+on:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  market-benchmark:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m unittest discover -s tests -p test_ufc_market_benchmark.py -v
+      - run: python -m scripts.ufc_opponent_walkforward --output ufc_market_comparison.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ufc-closing-market-benchmark
+          path: ufc_market_comparison.json
