@@ -2,8 +2,68 @@
   "schema": 1,
   "sport": "UFC",
   "source": "ESPN public UFC scoreboard",
-  "generated_at": "2026-10-24T15:00:00.056590+00:00",
+  "generated_at": "2026-10-24T21:00:35.102465+00:00",
   "fights": [
+    {
+      "id": "401928047",
+      "event": "UFC 333: Volkanovski vs. Evloev",
+      "red": "Colby Thicknesse",
+      "blue": "Asaf Chopurov",
+      "start_time": "2026-10-24T14:00:00+00:00",
+      "scheduled_rounds": null,
+      "source": "ESPN public UFC scoreboard",
+      "bet_eligible": false,
+      "odds_verified": false,
+      "fighter_status_verified": false
+    },
+    {
+      "id": "401930357",
+      "event": "UFC 333: Volkanovski vs. Evloev",
+      "red": "Abubakar Vagaev",
+      "blue": "Jacob Malkoun",
+      "start_time": "2026-10-24T14:00:00+00:00",
+      "scheduled_rounds": null,
+      "source": "ESPN public UFC scoreboard",
+      "bet_eligible": false,
+      "odds_verified": false,
+      "fighter_status_verified": false
+    },
+    {
+      "id": "401930915",
+      "event": "UFC 333: Volkanovski vs. Evloev",
+      "red": "Daniel Santos",
+      "blue": "Bolaji Oki",
+      "start_time": "2026-10-24T14:00:00+00:00",
+      "scheduled_rounds": null,
+      "source": "ESPN public UFC scoreboard",
+      "bet_eligible": false,
+      "odds_verified": false,
+      "fighter_status_verified": false
+    },
+    {
+      "id": "401930916",
+      "event": "UFC 333: Volkanovski vs. Evloev",
+      "red": "Noah Gugnon",
+      "blue": "Kody Steele",
+      "start_time": "2026-10-24T14:00:00+00:00",
+      "scheduled_rounds": null,
+      "source": "ESPN public UFC scoreboard",
+      "bet_eligible": false,
+      "odds_verified": false,
+      "fighter_status_verified": false
+    },
+    {
+      "id": "401930917",
+      "event": "UFC 333: Volkanovski vs. Evloev",
+      "red": "Nicolle Caliari",
+      "blue": "Iasmin Lucindo",
+      "start_time": "2026-10-24T14:00:00+00:00",
+      "scheduled_rounds": null,
+      "source": "ESPN public UFC scoreboard",
+      "bet_eligible": false,
+      "odds_verified": false,
+      "fighter_status_verified": false
+    },
     {
       "id": "401911637",
       "event": "UFC 333: Volkanovski vs. Evloev",
@@ -120,6 +180,8 @@
     "odds": "UNAVAILABLE",
     "simulations": "UNAVAILABLE",
     "fighter_history": "UNAVAILABLE",
-    "event_coverage": "ESPN returned events only; not a complete calendar"
+    "event_coverage": "ESPN returned events only; not a complete calendar",
+    "past_start_retention_hours": 36,
+    "live_or_completed_status_verified": false
   }
 }
