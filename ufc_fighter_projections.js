@@ -15,6 +15,8 @@ const validQuote=q=>q&&['draftkings','fanduel'].includes(q.bookmaker)&&Number.is
 function implied(a){return a<0?(-a)/((-a)+100):100/(a+100)}
 function quoteGroup(f,book){const target=[norm(f.red),norm(f.blue)];return odds.filter(q=>q.market==='h2h'&&q.bookmaker===book&&validQuote(q)&&target.includes(norm(q.selection))&&target.every(n=>norm(q.event).includes(n)));}
 function marketBaseline(f,fighter){const results=[];for(const book of ['draftkings','fanduel']){const rows=quoteGroup(f,book),a=rows.find(q=>norm(q.selection)===norm(fighter)),other=rows.find(q=>norm(q.selection)===norm(fighter===f.red?f.blue:f.red));if(a&&other&&a.event_id===other.event_id&&a.event===other.event&&a.commence_time===other.commence_time&&Math.abs(Date.parse(a.updated_at)-Date.parse(other.updated_at))<=15*60*1000){const p=implied(a.price),q=implied(other.price);const total=p+q;if(total>=1&&total<=1.35)results.push({book,price:a.price,novig:p/(p+q),timestamp:a.updated_at})}}return results}
+function fairAmerican(p){if(!Number.isFinite(p)||p<=0||p>=1)return '—';return p>=0.5?'-'+Math.round(100*p/(1-p)):'+'+Math.round(100*(1-p)/p)}
+function quoteComparison(f,fighter){const prices=marketBaseline(f,fighter);if(!prices.length)return {market:'No verified two-sided market',fair:'—',ev:'—',model:'—'};const marketP=prices.reduce((n,q)=>n+q.novig,0)/prices.length;const estimate=independentWinEstimate(f,fighter);const quote=prices.map(q=>q.book.toUpperCase()+' '+fmt(q.price)).join(' · ');if(!estimate)return {market:(marketP*100).toFixed(1)+'% · '+quote,fair:'—',ev:'—',model:'No independent estimate'};const modelP=estimate.probability;const values=prices.map(q=>{const profit=q.price>0?q.price/100:100/(-q.price);return {book:q.book,ev:modelP*profit-(1-modelP)}});return {market:(marketP*100).toFixed(1)+'% · '+quote,fair:fairAmerican(modelP)+' (heuristic)',ev:values.map(v=>v.book.toUpperCase()+' '+(v.ev*100).toFixed(1)+'%').join(' · ')+' (UNVALIDATED)',model:(modelP*100).toFixed(1)+'% · research only'};}
 function bookPrices(f,fighter){const results=marketBaseline(f,fighter);return ['draftkings','fanduel'].map(book=>{const x=results.find(v=>v.book===book);return x?fmt(x.price):'—'}).join(' / ')}
 // Transparent first-pass research heuristic. NOT a trained/calibrated probability model.
 function careerRate(s,k){const t=s?.career_round_totals;return t&&t.round_rows>0&&Number.isFinite(t[k])?t[k]/t.round_rows:null}
@@ -110,6 +112,7 @@ function render(){
    add(card,'Market favorite',assess.marketPick?assess.marketPick+' · '+assess.marketPct.toFixed(1)+'% no-vig':'No complete two-sided quote');
    add(card,'Striking leader',assess.strikes.name);add(card,'Striking comparison',assess.strikes.detail);
    add(card,'Takedown leader',assess.takedowns.name);add(card,'Takedown comparison',assess.takedowns.detail);
+   for(const fighter of [f.red,f.blue]){const comparison=quoteComparison(f,fighter);add(card,fighter+' · market probability',comparison.market);add(card,fighter+' · model probability',comparison.model);add(card,fighter+' · fair odds',comparison.fair);add(card,fighter+' · hypothetical EV',comparison.ev)}
    add(card,'Method / round','Not predicted — outcome and duration model not validated');
    add(card,'Betting decision','RESEARCH ONLY · No calibrated edge or verified method/round price');
    for(const fighter of [f.red,f.blue]){
