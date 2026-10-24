@@ -1,0 +1,18 @@
+name: UFC Projection Coverage Audit
+on:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run fighter coverage and odds freshness audit
+        run: python scripts/ufc_projection_coverage_audit.py | tee ufc_projection_coverage.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ufc-projection-coverage
+          path: ufc_projection_coverage.json
