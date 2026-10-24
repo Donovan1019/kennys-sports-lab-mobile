@@ -113,6 +113,10 @@ function render(){
    add(card,'Striking leader',assess.strikes.name);add(card,'Striking comparison',assess.strikes.detail);
    add(card,'Takedown leader',assess.takedowns.name);add(card,'Takedown comparison',assess.takedowns.detail);
    for(const fighter of [f.red,f.blue]){const comparison=quoteComparison(f,fighter);add(card,fighter+' · market probability',comparison.market);add(card,fighter+' · model probability',comparison.model);add(card,fighter+' · fair odds',comparison.fair);add(card,fighter+' · hypothetical EV',comparison.ev)}
+   add(card,'Projection audit','Historical count-model calibration is research-only; real pre-fight duration and prop-line calibration not yet validated');
+   add(card,'Fight simulation','Exploratory Poisson count distribution only · NOT a bout-level Monte Carlo');
+   add(card,'Market line probabilities','Exploratory count tails are not calibrated sportsbook-line hit rates');
+   add(card,'Data integrity', 'Fight ID, names and scheduled start checked for Elo; other historical inputs remain unverified for live use');
    add(card,'Method / round','Not predicted — outcome and duration model not validated');
    add(card,'Betting decision','RESEARCH ONLY · NO MODEL-VERIFIED EDGE · Market-only baseline historically outperformed fighter heuristic; hypothetical EV is not a betting signal');
    for(const fighter of [f.red,f.blue]){
