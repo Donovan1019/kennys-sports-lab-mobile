@@ -23,5 +23,5 @@ jobs:
           assert 'both fighters have data' in j
           assert 'NO INDEPENDENT ESTIMATE' in j
           assert 'marketBaseline(f,fighter)' in j
-          assert 'ufc_fighter_projections.js?v=7' in Path('ufc.html').read_text()
+          assert 'ufc_fighter_projections.js?v=8' in Path('ufc.html').read_text()
           PY
