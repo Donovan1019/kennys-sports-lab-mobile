@@ -18,9 +18,9 @@ jobs:
           s=Path('ufc_fighter_projections.js').read_text()
           assert 'function independentWinEstimate' in s
           assert 'function researchProjection' in s
-          assert 'UNCALIBRATED HEURISTIC' in s
+          assert 'UNCALIBRATED SHRUNK HEURISTIC' in s
           assert "marketBaseline(f,fighter)" in s
           assert "researchProjection(f,fighter,stat)" in s
           assert '3-round equivalent' in s
-          assert 'ufc_fighter_projections.js?v=6' in Path('ufc.html').read_text()
+          assert 'ufc_fighter_projections.js?v=7' in Path('ufc.html').read_text()
           PY
