@@ -36,6 +36,8 @@ def build(card,details,tott,stats):
   name=key(row.get("FIGHTER",""))
   if not name:continue
   v=totals.setdefault(name,{"round_rows":0,"sig_landed":0,"sig_attempted":0,"total_landed":0,"td_landed":0,"td_attempted":0,"submission_attempts":0,"knockdowns":0,"control_seconds":0})
+  if not any(pair(row.get(col)) != (0,0) for col in ("SIG.STR.","TD","TOTAL STR.")) and not secs(row.get("CTRL")):
+   continue
   v["round_rows"]+=1
   for col,prefix in [("SIG.STR.","sig"),("TD","td"),("TOTAL STR.","total")]:
    made,attempted=pair(row.get(col))
