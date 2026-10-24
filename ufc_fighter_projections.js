@@ -114,7 +114,7 @@ function render(){
    add(card,'Takedown leader',assess.takedowns.name);add(card,'Takedown comparison',assess.takedowns.detail);
    for(const fighter of [f.red,f.blue]){const comparison=quoteComparison(f,fighter);add(card,fighter+' · market probability',comparison.market);add(card,fighter+' · model probability',comparison.model);add(card,fighter+' · fair odds',comparison.fair);add(card,fighter+' · hypothetical EV',comparison.ev)}
    add(card,'Method / round','Not predicted — outcome and duration model not validated');
-   add(card,'Betting decision','NO MODEL-VERIFIED EDGE · Market-only baseline historically outperformed fighter heuristic; hypothetical EV is not a betting signal');
+   add(card,'Betting decision','RESEARCH ONLY · NO MODEL-VERIFIED EDGE · Market-only baseline historically outperformed fighter heuristic; hypothetical EV is not a betting signal');
    for(const fighter of [f.red,f.blue]){
      const stat=statsByName.get(norm(fighter));if(stat)matched++;
      const model=modelDisplay(f,fighter,stat),price=market.value==='Moneyline'?bookPrices(f,fighter):'No verified prop quote';
