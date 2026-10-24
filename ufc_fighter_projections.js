@@ -45,7 +45,8 @@ function researchProjection(f,fighter,stat){
   // Opponent exposure is not available in the current mirror, so shrink to neutral league-style
   // conservative adjustment of 1.0, not a fabricated opponent defensive figure.
   const scheduled=f.scheduled_rounds===5?5:f.scheduled_rounds===3?3:null;
-  const horizon=scheduled??3;\n  return {value:own*horizon,units:m==='control_seconds'?'sec / '+horizon+'-round maximum':'per '+horizon+'-round maximum',rounds:stat.career_round_totals.round_rows,scheduledVerified:scheduled!==null};
+  const horizon=scheduled??3;
+  return {value:own*horizon,units:m==='control_seconds'?'sec / '+horizon+'-round maximum':'per '+horizon+'-round maximum',rounds:stat.career_round_totals.round_rows,scheduledVerified:scheduled!==null};
 }
 // Transparent analytical distribution for count props; NOT a calibrated betting model.
 function poissonTail(lambda,threshold){
