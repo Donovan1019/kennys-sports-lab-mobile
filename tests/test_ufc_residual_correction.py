@@ -4,7 +4,7 @@ from scripts.ufc_residual_correction import assess
 class ResidualCorrectionTests(unittest.TestCase):
     def rows(self, model_good):
         rows=[]
-        for i in range(120):
+        for i in range(360):
             y=i%2
             rows.append({"date":f"{2020+i//12}-{i%12+1:02d}-01",
                          "market":.65 if y else .35,
