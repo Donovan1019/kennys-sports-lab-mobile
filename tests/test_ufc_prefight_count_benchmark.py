@@ -17,6 +17,8 @@ class PrefightBenchmarkTests(unittest.TestCase):
         self.assertEqual(r["markets"]["sig_landed"]["n"],8)
         self.assertEqual(r["duration_evaluated_fights"],4)
         self.assertGreaterEqual(r["duration_rmse_seconds"],r["duration_mae_seconds"])
+        self.assertIn("shrunk_mae_seconds",r["duration_shrinkage_candidate"])
+        self.assertFalse(r["duration_shrinkage_candidate"]["weight_tuned_on_holdout"])
         self.assertFalse(r["bet_eligible"])
     def test_zero_weight_matches_baseline(self):
         r=evaluate(self.rows(),opponent_weight=0)
