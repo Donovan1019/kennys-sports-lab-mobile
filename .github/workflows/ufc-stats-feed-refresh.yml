@@ -1,0 +1,43 @@
+name: UFC Fighter Stats Feed Refresh
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 8 * * *'
+permissions:
+  contents: write
+  pull-requests: write
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate public UFCStats mirror parsing
+        run: python -m unittest discover -s tests -p test_ufc_public_mirror_ingest.py -v
+      - name: Refresh UFC fighter profiles
+        run: python scripts/ufc_public_mirror_ingest.py --output feed/ufc_fighter_stats_mirror.json
+      - name: Verify generated feed
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          card=json.loads(Path('feed/ufc_research.json').read_text())
+          feed=json.loads(Path('feed/ufc_fighter_stats_mirror.json').read_text())
+          names={n for f in card['fights'] for n in (f['red'],f['blue'])}
+          actual={f['name'] for f in feed['fighters']}
+          assert names==actual, 'Incomplete UFC fighter feed'
+          assert feed['research_only'] is True and feed['bet_eligible'] is False
+          print('Verified',len(actual),'fighter identities; matched',sum(f['status']=='MATCHED_HISTORICAL_STATS' for f in feed['fighters']))
+          PY
+      - name: Create reviewable feed refresh PR
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: automated/ufc-fighter-stats-refresh
+          delete-branch: true
+          commit-message: 'data(ufc): refresh public fighter stats mirror'
+          title: 'data(ufc): refresh fighter stats feed'
+          body: 'Automated UFCStats public mirror refresh. Research-only; verify identity and point-in-time limitations before relying on the data.'
+          add-paths: feed/ufc_fighter_stats_mirror.json
