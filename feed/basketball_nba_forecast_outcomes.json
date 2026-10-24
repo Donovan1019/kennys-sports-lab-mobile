@@ -1,9 +1,9 @@
 {
   "status": "research_only",
-  "matched_forecasts": 12,
-  "metrics_sample_size": 12,
-  "log_loss": 0.579236,
-  "empirical_home_rate_baseline_brier": 0.222222,
+  "matched_forecasts": 13,
+  "metrics_sample_size": 13,
+  "log_loss": 0.58089,
+  "empirical_home_rate_baseline_brier": 0.213018,
   "calibration_bins": [
     {
       "range": [
@@ -19,9 +19,9 @@
         0.4,
         0.6
       ],
-      "count": 4,
-      "mean_predicted": 0.48626,
-      "observed_home_win_rate": 0.75
+      "count": 5,
+      "mean_predicted": 0.498689,
+      "observed_home_win_rate": 0.8
     },
     {
       "range": [
@@ -35,10 +35,18 @@
   ],
   "calibration_warning": "Small samples and in-sample baseline cannot establish predictive edge",
   "unique_events_in_ledger": 18,
-  "unmatched_events": 6,
-  "mean_brier": 0.198387,
+  "unmatched_events": 5,
+  "mean_brier": 0.198814,
   "notes": "One earliest forecast per event; strict exact teams and unique start-time proximity; ambiguous or unverified results excluded",
   "scored": [
+    {
+      "forecast_id": "0d34c898f6cbb990077ae9f0a2773513|2026-10-21T06:22:56.869393+00:00",
+      "provider_event_id": "401909095",
+      "match_method": "exact_teams_unique_start_within_20m",
+      "home_probability": 0.548406,
+      "home_won": 1,
+      "brier": 0.203937
+    },
     {
       "forecast_id": "110e33c79c5ec8c0377702aff685f83b|2026-10-21T06:22:56.869393+00:00",
       "provider_event_id": "401909093",

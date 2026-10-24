@@ -1,19 +1,19 @@
 {
   "status": "research_only",
-  "sample_size": 12,
-  "brier": 0.198387,
-  "log_loss": 0.579236,
-  "classification_accuracy": 0.75,
+  "sample_size": 13,
+  "brier": 0.198814,
+  "log_loss": 0.58089,
+  "classification_accuracy": 0.769231,
   "classification_accuracy_wilson_95": [
-    0.46769,
-    0.91106
+    0.497431,
+    0.918206
   ],
-  "expected_calibration_error": 0.116766,
-  "mean_home_probability": 0.579174,
-  "observed_home_win_rate": 0.666667,
+  "expected_calibration_error": 0.142522,
+  "mean_home_probability": 0.576807,
+  "observed_home_win_rate": 0.692308,
   "observed_home_win_rate_wilson_95": [
-    0.390618,
-    0.861882
+    0.423689,
+    0.873195
   ],
   "calibration_bins": [
     {
@@ -34,12 +34,12 @@
         0.4,
         0.6
       ],
-      "n": 4,
-      "predicted": 0.48626,
-      "observed": 0.75,
+      "n": 5,
+      "predicted": 0.498689,
+      "observed": 0.8,
       "observed_wilson_95": [
-        0.300636,
-        0.954414
+        0.375528,
+        0.963777
       ]
     },
     {
@@ -56,7 +56,7 @@
       ]
     }
   ],
-  "future_or_unmatched_events": 6,
+  "future_or_unmatched_events": 5,
   "edge_claim_allowed": false,
   "warning": "Descriptive in-sample diagnostics only; require independent pregame bookmaker baselines and out-of-sample validation before claims of edge."
 }
