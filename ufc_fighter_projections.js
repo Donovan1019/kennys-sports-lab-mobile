@@ -44,7 +44,9 @@ function researchProjection(f,fighter,stat){
   // 3-round equivalent rather than assuming the bout is scheduled for three rounds.
   // Opponent exposure is not available in the current mirror, so shrink to neutral league-style
   // conservative adjustment of 1.0, not a fabricated opponent defensive figure.
-  return {value:own*3,units:m==='control_seconds'?'sec / 3-round equivalent':'per 3-round equivalent',rounds:stat.career_round_totals.round_rows};
+  const scheduled=f.scheduled_rounds===5?5:f.scheduled_rounds===3?3:null;
+  const horizon=scheduled??3;
+  return {value:own*horizon,units:m==='control_seconds'?'sec / '+horizon+'-round maximum':'per '+horizon+'-round maximum',rounds:stat.career_round_totals.round_rows,scheduledVerified:scheduled!==null};
 }
 // Transparent analytical distribution for count props; NOT a calibrated betting model.
 function poissonTail(lambda,threshold){
@@ -69,7 +71,7 @@ if(market.value==='Moneyline'){
   return independent?(independent.probability*100).toFixed(1)+'% research estimate':'NO INDEPENDENT ESTIMATE';
 }
 const projected=modeledProp(f,fighter,stat);
-return projected?projected.value.toFixed(1)+' '+projected.units+(projected.distribution==='POISSON RESEARCH BASELINE'?' · exploratory count model · P(>'+Math.floor(projected.value)+'.5) '+(projected.overAtHalf*100).toFixed(1)+'%':''):'NO MATCHED STAT SAMPLE';
+return projected?projected.value.toFixed(1)+' '+projected.units+(projected.scheduledVerified?'':' · schedule unverified')+(projected.distribution==='POISSON RESEARCH BASELINE'?' · exploratory count model · P(>'+Math.floor(projected.value)+'.5) '+(projected.overAtHalf*100).toFixed(1)+'%':''):'NO MATCHED STAT SAMPLE';
 }
 function rateLeader(f,key){
  const a=careerRate(statsByName.get(norm(f.red)),key),b=careerRate(statsByName.get(norm(f.blue)),key);
@@ -128,7 +130,7 @@ if(stats&&stats.sport==='UFC'&&Array.isArray(stats.fighters))for(const f of stat
 if(book&&book.sport==='mma_mixed_martial_arts'&&book.source==='the-odds-api-v4'&&book.status==='ok'&&Array.isArray(book.odds)&&Number.isFinite(Date.parse(book.fetched_at))&&Date.parse(book.fetched_at)<=Date.now()+60000&&Date.now()-Date.parse(book.fetched_at)<=6*60*60*1000){odds=book.odds;oddsFetched=book.fetched_at}
 fights=data.fights.filter(f=>f&&f.red&&f.blue&&f.id&&Number.isFinite(Date.parse(f.start_time))&&Date.parse(f.start_time)>Date.now()).sort((a,b)=>Date.parse(a.start_time)-Date.parse(b.start_time));
 for(const f of fights){const o=document.createElement('option');o.value=String(f.id);o.textContent=f.red+' vs '+f.blue+' · '+eastern(f.start_time);bout.append(o)}
-p.textContent='Historical strike projections are selected by default. Select another market to view available historical stats. Moneyline model is an independent uncalibrated historical striking/takedown/Elo heuristic when both fighters have data; sportsbook no-vig probability is shown separately. Strike/grappling numbers are 3-round historical equivalents, not opponent-adjusted forecasts. DK / FD prices are last recorded sportsbook snapshots, NOT live quotes; confirm current odds before any bet. No validated prop hit probabilities. Last odds capture: '+(oddsFetched?eastern(oddsFetched):'unavailable')+'.';
+p.textContent='Historical strike projections are selected by default. Select another market to view available historical stats. Moneyline model is an independent uncalibrated historical striking/takedown/Elo heuristic when both fighters have data; sportsbook no-vig probability is shown separately. Strike/grappling figures are full scheduled-round upper-horizon equivalents where the bout duration is verified, otherwise three-round research equivalents; they are not expected realized counts or opponent-adjusted forecasts. DK / FD prices are last recorded sportsbook snapshots, NOT live quotes; confirm current odds before any bet. No validated prop hit probabilities. Last odds capture: '+(oddsFetched?eastern(oddsFetched):'unavailable')+'.';
 render();
 }).catch(e=>{count.textContent='UNAVAILABLE — '+e.message});
 })();

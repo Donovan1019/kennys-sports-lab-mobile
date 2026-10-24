@@ -17,3 +17,6 @@ assert.equal(poissonTail(Number.NaN,0.5),null);
 assert.ok(source.includes('Date.now()-Date.parse(q.updated_at)<=6*60*60*1000'),'reject stale individual quotes');
 assert.ok(source.includes('Date.now()-Date.parse(book.fetched_at)<=6*60*60*1000'),'reject stale odds snapshots');
 console.log('UFC probability math and quote-freshness tests passed');
+
+assert.ok(source.includes('f.scheduled_rounds===5?5:f.scheduled_rounds===3?3:null'),'research counts must respect scheduled rounds');
+assert.ok(source.includes('schedule unverified'),'missing bout duration must be labeled');
