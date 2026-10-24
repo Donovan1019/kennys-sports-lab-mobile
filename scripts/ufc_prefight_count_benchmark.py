@@ -34,8 +34,7 @@ def evaluate(rows,min_prior=3,train_fraction=.8,opponent_weight=.25):
                 # Pre-bout estimate: equal-weight fighter and opponent prior mean
                 # fight durations. Never inspect this bout's realized duration.
                 duration=.5*(own_exposure/len(own)+opp_exposure/len(opp))
-                if fid not in duration_by_fight:
-                    duration_by_fight[fid]=(duration,float(fighter["active_seconds"]))
+                duration_by_fight.setdefault(fid,[]).append((duration,float(fighter["active_seconds"])))
                 if min(own_exposure,opp_exposure,duration)<=0:
                     excluded["invalid_exposure"]+=1;continue
                 for key in MARKETS:
@@ -51,7 +50,7 @@ def evaluate(rows,min_prior=3,train_fraction=.8,opponent_weight=.25):
                 duration=float(fighter["active_seconds"])
                 offense[fighter["fighter_id"]].append((duration,{k:float(fighter[k]) for k in MARKETS}))
                 allowed[opponent["fighter_id"]].append((duration,{k:float(fighter[k]) for k in MARKETS}))
-    duration_errors=list(duration_by_fight.values())
+    duration_errors=[(sum(p for p,_ in v)/len(v),v[0][1]) for v in duration_by_fight.values()]
     metrics={}
     for key,items in errors.items():
         n=len(items)
