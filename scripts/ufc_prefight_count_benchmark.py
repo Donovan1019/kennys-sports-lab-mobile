@@ -62,7 +62,9 @@ def evaluate(rows,min_prior=3,train_fraction=.8,opponent_weight=.25):
       "shrunk_mae_seconds":sum(abs(q-y) for p,q,y in duration_errors)/len(duration_errors) if duration_errors else None,
       "shrinkage_weight_fixed":0.5,
       "weight_tuned_on_holdout":False,
-      "shrunk_outperforms_unshrunk":(sum(abs(q-y) for p,q,y in duration_errors)<sum(abs(p-y) for p,q,y in duration_errors)) if duration_errors else None
+      "shrunk_outperforms_unshrunk":(sum(abs(q-y) for p,q,y in duration_errors)<sum(abs(p-y) for p,q,y in duration_errors)) if duration_errors else None,
+      "production_promotion_allowed":False,
+      "decision":"REJECT" if duration_errors and sum(abs(q-y) for p,q,y in duration_errors)>=sum(abs(p-y) for p,q,y in duration_errors) else "RESEARCH_ONLY"
     }
     metrics={}
     for key,items in errors.items():
