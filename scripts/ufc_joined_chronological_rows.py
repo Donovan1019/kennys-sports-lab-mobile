@@ -21,6 +21,9 @@ def convert(records):
         f=record["wide_record"];fid=record["ufcstats_fight_id"]
         try:
             when=date.fromisoformat(str(f["event_date"])[:10]).isoformat()+"T00:00:00Z"
+            outcome=str(f["winner"]).strip().lower()
+            if not outcome or outcome in ("draw","nc","no contest","nan","none"):
+                raise ValueError("unsettled or non-winner result")
             duration=num(f["fight_duration_sec"])
             if duration<1 or duration>1500:raise ValueError("invalid duration")
             a=f["f1_id"].strip().lower();b=f["f2_id"].strip().lower()
