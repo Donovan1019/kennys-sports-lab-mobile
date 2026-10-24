@@ -1,0 +1,13 @@
+name: UFC PIT Training Dataset
+on:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  pit-training:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m unittest discover -s tests -p test_ufc_pit_training_dataset.py -v
