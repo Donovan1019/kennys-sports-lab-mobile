@@ -34,14 +34,24 @@ def examples(records,feature_rows):
         if not a or not b:excluded["missing_fighter_history"]+=1;continue
         x=vector(a,b)
         if x is None:excluded["insufficient_prior_history"]+=1;continue
-        # Winner must be an exact source-native fighter ID, never a guessed corner.
-        winner=str(f.get("winner","")).strip().lower()
-        f1=record["fighter_1_ufcstats_id"]
-        f2=record["fighter_2_ufcstats_id"]
-        if winner not in (f1,f2):
-            excluded["winner_not_native_fighter_id"]+=1;continue
+        # Source encodes winner as corner number 1.0/2.0, not fighter ID.
+        # Independently confirm W/L fields to prevent mislabeled training.
+        winner=str(f.get("winner","")).strip()
+        result1=str(f.get("result_f1","")).strip().upper()
+        result2=str(f.get("result_f2","")).strip().upper()
+        if winner=="1.0" and result1=="W" and result2=="L":
+            y=1
+        elif winner=="2.0" and result1=="L" and result2=="W":
+            y=0
+        else:
+            excluded["unverified_winner_corners"]+=1;continue
+        # UFCStats fighter 1 is winner-first biased. Deterministically
+        # reverse half the fights to remove corner-position label leakage.
+        if int(hashlib.sha256(fid.encode()).hexdigest(),16)%2:
+            x=[-v for v in x]
+            y=1-y
         output.append({"fight_id":fid,"date":a["fight_time"][:10],"x":x,
-                       "y":int(winner==f1)})
+                       "y":y})
     return sorted(output,key=lambda r:(r["date"],r["fight_id"])),dict(excluded)
 def evaluate(rows,train_fraction=.7,lr=.04,reg=.0005):
     if not .5<=train_fraction<1:raise ValueError("invalid split")
