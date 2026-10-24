@@ -15,6 +15,9 @@ def poisson(rng,lam):
             k+=1;p*=rng.random()
         total+=k-1;lam-=chunk
     return total
+def binomial(rng,n,p):
+    if not 0<=p<=1:raise ValueError("invalid landing probability")
+    return sum(rng.random()<p for _ in range(n))
 def simulate(rates,scheduled_rounds,draws=10000,seed=2026,finish_hazard=.18,thresholds=None):
     if scheduled_rounds not in (3,5):raise ValueError("scheduled rounds must be verified 3 or 5")
     if not isinstance(draws,int) or not 100<=draws<=100000:raise ValueError("draws out of bounds")
@@ -22,6 +25,8 @@ def simulate(rates,scheduled_rounds,draws=10000,seed=2026,finish_hazard=.18,thre
     if not 0<=finish_hazard<1:raise ValueError("invalid hazard")
     if set(rates)!=set(COUNT_MARKETS) or any(not isinstance(v,(int,float)) or not math.isfinite(v) or v<0 or v>500 for v in rates.values()):
         raise ValueError("all four finite nonnegative per-round rates required")
+    for landed,attempted in (("sig_landed","sig_attempted"),("takedowns_landed","takedowns_attempted")):
+        if rates[landed]>rates[attempted]:raise ValueError("landed rate cannot exceed attempted rate")
     thresholds=thresholds or {}
     if any(k not in COUNT_MARKETS or not isinstance(v,(int,float)) or not math.isfinite(v) or v<0 for k,v in thresholds.items()):
         raise ValueError("invalid research thresholds")
@@ -32,7 +37,13 @@ def simulate(rates,scheduled_rounds,draws=10000,seed=2026,finish_hazard=.18,thre
             active+=1
             if rng.random()<finish_hazard:break
         rounds.append(active)
-        for key,rate in rates.items():values[key].append(poisson(rng,rate*active))
+        # Attempts generate opportunities; landed counts are conditional subsets.
+        # Independent landed/attempted Poissons can produce physically impossible fights.
+        for landed,attempted in (("sig_landed","sig_attempted"),("takedowns_landed","takedowns_attempted")):
+            n=poisson(rng,rates[attempted]*active)
+            p=rates[landed]/rates[attempted] if rates[attempted] else 0
+            values[attempted].append(n)
+            values[landed].append(binomial(rng,n,p))
     out={}
     for key,counts in values.items():
         ordered=sorted(counts)
@@ -43,7 +54,7 @@ def simulate(rates,scheduled_rounds,draws=10000,seed=2026,finish_hazard=.18,thre
     return {"schema_version":1,"model":"illustrative_finish_hazard_plus_poisson",
       "draws":draws,"seed":seed,"scheduled_rounds":scheduled_rounds,"finish_hazard_per_round":finish_hazard,
       "mean_active_rounds":sum(rounds)/draws,"markets":out,
-      "assumptions":["constant untrained round-end finish hazard","independent Poisson counts","no opponent defensive adjustments","no round-partial finish exposure"],
+      "assumptions":["constant untrained round-end finish hazard","Poisson attempts with conditional binomial landed counts","no opponent defensive adjustments","no round-partial finish exposure"],
       "point_in_time_certified":False,"calibrated":False,"bet_eligible":False,
       "use_for_live_recommendations":False,"status":"RESEARCH ONLY"}
 def main():
