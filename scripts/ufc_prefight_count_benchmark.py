@@ -21,7 +21,7 @@ def evaluate(rows,min_prior=3,train_fraction=.8,opponent_weight=.25):
     if len(dated)<10:raise ValueError("insufficient fights")
     cutoff=dated[int(len(dated)*train_fraction)][0]
     if cutoff==dated[0][0]:raise ValueError("no earlier-date training fights")
-    offense=defaultdict(list);allowed=defaultdict(list);errors=defaultdict(list);excluded=defaultdict(int);duration_errors=[]
+    offense=defaultdict(list);allowed=defaultdict(list);errors=defaultdict(list);excluded=defaultdict(int);duration_errors=[];duration_by_fight={}
     for day in sorted({d for d,_,_ in dated}):
         batch=[x for x in dated if x[0]==day]
         for _,fid,group in batch:
@@ -34,7 +34,7 @@ def evaluate(rows,min_prior=3,train_fraction=.8,opponent_weight=.25):
                 # Pre-bout estimate: equal-weight fighter and opponent prior mean
                 # fight durations. Never inspect this bout's realized duration.
                 duration=.5*(own_exposure/len(own)+opp_exposure/len(opp))
-                duration_errors.append((duration,float(fighter["active_seconds"])))
+                duration_by_fight.setdefault(fid,[]).append((duration,float(fighter["active_seconds"])))
                 if min(own_exposure,opp_exposure,duration)<=0:
                     excluded["invalid_exposure"]+=1;continue
                 for key in MARKETS:
@@ -50,6 +50,7 @@ def evaluate(rows,min_prior=3,train_fraction=.8,opponent_weight=.25):
                 duration=float(fighter["active_seconds"])
                 offense[fighter["fighter_id"]].append((duration,{k:float(fighter[k]) for k in MARKETS}))
                 allowed[opponent["fighter_id"]].append((duration,{k:float(fighter[k]) for k in MARKETS}))
+    duration_errors=[(sum(p for p,_ in v)/len(v),v[0][1]) for v in duration_by_fight.values()]
     metrics={}
     for key,items in errors.items():
         n=len(items)
@@ -66,6 +67,8 @@ def evaluate(rows,min_prior=3,train_fraction=.8,opponent_weight=.25):
        "markets":metrics,"excluded":dict(excluded),"oracle_duration":False,
        "duration_prediction_method":"mean of each fighter prior bout mean duration",
        "duration_mae_seconds":sum(abs(p-y) for p,y in duration_errors)/len(duration_errors) if duration_errors else None,
+       "duration_evaluated_fights":len(duration_errors),
+       "duration_rmse_seconds":math.sqrt(sum((p-y)**2 for p,y in duration_errors)/len(duration_errors)) if duration_errors else None,
        "weight_tuned_on_holdout":False,"point_in_time_certified":False,
        "calibrated":False,"bet_eligible":False,
        "limitations":"Fixed illustrative blend weight not fitted. Same-date isolation; earlier holdout fights update histories. Duration predicted from prior bouts only; scheduled rounds unverified (3/5 mixed), retrospective capture timestamps unverified. This is not a point-in-time certified betting backtest."}
