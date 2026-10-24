@@ -46,13 +46,28 @@ function researchProjection(f,fighter,stat){
   // conservative adjustment of 1.0, not a fabricated opponent defensive figure.
   return {value:own*3,units:m==='control_seconds'?'sec / 3-round equivalent':'per 3-round equivalent',rounds:stat.career_round_totals.round_rows};
 }
+// Transparent analytical distribution for count props; NOT a calibrated betting model.
+function poissonTail(lambda,threshold){
+ if(!Number.isFinite(lambda)||lambda<0||!Number.isFinite(threshold))return null;
+ const k=Math.floor(threshold);if(k<0)return 1;
+ let term=Math.exp(-lambda),cdf=term;
+ for(let i=1;i<=k;i++){term*=lambda/i;cdf+=term}
+ return Math.max(0,Math.min(1,1-cdf));
+}
+function modeledProp(f,fighter,stat){
+ const projection=researchProjection(f,fighter,stat);
+ if(!projection)return null;
+ const countMarkets=['Significant strikes landed','Significant strikes attempted','Total strikes landed','Takedowns landed','Takedowns attempted','Submission attempts','Knockdowns'];
+ if(!countMarkets.includes(market.value))return {...projection,distribution:'NO COUNT DISTRIBUTION'};
+ return {...projection,distribution:'POISSON RESEARCH BASELINE',overAtHalf:poissonTail(projection.value,Math.floor(projection.value)+0.5)};
+}
 function modelDisplay(f,fighter,stat){
 if(market.value==='Moneyline'){
   const independent=independentWinEstimate(f,fighter);
   return independent?(independent.probability*100).toFixed(1)+'% research estimate':'NO INDEPENDENT ESTIMATE';
 }
-const projected=researchProjection(f,fighter,stat);
-return projected?projected.value.toFixed(1)+' '+projected.units:'NO MATCHED STAT SAMPLE';
+const projected=modeledProp(f,fighter,stat);
+return projected?projected.value.toFixed(1)+' '+projected.units+(projected.distribution==='POISSON RESEARCH BASELINE'?' · exploratory count model':''):'NO MATCHED STAT SAMPLE';
 }
 function rateLeader(f,key){
  const a=careerRate(statsByName.get(norm(f.red)),key),b=careerRate(statsByName.get(norm(f.blue)),key);
