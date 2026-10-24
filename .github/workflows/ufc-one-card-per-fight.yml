@@ -1,0 +1,27 @@
+name: UFC One Card Per Fight
+on:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --check ufc_fighter_projections.js
+      - name: Verify consolidated fight decisions
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          j=Path('ufc_fighter_projections.js').read_text()
+          assert "for(const f of chosen){" in j
+          assert "cards.append(card)" in j
+          assert "for(const fighter of [f.red,f.blue])" in j
+          assert "RESEARCH LEAN" in j and "MARKET FAVORITE" in j
+          assert "Method / round" in j and "Not predicted" in j
+          assert "Striking leader" in j and "Takedown leader" in j
+          assert "one comparison card per fight" in j
+          assert "ufc_fighter_projections.js?v=8" in Path('ufc.html').read_text()
+          PY
