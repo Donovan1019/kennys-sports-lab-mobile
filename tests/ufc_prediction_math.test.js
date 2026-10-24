@@ -23,3 +23,6 @@ assert.ok(source.includes('schedule unverified'),'missing bout duration must be 
 
 assert.ok(source.includes('expectedRounds+=Math.pow(1-perRoundFinishHazard,i)'), 'finish survival must adjust expected rounds');
 assert.ok(source.includes('UNTRAINED 18% PER-ROUND FINISH HAZARD'), 'untrained duration assumption must be disclosed');
+
+assert.ok(source.includes('a.event===other.event'), 'paired moneyline quotes must belong to same event');
+assert.ok(source.includes('total>=1&&total<=1.35'), 'reject invalid two-way sportsbook overround');
