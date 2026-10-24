@@ -67,7 +67,7 @@ if(market.value==='Moneyline'){
   return independent?(independent.probability*100).toFixed(1)+'% research estimate':'NO INDEPENDENT ESTIMATE';
 }
 const projected=modeledProp(f,fighter,stat);
-return projected?projected.value.toFixed(1)+' '+projected.units+(projected.distribution==='POISSON RESEARCH BASELINE'?' · exploratory count model':''):'NO MATCHED STAT SAMPLE';
+return projected?projected.value.toFixed(1)+' '+projected.units+(projected.distribution==='POISSON RESEARCH BASELINE'?' · exploratory count model · P(>'+Math.floor(projected.value)+'.5) '+(projected.overAtHalf*100).toFixed(1)+'%':''):'NO MATCHED STAT SAMPLE';
 }
 function rateLeader(f,key){
  const a=careerRate(statsByName.get(norm(f.red)),key),b=careerRate(statsByName.get(norm(f.blue)),key);
