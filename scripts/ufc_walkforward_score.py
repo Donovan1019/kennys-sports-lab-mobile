@@ -15,15 +15,18 @@ def evaluate(rows):
     seen=set()
     evaluated=[]
     for row in ordered:
-        fid=row["fight_id"]
+        fid=row["fight_id"].strip()
+        if not fid: raise ValueError("empty fight_id")
         if fid in seen: raise ValueError("duplicate fight_id")
         seen.add(fid)
         p=float(row["predicted_red_win"])
+        if row["red_won"] not in ("0", "1"): raise ValueError("outcome must be 0 or 1")
         y=int(row["red_won"])
         if not (0<p<1 and y in (0,1)): raise ValueError("invalid probability/outcome")
         if timestamp(row["prediction_time"])>=timestamp(row["fight_time"]):
             raise ValueError("prediction generated after fight started: "+fid)
-        if not row.get("model_version"):raise ValueError("missing model_version")
+        if not row.get("model_version", "").strip():raise ValueError("missing model_version")
+        if not math.isfinite(p):raise ValueError("non-finite probability")
         evaluated.append((p,y))
     if not evaluated:raise ValueError("no valid chronological pre-fight predictions")
     n=len(evaluated)

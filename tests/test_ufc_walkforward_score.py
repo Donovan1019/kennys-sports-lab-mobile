@@ -20,6 +20,14 @@ class TestUfcWalkforward(unittest.TestCase):
         with self.assertRaises(ValueError):evaluate([self.row("1",.7,1),self.row("1",.6,0)])
     def test_rejects_invalid_probability(self):
         with self.assertRaises(ValueError):evaluate([self.row("1",1.1,1)])
+    def test_rejects_nonbinary_outcome(self):
+        row=self.row("1",.7,1)
+        row["red_won"]="2"
+        with self.assertRaises(ValueError):evaluate([row])
+    def test_rejects_missing_version(self):
+        row=self.row("1",.7,1)
+        row["model_version"]=" "
+        with self.assertRaises(ValueError):evaluate([row])
     def test_rejects_empty(self):
         with self.assertRaises(ValueError):evaluate([])
 
