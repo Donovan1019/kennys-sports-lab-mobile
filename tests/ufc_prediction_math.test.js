@@ -6,7 +6,7 @@ const source=fs.readFileSync('ufc_fighter_projections.js','utf8');
 const start=source.indexOf('function poissonTail(lambda,threshold){');
 const end=source.indexOf('\nfunction modeledProp(',start);
 assert.ok(start>=0&&end>start,'Poisson implementation must exist');
-const poissonTail=vm.runInNewContext('('+source.slice(start,end).trim()+')');
+const poissonTail=vm.runInNewContext('(()=>{'+source.slice(start,end).trim()+';return poissonTail})()');
 function near(actual,expected,tol=1e-8){assert.ok(Math.abs(actual-expected)<tol,`expected ${actual} ~ ${expected}`)}
 near(poissonTail(1,0.5),1-Math.exp(-1));
 near(poissonTail(2,1.5),1-3*Math.exp(-2));
@@ -20,3 +20,7 @@ console.log('UFC probability math and quote-freshness tests passed');
 
 assert.ok(source.includes('f.scheduled_rounds===5?5:f.scheduled_rounds===3?3:null'),'research counts must respect scheduled rounds');
 assert.ok(source.includes('schedule unverified'),'missing bout duration must be labeled');
+
+near(poissonTail(20,25.5),0.1121849727179698,1e-7);
+near(poissonTail(20,10.5),0.9891882811733472,1e-7);
+near(poissonTail(100,99.5),0.5132987982791487,1e-7);
