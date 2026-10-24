@@ -50,7 +50,9 @@ function researchProjection(f,fighter,stat){
 function poissonTail(lambda,threshold){
  if(!Number.isFinite(lambda)||lambda<0||lambda>10000||!Number.isFinite(threshold))return null;
  const k=Math.floor(threshold);if(k<0)return 1;
- // For large lambda use a continuity-corrected normal approximation to avoid underflow.\n if(lambda>600){const z=(k+0.5-lambda)/Math.sqrt(lambda);const t=1/(1+0.2316419*Math.abs(z));const d=0.3989422804014327*Math.exp(-z*z/2);const c=1-d*t*(0.319381530+t*(-0.356563782+t*(1.781477937+t*(-1.821255978+t*1.330274429))));return Math.max(0,Math.min(1,z>=0?1-c:c));}\n let term=Math.exp(-lambda),cdf=term;
+ // For large lambda use a continuity-corrected normal approximation to avoid underflow.
+ if(lambda>600){const z=(k+0.5-lambda)/Math.sqrt(lambda);const t=1/(1+0.2316419*Math.abs(z));const d=0.3989422804014327*Math.exp(-z*z/2);const c=1-d*t*(0.319381530+t*(-0.356563782+t*(1.781477937+t*(-1.821255978+t*1.330274429))));return Math.max(0,Math.min(1,z>=0?1-c:c));}
+ let term=Math.exp(-lambda),cdf=term;
  for(let i=1;i<=k;i++){term*=lambda/i;cdf+=term}
  return Math.max(0,Math.min(1,1-cdf));
 }
