@@ -22,10 +22,10 @@ class WalkForwardTests(unittest.TestCase):
  def test_unknown_winner_excluded(self):
   a="a"*16;b="b"*16;fid="c"*16
   record={"ufcstats_fight_id":fid,"fighter_1_ufcstats_id":a,"fighter_2_ufcstats_id":b,
-    "wide_record":{"winner":"Draw"}}
+    "wide_record":{"winner":"Draw","result_f1":"D","result_f2":"D"}}
   feature={"prior_fights":3,"fight_time":"2025-01-01T00:00:00Z",
     "sig_landed_per_min":4,"sig_accuracy":.5,"takedowns_per_15min":1}
   rows,exc=examples([record],[{"fight_id":fid,"fighter_id":a,**feature},{"fight_id":fid,"fighter_id":b,**feature}])
   self.assertEqual(len(rows),0)
-  self.assertEqual(exc["winner_not_native_fighter_id"],1)
+  self.assertEqual(exc["unverified_winner_corners"],1)
 if __name__=="__main__":unittest.main()
