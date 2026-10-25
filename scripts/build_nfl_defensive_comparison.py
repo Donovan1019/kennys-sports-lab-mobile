@@ -89,18 +89,23 @@ def build():
         season=season_of(kickoff)
         matchup={}
         for period,year in (('season',season),('last4',season),('previous',season-1)):
-            sides={}
+            samples_by_side={}
             for side,team in (('home',g['home']),('away',g['away'])):
                 samples=[(date,stats) for date,stats in histories.get(team,[]) if season_of(date)==year and date<kickoff]
                 samples.sort(key=lambda x:x[0],reverse=True)
                 if period=='last4':samples=samples[:4]
-                agg={}
-                for field in FIELDS:
-                    nums=[stats['overall'][field] for _,stats in samples if field in stats.get('overall',{})]
-                    if nums:agg[field]={'value':round(statistics.mean(nums),2),'sample_size':len(nums)}
-                if agg:agg['summary']=str(len(samples))+' observed '+str(year)+' games'
-                sides[side]=agg
-            matchup[period]={'overall':sides}
+                samples_by_side[side]=samples
+            matchup[period]={}
+            for position in ('overall','qb','rb','wr','te'):
+                sides={}
+                for side,samples in samples_by_side.items():
+                    agg={}
+                    for field in FIELDS:
+                        nums=[stats[position][field] for _,stats in samples if field in stats.get(position,{})]
+                        if nums:agg[field]={'value':round(statistics.mean(nums),2),'sample_size':len(nums)}
+                    if agg:agg['summary']=str(len(samples))+' observed '+str(year)+' games · '+position.upper()
+                    sides[side]=agg
+                matchup[period][position]=sides
         events.append({'event_id':g['event_id'],'matchup_stats':matchup})
     if not histories:raise SystemExit('No valid boxscore history fetched; refusing to replace existing snapshot')
     out={'source':'espn-public-nfl-summary-boxscore','generated_at':datetime.now(timezone.utc).isoformat(),'games_scanned':calls,'games_failed':len(errors),'teams_with_data':len(histories),'errors':errors[:20],'events':events}
