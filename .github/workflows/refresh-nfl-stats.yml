@@ -1,6 +1,11 @@
 name: Refresh NFL Player Stats
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/fetch_nfl_stats.py'
+      - '.github/workflows/refresh-nfl-stats.yml'
 permissions:
   contents: write
 jobs:
