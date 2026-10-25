@@ -27,17 +27,34 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify pregame export and archive integrity
+        run: |
+          node scripts/test_nfl_prop_export.cjs
+          node scripts/test_nfl_prop_archive.cjs
       - name: Fetch capped NFL player prop odds
         env:
           THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
           MAX_EVENTS: ${{ inputs.max_events || '1' }}
           TARGET_DATE: ''
         run: python scripts/fetch_nfl_props.py
+      - name: Export and archive genuine pregame forecasts immediately after refresh
+        shell: bash
+        run: |
+          node scripts/export_nfl_prop_forecasts.cjs
+          if [ -f feed/nfl_prop_forecast_inbox.json ]; then
+            node scripts/archive_nfl_prop_forecasts.cjs feed/nfl_prop_forecast_inbox.json
+          else
+            echo 'No fresh two-way forecasts qualified; no archived predictions created.'
+          fi
       - name: Publish verified prop snapshot
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add feed/nfl_props.json
+          if [ -f feed/nfl_prop_forecast_ledger.json ]; then git add feed/nfl_prop_forecast_ledger.json; fi
           if ! git diff --cached --quiet; then
             git commit -m "Refresh NFL player prop snapshot"
             git fetch origin main
