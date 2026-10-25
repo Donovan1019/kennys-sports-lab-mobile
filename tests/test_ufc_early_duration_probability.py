@@ -11,6 +11,9 @@ class EarlyDurationTests(unittest.TestCase):
   r=evaluate(self.records())
   self.assertGreater(r["evaluated_fights"],0)
   self.assertGreaterEqual(r["candidate_fighter_prior"]["brier"],0)
+  self.assertGreaterEqual(r["candidate_shrunk_fighter_prior"]["brier"],0)
+  self.assertEqual(r["shrinkage_pseudocount_fixed"],10)
+  self.assertIn(r["shrunk_decision"],("REJECT","RESEARCH_ONLY"))
   self.assertFalse(r["production_promotion_allowed"])
   self.assertIn(r["decision"],("REJECT","RESEARCH_ONLY"))
  def test_same_day_no_prior(self):

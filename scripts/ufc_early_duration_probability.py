@@ -35,7 +35,12 @@ def evaluate(records,train_fraction=.8,min_prior=3):
             candidate=(sum(history[a])/len(history[a])+sum(history[b])/len(history[b]))/2
             baseline=sum(population)/len(population)
             actual=int(duration<300)
-            outcomes.append((baseline,candidate,actual))
+            # Fixed 10-prior-fight pseudocount shrinkage; no holdout tuning.
+            strength=10
+            shrunk_a=(sum(history[a])+strength*baseline)/(len(history[a])+strength)
+            shrunk_b=(sum(history[b])+strength*baseline)/(len(history[b])+strength)
+            shrunk=(shrunk_a+shrunk_b)/2
+            outcomes.append((baseline,candidate,actual,shrunk))
         for _,_,a,b,duration in batch:
             actual=int(duration<300)
             history[a].append(actual);history[b].append(actual);population.append(actual)
@@ -45,10 +50,13 @@ def evaluate(records,train_fraction=.8,min_prior=3):
         return {"brier":sum((v[index]-v[2])**2 for v in outcomes)/n,
           "mean_predicted_probability":sum(v[index] for v in outcomes)/n,
           "observed_rate":sum(v[2] for v in outcomes)/n}
-    base=metrics(0);candidate=metrics(1)
+    base=metrics(0);candidate=metrics(1);shrunk=metrics(3)
     return {"schema":1,"holdout_start_date":cutoff,"evaluated_fights":n,
       "target":"bout_duration_strictly_under_300_seconds",
       "baseline_population_prior":base,"candidate_fighter_prior":candidate,
+      "candidate_shrunk_fighter_prior":shrunk,"shrinkage_pseudocount_fixed":10,
+      "shrunk_brier_improvement":base["brier"]-shrunk["brier"] if n else None,
+      "shrunk_decision":"REJECT" if not n or shrunk["brier"]>=base["brier"] else "RESEARCH_ONLY",
       "brier_improvement":base["brier"]-candidate["brier"] if n else None,
       "decision":"REJECT" if not n or candidate["brier"]>=base["brier"] else "RESEARCH_ONLY",
       "excluded":dict(excluded),"same_date_isolation":True,"candidate_weight_tuned_on_holdout":False,
