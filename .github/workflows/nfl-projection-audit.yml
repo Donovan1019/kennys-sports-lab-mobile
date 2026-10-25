@@ -18,6 +18,8 @@ on:
       - 'scripts/audit_nfl_projections.py'
       - '.github/workflows/nfl-projection-audit.yml'
   workflow_dispatch:
+  schedule:
+    - cron: '35 13 * * *'
 permissions:
   contents: read
 jobs:
