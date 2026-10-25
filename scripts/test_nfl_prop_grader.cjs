@@ -11,7 +11,7 @@ try{
  const outcomeFile=path.join(dir,'feed','nfl_prop_verified_outcomes.json');
  const run=()=>cp.spawnSync(process.execPath,[path.join(dir,'scripts','grade_nfl_prop_forecasts.cjs'),outcomeFile],{encoding:'utf8'});
  let a=run();assert.equal(a.status,0);assert.match(a.stdout,/AWAITING_VERIFIED_INPUTS/);
- const o={event_id:'event1',player:'Example Player',market:'Receiving Yards',outcome:64,verified_at:'2026-10-21T03:00:00Z',source:'verified independent game box score'};
+ const o={event_id:'event1',player:'Example Player',market:'Receiving Yards',outcome:64,verified_at:'2026-10-21T03:00:00Z',source:'https://example.com/verified-game-box-score'};
  fs.writeFileSync(outcomeFile,JSON.stringify([o]));
  a=run();assert.equal(a.status,0,a.stderr);
  let graded=JSON.parse(fs.readFileSync(path.join(dir,'feed','nfl_prop_graded_snapshots.json')));assert.equal(graded.length,1);assert.equal(graded[0].outcome,64);
