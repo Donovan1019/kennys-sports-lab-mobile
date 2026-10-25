@@ -36,6 +36,7 @@ const tabs=$('advancedtabs');if(!tabs)return;
 const add=(name,id,before)=>{if(tabs.querySelector('[data-tab="'+id+'"]'))return;let b=document.createElement('button');b.dataset.tab=id;b.textContent=name;tabs.insertBefore(b,tabs.querySelector('[data-tab="'+before+'"]')||null)};
 add('Model Projections','predictions','markets');add('Game Simulation','gamepred','markets');add('All Predicted Props','allpred','props');
 const modes=new Set(['top5','predictions','gamepred','allpred']);
+const selector=$('game');if(selector&&typeof MutationObserver!=='undefined'){new MutationObserver(()=>{if(modes.has(tabs.dataset.enhanced))queueMicrotask(()=>render(tabs.dataset.enhanced))}).observe(selector,{childList:true})}
 tabs.addEventListener('click',e=>{let b=e.target.closest('button[data-tab]');if(!b)return;if(modes.has(b.dataset.tab)){e.stopImmediatePropagation();tabs.querySelectorAll('button').forEach(x=>x.classList.toggle('active',x===b));tabs.dataset.enhanced=b.dataset.tab;render(b.dataset.tab)}},true);
 $('game')?.addEventListener('change',()=>{if(modes.has(tabs.dataset.enhanced))setTimeout(()=>render(tabs.dataset.enhanced),0)});
 async function load(path){let r=await fetch('./feed/'+path,{cache:'no-store'});if(!r.ok)throw Error(path+' HTTP '+r.status);return r.json()}
