@@ -7,7 +7,7 @@ const root=path.resolve(__dirname,'..'),read=n=>JSON.parse(fs.readFileSync(path.
 const forecasts=read('americanfootball_nfl_forecast_ledger.json').forecasts;
 const baselines=read('americanfootball_nfl_market_baseline_ledger.json').baselines;
 const outcomes=read('americanfootball_nfl_forecast_outcomes.json').scored;
-const byBaseline=new Map(baselines.map(x=>[x.forecast_id,x]));
+const byBaseline=new Map();const conflictingBaselines=new Set();for(const x of baselines){if(!x.forecast_id)continue;const old=byBaseline.get(x.forecast_id);if(old&&JSON.stringify(old)!==JSON.stringify(x))conflictingBaselines.add(x.forecast_id);else if(!old)byBaseline.set(x.forecast_id,x)}
 const byOutcome=new Map();const conflictingOutcomes=new Set();for(const x of outcomes){if(!x.forecast_id)continue;const old=byOutcome.get(x.forecast_id);if(old&&old.home_won!==x.home_won)conflictingOutcomes.add(x.forecast_id);else if(!old)byOutcome.set(x.forecast_id,x)}
 const earliest=new Map(),rejected={};
 const reject=reason=>{rejected[reason]=(rejected[reason]||0)+1};
@@ -19,6 +19,7 @@ for(const f of forecasts){
 const rows=[];
 for(const f of earliest.values()){
  const b=byBaseline.get(f.forecast_id),o=byOutcome.get(f.forecast_id);
+ if(conflictingBaselines.has(f.forecast_id)){reject('conflicting_market_baselines');continue}
  if(!b){reject('no_matching_market_baseline');continue}
  if(b.event_id!==f.event_id||b.forecast_at!==f.forecast_at||b.event_start!==f.event_start||b.status!=='verified_pregame_quote'||b.source!=='multi_book_no_vig_consensus'||!Number.isFinite(Date.parse(b.quote_at))||Date.parse(b.quote_at)>Date.parse(f.forecast_at)||Date.parse(b.quote_at)>=Date.parse(f.event_start)||!(b.home_probability>0&&b.home_probability<1)){reject('invalid_or_future_market_quote');continue}
  if(conflictingOutcomes.has(f.forecast_id)){reject('conflicting_outcomes');continue}
