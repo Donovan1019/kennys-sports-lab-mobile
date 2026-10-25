@@ -49,6 +49,15 @@ def main():
         events,remaining=request_json(BASE+"/events?"+query({"apiKey":key}))
         if not isinstance(events,list):raise ValueError("Unexpected events response")
         events=sorted((e for e in events if e.get("id") and e.get("commence_time") and e.get("away_team") and e.get("home_team")),key=lambda e:e["commence_time"])
+        now=datetime.now(timezone.utc)
+        upcoming=[]
+        for e in events:
+            try:
+                kickoff=datetime.fromisoformat(e["commence_time"].replace("Z","+00:00"))
+                if kickoff>now:upcoming.append(e)
+            except (ValueError,TypeError):pass
+        print("Provider events",len(events),"eligible future events",len(upcoming))
+        events=upcoming
         target_date=os.environ.get("TARGET_DATE")
         if target_date:
             datetime.strptime(target_date,"%Y-%m-%d")
