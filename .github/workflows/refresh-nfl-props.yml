@@ -1,5 +1,9 @@
 name: Refresh NFL Player Props (Credit-Limited)
 on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/refresh-nfl-props.yml'
   workflow_dispatch:
     inputs:
       max_events:
@@ -24,7 +28,7 @@ jobs:
       - name: Fetch capped NFL player prop odds
         env:
           THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
-          MAX_EVENTS: ${{ inputs.max_events }}
+          MAX_EVENTS: ${{ inputs.max_events || '1' }}
         run: python scripts/fetch_nfl_props.py
       - name: Publish verified prop snapshot
         run: |
