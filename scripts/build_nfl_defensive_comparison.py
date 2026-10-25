@@ -18,13 +18,13 @@ def parse_box(payload):
     for side in box.get('players') or []:
         team=(side.get('team') or {}).get('displayName')
         if not team:continue
-        values={}
+        values={'overall':{},'qb':{},'rb':{},'wr':{},'te':{}}
         for category in side.get('statistics') or []:
             name=str(category.get('name') or category.get('type') or '').lower()
             labels=[str(x).lower() for x in category.get('labels') or []]
             for athlete in category.get('athletes') or []:
                 raw=athlete.get('stats') or []
-                for i,label in enumerate(labels):
+                position=str(((athlete.get('athlete') or {}).get('position') or {}).get('abbreviation') or '').lower()\n                buckets=[values['overall']] + ([values[position]] if position in ('qb','rb','wr','te') else [])\n                for i,label in enumerate(labels):
                     if i>=len(raw):continue
                     value=raw[i]
                     if name=='passing':
@@ -36,14 +36,14 @@ def parse_box(payload):
                             except ValueError:pass
                         if label in ('yds','yards'):
                             v=number(value)
-                            if v is not None:values['passing_yards_allowed']=values.get('passing_yards_allowed',0)+v
+                            if v is not None:\n                                for bucket in buckets:bucket['passing_yards_allowed']=bucket.get('passing_yards_allowed',0)+v
                         if label in ('td','tds'):
                             v=number(value)
-                            if v is not None:values['passing_tds_allowed']=values.get('passing_tds_allowed',0)+v
+                            if v is not None:\n                                for bucket in buckets:bucket['passing_tds_allowed']=bucket.get('passing_tds_allowed',0)+v
                     elif name=='rushing':
                         key={'car':'rush_attempts_allowed','att':'rush_attempts_allowed','yds':'rushing_yards_allowed','td':'rushing_tds_allowed'}.get(label)
                         v=number(value)
-                        if key and v is not None:values[key]=values.get(key,0)+v
+                        if key and v is not None:\n                            for bucket in buckets:bucket[key]=bucket.get(key,0)+v
                     elif name=='receiving':
                         key={'rec':'receptions_allowed','tgt':'targets_allowed','tar':'targets_allowed'}.get(label)
                         v=number(value)
