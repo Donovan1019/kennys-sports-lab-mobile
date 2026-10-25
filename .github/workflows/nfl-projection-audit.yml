@@ -41,5 +41,7 @@ jobs:
         if: always()
         with:
           name: nfl-projection-bias-audit
-          path: reports/nfl_projection_audit.json
+          path: |
+            reports/nfl_projection_audit.json
+            reports/nfl_market_accuracy.json
           if-no-files-found: warn
