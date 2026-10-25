@@ -27,8 +27,8 @@ def parse_box(payload):
     # ESPN summary often omits position from statistical rows but supplies it in rosters.
     # Join by stable athlete ID; names and statistical category are not safe identifiers.
     roster_positions={}
-    for roster in box.get('rosters') or []:
-        for entry in roster.get('roster') or []:
+    for roster in (payload.get('rosters') or []) + (box.get('rosters') or []):
+        for entry in (roster.get('roster') or roster.get('athletes') or []):
             person=entry.get('athlete') or entry
             athlete_id=person.get('id')
             position=athlete_position(person,entry,'')
