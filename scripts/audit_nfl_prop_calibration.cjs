@@ -50,4 +50,5 @@ for(const [name,a] of Object.entries(market)){
  const holdBase=hold.length?mean(hold.map(x=>(x.p0-x.y)**2)):null;
  report.markets[name]={n,brier,market_brier:base,brier_skill:base>0?1-brier/base:null,log_loss:logloss,ece,holdout_n:hold.length,holdout_events:distinctHoldoutEvents,unique_events:eventOrder.length,minimum_evidence_met:n>=200&&distinctHoldoutEvents>=30&&eventOrder.length>=40,holdout_brier:holdBrier,holdout_market_brier:holdBase,holdout_skill:holdBase>0?1-holdBrier/holdBase:null,eligible:false};
 }
+if(process.env.KSL_PROP_REPORT_PATH){fs.mkdirSync(require('node:path').dirname(process.env.KSL_PROP_REPORT_PATH),{recursive:true});fs.writeFileSync(process.env.KSL_PROP_REPORT_PATH,JSON.stringify({...report,generated_at:new Date().toISOString()},null,2)+'\n')}
 console.log(JSON.stringify(report,null,2));
