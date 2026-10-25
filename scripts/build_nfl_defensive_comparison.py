@@ -27,7 +27,7 @@ def parse_box(payload):
                 person=athlete.get('athlete') or {}
                 pos=person.get('position') or athlete.get('position') or {}
                 position=str(pos.get('abbreviation') if isinstance(pos,dict) else pos or '').lower()
-                if not position and name=='passing':position='qb'
+                if name=='passing' and position not in ('qb','rb','wr','te'):position='qb'
                 buckets=[values['overall']] + ([values[position]] if position in ('qb','rb','wr','te') else [])
                 for i,label in enumerate(labels):
                     if i>=len(raw):continue
@@ -111,8 +111,10 @@ def build():
                 matchup[period][position]=sides
         events.append({'event_id':g['event_id'],'matchup_stats':matchup})
     if not histories:raise SystemExit('No valid boxscore history fetched; refusing to replace existing snapshot')
-    if not any(e['matchup_stats']['season']['qb']['home'] or e['matchup_stats']['season']['qb']['away'] for e in events):raise SystemExit('No positional QB splits: refusing empty positional snapshot')
-    out={'source':'espn-public-nfl-summary-boxscore','generated_at':datetime.now(timezone.utc).isoformat(),'games_scanned':calls,'games_failed':len(errors),'teams_with_data':len(histories),'errors':errors[:20],'events':events}
+    if not any(e['matchup_stats']['season']['overall']['home'] or e['matchup_stats']['season']['overall']['away'] for e in events):raise SystemExit('No observed defensive samples: refusing empty snapshot')
+    coverage={p:sum(bool(e['matchup_stats']['season'][p]['home'] or e['matchup_stats']['season'][p]['away']) for e in events) for p in ('overall','qb','rb','wr','te')}
+    print('Observed positional coverage:',coverage)
+    out={'source':'espn-public-nfl-summary-boxscore','generated_at':datetime.now(timezone.utc).isoformat(),'games_scanned':calls,'games_failed':len(errors),'teams_with_data':len(histories),'position_coverage':coverage,'errors':errors[:20],'events':events}
     path=ROOT/'feed/americanfootball_nfl_defensive_comparison.json'
     path.write_text(json.dumps(out,separators=(',',':'))+chr(10))
     print('Saved',len(events),'event comparisons;',len(histories),'teams;',calls,'box scores;',len(errors),'failed')
