@@ -160,6 +160,17 @@ def main():
     result=audit(payload)
     result["usage_candidate_comparison"]=compare(payload)
     result["simulation_80pct_coverage"]=coverage_audit(payload)
+    coverage=result["simulation_80pct_coverage"]
+    comparison=result["usage_candidate_comparison"]
+    result["betting_readiness"]={
+        "status":"NOT_READY",
+        "reason":"Unverified player roles/availability and sportsbook market matching; simulation calibration requires independently verified out-of-sample coverage",
+        "markets":{market:{
+            "simulation_coverage":coverage.get(market,{}).get("status","NOT_TESTED"),
+            "candidate_promoted":bool(comparison.get(market,{}).get("promote",False)),
+            "ready":False
+        } for market in MARKETS}
+    }
     report.parent.mkdir(parents=True,exist_ok=True)
     report.write_text(json.dumps(result,indent=2)+"\n",encoding="utf-8")
     print(json.dumps(result,indent=2))
