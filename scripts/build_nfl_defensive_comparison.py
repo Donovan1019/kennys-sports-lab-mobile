@@ -75,7 +75,7 @@ def build():
         if not eid:continue
         try:
             req=urllib.request.Request(BASE+str(eid),headers={'User-Agent':'KennysSportsLab/1.0'})
-            with urllib.request.urlopen(req,timeout=12) as response:payload=json.load(response)
+            with urllib.request.urlopen(req,timeout=18) as response:payload=json.load(response)
             calls+=1
             offensive=parse_box(payload)
             for defense,offense in ((game['home'],game['away']),(game['away'],game['home'])):
@@ -102,6 +102,7 @@ def build():
                 sides[side]=agg
             matchup[period]={'overall':sides,'qb':sides,'rb':sides,'wr':sides,'te':sides}
         events.append({'event_id':g['event_id'],'matchup_stats':matchup})
+    if not histories:raise SystemExit('No valid boxscore history fetched; refusing to replace existing snapshot')
     out={'source':'espn-public-nfl-summary-boxscore','generated_at':datetime.now(timezone.utc).isoformat(),'games_scanned':calls,'games_failed':len(errors),'teams_with_data':len(histories),'errors':errors[:20],'events':events}
     path=ROOT/'feed/americanfootball_nfl_defensive_comparison.json'
     path.write_text(json.dumps(out,separators=(',',':'))+'
