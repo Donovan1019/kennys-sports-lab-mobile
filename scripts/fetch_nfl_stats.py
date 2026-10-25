@@ -18,6 +18,10 @@ MARKETS={
  "Passing touchdowns":"passing_tds",
  "Rushing touchdowns":"rushing_tds",
  "Receiving touchdowns":"receiving_tds",
+ "Pass Attempts":"attempts",
+ "Completions":"completions",
+ "Rush Attempts":"carries",
+ "Targets":"targets",
 }
 def parse(source):
     reader=csv.DictReader(io.StringIO(source))

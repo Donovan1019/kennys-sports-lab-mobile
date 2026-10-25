@@ -54,10 +54,72 @@ def audit(payload):
                          "status":"REVIEW" if n<50 or abs(bias)>max(.1*avg_actual, .1) else "BASELINE_CHECK_PASS"}
     return {"scope":"2026 actuals; prior-game-only NFL historical baseline","limitations":["Not a calibrated probability model","No sportsbook closing-line comparison","No verified current roster/availability","NFL market baseline only; no matchup factor"],"markets":results}
 
+
+USAGE={"Passing Yards":"Pass Attempts","Rushing Yards":"Rush Attempts",
+       "Receiving Yards":"Targets","Receptions":"Targets"}
+def usage_prediction(prior, market):
+    """Only observed earlier player games, never the outcome being predicted."""
+    key=MARKETS[market];u=USAGE.get(market)
+    if not u:return None
+    paired=[]
+    for g in reversed(prior):
+        v=g.get("values",{})
+        if key not in v or u not in v:continue
+        try:y=float(v[key]);volume=float(v[u])
+        except (TypeError,ValueError):continue
+        if all(math.isfinite(x) and x>=0 for x in (y,volume)):paired.append((y,volume))
+        if len(paired)>=10:break
+    if len(paired)<8:return None
+    baseline=predict([y for y,_ in paired])
+    base_vol=statistics.mean(v for _,v in paired)
+    total_vol=sum(v for _,v in paired)
+    if base_vol<=0 or total_vol<=0:return None
+    recent_vol=statistics.mean(v for _,v in paired[:5])
+    opportunity=max(.8*base_vol,min(1.2*base_vol,.6*recent_vol+.4*base_vol))
+    rate=sum(y for y,_ in paired)/total_vol
+    return .75*baseline+.25*opportunity*rate
+def compare(payload):
+    records=defaultdict(list)
+    for p in payload.get("players",[]):
+        role=str(p.get("position","")).upper()
+        games=sorted((g for g in p.get("games",[]) if g.get("season") is not None and g.get("week") is not None and g.get("season_type") in ("REG","POST")),key=lambda g:(int(g["season"]),int(g["week"]),g["season_type"]=="POST"))
+        for market,key in MARKETS.items():
+            if market not in USAGE or role not in ROLES[market]:continue
+            for idx,g in enumerate(games):
+                if int(g["season"])!=2026 or idx<8:continue
+                try:actual=float(g["values"][key])
+                except (KeyError,ValueError,TypeError):continue
+                if not math.isfinite(actual) or actual<0:continue
+                prior=games[:idx]
+                paired=[float(x["values"][key]) for x in reversed(prior) if key in x.get("values",{}) and x["values"][key] is not None]
+                if len(paired)<8:continue
+                candidate=usage_prediction(prior,market)
+                if candidate is None:continue
+                baseline=predict(paired)
+                records[market].append((baseline-actual,candidate-actual))
+    out={}
+    for market in USAGE:
+        rows=records[market];n=len(rows)
+        if not n:out[market]={"samples":0,"status":"INSUFFICIENT_DATA","promote":False};continue
+        b_mae=statistics.mean(abs(x[0]) for x in rows)
+        c_mae=statistics.mean(abs(x[1]) for x in rows)
+        b_bias=statistics.mean(x[0] for x in rows)
+        c_bias=statistics.mean(x[1] for x in rows)
+        # Guard against overfitting: require >=100 matched forecasts and >=2% lower MAE,
+        # while not materially increasing absolute systematic bias.
+        promote=n>=100 and c_mae<=.98*b_mae and abs(c_bias)<=abs(b_bias)+.02*max(b_mae,1)
+        out[market]={"samples":n,"baseline_mae":round(b_mae,3),"candidate_mae":round(c_mae,3),
+                     "baseline_bias":round(b_bias,3),"candidate_bias":round(c_bias,3),
+                     "mae_improvement_pct":round(100*(b_mae-c_mae)/b_mae,2) if b_mae else None,
+                     "promote":promote,"status":"PASS" if promote else "REJECT"}
+    return out
+
 def main():
     path=Path(sys.argv[1] if len(sys.argv)>1 else "feed/nfl_player_stats.json")
     report=Path(sys.argv[2] if len(sys.argv)>2 else "reports/nfl_projection_audit.json")
-    result=audit(json.loads(path.read_text(encoding="utf-8")))
+    payload=json.loads(path.read_text(encoding="utf-8"))
+    result=audit(payload)
+    result["usage_candidate_comparison"]=compare(payload)
     report.parent.mkdir(parents=True,exist_ok=True)
     report.write_text(json.dumps(result,indent=2)+"\n",encoding="utf-8")
     print(json.dumps(result,indent=2))
