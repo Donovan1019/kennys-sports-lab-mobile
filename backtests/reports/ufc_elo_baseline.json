@@ -2,7 +2,7 @@
   "schema": 1,
   "sport": "UFC",
   "model_version": "ufc-elo-baseline-v1",
-  "historical_bouts_used": 250,
+  "historical_bouts_used": 334,
   "pre_update_evaluated_fights": 0,
   "brier": null,
   "log_loss": null,
@@ -12,21 +12,33 @@
       "elo": 1488.0,
       "historical_bouts": 1
     },
+    "Aaron Pico": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
     "Abdul-Kareem Al-Selwady": {
       "elo": 1488.0,
       "historical_bouts": 1
     },
-    "Abus Magomedov": {
+    "Abdul-Rakhman Yakhyaev": {
       "elo": 1512.0,
       "historical_bouts": 1
+    },
+    "Abubakar Vagaev": {
+      "elo": 1512.41,
+      "historical_bouts": 1
+    },
+    "Abus Magomedov": {
+      "elo": 1534.36,
+      "historical_bouts": 3
     },
     "Adrian Ya\u00f1ez": {
       "elo": 1512.0,
       "historical_bouts": 1
     },
     "Aiemann Zahabi": {
-      "elo": 1512.0,
-      "historical_bouts": 1
+      "elo": 1523.59,
+      "historical_bouts": 2
     },
     "Ailin Perez": {
       "elo": 1524.0,
@@ -34,6 +46,10 @@
     },
     "Alatengheili": {
       "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Aleksandar Rakic": {
+      "elo": 1488.0,
       "historical_bouts": 1
     },
     "Alessandro Costa": {
@@ -45,8 +61,8 @@
       "historical_bouts": 1
     },
     "Alex Morono": {
-      "elo": 1512.0,
-      "historical_bouts": 1
+      "elo": 1499.17,
+      "historical_bouts": 2
     },
     "Alex Perez": {
       "elo": 1500.41,
@@ -60,13 +76,21 @@
       "elo": 1488.0,
       "historical_bouts": 1
     },
-    "Alexander Volkov": {
+    "Alexander Volkanovski": {
       "elo": 1512.0,
       "historical_bouts": 1
     },
-    "Alice Ardelean": {
-      "elo": 1488.0,
+    "Alexander Volkov": {
+      "elo": 1524.0,
+      "historical_bouts": 2
+    },
+    "Alexandr Romanov": {
+      "elo": 1511.59,
       "historical_bouts": 1
+    },
+    "Alice Ardelean": {
+      "elo": 1476.41,
+      "historical_bouts": 2
     },
     "Alonzo Menifield": {
       "elo": 1476.41,
@@ -104,13 +128,17 @@
       "elo": 1512.0,
       "historical_bouts": 1
     },
+    "Anthony Hernandez": {
+      "elo": 1512.41,
+      "historical_bouts": 1
+    },
     "Anton Turkalj": {
       "elo": 1488.0,
       "historical_bouts": 1
     },
     "Antonio Trocoli": {
-      "elo": 1488.0,
-      "historical_bouts": 1
+      "elo": 1476.41,
+      "historical_bouts": 2
     },
     "Aoriqileng": {
       "elo": 1488.0,
@@ -124,29 +152,41 @@
       "elo": 1488.0,
       "historical_bouts": 1
     },
-    "Asu Almabayev": {
-      "elo": 1512.0,
+    "Armen Petrosyan": {
+      "elo": 1488.8,
       "historical_bouts": 1
     },
-    "Austen Lane": {
+    "Asaf Chopurov": {
       "elo": 1488.0,
       "historical_bouts": 1
+    },
+    "Asu Almabayev": {
+      "elo": 1523.16,
+      "historical_bouts": 2
+    },
+    "Austen Lane": {
+      "elo": 1500.4,
+      "historical_bouts": 2
     },
     "Austin Hubbard": {
       "elo": 1512.0,
       "historical_bouts": 1
     },
     "Azamat Murzakanov": {
-      "elo": 1511.59,
-      "historical_bouts": 1
+      "elo": 1499.19,
+      "historical_bouts": 2
     },
     "Azat Maksum": {
       "elo": 1488.0,
       "historical_bouts": 1
     },
-    "Bassil Hafez": {
-      "elo": 1512.0,
+    "Baergeng Jieleyisi": {
+      "elo": 1488.0,
       "historical_bouts": 1
+    },
+    "Bassil Hafez": {
+      "elo": 1500.41,
+      "historical_bouts": 2
     },
     "Bekzat Almakhan": {
       "elo": 1488.0,
@@ -177,10 +217,18 @@
       "historical_bouts": 2
     },
     "Bolaji Oki": {
-      "elo": 1499.59,
-      "historical_bouts": 2
+      "elo": 1487.6,
+      "historical_bouts": 3
     },
     "Brad Katona": {
+      "elo": 1500.0,
+      "historical_bouts": 2
+    },
+    "Brad Tavares": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Brandon Royval": {
       "elo": 1512.0,
       "historical_bouts": 1
     },
@@ -204,8 +252,16 @@
       "elo": 1488.0,
       "historical_bouts": 1
     },
+    "Brunno Ferreira": {
+      "elo": 1488.41,
+      "historical_bouts": 1
+    },
     "Bruno Lopes": {
       "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Bruno Silva": {
+      "elo": 1488.0,
       "historical_bouts": 1
     },
     "Bryan Barberena": {
@@ -217,15 +273,19 @@
       "historical_bouts": 1
     },
     "CJ Vergara": {
-      "elo": 1488.0,
-      "historical_bouts": 1
+      "elo": 1476.41,
+      "historical_bouts": 2
     },
     "Caio Machado": {
       "elo": 1488.0,
       "historical_bouts": 1
     },
     "Cam Rowston": {
-      "elo": 1488.0,
+      "elo": 1477.22,
+      "historical_bouts": 2
+    },
+    "Cameron Smotherman": {
+      "elo": 1511.6,
       "historical_bouts": 1
     },
     "Caol\u00e1n Loughran": {
@@ -241,7 +301,11 @@
       "historical_bouts": 1
     },
     "Carlos Hernandez": {
-      "elo": 1488.0,
+      "elo": 1500.41,
+      "historical_bouts": 2
+    },
+    "Carlos Leal": {
+      "elo": 1488.41,
       "historical_bouts": 1
     },
     "Carlos Prates": {
@@ -249,8 +313,8 @@
       "historical_bouts": 2
     },
     "Carlos Ulberg": {
-      "elo": 1512.0,
-      "historical_bouts": 1
+      "elo": 1524.0,
+      "historical_bouts": 2
     },
     "Carlston Harris": {
       "elo": 1488.0,
@@ -261,8 +325,8 @@
       "historical_bouts": 1
     },
     "Chad Anheliger": {
-      "elo": 1499.59,
-      "historical_bouts": 2
+      "elo": 1487.61,
+      "historical_bouts": 3
     },
     "ChangHo Lee": {
       "elo": 1512.0,
@@ -273,20 +337,24 @@
       "historical_bouts": 2
     },
     "Charles Johnson": {
-      "elo": 1535.19,
-      "historical_bouts": 3
+      "elo": 1545.97,
+      "historical_bouts": 4
+    },
+    "Charles Jourdain": {
+      "elo": 1512.41,
+      "historical_bouts": 1
     },
     "Charles Radtke": {
-      "elo": 1488.41,
-      "historical_bouts": 1
+      "elo": 1500.4,
+      "historical_bouts": 2
     },
     "Charlie Campbell": {
       "elo": 1512.0,
       "historical_bouts": 1
     },
     "Chase Hooper": {
-      "elo": 1512.0,
-      "historical_bouts": 1
+      "elo": 1523.59,
+      "historical_bouts": 2
     },
     "Chelsea Chandler": {
       "elo": 1511.6,
@@ -295,6 +363,14 @@
     "Chepe Mariscal": {
       "elo": 1524.0,
       "historical_bouts": 2
+    },
+    "Chidi Njokuani": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Chris Barnett": {
+      "elo": 1487.59,
+      "historical_bouts": 1
     },
     "Chris Curtis": {
       "elo": 1488.0,
@@ -312,6 +388,10 @@
       "elo": 1523.59,
       "historical_bouts": 2
     },
+    "Chris Weidman": {
+      "elo": 1488.41,
+      "historical_bouts": 1
+    },
     "Christian Leroy Duncan": {
       "elo": 1512.0,
       "historical_bouts": 1
@@ -328,28 +408,40 @@
       "elo": 1488.0,
       "historical_bouts": 1
     },
+    "Clay Guida": {
+      "elo": 1488.41,
+      "historical_bouts": 1
+    },
+    "Clayton Carpenter": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
     "Cody Chovancek": {
-      "elo": 1488.0,
+      "elo": 1488.41,
       "historical_bouts": 1
     },
     "Cody Durden": {
-      "elo": 1511.59,
-      "historical_bouts": 1
+      "elo": 1499.2,
+      "historical_bouts": 2
     },
     "Cody Garbrandt": {
       "elo": 1488.0,
       "historical_bouts": 1
     },
     "Cody Gibson": {
-      "elo": 1500.41,
-      "historical_bouts": 2
+      "elo": 1512.81,
+      "historical_bouts": 3
     },
     "Cody Haddon": {
-      "elo": 1512.0,
-      "historical_bouts": 1
+      "elo": 1523.17,
+      "historical_bouts": 2
     },
     "Cody Stamann": {
-      "elo": 1487.59,
+      "elo": 1475.6,
+      "historical_bouts": 2
+    },
+    "Colby Thicknesse": {
+      "elo": 1512.0,
       "historical_bouts": 1
     },
     "Connor Matthews": {
@@ -361,8 +453,8 @@
       "historical_bouts": 1
     },
     "Cory McKenna": {
-      "elo": 1488.0,
-      "historical_bouts": 1
+      "elo": 1476.0,
+      "historical_bouts": 2
     },
     "Cory Sandhagen": {
       "elo": 1488.41,
@@ -377,15 +469,19 @@
       "historical_bouts": 1
     },
     "Da'Mon Blackshear": {
-      "elo": 1488.0,
-      "historical_bouts": 1
+      "elo": 1499.99,
+      "historical_bouts": 2
     },
     "Damon Jackson": {
       "elo": 1500.0,
       "historical_bouts": 2
     },
     "Dan Argueta": {
-      "elo": 1488.0,
+      "elo": 1476.83,
+      "historical_bouts": 2
+    },
+    "Dan Ige": {
+      "elo": 1488.41,
       "historical_bouts": 1
     },
     "Daniel Barez": {
@@ -396,8 +492,16 @@
       "elo": 1512.0,
       "historical_bouts": 1
     },
-    "Daniel Rodriguez": {
+    "Daniel Pineda": {
       "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Daniel Rodriguez": {
+      "elo": 1500.83,
+      "historical_bouts": 2
+    },
+    "Daniel Santos": {
+      "elo": 1511.99,
       "historical_bouts": 1
     },
     "Danny Barlow": {
@@ -412,6 +516,10 @@
       "elo": 1500.0,
       "historical_bouts": 2
     },
+    "Darren Elkins": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
     "Darrius Flowers": {
       "elo": 1488.0,
       "historical_bouts": 1
@@ -421,16 +529,16 @@
       "historical_bouts": 1
     },
     "Deiveson Figueiredo": {
-      "elo": 1523.59,
-      "historical_bouts": 2
+      "elo": 1510.77,
+      "historical_bouts": 3
     },
     "Denis Tiuliulin": {
       "elo": 1488.0,
       "historical_bouts": 1
     },
     "Denise Gomes": {
-      "elo": 1512.0,
-      "historical_bouts": 1
+      "elo": 1523.59,
+      "historical_bouts": 2
     },
     "Dennis Buzukja": {
       "elo": 1499.59,
@@ -460,9 +568,17 @@
       "elo": 1500.0,
       "historical_bouts": 2
     },
+    "Dominick Reyes": {
+      "elo": 1512.4,
+      "historical_bouts": 1
+    },
     "Don'Tale Mayes": {
       "elo": 1499.17,
       "historical_bouts": 2
+    },
+    "DongHun Choi": {
+      "elo": 1512.0,
+      "historical_bouts": 1
     },
     "Dylan Budka": {
       "elo": 1476.43,
@@ -473,7 +589,15 @@
       "historical_bouts": 1
     },
     "Eduarda Moura": {
-      "elo": 1488.0,
+      "elo": 1500.83,
+      "historical_bouts": 2
+    },
+    "Elise Reed": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Elizeu Zaleski dos Santos": {
+      "elo": 1512.0,
       "historical_bouts": 1
     },
     "Elves Brener": {
@@ -493,8 +617,8 @@
       "historical_bouts": 1
     },
     "Eryk Anders": {
-      "elo": 1512.0,
-      "historical_bouts": 1
+      "elo": 1523.59,
+      "historical_bouts": 2
     },
     "Esteban Ribovics": {
       "elo": 1512.0,
@@ -505,8 +629,8 @@
       "historical_bouts": 1
     },
     "Farid Basharat": {
-      "elo": 1512.0,
-      "historical_bouts": 1
+      "elo": 1524.0,
+      "historical_bouts": 2
     },
     "Far\u00e9s Ziam": {
       "elo": 1512.0,
@@ -526,6 +650,10 @@
     },
     "Felipe dos Santos": {
       "elo": 1488.81,
+      "historical_bouts": 1
+    },
+    "Feng Xiaocan": {
+      "elo": 1488.0,
       "historical_bouts": 1
     },
     "Fernie Garcia": {
@@ -549,11 +677,19 @@
       "historical_bouts": 1
     },
     "Gabriella Fernandes": {
-      "elo": 1512.0,
+      "elo": 1524.0,
+      "historical_bouts": 2
+    },
+    "Garrett Armfield": {
+      "elo": 1488.0,
       "historical_bouts": 1
     },
     "Gaston Bola\u00f1os": {
       "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Geoff Neal": {
+      "elo": 1512.0,
       "historical_bouts": 1
     },
     "Gerald Meerschaert": {
@@ -572,6 +708,10 @@
       "elo": 1512.0,
       "historical_bouts": 1
     },
+    "Grant Dawson": {
+      "elo": 1523.59,
+      "historical_bouts": 2
+    },
     "Guram Kutateladze": {
       "elo": 1512.0,
       "historical_bouts": 1
@@ -588,9 +728,13 @@
       "elo": 1512.0,
       "historical_bouts": 1
     },
-    "Ibo Aslan": {
+    "Iasmin Lucindo": {
       "elo": 1512.0,
       "historical_bouts": 1
+    },
+    "Ibo Aslan": {
+      "elo": 1523.59,
+      "historical_bouts": 2
     },
     "Ignacio Bahamondes": {
       "elo": 1512.0,
@@ -602,6 +746,10 @@
     },
     "Ikram Aliskerov": {
       "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Ilia Topuria": {
+      "elo": 1512.0,
       "historical_bouts": 1
     },
     "Ion Cutelaba": {
@@ -616,21 +764,29 @@
       "elo": 1512.0,
       "historical_bouts": 1
     },
+    "Ismail Naurdiev": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
     "Ivan Erslan": {
       "elo": 1487.59,
       "historical_bouts": 1
     },
     "Ivana Petrovic": {
-      "elo": 1512.0,
-      "historical_bouts": 1
+      "elo": 1499.59,
+      "historical_bouts": 2
     },
     "JJ Aldrich": {
       "elo": 1488.0,
       "historical_bouts": 1
     },
-    "Jacob Malkoun": {
-      "elo": 1512.0,
+    "Jack Shore": {
+      "elo": 1488.43,
       "historical_bouts": 1
+    },
+    "Jacob Malkoun": {
+      "elo": 1499.59,
+      "historical_bouts": 2
     },
     "Jacqueline Cavalcanti": {
       "elo": 1523.6,
@@ -649,8 +805,8 @@
       "historical_bouts": 1
     },
     "Jake Hadley": {
-      "elo": 1488.41,
-      "historical_bouts": 1
+      "elo": 1476.81,
+      "historical_bouts": 2
     },
     "Jalin Turner": {
       "elo": 1488.0,
@@ -668,6 +824,10 @@
       "elo": 1476.0,
       "historical_bouts": 2
     },
+    "Jamey-Lyn Horth": {
+      "elo": 1512.41,
+      "historical_bouts": 1
+    },
     "Jamie Mullarkey": {
       "elo": 1488.0,
       "historical_bouts": 1
@@ -679,6 +839,10 @@
     "Jaqueline Amorim": {
       "elo": 1524.0,
       "historical_bouts": 2
+    },
+    "Jared Gooden": {
+      "elo": 1488.0,
+      "historical_bouts": 1
     },
     "Jared Gordon": {
       "elo": 1488.0,
@@ -701,8 +865,8 @@
       "historical_bouts": 1
     },
     "Jean Matsumoto": {
-      "elo": 1512.0,
-      "historical_bouts": 1
+      "elo": 1524.0,
+      "historical_bouts": 2
     },
     "Jean Silva": {
       "elo": 1512.0,
@@ -727,6 +891,10 @@
     "Jessica Andrade": {
       "elo": 1499.59,
       "historical_bouts": 2
+    },
+    "Jessica Penne": {
+      "elo": 1488.0,
+      "historical_bouts": 1
     },
     "Jesus Aguilar": {
       "elo": 1512.0,
@@ -773,8 +941,8 @@
       "historical_bouts": 1
     },
     "Jonathan Pearce": {
-      "elo": 1488.0,
-      "historical_bouts": 1
+      "elo": 1476.41,
+      "historical_bouts": 2
     },
     "Jordan Vucenic": {
       "elo": 1488.0,
@@ -788,13 +956,17 @@
       "elo": 1512.0,
       "historical_bouts": 1
     },
+    "Jose Ochoa": {
+      "elo": 1488.41,
+      "historical_bouts": 1
+    },
     "Josefine Knutsson": {
       "elo": 1512.0,
       "historical_bouts": 1
     },
     "Joselyne Edwards": {
-      "elo": 1488.0,
-      "historical_bouts": 1
+      "elo": 1500.0,
+      "historical_bouts": 2
     },
     "Josh Culibao": {
       "elo": 1488.0,
@@ -813,16 +985,16 @@
       "historical_bouts": 1
     },
     "Joshua Van": {
-      "elo": 1500.4,
-      "historical_bouts": 2
+      "elo": 1512.79,
+      "historical_bouts": 3
     },
     "Josiane Nunes": {
       "elo": 1476.41,
       "historical_bouts": 2
     },
     "Julia Polastri": {
-      "elo": 1488.0,
-      "historical_bouts": 1
+      "elo": 1500.0,
+      "historical_bouts": 2
     },
     "Julian Erosa": {
       "elo": 1512.0,
@@ -840,6 +1012,14 @@
       "elo": 1512.0,
       "historical_bouts": 1
     },
+    "JunYong Park": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Junior Tafa": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
     "Karine Silva": {
       "elo": 1512.0,
       "historical_bouts": 1
@@ -850,6 +1030,10 @@
     },
     "Karol Rosa": {
       "elo": 1511.59,
+      "historical_bouts": 1
+    },
+    "Karolina Kowalkiewicz": {
+      "elo": 1488.41,
       "historical_bouts": 1
     },
     "Katlyn Cerminara": {
@@ -865,8 +1049,8 @@
       "historical_bouts": 1
     },
     "Kennedy Nzechukwu": {
-      "elo": 1488.0,
-      "historical_bouts": 1
+      "elo": 1512.4,
+      "historical_bouts": 3
     },
     "Ketlen Souza": {
       "elo": 1512.0,
@@ -878,6 +1062,10 @@
     },
     "Kevin Jousset": {
       "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Khamzat Chimaev": {
+      "elo": 1512.41,
       "historical_bouts": 1
     },
     "Khaos Williams": {
@@ -892,8 +1080,20 @@
       "elo": 1512.0,
       "historical_bouts": 1
     },
+    "Kiru Sahota": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Klaudia Sygu\u0142a": {
+      "elo": 1487.59,
+      "historical_bouts": 1
+    },
     "Kleydson Rodrigues": {
       "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Kody Steele": {
+      "elo": 1512.0,
       "historical_bouts": 1
     },
     "Kurt Holobaugh": {
@@ -901,6 +1101,10 @@
       "historical_bouts": 1
     },
     "Kyle Nelson": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Kyler Phillips": {
       "elo": 1488.0,
       "historical_bouts": 1
     },
@@ -913,8 +1117,8 @@
       "historical_bouts": 1
     },
     "Lerone Murphy": {
-      "elo": 1512.0,
-      "historical_bouts": 1
+      "elo": 1523.59,
+      "historical_bouts": 2
     },
     "Liang Na": {
       "elo": 1488.0,
@@ -929,12 +1133,16 @@
       "historical_bouts": 1
     },
     "Lone'er Kavanagh": {
-      "elo": 1512.0,
-      "historical_bouts": 1
+      "elo": 1535.17,
+      "historical_bouts": 3
     },
     "Loopy God\u00ednez": {
       "elo": 1476.41,
       "historical_bouts": 2
+    },
+    "Losene Keita": {
+      "elo": 1488.0,
+      "historical_bouts": 1
     },
     "Luana Carolina": {
       "elo": 1523.59,
@@ -948,6 +1156,10 @@
       "elo": 1512.0,
       "historical_bouts": 1
     },
+    "Lucas Rocha": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
     "Lucie Pudilova": {
       "elo": 1488.41,
       "historical_bouts": 1
@@ -957,8 +1169,8 @@
       "historical_bouts": 3
     },
     "Lukasz Brzeski": {
-      "elo": 1500.0,
-      "historical_bouts": 2
+      "elo": 1488.01,
+      "historical_bouts": 3
     },
     "Mackenzie Dern": {
       "elo": 1511.59,
@@ -972,13 +1184,17 @@
       "elo": 1512.0,
       "historical_bouts": 1
     },
+    "Magomed Ankalaev": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
     "Magomed Gadzhiyasulov": {
       "elo": 1512.0,
       "historical_bouts": 1
     },
     "Maheshate": {
-      "elo": 1512.0,
-      "historical_bouts": 1
+      "elo": 1500.0,
+      "historical_bouts": 2
     },
     "Malcolm Gordon": {
       "elo": 1488.0,
@@ -1029,12 +1245,12 @@
       "historical_bouts": 1
     },
     "Mateusz R\u0119becki": {
-      "elo": 1488.0,
-      "historical_bouts": 1
+      "elo": 1500.41,
+      "historical_bouts": 2
     },
     "Matheus Nicolau": {
-      "elo": 1487.59,
-      "historical_bouts": 1
+      "elo": 1476.43,
+      "historical_bouts": 2
     },
     "Matt Frevola": {
       "elo": 1488.0,
@@ -1045,15 +1261,19 @@
       "historical_bouts": 2
     },
     "Matthew Semelsberger": {
-      "elo": 1488.0,
-      "historical_bouts": 1
+      "elo": 1476.01,
+      "historical_bouts": 2
     },
     "Mauricio Ruffy": {
       "elo": 1512.0,
       "historical_bouts": 1
     },
     "Max Griffin": {
-      "elo": 1512.0,
+      "elo": 1500.0,
+      "historical_bouts": 2
+    },
+    "Max Holloway": {
+      "elo": 1488.0,
       "historical_bouts": 1
     },
     "Melissa Croden": {
@@ -1064,17 +1284,25 @@
       "elo": 1512.0,
       "historical_bouts": 1
     },
-    "Melissa Mullins": {
-      "elo": 1488.0,
+    "Melissa Martinez": {
+      "elo": 1511.59,
       "historical_bouts": 1
+    },
+    "Melissa Mullins": {
+      "elo": 1500.41,
+      "historical_bouts": 2
     },
     "Melquizael Costa": {
       "elo": 1512.0,
       "historical_bouts": 1
     },
-    "Michael Chiesa": {
-      "elo": 1512.0,
+    "Merab Dvalishvili": {
+      "elo": 1488.44,
       "historical_bouts": 1
+    },
+    "Michael Chiesa": {
+      "elo": 1524.0,
+      "historical_bouts": 2
     },
     "Michael Imperato": {
       "elo": 1488.0,
@@ -1089,8 +1317,8 @@
       "historical_bouts": 2
     },
     "Michel Pereira": {
-      "elo": 1512.0,
-      "historical_bouts": 1
+      "elo": 1499.59,
+      "historical_bouts": 2
     },
     "Michelle Waterson-Gomez": {
       "elo": 1488.0,
@@ -1101,8 +1329,8 @@
       "historical_bouts": 2
     },
     "Mickey Gall": {
-      "elo": 1488.0,
-      "historical_bouts": 1
+      "elo": 1476.01,
+      "historical_bouts": 2
     },
     "Mike Davis": {
       "elo": 1512.0,
@@ -1160,6 +1388,10 @@
       "elo": 1500.41,
       "historical_bouts": 2
     },
+    "Movsar Evloev": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
     "Muhammad Mokaev": {
       "elo": 1512.0,
       "historical_bouts": 1
@@ -1170,6 +1402,14 @@
     },
     "Muin Gafurov": {
       "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Muslim Salikhov": {
+      "elo": 1512.41,
+      "historical_bouts": 1
+    },
+    "Myktybek Orolbai": {
+      "elo": 1487.59,
       "historical_bouts": 1
     },
     "Nasrat Haqparast": {
@@ -1208,12 +1448,28 @@
       "elo": 1488.0,
       "historical_bouts": 1
     },
-    "Nikolas Motta": {
-      "elo": 1512.0,
+    "Nicolle Caliari": {
+      "elo": 1488.0,
       "historical_bouts": 1
+    },
+    "Nikita Krylov": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Niko Price": {
+      "elo": 1488.81,
+      "historical_bouts": 1
+    },
+    "Nikolas Motta": {
+      "elo": 1524.0,
+      "historical_bouts": 2
     },
     "Nikolay Veretennikov": {
       "elo": 1488.41,
+      "historical_bouts": 1
+    },
+    "Noah Gugnon": {
+      "elo": 1488.0,
       "historical_bouts": 1
     },
     "Nora Cornolle": {
@@ -1228,9 +1484,17 @@
       "elo": 1488.0,
       "historical_bouts": 1
     },
+    "Nurullo Aliev": {
+      "elo": 1488.41,
+      "historical_bouts": 1
+    },
+    "Nyamjargal Tumendemberel": {
+      "elo": 1487.59,
+      "historical_bouts": 1
+    },
     "Oban Elliott": {
-      "elo": 1524.0,
-      "historical_bouts": 2
+      "elo": 1535.59,
+      "historical_bouts": 3
     },
     "Ode' Osbourne": {
       "elo": 1488.0,
@@ -1244,6 +1508,10 @@
       "elo": 1499.19,
       "historical_bouts": 2
     },
+    "Ozzy Diaz": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
     "Pannie Kianzad": {
       "elo": 1476.41,
       "historical_bouts": 2
@@ -1252,13 +1520,25 @@
       "elo": 1488.0,
       "historical_bouts": 1
     },
+    "Pat Sabatini": {
+      "elo": 1511.59,
+      "historical_bouts": 1
+    },
     "Pedro Falc\u00e3o": {
       "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Pedro Munhoz": {
+      "elo": 1488.41,
       "historical_bouts": 1
     },
     "Pete Rodriguez": {
       "elo": 1488.0,
       "historical_bouts": 1
+    },
+    "Petr Yan": {
+      "elo": 1524.37,
+      "historical_bouts": 2
     },
     "Philipe Lins": {
       "elo": 1512.0,
@@ -1281,16 +1561,32 @@
       "historical_bouts": 1
     },
     "Quang Le": {
+      "elo": 1476.0,
+      "historical_bouts": 2
+    },
+    "Rafa Garcia": {
       "elo": 1488.0,
       "historical_bouts": 1
+    },
+    "Rafael Dos Anjos": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Raffael Cerqueira": {
+      "elo": 1488.41,
+      "historical_bouts": 1
+    },
+    "Ramazan Temirov": {
+      "elo": 1500.0,
+      "historical_bouts": 2
     },
     "Rami Hamed": {
       "elo": 1512.0,
       "historical_bouts": 1
     },
     "Ramiz Brahimaj": {
-      "elo": 1488.41,
-      "historical_bouts": 1
+      "elo": 1500.4,
+      "historical_bouts": 2
     },
     "Rani Yahya": {
       "elo": 1488.0,
@@ -1325,24 +1621,28 @@
       "historical_bouts": 1
     },
     "Rinat Fakhretdinov": {
-      "elo": 1512.0,
-      "historical_bouts": 1
+      "elo": 1523.59,
+      "historical_bouts": 2
     },
     "Rizvan Kuniev": {
+      "elo": 1500.0,
+      "historical_bouts": 2
+    },
+    "Rob Font": {
       "elo": 1512.0,
       "historical_bouts": 1
     },
     "Robelis Despaigne": {
+      "elo": 1487.19,
+      "historical_bouts": 3
+    },
+    "Robert Whittaker": {
       "elo": 1499.59,
       "historical_bouts": 2
     },
-    "Robert Whittaker": {
-      "elo": 1512.0,
-      "historical_bouts": 1
-    },
     "Rodrigo Nascimento": {
-      "elo": 1488.0,
-      "historical_bouts": 1
+      "elo": 1476.41,
+      "historical_bouts": 2
     },
     "Rolando Bedoya": {
       "elo": 1488.0,
@@ -1372,6 +1672,10 @@
       "elo": 1512.0,
       "historical_bouts": 1
     },
+    "Sean Sharaf": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
     "Sean Woodson": {
       "elo": 1512.0,
       "historical_bouts": 1
@@ -1388,13 +1692,17 @@
       "elo": 1512.41,
       "historical_bouts": 1
     },
+    "Serhiy Sidey": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
     "Shamil Gaziev": {
       "elo": 1500.83,
       "historical_bouts": 2
     },
     "Shara Magomedov": {
-      "elo": 1523.17,
-      "historical_bouts": 2
+      "elo": 1534.37,
+      "historical_bouts": 3
     },
     "Shauna Bannon": {
       "elo": 1512.0,
@@ -1404,9 +1712,13 @@
       "elo": 1488.0,
       "historical_bouts": 1
     },
-    "Song Kenan": {
+    "Shi Ming": {
       "elo": 1512.0,
       "historical_bouts": 1
+    },
+    "Song Kenan": {
+      "elo": 1499.59,
+      "historical_bouts": 2
     },
     "Stephanie Luciano": {
       "elo": 1512.0,
@@ -1421,7 +1733,7 @@
       "historical_bouts": 1
     },
     "Steven Koslow": {
-      "elo": 1512.41,
+      "elo": 1511.99,
       "historical_bouts": 1
     },
     "Steven Nguyen": {
@@ -1433,12 +1745,16 @@
       "historical_bouts": 1
     },
     "SuYoung You": {
-      "elo": 1512.0,
+      "elo": 1523.59,
+      "historical_bouts": 2
+    },
+    "Sumudaerji": {
+      "elo": 1489.21,
       "historical_bouts": 1
     },
     "Tabatha Ricci": {
-      "elo": 1512.0,
-      "historical_bouts": 1
+      "elo": 1499.59,
+      "historical_bouts": 2
     },
     "Tai Tuivasa": {
       "elo": 1488.0,
@@ -1449,11 +1765,15 @@
       "historical_bouts": 1
     },
     "Tamires Vidal": {
-      "elo": 1488.0,
-      "historical_bouts": 1
+      "elo": 1476.0,
+      "historical_bouts": 2
     },
     "Tanner Boser": {
       "elo": 1512.81,
+      "historical_bouts": 1
+    },
+    "Tatsuro Taira": {
+      "elo": 1488.0,
       "historical_bouts": 1
     },
     "Taylor Lapilus": {
@@ -1469,8 +1789,8 @@
       "historical_bouts": 1
     },
     "Themba Gorimbo": {
-      "elo": 1523.59,
-      "historical_bouts": 2
+      "elo": 1534.77,
+      "historical_bouts": 3
     },
     "Thiago Mois\u00e9s": {
       "elo": 1500.0,
@@ -1501,6 +1821,10 @@
       "historical_bouts": 1
     },
     "Toshiomi Kazama": {
+      "elo": 1511.59,
+      "historical_bouts": 1
+    },
+    "Tresean Gore": {
       "elo": 1511.59,
       "historical_bouts": 1
     },
@@ -1549,8 +1873,8 @@
       "historical_bouts": 2
     },
     "Veronica Hardy": {
-      "elo": 1512.0,
-      "historical_bouts": 1
+      "elo": 1499.17,
+      "historical_bouts": 2
     },
     "Viacheslav Borshchev": {
       "elo": 1500.0,
@@ -1561,12 +1885,12 @@
       "historical_bouts": 1
     },
     "Victor Henry": {
-      "elo": 1512.0,
-      "historical_bouts": 1
+      "elo": 1499.59,
+      "historical_bouts": 2
     },
     "Victor Hugo": {
-      "elo": 1512.0,
-      "historical_bouts": 1
+      "elo": 1500.0,
+      "historical_bouts": 2
     },
     "Victor Martinez": {
       "elo": 1487.59,
@@ -1605,16 +1929,16 @@
       "historical_bouts": 1
     },
     "Volkan Oezdemir": {
-      "elo": 1512.0,
-      "historical_bouts": 1
+      "elo": 1500.0,
+      "historical_bouts": 2
     },
     "Waldo Cortes Acosta": {
       "elo": 1512.41,
       "historical_bouts": 1
     },
     "Wang Cong": {
-      "elo": 1512.0,
-      "historical_bouts": 1
+      "elo": 1500.0,
+      "historical_bouts": 2
     },
     "Warlley Alves": {
       "elo": 1488.0,
@@ -1633,7 +1957,11 @@
       "historical_bouts": 1
     },
     "Xiao Long": {
-      "elo": 1488.0,
+      "elo": 1500.0,
+      "historical_bouts": 2
+    },
+    "Yan Xiaonan": {
+      "elo": 1512.41,
       "historical_bouts": 1
     },
     "Yana Santos": {
@@ -1653,14 +1981,22 @@
       "historical_bouts": 1
     },
     "Youssef Zalal": {
-      "elo": 1512.41,
-      "historical_bouts": 1
+      "elo": 1523.99,
+      "historical_bouts": 2
     },
     "Zac Pauga": {
       "elo": 1488.0,
       "historical_bouts": 1
     },
     "Zach Reese": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Zach Scroggin": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
+    "Zhang Mingyang": {
       "elo": 1512.0,
       "historical_bouts": 1
     },
