@@ -9,6 +9,8 @@ on:
       - 'scripts/test_nfl_research_bridge.cjs'
       - 'scripts/audit_nfl_prop_calibration.cjs'
       - 'scripts/report_nfl_prop_readiness.cjs'
+      - 'scripts/archive_nfl_prop_forecasts.cjs'
+      - 'scripts/test_nfl_prop_archive.cjs'
       - 'scripts/bridge_nfl_research.cjs'
       - 'scripts/audit_nfl_market_vs_model.cjs'
       - 'feed/americanfootball_nfl_forecast_ledger.json'
@@ -36,6 +38,8 @@ jobs:
           node-version: '22'
       - name: Verify NFL research bridge safety
         run: node scripts/test_nfl_research_bridge.cjs
+      - name: Verify immutable NFL prop archive safety
+        run: node scripts/test_nfl_prop_archive.cjs
       - name: Inventory independently graded NFL player prop evidence
         run: node scripts/report_nfl_prop_readiness.cjs
       - name: Audit NFL forecast skill against sportsbook consensus
