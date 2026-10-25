@@ -1,6 +1,11 @@
 name: Build NFL Defensive Comparison
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/build_nfl_defensive_comparison.py'
+      - '.github/workflows/build-nfl-defensive-comparison.yml'
   schedule:
     - cron: '15 11 * * *'
 permissions:
