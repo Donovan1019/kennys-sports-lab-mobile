@@ -16,4 +16,7 @@ assert(projections.includes('Number(data[0].season)!==2026'),'Must reject NFL pl
 assert(projections.includes('a.every((t,i)=>teamMatch(t,b[i])'),'Must match sportsbook events with canonical team aliases');
 assert(projections.includes('const simulateProjection='),'NFL projection simulator must be present');
 assert(projections.includes('empirical game residual bootstrap'),'NFL simulator must use empirical observations');
+assert(html.includes('nfl_all_markets.js?v=20261025-all-markets-231'),'NFL market catalog script missing');
+const marketCatalog=fs.readFileSync('nfl_all_markets.js','utf8');new vm.Script(marketCatalog,{filename:'nfl_all_markets.js'});
+for(const market of ['h2h','spreads','totals','team_totals','h2h_q1','h2h_q4','totals_q1','totals_q4','team_totals_q4'])assert(marketCatalog.includes(market),'Missing NFL market '+market);
 console.log('PASS main NFL page, scripts and position/market integrity');
