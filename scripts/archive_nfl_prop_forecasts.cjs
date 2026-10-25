@@ -11,9 +11,11 @@ const existing=fs.existsSync(dest)?JSON.parse(fs.readFileSync(dest,'utf8')):{sta
 if(!Array.isArray(existing.forecasts)){console.error('REJECTED: malformed existing ledger');process.exit(2)}
 const now=Date.now(),seen=new Map(existing.forecasts.map(x=>[x.forecast_id,x])),errors=[];
 const validOdds=x=>Number.isInteger(x)&&(x>=100||x<=-100);
+const validMarket=x=>['player_pass_yds','player_rush_yds','player_reception_yds','player_receptions','player_pass_tds','player_rush_tds','player_anytime_td','player_rec_tds','Passing Yards','Rushing Yards','Receiving Yards','Receptions','Passing Touchdowns','Rushing Touchdowns','Receiving Touchdowns','Anytime Touchdown'].includes(x);
+const implied=x=>x>0?100/(x+100):-x/(-x+100);
 for(const [i,x] of incoming.entries()){
  const at=Date.parse(x.forecast_at),start=Date.parse(x.kickoff),quote=Date.parse(x.quoted_at);
- if(!x.forecast_id||!x.event_id||!x.player||!x.market||!x.source_commit||!x.source_repository||!Number.isFinite(x.line)||!(x.model_probability>0&&x.model_probability<1)||!validOdds(x.over_odds)||!validOdds(x.under_odds)||!Number.isFinite(at)||!Number.isFinite(start)||!Number.isFinite(quote)||at>now||at>=start||now>=start||quote>at||at-quote>21600000){errors.push('invalid pregame forecast '+i);continue}
+ if(!x.forecast_id||!x.event_id||!x.player||!validMarket(x.market)||!x.source_commit||!x.source_repository||!Number.isFinite(x.line)||!(x.model_probability>0&&x.model_probability<1)||!validOdds(x.over_odds)||!validOdds(x.under_odds)||implied(x.over_odds)+implied(x.under_odds)<=1||!Number.isFinite(at)||!Number.isFinite(start)||!Number.isFinite(quote)||at>now||at>=start||now>=start||quote>at||at-quote>21600000){errors.push('invalid pregame forecast '+i);continue}
  if(x.source_repository!=='Donovan1019/sports-model-foundation'){errors.push('unknown forecast provenance '+i);continue}
  const old=seen.get(x.forecast_id);if(old&&JSON.stringify(old)!==JSON.stringify(x)){errors.push('conflicting forecast ID '+i);continue}
  seen.set(x.forecast_id,x);
