@@ -7,7 +7,7 @@ const base={market:'Receiving Yards',event_id:'g1',kickoff:'2026-10-25T17:00:00Z
 const run=(script,rows,output)=>{const input=path.join(dir,'input.json');fs.writeFileSync(input,JSON.stringify(rows));return cp.spawnSync(process.execPath,[script,input,...(output?[output]:[])],{encoding:'utf8'})};
 try{
  let r=run(audit,[base]);assert.equal(r.status,0,r.stderr);let report=JSON.parse(r.stdout);assert.equal(report.status,'NOT_BET_ELIGIBLE');assert.equal(report.markets['Receiving Yards'].eligible,false);
- for(const [label,change] of [['future forecast',{forecast_at:'2026-10-25T18:00:00Z'}],['future quote',{quoted_at:'2026-10-25T18:00:00Z'}],['stale quote',{quoted_at:'2026-10-24T08:00:00Z'}],['bad odds',{over_odds:-95}],['bad probability',{model_probability:1.2}],['zero vig',{over_odds:110,under_odds:110}]]){
+ for(const [label,change] of [['future forecast',{forecast_at:'2026-10-25T18:00:00Z'}],['future quote',{quoted_at:'2026-10-25T18:00:00Z'}],['stale quote',{quoted_at:'2026-10-24T08:00:00Z'}],['invalid selection',{selection:'Yes'}],['bet without side',{bet_odds:-110}],['malformed bet odds',{selection:'Over',bet_odds:-95}],['bad odds',{over_odds:-95}],['bad probability',{model_probability:1.2}],['zero vig',{over_odds:110,under_odds:110}]]){
   r=run(audit,[{...base,...change}]);assert.notEqual(r.status,0,label+' must fail');
  }
  r=run(audit,[base,base]);assert.notEqual(r.status,0,'duplicates must fail');
@@ -17,5 +17,5 @@ try{
  r=run(bridge,[{...base,forecast_at:'2026-10-25T18:00:00Z'}],output);assert.notEqual(r.status,0,'post-kickoff forecast must fail');
  r=run(bridge,[{...base,quoted_at:'2026-10-25T16:30:00Z'}],output);assert.notEqual(r.status,0,'future sportsbook quote must fail');
  r=run(bridge,[{...base,graded_at:'2026-10-25T16:00:00Z'}],output);assert.notEqual(r.status,0,'pre-kickoff grading must fail');
- console.log('PASS: 12 audit and research-bridge safety checks');
+ console.log('PASS: 16 audit and research-bridge safety checks');
 }finally{fs.rmSync(dir,{recursive:true,force:true})}
