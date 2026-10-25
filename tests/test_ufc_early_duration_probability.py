@@ -10,6 +10,9 @@ class EarlyDurationTests(unittest.TestCase):
  def test_brier_and_research_gate(self):
   r=evaluate(self.records())
   self.assertGreater(r["evaluated_fights"],0)
+  self.assertEqual(len(r["holdout_fight_ids_sha256"]),64)
+  self.assertGreaterEqual(r["holdout_date_scoped_fights"],r["evaluated_fights"])
+  self.assertEqual(r["split_fraction"],.8)
   self.assertGreaterEqual(r["candidate_fighter_prior"]["brier"],0)
   self.assertGreaterEqual(r["candidate_shrunk_fighter_prior"]["brier"],0)
   self.assertEqual(r["shrinkage_pseudocount_fixed"],10)
