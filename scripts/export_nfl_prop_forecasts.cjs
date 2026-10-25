@@ -17,6 +17,10 @@ for(const o of odds.odds||[]){
 const validOdds=o=>Number.isInteger(o)&&(o>=100||o<=-100);
 const implied=o=>o>0?100/(o+100):-o/(-o+100);
 const output=[],reject={};
+const dest=path.join(root,'feed','nfl_prop_forecast_inbox.json');
+fs.rmSync(dest,{force:true});
+const archived=fs.existsSync(path.join(root,'feed','nfl_prop_forecast_ledger.json'))?read('feed/nfl_prop_forecast_ledger.json').forecasts||[]:[];
+const archivedIds=new Set(archived.map(x=>x.forecast_id));
 const skip=k=>{reject[k]=(reject[k]||0)+1};
 for(const pair of books.values()){
  const over=pair.Over,under=pair.Under;
@@ -32,8 +36,8 @@ for(const pair of books.values()){
  // No game or injury verification: explicitly RESEARCH ONLY.
  const probability=(values.filter(x=>x>over.point).length+1)/(values.length+2);
  const id=crypto.createHash('sha256').update([over.event_id,over.player,over.market,over.point,over.bookmaker,over.updated_at,under.updated_at].join('|')).digest('hex');
+ if(archivedIds.has(id)){skip('already_archived');continue}
  output.push({forecast_id:id,event_id:over.event_id,player:over.player,market:over.market,line:over.point,model_probability:probability,over_odds:over.price,under_odds:under.price,quoted_at:new Date(Math.max(qt,ut)).toISOString(),forecast_at:new Date(now).toISOString(),kickoff:new Date(start).toISOString(),source_repository:'Donovan1019/kennys-sports-lab-mobile',source_commit:commit,bookmaker:over.bookmaker,model_version:'2025-prior-season-laplace-v1',research_only:true});
 }
-const dest=path.join(root,'feed','nfl_prop_forecast_inbox.json');
 if(output.length){fs.writeFileSync(dest,JSON.stringify(output,null,2)+'\n')}
 console.log(JSON.stringify({status:'RESEARCH_ONLY',created:output.length,rejected:reject,output:output.length?dest:null,betting_ready:false}));
