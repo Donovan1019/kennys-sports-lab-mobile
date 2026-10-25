@@ -13,6 +13,8 @@ class EarlyDurationTests(unittest.TestCase):
   self.assertGreaterEqual(r["candidate_fighter_prior"]["brier"],0)
   self.assertGreaterEqual(r["candidate_shrunk_fighter_prior"]["brier"],0)
   self.assertEqual(r["shrinkage_pseudocount_fixed"],10)
+  self.assertEqual(sum(x["n"] for x in r["calibration_bins"]["shrunk_fighter_prior"]),r["evaluated_fights"])
+  self.assertTrue(r["calibration_bins_diagnostic_only"])
   self.assertIn(r["shrunk_decision"],("REJECT","RESEARCH_ONLY"))
   self.assertFalse(r["production_promotion_allowed"])
   self.assertIn(r["decision"],("REJECT","RESEARCH_ONLY"))

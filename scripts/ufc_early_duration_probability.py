@@ -50,10 +50,21 @@ def evaluate(records,train_fraction=.8,min_prior=3):
         return {"brier":sum((v[index]-v[2])**2 for v in outcomes)/n,
           "mean_predicted_probability":sum(v[index] for v in outcomes)/n,
           "observed_rate":sum(v[2] for v in outcomes)/n}
+    def calibration(index):
+        bins=[[] for _ in range(5)]
+        for item in outcomes:
+            probability=item[index]
+            bins[min(4,int(probability*5))].append((probability,item[2]))
+        return [{"probability_bin":i,"n":len(items),
+          "mean_predicted_probability":sum(p for p,y in items)/len(items) if items else None,
+          "observed_rate":sum(y for p,y in items)/len(items) if items else None}
+          for i,items in enumerate(bins)]
     base=metrics(0);candidate=metrics(1);shrunk=metrics(3)
     return {"schema":1,"holdout_start_date":cutoff,"evaluated_fights":n,
       "target":"bout_duration_strictly_under_300_seconds",
       "baseline_population_prior":base,"candidate_fighter_prior":candidate,
+      "calibration_bins":{"population_prior":calibration(0),"fighter_prior":calibration(1),"shrunk_fighter_prior":calibration(3)},
+      "calibration_bins_diagnostic_only":True,
       "candidate_shrunk_fighter_prior":shrunk,"shrinkage_pseudocount_fixed":10,
       "shrunk_brier_improvement":base["brier"]-shrunk["brier"] if n else None,
       "shrunk_decision":"REJECT" if not n or shrunk["brier"]>=base["brier"] else "RESEARCH_ONLY",
