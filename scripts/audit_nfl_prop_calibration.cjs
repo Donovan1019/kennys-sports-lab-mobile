@@ -12,18 +12,19 @@ if(!input){console.error('UNVERIFIED: provide archived, timestamped graded snaps
 let rows;try{rows=JSON.parse(fs.readFileSync(input,'utf8'))}catch(e){console.error('UNVERIFIED: cannot parse input: '+e.message);process.exit(2)}
 if(!Array.isArray(rows)||!rows.length){console.error('UNVERIFIED: no graded snapshots');process.exit(2)}
 const date=x=>Date.parse(x),validDate=x=>Number.isFinite(date(x));
+const validOdds=o=>Number.isInteger(o)&&(o>=100||o<=-100);
 const implied=o=>o>0?100/(o+100):-o/(-o+100);
 const mean=a=>a.reduce((s,x)=>s+x,0)/a.length;
 const market={};
 const errors=[];const seen=new Set();
 for(const [i,r] of rows.entries()){
- const key=[r.event_id,r.player,r.market,r.line,r.quoted_at].join('|');
+ const key=[r.event_id,r.player,r.market,r.line,r.quoted_at,r.forecast_at].join('|');
  if(seen.has(key)){errors.push('duplicate snapshot '+i);continue}seen.add(key);
  if(!r.market||!r.event_id||!r.player||![r.kickoff,r.quoted_at,r.forecast_at,r.graded_at].every(validDate)||date(r.quoted_at)>=date(r.kickoff)||date(r.forecast_at)>=date(r.kickoff)||date(r.quoted_at)>date(r.forecast_at)||date(r.graded_at)<date(r.kickoff)){errors.push('invalid timing/identity '+i);continue}
- if(![r.line,r.outcome,r.model_probability,r.over_odds,r.under_odds].every(Number.isFinite)||r.model_probability<=0||r.model_probability>=1||r.over_odds===0||r.under_odds===0){errors.push('invalid numeric fields '+i);continue}
+ if(![r.line,r.outcome,r.model_probability,r.over_odds,r.under_odds].every(Number.isFinite)||r.model_probability<=0||r.model_probability>=1||!validOdds(r.over_odds)||!validOdds(r.under_odds)){errors.push('invalid numeric fields '+i);continue}
  if(r.outcome===r.line)continue; // pushes are neither wins nor losses
  const po=implied(r.over_odds),pu=implied(r.under_odds);
- if(!(po>0&&po<1&&pu>0&&pu<1)){errors.push('invalid prices '+i);continue}
+ if(!(po>0&&po<1&&pu>0&&pu<1&&po+pu>1)){errors.push('invalid prices '+i);continue}
  const p0=po/(po+pu),p=r.model_probability,y=Number(r.outcome>r.line);
  (market[r.market]??=[]).push({p,p0,y,r});
 }
@@ -34,10 +35,12 @@ for(const [name,a] of Object.entries(market)){
  const eps=1e-12,logloss=mean(a.map(x=>-x.y*Math.log(Math.max(eps,x.p))-(1-x.y)*Math.log(Math.max(eps,1-x.p))));
  const ece=Array.from({length:10},(_,i)=>a.filter(x=>Math.min(9,Math.floor(x.p*10))===i)).filter(x=>x.length).reduce((s,g)=>s+g.length/n*Math.abs(mean(g.map(x=>x.p))-mean(g.map(x=>x.y))),0);
  const sorted=a.slice().sort((x,y)=>date(x.r.kickoff)-date(y.r.kickoff));
- const split=Math.floor(sorted.length*.8),hold=sorted.slice(split);
+ const eventDates=[...new Set(sorted.map(x=>date(x.r.kickoff)))].sort((a,b)=>a-b);
+ const cutoff=eventDates[Math.floor(eventDates.length*.8)];
+ const hold=sorted.filter(x=>date(x.r.kickoff)>=cutoff);
  const distinctHoldoutEvents=new Set(hold.map(x=>x.r.event_id)).size;
  const holdBrier=hold.length?mean(hold.map(x=>(x.p-x.y)**2)):null;
  const holdBase=hold.length?mean(hold.map(x=>(x.p0-x.y)**2)):null;
- report.markets[name]={n,brier,market_brier:base,brier_skill:base>0?1-brier/base:null,log_loss:logloss,ece,holdout_n:hold.length,holdout_events:distinctHoldoutEvents,minimum_evidence_met:n>=200&&distinctHoldoutEvents>=30,holdout_brier:holdBrier,holdout_market_brier:holdBase,holdout_skill:holdBase>0?1-holdBrier/holdBase:null,eligible:false};
+ report.markets[name]={n,brier,market_brier:base,brier_skill:base>0?1-brier/base:null,log_loss:logloss,ece,holdout_n:hold.length,holdout_events:distinctHoldoutEvents,minimum_evidence_met:n>=200&&distinctHoldoutEvents>=30&&eventDates.length>=40,holdout_brier:holdBrier,holdout_market_brier:holdBase,holdout_skill:holdBase>0?1-holdBrier/holdBase:null,eligible:false};
 }
 console.log(JSON.stringify(report,null,2));
