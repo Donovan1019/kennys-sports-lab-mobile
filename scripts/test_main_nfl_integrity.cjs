@@ -8,7 +8,7 @@ for(const path of ['three_sport_stats.js','three_sport_player_projections.js']){
  assert(src.includes('nflRoles'),'Missing NFL position/market allowlist: '+path);
  assert(src.includes("String(p.position||'').toUpperCase()"),'Missing position validation: '+path);
 }
-assert(html.includes('three_sport_player_projections.js?v=20261025-unvalidated-238'),'NFL main cache version not bumped');
+assert(html.includes('three_sport_player_projections.js?v=20261025-residual-239'),'NFL main cache version not bumped');
 const projections=fs.readFileSync('three_sport_player_projections.js','utf8');
 assert(projections.includes("sport==='NFL'?{factor:1,verified:false}:opponentFactor(game,p.team)"),'NFL scoring-based projection inflation must remain disabled');
 assert(projections.includes("sport==='NFL'?0.25*avg(recent)"),'NFL projection must use conservative history blend');
@@ -30,5 +30,6 @@ assert(projections.includes('NOT BET ELIGIBLE'),'Uncalibrated NFL projections mu
 assert(projections.includes('const matchingQuotes='),'One shared sportsbook matcher required');
 assert(projections.includes('const quoteFor=p=>matchingQuotes(p)'),'Projection probabilities must use same quotes as visible lines');
 assert(projections.includes('const bookQuote=(p,book)=>matchingQuotes(p)'),'Book display must use strict quote matcher');
-assert(projections.includes("if(sport==='NFL')return 'UNVALIDATED'"),'NFL Gaussian edge must be suppressed');
+assert(projections.includes("if(sport==='NFL')return 'Calibration pending'"),'NFL Gaussian edge must be suppressed');
+assert(projections.includes('residuals:errors.slice(0,20)'),'NFL simulation must use walk-forward forecast residuals');
 console.log('PASS main NFL page, scripts and position/market integrity');
