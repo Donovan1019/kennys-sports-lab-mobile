@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 BASE='https://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event='
-FIELDS=['pass_attempts_allowed','completions_allowed','passing_yards_allowed','passing_tds_allowed','rush_attempts_allowed','rushing_yards_allowed','rushing_tds_allowed','targets_allowed','receptions_allowed']
+FIELDS=['pass_attempts_allowed','completions_allowed','passing_yards_allowed','passing_tds_allowed','rush_attempts_allowed','rushing_yards_allowed','rushing_tds_allowed','targets_allowed','receptions_allowed','receiving_yards_allowed','receiving_tds_allowed']
 def number(v):
     try:return float(str(v).replace(',',''))
     except (TypeError,ValueError):return None
@@ -24,7 +24,10 @@ def parse_box(payload):
             labels=[str(x).lower() for x in category.get('labels') or []]
             for athlete in category.get('athletes') or []:
                 raw=athlete.get('stats') or []
-                position=str(((athlete.get('athlete') or {}).get('position') or {}).get('abbreviation') or '').lower()
+                person=athlete.get('athlete') or {}
+                pos=person.get('position') or athlete.get('position') or {}
+                position=str(pos.get('abbreviation') if isinstance(pos,dict) else pos or '').lower()
+                if not position and name=='passing':position='qb'
                 buckets=[values['overall']] + ([values[position]] if position in ('qb','rb','wr','te') else [])
                 for i,label in enumerate(labels):
                     if i>=len(raw):continue
@@ -51,7 +54,7 @@ def parse_box(payload):
                         if key and v is not None:
                             for bucket in buckets:bucket[key]=bucket.get(key,0)+v
                     elif name=='receiving':
-                        key={'rec':'receptions_allowed','tgt':'targets_allowed','tar':'targets_allowed'}.get(label)
+                        key={'rec':'receptions_allowed','tgt':'targets_allowed','tar':'targets_allowed','yds':'receiving_yards_allowed','td':'receiving_tds_allowed','tds':'receiving_tds_allowed'}.get(label)
                         v=number(value)
                         if key and v is not None:
                             for bucket in buckets:bucket[key]=bucket.get(key,0)+v
@@ -108,6 +111,7 @@ def build():
                 matchup[period][position]=sides
         events.append({'event_id':g['event_id'],'matchup_stats':matchup})
     if not histories:raise SystemExit('No valid boxscore history fetched; refusing to replace existing snapshot')
+    if not any(e['matchup_stats']['season']['qb']['home'] or e['matchup_stats']['season']['qb']['away'] for e in events):raise SystemExit('No positional QB splits: refusing empty positional snapshot')
     out={'source':'espn-public-nfl-summary-boxscore','generated_at':datetime.now(timezone.utc).isoformat(),'games_scanned':calls,'games_failed':len(errors),'teams_with_data':len(histories),'errors':errors[:20],'events':events}
     path=ROOT/'feed/americanfootball_nfl_defensive_comparison.json'
     path.write_text(json.dumps(out,separators=(',',':'))+chr(10))
