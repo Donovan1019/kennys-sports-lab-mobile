@@ -1,26 +1,99 @@
 {
   "status": "research_only",
-  "matched_forecasts": 1,
-  "metrics_sample_size": 1,
-  "log_loss": 0.600103,
-  "empirical_home_rate_baseline_brier": 0.0,
+  "matched_forecasts": 9,
+  "metrics_sample_size": 9,
+  "log_loss": 0.669505,
+  "empirical_home_rate_baseline_brier": 0.222222,
   "calibration_bins": [
     {
       "range": [
         0.4,
         0.6
       ],
-      "count": 1,
-      "mean_predicted": 0.548755,
-      "observed_home_win_rate": 1.0
+      "count": 7,
+      "mean_predicted": 0.489009,
+      "observed_home_win_rate": 0.285714
+    },
+    {
+      "range": [
+        0.6,
+        0.8
+      ],
+      "count": 2,
+      "mean_predicted": 0.641471,
+      "observed_home_win_rate": 0.5
     }
   ],
   "calibration_warning": "Small samples and in-sample baseline cannot establish predictive edge",
   "unique_events_in_ledger": 28,
-  "unmatched_events": 27,
-  "mean_brier": 0.203622,
+  "unmatched_events": 19,
+  "mean_brier": 0.238812,
   "notes": "One earliest forecast per event; strict exact teams and unique start-time proximity; ambiguous or unverified results excluded",
   "scored": [
+    {
+      "forecast_id": "2823e986597c449ab94126cd5ed3fae9|2026-10-21T10:21:01.075809+00:00",
+      "provider_event_id": "401873018",
+      "match_method": "exact_teams_unique_start_within_20m",
+      "home_probability": 0.558021,
+      "home_won": 0,
+      "brier": 0.311387
+    },
+    {
+      "forecast_id": "2bba7fde6f97d0e54403d53676e4ab63|2026-10-21T10:21:01.075809+00:00",
+      "provider_event_id": "401873016",
+      "match_method": "exact_teams_unique_start_within_20m",
+      "home_probability": 0.403891,
+      "home_won": 0,
+      "brier": 0.163128
+    },
+    {
+      "forecast_id": "2e710ea5a306b614f0f966e3d78732f8|2026-10-21T10:21:01.075809+00:00",
+      "provider_event_id": "401873011",
+      "match_method": "exact_teams_unique_start_within_20m",
+      "home_probability": 0.482204,
+      "home_won": 0,
+      "brier": 0.232521
+    },
+    {
+      "forecast_id": "550ec5290f935d311995affbcb0b5c79|2026-10-21T10:21:01.075809+00:00",
+      "provider_event_id": "401873012",
+      "match_method": "exact_teams_unique_start_within_20m",
+      "home_probability": 0.53056,
+      "home_won": 0,
+      "brier": 0.281494
+    },
+    {
+      "forecast_id": "5dce18baccec5d3ad5fb3a3ce52f7619|2026-10-21T10:21:01.075809+00:00",
+      "provider_event_id": "401873013",
+      "match_method": "exact_teams_unique_start_within_20m",
+      "home_probability": 0.445049,
+      "home_won": 0,
+      "brier": 0.198069
+    },
+    {
+      "forecast_id": "b1be064fb52a198a62109c279e7ab24c|2026-10-21T10:21:01.075809+00:00",
+      "provider_event_id": "401873017",
+      "match_method": "exact_teams_unique_start_within_20m",
+      "home_probability": 0.454582,
+      "home_won": 1,
+      "brier": 0.297481
+    },
+    {
+      "forecast_id": "be5dd120ca08b43d647b6caa8953500a|2026-10-21T10:21:01.075809+00:00",
+      "provider_event_id": "401873015",
+      "match_method": "exact_teams_unique_start_within_20m",
+      "home_probability": 0.60059,
+      "home_won": 0,
+      "brier": 0.360708
+    },
+    {
+      "forecast_id": "f3992ad4496724baf7dcd1ef58245d6b|2026-10-21T10:21:01.075809+00:00",
+      "provider_event_id": "401873014",
+      "match_method": "exact_teams_unique_start_within_20m",
+      "home_probability": 0.682352,
+      "home_won": 1,
+      "brier": 0.1009
+    },
     {
       "forecast_id": "ffebea881c1d7b2dfb85b3e590c35985|2026-10-21T10:21:01.075809+00:00",
       "provider_event_id": "401873010",
