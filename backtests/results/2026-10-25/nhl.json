@@ -1,0 +1,20 @@
+{
+  "sport": "NHL",
+  "date": "2026-10-25",
+  "games": [
+    {
+      "event_id": "401892578",
+      "event": "Florida Panthers at Chicago Blackhawks",
+      "commence_time": "2026-10-25T19:00Z",
+      "home": "Chicago Blackhawks",
+      "away": "Florida Panthers",
+      "home_score": 2,
+      "away_score": 3,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261025&limit=100"
+    }
+  ],
+  "source_url": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261025&limit=100"
+}

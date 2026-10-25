@@ -1,41 +1,54 @@
 {
   "date": "2026-10-25",
-  "generated_at": "2026-10-25T16:42:49.786174+00:00",
+  "generated_at": "2026-10-25T22:38:49.832953+00:00",
   "sports": {
     "NFL": {
       "status": "OUTCOMES_UNVERIFIED",
-      "saved_quotes": 188,
-      "eligible_predictions": 52,
+      "saved_quotes": 561,
+      "eligible_predictions": 84,
       "blocked_predictions": [],
       "graded": 0,
       "settled": [],
-      "pending": 52
+      "pending": 84
     },
     "NBA": {
       "status": "OUTCOMES_UNVERIFIED",
       "saved_quotes": 0,
-      "eligible_predictions": 54,
+      "eligible_predictions": 108,
       "blocked_predictions": [],
       "graded": 0,
       "settled": [],
-      "pending": 54
+      "pending": 108
     },
     "NHL": {
-      "status": "OUTCOMES_UNVERIFIED",
+      "status": "PARTIALLY_SETTLED_MONEYLINES",
       "saved_quotes": 0,
-      "eligible_predictions": 104,
+      "eligible_predictions": 204,
       "blocked_predictions": [],
-      "graded": 0,
-      "settled": [],
-      "pending": 104
+      "graded": 2,
+      "settled": [
+        {
+          "event": "Florida Panthers @ Chicago Blackhawks",
+          "market": "h2h",
+          "selection": "Chicago Blackhawks",
+          "outcome": "loss"
+        },
+        {
+          "event": "Florida Panthers @ Chicago Blackhawks",
+          "market": "h2h",
+          "selection": "Florida Panthers",
+          "outcome": "win"
+        }
+      ],
+      "pending": 202
     }
   },
   "summary": {
-    "verified_picks": 0,
-    "wins": 0,
-    "losses": 0,
+    "verified_picks": 2,
+    "wins": 1,
+    "losses": 1,
     "pushes": 0,
     "roi": null,
-    "hit_rate": null
+    "hit_rate": 0.5
   }
 }

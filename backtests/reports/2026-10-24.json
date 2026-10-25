@@ -1,6 +1,6 @@
 {
   "date": "2026-10-24",
-  "generated_at": "2026-10-25T16:42:49.745908+00:00",
+  "generated_at": "2026-10-25T22:38:49.781730+00:00",
   "sports": {
     "NFL": {
       "status": "PARTIALLY_SETTLED_MONEYLINES",
@@ -50,7 +50,7 @@
       "saved_quotes": 0,
       "eligible_predictions": 232,
       "blocked_predictions": [],
-      "graded": 4,
+      "graded": 8,
       "settled": [
         {
           "event": "Anaheim Ducks @ Philadelphia Flyers",
@@ -75,15 +75,39 @@
           "market": "h2h",
           "selection": "Los Angeles Kings",
           "outcome": "loss"
+        },
+        {
+          "event": "Florida Panthers @ Chicago Blackhawks",
+          "market": "h2h",
+          "selection": "Chicago Blackhawks",
+          "outcome": "loss"
+        },
+        {
+          "event": "Florida Panthers @ Chicago Blackhawks",
+          "market": "h2h",
+          "selection": "Florida Panthers",
+          "outcome": "win"
+        },
+        {
+          "event": "Florida Panthers @ Chicago Blackhawks",
+          "market": "h2h",
+          "selection": "Chicago Blackhawks",
+          "outcome": "loss"
+        },
+        {
+          "event": "Florida Panthers @ Chicago Blackhawks",
+          "market": "h2h",
+          "selection": "Florida Panthers",
+          "outcome": "win"
         }
       ],
-      "pending": 228
+      "pending": 224
     }
   },
   "summary": {
-    "verified_picks": 8,
-    "wins": 4,
-    "losses": 4,
+    "verified_picks": 12,
+    "wins": 6,
+    "losses": 6,
     "pushes": 0,
     "roi": null,
     "hit_rate": 0.5
