@@ -15,7 +15,11 @@ assert(projections.includes("sport==='NFL'?0.25*avg(recent)"),'NFL projection mu
 assert(projections.includes('Number(data[0].season)!==2026'),'Must reject NFL players with stale last-season game histories');
 assert(projections.includes('a.every((t,i)=>teamMatch(t,b[i])'),'Must match sportsbook events with canonical team aliases');
 assert(projections.includes('const simulateProjection='),'NFL projection simulator must be present');
-assert(projections.includes('empirical game residual bootstrap'),'NFL simulator must use empirical observations');
+assert(projections.includes("const residuals=(p.residuals||[]).filter(Number.isFinite)"),'NFL simulator must consume finite signed forecast residuals');
+assert(projections.includes('const empirical=residuals.length>=8&&p.folds>=8'),'Residual bootstrap must require sufficient walk-forward folds');
+assert(projections.includes('sample=p.projection+deviations[Math.floor(uniform()*deviations.length)]'),'Simulator must resample signed errors around current forecast');
+assert(projections.includes('walk-forward residual bootstrap; calibration pending'),'Simulator must disclose residual method and calibration status');
+assert(!projections.includes('empirical game residual bootstrap'),'Legacy raw game-deviation simulator must stay removed');
 assert(!html.includes('nfl_all_markets.js'),'Unwanted standalone NFL market catalog must stay removed');
 assert(html.includes('nfl_game_projections.js?v=20261025-nav-placement-234'),'Integrated NFL game projections missing');
 const gameProjections=fs.readFileSync('nfl_game_projections.js','utf8');new vm.Script(gameProjections,{filename:'nfl_game_projections.js'});
