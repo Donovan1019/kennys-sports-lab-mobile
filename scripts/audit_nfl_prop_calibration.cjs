@@ -24,6 +24,7 @@ for(const [i,r] of rows.entries()){
  if(seen.has(key)){errors.push('duplicate snapshot '+i);continue}seen.add(key);
  if(!validMarket(r.market)||!r.event_id||!r.player||![r.kickoff,r.quoted_at,r.forecast_at,r.graded_at].every(validDate)||date(r.quoted_at)>=date(r.kickoff)||date(r.forecast_at)>=date(r.kickoff)||date(r.quoted_at)>date(r.forecast_at)||date(r.graded_at)<date(r.kickoff)){errors.push('invalid timing/identity '+i);continue}
  if(![r.line,r.outcome,r.model_probability,r.over_odds,r.under_odds].every(Number.isFinite)||r.model_probability<=0||r.model_probability>=1||!validOdds(r.over_odds)||!validOdds(r.under_odds)){errors.push('invalid numeric fields '+i);continue}
+ if(date(r.forecast_at)-date(r.quoted_at)>6*60*60*1000){errors.push('stale sportsbook quote '+i);continue}
  if(r.selection!==undefined&&!validSelection(r.selection)){errors.push('invalid selection '+i);continue}
  if(r.bet_odds!==undefined&&(!validOdds(r.bet_odds)||!validSelection(r.selection))){errors.push('invalid bet odds or missing selection '+i);continue}
  if(r.outcome===r.line)continue; // pushes are neither wins nor losses
