@@ -81,11 +81,22 @@ def evaluate(records,train_fraction=.8,min_prior=3,source_hashes=None):
       "production_promotion_allowed":False,
       "limitations":"Early-duration outcome is not independently verified finish method. Retrospective provenance not PIT certified; no confidence calibration, odds, or promotion."}
 def main():
-    p=argparse.ArgumentParser();p.add_argument("--output",type=Path,required=True);args=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument("--output",type=Path,required=True)
+    p.add_argument("--expected-source-hashes",type=Path)
+    args=p.parse_args()
     cross,cross_hash=fetch(BASE+"id_crosswalk_all.csv");wide,wide_hash=fetch(BASE+"ufc_all_fights_wide.csv")
     linked=join(cross,wide)
     if linked["status"]!="JOINED":raise SystemExit("join failed")
-    result=evaluate(linked["records"],source_hashes={"crosswalk":cross_hash,"wide":wide_hash})
+    hashes={"crosswalk":cross_hash,"wide":wide_hash}
+    if args.expected_source_hashes:
+        expected=json.loads(args.expected_source_hashes.read_text())
+        if set(expected)!={"crosswalk","wide"} or any(not isinstance(expected[k],str) or len(expected[k])!=64 for k in hashes):
+            raise SystemExit("invalid expected source fingerprint manifest")
+        if expected!=hashes:
+            raise SystemExit("SOURCE_DRIFT_BLOCKED: current source hashes differ from pinned manifest")
+    result=evaluate(linked["records"],source_hashes=hashes)
+    result["source_snapshot_locked"]=bool(args.expected_source_hashes)
+    result["source_drift_gate"]="PASS" if args.expected_source_hashes else "UNPINNED"
     if not result["evaluated_fights"]:raise SystemExit("no holdout observations")
     args.output.parent.mkdir(parents=True,exist_ok=True)
     args.output.write_text(json.dumps(result,indent=2)+"\n")
