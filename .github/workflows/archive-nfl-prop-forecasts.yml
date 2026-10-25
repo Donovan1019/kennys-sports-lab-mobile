@@ -6,6 +6,8 @@ on:
     paths:
       - 'feed/nfl_prop_forecast_inbox.json'
       - 'scripts/archive_nfl_prop_forecasts.cjs'
+      - 'scripts/grade_nfl_prop_forecasts.cjs'
+      - 'feed/nfl_prop_verified_outcomes.json'
       - '.github/workflows/archive-nfl-prop-forecasts.yml'
 permissions:
   contents: write
@@ -32,13 +34,15 @@ jobs:
             exit 0
           fi
           node scripts/archive_nfl_prop_forecasts.cjs feed/nfl_prop_forecast_inbox.json
+      - name: Grade exact-event verified outcomes when available
+        run: node scripts/grade_nfl_prop_forecasts.cjs
       - name: Commit immutable archive
         shell: bash
         run: |
           if [ ! -f feed/nfl_prop_forecast_ledger.json ]; then exit 0; fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add feed/nfl_prop_forecast_ledger.json
+          git add -f feed/nfl_prop_forecast_ledger.json feed/nfl_prop_graded_snapshots.json 2>/dev/null || true
           if ! git diff --cached --quiet; then
             git commit -m 'Archive verified pregame NFL player prop predictions'
             git pull --rebase origin main
