@@ -9,6 +9,10 @@ on:
       - 'scripts/test_nfl_research_bridge.cjs'
       - 'scripts/audit_nfl_prop_calibration.cjs'
       - 'scripts/bridge_nfl_research.cjs'
+      - 'scripts/audit_nfl_market_vs_model.cjs'
+      - 'feed/americanfootball_nfl_forecast_ledger.json'
+      - 'feed/americanfootball_nfl_market_baseline_ledger.json'
+      - 'feed/americanfootball_nfl_forecast_outcomes.json'
   pull_request:
     paths:
       - 'scripts/audit_nfl_projections.py'
@@ -29,6 +33,8 @@ jobs:
           node-version: '22'
       - name: Verify NFL research bridge safety
         run: node scripts/test_nfl_research_bridge.cjs
+      - name: Audit NFL forecast skill against sportsbook consensus
+        run: node scripts/audit_nfl_market_vs_model.cjs
       - name: Walk-forward NFL baseline audit
         run: python scripts/audit_nfl_projections.py
       - uses: actions/upload-artifact@v4
