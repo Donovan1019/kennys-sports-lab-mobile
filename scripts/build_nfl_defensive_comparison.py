@@ -21,7 +21,10 @@ def parse_box(payload):
         values={'overall':{},'qb':{},'rb':{},'wr':{},'te':{}}
         for category in side.get('statistics') or []:
             name=str(category.get('name') or category.get('type') or '').lower()
-            labels=[str(x).lower() for x in category.get('labels') or []]
+            if 'receiv' in name:name='receiving'
+            elif 'rush' in name:name='rushing'
+            elif 'pass' in name:name='passing'
+            labels=[str(x).strip().lower() for x in category.get('labels') or []]
             for athlete in category.get('athletes') or []:
                 raw=athlete.get('stats') or []
                 person=athlete.get('athlete') or {}
@@ -54,7 +57,7 @@ def parse_box(payload):
                         if key and v is not None:
                             for bucket in buckets:bucket[key]=bucket.get(key,0)+v
                     elif name=='receiving':
-                        key={'rec':'receptions_allowed','tgt':'targets_allowed','tar':'targets_allowed','yds':'receiving_yards_allowed','td':'receiving_tds_allowed','tds':'receiving_tds_allowed'}.get(label)
+                        key={'rec':'receptions_allowed','receptions':'receptions_allowed','tgt':'targets_allowed','tar':'targets_allowed','targets':'targets_allowed','yds':'receiving_yards_allowed','yards':'receiving_yards_allowed','td':'receiving_tds_allowed','tds':'receiving_tds_allowed'}.get(label)
                         v=number(value)
                         if key and v is not None:
                             for bucket in buckets:bucket[key]=bucket.get(key,0)+v
