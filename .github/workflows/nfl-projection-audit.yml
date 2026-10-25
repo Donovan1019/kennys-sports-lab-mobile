@@ -6,6 +6,9 @@ on:
       - 'scripts/audit_nfl_projections.py'
       - 'feed/nfl_player_stats.json'
       - '.github/workflows/nfl-projection-audit.yml'
+      - 'scripts/test_nfl_research_bridge.cjs'
+      - 'scripts/audit_nfl_prop_calibration.cjs'
+      - 'scripts/bridge_nfl_research.cjs'
   pull_request:
     paths:
       - 'scripts/audit_nfl_projections.py'
@@ -21,6 +24,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify NFL research bridge safety
+        run: node scripts/test_nfl_research_bridge.cjs
       - name: Walk-forward NFL baseline audit
         run: python scripts/audit_nfl_projections.py
       - uses: actions/upload-artifact@v4
