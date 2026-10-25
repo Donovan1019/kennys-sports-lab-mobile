@@ -9,6 +9,7 @@ on:
       - 'scripts/test_nfl_research_bridge.cjs'
       - 'scripts/audit_nfl_prop_calibration.cjs'
       - 'scripts/report_nfl_prop_readiness.cjs'
+      - 'scripts/verify_nfl_prop_feed_contract.cjs'
       - 'scripts/archive_nfl_prop_forecasts.cjs'
       - 'scripts/test_nfl_prop_archive.cjs'
       - 'scripts/bridge_nfl_research.cjs'
@@ -40,6 +41,8 @@ jobs:
         run: node scripts/test_nfl_research_bridge.cjs
       - name: Verify immutable NFL prop archive safety
         run: node scripts/test_nfl_prop_archive.cjs
+      - name: Check exact NFL player prop feed contract
+        run: node scripts/verify_nfl_prop_feed_contract.cjs
       - name: Inventory independently graded NFL player prop evidence
         run: node scripts/report_nfl_prop_readiness.cjs
       - name: Audit NFL forecast skill against sportsbook consensus
@@ -61,4 +64,5 @@ jobs:
             reports/nfl_projection_audit.json
             reports/nfl_market_accuracy.json
             reports/nfl_prop_readiness.json
+            reports/nfl_prop_feed_contract.json
           if-no-files-found: warn
