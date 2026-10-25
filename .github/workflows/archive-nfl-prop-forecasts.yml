@@ -1,6 +1,8 @@
 name: Archive NFL Pregame Prop Forecasts
 on:
   workflow_dispatch:
+  schedule:
+    - cron: '20 14 * * *'
   push:
     branches: [main]
     paths:
@@ -9,6 +11,7 @@ on:
       - 'scripts/grade_nfl_prop_forecasts.cjs'
       - 'scripts/test_nfl_prop_grader.cjs'
       - 'feed/nfl_prop_verified_outcomes.json'
+      - 'scripts/test_nfl_prop_archive.cjs'
       - '.github/workflows/archive-nfl-prop-forecasts.yml'
 permissions:
   contents: write
@@ -45,7 +48,9 @@ jobs:
           if [ ! -f feed/nfl_prop_forecast_ledger.json ]; then exit 0; fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -f feed/nfl_prop_forecast_ledger.json feed/nfl_prop_graded_snapshots.json 2>/dev/null || true
+          for file in feed/nfl_prop_forecast_ledger.json feed/nfl_prop_graded_snapshots.json; do
+            if [ -f "$file" ]; then git add "$file"; fi
+          done
           if ! git diff --cached --quiet; then
             git commit -m 'Archive verified pregame NFL player prop predictions'
             git pull --rebase origin main
