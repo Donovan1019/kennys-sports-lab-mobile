@@ -1,0 +1,30 @@
+name: NFL Prediction Lab Integrity
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'nfl-matchup-lab.html'
+      - 'nfl_prediction_engine.js'
+      - 'nfl_matchup_advanced.js'
+      - 'scripts/test_nfl_prediction_lab.cjs'
+      - 'feed/americanfootball_nfl_defensive_comparison.json'
+  pull_request:
+    paths:
+      - 'nfl-matchup-lab.html'
+      - 'nfl_prediction_engine.js'
+      - 'nfl_matchup_advanced.js'
+      - 'scripts/test_nfl_prediction_lab.cjs'
+      - 'feed/americanfootball_nfl_defensive_comparison.json'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate NFL model scripts, DOM and data feeds
+        run: node scripts/test_nfl_prediction_lab.cjs
