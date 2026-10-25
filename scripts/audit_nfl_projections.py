@@ -114,12 +114,52 @@ def compare(payload):
                      "promote":promote,"status":"PASS" if promote else "REJECT"}
     return out
 
+
+def coverage_audit(payload):
+    """Strict out-of-sample 80% interval coverage, using prior games only."""
+    rows=defaultdict(list)
+    for p in payload.get("players",[]):
+        role=str(p.get("position","")).upper()
+        games=sorted((g for g in p.get("games",[]) if g.get("season") is not None and g.get("week") is not None and g.get("season_type") in ("REG","POST")),key=lambda g:(int(g["season"]),int(g["week"]),g["season_type"]=="POST"))
+        for market,key in MARKETS.items():
+            if role not in ROLES[market]:continue
+            observed=[]
+            for g in games:
+                try:v=float(g.get("values",{})[key])
+                except (KeyError,ValueError,TypeError):continue
+                if math.isfinite(v) and v>=0:observed.append((g,v))
+            for i in range(16,len(observed)):
+                g,actual=observed[i]
+                if int(g["season"])!=2026:continue
+                history=[v for _,v in reversed(observed[:i])]
+                center=predict(history)
+                # Bootstrap the latest ten prior game deviations around their prior mean.
+                prior10=history[:10]
+                mean10=statistics.mean(prior10)
+                outcomes=sorted(max(0,center+v-mean10) for v in prior10)
+                lower=outcomes[0] # nearest-rank p10 of 10 observations
+                upper=outcomes[8] # nearest-rank p90 of 10 observations
+                rows[market].append((lower<=actual<=upper,upper-lower,actual))
+    report={}
+    for market in MARKETS:
+        values=rows[market]
+        n=len(values)
+        if not n:
+            report[market]={"samples":0,"status":"INSUFFICIENT_DATA"}
+            continue
+        coverage=statistics.mean(int(v[0]) for v in values)
+        report[market]={"samples":n,"target_coverage":.8,"observed_coverage":round(coverage,4),
+                        "mean_interval_width":round(statistics.mean(v[1] for v in values),3),
+                        "status":"REVIEW" if n<100 or not .75<=coverage<=.85 else "COVERAGE_CHECK_PASS"}
+    return report
+
 def main():
     path=Path(sys.argv[1] if len(sys.argv)>1 else "feed/nfl_player_stats.json")
     report=Path(sys.argv[2] if len(sys.argv)>2 else "reports/nfl_projection_audit.json")
     payload=json.loads(path.read_text(encoding="utf-8"))
     result=audit(payload)
     result["usage_candidate_comparison"]=compare(payload)
+    result["simulation_80pct_coverage"]=coverage_audit(payload)
     report.parent.mkdir(parents=True,exist_ok=True)
     report.write_text(json.dumps(result,indent=2)+"\n",encoding="utf-8")
     print(json.dumps(result,indent=2))
