@@ -13,6 +13,7 @@ on:
       - 'feed/nfl_props.json'
       - 'feed/nfl_player_stats.json'
       - 'scripts/grade_nfl_prop_forecasts.cjs'
+      - 'scripts/import_nfl_verified_player_outcomes.py'
       - 'scripts/test_nfl_prop_grader.cjs'
       - 'scripts/audit_nfl_prop_calibration.cjs'
       - 'feed/nfl_prop_verified_outcomes.json'
@@ -33,6 +34,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
       - name: Validate archive implementation
         run: node scripts/test_nfl_prop_archive.cjs
       - name: Test independent NFL prop outcome grader
@@ -49,6 +53,8 @@ jobs:
             exit 0
           fi
           node scripts/archive_nfl_prop_forecasts.cjs feed/nfl_prop_forecast_inbox.json
+      - name: Import independently verified final NFL player box scores
+        run: python scripts/import_nfl_verified_player_outcomes.py
       - name: Grade exact-event verified outcomes when available
         run: node scripts/grade_nfl_prop_forecasts.cjs
       - name: Audit graded NFL prop accuracy when evidence exists
@@ -75,7 +81,7 @@ jobs:
           if [ ! -f feed/nfl_prop_forecast_ledger.json ]; then exit 0; fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          for file in feed/nfl_prop_forecast_ledger.json feed/nfl_prop_graded_snapshots.json; do
+          for file in feed/nfl_prop_forecast_ledger.json feed/nfl_prop_graded_snapshots.json feed/nfl_prop_verified_outcomes.json; do
             if [ -f "$file" ]; then git add "$file"; fi
           done
           if ! git diff --cached --quiet; then
