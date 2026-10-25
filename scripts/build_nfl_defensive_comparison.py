@@ -149,7 +149,7 @@ def build():
                 stats=offensive.get(offense)
                 if stats:histories.setdefault(defense,[]).append((date,stats))
         except Exception as exc:
-            errors.append({'event_id':eid,'reason':type(exc).__name__})
+            errors.append({'event_id':eid,'reason':type(exc).__name__,'detail':str(exc)[:240]})
     events=[]
     for g in upcoming.values():
         kickoff=datetime.fromisoformat(g['time'].replace('Z','+00:00'))
@@ -175,7 +175,10 @@ def build():
                 matchup[period][position]=sides
         events.append({'event_id':g['event_id'],'matchup_stats':matchup})
     if not histories:raise SystemExit('No valid boxscore history fetched; refusing to replace existing snapshot')
-    if errors:print('ESPN boxscore fetch errors:',len(errors),'of',len(completed))
+    if errors:
+        print('ESPN boxscore fetch errors:',len(errors),'of',len(completed))
+        from collections import Counter
+        print('Rejection breakdown:',dict(Counter((e['reason'],e.get('detail','')) for e in errors)))
     print('ESPN team-season rosters:',len(roster_cache),'roster fetch errors:',roster_errors,'position IDs:',sum(map(len,roster_cache.values())))
     if not any(stats[p] for games in histories.values() for _,stats in games for p in ('rb','wr','te')):raise SystemExit('No RB/WR/TE position-attributed boxscores; refusing misleading positional snapshot')
     if not any(e['matchup_stats']['season']['overall']['home'] or e['matchup_stats']['season']['overall']['away'] for e in events):raise SystemExit('No observed defensive samples: refusing empty snapshot')
