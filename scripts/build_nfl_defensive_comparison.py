@@ -96,16 +96,15 @@ def build():
                 if period=='last4':samples=samples[:4]
                 agg={}
                 for field in FIELDS:
-                    nums=[stats[field] for _,stats in samples if field in stats]
+                    nums=[stats['overall'][field] for _,stats in samples if field in stats.get('overall',{})]
                     if nums:agg[field]={'value':round(statistics.mean(nums),2),'sample_size':len(nums)}
                 if agg:agg['summary']=str(len(samples))+' observed '+str(year)+' games'
                 sides[side]=agg
-            matchup[period]={'overall':sides,'qb':sides,'rb':sides,'wr':sides,'te':sides}
+            matchup[period]={'overall':sides}
         events.append({'event_id':g['event_id'],'matchup_stats':matchup})
     if not histories:raise SystemExit('No valid boxscore history fetched; refusing to replace existing snapshot')
     out={'source':'espn-public-nfl-summary-boxscore','generated_at':datetime.now(timezone.utc).isoformat(),'games_scanned':calls,'games_failed':len(errors),'teams_with_data':len(histories),'errors':errors[:20],'events':events}
     path=ROOT/'feed/americanfootball_nfl_defensive_comparison.json'
-    path.write_text(json.dumps(out,separators=(',',':'))+'
-')
+    path.write_text(json.dumps(out,separators=(',',':'))+chr(10))
     print('Saved',len(events),'event comparisons;',len(histories),'teams;',calls,'box scores;',len(errors),'failed')
 if __name__=='__main__':build()
