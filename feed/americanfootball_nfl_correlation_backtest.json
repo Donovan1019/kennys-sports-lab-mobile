@@ -2,20 +2,20 @@
   "status": "research_only",
   "method": "strict_walk_forward_same_games",
   "trials_per_game": 10000,
-  "sample_size": 366,
+  "sample_size": 367,
   "independent": {
-    "sample_size": 366,
-    "brier": 0.225607,
-    "total_interval_80_coverage": 0.786885,
-    "total_interval_80_width": 34.260668
+    "sample_size": 367,
+    "brier": 0.22557,
+    "total_interval_80_coverage": 0.787466,
+    "total_interval_80_width": 34.278549
   },
   "correlated": {
-    "sample_size": 366,
-    "brier": 0.225642,
-    "total_interval_80_coverage": 0.786885,
-    "total_interval_80_width": 34.503807
+    "sample_size": 367,
+    "brier": 0.225602,
+    "total_interval_80_coverage": 0.787466,
+    "total_interval_80_width": 34.52271
   },
-  "correlated_minus_independent_brier": 3.5e-05,
+  "correlated_minus_independent_brier": 3.2e-05,
   "promotion_approved": false,
   "warning": "Score correlation is observational; game-total interval coverage and Brier alone do not establish betting edge or calibrated player-prop dependencies.",
   "results": [
@@ -6605,6 +6605,24 @@
         "home_won": 1,
         "total_interval_contains_actual": 1,
         "total_interval_width": 38.564846009990724
+      }
+    },
+    {
+      "date": "2026-10-23T00:15:00+00:00",
+      "event_id": "401873010",
+      "correlation": 0.030807,
+      "history_size": 507,
+      "independent": {
+        "home_win_probability": 0.5397858072265038,
+        "home_won": 1,
+        "total_interval_contains_actual": 1,
+        "total_interval_width": 40.82301015073175
+      },
+      "correlated": {
+        "home_win_probability": 0.5406947642406648,
+        "home_won": 1,
+        "total_interval_contains_actual": 1,
+        "total_interval_width": 41.44099357835505
       }
     }
   ]
