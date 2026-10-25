@@ -14,6 +14,7 @@ on:
       - 'feed/nfl_player_stats.json'
       - 'scripts/grade_nfl_prop_forecasts.cjs'
       - 'scripts/import_nfl_verified_player_outcomes.py'
+      - 'scripts/test_nfl_verified_outcomes.py'
       - 'scripts/test_nfl_prop_grader.cjs'
       - 'scripts/audit_nfl_prop_calibration.cjs'
       - 'feed/nfl_prop_verified_outcomes.json'
@@ -53,6 +54,8 @@ jobs:
             exit 0
           fi
           node scripts/archive_nfl_prop_forecasts.cjs feed/nfl_prop_forecast_inbox.json
+      - name: Test independent NFL final player stat extraction
+        run: python scripts/test_nfl_verified_outcomes.py
       - name: Import independently verified final NFL player box scores
         run: python scripts/import_nfl_verified_player_outcomes.py
       - name: Grade exact-event verified outcomes when available
