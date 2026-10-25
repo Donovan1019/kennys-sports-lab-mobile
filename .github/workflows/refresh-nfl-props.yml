@@ -4,6 +4,8 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/refresh-nfl-props.yml'
+  schedule:
+    - cron: '5 14 * * 0,1,4'
   workflow_dispatch:
     inputs:
       max_events:
@@ -38,5 +40,7 @@ jobs:
           git add feed/nfl_props.json
           if ! git diff --cached --quiet; then
             git commit -m "Refresh NFL player prop snapshot"
-            git push
+            git fetch origin main
+            git rebase -X theirs origin/main
+            git push origin HEAD:main
           fi
