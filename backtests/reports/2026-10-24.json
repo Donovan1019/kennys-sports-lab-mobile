@@ -1,15 +1,40 @@
 {
   "date": "2026-10-24",
-  "generated_at": "2026-10-24T22:40:21.920294+00:00",
+  "generated_at": "2026-10-25T16:42:49.745908+00:00",
   "sports": {
     "NFL": {
-      "status": "OUTCOMES_UNVERIFIED",
+      "status": "PARTIALLY_SETTLED_MONEYLINES",
       "saved_quotes": 0,
       "eligible_predictions": 108,
       "blocked_predictions": [],
-      "graded": 0,
-      "settled": [],
-      "pending": 108
+      "graded": 4,
+      "settled": [
+        {
+          "event": "Pittsburgh Steelers @ New Orleans Saints",
+          "market": "h2h",
+          "selection": "New Orleans Saints",
+          "outcome": "loss"
+        },
+        {
+          "event": "Pittsburgh Steelers @ New Orleans Saints",
+          "market": "h2h",
+          "selection": "Pittsburgh Steelers",
+          "outcome": "win"
+        },
+        {
+          "event": "Pittsburgh Steelers @ New Orleans Saints",
+          "market": "h2h",
+          "selection": "New Orleans Saints",
+          "outcome": "loss"
+        },
+        {
+          "event": "Pittsburgh Steelers @ New Orleans Saints",
+          "market": "h2h",
+          "selection": "Pittsburgh Steelers",
+          "outcome": "win"
+        }
+      ],
+      "pending": 104
     },
     "NBA": {
       "status": "OUTCOMES_UNVERIFIED",
@@ -56,9 +81,9 @@
     }
   },
   "summary": {
-    "verified_picks": 4,
-    "wins": 2,
-    "losses": 2,
+    "verified_picks": 8,
+    "wins": 4,
+    "losses": 4,
     "pushes": 0,
     "roi": null,
     "hit_rate": 0.5
