@@ -84,16 +84,19 @@ def parse_box(payload, team_rosters=None):
                             for bucket in buckets:bucket[key]=bucket.get(key,0)+v
         out[team]=values
     return out
+SIGNED_FIELDS={'rushing_yards_allowed','receiving_yards_allowed'}
 def validate_box(box):
     for team,positions in box.items():
         overall=positions['overall']
         for field in FIELDS:
             value=overall.get(field)
-            if value is not None and (not isinstance(value,(int,float)) or value<0):raise ValueError(f'Invalid {team} {field}: {value}')
+            if value is not None and (not isinstance(value,(int,float)) or (value<0 and field not in SIGNED_FIELDS)):raise ValueError(f'Invalid {team} {field}: {value}')
         for position in ('qb','rb','wr','te'):
             for field,value in positions[position].items():
-                if field not in FIELDS or not isinstance(value,(int,float)) or value<0:raise ValueError(f'Invalid {team} {position} {field}')
-                if value>overall.get(field,0)+0.01:raise ValueError(f'Position {position} {field} exceeds overall: {team}')
+                if field not in FIELDS or not isinstance(value,(int,float)) or (value<0 and field not in SIGNED_FIELDS):raise ValueError(f'Invalid {team} {position} {field}')
+                # Signed yardage can be negative for other positions, so a position
+                # subtotal may legitimately exceed the net team total.
+                if field not in SIGNED_FIELDS and value>overall.get(field,0)+0.01:raise ValueError(f'Position {position} {field} exceeds overall: {team}')
 
 def season_of(dt):
     return dt.year-(1 if dt.month<2 else 0)
