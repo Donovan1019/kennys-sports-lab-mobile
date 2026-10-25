@@ -54,7 +54,7 @@ def evaluate(records,train_fraction=.8,min_prior=3):
                 "candidate_outperforms_baseline":candidate<base}
     all_items=[item for values in errors.values() for item in values]
     result=summarize(all_items)
-    return {"schema":1,"holdout_start_date":cutoff,"total_eligible_fights":len(all_items),
+    decision="REJECT" if result is None or not result["candidate_outperforms_baseline"] else "RESEARCH_ONLY"\n    return {"schema":1,"decision":decision,"holdout_start_date":cutoff,"total_eligible_fights":len(all_items),
       "paired_comparison":result,"by_scheduled_rounds":{k:summarize(v) for k,v in errors.items()},
       "excluded":dict(excluded),"duration_oracle":False,
       "scheduled_rounds_source_semantics_verified":False,"point_in_time_certified":False,
