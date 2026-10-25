@@ -4,8 +4,8 @@
 const $=id=>document.getElementById(id),safe=v=>String(v??'—').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[c]));
 const aliases={'Arizona Cardinals':'ARI','Atlanta Falcons':'ATL','Baltimore Ravens':'BAL','Buffalo Bills':'BUF','Carolina Panthers':'CAR','Chicago Bears':'CHI','Cincinnati Bengals':'CIN','Cleveland Browns':'CLE','Dallas Cowboys':'DAL','Denver Broncos':'DEN','Detroit Lions':'DET','Green Bay Packers':'GB','Houston Texans':'HOU','Indianapolis Colts':'IND','Jacksonville Jaguars':'JAX','Kansas City Chiefs':'KC','Las Vegas Raiders':'LV','Los Angeles Chargers':'LAC','Los Angeles Rams':'LA','Miami Dolphins':'MIA','Minnesota Vikings':'MIN','New England Patriots':'NE','New Orleans Saints':'NO','New York Giants':'NYG','New York Jets':'NYJ','Philadelphia Eagles':'PHI','Pittsburgh Steelers':'PIT','San Francisco 49ers':'SF','Seattle Seahawks':'SEA','Tampa Bay Buccaneers':'TB','Tennessee Titans':'TEN','Washington Commanders':'WAS'};
 const alt={LA:['LAR','LA'],LV:['LV','OAK'],NE:['NE','NWE'],NO:['NO','NOR'],SF:['SF','SFO'],TB:['TB','TAM'],JAX:['JAX','JAC'],WSH:['WAS','WSH']};
-const markets={'Passing yards':'Passing Yards','Rushing yards':'Rushing Yards','Receiving yards':'Receiving Yards','Receptions':'Receptions','Passing touchdowns':'Passing TDs','Rushing touchdowns':'Rushing TDs','Receiving touchdowns':'Receiving TDs'};
-const propKeys={player_pass_yds:'Passing yards',player_rush_yds:'Rushing yards',player_reception_yds:'Receiving yards',player_receptions:'Receptions',player_pass_tds:'Passing touchdowns',player_anytime_td:'Receiving touchdowns'};
+const markets={'Passing yards':'Passing yards','Rushing yards':'Rushing yards','Receiving yards':'Receiving yards','Receptions':'Receptions','Passing touchdowns':'Passing touchdowns','Rushing touchdowns':'Rushing touchdowns','Receiving touchdowns':'Receiving touchdowns'};
+const propKeys={player_pass_yds:'Passing yards',player_pass_yd:'Passing yards',player_rush_yds:'Rushing yards',player_rush_yd:'Rushing yards',player_reception_yds:'Receiving yards',player_reception_yd:'Receiving yards',player_receptions:'Receptions',player_pass_tds:'Passing touchdowns',player_rush_tds:'Rushing touchdowns',player_reception_tds:'Receiving touchdowns'};
 const st={players:[],meta:null,props:[],games:[],loading:true,errors:[]};
 const tabs=$('advancedtabs');if(!tabs)return;
 const insert=(label,key,before)=>{if(tabs.querySelector('[data-tab="'+key+'"]'))return;const b=document.createElement('button');b.dataset.tab=key;b.textContent=label;tabs.insertBefore(b,tabs.querySelector('[data-tab="'+before+'"]')||null)};
@@ -13,13 +13,13 @@ insert('Player Projections','projections','forecasts');insert('Top 5 Research','
 const note=document.createElement('div');note.className='status';note.id='nfl-data-health';note.textContent='Loading matchup history and projection inputs…';tabs.parentNode.insertBefore(note,tabs);
 const fmt=x=>Number.isFinite(x)?x.toFixed(1):'—';
 const teamMatch=(p,g)=>{let teams=[g.away,g.home].flatMap(n=>{let a=aliases[n];return [a,...(alt[a]||[])]});return teams.includes(String(p.team||'').toUpperCase())};
-const rowsFor=(p,field,year)=>{const gs=(p.games||[]).filter(g=>Number.isFinite(Number(g.values?.[field]))&&g.season_type==='REG'&&(!year||g.season===year)).sort((a,b)=>(b.season-a.season)||(b.week-a.week));return gs};
+const rowsFor=(p,field,year)=>{const gs=(p.games||[]).filter(g=>g.values?.[field]!=null&&Number.isFinite(Number(g.values[field]))&&g.season_type==='REG'&&(!year||g.season===year)).sort((a,b)=>(b.season-a.season)||(b.week-a.week));return gs};
 const avg=arr=>arr.length?arr.reduce((a,b)=>a+b,0)/arr.length:NaN;
 const standard=arr=>{if(arr.length<3)return NaN;const m=avg(arr);return Math.sqrt(arr.reduce((s,x)=>s+(x-m)**2,0)/(arr.length-1))};
 const prob=(history,line,side)=>{if(history.length<5)return null;let n=history.filter(v=>side==='Under'?v<line:v>line).length;return n/history.length};
 const normalized=s=>String(s||'').toLowerCase().replace(/[^a-z]/g,'');
-const game=()=>{const idx=Number($('game')?.value);return Number.isFinite(idx)?st.games[idx]:null};
-const quote=(g,p,field)=>{let key=Object.keys(propKeys).find(k=>propKeys[k]===field);if(!key)return [];return st.props.filter(o=>o.event_id===g.id&&o.market===key&&normalized(o.player)===normalized(p.name)&&Number.isFinite(Number(o.point))&&['Over','Under'].includes(o.selection))};
+const game=()=>{const idx=Number($('game')?.value);const selected=$('game')?.options[idx]?.textContent;return st.games.find(g=>g.away+' @ '+g.home===selected)||null};
+const quote=(g,p,field)=>{let keys=Object.keys(propKeys).filter(k=>propKeys[k]===field);if(!keys.length)return [];return st.props.filter(o=>o.event_id===g.id&&keys.includes(o.market)&&normalized(o.player)===normalized(p.name)&&Number.isFinite(Number(o.point))&&['Over','Under'].includes(o.selection))};
 const fmtTime=t=>{let d=new Date(t);return isNaN(+d)?'Unknown':new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'}).format(d)};
 const age=t=>{let n=Date.now()-new Date(t).getTime();return Number.isFinite(n)?Math.round(n/3600000):null};
 const eligible=o=>{let h=age(o.updated_at);return h!==null&&h>=0&&h<=24&&new Date(o.commence_time)>new Date()};
