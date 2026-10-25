@@ -8,6 +8,7 @@ on:
       - '.github/workflows/nfl-projection-audit.yml'
       - 'scripts/test_nfl_research_bridge.cjs'
       - 'scripts/audit_nfl_prop_calibration.cjs'
+      - 'scripts/report_nfl_prop_readiness.cjs'
       - 'scripts/bridge_nfl_research.cjs'
       - 'scripts/audit_nfl_market_vs_model.cjs'
       - 'feed/americanfootball_nfl_forecast_ledger.json'
@@ -35,6 +36,8 @@ jobs:
           node-version: '22'
       - name: Verify NFL research bridge safety
         run: node scripts/test_nfl_research_bridge.cjs
+      - name: Inventory independently graded NFL player prop evidence
+        run: node scripts/report_nfl_prop_readiness.cjs
       - name: Audit NFL forecast skill against sportsbook consensus
         run: node scripts/audit_nfl_market_vs_model.cjs
       - name: Walk-forward NFL baseline audit
@@ -53,4 +56,5 @@ jobs:
           path: |
             reports/nfl_projection_audit.json
             reports/nfl_market_accuracy.json
+            reports/nfl_prop_readiness.json
           if-no-files-found: warn
