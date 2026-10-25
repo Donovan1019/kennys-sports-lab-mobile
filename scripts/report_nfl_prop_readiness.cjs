@@ -10,6 +10,9 @@ const props=exists('feed/nfl_props.json')?load('feed/nfl_props.json'):null;
 const archived='feed/nfl_prop_graded_snapshots.json';
 const rows=exists(archived)?load(archived):null;
 const validRows=Array.isArray(rows)?rows.length:0;
+const quoteTimes=(Array.isArray(props?.odds)?props.odds:[]).map(x=>Date.parse(x.updated_at)).filter(Number.isFinite);
+const newestQuote=quoteTimes.length?new Date(Math.max(...quoteTimes)).toISOString():null;
+const distinctMarkets=[...new Set((Array.isArray(props?.odds)?props.odds:[]).map(x=>x.market).filter(Boolean))].sort();
 const report={
  status:'RESEARCH_ONLY_NOT_BET_ELIGIBLE',
  generated_at:new Date().toISOString(),
@@ -17,6 +20,10 @@ const report={
  sportsbook_prop_snapshot_available:props!==null,
  sportsbook_prop_quote_count:Array.isArray(props?.odds)?props.odds.length:0,
  sportsbook_snapshot_at:props?.fetched_at||null,
+ newest_sportsbook_quote_at:newestQuote,
+ sportsbook_market_types:distinctMarkets,
+ sportsbook_quote_age_minutes:newestQuote?Math.round((Date.now()-Date.parse(newestQuote))/60000):null,
+ sportsbook_quotes_fresh_within_6h:newestQuote?Date.now()-Date.parse(newestQuote)<=21600000:false,
  archived_graded_prop_file_present:exists(archived),
  archived_graded_prop_rows:validRows,
  calibration_ready_for_execution:validRows>0,
