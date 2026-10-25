@@ -24,30 +24,37 @@ def parse_box(payload):
             labels=[str(x).lower() for x in category.get('labels') or []]
             for athlete in category.get('athletes') or []:
                 raw=athlete.get('stats') or []
-                position=str(((athlete.get('athlete') or {}).get('position') or {}).get('abbreviation') or '').lower()\n                buckets=[values['overall']] + ([values[position]] if position in ('qb','rb','wr','te') else [])\n                for i,label in enumerate(labels):
+                position=str(((athlete.get('athlete') or {}).get('position') or {}).get('abbreviation') or '').lower()
+                buckets=[values['overall']] + ([values[position]] if position in ('qb','rb','wr','te') else [])
+                for i,label in enumerate(labels):
                     if i>=len(raw):continue
                     value=raw[i]
                     if name=='passing':
                         if label in ('cmp/att','c/att') and '/' in str(value):
                             try:
                                 cmp,att=map(int,str(value).split('/')[:2])
-                                values['completions_allowed']=values.get('completions_allowed',0)+cmp
-                                values['pass_attempts_allowed']=values.get('pass_attempts_allowed',0)+att
+                                for bucket in buckets:
+                                    bucket['completions_allowed']=bucket.get('completions_allowed',0)+cmp
+                                    bucket['pass_attempts_allowed']=bucket.get('pass_attempts_allowed',0)+att
                             except ValueError:pass
                         if label in ('yds','yards'):
                             v=number(value)
-                            if v is not None:\n                                for bucket in buckets:bucket['passing_yards_allowed']=bucket.get('passing_yards_allowed',0)+v
+                            if v is not None:
+                                for bucket in buckets:bucket['passing_yards_allowed']=bucket.get('passing_yards_allowed',0)+v
                         if label in ('td','tds'):
                             v=number(value)
-                            if v is not None:\n                                for bucket in buckets:bucket['passing_tds_allowed']=bucket.get('passing_tds_allowed',0)+v
+                            if v is not None:
+                                for bucket in buckets:bucket['passing_tds_allowed']=bucket.get('passing_tds_allowed',0)+v
                     elif name=='rushing':
                         key={'car':'rush_attempts_allowed','att':'rush_attempts_allowed','yds':'rushing_yards_allowed','td':'rushing_tds_allowed'}.get(label)
                         v=number(value)
-                        if key and v is not None:\n                            for bucket in buckets:bucket[key]=bucket.get(key,0)+v
+                        if key and v is not None:
+                            for bucket in buckets:bucket[key]=bucket.get(key,0)+v
                     elif name=='receiving':
                         key={'rec':'receptions_allowed','tgt':'targets_allowed','tar':'targets_allowed'}.get(label)
                         v=number(value)
-                        if key and v is not None:values[key]=values.get(key,0)+v
+                        if key and v is not None:
+                            for bucket in buckets:bucket[key]=bucket.get(key,0)+v
         out[team]=values
     return out
 def season_of(dt):
@@ -97,6 +104,7 @@ def build():
         events.append({'event_id':g['event_id'],'matchup_stats':matchup})
     out={'source':'espn-public-nfl-summary-boxscore','generated_at':datetime.now(timezone.utc).isoformat(),'games_scanned':calls,'games_failed':len(errors),'teams_with_data':len(histories),'errors':errors[:20],'events':events}
     path=ROOT/'feed/americanfootball_nfl_defensive_comparison.json'
-    path.write_text(json.dumps(out,separators=(',',':'))+'\n')
+    path.write_text(json.dumps(out,separators=(',',':'))+'
+')
     print('Saved',len(events),'event comparisons;',len(histories),'teams;',calls,'box scores;',len(errors),'failed')
 if __name__=='__main__':build()
