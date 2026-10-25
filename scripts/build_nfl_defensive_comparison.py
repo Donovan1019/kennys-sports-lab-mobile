@@ -21,13 +21,16 @@ def parse_box(payload):
         values={'overall':{},'qb':{},'rb':{},'wr':{},'te':{}}
         for category in side.get('statistics') or []:
             name=str(category.get('name') or category.get('type') or '').lower()
-            labels=[str(x).lower() for x in category.get('labels') or []]
+            if 'receiv' in name:name='receiving'
+            elif 'rush' in name:name='rushing'
+            elif 'pass' in name:name='passing'
+            labels=[str(x).strip().lower() for x in category.get('labels') or []]
             for athlete in category.get('athletes') or []:
                 raw=athlete.get('stats') or []
                 person=athlete.get('athlete') or {}
                 pos=person.get('position') or athlete.get('position') or {}
                 position=str(pos.get('abbreviation') if isinstance(pos,dict) else pos or '').lower()
-                if not position and name=='passing':position='qb'
+                if name=='passing' and position not in ('qb','rb','wr','te'):position='qb'
                 buckets=[values['overall']] + ([values[position]] if position in ('qb','rb','wr','te') else [])
                 for i,label in enumerate(labels):
                     if i>=len(raw):continue
@@ -54,7 +57,7 @@ def parse_box(payload):
                         if key and v is not None:
                             for bucket in buckets:bucket[key]=bucket.get(key,0)+v
                     elif name=='receiving':
-                        key={'rec':'receptions_allowed','tgt':'targets_allowed','tar':'targets_allowed','yds':'receiving_yards_allowed','td':'receiving_tds_allowed','tds':'receiving_tds_allowed'}.get(label)
+                        key={'rec':'receptions_allowed','receptions':'receptions_allowed','tgt':'targets_allowed','tar':'targets_allowed','targets':'targets_allowed','yds':'receiving_yards_allowed','yards':'receiving_yards_allowed','td':'receiving_tds_allowed','tds':'receiving_tds_allowed'}.get(label)
                         v=number(value)
                         if key and v is not None:
                             for bucket in buckets:bucket[key]=bucket.get(key,0)+v
@@ -111,8 +114,10 @@ def build():
                 matchup[period][position]=sides
         events.append({'event_id':g['event_id'],'matchup_stats':matchup})
     if not histories:raise SystemExit('No valid boxscore history fetched; refusing to replace existing snapshot')
-    if not any(e['matchup_stats']['season']['qb']['home'] or e['matchup_stats']['season']['qb']['away'] for e in events):raise SystemExit('No positional QB splits: refusing empty positional snapshot')
-    out={'source':'espn-public-nfl-summary-boxscore','generated_at':datetime.now(timezone.utc).isoformat(),'games_scanned':calls,'games_failed':len(errors),'teams_with_data':len(histories),'errors':errors[:20],'events':events}
+    if not any(e['matchup_stats']['season']['overall']['home'] or e['matchup_stats']['season']['overall']['away'] for e in events):raise SystemExit('No observed defensive samples: refusing empty snapshot')
+    coverage={p:sum(bool(e['matchup_stats']['season'][p]['home'] or e['matchup_stats']['season'][p]['away']) for e in events) for p in ('overall','qb','rb','wr','te')}
+    print('Observed positional coverage:',coverage)
+    out={'source':'espn-public-nfl-summary-boxscore','generated_at':datetime.now(timezone.utc).isoformat(),'games_scanned':calls,'games_failed':len(errors),'teams_with_data':len(histories),'position_coverage':coverage,'errors':errors[:20],'events':events}
     path=ROOT/'feed/americanfootball_nfl_defensive_comparison.json'
     path.write_text(json.dumps(out,separators=(',',':'))+chr(10))
     print('Saved',len(events),'event comparisons;',len(histories),'teams;',calls,'box scores;',len(errors),'failed')
