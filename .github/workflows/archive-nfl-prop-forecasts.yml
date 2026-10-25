@@ -46,10 +46,13 @@ jobs:
       - name: Audit graded NFL prop accuracy when evidence exists
         shell: bash
         run: |
-          if [ ! -s feed/nfl_prop_graded_snapshots.json ]; then
+          if [ ! -f feed/nfl_prop_graded_snapshots.json ]; then
             echo 'No independently graded prop archive; calibration remains UNVERIFIED.'
             exit 0
           fi
+          node -e 'const fs=require("fs");const a=JSON.parse(fs.readFileSync("feed/nfl_prop_graded_snapshots.json","utf8"));if(!Array.isArray(a))process.exit(2);if(!a.length){console.log("No graded forecasts yet; calibration remains UNVERIFIED.");process.exit(3)}' || status=$?
+          if [ "${status:-0}" -eq 3 ]; then exit 0; fi
+          if [ "${status:-0}" -ne 0 ]; then exit "${status}"; fi
           KSL_PROP_REPORT_PATH=reports/nfl_prop_calibration.json node scripts/audit_nfl_prop_calibration.cjs feed/nfl_prop_graded_snapshots.json
       - name: Upload NFL prop calibration evidence
         if: always()
