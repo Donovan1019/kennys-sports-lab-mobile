@@ -29,8 +29,12 @@ def parse_box(payload):
                 raw=athlete.get('stats') or []
                 person=athlete.get('athlete') or {}
                 pos=person.get('position') or athlete.get('position') or {}
+                if not pos:pos=person.get('positionAbbreviation') or athlete.get('positionAbbreviation') or ''
                 position=str(pos.get('abbreviation') if isinstance(pos,dict) else pos or '').lower()
                 if name=='passing' and position not in ('qb','rb','wr','te'):position='qb'
+                if name=='receiving' and position not in ('qb','rb','wr','te'):
+                    # Position unknown: retain accurate team-wide receiving totals only.
+                    position=''
                 buckets=[values['overall']] + ([values[position]] if position in ('qb','rb','wr','te') else [])
                 for i,label in enumerate(labels):
                     if i>=len(raw):continue
