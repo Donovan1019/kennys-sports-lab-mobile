@@ -10,7 +10,7 @@ const st={players:[],meta:null,props:[],games:[],loading:true,errors:[]};
 const tabs=$('advancedtabs');if(!tabs)return;
 const insert=(label,key,before)=>{if(tabs.querySelector('[data-tab="'+key+'"]'))return;const b=document.createElement('button');b.dataset.tab=key;b.textContent=label;tabs.insertBefore(b,tabs.querySelector('[data-tab="'+before+'"]')||null)};
 insert('Player Projections','projections','forecasts');insert('Top 5 Research','research5','markets');insert('Data Audit','audit','research');
-const note=document.createElement('div');note.className='status';note.id='nfl-data-health';note.textContent='Loading matchup history and projection inputs…';tabs.parentNode.insertBefore(note,tabs);
+const note=$('nfl-data-health')||document.createElement('div');if(!note.id){note.className='status';note.id='nfl-data-health';tabs.parentNode.insertBefore(note,tabs)}note.textContent='Loading matchup history and projection inputs…';
 const fmt=x=>Number.isFinite(x)?x.toFixed(1):'—';
 const teamMatch=(p,g)=>{let teams=[g.away,g.home].flatMap(n=>{let a=aliases[n];return [a,...(alt[a]||[])]});return teams.includes(String(p.team||'').toUpperCase())};
 const rowsFor=(p,field,year)=>{const gs=(p.games||[]).filter(g=>g.values?.[field]!=null&&Number.isFinite(Number(g.values[field]))&&g.season_type==='REG'&&(!year||g.season===year)).sort((a,b)=>(b.season-a.season)||(b.week-a.week));return gs};
