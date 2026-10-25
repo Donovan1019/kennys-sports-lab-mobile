@@ -26,8 +26,8 @@ def parse(source):
     name_column=next((x for x in ("player_display_name","player_name") if x in columns),None)
     team_column=next((x for x in ("recent_team","team") if x in columns),None)
     position_column=next((x for x in ("position","position_group") if x in columns),None)
-    if not name_column or not team_column:
-        raise ValueError("Missing player name/team column: "+str(sorted(columns)))
+    if not name_column or not team_column or not position_column:
+        raise ValueError("Missing player name/team/position column: "+str(sorted(columns)))
     if not required.issubset(columns):
         raise ValueError("nflverse source schema mismatch: "+str(sorted(required-columns)))
     rows=[]
@@ -64,6 +64,8 @@ def main():
             failures.append({"year":year,"reason":type(exc).__name__})
             print(year,": unavailable:",type(exc).__name__,str(exc)[:350])
     if not combined:raise SystemExit("No verified records retrieved; existing snapshot preserved")
+    if failures:raise SystemExit("Partial season fetch: refusing mixed-age snapshot; "+str(failures))
+    if not any(row["season"]==2026 and row["position"] in ("QB","RB","WR","TE") for row in combined):raise SystemExit("Missing 2026 player positions: refusing unusable snapshot")
     combined.sort(key=lambda r:(r["season"],r["week"],r["season_type"]=="POST"))
     players=defaultdict(lambda:{"name":"","team":"","position":"","games":[]})
     for row in combined:
