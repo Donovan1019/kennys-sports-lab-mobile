@@ -14,6 +14,8 @@ for(let i=0;i<rows.length;i++){
  for(const k of required)if(r[k]===undefined||r[k]===null||r[k]==='')errors.push('row '+i+' missing '+k);
  if(!r.source_repository||!r.source_commit||!r.forecast_id)errors.push('row '+i+' missing foundation provenance');
  if(!Number.isFinite(Date.parse(r.forecast_at))||!Number.isFinite(Date.parse(r.kickoff))||Date.parse(r.forecast_at)>=Date.parse(r.kickoff))errors.push('row '+i+' invalid pregame forecast');
+ if(!Number.isFinite(Date.parse(r.quoted_at))||Date.parse(r.quoted_at)>Date.parse(r.forecast_at)||Date.parse(r.quoted_at)>=Date.parse(r.kickoff))errors.push('row '+i+' invalid or future sportsbook quote');
+ if(!Number.isFinite(Date.parse(r.graded_at))||Date.parse(r.graded_at)<Date.parse(r.kickoff))errors.push('row '+i+' outcome graded before kickoff');
  if(r.source_repository!=='Donovan1019/sports-model-foundation')errors.push('row '+i+' unknown source');
 }
 if(errors.length){console.error(JSON.stringify({status:'REJECTED',errors:errors.slice(0,30),count:errors.length},null,2));process.exit(1)}
