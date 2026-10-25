@@ -17,11 +17,14 @@ const implied=o=>o>0?100/(o+100):-o/(-o+100);
 const mean=a=>a.reduce((s,x)=>s+x,0)/a.length;
 const market={};
 const errors=[];const seen=new Set();const firstSelection=new Map();
+const validSelection=x=>x==='Over'||x==='Under';
 for(const [i,r] of rows.entries()){
  const key=[r.event_id,r.player,r.market,r.line,r.quoted_at,r.forecast_at].join('|');
  if(seen.has(key)){errors.push('duplicate snapshot '+i);continue}seen.add(key);
  if(!r.market||!r.event_id||!r.player||![r.kickoff,r.quoted_at,r.forecast_at,r.graded_at].every(validDate)||date(r.quoted_at)>=date(r.kickoff)||date(r.forecast_at)>=date(r.kickoff)||date(r.quoted_at)>date(r.forecast_at)||date(r.graded_at)<date(r.kickoff)){errors.push('invalid timing/identity '+i);continue}
  if(![r.line,r.outcome,r.model_probability,r.over_odds,r.under_odds].every(Number.isFinite)||r.model_probability<=0||r.model_probability>=1||!validOdds(r.over_odds)||!validOdds(r.under_odds)){errors.push('invalid numeric fields '+i);continue}
+ if(r.selection!==undefined&&!validSelection(r.selection)){errors.push('invalid selection '+i);continue}
+ if(r.bet_odds!==undefined&&!validOdds(r.bet_odds)){errors.push('invalid bet odds '+i);continue}
  if(r.outcome===r.line)continue; // pushes are neither wins nor losses
  const po=implied(r.over_odds),pu=implied(r.under_odds);
  if(!(po>0&&po<1&&pu>0&&pu<1&&po+pu>1)){errors.push('invalid prices '+i);continue}
