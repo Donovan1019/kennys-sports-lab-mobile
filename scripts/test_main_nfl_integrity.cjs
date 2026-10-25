@@ -8,7 +8,7 @@ for(const path of ['three_sport_stats.js','three_sport_player_projections.js']){
  assert(src.includes('nflRoles'),'Missing NFL position/market allowlist: '+path);
  assert(src.includes("String(p.position||'').toUpperCase()"),'Missing position validation: '+path);
 }
-assert(html.includes('three_sport_player_projections.js?v=20261025-bootstrap-228'),'NFL main cache version not bumped');
+assert(html.includes('three_sport_player_projections.js?v=20261025-readiness-236'),'NFL main cache version not bumped');
 const projections=fs.readFileSync('three_sport_player_projections.js','utf8');
 assert(projections.includes("sport==='NFL'?{factor:1,verified:false}:opponentFactor(game,p.team)"),'NFL scoring-based projection inflation must remain disabled');
 assert(projections.includes("sport==='NFL'?0.25*avg(recent)"),'NFL projection must use conservative history blend');
@@ -26,4 +26,5 @@ assert(html.includes('nfl_module_nav.js?v=20261025-nav-234'),'NFL module navigat
 const moduleNav=fs.readFileSync('nfl_module_nav.js','utf8');new vm.Script(moduleNav,{filename:'nfl_module_nav.js'});
 for(const id of ['nfl-player-projections','nfl-game-projections','ksl-stat-root','ksl-research-root'])assert(moduleNav.includes(id),'Missing NFL module navigation destination '+id);
 assert(gameProjections.includes('insertBefore(section,playerMarket)'),'Game projections must appear before player market dropdown inside projection panel');
+assert(projections.includes('NOT BET ELIGIBLE'),'Uncalibrated NFL projections must not be labeled betting ready');
 console.log('PASS main NFL page, scripts and position/market integrity');
