@@ -12,7 +12,7 @@ class FormatDurationTests(unittest.TestCase):
   r=evaluate(self.data())
   self.assertGreater(r["total_eligible_fights"],0)
   self.assertFalse(r["duration_oracle"])
-  self.assertFalse(r["production_promotion_allowed"])
+  self.assertFalse(r["production_promotion_allowed"])\n  self.assertIn(r["decision"],("REJECT","RESEARCH_ONLY"))
   self.assertFalse(r["scheduled_rounds_source_semantics_verified"])
  def test_no_prior_day_rejected(self):
   rows=self.data()
@@ -21,5 +21,5 @@ class FormatDurationTests(unittest.TestCase):
  def test_same_format_history_required(self):
   rows=self.data()
   r=evaluate(rows,min_prior=100)
-  self.assertEqual(r["total_eligible_fights"],0)
+  self.assertEqual(r["total_eligible_fights"],0)\n  self.assertEqual(r["decision"],"REJECT")
 if __name__=="__main__":unittest.main()
