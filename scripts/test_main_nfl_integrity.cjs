@@ -16,10 +16,12 @@ assert(projections.includes('Number(data[0].season)!==2026'),'Must reject NFL pl
 assert(projections.includes('a.every((t,i)=>teamMatch(t,b[i])'),'Must match sportsbook events with canonical team aliases');
 assert(projections.includes('const simulateProjection='),'NFL projection simulator must be present');
 assert(projections.includes('empirical game residual bootstrap'),'NFL simulator must use empirical observations');
-assert(html.includes('nfl_all_markets.js?v=20261025-all-markets-231'),'NFL market catalog script missing');
+assert(!html.includes('nfl_all_markets.js'),'Unwanted standalone NFL market catalog must stay removed');
 const marketCatalog=fs.readFileSync('nfl_all_markets.js','utf8');new vm.Script(marketCatalog,{filename:'nfl_all_markets.js'});
 for(const market of ['h2h','spreads','totals','team_totals','h2h_q1','h2h_q4','totals_q1','totals_q4','team_totals_q4'])assert(marketCatalog.includes(market),'Missing NFL market '+market);
-assert(html.includes('nfl_game_projections.js?v=20261025-integrated-232'),'Integrated NFL game projections missing');
+assert(html.includes('nfl_game_projections.js?v=20261025-placement-233'),'Integrated NFL game projections missing');
 const gameProjections=fs.readFileSync('nfl_game_projections.js','utf8');new vm.Script(gameProjections,{filename:'nfl_game_projections.js'});
 for(const label of ['Moneyline','Spread','Game Total','Team Total','1st quarter','4th quarter','1st half','2nd half','10000'])assert(gameProjections.includes(label),'Missing projection market or simulator '+label);
+assert(gameProjections.includes('MutationObserver'),'Async projection panel must receive game projections');
+assert(!gameProjections.includes('else root.before(section)'),'Game projections must not render outside player projection panel');
 console.log('PASS main NFL page, scripts and position/market integrity');
