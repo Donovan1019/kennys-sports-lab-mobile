@@ -25,6 +25,7 @@ def parse(source):
     columns=set(reader.fieldnames or [])
     name_column=next((x for x in ("player_display_name","player_name") if x in columns),None)
     team_column=next((x for x in ("recent_team","team") if x in columns),None)
+    position_column=next((x for x in ("position","position_group") if x in columns),None)
     if not name_column or not team_column:
         raise ValueError("Missing player name/team column: "+str(sorted(columns)))
     if not required.issubset(columns):
@@ -41,7 +42,7 @@ def parse(source):
         except (ValueError,TypeError,KeyError):
             continue
         if not r.get("player_id") or not r.get(name_column) or not values:continue
-        rows.append({"id":r["player_id"],"name":r[name_column],"team":r[team_column],"season":year,"week":week,"season_type":r["season_type"],"values":values})
+        rows.append({"id":r["player_id"],"name":r[name_column],"team":r[team_column],"position":str(r.get(position_column) or "").upper() if position_column else "","season":year,"week":week,"season_type":r["season_type"],"values":values})
     return rows
 
 def fetch(year):
@@ -64,9 +65,9 @@ def main():
             print(year,": unavailable:",type(exc).__name__,str(exc)[:350])
     if not combined:raise SystemExit("No verified records retrieved; existing snapshot preserved")
     combined.sort(key=lambda r:(r["season"],r["week"],r["season_type"]=="POST"))
-    players=defaultdict(lambda:{"name":"","team":"","games":[]})
+    players=defaultdict(lambda:{"name":"","team":"","position":"","games":[]})
     for row in combined:
-        p=players[row["id"]];p["name"]=row["name"];p["team"]=row["team"]
+        p=players[row["id"]];p["name"]=row["name"];p["team"]=row["team"];p["position"]=row["position"] or p["position"]
         p["games"].append({"season":row["season"],"week":row["week"],"season_type":row["season_type"],"values":row["values"]})
     output={"source":"nflverse-stats-player-week","source_url":"https://github.com/nflverse/nflverse-data/releases/tag/stats_player","fetched_at":datetime.now(timezone.utc).isoformat(),"seasons":list(SEASONS),"unavailable_seasons":failures,"players":[{"id":pid,**p} for pid,p in sorted(players.items())]}
     path=Path("feed/nfl_player_stats.json");path.parent.mkdir(exist_ok=True)
