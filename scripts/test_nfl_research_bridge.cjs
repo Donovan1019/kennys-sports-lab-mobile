@@ -15,5 +15,7 @@ try{
  r=run(bridge,[base],output);assert.equal(r.status,0,r.stderr);assert.equal(JSON.parse(fs.readFileSync(output)).length,1);
  r=run(bridge,[{...base,source_repository:'unknown'}],output);assert.notEqual(r.status,0,'unknown source must fail');
  r=run(bridge,[{...base,forecast_at:'2026-10-25T18:00:00Z'}],output);assert.notEqual(r.status,0,'post-kickoff forecast must fail');
- console.log('PASS: 10 audit and research-bridge safety checks');
+ r=run(bridge,[{...base,quoted_at:'2026-10-25T16:30:00Z'}],output);assert.notEqual(r.status,0,'future sportsbook quote must fail');
+ r=run(bridge,[{...base,graded_at:'2026-10-25T16:00:00Z'}],output);assert.notEqual(r.status,0,'pre-kickoff grading must fail');
+ console.log('PASS: 12 audit and research-bridge safety checks');
 }finally{fs.rmSync(dir,{recursive:true,force:true})}
