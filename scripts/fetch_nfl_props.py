@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""Opt-in, capped NFL event-level player-prop snapshot. Never runs on a timer.
-Requires explicit MAX_EVENTS (1-3); API usage varies by bookmaker/market/event.
+"""Capped NFL event-level player-prop snapshot; scheduled and manual runs.
+MAX_EVENTS caps per-event requests; API credits vary by market and bookmaker.
 """
 import json, os, sys, urllib.parse, urllib.request, urllib.error
 from datetime import datetime, timezone
@@ -36,6 +36,17 @@ def extract(event, data):
                 })
     return rows
 
+def eligible_events(events, now):
+    """Only valid future kickoffs; fail closed on malformed or naive timestamps."""
+    upcoming=[]
+    for e in events:
+        if not all(e.get(k) for k in ("id","commence_time","away_team","home_team")):continue
+        try:
+            kickoff=datetime.fromisoformat(e["commence_time"].replace("Z","+00:00"))
+            if kickoff.tzinfo is not None and kickoff>now:upcoming.append(e)
+        except (ValueError,TypeError,AttributeError):pass
+    return sorted(upcoming,key=lambda e:e["commence_time"])
+
 def main():
     key=os.environ.get("THE_ODDS_API_KEY")
     if not key:print("Missing secret");return 2
@@ -48,14 +59,8 @@ def main():
     try:
         events,remaining=request_json(BASE+"/events?"+query({"apiKey":key}))
         if not isinstance(events,list):raise ValueError("Unexpected events response")
-        events=sorted((e for e in events if e.get("id") and e.get("commence_time") and e.get("away_team") and e.get("home_team")),key=lambda e:e["commence_time"])
         now=datetime.now(timezone.utc)
-        upcoming=[]
-        for e in events:
-            try:
-                kickoff=datetime.fromisoformat(e["commence_time"].replace("Z","+00:00"))
-                if kickoff>now:upcoming.append(e)
-            except (ValueError,TypeError):pass
+        upcoming=eligible_events(events,now)
         print("Provider events",len(events),"eligible future events",len(upcoming))
         events=upcoming
         target_date=os.environ.get("TARGET_DATE")
