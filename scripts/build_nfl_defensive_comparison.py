@@ -130,6 +130,8 @@ def build():
                 matchup[period][position]=sides
         events.append({'event_id':g['event_id'],'matchup_stats':matchup})
     if not histories:raise SystemExit('No valid boxscore history fetched; refusing to replace existing snapshot')
+    if errors:print('ESPN boxscore fetch errors:',len(errors),'of',len(completed))
+    if not any(stats[p] for games in histories.values() for _,stats in games for p in ('rb','wr','te')):raise SystemExit('No RB/WR/TE position-attributed boxscores; refusing misleading positional snapshot')
     if not any(e['matchup_stats']['season']['overall']['home'] or e['matchup_stats']['season']['overall']['away'] for e in events):raise SystemExit('No observed defensive samples: refusing empty snapshot')
     coverage={p:sum(bool(e['matchup_stats']['season'][p]['home'] or e['matchup_stats']['season'][p]['away']) for e in events) for p in ('overall','qb','rb','wr','te')}
     print('Observed positional coverage:',coverage)
