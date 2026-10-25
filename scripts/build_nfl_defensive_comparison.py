@@ -20,13 +20,13 @@ def athlete_position(person, athlete, category):
             return candidate.strip().lower()
     return ''
 
-def parse_box(payload):
+def parse_box(payload, team_rosters=None):
     """Return team keyed observed offensive stats from ESPN boxscore."""
     box=payload.get('boxscore') or {}
     out={}
     # ESPN summary often omits position from statistical rows but supplies it in rosters.
     # Join by stable athlete ID; names and statistical category are not safe identifiers.
-    roster_positions={}
+    roster_positions=dict(team_rosters or {})
     for roster in (payload.get('rosters') or []) + (box.get('rosters') or []):
         for entry in (roster.get('roster') or roster.get('athletes') or []):
             person=entry.get('athlete') or entry
@@ -97,6 +97,25 @@ def validate_box(box):
 
 def season_of(dt):
     return dt.year-(1 if dt.month<2 else 0)
+def fetch_team_roster(team_id, year):
+    """Resolve positions from ESPN season-specific team roster using stable athlete IDs."""
+    url=f'https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/{team_id}/roster?season={year}'
+    req=urllib.request.Request(url,headers={'User-Agent':'KennysSportsLab/1.0'})
+    with urllib.request.urlopen(req,timeout=18) as response: data=json.load(response)
+    positions={}
+    def visit(value):
+        if isinstance(value,list):
+            for item in value:visit(item)
+        elif isinstance(value,dict):
+            athlete=value.get('athlete') if isinstance(value.get('athlete'),dict) else value
+            athlete_id=athlete.get('id')
+            pos=athlete_position(athlete,value,'')
+            if athlete_id and pos:positions[str(athlete_id)]=pos
+            for key in ('athletes','items','roster'):
+                if key in value:visit(value[key])
+    visit(data)
+    return positions
+
 def build():
     completed=json.loads((ROOT/'feed/nfl_completed_games.json').read_text())['games']
     odds=json.loads((ROOT/'feed/americanfootball_nfl.json').read_text())['odds']
@@ -105,7 +124,7 @@ def build():
         if o.get('event_id') and o.get('event') and o.get('commence_time'):
             parts=o['event'].split(' @ ')
             if len(parts)==2:upcoming[o['event_id']]={'event_id':o['event_id'],'away':parts[0],'home':parts[1],'time':o['commence_time']}
-    histories={};errors=[];calls=0
+    histories={};errors=[];calls=0;roster_cache={};roster_errors=0
     for game in completed:
         date=datetime.fromisoformat(game['date'].replace('Z','+00:00'))
         if season_of(date) not in (2025,2026):continue
@@ -115,7 +134,16 @@ def build():
             req=urllib.request.Request(BASE+str(eid),headers={'User-Agent':'KennysSportsLab/1.0'})
             with urllib.request.urlopen(req,timeout=18) as response:payload=json.load(response)
             calls+=1
-            offensive=parse_box(payload)
+            team_rosters={}
+            for side in (payload.get('boxscore') or {}).get('players') or []:
+                team_id=(side.get('team') or {}).get('id')
+                if not team_id:continue
+                key=(str(team_id),season_of(date))
+                if key not in roster_cache:
+                    try:roster_cache[key]=fetch_team_roster(*key)
+                    except Exception:roster_cache[key]={};roster_errors+=1
+                team_rosters.update(roster_cache[key])
+            offensive=parse_box(payload,team_rosters)
             validate_box(offensive)
             for defense,offense in ((game['home'],game['away']),(game['away'],game['home'])):
                 stats=offensive.get(offense)
@@ -148,6 +176,7 @@ def build():
         events.append({'event_id':g['event_id'],'matchup_stats':matchup})
     if not histories:raise SystemExit('No valid boxscore history fetched; refusing to replace existing snapshot')
     if errors:print('ESPN boxscore fetch errors:',len(errors),'of',len(completed))
+    print('ESPN team-season rosters:',len(roster_cache),'roster fetch errors:',roster_errors,'position IDs:',sum(map(len,roster_cache.values())))
     if not any(stats[p] for games in histories.values() for _,stats in games for p in ('rb','wr','te')):raise SystemExit('No RB/WR/TE position-attributed boxscores; refusing misleading positional snapshot')
     if not any(e['matchup_stats']['season']['overall']['home'] or e['matchup_stats']['season']['overall']['away'] for e in events):raise SystemExit('No observed defensive samples: refusing empty snapshot')
     coverage={p:sum(bool(e['matchup_stats']['season'][p]['home'] or e['matchup_stats']['season'][p]['away']) for e in events) for p in ('overall','qb','rb','wr','te')}
