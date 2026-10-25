@@ -1,0 +1,46 @@
+name: Archive NFL Pregame Prop Forecasts
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'feed/nfl_prop_forecast_inbox.json'
+      - 'scripts/archive_nfl_prop_forecasts.cjs'
+      - '.github/workflows/archive-nfl-prop-forecasts.yml'
+permissions:
+  contents: write
+concurrency:
+  group: nfl-prop-forecast-archive
+  cancel-in-progress: false
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate archive implementation
+        run: node scripts/test_nfl_prop_archive.cjs
+      - name: Archive only supplied genuine pregame forecasts
+        shell: bash
+        run: |
+          if [ ! -f feed/nfl_prop_forecast_inbox.json ]; then
+            echo "No pregame forecast export supplied; no records created."
+            exit 0
+          fi
+          node scripts/archive_nfl_prop_forecasts.cjs feed/nfl_prop_forecast_inbox.json
+      - name: Commit immutable archive
+        shell: bash
+        run: |
+          if [ ! -f feed/nfl_prop_forecast_ledger.json ]; then exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add feed/nfl_prop_forecast_ledger.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Archive verified pregame NFL player prop predictions'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
