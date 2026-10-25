@@ -16,7 +16,7 @@ const validOdds=o=>Number.isInteger(o)&&(o>=100||o<=-100);
 const implied=o=>o>0?100/(o+100):-o/(-o+100);
 const mean=a=>a.reduce((s,x)=>s+x,0)/a.length;
 const market={};
-const errors=[];const seen=new Set();
+const errors=[];const seen=new Set();const firstSelection=new Map();
 for(const [i,r] of rows.entries()){
  const key=[r.event_id,r.player,r.market,r.line,r.quoted_at,r.forecast_at].join('|');
  if(seen.has(key)){errors.push('duplicate snapshot '+i);continue}seen.add(key);
@@ -26,21 +26,25 @@ for(const [i,r] of rows.entries()){
  const po=implied(r.over_odds),pu=implied(r.under_odds);
  if(!(po>0&&po<1&&pu>0&&pu<1&&po+pu>1)){errors.push('invalid prices '+i);continue}
  const p0=po/(po+pu),p=r.model_probability,y=Number(r.outcome>r.line);
- (market[r.market]??=[]).push({p,p0,y,r});
+ const selectionKey=[r.event_id,r.player,r.market,r.line].join('|');
+ const previous=firstSelection.get(selectionKey);
+ if(!previous||date(r.forecast_at)<date(previous.r.forecast_at))firstSelection.set(selectionKey,{p,p0,y,r});
 }
+for(const item of firstSelection.values())(market[item.r.market]??=[]).push(item);
 if(errors.length){console.error(JSON.stringify({status:'FAIL_DATA_INTEGRITY',errors:errors.slice(0,30),count:errors.length},null,2));process.exit(1)}
-const report={status:'NOT_BET_ELIGIBLE',markets:{},notes:['Market skill requires genuine timestamped two-way sportsbook quotes and independently archived pregame forecasts.','No probabilities or sportsbook prices are inferred from results.','Positive retrospective ROI alone is not proof of future profitability.']};
+const report={status:'NOT_BET_ELIGIBLE',markets:{},snapshot_deduplication:'earliest archived pregame forecast per event/player/market/line',holdout_grouping:'chronological event IDs; all selections from a game remain together',notes:['Market skill requires genuine timestamped two-way sportsbook quotes and independently archived pregame forecasts.','No probabilities or sportsbook prices are inferred from results.','Positive retrospective ROI alone is not proof of future profitability.']};
 for(const [name,a] of Object.entries(market)){
  const n=a.length,brier=mean(a.map(x=>(x.p-x.y)**2)),base=mean(a.map(x=>(x.p0-x.y)**2));
  const eps=1e-12,logloss=mean(a.map(x=>-x.y*Math.log(Math.max(eps,x.p))-(1-x.y)*Math.log(Math.max(eps,1-x.p))));
  const ece=Array.from({length:10},(_,i)=>a.filter(x=>Math.min(9,Math.floor(x.p*10))===i)).filter(x=>x.length).reduce((s,g)=>s+g.length/n*Math.abs(mean(g.map(x=>x.p))-mean(g.map(x=>x.y))),0);
  const sorted=a.slice().sort((x,y)=>date(x.r.kickoff)-date(y.r.kickoff));
- const eventDates=[...new Set(sorted.map(x=>date(x.r.kickoff)))].sort((a,b)=>a-b);
- const cutoff=eventDates[Math.floor(eventDates.length*.8)];
- const hold=sorted.filter(x=>date(x.r.kickoff)>=cutoff);
+ const events=new Map();for(const x of sorted){const id=x.r.event_id;const kickoff=date(x.r.kickoff);if(!events.has(id)||kickoff<events.get(id))events.set(id,kickoff)}
+ const eventOrder=[...events].sort((a,b)=>a[1]-b[1]||a[0].localeCompare(b[0]));
+ const holdoutIds=new Set(eventOrder.slice(Math.floor(eventOrder.length*.8)).map(x=>x[0]));
+ const hold=sorted.filter(x=>holdoutIds.has(x.r.event_id));
  const distinctHoldoutEvents=new Set(hold.map(x=>x.r.event_id)).size;
  const holdBrier=hold.length?mean(hold.map(x=>(x.p-x.y)**2)):null;
  const holdBase=hold.length?mean(hold.map(x=>(x.p0-x.y)**2)):null;
- report.markets[name]={n,brier,market_brier:base,brier_skill:base>0?1-brier/base:null,log_loss:logloss,ece,holdout_n:hold.length,holdout_events:distinctHoldoutEvents,minimum_evidence_met:n>=200&&distinctHoldoutEvents>=30&&eventDates.length>=40,holdout_brier:holdBrier,holdout_market_brier:holdBase,holdout_skill:holdBase>0?1-holdBrier/holdBase:null,eligible:false};
+ report.markets[name]={n,brier,market_brier:base,brier_skill:base>0?1-brier/base:null,log_loss:logloss,ece,holdout_n:hold.length,holdout_events:distinctHoldoutEvents,unique_events:eventOrder.length,minimum_evidence_met:n>=200&&distinctHoldoutEvents>=30&&eventOrder.length>=40,holdout_brier:holdBrier,holdout_market_brier:holdBase,holdout_skill:holdBase>0?1-holdBrier/holdBase:null,eligible:false};
 }
 console.log(JSON.stringify(report,null,2));
