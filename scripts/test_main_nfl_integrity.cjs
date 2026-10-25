@@ -36,4 +36,11 @@ assert(projections.includes('const quoteFor=p=>matchingQuotes(p)'),'Projection p
 assert(projections.includes('const bookQuote=(p,book)=>matchingQuotes(p)'),'Book display must use strict quote matcher');
 assert(projections.includes("if(sport==='NFL')return 'Calibration pending'"),'NFL Gaussian edge must be suppressed');
 assert(projections.includes('residuals:errors.slice(0,20)'),'NFL simulation must use walk-forward forecast residuals');
+// Pre-kickoff validation guards: a scored game must never contribute to its own forecast.
+assert(projections.includes('const older=data.slice(i+1,i+11).map(x=>x.value)'), 'Walk-forward fold must use strictly older observations');
+assert(projections.includes('errors.push(data[i].value-pred)'), 'Residuals must retain actual-minus-forecast sign');
+assert(projections.includes('const n=10000,draws=[]'), 'Simulator must preserve 10,000 draws');
+assert(projections.includes("if(sport==='NFL')return 'Calibration pending'"), 'Uncalibrated NFL probabilities must remain unpublished');
+assert(projections.includes("'NOT BET ELIGIBLE'" ) || projections.includes('NOT BET ELIGIBLE'), 'Uncalibrated projections must stay blocked from betting');
+
 console.log('PASS main NFL page, scripts and position/market integrity');
