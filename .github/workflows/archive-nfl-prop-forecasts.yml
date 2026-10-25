@@ -7,6 +7,7 @@ on:
       - 'feed/nfl_prop_forecast_inbox.json'
       - 'scripts/archive_nfl_prop_forecasts.cjs'
       - 'scripts/grade_nfl_prop_forecasts.cjs'
+      - 'scripts/test_nfl_prop_grader.cjs'
       - 'feed/nfl_prop_verified_outcomes.json'
       - '.github/workflows/archive-nfl-prop-forecasts.yml'
 permissions:
@@ -26,6 +27,8 @@ jobs:
           node-version: '22'
       - name: Validate archive implementation
         run: node scripts/test_nfl_prop_archive.cjs
+      - name: Test independent NFL prop outcome grader
+        run: node scripts/test_nfl_prop_grader.cjs
       - name: Archive only supplied genuine pregame forecasts
         shell: bash
         run: |
