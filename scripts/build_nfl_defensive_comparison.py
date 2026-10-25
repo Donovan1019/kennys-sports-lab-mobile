@@ -24,6 +24,16 @@ def parse_box(payload):
     """Return team keyed observed offensive stats from ESPN boxscore."""
     box=payload.get('boxscore') or {}
     out={}
+    # ESPN summary often omits position from statistical rows but supplies it in rosters.
+    # Join by stable athlete ID; names and statistical category are not safe identifiers.
+    roster_positions={}
+    for roster in box.get('rosters') or []:
+        for entry in roster.get('roster') or []:
+            person=entry.get('athlete') or entry
+            athlete_id=person.get('id')
+            position=athlete_position(person,entry,'')
+            if athlete_id and position:
+                roster_positions[str(athlete_id)]=position
     for side in box.get('players') or []:
         team=(side.get('team') or {}).get('displayName')
         if not team:continue
@@ -37,7 +47,7 @@ def parse_box(payload):
             for athlete in category.get('athletes') or []:
                 raw=athlete.get('stats') or []
                 person=athlete.get('athlete') or {}
-                position=athlete_position(person,athlete,name)
+                position=athlete_position(person,athlete,name) or roster_positions.get(str(person.get('id') or athlete.get('id') or ''),'')
                 # Do not infer QB from passing category: RB/WR trick plays exist.
                 if name=='receiving' and position not in ('qb','rb','wr','te'):
                     # Position unknown: retain accurate team-wide receiving totals only.
