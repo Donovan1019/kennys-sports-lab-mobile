@@ -8,5 +8,5 @@ for(const path of ['three_sport_stats.js','three_sport_player_projections.js']){
  assert(src.includes('nflRoles'),'Missing NFL position/market allowlist: '+path);
  assert(src.includes("String(p.position||'').toUpperCase()"),'Missing position validation: '+path);
 }
-assert(html.includes('20261025-native-cards'),'NFL main cache version not bumped');
+assert(html.includes('three_sport_player_projections.js?v=20261025-native-cards-220'),'NFL main cache version not bumped');
 console.log('PASS main NFL page, scripts and position/market integrity');
