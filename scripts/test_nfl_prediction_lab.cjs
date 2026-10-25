@@ -22,6 +22,8 @@ assert(engine.includes("roles[x]?.includes"),'Prediction markets must enforce pl
 assert(engine.includes("const unique=new Set"),'Top 5 must deduplicate markets');
 assert(advanced.includes("roleMarkets["),'Research markets must enforce player position');
 assert(engine.includes("selected!=='overall'"),'Position tabs must filter predictions');
+assert(engine.includes('for(const x of cached.evaluated)x.fresh=fresh(x.o,g)'),'Cached NFL picks must recheck sportsbook freshness before display');
+assert(engine.includes('kick>Date.now()&&t<kick'),'Expired or started games must not qualify as fresh');
 assert(engine.includes('!x.fresh')&&engine.includes('x.ev<=0'),'Top 5 must reject stale quotes and nonpositive estimated EV');
 assert(engine.includes('NO BET')&&engine.includes('RESEARCH ONLY'),'No-quote fallback must not impersonate betting recommendations');
 assert(engine.includes('!\u005b\u0027QB\u0027,\u0027RB\u0027,\u0027WR\u0027,\u0027TE\u0027\u005d.includes')||engine.includes("!['QB','RB','WR','TE'].includes"),'Top 5 must require verified player position');
