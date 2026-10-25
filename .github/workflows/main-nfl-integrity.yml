@@ -1,0 +1,27 @@
+name: Main NFL Page Integrity
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'nfl.html'
+      - 'three_sport_stats.js'
+      - 'three_sport_player_projections.js'
+      - 'scripts/test_main_nfl_integrity.cjs'
+  pull_request:
+    paths:
+      - 'nfl.html'
+      - 'three_sport_stats.js'
+      - 'three_sport_player_projections.js'
+      - 'scripts/test_main_nfl_integrity.cjs'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node scripts/test_main_nfl_integrity.cjs
