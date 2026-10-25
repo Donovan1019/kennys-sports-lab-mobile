@@ -1,0 +1,19 @@
+name: UFC Pinned Early Duration Benchmark
+on:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  pinned-benchmark:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run fail-closed benchmark with pinned source hashes
+        run: python -m scripts.ufc_early_duration_probability --expected-source-hashes backtests/manifests/ufc_early_duration_20261025.json --output backtests/reports/ufc_early_duration_pinned.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ufc-early-duration-pinned
+          path: backtests/reports/ufc_early_duration_pinned.json
