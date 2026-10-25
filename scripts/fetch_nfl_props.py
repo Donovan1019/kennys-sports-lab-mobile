@@ -4,6 +4,7 @@ Requires explicit MAX_EVENTS (1-3); API usage varies by bookmaker/market/event.
 """
 import json, os, sys, urllib.parse, urllib.request, urllib.error
 from datetime import datetime, timezone
+from zoneinfo import ZoneInfo
 from pathlib import Path
 
 SPORT="americanfootball_nfl"
@@ -47,7 +48,13 @@ def main():
     try:
         events,remaining=request_json(BASE+"/events?"+query({"apiKey":key}))
         if not isinstance(events,list):raise ValueError("Unexpected events response")
-        events=sorted((e for e in events if e.get("id") and e.get("commence_time") and e.get("away_team") and e.get("home_team")),key=lambda e:e["commence_time"])[:limit]
+        events=sorted((e for e in events if e.get("id") and e.get("commence_time") and e.get("away_team") and e.get("home_team")),key=lambda e:e["commence_time"])
+        target_date=os.environ.get("TARGET_DATE")
+        if target_date:
+            datetime.strptime(target_date,"%Y-%m-%d")
+            events=[e for e in events if datetime.fromisoformat(e["commence_time"].replace("Z","+00:00")).astimezone(ZoneInfo("America/New_York")).date().isoformat()==target_date]
+            print("Filtering NFL slate to Eastern date",target_date,"events",len(events))
+        events=events[:limit]
         if not events:print("No upcoming events; no snapshot overwritten");return 1
         rows=[];errors=[]
         for event in events:
