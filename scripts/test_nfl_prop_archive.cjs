@@ -16,5 +16,10 @@ try{
  for(const [label,change] of [['conflict',{model_probability:.65}],['future forecast',{forecast_at:iso(now+120000)}],['postkickoff',{kickoff:iso(now-1000)}],['future quote',{quoted_at:iso(now)}],['stale quote',{quoted_at:iso(now-8*3600000)}],['bad odds',{over_odds:-95}],['unknown market',{market:'unknown'}],['no vig',{over_odds:110,under_odds:110}],['unknown provenance',{source_repository:'unknown'}]]){
   const out=run([{...base,...change}]);assert.notEqual(out.status,0,label+' must be rejected');
  }
- console.log('PASS: NFL prop immutable pregame archive and 9 rejection cases');
+ const past={...base,forecast_id:'past-1',forecast_at:'2026-10-01T14:00:00Z',quoted_at:'2026-10-01T13:55:00Z',kickoff:'2026-10-01T17:00:00Z'};
+ const archivePath=path.join(dir,'feed','nfl_prop_forecast_ledger.json');
+ const saved=JSON.parse(fs.readFileSync(archivePath,'utf8'));saved.forecasts.push(past);fs.writeFileSync(archivePath,JSON.stringify(saved));
+ assert.equal(run([past]).status,0,'exact replay of archived past kickoff forecast must pass');
+ assert.notEqual(run([{...past,model_probability:.71}]).status,0,'changed past kickoff forecast must fail');
+ console.log('PASS: NFL prop immutable archive, past-kickoff replay and rejection cases');
 }finally{fs.rmSync(dir,{recursive:true,force:true})}
