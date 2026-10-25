@@ -4,6 +4,7 @@ Requires explicit MAX_EVENTS (1-3); API usage varies by bookmaker/market/event.
 """
 import json, os, sys, urllib.parse, urllib.request, urllib.error
 from datetime import datetime, timezone
+from zoneinfo import ZoneInfo
 from pathlib import Path
 
 SPORT="americanfootball_nfl"
@@ -40,14 +41,20 @@ def main():
     if not key:print("Missing secret");return 2
     try:limit=int(os.environ.get("MAX_EVENTS","0"))
     except ValueError:return 2
-    if not 1<=limit<=3:
-        print("Choose MAX_EVENTS between 1 and 3 explicitly; no requests made");return 2
+    if not 1<=limit<=20:
+        print("Choose MAX_EVENTS between 1 and 20 explicitly; no requests made");return 2
     query=lambda d:urllib.parse.urlencode(d)
     common={"apiKey":key,"bookmakers":",".join(BOOKS),"oddsFormat":"american"}
     try:
         events,remaining=request_json(BASE+"/events?"+query({"apiKey":key}))
         if not isinstance(events,list):raise ValueError("Unexpected events response")
-        events=sorted((e for e in events if e.get("id") and e.get("commence_time") and e.get("away_team") and e.get("home_team")),key=lambda e:e["commence_time"])[:limit]
+        events=sorted((e for e in events if e.get("id") and e.get("commence_time") and e.get("away_team") and e.get("home_team")),key=lambda e:e["commence_time"])
+        target_date=os.environ.get("TARGET_DATE")
+        if target_date:
+            datetime.strptime(target_date,"%Y-%m-%d")
+            events=[e for e in events if datetime.fromisoformat(e["commence_time"].replace("Z","+00:00")).astimezone(ZoneInfo("America/New_York")).date().isoformat()==target_date]
+            print("Target date",target_date,"games",len(events))
+        events=events[:limit]
         if not events:print("No upcoming events; no snapshot overwritten");return 1
         rows=[];errors=[]
         for event in events:
