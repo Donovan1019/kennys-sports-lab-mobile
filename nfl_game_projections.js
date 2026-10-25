@@ -12,7 +12,7 @@ section.append(market,period,matchup);
 const status=document.createElement('p');const output=document.createElement('div');section.append(status,output);
 const playerBox=Array.from(document.querySelectorAll('section')).find(x=>x.querySelector('h2')?.textContent?.includes('Player Projections'));if(playerBox)playerBox.append(section);else root.before(section);
 let games=[],quotes=[];const clean=x=>String(x||'').toLowerCase().replace(/[^a-z0-9]/g,'');
-const isRegular=x=>{const d=new Date(x.date);return Number.isFinite(d.getTime())&&d.getUTCMonth()!==7&&d.getUTCMonth()!==8&&d.getTime()<Date.now()};
+const isRegular=x=>{const d=new Date(x.date);return Number.isFinite(d.getTime())&&d.getUTCMonth()!==7&&d.getTime()<Date.now()};
 const history=t=>(t?.score_history||[]).filter(x=>isRegular(x)&&Number.isFinite(Number(x.scored))&&Number.isFinite(Number(x.allowed))).slice(0,12);
 const mean=x=>x.reduce((a,b)=>a+b,0)/x.length;
 const seedRand=key=>{let state=Array.from(key).reduce((h,c)=>(Math.imul(h,1664525)+c.charCodeAt(0)+1013904223)>>>0,2166136261)||1;return()=>{state=(Math.imul(state,1664525)+1013904223)>>>0;return (state+.5)/4294967296}};
