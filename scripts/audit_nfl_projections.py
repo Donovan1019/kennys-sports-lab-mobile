@@ -215,12 +215,67 @@ def chronological_conformal_audit(payload):
                            "Historical outcomes alone cannot validate sportsbook edge"],
             "markets":results}
 
+
+def independent_baseline_challenge(payload):
+    """Paired, prior-game-only forecast benchmark; descriptive, no automatic promotion.
+
+    Compares the existing 5/10/17 blend with the simple prior-10 mean on
+    identical 2026 player-games. A lower error is necessary, not sufficient,
+    for deployment: no sportsbook lines, independent tuning set, or odds here.
+    """
+    paired=defaultdict(list)
+    for player in payload.get("players",[]):
+        role=str(player.get("position","")).upper()
+        games=sorted((g for g in player.get("games",[]) if g.get("season") is not None
+                      and g.get("week") is not None and g.get("season_type") in ("REG","POST")),
+                     key=lambda g:(int(g["season"]),int(g["week"]),g["season_type"]=="POST"))
+        for market,key in MARKETS.items():
+            if role not in ROLES[market]:continue
+            observed=[]
+            for game in games:
+                try:value=float(game.get("values",{})[key])
+                except (KeyError,TypeError,ValueError):continue
+                if math.isfinite(value) and value>=0:observed.append((game,value))
+            for idx in range(10,len(observed)):
+                game,actual=observed[idx]
+                if int(game["season"])!=2026 or game.get("season_type")!="REG":continue
+                prior=[v for _,v in reversed(observed[:idx])]
+                original=predict(prior)
+                challenger=statistics.mean(prior[:10])
+                paired[market].append((int(game["week"]),abs(original-actual),abs(challenger-actual)))
+    result={}
+    for market in MARKETS:
+        rows=paired[market]
+        n=len(rows)
+        if not n:
+            result[market]={"samples":0,"status":"INSUFFICIENT_DATA","promote":False}
+            continue
+        original_mae=statistics.mean(r[1] for r in rows)
+        challenger_mae=statistics.mean(r[2] for r in rows)
+        early=[r for r in rows if r[0]<=4]
+        late=[r for r in rows if r[0]>=5]
+        result[market]={
+            "samples":n,
+            "original_mae":round(original_mae,4),
+            "simple_last10_mae":round(challenger_mae,4),
+            "early_samples":len(early),"late_samples":len(late),
+            "late_original_mae":round(statistics.mean(r[1] for r in late),4) if late else None,
+            "late_simple_last10_mae":round(statistics.mean(r[2] for r in late),4) if late else None,
+            "status":"CHALLENGER_LOWER_MAE_RESEARCH_ONLY" if challenger_mae<original_mae else "KEEP_EXISTING_BASELINE",
+            "promote":False}
+    return {"method":"paired historical player-games; no outcome used in its own forecast",
+            "markets":result,"betting_ready":False,
+            "limitations":["Same 2026 evaluation period is not independent model selection",
+                           "No verified sportsbook price, player availability, or ROI",
+                           "Do not promote solely on retrospective MAE"]}
+
 def main():
     path=Path(sys.argv[1] if len(sys.argv)>1 else "feed/nfl_player_stats.json")
     report=Path(sys.argv[2] if len(sys.argv)>2 else "reports/nfl_projection_audit.json")
     payload=json.loads(path.read_text(encoding="utf-8"))
     result=audit(payload)
     result["usage_candidate_comparison"]=compare(payload)
+    result["independent_baseline_challenge"]=independent_baseline_challenge(payload)
     result["simulation_80pct_coverage"]=coverage_audit(payload)
     result["chronological_conformal_80pct"]=chronological_conformal_audit(payload)
     coverage=result["simulation_80pct_coverage"]
