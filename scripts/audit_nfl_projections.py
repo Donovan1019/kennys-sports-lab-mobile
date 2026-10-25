@@ -137,8 +137,8 @@ def coverage_audit(payload):
                 prior10=history[:10]
                 mean10=statistics.mean(prior10)
                 outcomes=sorted(max(0,center+v-mean10) for v in prior10)
-                lower=outcomes[0] # nearest-rank p10 of 10 observations
-                upper=outcomes[8] # nearest-rank p90 of 10 observations
+                lower=outcomes[0] # empirical 10th percentile for 10 samples
+                upper=outcomes[8] # empirical 90th percentile for 10 samples
                 rows[market].append((lower<=actual<=upper,upper-lower,actual))
     report={}
     for market in MARKETS:
