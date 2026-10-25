@@ -18,7 +18,7 @@ const mean=a=>a.reduce((s,x)=>s+x,0)/a.length;
 const market={};
 const errors=[];const seen=new Set();const firstSelection=new Map();
 const validSelection=x=>x==='Over'||x==='Under';
-const validMarket=x=>['player_pass_yds','player_rush_yds','player_reception_yds','player_receptions','player_pass_tds','player_rush_tds','player_anytime_td','player_rec_tds'].includes(x);
+const validMarket=x=>['player_pass_yds','player_rush_yds','player_reception_yds','player_receptions','player_pass_tds','player_rush_tds','player_anytime_td','player_rec_tds','Passing Yards','Rushing Yards','Receiving Yards','Receptions','Passing Touchdowns','Rushing Touchdowns','Receiving Touchdowns','Anytime Touchdown'].includes(x);
 for(const [i,r] of rows.entries()){
  const key=[r.event_id,r.player,r.market,r.line,r.quoted_at,r.forecast_at].join('|');
  if(seen.has(key)){errors.push('duplicate snapshot '+i);continue}seen.add(key);
