@@ -11,10 +11,11 @@ if(!fs.existsSync(ledgerPath)||!fs.existsSync(outcomesPath)){
  console.log(JSON.stringify({status:'AWAITING_VERIFIED_INPUTS',ledger:fs.existsSync(ledgerPath),outcomes:fs.existsSync(outcomesPath),betting_ready:false}));process.exit(0);
 }
 const forecasts=read(ledgerPath).forecasts,outcomes=read(outcomesPath);
+const sourceAllowed=s=>typeof s==='string'&&/^https:\/\//.test(s);
 if(!Array.isArray(forecasts)||!Array.isArray(outcomes)){console.error('Invalid archive or outcome format');process.exit(1)}
 const index=new Map(),conflicts=new Set();
 for(const o of outcomes){
- if(!o.event_id||!o.player||!o.market||!Number.isFinite(o.outcome)||!o.source||!o.verified_at||!Number.isFinite(Date.parse(o.verified_at))){console.error('Unverified outcome row');process.exit(1)}
+ if(!o.event_id||!o.player||!o.market||!Number.isFinite(o.outcome)||!sourceAllowed(o.source)||!o.verified_at||!Number.isFinite(Date.parse(o.verified_at))){console.error('Unverified outcome row');process.exit(1)}
  const key=[o.event_id,o.player,o.market].join('|'),old=index.get(key);
  if(old&&JSON.stringify(old)!==JSON.stringify(o))conflicts.add(key);
  else if(!old)index.set(key,o);
