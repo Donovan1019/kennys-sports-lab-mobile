@@ -15,6 +15,8 @@ class DurationUncertaintyTests(unittest.TestCase):
   self.assertGreaterEqual(r["empirical_coverage"],0)
   self.assertLessEqual(r["empirical_coverage"],1)
   self.assertFalse(r["production_promotion_allowed"])
+  self.assertTrue(r["coverage_by_predicted_duration_uses_only_forecast"])
+  self.assertEqual(sum(v["fights"] for v in r["coverage_by_predicted_duration"].values()),r["evaluated_fights"])
  def test_reject_bad_parameters(self):
   with self.assertRaises(ValueError):evaluate(self.records(),min_residuals=0)
 if __name__=="__main__":unittest.main()
