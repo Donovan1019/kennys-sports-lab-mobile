@@ -8,5 +8,10 @@ for(const path of ['three_sport_stats.js','three_sport_player_projections.js']){
  assert(src.includes('nflRoles'),'Missing NFL position/market allowlist: '+path);
  assert(src.includes("String(p.position||'').toUpperCase()"),'Missing position validation: '+path);
 }
-assert(html.includes('three_sport_player_projections.js?v=20261025-native-cards-220'),'NFL main cache version not bumped');
+assert(html.includes('three_sport_player_projections.js?v=20261025-projection-audit-224'),'NFL main cache version not bumped');
+const projections=fs.readFileSync('three_sport_player_projections.js','utf8');
+assert(projections.includes("sport==='NFL'?{factor:1,verified:false}:opponentFactor(game,p.team)"),'NFL scoring-based projection inflation must remain disabled');
+assert(projections.includes("sport==='NFL'?0.25*avg(recent)"),'NFL projection must use conservative history blend');
+assert(projections.includes('Number(data[0].season)!==2026'),'Must reject NFL players with stale last-season game histories');
+assert(projections.includes('a.every((t,i)=>teamMatch(t,b[i])'),'Must match sportsbook events with canonical team aliases');
 console.log('PASS main NFL page, scripts and position/market integrity');
