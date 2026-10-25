@@ -50,17 +50,30 @@ def evaluate(records,train_fraction=.8,min_prior=3,min_residuals=30):
         residuals.extend(updates)
         for _,_,a,b,actual in batch:
             history[a].append(actual);history[b].append(actual)
+    def summarize(items):
+        count=len(items)
+        if not count:return {"fights":0,"coverage":None,"mean_half_width_seconds":None,"mean_absolute_error_seconds":None}
+        return {"fights":count,"coverage":sum(abs(p-y)<=w for _,p,y,w in items)/count,
+          "mean_half_width_seconds":sum(w for _,p,y,w in items)/count,
+          "mean_absolute_error_seconds":sum(abs(p-y) for _,p,y,w in items)/count}
+    duration_bins={"under_5_minutes":[],"5_to_10_minutes":[],"10_to_15_minutes":[],"15_minutes_plus":[]}
+    for item in holdout:
+        forecast=item[1]
+        label="under_5_minutes" if forecast<300 else "5_to_10_minutes" if forecast<600 else "10_to_15_minutes" if forecast<900 else "15_minutes_plus"
+        duration_bins[label].append(item)
     n=len(holdout)
     covered=sum(abs(p-y)<=w for _,p,y,w in holdout)
     return {"schema":1,"holdout_start_date":cutoff,"evaluated_fights":n,
       "target_nominal_coverage":.8,
+      "coverage_by_predicted_duration":{name:summarize(items) for name,items in duration_bins.items()},
+      "coverage_by_predicted_duration_uses_only_forecast":True,
       "empirical_coverage":covered/n if n else None,
       "mean_half_width_seconds":sum(w for _,p,y,w in holdout)/n if n else None,
       "mean_absolute_error_seconds":sum(abs(p-y) for _,p,y,w in holdout)/n if n else None,
       "excluded":dict(excluded),"interval_method":"expanding earlier-date absolute-residual empirical 80th percentile",
       "point_in_time_certified":False,"calibrated":False,"bet_eligible":False,
       "production_promotion_allowed":False,
-      "limitations":"Research diagnostic; retrospective capture, no PIT verification. Empirical coverage is not guaranteed calibration; no fight-format source semantics assumed."}
+      "limitations":"Research diagnostic; retrospective capture, no PIT verification. Coverage bins use only predicted duration, not realized outcome; small bins can be unstable. Empirical coverage is not guaranteed calibration; no fight-format source semantics assumed."}
 def main():
     p=argparse.ArgumentParser();p.add_argument("--output",type=Path,required=True);a=p.parse_args()
     cross,_=fetch(BASE+"id_crosswalk_all.csv");wide,_=fetch(BASE+"ufc_all_fights_wide.csv")
