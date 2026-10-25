@@ -4,12 +4,12 @@
 An early finish is a duration outcome, not a verified method-of-victory label.
 Same-day histories are isolated; no sportsbook or betting eligibility.
 """
-import argparse,json
+import argparse,hashlib,json
 from collections import defaultdict
 from pathlib import Path
 from scripts.ufc_native_fight_join import BASE,fetch,join
 
-def evaluate(records,train_fraction=.8,min_prior=3):
+def evaluate(records,train_fraction=.8,min_prior=3,source_hashes=None):
     if not 0<train_fraction<1 or min_prior<1:raise ValueError("invalid parameters")
     fights=[]
     for record in records:
@@ -23,6 +23,8 @@ def evaluate(records,train_fraction=.8,min_prior=3):
     fights.sort()
     if len(fights)<10:raise ValueError("insufficient fights")
     cutoff=fights[int(len(fights)*train_fraction)][0]
+    eligible_ids=sorted(fid for day,fid,a,b,duration in fights if day>=cutoff)
+    holdout_fight_id_sha256=hashlib.sha256("\\n".join(eligible_ids).encode()).hexdigest()
     if cutoff==fights[0][0]:raise ValueError("no training period")
     history=defaultdict(list);population=[];outcomes=[];excluded=defaultdict(int)
     for day in sorted({f[0] for f in fights}):
@@ -62,6 +64,10 @@ def evaluate(records,train_fraction=.8,min_prior=3):
     base=metrics(0);candidate=metrics(1);shrunk=metrics(3)
     return {"schema":1,"holdout_start_date":cutoff,"evaluated_fights":n,
       "target":"bout_duration_strictly_under_300_seconds",
+      "source_sha256":source_hashes or {},"joined_eligible_fights":len(fights),
+      "holdout_date_scoped_fights":len(eligible_ids),
+      "holdout_fight_ids_sha256":holdout_fight_id_sha256,
+      "split_fraction":train_fraction,"minimum_prior_fights":min_prior,
       "baseline_population_prior":base,"candidate_fighter_prior":candidate,
       "calibration_bins":{"population_prior":calibration(0),"fighter_prior":calibration(1),"shrunk_fighter_prior":calibration(3)},
       "calibration_bins_diagnostic_only":True,
@@ -76,10 +82,10 @@ def evaluate(records,train_fraction=.8,min_prior=3):
       "limitations":"Early-duration outcome is not independently verified finish method. Retrospective provenance not PIT certified; no confidence calibration, odds, or promotion."}
 def main():
     p=argparse.ArgumentParser();p.add_argument("--output",type=Path,required=True);args=p.parse_args()
-    cross,_=fetch(BASE+"id_crosswalk_all.csv");wide,_=fetch(BASE+"ufc_all_fights_wide.csv")
+    cross,cross_hash=fetch(BASE+"id_crosswalk_all.csv");wide,wide_hash=fetch(BASE+"ufc_all_fights_wide.csv")
     linked=join(cross,wide)
     if linked["status"]!="JOINED":raise SystemExit("join failed")
-    result=evaluate(linked["records"])
+    result=evaluate(linked["records"],source_hashes={"crosswalk":cross_hash,"wide":wide_hash})
     if not result["evaluated_fights"]:raise SystemExit("no holdout observations")
     args.output.parent.mkdir(parents=True,exist_ok=True)
     args.output.write_text(json.dumps(result,indent=2)+"\n")
