@@ -21,7 +21,7 @@ for(const [i,x] of incoming.entries()){
  }
  const at=Date.parse(x.forecast_at),start=Date.parse(x.kickoff),quote=Date.parse(x.quoted_at);
  if(!x.forecast_id||!x.event_id||!x.player||!validMarket(x.market)||!x.source_commit||!x.source_repository||!Number.isFinite(x.line)||!(x.model_probability>0&&x.model_probability<1)||!validOdds(x.over_odds)||!validOdds(x.under_odds)||implied(x.over_odds)+implied(x.under_odds)<=1||!Number.isFinite(at)||!Number.isFinite(start)||!Number.isFinite(quote)||at>now||at>=start||now>=start||quote>at||at-quote>21600000){errors.push('invalid pregame forecast '+i);continue}
- if(x.source_repository!=='Donovan1019/sports-model-foundation'){errors.push('unknown forecast provenance '+i);continue}
+ if(!['Donovan1019/sports-model-foundation','Donovan1019/kennys-sports-lab-mobile'].includes(x.source_repository)){errors.push('unknown forecast provenance '+i);continue}
  seen.set(x.forecast_id,x);
 }
 if(errors.length){console.error(JSON.stringify({status:'REJECTED',errors},null,2));process.exit(1)}
