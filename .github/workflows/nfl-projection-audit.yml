@@ -1,0 +1,31 @@
+name: NFL Projection Bias Audit
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/audit_nfl_projections.py'
+      - 'feed/nfl_player_stats.json'
+      - '.github/workflows/nfl-projection-audit.yml'
+  pull_request:
+    paths:
+      - 'scripts/audit_nfl_projections.py'
+      - '.github/workflows/nfl-projection-audit.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Walk-forward NFL baseline audit
+        run: python scripts/audit_nfl_projections.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nfl-projection-bias-audit
+          path: reports/nfl_projection_audit.json
+          if-no-files-found: warn
