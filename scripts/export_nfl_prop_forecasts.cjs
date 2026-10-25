@@ -37,7 +37,7 @@ for(const pair of books.values()){
  const probability=(values.filter(x=>x>over.point).length+1)/(values.length+2);
  const id=crypto.createHash('sha256').update([over.event_id,over.player,over.market,over.point,over.bookmaker,over.updated_at,under.updated_at].join('|')).digest('hex');
  if(archivedIds.has(id)){skip('already_archived');continue}
- output.push({forecast_id:id,event_id:over.event_id,player:over.player,market:over.market,line:over.point,model_probability:probability,over_odds:over.price,under_odds:under.price,quoted_at:new Date(Math.max(qt,ut)).toISOString(),forecast_at:new Date(now).toISOString(),kickoff:new Date(start).toISOString(),source_repository:'Donovan1019/kennys-sports-lab-mobile',source_commit:commit,bookmaker:over.bookmaker,model_version:'2025-prior-season-laplace-v1',research_only:true});
+ output.push({forecast_id:id,event_id:over.event_id,event:over.event,player:over.player,market:over.market,line:over.point,model_probability:probability,over_odds:over.price,under_odds:under.price,quoted_at:new Date(Math.max(qt,ut)).toISOString(),forecast_at:new Date(now).toISOString(),kickoff:new Date(start).toISOString(),source_repository:'Donovan1019/kennys-sports-lab-mobile',source_commit:commit,bookmaker:over.bookmaker,model_version:'2025-prior-season-laplace-v1',research_only:true});
 }
 if(output.length){fs.writeFileSync(dest,JSON.stringify(output,null,2)+'\n')}
 console.log(JSON.stringify({status:'RESEARCH_ONLY',created:output.length,rejected:reject,output:output.length?dest:null,betting_ready:false}));
