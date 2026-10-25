@@ -11,6 +11,15 @@ FIELDS=['pass_attempts_allowed','completions_allowed','passing_yards_allowed','p
 def number(v):
     try:return float(str(v).replace(',',''))
     except (TypeError,ValueError):return None
+def athlete_position(person, athlete, category):
+    """Resolve ESPN athlete position from boxscore or roster metadata; never guess."""
+    candidates=[person.get('position'),athlete.get('position'),person.get('positionAbbreviation'),athlete.get('positionAbbreviation')]
+    for candidate in candidates:
+        if isinstance(candidate,dict):candidate=candidate.get('abbreviation') or candidate.get('name')
+        if isinstance(candidate,str) and candidate.strip().lower() in ('qb','rb','wr','te'):
+            return candidate.strip().lower()
+    return ''
+
 def parse_box(payload):
     """Return team keyed observed offensive stats from ESPN boxscore."""
     box=payload.get('boxscore') or {}
@@ -28,10 +37,8 @@ def parse_box(payload):
             for athlete in category.get('athletes') or []:
                 raw=athlete.get('stats') or []
                 person=athlete.get('athlete') or {}
-                pos=person.get('position') or athlete.get('position') or {}
-                if not pos:pos=person.get('positionAbbreviation') or athlete.get('positionAbbreviation') or ''
-                position=str(pos.get('abbreviation') if isinstance(pos,dict) else pos or '').lower()
-                if name=='passing' and position not in ('qb','rb','wr','te'):position='qb'
+                position=athlete_position(person,athlete,name)
+                # Do not infer QB from passing category: RB/WR trick plays exist.
                 if name=='receiving' and position not in ('qb','rb','wr','te'):
                     # Position unknown: retain accurate team-wide receiving totals only.
                     position=''
