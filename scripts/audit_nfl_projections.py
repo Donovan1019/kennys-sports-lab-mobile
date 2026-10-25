@@ -153,6 +153,68 @@ def coverage_audit(payload):
                         "status":"REVIEW" if n<100 or not .75<=coverage<=.85 else "COVERAGE_CHECK_PASS"}
     return report
 
+def chronological_conformal_audit(payload):
+    """Split 2026 chronologically; fit corrections on weeks <=4, test on >=5.
+
+    Finite-sample split-conformal intervals target marginal 80% coverage only
+    under exchangeability, which cannot be assumed for changing NFL roles.
+    No tested outcome enters its own calibration set.
+    """
+    observations=defaultdict(list)
+    for player in payload.get("players",[]):
+        role=str(player.get("position","")).upper()
+        games=sorted((g for g in player.get("games",[]) if g.get("season") is not None
+                      and g.get("week") is not None and g.get("season_type") in ("REG","POST")),
+                     key=lambda g:(int(g["season"]),int(g["week"]),g["season_type"]=="POST"))
+        for market,key in MARKETS.items():
+            if role not in ROLES[market]:continue
+            valid=[]
+            for g in games:
+                try:value=float(g.get("values",{})[key])
+                except (KeyError,ValueError,TypeError):continue
+                if math.isfinite(value) and value>=0:valid.append((g,value))
+            for idx in range(16,len(valid)):
+                game,actual=valid[idx]
+                if int(game["season"])!=2026 or game.get("season_type")!="REG":continue
+                previous=[v for _,v in reversed(valid[:idx])]
+                center=predict(previous)
+                last10=previous[:10]
+                average=statistics.mean(last10)
+                simulated=sorted(max(0,center+v-average) for v in last10)
+                observations[market].append((int(game["week"]),actual,simulated[0],simulated[8]))
+    results={}
+    for market in MARKETS:
+        training=[r for r in observations[market] if r[0]<=4]
+        testing=[r for r in observations[market] if r[0]>=5]
+        if len(training)<30 or len(testing)<30:
+            results[market]={"status":"INSUFFICIENT_DATA","calibration_samples":len(training),
+                             "test_samples":len(testing),"ready":False}
+            continue
+        # Standard split conformal nonconformity, with ceil((n+1)*(1-alpha)).
+        scores=sorted(max(low-y,y-high,0.0) for _,y,low,high in training)
+        rank=math.ceil((len(scores)+1)*.8)
+        correction=scores[rank-1] if rank<=len(scores) else math.inf
+        base_hits=[low<=y<=high for _,y,low,high in testing]
+        adjusted_hits=[max(0,low-correction)<=y<=high+correction
+                       for _,y,low,high in testing]
+        baseline=statistics.mean(base_hits)
+        calibrated=statistics.mean(adjusted_hits)
+        mean_width=statistics.mean(high-low+2*correction for _,_,low,high in testing)
+        # Review thresholds are diagnostics, not sufficient betting approval.
+        results[market]={"status":"COVERAGE_DIAGNOSTIC_PASS" if len(testing)>=100 and
+                         .75<=calibrated<=.90 else "REVIEW",
+                         "calibration_samples":len(training),"test_samples":len(testing),
+                         "baseline_test_coverage":round(baseline,4),
+                         "calibrated_test_coverage":round(calibrated,4),
+                         "conformal_adjustment_each_side":round(correction,3),
+                         "mean_calibrated_interval_width":round(mean_width,3),
+                         "target_coverage":.8,"ready":False}
+    return {"split":"2026 regular season weeks 1-4 calibration, weeks 5+ untouched test",
+            "limitations":["Marginal coverage is not conditional player or game calibration",
+                           "Nonstationary player usage can invalidate exchangeability",
+                           "Historical outcomes alone cannot validate sportsbook edge"],
+            "markets":results}
+
 def main():
     path=Path(sys.argv[1] if len(sys.argv)>1 else "feed/nfl_player_stats.json")
     report=Path(sys.argv[2] if len(sys.argv)>2 else "reports/nfl_projection_audit.json")
@@ -160,6 +222,7 @@ def main():
     result=audit(payload)
     result["usage_candidate_comparison"]=compare(payload)
     result["simulation_80pct_coverage"]=coverage_audit(payload)
+    result["chronological_conformal_80pct"]=chronological_conformal_audit(payload)
     coverage=result["simulation_80pct_coverage"]
     comparison=result["usage_candidate_comparison"]
     result["betting_readiness"]={
@@ -167,6 +230,7 @@ def main():
         "reason":"Unverified player roles/availability and sportsbook market matching; simulation calibration requires independently verified out-of-sample coverage",
         "markets":{market:{
             "simulation_coverage":coverage.get(market,{}).get("status","NOT_TESTED"),
+            "chronological_conformal":result["chronological_conformal_80pct"]["markets"].get(market,{}).get("status","NOT_TESTED"),
             "candidate_promoted":bool(comparison.get(market,{}).get("promote",False)),
             "ready":False
         } for market in MARKETS}
