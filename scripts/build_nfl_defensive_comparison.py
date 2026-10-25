@@ -67,6 +67,17 @@ def parse_box(payload):
                             for bucket in buckets:bucket[key]=bucket.get(key,0)+v
         out[team]=values
     return out
+def validate_box(box):
+    for team,positions in box.items():
+        overall=positions['overall']
+        for field in FIELDS:
+            value=overall.get(field)
+            if value is not None and (not isinstance(value,(int,float)) or value<0):raise ValueError(f'Invalid {team} {field}: {value}')
+        for position in ('qb','rb','wr','te'):
+            for field,value in positions[position].items():
+                if field not in FIELDS or not isinstance(value,(int,float)) or value<0:raise ValueError(f'Invalid {team} {position} {field}')
+                if value>overall.get(field,0)+0.01:raise ValueError(f'Position {position} {field} exceeds overall: {team}')
+
 def season_of(dt):
     return dt.year-(1 if dt.month<2 else 0)
 def build():
@@ -88,6 +99,7 @@ def build():
             with urllib.request.urlopen(req,timeout=18) as response:payload=json.load(response)
             calls+=1
             offensive=parse_box(payload)
+            validate_box(offensive)
             for defense,offense in ((game['home'],game['away']),(game['away'],game['home'])):
                 stats=offensive.get(offense)
                 if stats:histories.setdefault(defense,[]).append((date,stats))
