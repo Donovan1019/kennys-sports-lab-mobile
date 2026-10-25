@@ -19,5 +19,8 @@ try{
  fs.writeFileSync(outcomeFile,JSON.stringify([{...o,outcome:63}]));a=run();assert.notEqual(a.status,0,'changed grade must fail');
  fs.writeFileSync(outcomeFile,JSON.stringify([{...o,verified_at:'2026-10-20T15:00:00Z'}]));a=run();assert.notEqual(a.status,0,'premature grading must fail');
  fs.writeFileSync(outcomeFile,JSON.stringify([o,{...o,outcome:63}]));a=run();assert.notEqual(a.status,0,'conflicting duplicate outcomes must fail');
+ fs.writeFileSync(outcomeFile,JSON.stringify([{...o,source:'unverifiable source'}]));a=run();assert.notEqual(a.status,0,'outcome without traceable source URL must fail');
+ fs.writeFileSync(outcomeFile,JSON.stringify([{...o,event_id:'different-game'}]));a=run();assert.equal(a.status,0,'different event outcome must remain unmatched');
+ const afterUnmatched=JSON.parse(fs.readFileSync(path.join(dir,'feed','nfl_prop_graded_snapshots.json')));assert.equal(afterUnmatched.length,1,'unmatched outcomes must not create extra grades');
  console.log('PASS: exact NFL prop matching, idempotency and outcome integrity');
 }finally{fs.rmSync(dir,{recursive:true,force:true})}
