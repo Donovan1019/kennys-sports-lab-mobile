@@ -280,6 +280,24 @@ def main():
     result["chronological_conformal_80pct"]=chronological_conformal_audit(payload)
     coverage=result["simulation_80pct_coverage"]
     comparison=result["usage_candidate_comparison"]
+    # Surface the markets whose nominal 80% simulated intervals under-cover.
+    # These are not valid 80% probabilities until separately calibrated.
+    result["uncertainty_calibration_priorities"]={
+        "nominal_coverage":0.8,
+        "markets":sorted([
+            {"market":market,
+             "samples":details.get("samples",0),
+             "observed_coverage":details.get("observed_coverage"),
+             "coverage_shortfall":round(.8-details["observed_coverage"],4),
+             "priority":"HIGH" if details["observed_coverage"]<.7 else "REVIEW"}
+            for market,details in coverage.items()
+            if details.get("samples",0)>=50 and
+               isinstance(details.get("observed_coverage"),(int,float)) and
+               details["observed_coverage"]<.75
+        ],key=lambda x:x["coverage_shortfall"],reverse=True),
+        "action":"Block nominal 80% interval claims on undercovered markets; assess chronological conformal holdout before use",
+        "betting_ready":False
+    }
     result["betting_readiness"]={
         "status":"NOT_READY",
         "reason":"Unverified player roles/availability and sportsbook market matching; simulation calibration requires independently verified out-of-sample coverage",
