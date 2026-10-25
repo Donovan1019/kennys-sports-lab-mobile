@@ -28,7 +28,8 @@ jobs:
       - name: Fetch capped NFL player prop odds
         env:
           THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
-          MAX_EVENTS: ${{ inputs.max_events || '1' }}
+          MAX_EVENTS: ${{ inputs.max_events || '3' }}
+          TARGET_DATE: '2026-10-26'
         run: python scripts/fetch_nfl_props.py
       - name: Publish verified prop snapshot
         run: |
