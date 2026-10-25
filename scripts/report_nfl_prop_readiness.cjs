@@ -7,6 +7,8 @@ const exists=p=>fs.existsSync(path.join(root,p));
 const load=p=>JSON.parse(fs.readFileSync(path.join(root,p),'utf8'));
 const stats=exists('feed/nfl_player_stats.json')?load('feed/nfl_player_stats.json'):null;
 const props=exists('feed/nfl_props.json')?load('feed/nfl_props.json'):null;
+const forecastLedger='feed/nfl_prop_forecast_ledger.json';
+const forecastArchive=exists(forecastLedger)?load(forecastLedger):null;
 const archived='feed/nfl_prop_graded_snapshots.json';
 const rows=exists(archived)?load(archived):null;
 const validRows=Array.isArray(rows)?rows.length:0;
@@ -24,6 +26,8 @@ const report={
  sportsbook_market_types:distinctMarkets,
  sportsbook_quote_age_minutes:newestQuote?Math.round((Date.now()-Date.parse(newestQuote))/60000):null,
  sportsbook_quotes_fresh_within_6h:newestQuote?Date.now()-Date.parse(newestQuote)<=21600000:false,
+ archived_pregame_forecast_file_present:forecastArchive!==null,
+ archived_pregame_forecast_count:Array.isArray(forecastArchive?.forecasts)?forecastArchive.forecasts.length:0,
  archived_graded_prop_file_present:exists(archived),
  archived_graded_prop_rows:validRows,
  calibration_ready_for_execution:validRows>0,
