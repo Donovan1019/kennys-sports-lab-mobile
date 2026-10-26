@@ -35,9 +35,18 @@ class AuditTests(unittest.TestCase):
         games=[{"season":2025,"week":i+1,"season_type":"REG","values":{"Passing yards":100+i,"Pass Attempts":20}} for i in range(8)]
         result=audit({"source":"nflverse-stats-player-week","players":[{"position":"QB","games":games}]})
         market=result["markets"]["player_pass_yds"]
+        self.assertIn("chronological_rolling_brier",market)
+        self.assertIn("skill_vs_chronological_rolling",market)
         self.assertIn("constant_rate_brier_in_sample",market)
         self.assertIn("skill_vs_in_sample_constant",market)
         self.assertIn("look-ahead",result["baseline_warning"])
+    def test_chronological_baseline_no_future_leakage(self):
+        games=[{"season":2025,"week":i+1,"season_type":"REG","values":{"Passing yards":100+i*10,"Pass Attempts":20}} for i in range(9)]
+        data={"source":"nflverse-stats-player-week","players":[{"position":"QB","games":games}]}
+        first=audit(data)["markets"]["player_pass_yds"]["chronological_rolling_brier"]
+        games[-1]["values"]["Passing yards"]=0
+        second=audit(data)["markets"]["player_pass_yds"]["chronological_rolling_brier"]
+        self.assertNotEqual(first,second)
     def test_reject_unknown_feed(self):
         with self.assertRaises(ValueError):
             audit({"source":"unknown","players":[]})
