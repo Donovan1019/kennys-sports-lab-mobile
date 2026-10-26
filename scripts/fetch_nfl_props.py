@@ -75,7 +75,7 @@ def main():
         if retry_missing and coverage_path.exists():
             prior_coverage=json.loads(coverage_path.read_text())
             missing=set(prior_coverage.get("missing_event_ids",[]))
-            events=[e for e in events if e["id"] in missing]
+            events=[e for e in events if e["id"] in missing or e["id"] not in set(prior_coverage.get("captured_event_ids",[]))]
             print("Retry missing events",len(events))
         events=events[:limit]
         if not events:print("No upcoming events; no snapshot overwritten");return 1
