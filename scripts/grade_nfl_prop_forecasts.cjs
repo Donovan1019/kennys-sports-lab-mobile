@@ -25,18 +25,10 @@ for(const f of forecasts){
  const key=[f.event_id,f.player,f.market].join('|');
  if(conflicts.has(key)){console.error('Conflicting outcome for '+key);process.exit(1)}
  const o=index.get(key);
- if(!o){unmatched++;continue}
+ if(!o||o.outcome_verified!==true||!o.espn_event_id||!o.event){unmatched++;continue}
  if(Date.parse(o.verified_at)<Date.parse(f.kickoff)){console.error('Outcome verified before kickoff '+key);process.exit(1)}
- graded.push({...f,graded_at:o.verified_at,outcome:o.outcome});
+ graded.push({...f,graded_at:o.verified_at,outcome:o.outcome,event:o.event,espn_event_id:o.espn_event_id,outcome_verified:true,source:o.source});
 }
-const old=fs.existsSync(output)?read(output):[];
-if(!Array.isArray(old)){console.error('Invalid existing graded archive');process.exit(1)}
-const byId=new Map(old.map(x=>[x.forecast_id,x]));
-for(const g of graded){
- const prior=byId.get(g.forecast_id);
- if(prior&&JSON.stringify(prior)!==JSON.stringify(g)){console.error('Conflicting graded forecast '+g.forecast_id);process.exit(1)}
- byId.set(g.forecast_id,g);
-}
-fs.mkdirSync(path.dirname(output),{recursive:true});
-fs.writeFileSync(output,JSON.stringify([...byId.values()],null,2)+'\n');
-console.log(JSON.stringify({status:'RESEARCH_ONLY',newly_matched:graded.length,unmatched,graded_total:byId.size,betting_ready:false}));
+// Rebuild graded archive only from freshly reconciled independent results.\nfs.mkdirSync(path.dirname(output),{recursive:true});
+fs.writeFileSync(output,JSON.stringify(graded,null,2)+'\n');
+console.log(JSON.stringify({status:'RESEARCH_ONLY',newly_matched:graded.length,unmatched,graded_total:graded.length,betting_ready:false}));
