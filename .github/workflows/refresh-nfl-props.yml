@@ -46,6 +46,7 @@ jobs:
           THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
           MAX_EVENTS: ${{ inputs.max_events || '16' }}
           TARGET_DATE: ''
+          RETRY_MISSING_ONLY: '1'
         run: python scripts/fetch_nfl_props.py
       - name: Export and archive genuine pregame forecasts immediately after refresh
         shell: bash
