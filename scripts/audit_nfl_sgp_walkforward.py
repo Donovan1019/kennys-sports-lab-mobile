@@ -4,10 +4,12 @@ import json, math, sys
 from pathlib import Path
 
 KEYS={"player_pass_yds":("Passing yards",{"QB"}),"player_reception_yds":("Receiving yards",{"WR","TE","RB"}),"player_rush_yds":("Rushing yards",{"RB","QB","WR"}),"player_receptions":("Receptions",{"WR","TE","RB"})}
+OPPORTUNITY={"player_pass_yds":"Pass Attempts","player_reception_yds":"Targets","player_rush_yds":"Rush Attempts","player_receptions":"Targets"}
 def audit(data,min_train=5):
     if data.get("source")!="nflverse-stats-player-week" or not isinstance(data.get("players"),list):
         raise ValueError("Unverified NFL player stats feed")
     outcomes=[]
+    opportunity={"confirmed":0,"unverified":0,"zero_opportunity":0,"invalid":0}
     integrity={"missing_market_stat":0,"zero_market_stat":0,"negative_or_invalid":0,"position_excluded":0,"duplicate_player_weeks":0}
     for player in data["players"]:
         games=sorted((g for g in player.get("games",[]) if g.get("season_type")=="REG" and isinstance(g.get("season"),int) and isinstance(g.get("week"),int)),key=lambda g:(g["season"],g["week"]))
@@ -31,6 +33,17 @@ def audit(data,min_train=5):
                     integrity["negative_or_invalid"]+=1
                     continue
                 if value==0: integrity["zero_market_stat"]+=1
+                count=game.get("values",{}).get(OPPORTUNITY[market])
+                if count is None:
+                    opportunity["unverified"]+=1
+                    continue
+                if isinstance(count,bool) or not isinstance(count,(int,float)) or not math.isfinite(count) or count<0:
+                    opportunity["invalid"]+=1
+                    continue
+                if count==0:
+                    opportunity["zero_opportunity"]+=1
+                    continue
+                opportunity["confirmed"]+=1
                 if len(history)>=min_train:
                     threshold=sum(history[-5:])/5
                     probability=(sum(v>threshold for v in history[-5:])+1)/7
@@ -45,7 +58,7 @@ def audit(data,min_train=5):
             continue
         brier=sum((r["probability"]-r["outcome"])**2 for r in rows)/len(rows)
         by_market[market]={"status":"RESEARCH_ONLY","samples":len(rows),"brier":round(brier,6),"mean_predicted":round(sum(r["probability"] for r in rows)/len(rows),6),"observed_rate":round(sum(r["outcome"] for r in rows)/len(rows),6)}
-    return {"status":"RESEARCH_ONLY","integrity":integrity,"participation_status":"UNVERIFIED","method":"chronological five-observed-stat-game mean threshold and smoothed empirical frequency; position-filtered, includes recorded zeros; NOT sportsbook-line calibration","leakage_policy":"Each prediction uses only earlier games for the same player and market","total_samples":len(outcomes),"markets":by_market,"limitations":"Recorded zero production is retained, but missing weekly rows and missing participation cannot be classified without snaps/injury evidence. Synthetic thresholds, not posted odds or real SGP prices; no opponent, joint-correlation, or market EV validation"}
+    return {"status":"RESEARCH_ONLY","integrity":integrity,"opportunity":opportunity,"participation_status":"OPPORTUNITY_CONFIRMED_ONLY","method":"chronological five-opportunity-confirmed-game mean threshold and smoothed empirical frequency; position-filtered, retains zero outcomes when attempts/targets/carries > 0; NOT sportsbook-line calibration","leakage_policy":"Each prediction uses only earlier games for the same player and market","total_samples":len(outcomes),"markets":by_market,"limitations":"Opportunity-confirmed samples condition on observed attempts, targets or carries and exclude games with zero opportunity; this introduces post-game selection bias and is NOT a pregame hit probability. Snaps, routes, injury status and missing weekly rows are unverified. Synthetic thresholds, not posted odds or real SGP prices; no opponent, joint-correlation, or market EV validation"}
 if __name__=="__main__":
     src=Path(sys.argv[1] if len(sys.argv)>1 else "feed/nfl_player_stats.json")
     report=audit(json.loads(src.read_text()))
