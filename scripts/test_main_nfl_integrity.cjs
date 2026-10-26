@@ -26,9 +26,10 @@ const gameProjections=fs.readFileSync('nfl_game_projections.js','utf8');new vm.S
 for(const label of ['Moneyline','Spread','Game Total','Team Total','1st quarter','4th quarter','1st half','2nd half','10000'])assert(gameProjections.includes(label),'Missing projection market or simulator '+label);
 assert(gameProjections.includes('MutationObserver'),'Async projection panel must receive game projections');
 assert(!gameProjections.includes('else root.before(section)'),'Game projections must not render outside player projection panel');
-assert(html.includes('nfl_module_nav.js?v=20261025-nav-234'),'NFL module navigation missing');
+assert(/nfl_module_nav\.js\?v=[^"']+/.test(html),'NFL module navigation missing');
+assert(html.includes('id="nfl-full-results"'),'Full results section must be on NFL main page');
 const moduleNav=fs.readFileSync('nfl_module_nav.js','utf8');new vm.Script(moduleNav,{filename:'nfl_module_nav.js'});
-for(const id of ['nfl-player-projections','nfl-game-projections','ksl-stat-root','ksl-research-root'])assert(moduleNav.includes(id),'Missing NFL module navigation destination '+id);
+for(const id of ['nfl-player-projections','nfl-game-projections','ksl-stat-root','ksl-research-root','nfl-full-results'])assert(moduleNav.includes(id),'Missing NFL module navigation destination '+id);
 assert(gameProjections.includes('insertBefore(section,playerMarket)'),'Game projections must appear before player market dropdown inside projection panel');
 assert(projections.includes('NOT BET ELIGIBLE'),'Uncalibrated NFL projections must not be labeled betting ready');
 assert(projections.includes('const matchingQuotes='),'One shared sportsbook matcher required');
