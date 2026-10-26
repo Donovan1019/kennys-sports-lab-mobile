@@ -89,6 +89,20 @@ jobs:
           done
           if ! git diff --cached --quiet; then
             git commit -m 'Archive verified pregame NFL player prop predictions'
-            git pull --rebase origin main
-            git push origin HEAD:main
+            # Generated files are authoritative outputs of this run. Preserve them
+            # across unrelated concurrent commits without a fragile text rebase.
+            mkdir -p /tmp/ksl-nfl-archive
+            cp feed/nfl_prop_forecast_ledger.json feed/nfl_prop_graded_snapshots.json feed/nfl_prop_verified_outcomes.json /tmp/ksl-nfl-archive/
+            for attempt in 1 2 3; do
+              git fetch origin main
+              git reset --hard origin/main
+              cp /tmp/ksl-nfl-archive/* feed/
+              git add feed/nfl_prop_forecast_ledger.json feed/nfl_prop_graded_snapshots.json feed/nfl_prop_verified_outcomes.json
+              if git diff --cached --quiet; then exit 0; fi
+              git commit -m 'Reconcile verified NFL player prop grades and opponents'
+              if git push origin HEAD:main; then exit 0; fi
+              sleep 2
+            done
+            echo 'Failed to publish reconciled NFL outcomes after 3 attempts' >&2
+            exit 1
           fi
