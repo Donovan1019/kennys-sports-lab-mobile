@@ -1,0 +1,19 @@
+name: Audit NFL Full Slate October 25
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Audit independently recorded pregame forecasts against ESPN final games
+        run: python scripts/audit_nfl_full_slate_20261025.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nfl-full-slate-20261025-audit
+          path: feed/nfl_full_slate_20261025_audit.json
