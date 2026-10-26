@@ -18,6 +18,7 @@ def audit(data,min_train=5):
                 integrity["position_excluded"]+=len(games)
                 continue
             history=[]
+            past_outcomes=[]
             seen=set()
             for game in games:
                 game_key=(game["season"],game["week"])
@@ -48,7 +49,10 @@ def audit(data,min_train=5):
                     threshold=sum(history[-5:])/5
                     probability=(sum(v>threshold for v in history[-5:])+1)/7
                     outcome=int(value>threshold)
-                    outcomes.append({"market":market,"season":game["season"],"week":game["week"],"probability":probability,"outcome":outcome})
+                    # Only prior scored events inform the rolling benchmark; never this outcome.
+                    baseline=(sum(past_outcomes[-10:])+1)/(len(past_outcomes[-10:])+2)
+                    outcomes.append({"market":market,"season":game["season"],"week":game["week"],"probability":probability,"rolling_baseline":baseline,"outcome":outcome})
+                    past_outcomes.append(outcome)
                 history.append(value)
     by_market={}
     for market in KEYS:
@@ -57,11 +61,13 @@ def audit(data,min_train=5):
             by_market[market]={"status":"INSUFFICIENT_DATA","samples":0}
             continue
         brier=sum((r["probability"]-r["outcome"])**2 for r in rows)/len(rows)
+        rolling_brier=sum((r["rolling_baseline"]-r["outcome"])**2 for r in rows)/len(rows)
+        rolling_skill=1-brier/rolling_brier if rolling_brier>0 else None
         observed=sum(r["outcome"] for r in rows)/len(rows)
         constant_brier=observed*(1-observed)
         skill=1-brier/constant_brier if constant_brier>0 else None
-        by_market[market]={"status":"RESEARCH_ONLY","samples":len(rows),"brier":round(brier,6),"constant_rate_brier_in_sample":round(constant_brier,6),"skill_vs_in_sample_constant":round(skill,6) if skill is not None else None,"mean_predicted":round(sum(r["probability"] for r in rows)/len(rows),6),"observed_rate":round(observed,6)}
-    return {"status":"RESEARCH_ONLY","integrity":integrity,"opportunity":opportunity,"participation_status":"OPPORTUNITY_CONFIRMED_ONLY","baseline_warning":"Constant-rate benchmark uses full evaluation outcomes (in-sample, look-ahead); diagnostic only, not a valid deployable baseline","method":"chronological five-opportunity-confirmed-game mean threshold and smoothed empirical frequency; position-filtered, retains zero outcomes when attempts/targets/carries > 0; NOT sportsbook-line calibration","leakage_policy":"Each prediction uses only earlier games for the same player and market","total_samples":len(outcomes),"markets":by_market,"limitations":"Opportunity-confirmed samples condition on observed attempts, targets or carries and exclude games with zero opportunity; this introduces post-game selection bias and is NOT a pregame hit probability. Snaps, routes, injury status and missing weekly rows are unverified. Synthetic thresholds, not posted odds or real SGP prices; no opponent, joint-correlation, or market EV validation"}
+        by_market[market]={"status":"RESEARCH_ONLY","samples":len(rows),"brier":round(brier,6),"chronological_rolling_brier":round(rolling_brier,6),"skill_vs_chronological_rolling":round(rolling_skill,6) if rolling_skill is not None else None,"constant_rate_brier_in_sample":round(constant_brier,6),"skill_vs_in_sample_constant":round(skill,6) if skill is not None else None,"mean_predicted":round(sum(r["probability"] for r in rows)/len(rows),6),"observed_rate":round(observed,6)}
+    return {"status":"RESEARCH_ONLY","integrity":integrity,"opportunity":opportunity,"participation_status":"OPPORTUNITY_CONFIRMED_ONLY","baseline_warning":"Chronological rolling baseline uses only prior scored player-market outcomes (up to 10, Laplace-smoothed); constant-rate benchmark uses full evaluation outcomes (in-sample, look-ahead) and is diagnostic only. Both use postgame opportunity-conditioned samples and synthetic thresholds.","method":"chronological five-opportunity-confirmed-game mean threshold and smoothed empirical frequency; position-filtered, retains zero outcomes when attempts/targets/carries > 0; NOT sportsbook-line calibration","leakage_policy":"Each prediction uses only earlier games for the same player and market","total_samples":len(outcomes),"markets":by_market,"limitations":"Opportunity-confirmed samples condition on observed attempts, targets or carries and exclude games with zero opportunity; this introduces post-game selection bias and is NOT a pregame hit probability. Snaps, routes, injury status and missing weekly rows are unverified. Synthetic thresholds, not posted odds or real SGP prices; no opponent, joint-correlation, or market EV validation"}
 if __name__=="__main__":
     src=Path(sys.argv[1] if len(sys.argv)>1 else "feed/nfl_player_stats.json")
     report=audit(json.loads(src.read_text()))
