@@ -11,16 +11,16 @@ try{
  const outcomeFile=path.join(dir,'feed','nfl_prop_verified_outcomes.json');
  const run=()=>cp.spawnSync(process.execPath,[path.join(dir,'scripts','grade_nfl_prop_forecasts.cjs'),outcomeFile],{encoding:'utf8'});
  let a=run();assert.equal(a.status,0);assert.match(a.stdout,/AWAITING_VERIFIED_INPUTS/);
- const o={event_id:'event1',player:'Example Player',market:'Receiving Yards',outcome:64,verified_at:'2026-10-21T03:00:00Z',source:'https://example.com/verified-game-box-score'};
+ const o={outcome_verified:true,espn_event_id:'123456',event:'Away @ Home',event_id:'event1',player:'Example Player',market:'Receiving Yards',outcome:64,verified_at:'2026-10-21T03:00:00Z',source:'https://example.com/verified-game-box-score'};
  fs.writeFileSync(outcomeFile,JSON.stringify([o]));
  a=run();assert.equal(a.status,0,a.stderr);
  let graded=JSON.parse(fs.readFileSync(path.join(dir,'feed','nfl_prop_graded_snapshots.json')));assert.equal(graded.length,1);assert.equal(graded[0].outcome,64);
  a=run();assert.equal(a.status,0);graded=JSON.parse(fs.readFileSync(path.join(dir,'feed','nfl_prop_graded_snapshots.json')));assert.equal(graded.length,1);
- fs.writeFileSync(outcomeFile,JSON.stringify([{...o,outcome:63}]));a=run();assert.notEqual(a.status,0,'changed grade must fail');
+ fs.writeFileSync(outcomeFile,JSON.stringify([{...o,outcome:63}]));a=run();assert.equal(a.status,0,'corrected independent outcome must replace stale grade');
  fs.writeFileSync(outcomeFile,JSON.stringify([{...o,verified_at:'2026-10-20T15:00:00Z'}]));a=run();assert.notEqual(a.status,0,'premature grading must fail');
  fs.writeFileSync(outcomeFile,JSON.stringify([o,{...o,outcome:63}]));a=run();assert.notEqual(a.status,0,'conflicting duplicate outcomes must fail');
  fs.writeFileSync(outcomeFile,JSON.stringify([{...o,source:'unverifiable source'}]));a=run();assert.notEqual(a.status,0,'outcome without traceable source URL must fail');
  fs.writeFileSync(outcomeFile,JSON.stringify([{...o,event_id:'different-game'}]));a=run();assert.equal(a.status,0,'different event outcome must remain unmatched');
- const afterUnmatched=JSON.parse(fs.readFileSync(path.join(dir,'feed','nfl_prop_graded_snapshots.json')));assert.equal(afterUnmatched.length,1,'unmatched outcomes must not create extra grades');
+ const afterUnmatched=JSON.parse(fs.readFileSync(path.join(dir,'feed','nfl_prop_graded_snapshots.json')));assert.equal(afterUnmatched.length,0,'unmatched outcomes must remove stale grades');
  console.log('PASS: exact NFL prop matching, idempotency and outcome integrity');
 }finally{fs.rmSync(dir,{recursive:true,force:true})}
