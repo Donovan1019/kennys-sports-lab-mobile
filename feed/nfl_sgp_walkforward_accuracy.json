@@ -15,7 +15,8 @@
   },
   "participation_status": "OPPORTUNITY_CONFIRMED_ONLY",
   "bet_eligibility": "BLOCKED",
-  "calibration_status": "DIAGNOSTIC_ONLY",
+  "calibration_status": "PREQUENTIAL_RESEARCH_ONLY",
+  "calibration_warning": "Calendar-week prequential additive bias correction uses only previous weeks per market, with minimum 100 observations and shrinkage; diagnostic comparison, not sportsbook probability calibration.",
   "baseline_warning": "Chronological rolling baseline uses only prior scored player-market outcomes (up to 10, Laplace-smoothed); constant-rate benchmark uses full evaluation outcomes (in-sample, look-ahead) and is diagnostic only. Both use postgame opportunity-conditioned samples and synthetic thresholds.",
   "method": "chronological five-opportunity-confirmed-game mean threshold and smoothed empirical frequency; position-filtered, retains zero outcomes when attempts/targets/carries > 0; NOT sportsbook-line calibration",
   "leakage_policy": "Each prediction uses only earlier games for the same player and market",
@@ -25,6 +26,9 @@
       "status": "RESEARCH_ONLY",
       "samples": 460,
       "brier": 0.25102,
+      "prequential_calibrated_brier": 0.251893,
+      "prequential_calibrated_ece": 0.05183,
+      "prequential_calibration_samples": 352,
       "reliability_bins": [
         {
           "lower": 0.2,
@@ -67,6 +71,9 @@
       "status": "RESEARCH_ONLY",
       "samples": 3481,
       "brier": 0.252754,
+      "prequential_calibrated_brier": 0.25185,
+      "prequential_calibrated_ece": 0.074075,
+      "prequential_calibration_samples": 3276,
       "reliability_bins": [
         {
           "lower": 0.2,
@@ -109,6 +116,9 @@
       "status": "RESEARCH_ONLY",
       "samples": 1490,
       "brier": 0.250185,
+      "prequential_calibrated_brier": 0.249585,
+      "prequential_calibrated_ece": 0.06751,
+      "prequential_calibration_samples": 1354,
       "reliability_bins": [
         {
           "lower": 0.2,
@@ -151,6 +161,9 @@
       "status": "RESEARCH_ONLY",
       "samples": 3481,
       "brier": 0.24933,
+      "prequential_calibrated_brier": 0.249035,
+      "prequential_calibrated_ece": 0.061404,
+      "prequential_calibration_samples": 3276,
       "reliability_bins": [
         {
           "lower": 0.1,
