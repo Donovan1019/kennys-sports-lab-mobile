@@ -84,7 +84,7 @@ def main():
                 errors.append({"event_id":event["id"],"error":type(exc).__name__})
                 print("Event unavailable",event["id"],type(exc).__name__)
         coverage={"generated_at":datetime.now(timezone.utc).isoformat(),"target_date":target_date or None,"expected_upcoming_events":expected,"requested_events":len(events),"captured_event_ids":captured,"captured_events":len(captured),"missing_event_ids":[e["id"] for e in events if e["id"] not in captured],"unrequested_events":max(0,expected-len(events)),"complete":len(captured)==expected and not errors,"errors":errors,"status":"COMPLETE" if len(captured)==expected and not errors else "PARTIAL"}
-        Path("feed/nfl_prop_capture_coverage.json").write_text(json.dumps(coverage,indent=2)+"\\n")
+        Path("feed/nfl_prop_capture_coverage.json").write_text(json.dumps(coverage,indent=2)+"\n")
         print("CAPTURE_COVERAGE",json.dumps(coverage))
         if not rows:print("No verified prop prices returned; old feed preserved");return 1
         output={"source":"the-odds-api-v4-event-props","sport":SPORT,
