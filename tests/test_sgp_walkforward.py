@@ -31,6 +31,13 @@ class AuditTests(unittest.TestCase):
         result=audit({"source":"nflverse-stats-player-week","players":[{"position":"QB","games":games}]})
         self.assertEqual(result["total_samples"],0)
         self.assertEqual(result["opportunity"]["unverified"],8)
+    def test_baseline_diagnostic(self):
+        games=[{"season":2025,"week":i+1,"season_type":"REG","values":{"Passing yards":100+i,"Pass Attempts":20}} for i in range(8)]
+        result=audit({"source":"nflverse-stats-player-week","players":[{"position":"QB","games":games}]})
+        market=result["markets"]["player_pass_yds"]
+        self.assertIn("constant_rate_brier_in_sample",market)
+        self.assertIn("skill_vs_in_sample_constant",market)
+        self.assertIn("look-ahead",result["baseline_warning"])
     def test_reject_unknown_feed(self):
         with self.assertRaises(ValueError):
             audit({"source":"unknown","players":[]})
