@@ -35,9 +35,11 @@ for(const pair of books.values()){
  if(values.length<8){skip('insufficient_prior_season_games');continue}
  // No game or injury verification: explicitly RESEARCH ONLY.
  const probability=(values.filter(x=>x>over.point).length+1)/(values.length+2);
+ const latest=player.games.filter(g=>g.season===2025&&g.season_type==='REG').length;
+ if(latest<8){skip('player_history_unverified');continue}
  const id=crypto.createHash('sha256').update([over.event_id,over.player,over.market,over.point,over.bookmaker,over.updated_at,under.updated_at].join('|')).digest('hex');
  if(archivedIds.has(id)){skip('already_archived');continue}
- output.push({forecast_id:id,event_id:over.event_id,event:over.event,player:over.player,market:over.market,line:over.point,model_probability:probability,over_odds:over.price,under_odds:under.price,quoted_at:new Date(Math.max(qt,ut)).toISOString(),forecast_at:new Date(now).toISOString(),kickoff:new Date(start).toISOString(),source_repository:'Donovan1019/kennys-sports-lab-mobile',source_commit:commit,bookmaker:over.bookmaker,model_version:'2025-prior-season-laplace-v1',research_only:true});
+ output.push({forecast_id:id,event_id:over.event_id,event:over.event,player:over.player,market:over.market,line:over.point,model_probability:probability,over_odds:over.price,under_odds:under.price,quoted_at:new Date(Math.max(qt,ut)).toISOString(),forecast_at:new Date(now).toISOString(),kickoff:new Date(start).toISOString(),source_repository:'Donovan1019/kennys-sports-lab-mobile',source_commit:commit,bookmaker:over.bookmaker,model_version:'2025-prior-season-laplace-v1',research_only:true,betting_eligible:false,eligibility_reason:'2026 active roster, injuries and game role not independently verified',quote_age_seconds:Math.floor((now-Math.min(qt,ut))/1000),source_games:values.length});
 }
 if(output.length){fs.writeFileSync(dest,JSON.stringify(output,null,2)+'\n')}
 console.log(JSON.stringify({status:'RESEARCH_ONLY',created:output.length,rejected:reject,output:output.length?dest:null,betting_ready:false}));
