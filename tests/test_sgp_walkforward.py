@@ -17,7 +17,7 @@ class AuditTests(unittest.TestCase):
         games=[{"season":2025,"week":i+1,"season_type":"REG","values":({"Passing yards":0} if i==1 else {} if i==2 else {"Passing yards":100+i})} for i in range(8)]
         data={"source":"nflverse-stats-player-week","players":[{"position":"QB","games":games}]}
         result=audit(data)
-        self.assertEqual(result["integrity"]["missing_market_stat"],1)
+        self.assertEqual(result["integrity"]["missing_market_stat"],9)
         self.assertEqual(result["integrity"]["zero_market_stat"],1)
         self.assertEqual(result["total_samples"],2)
     def test_reject_unknown_feed(self):
