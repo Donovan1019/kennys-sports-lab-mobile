@@ -1,5 +1,58 @@
 {
   "status": "RESEARCH_ONLY",
+  "frozen_forward_holdout": {
+    "development_season": 2025,
+    "holdout_seasons": [
+      2026
+    ],
+    "markets": {
+      "player_pass_yds": {
+        "status": "FAILED_DUAL_METRIC_GATE",
+        "development_samples": 272,
+        "holdout_samples": 188,
+        "frozen_adjustment": -0.021792,
+        "raw_brier": 0.243161,
+        "frozen_brier": 0.245358,
+        "raw_ece": 0.044073,
+        "frozen_ece": 0.063778,
+        "eligible_for_live_use": false
+      },
+      "player_reception_yds": {
+        "status": "FAILED_DUAL_METRIC_GATE",
+        "development_samples": 2164,
+        "holdout_samples": 1317,
+        "frozen_adjustment": -0.029913,
+        "raw_brier": 0.253033,
+        "frozen_brier": 0.252001,
+        "raw_ece": 0.070832,
+        "frozen_ece": 0.080255,
+        "eligible_for_live_use": false
+      },
+      "player_rush_yds": {
+        "status": "BOTH_METRICS_IMPROVED",
+        "development_samples": 906,
+        "holdout_samples": 584,
+        "frozen_adjustment": -0.022475,
+        "raw_brier": 0.253425,
+        "frozen_brier": 0.251929,
+        "raw_ece": 0.083659,
+        "frozen_ece": 0.067329,
+        "eligible_for_live_use": false
+      },
+      "player_receptions": {
+        "status": "FAILED_DUAL_METRIC_GATE",
+        "development_samples": 2164,
+        "holdout_samples": 1317,
+        "frozen_adjustment": -0.030396,
+        "raw_brier": 0.25012,
+        "frozen_brier": 0.250721,
+        "raw_ece": 0.06107,
+        "frozen_ece": 0.059348,
+        "eligible_for_live_use": false
+      }
+    },
+    "warning": "Later-season holdout was not used to fit frozen adjustment; existing research choices may have been informed by prior full-period results, so this is not a pristine untouched holdout."
+  },
   "integrity": {
     "missing_market_stat": 0,
     "zero_market_stat": 8069,
