@@ -72,6 +72,36 @@ def audit(data,min_train=5):
             r["calibration_training_samples"]=len(prior)
         for r in by_week[week]:
             prior_by_market[r["market"]].append(r)
+    # Frozen forward holdout: first available season is development, later seasons
+    # are evaluation. Fit one market bias on development only, never refit on holdout.
+    seasons=sorted(set(r["season"] for r in outcomes))
+    development_season=seasons[0] if len(seasons)>=2 else None
+    holdout_seasons=seasons[1:] if len(seasons)>=2 else []
+    frozen_holdout={}
+    for market in KEYS:
+        dev=[r for r in outcomes if r["market"]==market and r["season"]==development_season]
+        test=[r for r in outcomes if r["market"]==market and r["season"] in holdout_seasons]
+        if len(dev)<100 or len(test)<30:
+            frozen_holdout[market]={"status":"INSUFFICIENT_INDEPENDENT_HOLDOUT","development_samples":len(dev),"holdout_samples":len(test),"eligible_for_live_use":False}
+            continue
+        bias=sum(r["outcome"]-r["probability"] for r in dev)/len(dev)
+        adjustment=bias*len(dev)/(len(dev)+200)
+        frozen=[dict(r, frozen_probability=max(0.01,min(0.99,r["probability"]+adjustment))) for r in test]
+        raw_brier=sum((r["probability"]-r["outcome"])**2 for r in frozen)/len(frozen)
+        frozen_brier=sum((r["frozen_probability"]-r["outcome"])**2 for r in frozen)/len(frozen)
+        def ece_of(key):
+            error=0.0
+            for i in range(10):
+                selected=[r for r in frozen if i/10<=r[key]<(i+1)/10 or (i==9 and r[key]==1)]
+                if selected:
+                    error+=len(selected)/len(frozen)*abs(sum(r[key] for r in selected)/len(selected)-sum(r["outcome"] for r in selected)/len(selected))
+            return error
+        raw_ece=ece_of("probability")
+        frozen_ece=ece_of("frozen_probability")
+        frozen_holdout[market]={"status":"BOTH_METRICS_IMPROVED" if frozen_brier<raw_brier and frozen_ece<raw_ece else "FAILED_DUAL_METRIC_GATE",
+            "development_samples":len(dev),"holdout_samples":len(test),"frozen_adjustment":round(adjustment,6),
+            "raw_brier":round(raw_brier,6),"frozen_brier":round(frozen_brier,6),
+            "raw_ece":round(raw_ece,6),"frozen_ece":round(frozen_ece,6),"eligible_for_live_use":False}
     by_market={}
     for market in KEYS:
         rows=[r for r in outcomes if r["market"]==market]
@@ -109,7 +139,7 @@ def audit(data,min_train=5):
               "eligible_for_live_use":False,
               "reason":"Both diagnostic metrics improved; independent future holdout still required" if brier_improved and ece_improved else "Calibration worsened or tied at least one diagnostic metric"}
         by_market[market]={"status":"RESEARCH_ONLY","samples":len(rows),"brier":round(brier,6),"calibration_acceptance_gate":gate,"prequential_calibrated_brier":round(calibrated_brier,6),"prequential_calibrated_ece":round(calibrated_ece,6),"prequential_calibration_samples":sum(r["calibration_training_samples"]>=100 for r in rows),"reliability_bins":bins,"expected_calibration_error":round(ece,6),"chronological_rolling_brier":round(rolling_brier,6),"skill_vs_chronological_rolling":round(rolling_skill,6) if rolling_skill is not None else None,"constant_rate_brier_in_sample":round(constant_brier,6),"skill_vs_in_sample_constant":round(skill,6) if skill is not None else None,"mean_predicted":round(sum(r["probability"] for r in rows)/len(rows),6),"observed_rate":round(observed,6)}
-    return {"status":"RESEARCH_ONLY","integrity":integrity,"opportunity":opportunity,"participation_status":"OPPORTUNITY_CONFIRMED_ONLY","bet_eligibility":"BLOCKED","calibration_status":"PREQUENTIAL_RESEARCH_ONLY","acceptance_gate_policy":"Research-only dual-metric gate requires strictly lower Brier and ECE; approval for deployment additionally requires an untouched future holdout, real sportsbook thresholds and pregame eligibility. Never use these in-sample selection decisions for live picks.","calibration_warning":"Calendar-week prequential additive bias correction uses only previous weeks per market, with minimum 100 observations and shrinkage; diagnostic comparison, not sportsbook probability calibration.","baseline_warning":"Chronological rolling baseline uses only prior scored player-market outcomes (up to 10, Laplace-smoothed); constant-rate benchmark uses full evaluation outcomes (in-sample, look-ahead) and is diagnostic only. Both use postgame opportunity-conditioned samples and synthetic thresholds.","method":"chronological five-opportunity-confirmed-game mean threshold and smoothed empirical frequency; position-filtered, retains zero outcomes when attempts/targets/carries > 0; NOT sportsbook-line calibration","leakage_policy":"Each prediction uses only earlier games for the same player and market","total_samples":len(outcomes),"markets":by_market,"limitations":"Opportunity-confirmed samples condition on observed attempts, targets or carries and exclude games with zero opportunity; this introduces post-game selection bias and is NOT a pregame hit probability. Snaps, routes, injury status and missing weekly rows are unverified. Synthetic thresholds, not posted odds or real SGP prices; no opponent, joint-correlation, or market EV validation"}
+    return {"status":"RESEARCH_ONLY","frozen_forward_holdout":{"development_season":development_season,"holdout_seasons":holdout_seasons,"markets":frozen_holdout,"warning":"Later-season holdout was not used to fit frozen adjustment; existing research choices may have been informed by prior full-period results, so this is not a pristine untouched holdout."},"integrity":integrity,"opportunity":opportunity,"participation_status":"OPPORTUNITY_CONFIRMED_ONLY","bet_eligibility":"BLOCKED","calibration_status":"PREQUENTIAL_RESEARCH_ONLY","acceptance_gate_policy":"Research-only dual-metric gate requires strictly lower Brier and ECE; approval for deployment additionally requires an untouched future holdout, real sportsbook thresholds and pregame eligibility. Never use these in-sample selection decisions for live picks.","calibration_warning":"Calendar-week prequential additive bias correction uses only previous weeks per market, with minimum 100 observations and shrinkage; diagnostic comparison, not sportsbook probability calibration.","baseline_warning":"Chronological rolling baseline uses only prior scored player-market outcomes (up to 10, Laplace-smoothed); constant-rate benchmark uses full evaluation outcomes (in-sample, look-ahead) and is diagnostic only. Both use postgame opportunity-conditioned samples and synthetic thresholds.","method":"chronological five-opportunity-confirmed-game mean threshold and smoothed empirical frequency; position-filtered, retains zero outcomes when attempts/targets/carries > 0; NOT sportsbook-line calibration","leakage_policy":"Each prediction uses only earlier games for the same player and market","total_samples":len(outcomes),"markets":by_market,"limitations":"Opportunity-confirmed samples condition on observed attempts, targets or carries and exclude games with zero opportunity; this introduces post-game selection bias and is NOT a pregame hit probability. Snaps, routes, injury status and missing weekly rows are unverified. Synthetic thresholds, not posted odds or real SGP prices; no opponent, joint-correlation, or market EV validation"}
 if __name__=="__main__":
     src=Path(sys.argv[1] if len(sys.argv)>1 else "feed/nfl_player_stats.json")
     report=audit(json.loads(src.read_text()))
