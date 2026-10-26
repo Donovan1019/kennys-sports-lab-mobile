@@ -4,6 +4,7 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/refresh-nfl-props.yml'
+      - 'scripts/fetch_nfl_props.py'
   schedule:
     - cron: '5 14 * * 0,1,4'
     - cron: '5 16,20,23 * * 0'
@@ -13,12 +14,15 @@ on:
       max_events:
         description: "Upcoming NFL games to query (each may consume multiple API credits)"
         required: true
-        default: "1"
+        default: "3"
         type: choice
         options:
           - "1"
           - "2"
           - "3"
+          - "6"
+          - "10"
+          - "16"
 permissions:
   contents: write
 jobs:
@@ -40,7 +44,7 @@ jobs:
       - name: Fetch capped NFL player prop odds
         env:
           THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
-          MAX_EVENTS: ${{ inputs.max_events || '3' }}
+          MAX_EVENTS: ${{ inputs.max_events || '16' }}
           TARGET_DATE: ''
         run: python scripts/fetch_nfl_props.py
       - name: Export and archive genuine pregame forecasts immediately after refresh
@@ -56,7 +60,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add feed/nfl_props.json
+          git add feed/nfl_props.json feed/nfl_prop_capture_coverage.json
           if [ -f feed/nfl_prop_forecast_ledger.json ]; then git add feed/nfl_prop_forecast_ledger.json; fi
           if ! git diff --cached --quiet; then
             git commit -m "Refresh NFL player prop snapshot"
