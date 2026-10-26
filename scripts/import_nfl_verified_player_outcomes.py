@@ -91,7 +91,7 @@ def main():
             stats=summary_cache[cid]
             value=parse_stat(stats.get(f["player"].lower(),[]),f["market"])
             if value is None:unmatched+=1;continue
-            row={"event_id":f["event_id"],"player":f["player"],"market":f["market"],"outcome":value,"verified_at":datetime.now(timezone.utc).isoformat(),"source":"https://www.espn.com/nfl/game/_/gameId/"+str(e["id"])}
+            row={"event_id":f["event_id"],"event": " @ ".join([next((x["team"]["displayName"] for x in e["competitions"][0]["competitors"] if x.get("homeAway")=="away"),""),next((x["team"]["displayName"] for x in e["competitions"][0]["competitors"] if x.get("homeAway")=="home"),"")]),"espn_event_id":str(e["id"]),"player":f["player"],"market":f["market"],"outcome":value,"verified_at":datetime.now(timezone.utc).isoformat(),"source":"https://www.espn.com/nfl/game/_/gameId/"+str(e["id"])}
             prior[key]=row;added+=1
     if added:OUTPUT.write_text(json.dumps(list(prior.values()),indent=2)+"\n")
     print(json.dumps({"newly_verified":added,"total_verified":len(prior),"ambiguous_or_missing":unmatched,"pending":len(pending)}))
