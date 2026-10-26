@@ -28,6 +28,6 @@ def main():
     games_with_grades=sum(v["graded"]>0 for v in by_game.values())
     output={"status":"RESEARCH_ONLY","betting_eligible":False,"readiness_reason":"Player roster/injury validation and multi-game out-of-sample calibration not complete","capture":coverage,"archived_forecasts":len(ledger),"graded_forecasts":len(graded),"games_with_grades":games_with_grades,"game_results":[{"game":k,**v} for k,v in sorted(by_game.items())],"calibration_status":"INSUFFICIENT_CROSS_GAME_SAMPLE" if games_with_grades<10 else "REQUIRES_INDEPENDENT_CALIBRATION"}
     out=ROOT/"feed/nfl_full_slate_dashboard.json"
-    out.write_text(json.dumps(output,indent=2)+"\n")
+    out.write_text(json.dumps(output,indent=2)+chr(10))
     print(json.dumps({"archived":len(ledger),"graded":len(graded),"games_with_grades":games_with_grades,"status":output["status"]}))
 if __name__=="__main__":main()
