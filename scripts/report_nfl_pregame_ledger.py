@@ -15,9 +15,12 @@ def dashboard(forecasts,outcomes):
         key=f["forecast_id"]+":over"
         if key in indexed:grouped[f["market"]].append(indexed[key])
     markets={}
+    unique_outcomes={(f["event_id"],f["player"],f["market"]) for f in forecasts["forecasts"] if f.get("market") in MARKETS and f["forecast_id"]+":over" in indexed}
     for market,rows in sorted(grouped.items()):
         scored=[r for r in rows if r["brier"] is not None]
+        distinct={(f["event_id"],f["player"]) for f in forecasts["forecasts"] if f.get("market")==market and f["forecast_id"]+":over" in indexed}
         markets[market]={"graded_over_forecasts":len(rows),
+            "unique_player_game_outcomes":len(distinct),
             "wins":sum(r["outcome"]=="win" for r in rows),
             "losses":sum(r["outcome"]=="loss" for r in rows),
             "pushes":sum(r["outcome"]=="push" for r in rows),
@@ -26,7 +29,9 @@ def dashboard(forecasts,outcomes):
             "eligibility":"BLOCKED"}
     return {"status":"RESEARCH_ONLY","bet_eligibility":"BLOCKED",
         "coverage":report["bridge"],"total_graded_sides":report["graded"],
-        "total_pending_sides":report["pending"],"markets":markets,
+        "total_pending_sides":report["pending"],
+        "unique_player_game_market_outcomes":len(unique_outcomes),
+        "unique_games_with_results":len({g for g,_,_ in unique_outcomes}),"markets":markets,
         "warning":"Over-only descriptive scoring avoids treating opposing sides of one forecast as independent bets. Archived forecasts are not documented actual wagers; ROI and profitability cannot be inferred. Small matched sample and missing outcomes prevent readiness."}
 
 if __name__=="__main__":

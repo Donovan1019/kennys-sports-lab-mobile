@@ -12,6 +12,7 @@ on:
       - 'scripts/diagnose_nfl_rush_grading.py'
       - 'tests/test_nfl_existing_feed_bridge.py'
       - 'tests/test_nfl_ledger_dashboard.py'
+      - 'tests/test_nfl_grading_independence.py'
       - 'feed/nfl_prop_forecast_ledger.json'
       - 'feed/nfl_prop_verified_outcomes.json'
       - 'feed/nfl_pregame_snapshots.json'
@@ -36,6 +37,7 @@ jobs:
           python -m unittest discover -s tests -p test_nfl_pregame_grading.py -v
           python -m unittest discover -s tests -p test_nfl_existing_feed_bridge.py -v
           python -m unittest discover -s tests -p test_nfl_ledger_dashboard.py -v
+          python -m unittest discover -s tests -p test_nfl_grading_independence.py -v
       - name: Grade only when both input feeds exist
         shell: bash
         run: |
