@@ -3,7 +3,7 @@
 const shell=document.querySelector('main.ksl-shell');if(!shell)return;
 const heading=shell.querySelector('h1');if(!heading)return;
 const nav=document.createElement('nav');nav.id='nfl-module-navigation';nav.setAttribute('aria-label','Jump to NFL module');
-nav.style.cssText='display:flex;gap:8px;overflow-x:auto;white-space:nowrap;max-width:100%;padding:10px 2px 14px;margin:0 0 12px;scrollbar-width:thin;-webkit-overflow-scrolling:touch';
+nav.style.cssText='display:flex;gap:8px;overflow-x:auto;overflow-y:hidden;white-space:nowrap;width:100%;max-width:100%;box-sizing:border-box;touch-action:pan-x pan-y;overscroll-behavior-x:contain;padding:10px 2px 14px;margin:0 0 12px;scrollbar-width:thin;-webkit-overflow-scrolling:touch';
 const targets=[
 ['Projections','#nfl-player-projections'],
 ['Game markets','#nfl-game-projections'],
