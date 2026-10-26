@@ -1,0 +1,28 @@
+name: NFL SGP Walk-Forward Accuracy
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '35 12 * * 2'
+permissions:
+  contents: write
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate walk-forward audit
+        run: python -m unittest discover -s tests -p test_sgp_walkforward.py -v
+      - name: Build accuracy report
+        run: python scripts/audit_nfl_sgp_walkforward.py feed/nfl_player_stats.json > feed/nfl_sgp_walkforward_accuracy.json
+      - name: Commit changed report
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@users.noreply.github.com
+          git add feed/nfl_sgp_walkforward_accuracy.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Update NFL SGP research walk-forward accuracy"
+            git push
+          fi
