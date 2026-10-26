@@ -64,7 +64,18 @@ jobs:
           if [ -f feed/nfl_prop_forecast_ledger.json ]; then git add feed/nfl_prop_forecast_ledger.json; fi
           if ! git diff --cached --quiet; then
             git commit -m "Refresh NFL player prop snapshot"
-            git fetch origin main
-            git rebase -X theirs origin/main
-            git push origin HEAD:main
+            mkdir -p /tmp/ksl-nfl-refresh
+            cp feed/nfl_props.json feed/nfl_prop_capture_coverage.json feed/nfl_prop_forecast_ledger.json /tmp/ksl-nfl-refresh/
+            for attempt in 1 2 3; do
+              git fetch origin main
+              git reset --hard origin/main
+              cp /tmp/ksl-nfl-refresh/* feed/
+              git add feed/nfl_props.json feed/nfl_prop_capture_coverage.json feed/nfl_prop_forecast_ledger.json
+              if git diff --cached --quiet; then exit 0; fi
+              git commit -m "Publish NFL full-slate prop capture and pregame archive"
+              if git push origin HEAD:main; then exit 0; fi
+              sleep 2
+            done
+            echo "Failed to publish NFL prop refresh after 3 attempts" >&2
+            exit 1
           fi
