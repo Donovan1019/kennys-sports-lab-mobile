@@ -1,16 +1,16 @@
 {
   "status": "RESEARCH_ONLY_NOT_BET_ELIGIBLE",
   "archived_events": 28,
-  "scored_events": 1,
-  "ungraded_unique_events": 27,
+  "scored_events": 13,
+  "ungraded_unique_events": 15,
   "minimum_sample": 100,
   "rejected": {
-    "no_verified_outcome": 27
+    "no_verified_outcome": 15
   },
-  "model_brier": 0.203622050025,
-  "market_brier": 0.166948239649,
+  "model_brier": 0.21481698336100002,
+  "market_brier": 0.2579582310946154,
   "market_relative_brier_skill": null,
-  "exploratory_market_relative_brier_skill": -0.21967174049336968,
+  "exploratory_market_relative_brier_skill": 0.16724121401573644,
   "market_outperformance_established": false,
   "betting_ready": false,
   "readiness_reason": "Insufficient independently graded, event-deduplicated forecasts versus pregame market baseline",
@@ -20,6 +20,6 @@
     "Independent holdout, sufficient event counts and timestamped executable odds required for betting approval",
     "Archived forecasts and outcomes remain research-only"
   ],
-  "generated_at": "2026-10-25T15:43:48.381Z",
+  "generated_at": "2026-10-26T15:17:56.109Z",
   "scope": "NFL game moneyline only; player props, spreads and totals are not evaluated by this report"
 }
