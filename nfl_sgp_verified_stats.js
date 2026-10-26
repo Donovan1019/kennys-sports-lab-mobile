@@ -1,0 +1,9 @@
+/* Shared verified NFL weekly-stat lookup for SGP research. Historical observations are not forecasts. */
+(function(root){'use strict';
+const map={player_pass_yds:'Passing yards',player_pass_tds:'Passing touchdowns',player_rush_yds:'Rushing yards',player_reception_yds:'Receiving yards',player_receptions:'Receptions'};
+const norm=s=>String(s||'').toLowerCase().replace(/[^a-z0-9]/g,'');
+let cache=null,pending=null;
+async function load(){if(cache)return cache;if(pending)return pending;pending=fetch('./feed/nfl_player_stats.json?ts='+Date.now(),{cache:'no-store'}).then(async r=>{if(!r.ok)throw Error('NFL weekly stats unavailable');const d=await r.json();if(d.source!=='nflverse-stats-player-week'||!Array.isArray(d.players))throw Error('Unverified NFL stat schema');cache=d;return d}).finally(()=>{pending=null});return pending}
+function lookup(d,name,market,point,selection){const key=map[market];if(!key)return{status:'UNAVAILABLE',reason:'Market not mapped to weekly statistics'};const matches=d.players.filter(p=>norm(p.name)===norm(name));if(matches.length!==1)return{status:'UNAVAILABLE',reason:matches.length?'Ambiguous player identity':'Player not found'};const games=matches[0].games.filter(g=>[2025,2026].includes(Number(g.season))&&Number.isFinite(g.values?.[key])).sort((a,b)=>Number(a.season)-Number(b.season)||Number(a.week)-Number(b.week)).slice(-10);if(!games.length)return{status:'UNAVAILABLE',reason:'No verified game logs'};const values=games.map(g=>g.values[key]);const threshold=Number(point);if(!Number.isFinite(threshold))return{status:'UNAVAILABLE',reason:'Missing numeric line'};const hits=values.filter(v=>selection==='Under'?v<threshold:v>threshold).length;return{status:'HISTORICAL_ONLY',games:games.length,hits,rate:hits/games.length,mean:values.reduce((a,b)=>a+b,0)/values.length,values,source:d.source,fetched_at:d.fetched_at,player:matches[0].name}}
+root.KSLNFLStats={load,lookup};
+})(window);
