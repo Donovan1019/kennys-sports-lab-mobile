@@ -54,14 +54,14 @@ def main():
     pending=[f for f in forecasts if f["market"] in MARKETS and (f["event_id"],f["player"],f["market"]) not in prior and datetime.fromisoformat(f["kickoff"].replace("Z","+00:00"))<datetime.now(timezone.utc)-timedelta(hours=4)]
     byday=defaultdict(list)
     for f in pending:byday[f["kickoff"][:10].replace("-","")].append(f)
-    added=0;unmatched=0
+    added=0;unmatched=0;summary_cache={}
     for day,group in byday.items():
         try:board=get("https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates="+day)
         except Exception as exc:print("Scoreboard unavailable",day,type(exc).__name__);continue
         finals=[]
         for e in board.get("events",[]):
             c=(e.get("competitions") or [{}])[0]
-            if c.get("status",{}).get("type",{}).get("completed") is not True:continue
+            if not (e.get("status",{}).get("type",{}).get("completed") or c.get("status",{}).get("type",{}).get("completed")):continue
             try:dt=datetime.fromisoformat(e["date"].replace("Z","+00:00"))
             except (ValueError,KeyError):continue
             finals.append((e,dt))
@@ -72,12 +72,23 @@ def main():
                 expected={x.strip().lower() for x in f["event"].split(" @ ")}
                 matches=[e for e in matches if {x.get("team",{}).get("displayName","").lower() for x in e["competitions"][0].get("competitors",[])}==expected]
             # Without exact teams, concurrent kickoffs are ambiguous: never guess.
+            if len(matches)>1 and not f.get("event"):
+                possible=[]
+                for candidate in matches:
+                    cid=str(candidate["id"])
+                    if cid not in summary_cache:
+                        try:summary_cache[cid]=extract(get("https://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event="+urllib.parse.quote(cid)))
+                        except Exception:summary_cache[cid]={}
+                    if f["player"].lower() in summary_cache[cid]:possible.append(candidate)
+                matches=possible
             if len(matches)!=1:unmatched+=1;continue
             e=matches[0];key=(f["event_id"],f["player"],f["market"])
             if key in prior:continue
-            try:summary=get("https://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event="+urllib.parse.quote(str(e["id"])))
-            except Exception:continue
-            stats=extract(summary)
+            cid=str(e["id"])
+            if cid not in summary_cache:
+                try:summary_cache[cid]=extract(get("https://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event="+urllib.parse.quote(cid)))
+                except Exception:summary_cache[cid]={}
+            stats=summary_cache[cid]
             value=parse_stat(stats.get(f["player"].lower(),[]),f["market"])
             if value is None:unmatched+=1;continue
             row={"event_id":f["event_id"],"player":f["player"],"market":f["market"],"outcome":value,"verified_at":datetime.now(timezone.utc).isoformat(),"source":"https://www.espn.com/nfl/game/_/gameId/"+str(e["id"])}
