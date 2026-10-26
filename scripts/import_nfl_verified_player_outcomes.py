@@ -46,6 +46,14 @@ def extract(summary):
                 if name and len(values)==len(labels):
                     result[name.lower()].append({"category":category,"values":dict(zip(labels,values))})
     return result
+def player_team(summary,name):
+    teams=set()
+    for group in summary.get("boxscore",{}).get("players",[]):
+        team=group.get("team",{}).get("displayName")
+        for category in group.get("statistics",[]):
+            if any(row.get("athlete",{}).get("displayName","").lower()==name.lower() for row in category.get("athletes",[])) and team:teams.add(team)
+    return next(iter(teams)) if len(teams)==1 else None
+
 def main():
     forecasts=json.loads(LEDGER.read_text())["forecasts"]
     old=json.loads(OUTPUT.read_text()) if OUTPUT.exists() else []
@@ -54,7 +62,7 @@ def main():
     pending=[f for f in forecasts if f["market"] in MARKETS and (f["event_id"],f["player"],f["market"]) not in prior and datetime.fromisoformat(f["kickoff"].replace("Z","+00:00"))<datetime.now(timezone.utc)-timedelta(hours=4)]
     byday=defaultdict(list)
     for f in pending:byday[f["kickoff"][:10].replace("-","")].append(f)
-    added=0;unmatched=0;summary_cache={}
+    added=0;unmatched=0;summary_cache={};raw_cache={}
     for day,group in byday.items():
         try:board=get("https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates="+day)
         except Exception as exc:print("Scoreboard unavailable",day,type(exc).__name__);continue
@@ -77,7 +85,7 @@ def main():
                 for candidate in matches:
                     cid=str(candidate["id"])
                     if cid not in summary_cache:
-                        try:summary_cache[cid]=extract(get("https://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event="+urllib.parse.quote(cid)))
+                        try:raw_cache[cid]=get("https://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event="+urllib.parse.quote(cid));summary_cache[cid]=extract(raw_cache[cid])
                         except Exception:summary_cache[cid]={}
                     if parse_stat(summary_cache[cid].get(f["player"].lower(),[]),f["market"]) is not None:possible.append(candidate)
                 matches=possible
@@ -86,12 +94,14 @@ def main():
             if key in prior:continue
             cid=str(e["id"])
             if cid not in summary_cache:
-                try:summary_cache[cid]=extract(get("https://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event="+urllib.parse.quote(cid)))
+                try:raw_cache[cid]=get("https://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event="+urllib.parse.quote(cid));summary_cache[cid]=extract(raw_cache[cid])
                 except Exception:summary_cache[cid]={}
             stats=summary_cache[cid]
             value=parse_stat(stats.get(f["player"].lower(),[]),f["market"])
             if value is None:unmatched+=1;continue
-            row={"outcome_verified":True,"kickoff":f["kickoff"],"event_id":f["event_id"],"event": " @ ".join([next((x["team"]["displayName"] for x in e["competitions"][0]["competitors"] if x.get("homeAway")=="away"),""),next((x["team"]["displayName"] for x in e["competitions"][0]["competitors"] if x.get("homeAway")=="home"),"")]),"espn_event_id":str(e["id"]),"player":f["player"],"market":f["market"],"outcome":value,"verified_at":datetime.now(timezone.utc).isoformat(),"source":"https://www.espn.com/nfl/game/_/gameId/"+str(e["id"])}
+            team=player_team(raw_cache.get(cid,{}),f["player"])
+            opponents=[x["team"].get("displayName") for x in e["competitions"][0]["competitors"] if x["team"].get("displayName")!=team] if team else []
+            row={"player_team":team,"opponent":opponents[0] if len(opponents)==1 else None,"outcome_verified":True,"kickoff":f["kickoff"],"event_id":f["event_id"],"event": " @ ".join([next((x["team"]["displayName"] for x in e["competitions"][0]["competitors"] if x.get("homeAway")=="away"),""),next((x["team"]["displayName"] for x in e["competitions"][0]["competitors"] if x.get("homeAway")=="home"),"")]),"espn_event_id":str(e["id"]),"player":f["player"],"market":f["market"],"outcome":value,"verified_at":datetime.now(timezone.utc).isoformat(),"source":"https://www.espn.com/nfl/game/_/gameId/"+str(e["id"])}
             prior[key]=row;added+=1
     OUTPUT.write_text(json.dumps(list(prior.values()),indent=2)+"\n")
     print(json.dumps({"newly_verified":added,"total_verified":len(prior),"ambiguous_or_missing":unmatched,"pending":len(pending)}))
