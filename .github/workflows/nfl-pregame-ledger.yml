@@ -9,6 +9,7 @@ on:
       - 'tests/test_nfl_pregame_grading.py'
       - 'scripts/bridge_nfl_existing_prop_feeds.py'
       - 'scripts/report_nfl_pregame_ledger.py'
+      - 'scripts/diagnose_nfl_rush_grading.py'
       - 'tests/test_nfl_existing_feed_bridge.py'
       - 'tests/test_nfl_ledger_dashboard.py'
       - 'feed/nfl_prop_forecast_ledger.json'
@@ -50,6 +51,7 @@ jobs:
           if [[ -f feed/nfl_prop_forecast_ledger.json && -f feed/nfl_prop_verified_outcomes.json ]]; then
             python -m scripts.report_nfl_pregame_ledger > nfl_pregame_market_dashboard.json
             cat nfl_pregame_market_dashboard.json
+            python -m scripts.diagnose_nfl_rush_grading > nfl_rush_grading_diagnostics.json
           else
             echo '{"status":"BLOCKED","reason":"Archived forecasts or verified outcomes missing","bet_eligibility":"BLOCKED"}' > nfl_pregame_market_dashboard.json
           fi
@@ -90,3 +92,4 @@ jobs:
           path: |
             nfl_pregame_ledger_report.json
             nfl_pregame_market_dashboard.json
+            nfl_rush_grading_diagnostics.json
