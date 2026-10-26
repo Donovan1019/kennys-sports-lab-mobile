@@ -31,11 +31,32 @@ jobs:
         shell: bash
         run: |
           if [[ -f feed/nfl_pregame_snapshots.json && -f feed/nfl_settled_player_results.json ]]; then
-            python -m scripts.grade_nfl_pregame_ledger feed/nfl_pregame_snapshots.json feed/nfl_settled_player_results.json | tee nfl_pregame_ledger_report.json
+            python -m scripts.grade_nfl_pregame_ledger feed/nfl_pregame_snapshots.json feed/nfl_settled_player_results.json > nfl_pregame_ledger_report.json\n            cat nfl_pregame_ledger_report.json
           else
             echo '{"status":"BLOCKED","reason":"Real pregame snapshots and/or settled player results are not supplied","bet_eligibility":"BLOCKED"}' > nfl_pregame_ledger_report.json
             cat nfl_pregame_ledger_report.json
           fi
+      - name: Publish explicit evidence status
+        if: always()
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json,os
+          from pathlib import Path
+          p=Path("nfl_pregame_ledger_report.json")
+          report=json.loads(p.read_text()) if p.exists() else {"status":"BLOCKED","reason":"Grading did not produce a report","bet_eligibility":"BLOCKED"}
+          status=report.get("status","BLOCKED")
+          graded=report.get("graded",0)
+          pending=report.get("pending",0)
+          lines=["## NFL pregame ledger evidence","",
+                 f"- Pipeline status: **{status}**",
+                 f"- Graded snapshots: **{graded}**",
+                 f"- Pending snapshots: **{pending}**",
+                 "- Betting eligibility: **BLOCKED**",
+                 "- Passing CI does not mean real sportsbook feeds are connected or forecasts are betting-ready."]
+          with open(os.environ["GITHUB_STEP_SUMMARY"],"a") as out:
+              out.write("\\n".join(lines)+"\\n")
+          PY
       - uses: actions/upload-artifact@v4
         with:
           name: nfl-pregame-ledger-report
