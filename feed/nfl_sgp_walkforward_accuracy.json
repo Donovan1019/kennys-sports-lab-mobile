@@ -14,6 +14,7 @@
     "invalid": 0
   },
   "participation_status": "OPPORTUNITY_CONFIRMED_ONLY",
+  "baseline_warning": "Constant-rate benchmark uses full evaluation outcomes (in-sample, look-ahead); diagnostic only, not a valid deployable baseline",
   "method": "chronological five-opportunity-confirmed-game mean threshold and smoothed empirical frequency; position-filtered, retains zero outcomes when attempts/targets/carries > 0; NOT sportsbook-line calibration",
   "leakage_policy": "Each prediction uses only earlier games for the same player and market",
   "total_samples": 8912,
@@ -22,6 +23,8 @@
       "status": "RESEARCH_ONLY",
       "samples": 460,
       "brier": 0.25102,
+      "constant_rate_brier_in_sample": 0.25,
+      "skill_vs_in_sample_constant": -0.004082,
       "mean_predicted": 0.506211,
       "observed_rate": 0.5
     },
@@ -29,6 +32,8 @@
       "status": "RESEARCH_ONLY",
       "samples": 3481,
       "brier": 0.252754,
+      "constant_rate_brier_in_sample": 0.243736,
+      "skill_vs_in_sample_constant": -0.036998,
       "mean_predicted": 0.453359,
       "observed_rate": 0.420856
     },
@@ -36,6 +41,8 @@
       "status": "RESEARCH_ONLY",
       "samples": 1490,
       "brier": 0.250185,
+      "constant_rate_brier_in_sample": 0.243405,
+      "skill_vs_in_sample_constant": -0.027853,
       "mean_predicted": 0.452924,
       "observed_rate": 0.418792
     },
@@ -43,6 +50,8 @@
       "status": "RESEARCH_ONLY",
       "samples": 3481,
       "brier": 0.24933,
+      "constant_rate_brier_in_sample": 0.244945,
+      "skill_vs_in_sample_constant": -0.017904,
       "mean_predicted": 0.451553,
       "observed_rate": 0.4289
     }
