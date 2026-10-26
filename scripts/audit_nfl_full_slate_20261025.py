@@ -26,7 +26,7 @@ def main():
         # Event IDs differ between Odds API and ESPN. Require both event team
         # names and kickoff proximity when the source supplies event identity.
         def same(f):
-            if f.get("event")!=name:return False
+            if f.get("event")!=name and f.get("event_id") not in {g.get("event_id") for g in graded if g.get("espn_event_id")==str(e["id"]) and g.get("outcome_verified") is True}:return False
             try:return abs((utc(f["kickoff"])-utc(kickoff)).total_seconds())<=1200
             except (ValueError,KeyError,TypeError):return False
         saved=[f for f in ledger if same(f) and f.get("forecast_at") and utc(f["forecast_at"])<utc(kickoff) and f.get("quoted_at") and utc(f["quoted_at"])<utc(kickoff)]
