@@ -3,10 +3,10 @@
   "betting_eligible": false,
   "readiness_reason": "Player roster/injury validation and multi-game out-of-sample calibration not complete",
   "capture": {
-    "generated_at": "2026-10-26T12:45:19.707010+00:00",
+    "generated_at": "2026-10-26T15:38:28.254055+00:00",
     "target_date": null,
     "expected_upcoming_events": 15,
-    "requested_events": 6,
+    "requested_events": 2,
     "captured_event_ids": [
       "4853610e63c246f2027a6a248e642c9a",
       "ab2865e9f2d4b012de8bc6fb6de11a7c",
@@ -16,16 +16,16 @@
       "ab5ab731ab655bd6308bc7a922275518",
       "52e7ee9c42525e6deec02da32dc2fad8",
       "159dbf0253dd2038eda2212f84387f0c",
-      "98f1b121b793977434c046e76c707145"
-    ],
-    "captured_events": 9,
-    "missing_event_ids": [
-      "9255ca8f32aea590d00aa57de79f6bb6",
+      "98f1b121b793977434c046e76c707145",
       "2ff84d3f6053d083c8c0a5bebf7cdd4c",
       "f2a036d5edf483a277880014861e78ad",
       "05405af79752f5e742cdf50b61f6745e",
-      "b9c60db63b1a19ad319f24b33c0defe8",
       "7d664fbcd39350e559d83c0068ba7169"
+    ],
+    "captured_events": 13,
+    "missing_event_ids": [
+      "9255ca8f32aea590d00aa57de79f6bb6",
+      "b9c60db63b1a19ad319f24b33c0defe8"
     ],
     "unrequested_events": 0,
     "complete": false,
@@ -35,23 +35,7 @@
         "error": "no_supported_bookmaker_props"
       },
       {
-        "event_id": "2ff84d3f6053d083c8c0a5bebf7cdd4c",
-        "error": "no_supported_bookmaker_props"
-      },
-      {
-        "event_id": "f2a036d5edf483a277880014861e78ad",
-        "error": "no_supported_bookmaker_props"
-      },
-      {
-        "event_id": "05405af79752f5e742cdf50b61f6745e",
-        "error": "no_supported_bookmaker_props"
-      },
-      {
         "event_id": "b9c60db63b1a19ad319f24b33c0defe8",
-        "error": "no_supported_bookmaker_props"
-      },
-      {
-        "event_id": "7d664fbcd39350e559d83c0068ba7169",
         "error": "no_supported_bookmaker_props"
       }
     ],
@@ -59,11 +43,7 @@
     "retry_missing_only": true,
     "attempted_event_ids": [
       "9255ca8f32aea590d00aa57de79f6bb6",
-      "2ff84d3f6053d083c8c0a5bebf7cdd4c",
-      "f2a036d5edf483a277880014861e78ad",
-      "05405af79752f5e742cdf50b61f6745e",
-      "b9c60db63b1a19ad319f24b33c0defe8",
-      "7d664fbcd39350e559d83c0068ba7169"
+      "b9c60db63b1a19ad319f24b33c0defe8"
     ]
   },
   "deduplicated": {
