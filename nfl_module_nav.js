@@ -6,6 +6,7 @@ const nav=document.createElement('nav');nav.id='nfl-module-navigation';nav.setAt
 nav.style.cssText='display:flex;gap:8px;overflow-x:auto;overflow-y:hidden;white-space:nowrap;width:100%;max-width:100%;box-sizing:border-box;touch-action:pan-x pan-y;overscroll-behavior-x:contain;padding:10px 2px 14px;margin:0 0 12px;scrollbar-width:thin;-webkit-overflow-scrolling:touch';
 const targets=[
 ['Projections','#nfl-player-projections'],
+['SGP Stack Finder','#nfl-sgp-stack-finder'],
 ['Game markets','#nfl-game-projections'],
 ['Player stats','#ksl-stat-root'],
 ['Full Results','#nfl-full-results'],
