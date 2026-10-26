@@ -37,6 +37,8 @@ class AuditTests(unittest.TestCase):
         market=result["markets"]["player_pass_yds"]
         self.assertIn("chronological_rolling_brier",market)
         self.assertIn("prequential_calibrated_brier",market)
+        self.assertIn("frozen_forward_holdout",result)
+        self.assertFalse(result["frozen_forward_holdout"]["markets"]["player_pass_yds"]["eligible_for_live_use"])
         gate=market["calibration_acceptance_gate"]
         self.assertFalse(gate["eligible_for_live_use"])
         self.assertEqual(gate["brier_improved"],market["prequential_calibrated_brier"]<market["brier"])
