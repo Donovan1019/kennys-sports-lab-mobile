@@ -18,8 +18,12 @@ def diagnose(forecasts,outcomes):
                          "line":f["line"],"probability_over":f["model_probability"],
                          "bookmaker":f["bookmaker"],"outcome":scored["outcome"],
                          "brier":scored["brier"],"quoted_at":f["quoted_at"]})
+    independent={(x["game_id"],x["player"]) for x in rows}
     return {"status":"RESEARCH_ONLY","bet_eligibility":"BLOCKED",
             "rush_over_graded":len(rows),
+            "unique_player_game_outcomes":len(independent),
+            "unique_games":len({x["game_id"] for x in rows}),
+            "duplicate_bookmaker_exposure":len(rows)-len(independent),
             "rush_over_losses":sum(x["outcome"]=="loss" for x in rows),
             "by_player":dict(Counter(x["player"] for x in rows)),
             "by_bookmaker":dict(Counter(x["bookmaker"] for x in rows)),
