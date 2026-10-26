@@ -8,6 +8,7 @@ const targets=[
 ['Projections','#nfl-player-projections'],
 ['Game markets','#nfl-game-projections'],
 ['Player stats','#ksl-stat-root'],
+['Full Results','#nfl-full-results'],
 ['Research','#ksl-research-root'],
 ['Betting tool','./betting-ready-simulator.html?sport=NFL']
 ];
