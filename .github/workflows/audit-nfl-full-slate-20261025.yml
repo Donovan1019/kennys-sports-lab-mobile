@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/audit-nfl-full-slate-20261025.yml'
+      - 'scripts/audit_nfl_full_slate_20261025.py'
 permissions:
   contents: read
 jobs:
