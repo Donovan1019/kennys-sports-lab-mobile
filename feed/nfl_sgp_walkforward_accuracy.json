@@ -14,6 +14,8 @@
     "invalid": 0
   },
   "participation_status": "OPPORTUNITY_CONFIRMED_ONLY",
+  "bet_eligibility": "BLOCKED",
+  "calibration_status": "DIAGNOSTIC_ONLY",
   "baseline_warning": "Chronological rolling baseline uses only prior scored player-market outcomes (up to 10, Laplace-smoothed); constant-rate benchmark uses full evaluation outcomes (in-sample, look-ahead) and is diagnostic only. Both use postgame opportunity-conditioned samples and synthetic thresholds.",
   "method": "chronological five-opportunity-confirmed-game mean threshold and smoothed empirical frequency; position-filtered, retains zero outcomes when attempts/targets/carries > 0; NOT sportsbook-line calibration",
   "leakage_policy": "Each prediction uses only earlier games for the same player and market",
@@ -23,6 +25,37 @@
       "status": "RESEARCH_ONLY",
       "samples": 460,
       "brier": 0.25102,
+      "reliability_bins": [
+        {
+          "lower": 0.2,
+          "upper": 0.3,
+          "samples": 16,
+          "predicted": 0.285714,
+          "observed": 0.3125
+        },
+        {
+          "lower": 0.4,
+          "upper": 0.5,
+          "samples": 200,
+          "predicted": 0.428571,
+          "observed": 0.48
+        },
+        {
+          "lower": 0.5,
+          "upper": 0.6,
+          "samples": 222,
+          "predicted": 0.571429,
+          "observed": 0.522523
+        },
+        {
+          "lower": 0.7,
+          "upper": 0.8,
+          "samples": 22,
+          "predicted": 0.714286,
+          "observed": 0.590909
+        }
+      ],
+      "expected_calibration_error": 0.052795,
       "chronological_rolling_brier": 0.279845,
       "skill_vs_chronological_rolling": 0.103001,
       "constant_rate_brier_in_sample": 0.25,
@@ -34,6 +67,37 @@
       "status": "RESEARCH_ONLY",
       "samples": 3481,
       "brier": 0.252754,
+      "reliability_bins": [
+        {
+          "lower": 0.2,
+          "upper": 0.3,
+          "samples": 468,
+          "predicted": 0.285714,
+          "observed": 0.399573
+        },
+        {
+          "lower": 0.4,
+          "upper": 0.5,
+          "samples": 1999,
+          "predicted": 0.428571,
+          "observed": 0.427714
+        },
+        {
+          "lower": 0.5,
+          "upper": 0.6,
+          "samples": 956,
+          "predicted": 0.571429,
+          "observed": 0.408996
+        },
+        {
+          "lower": 0.7,
+          "upper": 0.8,
+          "samples": 58,
+          "predicted": 0.714286,
+          "observed": 0.551724
+        }
+      ],
+      "expected_calibration_error": 0.063118,
       "chronological_rolling_brier": 0.273003,
       "skill_vs_chronological_rolling": 0.074172,
       "constant_rate_brier_in_sample": 0.243736,
@@ -45,6 +109,37 @@
       "status": "RESEARCH_ONLY",
       "samples": 1490,
       "brier": 0.250185,
+      "reliability_bins": [
+        {
+          "lower": 0.2,
+          "upper": 0.3,
+          "samples": 237,
+          "predicted": 0.285714,
+          "observed": 0.392405
+        },
+        {
+          "lower": 0.4,
+          "upper": 0.5,
+          "samples": 790,
+          "predicted": 0.428571,
+          "observed": 0.407595
+        },
+        {
+          "lower": 0.5,
+          "upper": 0.6,
+          "samples": 435,
+          "predicted": 0.571429,
+          "observed": 0.448276
+        },
+        {
+          "lower": 0.7,
+          "upper": 0.8,
+          "samples": 28,
+          "predicted": 0.714286,
+          "observed": 0.5
+        }
+      ],
+      "expected_calibration_error": 0.068073,
       "chronological_rolling_brier": 0.270612,
       "skill_vs_chronological_rolling": 0.075486,
       "constant_rate_brier_in_sample": 0.243405,
@@ -56,6 +151,44 @@
       "status": "RESEARCH_ONLY",
       "samples": 3481,
       "brier": 0.24933,
+      "reliability_bins": [
+        {
+          "lower": 0.1,
+          "upper": 0.2,
+          "samples": 30,
+          "predicted": 0.142857,
+          "observed": 0.3
+        },
+        {
+          "lower": 0.2,
+          "upper": 0.3,
+          "samples": 633,
+          "predicted": 0.285714,
+          "observed": 0.382306
+        },
+        {
+          "lower": 0.4,
+          "upper": 0.5,
+          "samples": 1699,
+          "predicted": 0.428571,
+          "observed": 0.416127
+        },
+        {
+          "lower": 0.5,
+          "upper": 0.6,
+          "samples": 985,
+          "predicted": 0.571429,
+          "observed": 0.46802
+        },
+        {
+          "lower": 0.7,
+          "upper": 0.8,
+          "samples": 134,
+          "predicted": 0.714286,
+          "observed": 0.552239
+        }
+      ],
+      "expected_calibration_error": 0.060492,
       "chronological_rolling_brier": 0.273528,
       "skill_vs_chronological_rolling": 0.088465,
       "constant_rate_brier_in_sample": 0.244945,
