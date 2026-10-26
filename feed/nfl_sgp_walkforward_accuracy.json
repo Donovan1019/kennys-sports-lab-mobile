@@ -1,37 +1,37 @@
 {
   "status": "RESEARCH_ONLY",
-  "method": "chronological five-game historical mean threshold and smoothed empirical frequency; NOT sportsbook-line calibration",
+  "method": "chronological five-positive-stat-game mean threshold and smoothed empirical frequency; position-filtered, conditional on positive production; NOT sportsbook-line calibration",
   "leakage_policy": "Each prediction uses only earlier games for the same player and market",
-  "total_samples": 62988,
+  "total_samples": 7866,
   "markets": {
     "player_pass_yds": {
       "status": "RESEARCH_ONLY",
-      "samples": 15747,
-      "brier": 0.027959,
-      "mean_predicted": 0.15407,
-      "observed_rate": 0.015495
+      "samples": 450,
+      "brier": 0.251701,
+      "mean_predicted": 0.506349,
+      "observed_rate": 0.504444
     },
     "player_reception_yds": {
       "status": "RESEARCH_ONLY",
-      "samples": 15747,
-      "brier": 0.086945,
-      "mean_predicted": 0.224188,
-      "observed_rate": 0.113863
+      "samples": 2960,
+      "brier": 0.253116,
+      "mean_predicted": 0.452027,
+      "observed_rate": 0.422973
     },
     "player_rush_yds": {
       "status": "RESEARCH_ONLY",
-      "samples": 15747,
-      "brier": 0.057404,
-      "mean_predicted": 0.186321,
-      "observed_rate": 0.058233
+      "samples": 1452,
+      "brier": 0.25104,
+      "mean_predicted": 0.453463,
+      "observed_rate": 0.417355
     },
     "player_receptions": {
       "status": "RESEARCH_ONLY",
-      "samples": 15747,
-      "brier": 0.086458,
-      "mean_predicted": 0.226619,
-      "observed_rate": 0.118689
+      "samples": 3004,
+      "brier": 0.252486,
+      "mean_predicted": 0.444265,
+      "observed_rate": 0.421771
     }
   },
-  "limitations": "Synthetic historical mean thresholds, not posted odds or real SGP prices; no injury, opponent, joint-correlation, or market EV validation"
+  "limitations": "Positive-stat selection excludes zero-production games and introduces participation/survivorship bias. No snap or injury eligibility data; synthetic thresholds, not posted odds or real SGP prices; no opponent, joint-correlation, or market EV validation"
 }
