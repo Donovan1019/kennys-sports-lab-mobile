@@ -7,39 +7,45 @@
     "position_excluded": 80618,
     "duplicate_player_weeks": 0
   },
-  "participation_status": "UNVERIFIED",
-  "method": "chronological five-observed-stat-game mean threshold and smoothed empirical frequency; position-filtered, includes recorded zeros; NOT sportsbook-line calibration",
+  "opportunity": {
+    "confirmed": 15032,
+    "unverified": 0,
+    "zero_opportunity": 6706,
+    "invalid": 0
+  },
+  "participation_status": "OPPORTUNITY_CONFIRMED_ONLY",
+  "method": "chronological five-opportunity-confirmed-game mean threshold and smoothed empirical frequency; position-filtered, retains zero outcomes when attempts/targets/carries > 0; NOT sportsbook-line calibration",
   "leakage_policy": "Each prediction uses only earlier games for the same player and market",
-  "total_samples": 13661,
+  "total_samples": 8912,
   "markets": {
     "player_pass_yds": {
       "status": "RESEARCH_ONLY",
-      "samples": 467,
-      "brier": 0.250623,
-      "mean_predicted": 0.506883,
-      "observed_rate": 0.496788
+      "samples": 460,
+      "brier": 0.25102,
+      "mean_predicted": 0.506211,
+      "observed_rate": 0.5
     },
     "player_reception_yds": {
       "status": "RESEARCH_ONLY",
-      "samples": 4617,
-      "brier": 0.242878,
-      "mean_predicted": 0.416133,
-      "observed_rate": 0.382933
+      "samples": 3481,
+      "brier": 0.252754,
+      "mean_predicted": 0.453359,
+      "observed_rate": 0.420856
     },
     "player_rush_yds": {
       "status": "RESEARCH_ONLY",
-      "samples": 3960,
-      "brier": 0.156117,
-      "mean_predicted": 0.305628,
-      "observed_rate": 0.217929
+      "samples": 1490,
+      "brier": 0.250185,
+      "mean_predicted": 0.452924,
+      "observed_rate": 0.418792
     },
     "player_receptions": {
       "status": "RESEARCH_ONLY",
-      "samples": 4617,
-      "brier": 0.241185,
-      "mean_predicted": 0.423837,
-      "observed_rate": 0.398094
+      "samples": 3481,
+      "brier": 0.24933,
+      "mean_predicted": 0.451553,
+      "observed_rate": 0.4289
     }
   },
-  "limitations": "Recorded zero production is retained, but missing weekly rows and missing participation cannot be classified without snaps/injury evidence. Synthetic thresholds, not posted odds or real SGP prices; no opponent, joint-correlation, or market EV validation"
+  "limitations": "Opportunity-confirmed samples condition on observed attempts, targets or carries and exclude games with zero opportunity; this introduces post-game selection bias and is NOT a pregame hit probability. Snaps, routes, injury status and missing weekly rows are unverified. Synthetic thresholds, not posted odds or real SGP prices; no opponent, joint-correlation, or market EV validation"
 }
