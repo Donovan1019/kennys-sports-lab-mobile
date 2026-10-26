@@ -16,6 +16,7 @@
   "participation_status": "OPPORTUNITY_CONFIRMED_ONLY",
   "bet_eligibility": "BLOCKED",
   "calibration_status": "PREQUENTIAL_RESEARCH_ONLY",
+  "acceptance_gate_policy": "Research-only dual-metric gate requires strictly lower Brier and ECE; approval for deployment additionally requires an untouched future holdout, real sportsbook thresholds and pregame eligibility. Never use these in-sample selection decisions for live picks.",
   "calibration_warning": "Calendar-week prequential additive bias correction uses only previous weeks per market, with minimum 100 observations and shrinkage; diagnostic comparison, not sportsbook probability calibration.",
   "baseline_warning": "Chronological rolling baseline uses only prior scored player-market outcomes (up to 10, Laplace-smoothed); constant-rate benchmark uses full evaluation outcomes (in-sample, look-ahead) and is diagnostic only. Both use postgame opportunity-conditioned samples and synthetic thresholds.",
   "method": "chronological five-opportunity-confirmed-game mean threshold and smoothed empirical frequency; position-filtered, retains zero outcomes when attempts/targets/carries > 0; NOT sportsbook-line calibration",
@@ -26,6 +27,13 @@
       "status": "RESEARCH_ONLY",
       "samples": 460,
       "brier": 0.25102,
+      "calibration_acceptance_gate": {
+        "status": "REJECTED",
+        "brier_improved": false,
+        "ece_improved": true,
+        "eligible_for_live_use": false,
+        "reason": "Calibration worsened or tied at least one diagnostic metric"
+      },
       "prequential_calibrated_brier": 0.251893,
       "prequential_calibrated_ece": 0.05183,
       "prequential_calibration_samples": 352,
@@ -71,6 +79,13 @@
       "status": "RESEARCH_ONLY",
       "samples": 3481,
       "brier": 0.252754,
+      "calibration_acceptance_gate": {
+        "status": "REJECTED",
+        "brier_improved": true,
+        "ece_improved": false,
+        "eligible_for_live_use": false,
+        "reason": "Calibration worsened or tied at least one diagnostic metric"
+      },
       "prequential_calibrated_brier": 0.25185,
       "prequential_calibrated_ece": 0.074075,
       "prequential_calibration_samples": 3276,
@@ -116,6 +131,13 @@
       "status": "RESEARCH_ONLY",
       "samples": 1490,
       "brier": 0.250185,
+      "calibration_acceptance_gate": {
+        "status": "RESEARCH_CANDIDATE",
+        "brier_improved": true,
+        "ece_improved": true,
+        "eligible_for_live_use": false,
+        "reason": "Both diagnostic metrics improved; independent future holdout still required"
+      },
       "prequential_calibrated_brier": 0.249585,
       "prequential_calibrated_ece": 0.06751,
       "prequential_calibration_samples": 1354,
@@ -161,6 +183,13 @@
       "status": "RESEARCH_ONLY",
       "samples": 3481,
       "brier": 0.24933,
+      "calibration_acceptance_gate": {
+        "status": "REJECTED",
+        "brier_improved": true,
+        "ece_improved": false,
+        "eligible_for_live_use": false,
+        "reason": "Calibration worsened or tied at least one diagnostic metric"
+      },
       "prequential_calibrated_brier": 0.249035,
       "prequential_calibrated_ece": 0.061404,
       "prequential_calibration_samples": 3276,
