@@ -1,0 +1,27 @@
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const vm=require('node:vm');
+const context={window:{}};
+vm.runInNewContext(fs.readFileSync('nfl_sgp_joint_bootstrap.js','utf8'),context);
+const joint=context.window.KSLSGPJoint.joint;
+function player(name,values){return {name,games:values.map((v,i)=>({season:2025,week:i+1,season_type:'REG',values:{'Passing yards':v,'Receiving yards':v,'Rushing touchdowns':0,'Receiving touchdowns':0}}))};}
+const stats={source:'nflverse-stats-player-week',players:[player('Alpha',[110,90,110,90,110,90]),player('Beta',[110,90,110,90,110,90])]};
+const legs=[{player:'Alpha',market:'player_pass_yds',point:100,selection:'Over'},{player:'Beta',market:'player_reception_yds',point:100,selection:'Over'}];
+const result=joint(stats,legs);
+assert.equal(result.status,'EXPERIMENTAL');
+assert.equal(result.paired_weeks,6);
+assert.equal(result.trials,10000);
+assert.ok(result.joint_rate>0.45&&result.joint_rate<0.55);
+assert.equal(joint(stats,legs).joint_rate,result.joint_rate);
+assert.equal(joint(stats,[legs[0]]).status,'BLOCKED');
+assert.equal(joint(stats,[...legs,{...legs[0],market:'unknown'}]).status,'BLOCKED');
+assert.equal(joint(stats,[{...legs[0],player:'Missing'},legs[1]]).status,'BLOCKED');
+assert.equal(joint({...stats,players:[...stats.players,player('Alpha',[1,2,3,4,5,6])]},legs).status,'BLOCKED');
+assert.equal(joint({...stats,players:stats.players.map(p=>({...p,games:p.games.slice(0,4)}))},legs).status,'BLOCKED');
+assert.equal(joint({...stats,source:'unknown'},legs).status,'BLOCKED');
+const html=fs.readFileSync('nfl.html','utf8');
+assert.ok(html.indexOf('nfl_sgp_joint_bootstrap.js')<html.indexOf('nfl_sgp_stack_finder.js'));
+const ui=fs.readFileSync('nfl_sgp_stack_finder.js','utf8');
+new vm.Script(ui);
+assert.ok(!ui.includes('Joint Monte Carlo: NOT RUN'));
+console.log('SGP bootstrap validation passed');
