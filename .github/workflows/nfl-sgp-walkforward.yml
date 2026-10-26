@@ -1,5 +1,12 @@
 name: NFL SGP Walk-Forward Accuracy
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/audit_nfl_sgp_walkforward.py'
+      - 'tests/test_sgp_walkforward.py'
+      - 'feed/nfl_player_stats.json'
+      - '.github/workflows/nfl-sgp-walkforward.yml'
   workflow_dispatch:
   schedule:
     - cron: '35 12 * * 2'
