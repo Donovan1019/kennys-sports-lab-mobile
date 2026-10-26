@@ -36,6 +36,9 @@ class AuditTests(unittest.TestCase):
         result=audit({"source":"nflverse-stats-player-week","players":[{"position":"QB","games":games}]})
         market=result["markets"]["player_pass_yds"]
         self.assertIn("chronological_rolling_brier",market)
+        self.assertIn("prequential_calibrated_brier",market)
+        self.assertIn("prequential_calibrated_ece",market)
+        self.assertEqual(market["prequential_calibration_samples"],0)
         self.assertEqual(sum(b["samples"] for b in market["reliability_bins"]),market["samples"])
         self.assertGreaterEqual(market["expected_calibration_error"],0)
         self.assertEqual(result["bet_eligibility"],"BLOCKED")
