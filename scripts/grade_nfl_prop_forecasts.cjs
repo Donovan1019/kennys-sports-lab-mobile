@@ -27,7 +27,7 @@ for(const f of forecasts){
  const o=index.get(key);
  if(!o||o.outcome_verified!==true||!o.espn_event_id||!o.event){unmatched++;continue}
  if(Date.parse(o.verified_at)<Date.parse(f.kickoff)){console.error('Outcome verified before kickoff '+key);process.exit(1)}
- graded.push({...f,graded_at:o.verified_at,outcome:o.outcome,event:o.event,espn_event_id:o.espn_event_id,outcome_verified:true,source:o.source});
+ graded.push({...f,graded_at:o.verified_at,outcome:o.outcome,event:o.event,player_team:o.player_team||null,opponent:o.opponent||null,espn_event_id:o.espn_event_id,outcome_verified:true,source:o.source});
 }
 // Rebuild graded archive only from freshly reconciled independent results.\nfs.mkdirSync(path.dirname(output),{recursive:true});
 fs.writeFileSync(output,JSON.stringify(graded,null,2)+'\n');
