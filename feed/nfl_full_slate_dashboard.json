@@ -1,0 +1,106 @@
+{
+  "status": "RESEARCH_ONLY",
+  "betting_eligible": false,
+  "readiness_reason": "Player roster/injury validation and multi-game out-of-sample calibration not complete",
+  "capture": {
+    "generated_at": "2026-10-26T12:40:45.662843+00:00",
+    "target_date": null,
+    "expected_upcoming_events": 15,
+    "requested_events": 15,
+    "captured_event_ids": [
+      "4853610e63c246f2027a6a248e642c9a",
+      "ab2865e9f2d4b012de8bc6fb6de11a7c",
+      "921859689f5f8b3b8b1caf4248bdb1ec",
+      "c93c421e5fa46031a43162d111d981d0",
+      "9c5d8f57e0ba0fbd9ef436c1f0898f99",
+      "ab5ab731ab655bd6308bc7a922275518",
+      "52e7ee9c42525e6deec02da32dc2fad8",
+      "159dbf0253dd2038eda2212f84387f0c",
+      "98f1b121b793977434c046e76c707145"
+    ],
+    "captured_events": 9,
+    "missing_event_ids": [
+      "9255ca8f32aea590d00aa57de79f6bb6",
+      "2ff84d3f6053d083c8c0a5bebf7cdd4c",
+      "f2a036d5edf483a277880014861e78ad",
+      "05405af79752f5e742cdf50b61f6745e",
+      "b9c60db63b1a19ad319f24b33c0defe8",
+      "7d664fbcd39350e559d83c0068ba7169"
+    ],
+    "unrequested_events": 0,
+    "complete": false,
+    "errors": [
+      {
+        "event_id": "9255ca8f32aea590d00aa57de79f6bb6",
+        "error": "no_supported_bookmaker_props"
+      },
+      {
+        "event_id": "2ff84d3f6053d083c8c0a5bebf7cdd4c",
+        "error": "no_supported_bookmaker_props"
+      },
+      {
+        "event_id": "f2a036d5edf483a277880014861e78ad",
+        "error": "no_supported_bookmaker_props"
+      },
+      {
+        "event_id": "05405af79752f5e742cdf50b61f6745e",
+        "error": "no_supported_bookmaker_props"
+      },
+      {
+        "event_id": "b9c60db63b1a19ad319f24b33c0defe8",
+        "error": "no_supported_bookmaker_props"
+      },
+      {
+        "event_id": "7d664fbcd39350e559d83c0068ba7169",
+        "error": "no_supported_bookmaker_props"
+      }
+    ],
+    "status": "PARTIAL"
+  },
+  "archived_forecasts": 346,
+  "graded_forecasts": 42,
+  "games_with_grades": 1,
+  "game_results": [
+    {
+      "game": "Carolina Panthers @ Green Bay Packers",
+      "archived": 52,
+      "graded": 0,
+      "wins": 0,
+      "losses": 0,
+      "pushes": 0
+    },
+    {
+      "game": "Dallas Cowboys @ Philadelphia Eagles",
+      "archived": 82,
+      "graded": 0,
+      "wins": 0,
+      "losses": 0,
+      "pushes": 0
+    },
+    {
+      "game": "Kansas City Chiefs @ Seattle Seahawks",
+      "archived": 62,
+      "graded": 0,
+      "wins": 0,
+      "losses": 0,
+      "pushes": 0
+    },
+    {
+      "game": "San Francisco 49ers @ Atlanta Falcons",
+      "archived": 0,
+      "graded": 42,
+      "wins": 34,
+      "losses": 8,
+      "pushes": 0
+    },
+    {
+      "game": "UNMATCHED EVENT (LEGACY)",
+      "archived": 150,
+      "graded": 0,
+      "wins": 0,
+      "losses": 0,
+      "pushes": 0
+    }
+  ],
+  "calibration_status": "INSUFFICIENT_CROSS_GAME_SAMPLE"
+}
