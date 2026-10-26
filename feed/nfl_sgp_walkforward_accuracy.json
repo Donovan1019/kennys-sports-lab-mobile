@@ -1,0 +1,37 @@
+{
+  "status": "RESEARCH_ONLY",
+  "method": "chronological five-game historical mean threshold and smoothed empirical frequency; NOT sportsbook-line calibration",
+  "leakage_policy": "Each prediction uses only earlier games for the same player and market",
+  "total_samples": 62988,
+  "markets": {
+    "player_pass_yds": {
+      "status": "RESEARCH_ONLY",
+      "samples": 15747,
+      "brier": 0.027959,
+      "mean_predicted": 0.15407,
+      "observed_rate": 0.015495
+    },
+    "player_reception_yds": {
+      "status": "RESEARCH_ONLY",
+      "samples": 15747,
+      "brier": 0.086945,
+      "mean_predicted": 0.224188,
+      "observed_rate": 0.113863
+    },
+    "player_rush_yds": {
+      "status": "RESEARCH_ONLY",
+      "samples": 15747,
+      "brier": 0.057404,
+      "mean_predicted": 0.186321,
+      "observed_rate": 0.058233
+    },
+    "player_receptions": {
+      "status": "RESEARCH_ONLY",
+      "samples": 15747,
+      "brier": 0.086458,
+      "mean_predicted": 0.226619,
+      "observed_rate": 0.118689
+    }
+  },
+  "limitations": "Synthetic historical mean thresholds, not posted odds or real SGP prices; no injury, opponent, joint-correlation, or market EV validation"
+}
