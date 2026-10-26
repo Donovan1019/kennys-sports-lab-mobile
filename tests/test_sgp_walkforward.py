@@ -37,6 +37,11 @@ class AuditTests(unittest.TestCase):
         market=result["markets"]["player_pass_yds"]
         self.assertIn("chronological_rolling_brier",market)
         self.assertIn("prequential_calibrated_brier",market)
+        gate=market["calibration_acceptance_gate"]
+        self.assertFalse(gate["eligible_for_live_use"])
+        self.assertEqual(gate["brier_improved"],market["prequential_calibrated_brier"]<market["brier"])
+        self.assertEqual(gate["ece_improved"],market["prequential_calibrated_ece"]<market["expected_calibration_error"])
+        self.assertEqual(gate["status"]=="RESEARCH_CANDIDATE",gate["brier_improved"] and gate["ece_improved"])
         self.assertIn("prequential_calibrated_ece",market)
         self.assertEqual(market["prequential_calibration_samples"],0)
         self.assertEqual(sum(b["samples"] for b in market["reliability_bins"]),market["samples"])
