@@ -17,10 +17,12 @@ def bridge(forecasts,outcomes):
     if not isinstance(forecasts,dict) or not isinstance(forecasts.get("forecasts"),list):
         raise ValueError("missing forecast ledger")
     if not isinstance(outcomes,list):raise ValueError("missing outcome archive")
-    valid=[];rejected={};seen=set()
+    valid=[];rejected={};seen=set();unsupported=0
     for f in forecasts["forecasts"]:
+        if f.get("market") not in MARKETS:
+            unsupported+=1
+            continue
         try:
-            if f.get("market") not in MARKETS:raise ValueError("unsupported_market")
             if not f.get("research_only"):raise ValueError("research_flag_missing")
             if not all(isinstance(f.get(k),str) and f[k] for k in ("forecast_id","event_id","player","bookmaker","model_version","quoted_at","forecast_at","kickoff")):
                 raise ValueError("missing_identity_or_timestamp")
@@ -50,7 +52,7 @@ def bridge(forecasts,outcomes):
     if rejected:
         return {"status":"BLOCKED","reason":"Forecast rows rejected; refusing partial sample selection","rejected":rejected,"bet_eligibility":"BLOCKED"}
     report=grade(valid,verified)
-    report["bridge"]={"forecast_rows":len(forecasts["forecasts"]),"snapshots":len(valid),"verified_outcome_rows":len(verified),"excluded_unverified_outcomes":unverified,
+    report["bridge"]={"forecast_rows":len(forecasts["forecasts"]),"excluded_unsupported_market_forecasts":unsupported,"snapshots":len(valid),"verified_outcome_rows":len(verified),"excluded_unverified_outcomes":unverified,
                        "source":"existing pregame forecast ledger and ESPN-verified outcomes"}
     report["warning"]="Research only. Existing forecasts use prior-season Laplace probabilities; no independent bookmaker feed verification or live deployment."
     return report
