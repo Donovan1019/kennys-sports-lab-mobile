@@ -50,7 +50,7 @@ def main():
     forecasts=json.loads(LEDGER.read_text())["forecasts"]
     old=json.loads(OUTPUT.read_text()) if OUTPUT.exists() else []
     if not isinstance(old,list):raise ValueError("Existing verified outcome archive malformed")
-    prior={(x["event_id"],x["player"],x["market"]):x for x in old}
+    prior={} # Rebuild from authoritative box scores; never trust previously misassigned ESPN game IDs
     pending=[f for f in forecasts if f["market"] in MARKETS and (f["event_id"],f["player"],f["market"]) not in prior and datetime.fromisoformat(f["kickoff"].replace("Z","+00:00"))<datetime.now(timezone.utc)-timedelta(hours=4)]
     byday=defaultdict(list)
     for f in pending:byday[f["kickoff"][:10].replace("-","")].append(f)
@@ -72,14 +72,14 @@ def main():
                 expected={x.strip().lower() for x in f["event"].split(" @ ")}
                 matches=[e for e in matches if {x.get("team",{}).get("displayName","").lower() for x in e["competitions"][0].get("competitors",[])}==expected]
             # Without exact teams, concurrent kickoffs are ambiguous: never guess.
-            if len(matches)>1 and not f.get("event"):
+            if not f.get("event"):
                 possible=[]
                 for candidate in matches:
                     cid=str(candidate["id"])
                     if cid not in summary_cache:
                         try:summary_cache[cid]=extract(get("https://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event="+urllib.parse.quote(cid)))
                         except Exception:summary_cache[cid]={}
-                    if f["player"].lower() in summary_cache[cid]:possible.append(candidate)
+                    if parse_stat(summary_cache[cid].get(f["player"].lower(),[]),f["market"]) is not None:possible.append(candidate)
                 matches=possible
             if len(matches)!=1:unmatched+=1;continue
             e=matches[0];key=(f["event_id"],f["player"],f["market"])
@@ -91,8 +91,8 @@ def main():
             stats=summary_cache[cid]
             value=parse_stat(stats.get(f["player"].lower(),[]),f["market"])
             if value is None:unmatched+=1;continue
-            row={"event_id":f["event_id"],"event": " @ ".join([next((x["team"]["displayName"] for x in e["competitions"][0]["competitors"] if x.get("homeAway")=="away"),""),next((x["team"]["displayName"] for x in e["competitions"][0]["competitors"] if x.get("homeAway")=="home"),"")]),"espn_event_id":str(e["id"]),"player":f["player"],"market":f["market"],"outcome":value,"verified_at":datetime.now(timezone.utc).isoformat(),"source":"https://www.espn.com/nfl/game/_/gameId/"+str(e["id"])}
+            row={"outcome_verified":True,"kickoff":f["kickoff"],"event_id":f["event_id"],"event": " @ ".join([next((x["team"]["displayName"] for x in e["competitions"][0]["competitors"] if x.get("homeAway")=="away"),""),next((x["team"]["displayName"] for x in e["competitions"][0]["competitors"] if x.get("homeAway")=="home"),"")]),"espn_event_id":str(e["id"]),"player":f["player"],"market":f["market"],"outcome":value,"verified_at":datetime.now(timezone.utc).isoformat(),"source":"https://www.espn.com/nfl/game/_/gameId/"+str(e["id"])}
             prior[key]=row;added+=1
-    if added:OUTPUT.write_text(json.dumps(list(prior.values()),indent=2)+"\n")
+    OUTPUT.write_text(json.dumps(list(prior.values()),indent=2)+"\n")
     print(json.dumps({"newly_verified":added,"total_verified":len(prior),"ambiguous_or_missing":unmatched,"pending":len(pending)}))
 if __name__=="__main__":main()
