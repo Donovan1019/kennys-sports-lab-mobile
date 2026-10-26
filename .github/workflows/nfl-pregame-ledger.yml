@@ -1,0 +1,42 @@
+name: NFL Pregame Ledger Integrity and Grading
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/validate_nfl_pregame_ledger.py'
+      - 'scripts/grade_nfl_pregame_ledger.py'
+      - 'tests/test_nfl_pregame_ledger.py'
+      - 'tests/test_nfl_pregame_grading.py'
+      - 'feed/nfl_pregame_snapshots.json'
+      - 'feed/nfl_settled_player_results.json'
+      - '.github/workflows/nfl-pregame-ledger.yml'
+  workflow_dispatch:
+  schedule:
+    - cron: '50 12 * * *'
+permissions:
+  contents: read
+jobs:
+  validate-and-grade:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test snapshot and grading integrity
+        run: |
+          python -m unittest discover -s tests -p test_nfl_pregame_ledger.py -v
+          python -m unittest discover -s tests -p test_nfl_pregame_grading.py -v
+      - name: Grade only when both input feeds exist
+        shell: bash
+        run: |
+          if [[ -f feed/nfl_pregame_snapshots.json && -f feed/nfl_settled_player_results.json ]]; then
+            python -m scripts.grade_nfl_pregame_ledger feed/nfl_pregame_snapshots.json feed/nfl_settled_player_results.json | tee nfl_pregame_ledger_report.json
+          else
+            echo '{"status":"BLOCKED","reason":"Real pregame snapshots and/or settled player results are not supplied","bet_eligibility":"BLOCKED"}' > nfl_pregame_ledger_report.json
+            cat nfl_pregame_ledger_report.json
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nfl-pregame-ledger-report
+          path: nfl_pregame_ledger_report.json
