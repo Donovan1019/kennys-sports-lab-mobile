@@ -7,6 +7,12 @@ on:
       - 'scripts/grade_nfl_pregame_ledger.py'
       - 'tests/test_nfl_pregame_ledger.py'
       - 'tests/test_nfl_pregame_grading.py'
+      - 'scripts/bridge_nfl_existing_prop_feeds.py'
+      - 'scripts/report_nfl_pregame_ledger.py'
+      - 'tests/test_nfl_existing_feed_bridge.py'
+      - 'tests/test_nfl_ledger_dashboard.py'
+      - 'feed/nfl_prop_forecast_ledger.json'
+      - 'feed/nfl_prop_verified_outcomes.json'
       - 'feed/nfl_pregame_snapshots.json'
       - 'feed/nfl_settled_player_results.json'
       - '.github/workflows/nfl-pregame-ledger.yml'
@@ -27,6 +33,8 @@ jobs:
         run: |
           python -m unittest discover -s tests -p test_nfl_pregame_ledger.py -v
           python -m unittest discover -s tests -p test_nfl_pregame_grading.py -v
+          python -m unittest discover -s tests -p test_nfl_existing_feed_bridge.py -v
+          python -m unittest discover -s tests -p test_nfl_ledger_dashboard.py -v
       - name: Grade only when both input feeds exist
         shell: bash
         run: |
@@ -35,6 +43,15 @@ jobs:
           else
             echo '{"status":"BLOCKED","reason":"Real pregame snapshots and/or settled player results are not supplied","bet_eligibility":"BLOCKED"}' > nfl_pregame_ledger_report.json
             cat nfl_pregame_ledger_report.json
+          fi
+      - name: Grade existing archived sportsbook forecasts against ESPN outcomes
+        shell: bash
+        run: |
+          if [[ -f feed/nfl_prop_forecast_ledger.json && -f feed/nfl_prop_verified_outcomes.json ]]; then
+            python -m scripts.report_nfl_pregame_ledger > nfl_pregame_market_dashboard.json
+            cat nfl_pregame_market_dashboard.json
+          else
+            echo '{"status":"BLOCKED","reason":"Archived forecasts or verified outcomes missing","bet_eligibility":"BLOCKED"}' > nfl_pregame_market_dashboard.json
           fi
       - name: Publish explicit evidence status
         if: always()
@@ -60,4 +77,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: nfl-pregame-ledger-report
-          path: nfl_pregame_ledger_report.json
+          path: |
+            nfl_pregame_ledger_report.json
+            nfl_pregame_market_dashboard.json
