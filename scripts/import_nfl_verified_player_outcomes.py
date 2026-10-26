@@ -62,10 +62,14 @@ def main():
     pending=[f for f in forecasts if f["market"] in MARKETS and (f["event_id"],f["player"],f["market"]) not in prior and datetime.fromisoformat(f["kickoff"].replace("Z","+00:00"))<datetime.now(timezone.utc)-timedelta(hours=4)]
     byday=defaultdict(list)
     for f in pending:byday[f["kickoff"][:10].replace("-","")].append(f)
-    added=0;unmatched=0;summary_cache={};raw_cache={}
+    added=0;unmatched=0;summary_cache={};raw_cache={};failed_days=[];completed_days=[]
     for day,group in byday.items():
         try:board=get("https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates="+day)
-        except Exception as exc:print("Scoreboard unavailable",day,type(exc).__name__);continue
+        except Exception as exc:
+            print("Scoreboard unavailable",day,type(exc).__name__)
+            failed_days.append(day)
+            continue
+        completed_days.append(day)
         finals=[]
         for e in board.get("events",[]):
             c=(e.get("competitions") or [{}])[0]
@@ -103,6 +107,10 @@ def main():
             opponents=[x["team"].get("displayName") for x in e["competitions"][0]["competitors"] if x["team"].get("displayName")!=team] if team else []
             row={"player_team":team,"opponent":opponents[0] if len(opponents)==1 else None,"outcome_verified":True,"kickoff":f["kickoff"],"event_id":f["event_id"],"event": " @ ".join([next((x["team"]["displayName"] for x in e["competitions"][0]["competitors"] if x.get("homeAway")=="away"),""),next((x["team"]["displayName"] for x in e["competitions"][0]["competitors"] if x.get("homeAway")=="home"),"")]),"espn_event_id":str(e["id"]),"player":f["player"],"market":f["market"],"outcome":value,"verified_at":datetime.now(timezone.utc).isoformat(),"source":"https://www.espn.com/nfl/game/_/gameId/"+str(e["id"])}
             prior[key]=row;added+=1
+    # Never replace the existing verified archive with an incomplete rebuild.
+    # Prior rows may contain misassigned ESPN IDs, so they cannot be blindly reused.
+    if failed_days or (old and len(prior)<len(old)):
+        raise RuntimeError("Refusing destructive outcome archive overwrite: "+json.dumps({"failed_days":failed_days,"previous_rows":len(old),"reverified_rows":len(prior)}))
     OUTPUT.write_text(json.dumps(list(prior.values()),indent=2)+"\n")
     print(json.dumps({"newly_verified":added,"total_verified":len(prior),"ambiguous_or_missing":unmatched,"pending":len(pending)}))
 if __name__=="__main__":main()
