@@ -61,16 +61,26 @@ jobs:
           import json,os
           from pathlib import Path
           p=Path("nfl_pregame_ledger_report.json")
-          report=json.loads(p.read_text()) if p.exists() else {"status":"BLOCKED","reason":"Grading did not produce a report","bet_eligibility":"BLOCKED"}
-          status=report.get("status","BLOCKED")
-          graded=report.get("graded",0)
-          pending=report.get("pending",0)
-          lines=["## NFL pregame ledger evidence","",
-                 f"- Pipeline status: **{status}**",
-                 f"- Graded snapshots: **{graded}**",
-                 f"- Pending snapshots: **{pending}**",
+          raw=json.loads(p.read_text()) if p.exists() else {"status":"BLOCKED"}
+          q=Path("nfl_pregame_market_dashboard.json")
+          archive=json.loads(q.read_text()) if q.exists() else {"status":"BLOCKED"}
+          coverage=archive.get("coverage",{})
+          markets=archive.get("markets",{})
+          lines=["## NFL pregame evidence (two distinct pipelines)","",
+                 f"- Direct pregame feed: **{raw.get('status','BLOCKED')}** (graded {raw.get('graded',0)}; pending {raw.get('pending',0)})",
+                 f"- Archived sportsbook forecast grading: **{archive.get('status','BLOCKED')}**",
+                 f"- Archived graded sides: **{archive.get('total_graded_sides',0)}** (over/under pairs; not independent wagers)",
+                 f"- Archived pending sides: **{archive.get('total_pending_sides',0)}**",
+                 f"- Archived forecast rows: **{coverage.get('forecast_rows',0)}**",
+                 f"- ESPN verified outcome rows: **{coverage.get('verified_outcome_rows',0)}**",
+                 f"- Unsupported market exclusions: **{coverage.get('excluded_unsupported_market_forecasts',0)}**",
                  "- Betting eligibility: **BLOCKED**",
-                 "- Passing CI does not mean real sportsbook feeds are connected or forecasts are betting-ready."]
+                 "- Passing CI confirms execution, not live sportsbook authentication or betting readiness.",
+                 "",
+                 "| Market | Graded over forecasts | W-L | Brier | Hypothetical units |",
+                 "|---|---:|---:|---:|---:|"]
+          for market,data in sorted(markets.items()):
+              lines.append(f"| {market} | {data.get('graded_over_forecasts',0)} | {data.get('wins',0)}-{data.get('losses',0)} | {data.get('brier')} | {data.get('hypothetical_units')} |")
           with open(os.environ["GITHUB_STEP_SUMMARY"],"a") as out:
               out.write("\\n".join(lines)+"\\n")
           PY
