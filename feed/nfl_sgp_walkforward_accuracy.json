@@ -1,37 +1,45 @@
 {
   "status": "RESEARCH_ONLY",
-  "method": "chronological five-positive-stat-game mean threshold and smoothed empirical frequency; position-filtered, conditional on positive production; NOT sportsbook-line calibration",
+  "integrity": {
+    "missing_market_stat": 0,
+    "zero_market_stat": 8069,
+    "negative_or_invalid": 0,
+    "position_excluded": 80618,
+    "duplicate_player_weeks": 0
+  },
+  "participation_status": "UNVERIFIED",
+  "method": "chronological five-observed-stat-game mean threshold and smoothed empirical frequency; position-filtered, includes recorded zeros; NOT sportsbook-line calibration",
   "leakage_policy": "Each prediction uses only earlier games for the same player and market",
-  "total_samples": 7866,
+  "total_samples": 13661,
   "markets": {
     "player_pass_yds": {
       "status": "RESEARCH_ONLY",
-      "samples": 450,
-      "brier": 0.251701,
-      "mean_predicted": 0.506349,
-      "observed_rate": 0.504444
+      "samples": 467,
+      "brier": 0.250623,
+      "mean_predicted": 0.506883,
+      "observed_rate": 0.496788
     },
     "player_reception_yds": {
       "status": "RESEARCH_ONLY",
-      "samples": 2960,
-      "brier": 0.253116,
-      "mean_predicted": 0.452027,
-      "observed_rate": 0.422973
+      "samples": 4617,
+      "brier": 0.242878,
+      "mean_predicted": 0.416133,
+      "observed_rate": 0.382933
     },
     "player_rush_yds": {
       "status": "RESEARCH_ONLY",
-      "samples": 1452,
-      "brier": 0.25104,
-      "mean_predicted": 0.453463,
-      "observed_rate": 0.417355
+      "samples": 3960,
+      "brier": 0.156117,
+      "mean_predicted": 0.305628,
+      "observed_rate": 0.217929
     },
     "player_receptions": {
       "status": "RESEARCH_ONLY",
-      "samples": 3004,
-      "brier": 0.252486,
-      "mean_predicted": 0.444265,
-      "observed_rate": 0.421771
+      "samples": 4617,
+      "brier": 0.241185,
+      "mean_predicted": 0.423837,
+      "observed_rate": 0.398094
     }
   },
-  "limitations": "Positive-stat selection excludes zero-production games and introduces participation/survivorship bias. No snap or injury eligibility data; synthetic thresholds, not posted odds or real SGP prices; no opponent, joint-correlation, or market EV validation"
+  "limitations": "Recorded zero production is retained, but missing weekly rows and missing participation cannot be classified without snaps/injury evidence. Synthetic thresholds, not posted odds or real SGP prices; no opponent, joint-correlation, or market EV validation"
 }
