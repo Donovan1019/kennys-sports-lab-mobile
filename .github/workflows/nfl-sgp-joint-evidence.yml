@@ -1,0 +1,26 @@
+name: NFL SGP Joint Evidence Tests
+on:
+  pull_request:
+    paths:
+      - 'scripts/nfl_sgp_joint_evidence.py'
+      - 'tests/test_nfl_sgp_joint_evidence.py'
+      - '.github/workflows/nfl-sgp-joint-evidence.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/nfl_sgp_joint_evidence.py'
+      - 'tests/test_nfl_sgp_joint_evidence.py'
+      - '.github/workflows/nfl-sgp-joint-evidence.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  joint-evidence:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test NFL SGP joint evidence fail-closed rules
+        run: python -m unittest discover -s tests -p 'test_nfl_sgp_joint_evidence.py' -v
