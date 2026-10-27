@@ -10,6 +10,18 @@ const teamName=(row)=>String(row.selection||'');
 const buckets={h2h:'Moneyline',spreads:'Spread',totals:'Game total',player_points:'Points',player_rebounds:'Rebounds',player_assists:'Assists',player_threes:'Threes'};
 const availableMarkets=new Set(['h2h','spreads','totals','player_points','player_rebounds','player_assists','player_threes']);
 const kickoff=g=>new Date(g.commence_time).toLocaleString('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})+' ET';
+function walkForwardAudit(historical){
+ // Historical dates are newest first; evaluate each date using strictly older outcomes.
+ const ordered=[...historical.outcomes].reverse();const minimumTrain=8;
+ if(ordered.length<minimumTrain+5)return 'WALK-FORWARD UNAVAILABLE (requires 13+ aligned dates)';
+ let brier=0,baselineBrier=0,tests=0;const base=ordered.reduce((a,b)=>a+b,0)/ordered.length;
+ for(let i=minimumTrain;i<ordered.length;i++){
+  const train=ordered.slice(0,i),successes=train.reduce((a,b)=>a+b,0);
+  const forecast=(successes+1)/(train.length+2);const actual=ordered[i];
+  brier+=(forecast-actual)**2;baselineBrier+=(base-actual)**2;tests++;
+ }
+ return 'DESCRIPTIVE WALK-FORWARD BRIER '+(brier/tests).toFixed(3)+' over '+tests+' held-out dates (smoothed historical-rate baseline; not prospective validation)';
+}
 function jointBootstrap(historical,draws){
  // Resample paired same-date joint outcomes as whole rows; never multiply leg probabilities.
  // Seeded deterministic generator for reproducible UI output.
@@ -72,7 +84,7 @@ function renderGame(game,rows,playerProfiles){
   const missing=[];if(!chosen.every(x=>x.player&&availableMarkets.has(x.market)&&x.market.startsWith('player_')))missing.push('joint game/team scoring model');
   if(!chosen.every(x=>x.player&&playerProfiles.some(p=>String(p.name||'').trim().toLowerCase()===String(x.player||'').trim().toLowerCase())))missing.push('matched player game logs');
   const historic=historicalJoint(chosen,playerProfiles);
-  if(historic.available){const mc=jointBootstrap(historic,10000);simulationResult.textContent='EXPERIMENTAL PAIRED-DATE BOOTSTRAP · '+mc.draws.toLocaleString()+' resamples · joint historical co-hit '+historic.hits+'/'+historic.n+' ('+(100*historic.hits/historic.n).toFixed(1)+'%) · resampled '+(100*mc.p).toFixed(1)+'% · bootstrap 95% interval '+(100*mc.lower).toFixed(1)+'–'+(100*mc.upper).toFixed(1)+'% · same-date outcomes preserved, but this is NOT a calibrated forward-looking SGP probability · injuries/lineups UNVERIFIED · SGP quote and EV UNAVAILABLE · NOT BET ELIGIBLE.';return}
+  if(historic.available){const mc=jointBootstrap(historic,10000);const audit=walkForwardAudit(historic);simulationResult.textContent='EXPERIMENTAL PAIRED-DATE BOOTSTRAP · '+mc.draws.toLocaleString()+' resamples · joint historical co-hit '+historic.hits+'/'+historic.n+' ('+(100*historic.hits/historic.n).toFixed(1)+'%) · resampled '+(100*mc.p).toFixed(1)+'% · bootstrap 95% interval '+(100*mc.lower).toFixed(1)+'–'+(100*mc.upper).toFixed(1)+'% · '+audit+' · same-date outcomes preserved, but this is NOT a calibrated forward-looking SGP probability · injuries/lineups UNVERIFIED · SGP quote and EV UNAVAILABLE · NOT BET ELIGIBLE.';return}
   missing.push('verified starting lineups and injuries','aligned same-game player outcomes ('+historic.reason+')','calibrated joint residual distribution','bookmaker SGP quote');
   simulationResult.textContent='BLOCKED · '+chosen.length+' legs · missing: '+[...new Set(missing)].join('; ')+'. Monte Carlo NOT RUN. Joint probability, fair odds and EV UNAVAILABLE. Do not treat individual implied probabilities as independent.';
  });builder.append(simulation);
