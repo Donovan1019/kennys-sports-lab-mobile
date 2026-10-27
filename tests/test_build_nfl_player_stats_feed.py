@@ -10,6 +10,11 @@ class Ingestion(unittest.TestCase):
   self.assertEqual(build([row],schedule)["players"][0]["games"][0]["game_id"],"2026_03_NYJ_BUF")
  def test_missing_schedule_match_rejected(self):
   with self.assertRaises(ValueError):build([dict(BASE,game_id="",recent_team="NYJ")],{})
+ def test_negative_rushing_yards_allowed(self):
+  r=build([dict(BASE,rushing_yards="-7")])
+  self.assertEqual(r["players"][0]["games"][0]["values"]["Rushing yards"],-7)
+ def test_negative_receptions_rejected(self):
+  with self.assertRaises(ValueError):build([dict(BASE,receptions="-1")])
  def test_observed_game(self):
   r=build([BASE])
   self.assertEqual(r["players"][0]["games"][0]["values"]["Passing yards"],203)
