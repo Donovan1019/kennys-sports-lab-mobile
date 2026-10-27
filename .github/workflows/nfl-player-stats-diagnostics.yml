@@ -1,0 +1,33 @@
+name: NFL Historical Feed Diagnostics
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/audit_nfl_player_stats_feed.py'
+      - 'tests/test_nfl_player_stats_feed.py'
+      - '.github/workflows/nfl-player-stats-diagnostics.yml'
+      - 'feed/nfl_player_stats.json'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/audit_nfl_player_stats_feed.py'
+      - 'tests/test_nfl_player_stats_feed.py'
+      - '.github/workflows/nfl-player-stats-diagnostics.yml'
+      - 'feed/nfl_player_stats.json'
+permissions:
+  contents: read
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s tests -p 'test_nfl_player_stats_feed.py' -v
+      - name: Audit actual NFL feed (report, do not fabricate)
+        run: python scripts/audit_nfl_player_stats_feed.py > nfl-player-stats-diagnostics.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nfl-player-stats-diagnostics
+          path: nfl-player-stats-diagnostics.json
