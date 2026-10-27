@@ -10,12 +10,13 @@ REQUIRED = ("event_id", "player_id", "market", "line", "side", "forecast_at", "k
 def validate(records, quotes=()):
     """Return a fail-closed audit of pregame, game-linked prop observations; holdout remains unverified."""
     issues, grouped, seen = [], defaultdict(list), set()
+    slip_legs, kickoff_by_event = set(), {}
     for i, r in enumerate(records):
         missing = [k for k in REQUIRED if k not in r or r[k] is None or r[k] == ""]
         if missing:
             issues.append({"row": i, "reason": "missing_fields", "fields": missing})
             continue
-        key = (r["event_id"], r["player_id"], r["market"], r["line"], r["side"], r["forecast_at"])
+        key = (r["event_id"], r.get("slip_id"), r["player_id"], r["market"], r["line"], r["side"], r["forecast_at"])
         if key in seen:
             issues.append({"row": i, "reason": "duplicate_forecast"})
             continue
@@ -36,6 +37,19 @@ def validate(records, quotes=()):
         except (ValueError, TypeError, OverflowError):
             issues.append({"row": i, "reason": "invalid_pregame_or_numeric_data"})
             continue
+        event = str(r["event_id"])
+        if event in kickoff_by_event and kickoff_by_event[event] != kickoff:
+            issues.append({"row": i, "reason": "conflicting_event_kickoff"})
+            continue
+        kickoff_by_event[event] = kickoff
+        slip = r.get("slip_id")
+        if isinstance(slip, str) and slip.strip():
+            # The same player/market cannot count twice toward one parlay.
+            leg_key = (event, slip.strip(), str(r["player_id"]), str(r["market"]))
+            if leg_key in slip_legs:
+                issues.append({"row": i, "reason": "repeated_player_market_in_slip"})
+                continue
+            slip_legs.add(leg_key)
         hit = outcome > line if r["side"] == "over" else outcome < line
         if outcome == line:
             issues.append({"row": i, "reason": "push_requires_separate_settlement"})
