@@ -1,0 +1,25 @@
+name: NFL SGP Bootstrap Integrity
+on:
+  pull_request:
+    paths:
+      - 'nfl_sgp_joint_bootstrap.js'
+      - 'tests/test_nfl_sgp_bootstrap_integrity.js'
+      - '.github/workflows/nfl-sgp-bootstrap-integrity.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'nfl_sgp_joint_bootstrap.js'
+      - 'tests/test_nfl_sgp_bootstrap_integrity.js'
+      - '.github/workflows/nfl-sgp-bootstrap-integrity.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tests/test_nfl_sgp_bootstrap_integrity.js
