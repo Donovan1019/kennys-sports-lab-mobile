@@ -16,7 +16,8 @@ def audit():
     players=stats.get("players",[])
     if not isinstance(players,list):players=[]
     logs=[g for p in players if isinstance(p,dict) and isinstance(p.get("games"),list) for g in p["games"] if isinstance(g,dict)]
-    ids=sum(bool(g.get("game_id") or g.get("event_id")) for g in logs)\n    duplicate_ids=len(logs)-len({(p.get("player_id") or p.get("name"),g.get("game_id") or g.get("event_id")) for p in players if isinstance(p,dict) and isinstance(p.get("games"),list) for g in p["games"] if isinstance(g,dict) and (g.get("game_id") or g.get("event_id"))}) if logs and ids==len(logs) else None
+    ids=sum(bool(g.get("game_id") or g.get("event_id")) for g in logs)
+    duplicate_ids=len(logs)-len({(p.get("player_id") or p.get("name"),g.get("game_id") or g.get("event_id")) for p in players if isinstance(p,dict) and isinstance(p.get("games"),list) for g in p["games"] if isinstance(g,dict) and (g.get("game_id") or g.get("event_id"))}) if logs and ids==len(logs) else None
     markets=walk.get("frozen_forward_holdout",{}).get("markets",{})
     if not isinstance(markets,dict):markets={}
     market_status={name:{"status":entry.get("status","UNKNOWN"),"eligible_for_live_use":entry.get("eligible_for_live_use") is True} for name,entry in markets.items() if isinstance(entry,dict)}
