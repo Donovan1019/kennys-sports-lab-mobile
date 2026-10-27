@@ -58,21 +58,26 @@ def build(rows, schedule=None):
     return {"source":"nflverse-stats-player-week","source_note":"Observed nflverse CSV; game IDs direct or joined from verified team/week schedule","players":list(players.values())}
 def main():
     ap=argparse.ArgumentParser()
-    ap.add_argument("--input",type=Path,required=True,help="Verified nflverse player_stats CSV")
+    ap.add_argument("--input",type=Path,required=True,action="append",help="Verified nflverse player_stats CSV")
     ap.add_argument("--output",type=Path,required=True)
     ap.add_argument("--schedule",type=Path)
     args=ap.parse_args()
-    with args.input.open(newline="",encoding="utf-8-sig") as f:
-        reader=csv.DictReader(f)
-        required={"season","season_type","week","player_id"}
-        if not reader.fieldnames or not required.issubset(reader.fieldnames):
-            raise SystemExit("CSV missing mandatory game/player identity columns; refusing to write")
-        schedule=None
-        if args.schedule:
-            with args.schedule.open(newline="",encoding="utf-8-sig") as sf:schedule=schedule_index(csv.DictReader(sf))
-            if not schedule:raise SystemExit("No valid schedule game IDs")
-        elif "game_id" not in reader.fieldnames:raise SystemExit("No game_id or verified schedule")
-        result=build(reader,schedule)
+    schedule=None
+    if args.schedule:
+        with args.schedule.open(newline="",encoding="utf-8-sig") as sf:
+            schedule=schedule_index(csv.DictReader(sf))
+        if not schedule:raise SystemExit("No valid schedule game IDs")
+    all_rows=[]
+    for path in args.input:
+        with path.open(newline="",encoding="utf-8-sig") as f:
+            reader=csv.DictReader(f)
+            required={"season","season_type","week","player_id"}
+            if not reader.fieldnames or not required.issubset(reader.fieldnames):
+                raise SystemExit(f"{path}: CSV missing mandatory player/season/week identity columns")
+            if schedule is None and "game_id" not in reader.fieldnames:
+                raise SystemExit(f"{path}: No game_id or verified schedule")
+            all_rows.extend(reader)
+    result=build(all_rows,schedule)
     args.output.parent.mkdir(parents=True,exist_ok=True)
     tmp=args.output.with_suffix(".tmp")
     tmp.write_text(json.dumps(result,separators=(",",":")),encoding="utf-8")

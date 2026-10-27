@@ -14,11 +14,13 @@ jobs:
       - run: python -m unittest discover -s tests -p 'test_build_nfl_player_stats_feed.py' -v
       - name: Download official nflverse stats and schedule
         run: |
-          curl --fail --location --retry 2 --max-time 120 'https://github.com/nflverse/nflverse-data/releases/download/player_stats/player_stats.csv' -o /tmp/nflverse-player-stats.csv
+          for season in 2025 2026; do
+            curl --fail --location --retry 2 --max-time 120 "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_${season}.csv" -o "/tmp/nflverse-player-stats-${season}.csv"
+          done
           curl --fail --location --retry 2 --max-time 120 'https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv' -o /tmp/nflverse-games.csv
       - name: Build and audit actual feed
         run: |
-          python scripts/build_nfl_player_stats_feed.py --input /tmp/nflverse-player-stats.csv --schedule /tmp/nflverse-games.csv --output /tmp/nfl_player_stats.json
+          python scripts/build_nfl_player_stats_feed.py --input /tmp/nflverse-player-stats-2025.csv --input /tmp/nflverse-player-stats-2026.csv --schedule /tmp/nflverse-games.csv --output /tmp/nfl_player_stats.json
           python scripts/audit_nfl_player_stats_feed.py /tmp/nfl_player_stats.json > /tmp/nfl_player_stats_audit.json
           python -c "import json; r=json.load(open('/tmp/nfl_player_stats_audit.json')); assert r['status']=='DATA_PRESENT_UNVERIFIED',r"
       - uses: actions/upload-artifact@v4
