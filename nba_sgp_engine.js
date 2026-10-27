@@ -82,6 +82,21 @@ function renderGame(game,rows,playerProfiles){
  if(chosen.some(y=>marketKey(y)===marketKey(x)&&opposite(y)===opposite(x)))return;
  chosen.push(x);redraw()});clear.addEventListener('click',()=>{chosen.length=0;redraw()});
  builder.append(add,clear,selectedList,result);redraw();
+ const snapshot=el('button','Copy pregame SGP snapshot');snapshot.type='button';
+ snapshot.style.cssText='padding:9px;margin:8px;border-radius:8px;cursor:pointer';
+ const snapshotStatus=el('p','Copy a research-only JSON snapshot before tipoff. Not a placed bet or automatic ledger submission.');
+ snapshot.addEventListener('click',()=>{
+  const now=new Date(),start=new Date(game.commence_time);
+  if(chosen.length<2||chosen.length>6||!game.event_id||!Number.isFinite(start.getTime())||now>=start){snapshotStatus.textContent='BLOCKED: need 2–6 selected legs, a valid event ID, and a pregame capture.';return}
+  const captured_at=now.toISOString();
+  const legs=chosen.map(x=>({event_id:String(game.event_id),event:game.event,commence_time:game.commence_time,captured_at,updated_at:x.updated_at,player:x.player,market:x.market,selection:x.selection,point:x.point,price:x.price,bookmaker:x.bookmaker}));
+  if(legs.some(x=>!x.player||!x.market.startsWith('player_')||!Number.isFinite(Number(x.point))||!x.bookmaker||!Number.isFinite(Date.parse(x.updated_at))||Date.parse(x.updated_at)>=start.getTime()||Date.parse(x.updated_at)>now.getTime())){snapshotStatus.textContent='BLOCKED: a player line, bookmaker, or valid pre-tipoff source timestamp is missing.';return}
+  const record={schema_version:1,sgp_id:'nba-'+game.event_id+'-'+now.getTime(),event_id:String(game.event_id),event:game.event,commence_time:game.commence_time,captured_at,legs,sgp_bookmaker_quote:null,settlement_status:'NOT_PLACED'};
+  const data=JSON.stringify(record);
+  if(!navigator.clipboard||!navigator.clipboard.writeText){snapshotStatus.textContent='Clipboard unavailable; no snapshot saved.';return}
+  navigator.clipboard.writeText(data).then(()=>{snapshotStatus.textContent='Pregame JSON copied locally. Not submitted to the grading ledger or sportsbook.'},()=>{snapshotStatus.textContent='Clipboard permission denied; no snapshot saved.'});
+ });
+ builder.append(snapshot,snapshotStatus);
  builder.append(el('p','Leg integrity: duplicate or opposite-side selections at the same player/market/line are rejected. All legs must belong to this game.'));
  builder.append(el('p','Preflight: leg eligibility, roster status, current minutes, same-game correlation, joint simulation, SGP-specific price and EV must all pass. This interface never estimates joint odds by multiplying independent probabilities.'));
  const simulation=el('div');simulation.style.cssText='border-top:1px solid #42677b;padding-top:12px;margin-top:12px';
