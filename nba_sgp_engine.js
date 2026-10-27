@@ -53,6 +53,10 @@ function renderGame(game,rows,playerProfiles){
  if(!filtered.length){list.append(el('p','No verified current '+buckets[select.value]+' prices in this feed.'));return}
  for(const row of filtered){const line=el('p');line.style.cssText='border-bottom:1px solid #294a5c;padding:8px 0;margin:0';const price=Number(row.price);line.textContent=(row.player?row.player+' · ':'')+teamName(row)+(row.point!==null&&row.point!==undefined?' '+row.point:'')+' · '+(price>0?'+':'')+price+' · '+row.bookmaker+' · implied '+(100*prob(price)).toFixed(1)+'%';list.append(line)}
  };select.addEventListener('change',draw);draw();
+ const freshnessTimes=rows.map(x=>Date.parse(x.updated_at)).filter(Number.isFinite);
+ const lastQuote=freshnessTimes.length?Math.max(...freshnessTimes):NaN;
+ const sourceAudit=el('p',Number.isFinite(lastQuote)?'Latest source quote: '+new Date(lastQuote).toLocaleString('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})+' ET · quote age '+Math.round((Date.now()-lastQuote)/60000)+' min · freshness gate ≤90 min':'Quote timestamp unavailable · NOT BET ELIGIBLE');
+ section.append(sourceAudit);
  const builder=el('div');builder.style.cssText='margin-top:12px;padding:10px;border:1px solid #5b6877;border-radius:8px';
  builder.append(el('strong','Conservative SGP builder · NOT BET ELIGIBLE'));
  builder.append(el('p','Four-core NBA framework: primary scorer points, lead rebounder rebounds, primary creator assists, and team/game scoring. Requires confirmed minutes, injuries, opponent matchups, pace and role before thresholds are selected.'));
@@ -83,7 +87,15 @@ function renderGame(game,rows,playerProfiles){
   if(chosen.length<2){simulationResult.textContent='Select at least two legs. Simulation unavailable.';return}
   const missing=[];if(!chosen.every(x=>x.player&&availableMarkets.has(x.market)&&x.market.startsWith('player_')))missing.push('joint game/team scoring model');
   if(!chosen.every(x=>x.player&&playerProfiles.some(p=>String(p.name||'').trim().toLowerCase()===String(x.player||'').trim().toLowerCase())))missing.push('matched player game logs');
+  const freshness=rows.filter(x=>x.updated_at).map(x=>Date.parse(x.updated_at)).filter(Number.isFinite);
+  const newest=freshness.length?Math.max(...freshness):NaN;
+  const age=Number.isFinite(newest)?Math.round((Date.now()-newest)/60000):null;
+  const preflight=[];
+  if(age===null||age<0||age>90)preflight.push('market quotes stale or timestamp unavailable ('+(age===null?'unknown':age+' minutes')+')');
+  if(chosen.some(x=>!x.bookmaker||!Number.isFinite(Number(x.price))))preflight.push('missing book/price');
+  if(chosen.some(x=>!x.player))preflight.push('team/game legs require separate game model');
   const historic=historicalJoint(chosen,playerProfiles);
+  if(preflight.length){simulationResult.textContent='SOURCE QUALITY BLOCKED · '+preflight.join('; ')+' · simulation not run · NOT BET ELIGIBLE';return}
   if(historic.available){const mc=jointBootstrap(historic,10000);const audit=walkForwardAudit(historic);simulationResult.textContent='EXPERIMENTAL PAIRED-DATE BOOTSTRAP · '+mc.draws.toLocaleString()+' resamples · joint historical co-hit '+historic.hits+'/'+historic.n+' ('+(100*historic.hits/historic.n).toFixed(1)+'%) · resampled '+(100*mc.p).toFixed(1)+'% · bootstrap 95% interval '+(100*mc.lower).toFixed(1)+'–'+(100*mc.upper).toFixed(1)+'% · '+audit+' · same-date outcomes preserved, but this is NOT a calibrated forward-looking SGP probability · injuries/lineups UNVERIFIED · SGP quote and EV UNAVAILABLE · NOT BET ELIGIBLE.';return}
   missing.push('verified starting lineups and injuries','aligned same-game player outcomes ('+historic.reason+')','calibrated joint residual distribution','bookmaker SGP quote');
   simulationResult.textContent='BLOCKED · '+chosen.length+' legs · missing: '+[...new Set(missing)].join('; ')+'. Monte Carlo NOT RUN. Joint probability, fair odds and EV UNAVAILABLE. Do not treat individual implied probabilities as independent.';
