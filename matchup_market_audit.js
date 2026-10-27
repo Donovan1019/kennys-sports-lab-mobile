@@ -18,10 +18,10 @@ if(chosen==='NBA'&&!(window.__kslMatchupGames||[]).some(g=>Date.parse(g.commence
   if(!events.has(q.event_id))events.set(q.event_id,{event_id:q.event_id,event:q.event,commence_time:q.commence_time,away:teams[0],home:teams[1],teams:[]});
  }
  const upcoming=[...events.values()].sort((a,b)=>Date.parse(a.commence_time)-Date.parse(b.commence_time));
- const day=v=>new Intl.DateTimeFormat('en-CA',{timeZone:'America/New_York',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(v));
+ const day=v=>{const parts=new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date(v));const val=k=>parts.find(p=>p.type===k).value;return val('year')+'-'+val('month')+'-'+val('day')};
  const today=day(Date.now()),todayGames=upcoming.filter(g=>day(g.commence_time)===today),first=upcoming[0]&&day(upcoming[0].commence_time);
  const selected=todayGames.length?todayGames:upcoming.filter(g=>day(g.commence_time)===first);
- if(selected.length){window.__kslMatchupGames=selected;document.dispatchEvent(new CustomEvent('ksl-matchups-loaded',{detail:{sport:'NBA',source:'audit-recovery'}}));return}
+ if(selected.length){window.__kslMatchupGames=selected;document.dispatchEvent(new CustomEvent('ksl-matchups-loaded',{detail:{sport:'NBA',source:'audit-recovery'}}));return}note.textContent='NBA feed returned '+(Array.isArray(data.odds)?data.odds.length:0)+' market rows but no future scheduled games. Projections unavailable until schedule refresh.';
 }
 
 if(!historyCache[chosen]){historyCache[chosen]=(async()=>{const response=await fetch('./feed/'+paths[chosen],{cache:'no-store'});if(!response.ok)throw Error('HTTP '+response.status);const data=await response.json();if(!Array.isArray(data.players))throw Error('Invalid historical player data');return {players:data.players,fetchedAt:data.fetched_at||null}})().catch(e=>{delete historyCache[chosen];throw e})}const snapshot=await historyCache[chosen],players=snapshot.players;
