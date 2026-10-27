@@ -1,15 +1,40 @@
 {
   "date": "2026-10-26",
-  "generated_at": "2026-10-26T22:45:20.951807+00:00",
+  "generated_at": "2026-10-27T16:56:51.814711+00:00",
   "sports": {
     "NFL": {
-      "status": "OUTCOMES_UNVERIFIED",
+      "status": "PARTIALLY_SETTLED_MONEYLINES",
       "saved_quotes": 794,
       "eligible_predictions": 60,
       "blocked_predictions": [],
-      "graded": 0,
-      "settled": [],
-      "pending": 60
+      "graded": 4,
+      "settled": [
+        {
+          "event": "Dallas Cowboys @ Philadelphia Eagles",
+          "market": "h2h",
+          "selection": "Philadelphia Eagles",
+          "outcome": "loss"
+        },
+        {
+          "event": "Dallas Cowboys @ Philadelphia Eagles",
+          "market": "h2h",
+          "selection": "Dallas Cowboys",
+          "outcome": "win"
+        },
+        {
+          "event": "Dallas Cowboys @ Philadelphia Eagles",
+          "market": "h2h",
+          "selection": "Philadelphia Eagles",
+          "outcome": "loss"
+        },
+        {
+          "event": "Dallas Cowboys @ Philadelphia Eagles",
+          "market": "h2h",
+          "selection": "Dallas Cowboys",
+          "outcome": "win"
+        }
+      ],
+      "pending": 56
     },
     "NBA": {
       "status": "OUTCOMES_UNVERIFIED",
@@ -21,21 +46,94 @@
       "pending": 108
     },
     "NHL": {
-      "status": "OUTCOMES_UNVERIFIED",
+      "status": "PARTIALLY_SETTLED_MONEYLINES",
       "saved_quotes": 0,
       "eligible_predictions": 204,
       "blocked_predictions": [],
-      "graded": 0,
-      "settled": [],
-      "pending": 204
+      "graded": 12,
+      "settled": [
+        {
+          "event": "Los Angeles Kings @ New York Rangers",
+          "market": "h2h",
+          "selection": "New York Rangers",
+          "outcome": "loss"
+        },
+        {
+          "event": "Los Angeles Kings @ New York Rangers",
+          "market": "h2h",
+          "selection": "Los Angeles Kings",
+          "outcome": "win"
+        },
+        {
+          "event": "Toronto Maple Leafs @ Calgary Flames",
+          "market": "h2h",
+          "selection": "Calgary Flames",
+          "outcome": "win"
+        },
+        {
+          "event": "Toronto Maple Leafs @ Calgary Flames",
+          "market": "h2h",
+          "selection": "Toronto Maple Leafs",
+          "outcome": "loss"
+        },
+        {
+          "event": "Detroit Red Wings @ Edmonton Oilers",
+          "market": "h2h",
+          "selection": "Edmonton Oilers",
+          "outcome": "loss"
+        },
+        {
+          "event": "Detroit Red Wings @ Edmonton Oilers",
+          "market": "h2h",
+          "selection": "Detroit Red Wings",
+          "outcome": "win"
+        },
+        {
+          "event": "Los Angeles Kings @ New York Rangers",
+          "market": "h2h",
+          "selection": "New York Rangers",
+          "outcome": "loss"
+        },
+        {
+          "event": "Los Angeles Kings @ New York Rangers",
+          "market": "h2h",
+          "selection": "Los Angeles Kings",
+          "outcome": "win"
+        },
+        {
+          "event": "Toronto Maple Leafs @ Calgary Flames",
+          "market": "h2h",
+          "selection": "Calgary Flames",
+          "outcome": "win"
+        },
+        {
+          "event": "Toronto Maple Leafs @ Calgary Flames",
+          "market": "h2h",
+          "selection": "Toronto Maple Leafs",
+          "outcome": "loss"
+        },
+        {
+          "event": "Detroit Red Wings @ Edmonton Oilers",
+          "market": "h2h",
+          "selection": "Edmonton Oilers",
+          "outcome": "loss"
+        },
+        {
+          "event": "Detroit Red Wings @ Edmonton Oilers",
+          "market": "h2h",
+          "selection": "Detroit Red Wings",
+          "outcome": "win"
+        }
+      ],
+      "pending": 192
     }
   },
   "summary": {
-    "verified_picks": 0,
-    "wins": 0,
-    "losses": 0,
+    "verified_picks": 16,
+    "wins": 8,
+    "losses": 8,
     "pushes": 0,
     "roi": null,
-    "hit_rate": null
+    "hit_rate": 0.5
   }
 }

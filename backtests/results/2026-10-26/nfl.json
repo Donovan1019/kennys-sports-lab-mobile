@@ -1,0 +1,20 @@
+{
+  "sport": "NFL",
+  "date": "2026-10-26",
+  "games": [
+    {
+      "event_id": "401873009",
+      "event": "Dallas Cowboys at Philadelphia Eagles",
+      "commence_time": "2026-10-27T00:15Z",
+      "home": "Philadelphia Eagles",
+      "away": "Dallas Cowboys",
+      "home_score": 21,
+      "away_score": 38,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=20261026&limit=100"
+    }
+  ],
+  "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=20261026&limit=100"
+}
