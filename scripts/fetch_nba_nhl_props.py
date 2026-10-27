@@ -47,7 +47,7 @@ def collect(sport,limit,key):
  if not rows:raise ValueError('No valid player props; prior feed preserved')
  out={'sport':sport_key,'source':'the-odds-api-v4-event-props','fetched_at':now.isoformat(),'markets_requested':list(markets),'events_requested':len(events),'books':list(BOOKS),'errors':errors,'odds':rows}
  path=Path('feed/'+sport+'_props.json');path.parent.mkdir(exist_ok=True)
- path.write_text(json.dumps(out,separators=(',',':'))+'\\n')
+ path.write_text(json.dumps(out,separators=(',',':'))+'\n')
  if sport=='nba':
   # Append immutable source-time pregame quotes for later point-in-time evaluation.
   ledger=Path('feed/nba_prop_pregame_ledger.jsonl')
@@ -63,7 +63,7 @@ def collect(sport,limit,key):
     key=(row.get('event_id'),row.get('market'),row.get('player'),row.get('selection'),row.get('point'),row.get('bookmaker'),row.get('updated_at'))
     if key in prior:continue
     prior.add(key)
-    handle.write(json.dumps(dict(row,captured_at=now.isoformat(),snapshot_source='the-odds-api-v4-event-props'),separators=(',',':'))+'\\n')
+    handle.write(json.dumps(dict(row,captured_at=now.isoformat(),snapshot_source='the-odds-api-v4-event-props'),separators=(',',':'))+'\n')
  print('Saved',len(rows),'quotes to',path)
 def main():
  sport=os.getenv('SPORT','');key=os.getenv('THE_ODDS_API_KEY','')
