@@ -44,6 +44,17 @@ function renderGame(game,rows,playerProfiles){
  chosen.push(x);redraw()});clear.addEventListener('click',()=>{chosen.length=0;redraw()});
  builder.append(add,clear,selectedList,result);redraw();
  builder.append(el('p','Preflight: leg eligibility, roster status, current minutes, same-game correlation, joint simulation, SGP-specific price and EV must all pass. This interface never estimates joint odds by multiplying independent probabilities.'));
+ const simulation=el('div');simulation.style.cssText='border-top:1px solid #42677b;padding-top:12px;margin-top:12px';
+ simulation.append(el('h4','Joint simulation research · gated'));
+ const run=el('button','Run SGP simulation audit');run.type='button';run.style.cssText='padding:9px;border-radius:8px;cursor:pointer';
+ const simulationResult=el('p','Simulation not run.');simulation.append(run,simulationResult);
+ run.addEventListener('click',()=>{
+  if(chosen.length<2){simulationResult.textContent='Select at least two legs. Simulation unavailable.';return}
+  const missing=[];if(!chosen.every(x=>x.player&&availableMarkets.has(x.market)&&x.market.startsWith('player_')))missing.push('joint game/team scoring model');
+  if(!chosen.every(x=>x.player&&playerProfiles.some(p=>String(p.name||'').trim().toLowerCase()===String(x.player||'').trim().toLowerCase())))missing.push('matched player game logs');
+  missing.push('verified starting lineups and injuries','aligned same-game player outcomes','calibrated joint residual distribution','bookmaker SGP quote');
+  simulationResult.textContent='BLOCKED · '+chosen.length+' legs · missing: '+[...new Set(missing)].join('; ')+'. Monte Carlo NOT RUN. Joint probability, fair odds and EV UNAVAILABLE. Do not treat individual implied probabilities as independent.';
+ });builder.append(simulation);
  section.append(builder);const profiles=el('div');profiles.style.cssText='margin-top:12px;padding:10px;border:1px solid #42677b;border-radius:8px';profiles.append(el('h4','Player usage & historical minutes audit'));const matched=playerProfiles.filter(p=>[game.event.split(' @ ')[0],game.event.split(' @ ')[1]].some(t=>teamMatches(p.team,t)));profiles.append(el('p',matched.length+' historical player profiles matched to this matchup · current availability UNVERIFIED · projected minutes UNAVAILABLE.'));for(const p of matched.slice(0,12)){const games=Array.isArray(p.games)?p.games:[];const minutes=games.map(g=>{const v=g.values||{};const k=Object.keys(v).find(k=>/^(minutes|min|mp)$/i.test(k.replace(/[^a-z]/gi,'')));return k?Number(v[k]):NaN}).filter(Number.isFinite).slice(0,10);const avg=minutes.length?minutes.reduce((a,b)=>a+b,0)/minutes.length:null;profiles.append(el('p',String(p.name||'Player')+' · '+p.team+' · '+games.length+' logged games · historical minutes L10: '+(avg===null?'UNAVAILABLE':avg.toFixed(1))+' ('+minutes.length+' samples) · injury/rotation UNVERIFIED'))}section.append(profiles);return section;
 }
 const teamMatches=(a,b)=>{const x=String(a||'').toLowerCase(),y=String(b||'').toLowerCase();return x.length>3&&(x===y||y.endsWith(' '+x)||x.endsWith(' '+y))};
