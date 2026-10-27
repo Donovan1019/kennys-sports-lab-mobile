@@ -27,11 +27,11 @@ def build(rows, schedule=None):
         if season not in ("2025","2026") or str(r.get("season_type") or "").strip().upper()!="REG":continue
         player_id=str(r.get("player_id") or "").strip()
         name=str(r.get("player_display_name") or r.get("player_name") or "").strip()
+        week=str(r.get("week") or "").strip()
         game_id=str(r.get("game_id") or "").strip()
         if not game_id and schedule is not None:
             team=str(r.get("recent_team") or r.get("team") or "").strip().upper()
             game_id=schedule.get((season,week,team),"")
-        week=str(r.get("week") or "").strip()
         if not player_id or not name or not game_id or not week.isdigit() or not 1<=int(week)<=18:
             raise ValueError(f"row {n}: missing stable player/game identity or valid week")
         key=(player_id,game_id)
