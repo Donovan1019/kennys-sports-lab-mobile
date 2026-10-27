@@ -1,0 +1,21 @@
+name: Grade NBA SGP Pregame Prop Ledger
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  grade:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Grade point-in-time records conservatively
+        run: python scripts/grade_nba_sgp_props.py
+      - name: Publish grading report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add feed/nba_prop_pregame_grades.json
+          git diff --cached --quiet || (git commit -m "Grade NBA SGP prop ledger" && git pull --rebase && git push)
