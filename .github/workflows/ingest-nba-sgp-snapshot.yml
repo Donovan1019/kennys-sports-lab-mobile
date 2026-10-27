@@ -1,0 +1,35 @@
+name: Ingest NBA SGP Research Snapshot
+on:
+  workflow_dispatch:
+    inputs:
+      snapshot_json:
+        description: 'Paste copied pregame JSON snapshot (research only)'
+        required: true
+        type: string
+permissions:
+  contents: write
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate and append research snapshot
+        env:
+          SNAPSHOT_JSON: ${{ inputs.snapshot_json }}
+        run: |
+          python - <<'PY'
+          import os,pathlib
+          pathlib.Path('/tmp/nba_sgp_snapshot.json').write_text(os.environ['SNAPSHOT_JSON'])
+          PY
+          python scripts/ingest_nba_sgp_snapshot.py /tmp/nba_sgp_snapshot.json
+      - name: Grade available results
+        run: python scripts/grade_nba_sgp_props.py
+      - name: Commit ledger and reports
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add feed/nba_sgp_pregame_ledger.jsonl feed/nba_sgp_pregame_grades.json feed/nba_prop_pregame_grades.json
+          git diff --cached --quiet || (git commit -m "Record NBA SGP research snapshot and grading report" && git pull --rebase && git push)
