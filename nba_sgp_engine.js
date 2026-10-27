@@ -10,6 +10,15 @@ const teamName=(row)=>String(row.selection||'');
 const buckets={h2h:'Moneyline',spreads:'Spread',totals:'Game total',player_points:'Points',player_rebounds:'Rebounds',player_assists:'Assists',player_threes:'Threes'};
 const availableMarkets=new Set(['h2h','spreads','totals','player_points','player_rebounds','player_assists','player_threes']);
 const kickoff=g=>new Date(g.commence_time).toLocaleString('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})+' ET';
+function jointBootstrap(historical,draws){
+ // Resample paired same-date joint outcomes as whole rows; never multiply leg probabilities.
+ // Seeded deterministic generator for reproducible UI output.
+ let seed=2166136261>>>0;for(const v of historical.outcomes){seed=Math.imul(seed^v,16777619)>>>0}
+ const rand=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296};
+ const n=historical.outcomes.length,samples=[];let aggregate=0;
+ for(let i=0;i<draws;i++){let successes=0;for(let j=0;j<n;j++)successes+=historical.outcomes[Math.floor(rand()*n)];const p=successes/n;samples.push(p);aggregate+=p}
+ samples.sort((a,b)=>a-b);return {draws,p:aggregate/draws,lower:samples[Math.floor(.025*(draws-1))],upper:samples[Math.floor(.975*(draws-1))]};
+}
 function historicalJoint(legs,profiles){
  const fields={player_points:['points','pts'],player_rebounds:['rebounds','reb'],player_assists:['assists','ast'],player_threes:['threes','threepointersmade','fg3m','3pm']};
  if(!legs.every(x=>x.player&&fields[x.market]&&Number.isFinite(Number(x.point))&&/over|under/i.test(String(x.selection))))return {available:false,reason:'player over/under props with numeric lines required'};
@@ -17,8 +26,8 @@ function historicalJoint(legs,profiles){
  if(series.some(x=>!x))return {available:false,reason:'missing player profile'};
  const dates=[...series[0].keys()].filter(d=>series.every(m=>m.has(d))).sort().reverse().slice(0,20);
  if(dates.length<8)return {available:false,reason:'fewer than 8 aligned historical dates'};
- const hits=dates.filter(d=>legs.every((leg,i)=>{const v=series[i].get(d),line=Number(leg.point);return /over/i.test(leg.selection)?v>line:v<line})).length;
- return {available:true,hits,n:dates.length};
+ const outcomes=dates.map(d=>Number(legs.every((leg,i)=>{const v=series[i].get(d),line=Number(leg.point);return /over/i.test(leg.selection)?v>line:v<line})));
+ const hits=outcomes.reduce((a,b)=>a+b,0);return {available:true,hits,n:dates.length,outcomes};
 }
 function renderGame(game,rows,playerProfiles){
  const section=el('article');section.style.cssText='border:1px solid #42677b;border-radius:12px;padding:14px;margin:14px 0;background:#10283a';
@@ -63,7 +72,7 @@ function renderGame(game,rows,playerProfiles){
   const missing=[];if(!chosen.every(x=>x.player&&availableMarkets.has(x.market)&&x.market.startsWith('player_')))missing.push('joint game/team scoring model');
   if(!chosen.every(x=>x.player&&playerProfiles.some(p=>String(p.name||'').trim().toLowerCase()===String(x.player||'').trim().toLowerCase())))missing.push('matched player game logs');
   const historic=historicalJoint(chosen,playerProfiles);
-  if(historic.available){simulationResult.textContent='HISTORICAL CO-HIT ONLY · '+historic.hits+'/'+historic.n+' aligned past games ('+(100*historic.hits/historic.n).toFixed(1)+'%) · not a Monte Carlo forecast · lineups, injuries, calibration and SGP price unverified · EV UNAVAILABLE · NOT BET ELIGIBLE.';return}
+  if(historic.available){const mc=jointBootstrap(historic,10000);simulationResult.textContent='EXPERIMENTAL PAIRED-DATE BOOTSTRAP · '+mc.draws.toLocaleString()+' resamples · joint historical co-hit '+historic.hits+'/'+historic.n+' ('+(100*historic.hits/historic.n).toFixed(1)+'%) · resampled '+(100*mc.p).toFixed(1)+'% · bootstrap 95% interval '+(100*mc.lower).toFixed(1)+'–'+(100*mc.upper).toFixed(1)+'% · same-date outcomes preserved, but this is NOT a calibrated forward-looking SGP probability · injuries/lineups UNVERIFIED · SGP quote and EV UNAVAILABLE · NOT BET ELIGIBLE.';return}
   missing.push('verified starting lineups and injuries','aligned same-game player outcomes ('+historic.reason+')','calibrated joint residual distribution','bookmaker SGP quote');
   simulationResult.textContent='BLOCKED · '+chosen.length+' legs · missing: '+[...new Set(missing)].join('; ')+'. Monte Carlo NOT RUN. Joint probability, fair odds and EV UNAVAILABLE. Do not treat individual implied probabilities as independent.';
  });builder.append(simulation);
