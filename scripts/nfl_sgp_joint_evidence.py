@@ -8,7 +8,7 @@ from pathlib import Path
 REQUIRED = ("event_id", "player_id", "market", "line", "side", "forecast_at", "kickoff_at", "outcome", "probability")
 
 def validate(records, quotes=()):
-    """Return a fail-closed audit of pregame, game-linked, held-out prop observations."""
+    """Return a fail-closed audit of pregame, game-linked prop observations; holdout remains unverified."""
     issues, grouped, seen = [], defaultdict(list), set()
     for i, r in enumerate(records):
         missing = [k for k in REQUIRED if k not in r or r[k] is None or r[k] == ""]
@@ -40,7 +40,12 @@ def validate(records, quotes=()):
         if outcome == line:
             issues.append({"row": i, "reason": "push_requires_separate_settlement"})
             continue
-        grouped[str(r["event_id"])].append((p, int(hit)))
+        slip = r.get("slip_id")
+        if not isinstance(slip, str) or not slip.strip():
+            issues.append({"row": i, "reason": "missing_slip_id_for_joint_evaluation"})
+            grouped[(str(r["event_id"]), f"unpaired-row-{i}")].append((p, int(hit)))
+        else:
+            grouped[(str(r["event_id"]), slip.strip())].append((p, int(hit)))
     multi = [g for g in grouped.values() if len(g) >= 2]
     single_brier = (sum((p-y)**2 for g in grouped.values() for p,y in g) /
                     sum(map(len, grouped.values()))) if grouped else None
@@ -52,7 +57,7 @@ def validate(records, quotes=()):
     # Quotes are never considered verified merely because a caller supplies them.
     return {
         "status": "BLOCKED", "betting_eligible": False,
-        "events": len(grouped), "same_game_multi_leg_events": len(multi),
+        "event_slip_groups": len(grouped), "events": len({key[0] for key in grouped}), "same_game_multi_leg_events": len(multi),
         "valid_legs": sum(map(len, grouped.values())), "rejected_rows": issues,
         "single_leg_brier": single_brier,
         "independent_joint_baseline_brier": independent_brier,
@@ -61,7 +66,7 @@ def validate(records, quotes=()):
         "verified_actual_sgp_bookmaker_quote": False,
         "same_game_sgp_expected_value_validated": False,
         "forward_holdout_verified": False,
-        "limitations": "No joint model, forward holdout, authenticated bookmaker quote, roster verification or verified EV. Grouped same-game observations and independence baseline are diagnostic only."
+        "limitations": "No joint model, forward holdout, authenticated bookmaker quote, roster verification or verified EV. Only explicitly slip-linked observations are joined; independence baseline remains diagnostic only."
     }
 
 def main():
