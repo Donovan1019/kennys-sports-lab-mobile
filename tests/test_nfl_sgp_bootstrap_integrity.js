@@ -1,0 +1,13 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+const source=fs.readFileSync('nfl_sgp_joint_bootstrap.js','utf8');
+const sandbox={window:{}};vm.runInNewContext(source,sandbox);
+const joint=sandbox.window.KSLSGPJoint.joint;
+const games=Array.from({length:6},(_,i)=>({game_id:'event-'+i,season:2026,week:i+1,season_type:'REG',values:{'Receiving yards':50,'Rushing yards':20}}));
+const stats={source:'nflverse-stats-player-week',players:[{name:'Receiver One',games},{name:'Runner Two',games}]};
+const legs=[{player:'Receiver One',market:'player_reception_yds',selection:'Over',point:40.5},{player:'Runner Two',market:'player_rush_yds',selection:'Over',point:10.5}];
+const good=joint(stats,legs,{trials:1000});assert.equal(good.status,'EXPERIMENTAL');assert.equal(good.paired_events,6);assert.equal(good.betting_eligible,false);
+const missing=JSON.parse(JSON.stringify(stats));delete missing.players[0].games[0].values['Receiving yards'];assert.equal(joint(missing,legs).paired_events,5);
+const allMissing=JSON.parse(JSON.stringify(stats));for(const g of allMissing.players[0].games)delete g.values['Receiving yards'];assert.equal(joint(allMissing,legs).status,'BLOCKED');
+const noIds=JSON.parse(JSON.stringify(stats));for(const p of noIds.players)for(const g of p.games)delete g.game_id;assert.equal(joint(noIds,legs).status,'BLOCKED');
+assert.equal(joint(stats,[{...legs[0],point:null},legs[1]]).status,'BLOCKED');
+console.log('SGP bootstrap integrity checks passed');
