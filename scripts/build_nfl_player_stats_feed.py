@@ -33,7 +33,7 @@ def build(rows, schedule=None):
             team=str(r.get("recent_team") or r.get("team") or "").strip().upper()
             game_id=schedule.get((season,week,team),"")
         if not player_id or not name or not game_id or not week.isdigit() or not 1<=int(week)<=18:
-            raise ValueError(f"row {n}: missing stable player/game identity or valid week")
+            raise ValueError(f"row {n}: invalid identity: player_id_present={bool(player_id)}, name_present={bool(name)}, game_id_present={bool(game_id)}, week={week!r}, season={season!r}, team={(r.get('team') or r.get('recent_team') or '')!r}, opponent={r.get('opponent_team')!r}")
         key=(player_id,game_id)
         if key in seen:raise ValueError(f"row {n}: duplicate player/game {key}")
         seen.add(key)
