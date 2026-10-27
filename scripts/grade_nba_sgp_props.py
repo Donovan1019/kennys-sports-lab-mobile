@@ -7,6 +7,8 @@ LEDGER=Path("feed/nba_prop_pregame_ledger.jsonl")
 OUTPUT=Path("feed/nba_prop_pregame_grades.json")
 MARKETS={"player_points","player_rebounds","player_assists","player_threes"}
 COMPLETED=Path("feed/nba_completed_games.json")
+PLAYER_STATS=Path("feed/nba_player_stats.json")
+METRICS={"player_points":"Points","player_rebounds":"Rebounds","player_assists":"Assists","player_threes":"Threes"}
 
 def timestamp(value):
     try:
@@ -68,6 +70,43 @@ def assess(row):
         return "missing player or event"
     return "verified sportsbook-to-completed-game player crosswalk unavailable"
 
+def verified_player_outcomes():
+    try:
+        data=json.loads(PLAYER_STATS.read_text())
+        if data.get("source")!="espn-public-boxscore" or data.get("sport")!="nba":
+            return {}
+        players=data.get("players",[])
+    except (OSError,ValueError,AttributeError):
+        return {}
+    lookup={}
+    for player in players:
+        name=str(player.get("name") or "").strip().casefold()
+        ident=str(player.get("id") or "")
+        if not name or not ident:
+            continue
+        for game in player.get("games",[]):
+            event=str(game.get("game_id") or "")
+            if event and isinstance(game.get("values"),dict):
+                lookup.setdefault((event,name),[]).append((ident,game["values"]))
+    return lookup
+
+def verified_grade(row,event_id,lookup):
+    reason=assess(row)
+    if reason!="verified sportsbook-to-completed-game player crosswalk unavailable":
+        return "UNVERIFIED",reason
+    matches=lookup.get((event_id,str(row.get("player") or "").strip().casefold()),[])
+    if len(matches)!=1:
+        return "UNVERIFIED","unique completed-game player boxscore unavailable"
+    metric=METRICS.get(row.get("market"))
+    value=matches[0][1].get(metric)
+    if not isinstance(value,(int,float)) or isinstance(value,bool):
+        return "UNVERIFIED","verified boxscore metric unavailable"
+    line=float(row["point"])
+    if value==line:
+        return "PUSH","verified exact-line push"
+    won=(value>line) if row["selection"]=="Over" else (value<line)
+    return ("WIN" if won else "LOSS"),"verified pregame quote and ESPN completed-game player boxscore"
+
 def main():
     rows=[]
     if LEDGER.exists():
@@ -79,9 +118,14 @@ def main():
             except json.JSONDecodeError:
                 continue
     crosswalk=build_crosswalk(rows)
-    grades=[{"event_id":r.get("event_id"),"espn_event_id":crosswalk.get(r.get("event_id"),{}).get("espn_event_id"),"player":r.get("player"),"market":r.get("market"),"selection":r.get("selection"),"line":r.get("point"),"bookmaker":r.get("bookmaker"),"captured_at":r.get("captured_at"),"status":"UNVERIFIED","reason":assess(r) if r.get("event_id") in crosswalk else "verified game crosswalk unavailable"} for r in rows]
-    OUTPUT.write_text(json.dumps({"generated_at":datetime.now(timezone.utc).isoformat(),"records":len(grades),"graded":0,"unverified":len(grades),"matched_games":len(crosswalk),"grades":grades},indent=2)+"\n")
-    print("NBA SGP pregame ledger: ",len(grades),"records; 0 graded without verified crosswalk")
+    lookup=verified_player_outcomes()
+    grades=[]
+    for row in rows:
+        matched=crosswalk.get(row.get("event_id"))
+        status,reason=verified_grade(row,matched["espn_event_id"],lookup) if matched else ("UNVERIFIED","verified game crosswalk unavailable")
+        grades.append({"event_id":row.get("event_id"),"espn_event_id":matched["espn_event_id"] if matched else None,"player":row.get("player"),"market":row.get("market"),"selection":row.get("selection"),"line":row.get("point"),"bookmaker":row.get("bookmaker"),"captured_at":row.get("captured_at"),"status":status,"reason":reason})
+    OUTPUT.write_text(json.dumps({"generated_at":datetime.now(timezone.utc).isoformat(),"records":len(grades),"graded":sum(x["status"] in ("WIN","LOSS","PUSH") for x in grades),"unverified":sum(x["status"]=="UNVERIFIED" for x in grades),"matched_games":len(crosswalk),"grades":grades},indent=2)+"\n")
+    print("NBA SGP pregame ledger:",len(grades),"records; verified graded:",sum(x["status"] in ("WIN","LOSS","PUSH") for x in grades))
 
 if __name__=="__main__":
     main()
