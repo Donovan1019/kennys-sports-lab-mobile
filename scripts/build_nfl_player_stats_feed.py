@@ -22,6 +22,7 @@ def schedule_index(rows):
 def build(rows, schedule=None):
     players=defaultdict(lambda:{"games":[]})
     seen=set()
+    quarantined=[]
     for n,r in enumerate(rows,2):
         season=str(r.get("season") or "").strip()
         if season not in ("2025","2026") or str(r.get("season_type") or "").strip().upper()!="REG":continue
@@ -32,6 +33,9 @@ def build(rows, schedule=None):
         if not game_id and schedule is not None:
             team=str(r.get("recent_team") or r.get("team") or "").strip().upper()
             game_id=schedule.get((season,week,team),"")
+        if not player_id and not name:
+            quarantined.append({"row":n,"reason":"missing_player_id_and_name","season":season,"week":week,"team":str(r.get("recent_team") or r.get("team") or ""),"game_id":game_id})
+            continue
         if not player_id or not name or not game_id or not week.isdigit() or not 1<=int(week)<=18:
             raise ValueError(f"row {n}: invalid identity: player_id_present={bool(player_id)}, name_present={bool(name)}, game_id_present={bool(game_id)}, week={week!r}, season={season!r}, team={(r.get('team') or r.get('recent_team') or '')!r}, opponent={r.get('opponent_team')!r}")
         key=(player_id,game_id)
@@ -56,7 +60,7 @@ def build(rows, schedule=None):
         player["player_id"]=player_id
         player["games"].append({"game_id":game_id,"season":int(season),"week":int(week),"season_type":"REG","values":values})
     if not seen:raise ValueError("No valid 2025–26 regular season observations; refusing empty feed")
-    return {"source":"nflverse-stats-player-week","source_note":"Observed nflverse CSV; game IDs direct or joined from verified team/week schedule","players":list(players.values())}
+    return {"source":"nflverse-stats-player-week","source_note":"Observed nflverse CSV; game IDs direct or joined from verified team/week schedule","players":list(players.values()),"quarantine":{"count":len(quarantined),"records":quarantined}}
 def main():
     ap=argparse.ArgumentParser()
     ap.add_argument("--input",type=Path,required=True,action="append",help="Verified nflverse player_stats CSV")
@@ -83,5 +87,5 @@ def main():
     tmp=args.output.with_suffix(".tmp")
     tmp.write_text(json.dumps(result,separators=(",",":")),encoding="utf-8")
     tmp.replace(args.output)
-    print(f"Created {len(result['players'])} player records")
+    print(f"Created {len(result['players'])} player records; quarantined {result['quarantine']['count']} unidentified rows")
 if __name__=="__main__":main()
