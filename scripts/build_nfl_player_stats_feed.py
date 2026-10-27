@@ -4,7 +4,22 @@ import argparse,csv,json,sys
 from collections import defaultdict
 from pathlib import Path
 FIELDS={"Passing yards":"passing_yards","Passing touchdowns":"passing_tds","Rushing yards":"rushing_yards","Receiving yards":"receiving_yards","Receptions":"receptions","Pass Attempts":"attempts","Completions":"completions","Rush Attempts":"carries","Targets":"targets","Rushing touchdowns":"rushing_tds","Receiving touchdowns":"receiving_tds"}
-def build(rows):
+def schedule_index(rows):
+    index={}
+    for row in rows:
+        season=str(row.get("season") or "").strip()
+        week=str(row.get("week") or "").strip()
+        event=str(row.get("game_id") or "").strip()
+        home=str(row.get("home_team") or "").strip().upper()
+        away=str(row.get("away_team") or "").strip().upper()
+        if season not in ("2025","2026") or not week.isdigit() or not event or not home or not away or home==away:continue
+        for team in (home,away):
+            key=(season,week,team)
+            if key in index and index[key]!=event:raise ValueError(f"ambiguous schedule: {key}")
+            index[key]=event
+    return index
+
+def build(rows, schedule=None):
     players=defaultdict(lambda:{"games":[]})
     seen=set()
     for n,r in enumerate(rows,2):
@@ -13,6 +28,9 @@ def build(rows):
         player_id=str(r.get("player_id") or "").strip()
         name=str(r.get("player_display_name") or r.get("player_name") or "").strip()
         game_id=str(r.get("game_id") or "").strip()
+        if not game_id and schedule is not None:
+            team=str(r.get("recent_team") or r.get("team") or "").strip().upper()
+            game_id=schedule.get((season,week,team),"")
         week=str(r.get("week") or "").strip()
         if not player_id or not name or not game_id or not week.isdigit() or not 1<=int(week)<=18:
             raise ValueError(f"row {n}: missing stable player/game identity or valid week")
@@ -37,18 +55,24 @@ def build(rows):
         player["player_id"]=player_id
         player["games"].append({"game_id":game_id,"season":int(season),"week":int(week),"season_type":"REG","values":values})
     if not seen:raise ValueError("No valid 2025–26 regular season observations; refusing empty feed")
-    return {"source":"nflverse-stats-player-week","source_note":"Observed nflverse CSV; game_id required; no fabricated joins","players":list(players.values())}
+    return {"source":"nflverse-stats-player-week","source_note":"Observed nflverse CSV; game IDs direct or joined from verified team/week schedule","players":list(players.values())}
 def main():
     ap=argparse.ArgumentParser()
     ap.add_argument("--input",type=Path,required=True,help="Verified nflverse player_stats CSV")
     ap.add_argument("--output",type=Path,required=True)
+    ap.add_argument("--schedule",type=Path)
     args=ap.parse_args()
     with args.input.open(newline="",encoding="utf-8-sig") as f:
         reader=csv.DictReader(f)
-        required={"season","season_type","week","player_id","game_id"}
+        required={"season","season_type","week","player_id"}
         if not reader.fieldnames or not required.issubset(reader.fieldnames):
             raise SystemExit("CSV missing mandatory game/player identity columns; refusing to write")
-        result=build(reader)
+        schedule=None
+        if args.schedule:
+            with args.schedule.open(newline="",encoding="utf-8-sig") as sf:schedule=schedule_index(csv.DictReader(sf))
+            if not schedule:raise SystemExit("No valid schedule game IDs")
+        elif "game_id" not in reader.fieldnames:raise SystemExit("No game_id or verified schedule")
+        result=build(reader,schedule)
     args.output.parent.mkdir(parents=True,exist_ok=True)
     tmp=args.output.with_suffix(".tmp")
     tmp.write_text(json.dumps(result,separators=(",",":")),encoding="utf-8")
