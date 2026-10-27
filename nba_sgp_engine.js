@@ -73,11 +73,16 @@ function renderGame(game,rows,playerProfiles){
  const clear=el('button','Clear');clear.type='button';clear.style.cssText='padding:9px;border-radius:8px;cursor:pointer';
  const selectedList=el('div');const result=el('p');
  function redraw(){selectedList.replaceChildren();for(const x of chosen)selectedList.append(el('p',(x.player?x.player+' · ':'')+buckets[x.market]+' · '+x.selection+(x.point!==null&&x.point!==undefined?' '+x.point:'')+' · '+x.bookmaker));
- result.textContent=chosen.length+' legs selected · SGP joint probability UNAVAILABLE · correlated Monte Carlo UNAVAILABLE · bookmaker SGP quote UNAVAILABLE · EV UNAVAILABLE · NOT BET ELIGIBLE.'}
+ result.textContent=chosen.length+' legs selected · '+[...new Set(chosen.map(x=>x.player||x.selection))].length+' unique selections · SGP joint probability UNAVAILABLE · correlated Monte Carlo UNAVAILABLE · bookmaker SGP quote UNAVAILABLE · EV UNAVAILABLE · NOT BET ELIGIBLE.'}
  add.addEventListener('click',()=>{const x=legChoices[Number(chooser.value)];if(chooser.value===''||!x||chosen.length>=6)return;
  if(chosen.some(y=>y===x))return;
+ const marketKey=y=>[String(y.player||y.selection||'').trim().toLowerCase(),y.market,String(y.point)].join('|');
+ const opposite=y=>String(y.selection||'').toLowerCase().includes('over')?'under':String(y.selection||'').toLowerCase().includes('under')?'over':'';
+ if(chosen.some(y=>marketKey(y)===marketKey(x)&&opposite(y)!==opposite(x)))return;
+ if(chosen.some(y=>marketKey(y)===marketKey(x)&&opposite(y)===opposite(x)))return;
  chosen.push(x);redraw()});clear.addEventListener('click',()=>{chosen.length=0;redraw()});
  builder.append(add,clear,selectedList,result);redraw();
+ builder.append(el('p','Leg integrity: duplicate or opposite-side selections at the same player/market/line are rejected. All legs must belong to this game.'));
  builder.append(el('p','Preflight: leg eligibility, roster status, current minutes, same-game correlation, joint simulation, SGP-specific price and EV must all pass. This interface never estimates joint odds by multiplying independent probabilities.'));
  const simulation=el('div');simulation.style.cssText='border-top:1px solid #42677b;padding-top:12px;margin-top:12px';
  simulation.append(el('h4','Joint simulation research · gated'));
