@@ -1,0 +1,36 @@
+name: NFL SGP Promotion Evidence Audit
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/audit_nfl_sgp_promotion.py'
+      - 'tests/test_nfl_sgp_promotion.py'
+      - '.github/workflows/nfl-sgp-promotion-audit.yml'
+      - 'feed/nfl_player_stats.json'
+      - 'feed/nfl_sgp_walkforward_accuracy.json'
+      - 'feed/player_recommendation_readiness.json'
+      - 'feed/americanfootball_nfl_correlation_backtest.json'
+permissions:
+  contents: read
+jobs:
+  evidence-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Execute NFL SGP evidence audit
+        run: python scripts/audit_nfl_sgp_promotion.py | tee "$RUNNER_TEMP/nfl_sgp_evidence_audit.json"
+      - name: Test fail-closed SGP evidence gate
+        run: python tests/test_nfl_sgp_promotion.py
+      - name: Publish audit summary
+        if: always()
+        run: |
+          if test -s "$RUNNER_TEMP/nfl_sgp_evidence_audit.json"; then
+            echo '## NFL SGP promotion evidence audit' >> "$GITHUB_STEP_SUMMARY"
+            echo '```json' >> "$GITHUB_STEP_SUMMARY"
+            cat "$RUNNER_TEMP/nfl_sgp_evidence_audit.json" >> "$GITHUB_STEP_SUMMARY"
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+          fi
