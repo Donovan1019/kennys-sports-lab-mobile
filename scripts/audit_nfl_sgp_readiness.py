@@ -25,7 +25,8 @@ def audit():
     quotes=readiness.get("source_integrity",{}).get("NFL_archived_player_props",{})
     checks={
         "player_game_logs_present":bool(logs),
-        "complete_game_identity":bool(logs) and ids==len(logs),\n        "unique_player_game_identity":duplicate_ids==0,
+        "complete_game_identity":bool(logs) and ids==len(logs),
+        "unique_player_game_identity":duplicate_ids==0,
         "all_reported_markets_live_eligible":bool(market_status) and all(x["eligible_for_live_use"] for x in market_status.values()),
         "verified_player_recommendations_present":nfl.get("fully_verified_player_recommendations",0)>0,
         "independent_roster_verification":quotes.get("current_roster_source_connected") is True and quotes.get("verified_player_team_assignments",0)>0,
