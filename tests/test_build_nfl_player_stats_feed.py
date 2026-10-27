@@ -24,6 +24,16 @@ class Ingestion(unittest.TestCase):
   with self.assertRaises(ValueError):build([dict(BASE,player_id="")])
  def test_all_anonymous_still_rejected(self):
   with self.assertRaises(ValueError):build([dict(BASE,player_id="",player_display_name="")])
+ def test_punctuation_name_variant_same_id(self):
+  a=dict(BASE,player_display_name="O'Neil Smith")
+  b=dict(BASE,player_display_name="ONeil Smith",game_id="2026_04_A_B",week="4")
+  result=build([a,b])
+  self.assertEqual(len(result["players"]),1)
+  self.assertEqual(len(result["players"][0]["games"]),2)
+  self.assertIn("ONeil Smith",result["players"][0]["name_variants"])
+ def test_distinct_name_same_id_rejected(self):
+  with self.assertRaisesRegex(ValueError,"previous_name"):
+   build([BASE,dict(BASE,player_display_name="Different Person",game_id="2026_04_A_B",week="4")])
  def test_observed_game(self):
   r=build([BASE])
   self.assertEqual(r["players"][0]["games"][0]["values"]["Passing yards"],203)
