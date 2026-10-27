@@ -4,6 +4,7 @@ import argparse,csv,json,sys,unicodedata
 from collections import defaultdict
 from pathlib import Path
 FIELDS={"Passing yards":"passing_yards","Passing touchdowns":"passing_tds","Rushing yards":"rushing_yards","Receiving yards":"receiving_yards","Receptions":"receptions","Pass Attempts":"attempts","Completions":"completions","Rush Attempts":"carries","Targets":"targets","Rushing touchdowns":"rushing_tds","Receiving touchdowns":"receiving_tds"}
+VERIFIED_PLAYER_ALIASES={"00-0034413":{"foyeoluokun","foyesadeoluokun"}}
 def normalized_name(value):
     return "".join(ch for ch in unicodedata.normalize("NFKD",value).casefold() if ch.isalnum())
 def schedule_index(rows):
@@ -58,7 +59,7 @@ def build(rows, schedule=None):
         if not values:raise ValueError(f"row {n}: no observed stat values")
         player=players[player_id]
         if player.get("name") and player["name"]!=name:
-            if normalized_name(player["name"])!=normalized_name(name):
+            if normalized_name(player["name"])!=normalized_name(name) and {normalized_name(player["name"]),normalized_name(name)} != VERIFIED_PLAYER_ALIASES.get(player_id,set()):
                 raise ValueError(f"row {n}: conflicting player identity for player_id={player_id!r}: previous_name={player['name']!r}, incoming_name={name!r}")
             player.setdefault("name_variants",[])
             if name not in player["name_variants"]:

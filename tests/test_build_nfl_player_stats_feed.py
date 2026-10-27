@@ -34,6 +34,17 @@ class Ingestion(unittest.TestCase):
  def test_distinct_name_same_id_rejected(self):
   with self.assertRaisesRegex(ValueError,"previous_name"):
    build([BASE,dict(BASE,player_display_name="Different Person",game_id="2026_04_A_B",week="4")])
+ def test_verified_oluokun_alias(self):
+  a=dict(BASE,player_id="00-0034413",player_display_name="Foye Oluokun")
+  b=dict(a,player_display_name="Foyesade Oluokun",game_id="2026_04_A_B",week="4")
+  result=build([a,b])
+  self.assertEqual(len(result["players"][0]["games"]),2)
+  self.assertIn("Foyesade Oluokun",result["players"][0]["name_variants"])
+ def test_alias_rejected_for_other_id(self):
+  a=dict(BASE,player_display_name="Foye Oluokun")
+  b=dict(a,player_display_name="Foyesade Oluokun",game_id="2026_04_A_B",week="4")
+  with self.assertRaisesRegex(ValueError,"conflicting player identity"):
+   build([a,b])
  def test_observed_game(self):
   r=build([BASE])
   self.assertEqual(r["players"][0]["games"][0]["values"]["Passing yards"],203)
