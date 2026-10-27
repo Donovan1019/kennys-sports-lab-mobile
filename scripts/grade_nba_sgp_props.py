@@ -8,6 +8,8 @@ OUTPUT=Path("feed/nba_prop_pregame_grades.json")
 MARKETS={"player_points","player_rebounds","player_assists","player_threes"}
 COMPLETED=Path("feed/nba_completed_games.json")
 PLAYER_STATS=Path("feed/nba_player_stats.json")
+SGP_LEDGER=Path("feed/nba_sgp_pregame_ledger.jsonl")
+SGP_GRADES=Path("feed/nba_sgp_pregame_grades.json")
 METRICS={"player_points":"Points","player_rebounds":"Rebounds","player_assists":"Assists","player_threes":"Threes"}
 
 def timestamp(value):
@@ -107,6 +109,46 @@ def verified_grade(row,event_id,lookup):
     won=(value>line) if row["selection"]=="Over" else (value<line)
     return ("WIN" if won else "LOSS"),"verified pregame quote and ESPN completed-game player boxscore"
 
+def grade_saved_sgps(rows,crosswalk,lookup):
+    """Grade only explicitly captured combinations; never synthesize SGPs."""
+    records=[]
+    if SGP_LEDGER.exists():
+        for line in SGP_LEDGER.read_text().splitlines():
+            try:
+                item=json.loads(line)
+                if isinstance(item,dict):
+                    records.append(item)
+            except json.JSONDecodeError:
+                continue
+    output=[]
+    for item in records:
+        legs=item.get("legs")
+        captured=timestamp(item.get("captured_at"))
+        event=item.get("event_id")
+        match=crosswalk.get(event)
+        status="UNVERIFIED"
+        reason="verified pregame combination unavailable"
+        if not isinstance(legs,list) or not 2<=len(legs)<=12:
+            reason="invalid SGP leg count"
+        elif not captured or not match:
+            reason="missing capture time or verified game crosswalk"
+        elif any(not isinstance(leg,dict) or leg.get("event_id")!=event or timestamp(leg.get("captured_at"))!=captured for leg in legs):
+            reason="legs not tied to the same captured game snapshot"
+        else:
+            outcomes=[verified_grade(leg,match["espn_event_id"],lookup) for leg in legs]
+            states=[x[0] for x in outcomes]
+            if "UNVERIFIED" in states:
+                reason="at least one leg unverified"
+            elif "LOSS" in states:
+                status,reason="LOSS","verified losing leg"
+            elif "PUSH" in states:
+                status,reason="UNVERIFIED","SGP push/void settlement requires sportsbook-specific rules"
+            elif all(x=="WIN" for x in states):
+                status,reason="WIN","all legs verified winners; settlement subject to sportsbook rules"
+        output.append({"sgp_id":item.get("sgp_id"),"event_id":event,"leg_count":len(legs) if isinstance(legs,list) else None,"status":status,"reason":reason})
+    SGP_GRADES.write_text(json.dumps({"generated_at":datetime.now(timezone.utc).isoformat(),"records":len(output),"graded":sum(x["status"] in ("WIN","LOSS") for x in output),"unverified":sum(x["status"]=="UNVERIFIED" for x in output),"grades":output},indent=2)+"\\n")
+    return output
+
 def main():
     rows=[]
     if LEDGER.exists():
@@ -124,6 +166,7 @@ def main():
         matched=crosswalk.get(row.get("event_id"))
         status,reason=verified_grade(row,matched["espn_event_id"],lookup) if matched else ("UNVERIFIED","verified game crosswalk unavailable")
         grades.append({"event_id":row.get("event_id"),"espn_event_id":matched["espn_event_id"] if matched else None,"player":row.get("player"),"market":row.get("market"),"selection":row.get("selection"),"line":row.get("point"),"bookmaker":row.get("bookmaker"),"captured_at":row.get("captured_at"),"status":status,"reason":reason})
+    sgps=grade_saved_sgps(rows,crosswalk,lookup)
     OUTPUT.write_text(json.dumps({"generated_at":datetime.now(timezone.utc).isoformat(),"records":len(grades),"graded":sum(x["status"] in ("WIN","LOSS","PUSH") for x in grades),"unverified":sum(x["status"]=="UNVERIFIED" for x in grades),"matched_games":len(crosswalk),"grades":grades},indent=2)+"\n")
     print("NBA SGP pregame ledger:",len(grades),"records; verified graded:",sum(x["status"] in ("WIN","LOSS","PUSH") for x in grades))
 
