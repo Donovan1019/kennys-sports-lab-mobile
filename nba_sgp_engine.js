@@ -27,7 +27,23 @@ function renderGame(game,rows){
  builder.append(el('p','Four-core NBA framework: primary scorer points, lead rebounder rebounds, primary creator assists, and team/game scoring. Requires confirmed minutes, injuries, opponent matchups, pace and role before thresholds are selected.'));
  const markets=[...new Set(rows.map(x=>x.market))].filter(x=>availableMarkets.has(x));
  builder.append(el('p','Available source markets: '+(markets.map(x=>buckets[x]).join(', ')||'none')+'. Player prop markets absent from the source are explicitly unavailable.'));
- builder.append(el('p','Joint probability: UNAVAILABLE · correlation matrix: UNAVAILABLE · Monte Carlo: UNAVAILABLE · SGP price: UNAVAILABLE · fair odds: UNAVAILABLE · EV: UNAVAILABLE. Do not multiply independent leg probabilities or label this a recommended parlay.'));
+ const builderTitle=el('h4','SGP candidate builder · market audit');builder.append(builderTitle);
+ const legChoices=rows.filter(x=>availableMarkets.has(x.market)&&Number.isFinite(Number(x.price))&&Number(x.price)!==0);
+ const chosen=[];const chooser=el('select');chooser.setAttribute('aria-label','Choose SGP leg');
+ chooser.style.cssText='max-width:100%;padding:9px;background:#081426;color:white;border:1px solid #42677b;border-radius:8px';
+ const placeholder=el('option','Select a market leg');placeholder.value='';chooser.append(placeholder);
+ legChoices.forEach((x,i)=>{const option=el('option',(x.player?x.player+' · ':'')+buckets[x.market]+' · '+x.selection+(x.point!==null&&x.point!==undefined?' '+x.point:'')+' · '+(Number(x.price)>0?'+':'')+x.price+' ('+x.bookmaker+')');option.value=String(i);chooser.append(option)});
+ builder.append(chooser);
+ const add=el('button','Add leg');add.type='button';add.style.cssText='padding:9px;margin:8px;border-radius:8px;cursor:pointer';
+ const clear=el('button','Clear');clear.type='button';clear.style.cssText='padding:9px;border-radius:8px;cursor:pointer';
+ const selectedList=el('div');const result=el('p');
+ function redraw(){selectedList.replaceChildren();for(const x of chosen)selectedList.append(el('p',(x.player?x.player+' · ':'')+buckets[x.market]+' · '+x.selection+(x.point!==null&&x.point!==undefined?' '+x.point:'')+' · '+x.bookmaker));
+ result.textContent=chosen.length+' legs selected · SGP joint probability UNAVAILABLE · correlated Monte Carlo UNAVAILABLE · bookmaker SGP quote UNAVAILABLE · EV UNAVAILABLE · NOT BET ELIGIBLE.'}
+ add.addEventListener('click',()=>{const x=legChoices[Number(chooser.value)];if(chooser.value===''||!x||chosen.length>=6)return;
+ if(chosen.some(y=>y===x))return;
+ chosen.push(x);redraw()});clear.addEventListener('click',()=>{chosen.length=0;redraw()});
+ builder.append(add,clear,selectedList,result);redraw();
+ builder.append(el('p','Preflight: leg eligibility, roster status, current minutes, same-game correlation, joint simulation, SGP-specific price and EV must all pass. This interface never estimates joint odds by multiplying independent probabilities.'));
  section.append(builder);return section;
 }
 async function load(){
