@@ -1,0 +1,39 @@
+name: NFL Real Player Stats Ingestion
+on:
+  workflow_dispatch:
+    inputs:
+      csv_url:
+        description: 'Trusted direct URL to nflverse player_stats CSV (must include game_id)'
+        required: true
+        type: string
+permissions:
+  contents: read
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s tests -p 'test_build_nfl_player_stats_feed.py' -v
+      - name: Download requested CSV with redirect and HTTP validation
+        env:
+          CSV_URL: ${{ inputs.csv_url }}
+        run: |
+          case "$CSV_URL" in
+            https://github.com/nflverse/nflverse-data/*|https://github.com/nflverse/*|https://github.com/nflverse-data/*) ;;
+            *) echo 'Only official nflverse GitHub source URLs permitted'; exit 1;;
+          esac
+          curl --fail --location --retry 2 --max-time 120 "$CSV_URL" -o /tmp/nflverse-player-stats.csv
+      - name: Build and audit actual feed
+        run: |
+          python scripts/build_nfl_player_stats_feed.py --input /tmp/nflverse-player-stats.csv --output /tmp/nfl_player_stats.json
+          python scripts/audit_nfl_player_stats_feed.py /tmp/nfl_player_stats.json > /tmp/nfl_player_stats_audit.json
+          python -c "import json; r=json.load(open('/tmp/nfl_player_stats_audit.json')); assert r['status']=='DATA_PRESENT_UNVERIFIED',r"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: verified-source-nfl-player-stats-candidate
+          path: |
+            /tmp/nfl_player_stats.json
+            /tmp/nfl_player_stats_audit.json
