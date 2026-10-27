@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """Build NFL player game feed from a genuine nflverse player-stats CSV. No fabricated IDs."""
-import argparse,csv,json,sys
+import argparse,csv,json,sys,unicodedata
 from collections import defaultdict
 from pathlib import Path
 FIELDS={"Passing yards":"passing_yards","Passing touchdowns":"passing_tds","Rushing yards":"rushing_yards","Receiving yards":"receiving_yards","Receptions":"receptions","Pass Attempts":"attempts","Completions":"completions","Rush Attempts":"carries","Targets":"targets","Rushing touchdowns":"rushing_tds","Receiving touchdowns":"receiving_tds"}
+def normalized_name(value):
+    return "".join(ch for ch in unicodedata.normalize("NFKD",value).casefold() if ch.isalnum())
 def schedule_index(rows):
     index={}
     for row in rows:
@@ -55,8 +57,14 @@ def build(rows, schedule=None):
             values[label]=value
         if not values:raise ValueError(f"row {n}: no observed stat values")
         player=players[player_id]
-        if player.get("name") and player["name"]!=name:raise ValueError(f"row {n}: conflicting player identity")
-        player["name"]=name
+        if player.get("name") and player["name"]!=name:
+            if normalized_name(player["name"])!=normalized_name(name):
+                raise ValueError(f"row {n}: conflicting player identity for player_id={player_id!r}: previous_name={player['name']!r}, incoming_name={name!r}")
+            player.setdefault("name_variants",[])
+            if name not in player["name_variants"]:
+                player["name_variants"].append(name)
+        else:
+            player["name"]=name
         player["player_id"]=player_id
         player["games"].append({"game_id":game_id,"season":int(season),"week":int(week),"season_type":"REG","values":values})
     if not seen:raise ValueError("No valid 2025–26 regular season observations; refusing empty feed")
