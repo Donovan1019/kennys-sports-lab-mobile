@@ -46,7 +46,8 @@ def build(rows, schedule=None):
                 value=float(raw)
             except ValueError as exc:
                 raise ValueError(f"row {n}: invalid {column}") from exc
-            if not 0<=value<10000:raise ValueError(f"row {n}: out-of-range {column}")
+            valid=(-1000<=value<10000) if column in ("rushing_yards","receiving_yards","passing_yards") else (0<=value<10000)
+            if not valid:raise ValueError(f"row {n}: out-of-range {column}")
             values[label]=value
         if not values:raise ValueError(f"row {n}: no observed stat values")
         player=players[player_id]
