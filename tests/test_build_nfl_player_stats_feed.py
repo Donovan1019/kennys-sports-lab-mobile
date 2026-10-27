@@ -15,6 +15,15 @@ class Ingestion(unittest.TestCase):
   self.assertEqual(r["players"][0]["games"][0]["values"]["Rushing yards"],-7)
  def test_negative_receptions_rejected(self):
   with self.assertRaises(ValueError):build([dict(BASE,receptions="-1")])
+ def test_anonymous_row_quarantined(self):
+  r=build([dict(BASE,player_id="",player_display_name=""),BASE])
+  self.assertEqual(r["quarantine"]["count"],1)
+  self.assertEqual(r["quarantine"]["records"][0]["reason"],"missing_player_id_and_name")
+  self.assertEqual(len(r["players"]),1)
+ def test_partial_identity_still_rejected(self):
+  with self.assertRaises(ValueError):build([dict(BASE,player_id="")])
+ def test_all_anonymous_still_rejected(self):
+  with self.assertRaises(ValueError):build([dict(BASE,player_id="",player_display_name="")])
  def test_observed_game(self):
   r=build([BASE])
   self.assertEqual(r["players"][0]["games"][0]["values"]["Passing yards"],203)
