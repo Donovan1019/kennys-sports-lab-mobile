@@ -9,6 +9,11 @@ const stats={source:'nflverse-stats-player-week',players:[player('Alpha',[110,90
 const legs=[{player:'Alpha',market:'player_pass_yds',point:100,selection:'Over'},{player:'Beta',market:'player_reception_yds',point:100,selection:'Over'}];
 const result=joint(stats,legs);
 assert.equal(result.status,'EXPERIMENTAL');
+assert.equal(result.betting_eligible,false);
+assert.equal(result.validated_same_game,false);
+assert.equal(result.official_sgp_price_available,false);
+assert.equal(joint(stats,[{...legs[0],selection:'Maybe'},legs[1]]).status,'BLOCKED');
+assert.equal(joint(stats,[legs[0],{...legs[0],selection:'Under'}]).status,'BLOCKED');
 assert.equal(result.paired_weeks,6);
 assert.equal(result.trials,10000);
 assert.ok(result.joint_rate>0.45&&result.joint_rate<0.55);
