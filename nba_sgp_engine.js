@@ -114,14 +114,21 @@ async function load(){
  status.textContent='Loading NBA games and available sportsbook markets…';
  try{const response=await fetch('./feed/basketball_nba.json?sgp='+Date.now(),{cache:'no-store'});if(!response.ok)throw Error('NBA feed HTTP '+response.status);
  const data=await response.json(),rows=Array.isArray(data.odds)?data.odds:[],now=Date.now(),events=new Map();
- let propRows=[];let propFeedStatus='player props feed unavailable';
- try{const propResponse=await fetch('./feed/nba_props.json?sgp='+Date.now(),{cache:'no-store'});if(propResponse.ok){const propData=await propResponse.json();const all=Array.isArray(propData.odds)?propData.odds:[];propRows=all.filter(x=>x.event_id&&x.player&&x.market&&Number.isFinite(Date.parse(x.commence_time))&&Date.parse(x.commence_time)>now);propFeedStatus=propRows.length+' upcoming player prop rows';if(!propRows.length)propFeedStatus='no upcoming player prop rows (saved feed may be stale)'}}catch(_){/* no fabricated prop data */}
+ let propRows=[];let propFeedStatus='player props feed unavailable';let propFeedFetchedAt=null;
+ try{const propResponse=await fetch('./feed/nba_props.json?sgp='+Date.now(),{cache:'no-store'});if(propResponse.ok){const propData=await propResponse.json();propFeedFetchedAt=propData.fetched_at||null;const all=Array.isArray(propData.odds)?propData.odds:[];propRows=all.filter(x=>x.event_id&&x.player&&x.market&&Number.isFinite(Date.parse(x.commence_time))&&Date.parse(x.commence_time)>now);propFeedStatus=propRows.length+' upcoming player prop rows';if(!propRows.length)propFeedStatus='no upcoming player prop rows (saved feed may be stale)'}}catch(_){/* no fabricated prop data */}
  rows.push(...propRows);let playerProfiles=[];try{const stats=await fetch('./feed/nba_player_stats.json',{cache:'no-store'});if(stats.ok){const history=await stats.json();playerProfiles=Array.isArray(history.players)?history.players:[]}}catch(_){/* history unavailable; no fabricated values */}
  for(const row of rows){if(!row.event_id||!row.event||!Number.isFinite(Date.parse(row.commence_time))||Date.parse(row.commence_time)<=now)continue;
  if(!events.has(row.event_id))events.set(row.event_id,{event_id:row.event_id,event:row.event,commence_time:row.commence_time,rows:[]});events.get(row.event_id).rows.push(row)}
  const games=[...events.values()].sort((a,b)=>Date.parse(a.commence_time)-Date.parse(b.commence_time));const today=etDate(now),todayGames=games.filter(g=>etDate(g.commence_time)===today),first=games[0]&&etDate(games[0].commence_time);
  const shown=todayGames.length?todayGames:games.filter(g=>etDate(g.commence_time)===first);
- output.replaceChildren();status.textContent=shown.length?'NBA SGP · '+shown.length+' upcoming games · '+(todayGames.length?'today':'next available date')+' · '+rows.length+' source market rows · '+propFeedStatus+' · RESEARCH ONLY':'No upcoming NBA games in published market feed. SGP unavailable until the next feed refresh.';
+ output.replaceChildren();
+ const propAge=propFeedFetchedAt&&Number.isFinite(Date.parse(propFeedFetchedAt))?Math.round((now-Date.parse(propFeedFetchedAt))/60000):null;
+ const propEvents=new Set(propRows.map(x=>x.event_id));
+ const covered=shown.filter(g=>propEvents.has(g.event_id)).length;
+ const diagnostics=el('p','Player-prop coverage: '+covered+'/'+shown.length+' upcoming games · prop feed age '+(propAge===null?'unknown':propAge+' minutes')+' · refresh: GitHub Actions → Refresh NBA NHL Player Props (Credit-Limited) → Run workflow → nba. Paid API credits are used only on manual dispatch.');
+ diagnostics.style.cssText='border:1px solid #42677b;padding:10px;border-radius:8px';
+ output.append(diagnostics);
+ status.textContent=shown.length?'NBA SGP · '+shown.length+' upcoming games · '+(todayGames.length?'today':'next available date')+' · '+rows.length+' source market rows · '+propFeedStatus+' · RESEARCH ONLY':'No upcoming NBA games in published market feed. SGP unavailable until the next feed refresh.';
  for(const game of shown)output.append(renderGame(game,game.rows,playerProfiles));
  }catch(err){status.textContent='NBA SGP FEED ERROR: '+err.message+' · NOT BET ELIGIBLE';output.replaceChildren()}
 }
