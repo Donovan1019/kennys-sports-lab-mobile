@@ -9,45 +9,45 @@
       "player_pass_yds": {
         "status": "FAILED_DUAL_METRIC_GATE",
         "development_samples": 272,
-        "holdout_samples": 188,
+        "holdout_samples": 189,
         "frozen_adjustment": -0.021792,
-        "raw_brier": 0.243161,
-        "frozen_brier": 0.245358,
-        "raw_ece": 0.044073,
-        "frozen_ece": 0.063778,
+        "raw_brier": 0.242846,
+        "frozen_brier": 0.244935,
+        "raw_ece": 0.041572,
+        "frozen_ece": 0.061289,
         "eligible_for_live_use": false
       },
       "player_reception_yds": {
         "status": "FAILED_DUAL_METRIC_GATE",
         "development_samples": 2164,
-        "holdout_samples": 1317,
+        "holdout_samples": 1328,
         "frozen_adjustment": -0.029913,
-        "raw_brier": 0.253033,
-        "frozen_brier": 0.252001,
-        "raw_ece": 0.070832,
-        "frozen_ece": 0.080255,
+        "raw_brier": 0.253058,
+        "frozen_brier": 0.252054,
+        "raw_ece": 0.070676,
+        "frozen_ece": 0.080178,
         "eligible_for_live_use": false
       },
       "player_rush_yds": {
         "status": "BOTH_METRICS_IMPROVED",
         "development_samples": 906,
-        "holdout_samples": 584,
+        "holdout_samples": 589,
         "frozen_adjustment": -0.022475,
-        "raw_brier": 0.253425,
-        "frozen_brier": 0.251929,
-        "raw_ece": 0.083659,
-        "frozen_ece": 0.067329,
+        "raw_brier": 0.253318,
+        "frozen_brier": 0.251893,
+        "raw_ece": 0.081737,
+        "frozen_ece": 0.066629,
         "eligible_for_live_use": false
       },
       "player_receptions": {
         "status": "FAILED_DUAL_METRIC_GATE",
         "development_samples": 2164,
-        "holdout_samples": 1317,
+        "holdout_samples": 1328,
         "frozen_adjustment": -0.030396,
-        "raw_brier": 0.25012,
-        "frozen_brier": 0.250721,
-        "raw_ece": 0.06107,
-        "frozen_ece": 0.059348,
+        "raw_brier": 0.250061,
+        "frozen_brier": 0.250632,
+        "raw_ece": 0.061747,
+        "frozen_ece": 0.058694,
         "eligible_for_live_use": false
       }
     },
@@ -55,15 +55,15 @@
   },
   "integrity": {
     "missing_market_stat": 0,
-    "zero_market_stat": 8069,
+    "zero_market_stat": 8092,
     "negative_or_invalid": 0,
-    "position_excluded": 80618,
+    "position_excluded": 80841,
     "duplicate_player_weeks": 0
   },
   "opportunity": {
-    "confirmed": 15032,
+    "confirmed": 15072,
     "unverified": 0,
-    "zero_opportunity": 6706,
+    "zero_opportunity": 6723,
     "invalid": 0
   },
   "participation_status": "OPPORTUNITY_CONFIRMED_ONLY",
@@ -74,12 +74,12 @@
   "baseline_warning": "Chronological rolling baseline uses only prior scored player-market outcomes (up to 10, Laplace-smoothed); constant-rate benchmark uses full evaluation outcomes (in-sample, look-ahead) and is diagnostic only. Both use postgame opportunity-conditioned samples and synthetic thresholds.",
   "method": "chronological five-opportunity-confirmed-game mean threshold and smoothed empirical frequency; position-filtered, retains zero outcomes when attempts/targets/carries > 0; NOT sportsbook-line calibration",
   "leakage_policy": "Each prediction uses only earlier games for the same player and market",
-  "total_samples": 8912,
+  "total_samples": 8940,
   "markets": {
     "player_pass_yds": {
       "status": "RESEARCH_ONLY",
-      "samples": 460,
-      "brier": 0.25102,
+      "samples": 461,
+      "brier": 0.250874,
       "calibration_acceptance_gate": {
         "status": "REJECTED",
         "brier_improved": false,
@@ -87,9 +87,9 @@
         "eligible_for_live_use": false,
         "reason": "Calibration worsened or tied at least one diagnostic metric"
       },
-      "prequential_calibrated_brier": 0.251893,
-      "prequential_calibrated_ece": 0.05183,
-      "prequential_calibration_samples": 352,
+      "prequential_calibrated_brier": 0.251725,
+      "prequential_calibrated_ece": 0.050812,
+      "prequential_calibration_samples": 353,
       "reliability_bins": [
         {
           "lower": 0.2,
@@ -101,9 +101,9 @@
         {
           "lower": 0.4,
           "upper": 0.5,
-          "samples": 200,
+          "samples": 201,
           "predicted": 0.428571,
-          "observed": 0.48
+          "observed": 0.477612
         },
         {
           "lower": 0.5,
@@ -120,18 +120,18 @@
           "observed": 0.590909
         }
       ],
-      "expected_calibration_error": 0.052795,
-      "chronological_rolling_brier": 0.279845,
-      "skill_vs_chronological_rolling": 0.103001,
-      "constant_rate_brier_in_sample": 0.25,
-      "skill_vs_in_sample_constant": -0.004082,
-      "mean_predicted": 0.506211,
-      "observed_rate": 0.5
+      "expected_calibration_error": 0.051751,
+      "chronological_rolling_brier": 0.279976,
+      "skill_vs_chronological_rolling": 0.103943,
+      "constant_rate_brier_in_sample": 0.249999,
+      "skill_vs_in_sample_constant": -0.003502,
+      "mean_predicted": 0.506043,
+      "observed_rate": 0.498915
     },
     "player_reception_yds": {
       "status": "RESEARCH_ONLY",
-      "samples": 3481,
-      "brier": 0.252754,
+      "samples": 3492,
+      "brier": 0.252764,
       "calibration_acceptance_gate": {
         "status": "REJECTED",
         "brier_improved": true,
@@ -139,30 +139,30 @@
         "eligible_for_live_use": false,
         "reason": "Calibration worsened or tied at least one diagnostic metric"
       },
-      "prequential_calibrated_brier": 0.25185,
-      "prequential_calibrated_ece": 0.074075,
-      "prequential_calibration_samples": 3276,
+      "prequential_calibrated_brier": 0.251871,
+      "prequential_calibrated_ece": 0.074066,
+      "prequential_calibration_samples": 3287,
       "reliability_bins": [
         {
           "lower": 0.2,
           "upper": 0.3,
-          "samples": 468,
+          "samples": 470,
           "predicted": 0.285714,
-          "observed": 0.399573
+          "observed": 0.4
         },
         {
           "lower": 0.4,
           "upper": 0.5,
-          "samples": 1999,
+          "samples": 2006,
           "predicted": 0.428571,
-          "observed": 0.427714
+          "observed": 0.427717
         },
         {
           "lower": 0.5,
           "upper": 0.6,
-          "samples": 956,
+          "samples": 958,
           "predicted": 0.571429,
-          "observed": 0.408996
+          "observed": 0.409186
         },
         {
           "lower": 0.7,
@@ -172,18 +172,18 @@
           "observed": 0.551724
         }
       ],
-      "expected_calibration_error": 0.063118,
-      "chronological_rolling_brier": 0.273003,
-      "skill_vs_chronological_rolling": 0.074172,
-      "constant_rate_brier_in_sample": 0.243736,
-      "skill_vs_in_sample_constant": -0.036998,
-      "mean_predicted": 0.453359,
-      "observed_rate": 0.420856
+      "expected_calibration_error": 0.063083,
+      "chronological_rolling_brier": 0.273064,
+      "skill_vs_chronological_rolling": 0.074339,
+      "constant_rate_brier_in_sample": 0.243753,
+      "skill_vs_in_sample_constant": -0.036969,
+      "mean_predicted": 0.453281,
+      "observed_rate": 0.420962
     },
     "player_rush_yds": {
       "status": "RESEARCH_ONLY",
-      "samples": 1490,
-      "brier": 0.250185,
+      "samples": 1495,
+      "brier": 0.250154,
       "calibration_acceptance_gate": {
         "status": "RESEARCH_CANDIDATE",
         "brier_improved": true,
@@ -191,9 +191,9 @@
         "eligible_for_live_use": false,
         "reason": "Both diagnostic metrics improved; independent future holdout still required"
       },
-      "prequential_calibrated_brier": 0.249585,
-      "prequential_calibrated_ece": 0.06751,
-      "prequential_calibration_samples": 1354,
+      "prequential_calibrated_brier": 0.249587,
+      "prequential_calibrated_ece": 0.067248,
+      "prequential_calibration_samples": 1359,
       "reliability_bins": [
         {
           "lower": 0.2,
@@ -205,16 +205,16 @@
         {
           "lower": 0.4,
           "upper": 0.5,
-          "samples": 790,
+          "samples": 794,
           "predicted": 0.428571,
-          "observed": 0.407595
+          "observed": 0.40806
         },
         {
           "lower": 0.5,
           "upper": 0.6,
-          "samples": 435,
+          "samples": 436,
           "predicted": 0.571429,
-          "observed": 0.448276
+          "observed": 0.449541
         },
         {
           "lower": 0.7,
@@ -224,18 +224,18 @@
           "observed": 0.5
         }
       ],
-      "expected_calibration_error": 0.068073,
-      "chronological_rolling_brier": 0.270612,
-      "skill_vs_chronological_rolling": 0.075486,
-      "constant_rate_brier_in_sample": 0.243405,
-      "skill_vs_in_sample_constant": -0.027853,
-      "mean_predicted": 0.452924,
-      "observed_rate": 0.418792
+      "expected_calibration_error": 0.067367,
+      "chronological_rolling_brier": 0.270638,
+      "skill_vs_chronological_rolling": 0.075691,
+      "constant_rate_brier_in_sample": 0.243503,
+      "skill_vs_in_sample_constant": -0.027311,
+      "mean_predicted": 0.452938,
+      "observed_rate": 0.419398
     },
     "player_receptions": {
       "status": "RESEARCH_ONLY",
-      "samples": 3481,
-      "brier": 0.24933,
+      "samples": 3492,
+      "brier": 0.24931,
       "calibration_acceptance_gate": {
         "status": "REJECTED",
         "brier_improved": true,
@@ -243,9 +243,9 @@
         "eligible_for_live_use": false,
         "reason": "Calibration worsened or tied at least one diagnostic metric"
       },
-      "prequential_calibrated_brier": 0.249035,
-      "prequential_calibrated_ece": 0.061404,
-      "prequential_calibration_samples": 3276,
+      "prequential_calibrated_brier": 0.249009,
+      "prequential_calibrated_ece": 0.061619,
+      "prequential_calibration_samples": 3287,
       "reliability_bins": [
         {
           "lower": 0.1,
@@ -257,23 +257,23 @@
         {
           "lower": 0.2,
           "upper": 0.3,
-          "samples": 633,
+          "samples": 635,
           "predicted": 0.285714,
-          "observed": 0.382306
+          "observed": 0.382677
         },
         {
           "lower": 0.4,
           "upper": 0.5,
-          "samples": 1699,
+          "samples": 1706,
           "predicted": 0.428571,
-          "observed": 0.416127
+          "observed": 0.415592
         },
         {
           "lower": 0.5,
           "upper": 0.6,
-          "samples": 985,
+          "samples": 987,
           "predicted": 0.571429,
-          "observed": 0.46802
+          "observed": 0.468085
         },
         {
           "lower": 0.7,
@@ -283,13 +283,13 @@
           "observed": 0.552239
         }
       ],
-      "expected_calibration_error": 0.060492,
-      "chronological_rolling_brier": 0.273528,
-      "skill_vs_chronological_rolling": 0.088465,
-      "constant_rate_brier_in_sample": 0.244945,
-      "skill_vs_in_sample_constant": -0.017904,
-      "mean_predicted": 0.451553,
-      "observed_rate": 0.4289
+      "expected_calibration_error": 0.060751,
+      "chronological_rolling_brier": 0.273664,
+      "skill_vs_chronological_rolling": 0.088991,
+      "constant_rate_brier_in_sample": 0.244915,
+      "skill_vs_in_sample_constant": -0.017945,
+      "mean_predicted": 0.451481,
+      "observed_rate": 0.428694
     }
   },
   "limitations": "Opportunity-confirmed samples condition on observed attempts, targets or carries and exclude games with zero opportunity; this introduces post-game selection bias and is NOT a pregame hit probability. Snaps, routes, injury status and missing weekly rows are unverified. Synthetic thresholds, not posted odds or real SGP prices; no opponent, joint-correlation, or market EV validation"
