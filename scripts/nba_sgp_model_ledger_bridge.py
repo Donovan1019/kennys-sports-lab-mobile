@@ -101,10 +101,15 @@ def run():
     players=history.get("players",[]) if isinstance(history,dict) else []
     if not isinstance(players,list): players=[]
     history_profiles=sum(bool(isinstance(p,dict) and isinstance(p.get("games"),list) and len(p["games"])>=8) for p in players)
+    history_updated=stamp(history.get("fetched_at")) if isinstance(history,dict) else None
+    history_fresh=bool(history_updated and 0<=(now-history_updated).total_seconds()<=72*3600)
+    history_verified=bool(isinstance(history,dict) and history.get("source")=="espn-public-boxscore" and history.get("sport")=="nba")
     source_blockers=[]
     if not SOURCE.exists(): source_blockers.append("verified NBA SGP model recommendation feed missing")
     if not records: source_blockers.append("no independently validated NBA SGP predictions published")
     if history_profiles==0: source_blockers.append("no NBA player profiles with at least eight historical game logs")
+    if not history_verified: source_blockers.append("NBA player history source unverified")
+    if not history_fresh: source_blockers.append("NBA player history snapshot older than 72 hours or missing timestamp")
     if validation.get("promotion_approved") is not True:
         source_blockers.append("NBA correlation validation has not approved model promotion")
     report={"checked_at":now.isoformat(),"source_present":SOURCE.exists(),
@@ -113,6 +118,8 @@ def run():
             "rejected_count":len(rejected),
             "model_validation_status":model_status,
             "historical_player_profiles":history_profiles,
+            "player_history_fresh":history_fresh,
+            "player_history_verified":history_verified,
             "source_blockers":source_blockers,
             "capture_ready":bool(records) and not rejected and (captured+already_archived)==len(records),
             "status":"PARTIAL_REJECTED" if rejected else ("CAPTURED" if captured else ("ALREADY_ARCHIVED" if already_archived else "NO_NEW_VERIFIED_MODEL_RECOMMENDATIONS")),
