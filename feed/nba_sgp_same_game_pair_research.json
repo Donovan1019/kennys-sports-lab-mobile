@@ -1,0 +1,47 @@
+{
+  "status": "research_only",
+  "promotion_approved": false,
+  "method": "historical-same-game-player-pair-association",
+  "fixed_reference_lines": {
+    "Points": 19.5,
+    "Rebounds": 7.5,
+    "Assists": 5.5,
+    "Threes": 2.5
+  },
+  "markets": {
+    "Points": {
+      "observed_player_pairs": 314883,
+      "first_over_rate": 0.17021,
+      "second_over_rate": 0.13102,
+      "joint_over_rate": 0.02155,
+      "independent_product_reference": 0.0223,
+      "joint_minus_independent": -0.00075
+    },
+    "Rebounds": {
+      "observed_player_pairs": 314883,
+      "first_over_rate": 0.13691,
+      "second_over_rate": 0.13619,
+      "joint_over_rate": 0.01788,
+      "independent_product_reference": 0.01865,
+      "joint_minus_independent": -0.00077
+    },
+    "Assists": {
+      "observed_player_pairs": 314883,
+      "first_over_rate": 0.12622,
+      "second_over_rate": 0.10263,
+      "joint_over_rate": 0.01161,
+      "independent_product_reference": 0.01295,
+      "joint_minus_independent": -0.00134
+    },
+    "Threes": {
+      "observed_player_pairs": 314883,
+      "first_over_rate": 0.18848,
+      "second_over_rate": 0.15024,
+      "joint_over_rate": 0.02785,
+      "independent_product_reference": 0.02832,
+      "joint_minus_independent": -0.00047
+    }
+  },
+  "limitations": "All player pairs are pooled, overlapping observations are dependent; role/team/opponent, time and player identity are not controlled. Not predictive, not a correlation parameter, and not a betting recommendation.",
+  "generated_at": "2026-10-28T11:53:13.929572+00:00"
+}
