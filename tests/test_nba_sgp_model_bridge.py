@@ -27,6 +27,8 @@ class BridgeIntegrityTests(unittest.TestCase):
         result=bridge.run()
         self.assertEqual(result["captured"],0)
         self.assertFalse(result["source_present"])
+        self.assertFalse(result["capture_ready"])
+        self.assertEqual(result["rejected_count"],0)
         self.assertFalse(self.ledger.exists())
         self.assertEqual(json.loads(self.report.read_text())["status"],"NO_NEW_VERIFIED_MODEL_RECOMMENDATIONS")
 
@@ -44,6 +46,8 @@ class BridgeIntegrityTests(unittest.TestCase):
         result=bridge.run()
         self.assertEqual(result["captured"],0)
         self.assertEqual(len(result["rejected"]),1)
+        self.assertEqual(result["status"],"PARTIAL_REJECTED")
+        self.assertFalse(result["capture_ready"])
         self.assertFalse(self.ledger.exists())
 
     def test_nonfinite_joint_probability_rejected(self):

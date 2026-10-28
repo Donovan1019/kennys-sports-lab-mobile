@@ -153,7 +153,7 @@ async function load(){
    const audit=await r.json();
    const age=Date.parse(audit.checked_at);
    const recent=Number.isFinite(age)&&age<=now&&now-age<=36*3600000;
-   archiveStatus.textContent='Automated SGP ledger · '+(recent?String(audit.status||'UNVERIFIED'):'STATUS STALE / UNVERIFIED')+' · captured in latest run: '+Number(audit.captured||0)+' · source recommendations: '+Number(audit.source_recommendations||0)+' · '+(audit.source_present?'source present':'model recommendation source missing')+' · research only, not placed bets.';
+   archiveStatus.textContent='Automated SGP ledger · '+(recent?String(audit.status||'UNVERIFIED'):'STATUS STALE / UNVERIFIED')+' · captured in latest run: '+Number(audit.captured||0)+' · source recommendations: '+Number(audit.source_recommendations||0)+' · rejected: '+Number(audit.rejected_count||0)+' · '+(audit.capture_ready?'verified source archive ready':'verified source archive not ready')+' · '+(audit.source_present?'source present':'model recommendation source missing')+' · research only, not placed bets.';
   }else archiveStatus.textContent='Automated SGP ledger: no saved capture report yet · UNVERIFIED.';
  }catch(_){archiveStatus.textContent='Automated SGP ledger status unavailable · UNVERIFIED.'}
  status.textContent=shown.length?'NBA SGP · '+shown.length+' upcoming games · '+(todayGames.length?'today':'next available date')+' · '+rows.length+' source market rows · '+propFeedStatus+' · RESEARCH ONLY':'No upcoming NBA games in published market feed. SGP unavailable until the next feed refresh.';

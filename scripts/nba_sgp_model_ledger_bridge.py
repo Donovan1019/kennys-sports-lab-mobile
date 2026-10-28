@@ -22,12 +22,14 @@ def run():
         for line in LEDGER.read_text().splitlines():
             try: existing.add(str(json.loads(line).get("sgp_id")))
             except (ValueError,TypeError,AttributeError): pass
-    captured=0;rejected=[]
+    captured=0;rejected=[];already_archived=0
     for row in records:
         if not isinstance(row,dict):
             rejected.append("invalid recommendation record");continue
         sid=str(row.get("sgp_id") or "")
-        if sid in existing: continue
+        if sid in existing:
+            already_archived+=1
+            continue
         try:
             if row.get("model_recommendation") is not True:
                 raise ValueError("not an independently recorded model recommendation")
@@ -73,8 +75,11 @@ def run():
         except (ValueError,TypeError,KeyError) as exc:
             rejected.append(sid+": "+str(exc))
     report={"checked_at":now.isoformat(),"source_present":SOURCE.exists(),
-            "source_recommendations":len(records),"captured":captured,"rejected":rejected,
-            "status":"CAPTURED" if captured else "NO_NEW_VERIFIED_MODEL_RECOMMENDATIONS",
+            "source_recommendations":len(records),"captured":captured,
+            "already_archived":already_archived,"rejected":rejected,
+            "rejected_count":len(rejected),
+            "capture_ready":bool(records) and not rejected and (captured+already_archived)==len(records),
+            "status":"PARTIAL_REJECTED" if rejected else ("CAPTURED" if captured else ("ALREADY_ARCHIVED" if already_archived else "NO_NEW_VERIFIED_MODEL_RECOMMENDATIONS")),
             "note":"Only genuine source-recorded recommendations are archived; none are invented."}
     REPORT.write_text(json.dumps(report,indent=2)+"\n")
     print(json.dumps(report))
