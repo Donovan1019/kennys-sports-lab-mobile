@@ -1,5 +1,6 @@
 name: Scheduled Pregame Snapshot Archive
 on:
+  workflow_dispatch:
   schedule:
     - cron: '41 14 * * *'
     - cron: '41 21 * * *'
