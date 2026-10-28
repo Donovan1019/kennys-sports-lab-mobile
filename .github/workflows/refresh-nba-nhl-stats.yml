@@ -51,9 +51,13 @@ jobs:
           LOOKBACK_DAYS: ${{ inputs.lookback_days || '14' }}
           START_DATE: ${{ inputs.start_date || '' }}
         run: python scripts/fetch_nba_nhl_stats.py
+      - name: Backtest NBA player stats against strictly later games (research only)
+        if: ${{ (inputs.sport || 'nba') == 'nba' }}
+        run: python scripts/nba_player_walkforward_research.py
       - name: Commit verified league snapshot
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add feed/${{ inputs.sport || 'nba' }}_player_stats.json
+          if [ "${{ inputs.sport || 'nba' }}" = "nba" ]; then git add feed/nba_player_walkforward_research.json; fi
           git diff --cached --quiet || (git commit -m "Refresh verified ${{ inputs.sport }} player logs" && git push)
