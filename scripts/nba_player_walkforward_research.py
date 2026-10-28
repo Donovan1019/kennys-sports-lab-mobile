@@ -16,6 +16,7 @@ def evaluate(data):
     players=data.get("players")
     if not isinstance(players,list): raise ValueError("Missing player game logs")
     totals=defaultdict(lambda:{"n":0,"abs_error":0.0,"squared_error":0.0,"baseline_abs_error":0.0,"by_season":{}})
+    holdout=defaultdict(lambda:defaultdict(lambda:{"n":0,"abs_error":0.0,"baseline_abs_error":0.0}))
     seen=set()
     for player in players:
         if not isinstance(player,dict): continue
@@ -52,6 +53,10 @@ def evaluate(data):
                     record["abs_error"]+=abs(prediction-actual)
                     record["squared_error"]+=(prediction-actual)**2
                     record["baseline_abs_error"]+=abs(baseline-actual)
+                    block=holdout[market][season]
+                    block["n"]+=1
+                    block["abs_error"]+=abs(prediction-actual)
+                    block["baseline_abs_error"]+=abs(baseline-actual)
                     season_count=record["by_season"].setdefault(season,0)
                     record["by_season"][season]=season_count+1
                 history.append((day,float(actual)))
@@ -62,7 +67,13 @@ def evaluate(data):
             "rmse_last_10":round(math.sqrt(record["squared_error"]/n),4),
             "mae_all_prior_baseline":round(record["baseline_abs_error"]/n,4),
             "samples_by_season":record["by_season"]}
+    season_metrics={}
+    for market,blocks in holdout.items():
+        season_metrics[market]={season:{"samples":r["n"],"mae_last_10":round(r["abs_error"]/r["n"],4),
+            "mae_all_prior_baseline":round(r["baseline_abs_error"]/r["n"],4)}
+            for season,r in blocks.items() if r["n"]}
     return {"status":"research_only","promotion_approved":False,
+        "season_holdout_diagnostics":season_metrics,
         "method":"strict-prior-date-walk-forward-player-rolling-mean",
         "minimum_prior_games":MIN_PRIOR,
         "markets":metrics,
