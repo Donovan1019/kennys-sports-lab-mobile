@@ -19,6 +19,7 @@ def evaluate(data):
     holdout=defaultdict(lambda:defaultdict(lambda:{"n":0,"abs_error":0.0,"baseline_abs_error":0.0}))
     thresholds=defaultdict(lambda:defaultdict(lambda:{"n":0,"over":0,"under":0,"push":0}))
     probability_scores=defaultdict(lambda:defaultdict(lambda:{"n":0,"brier":0.0,"baseline_brier":0.0}))
+    probability_by_season=defaultdict(lambda:defaultdict(lambda:defaultdict(lambda:{"n":0,"brier":0.0,"baseline_brier":0.0})))
     # Fixed research thresholds only: no sportsbook quote, vig, or wager eligibility.
     reference_lines={"Points":(9.5,19.5,29.5),"Rebounds":(4.5,7.5,10.5),
         "Assists":(3.5,5.5,8.5),"Threes":(1.5,2.5,3.5)}
@@ -72,6 +73,10 @@ def evaluate(data):
                             score["n"]+=1
                             score["brier"]+=(p-outcome)**2
                             score["baseline_brier"]+=(0.5-outcome)**2
+                            season_score=probability_by_season[market][season][str(line)]
+                            season_score["n"]+=1
+                            season_score["brier"]+=(p-outcome)**2
+                            season_score["baseline_brier"]+=(0.5-outcome)**2
                             if actual>line:t["over"]+=1
                             elif actual<line:t["under"]+=1
                             else:t["push"]+=1
@@ -101,8 +106,17 @@ def evaluate(data):
         "walkforward_brier":round(v["brier"]/v["n"],5),
         "constant_50pct_brier":round(v["baseline_brier"]/v["n"],5)}
         for line,v in lines.items() if v["n"]} for market,lines in probability_scores.items()}
+    season_probability_metrics={
+        market:{season:{line:{"samples":r["n"],
+            "walkforward_brier":round(r["brier"]/r["n"],5),
+            "constant_50pct_brier":round(r["baseline_brier"]/r["n"],5),
+            "beats_constant_50pct":r["brier"]<r["baseline_brier"]}
+            for line,r in lines.items() if r["n"]}
+            for season,lines in seasons.items()}
+        for market,seasons in probability_by_season.items()}
     return {"status":"research_only","promotion_approved":False,
         "fixed_reference_threshold_probability_research":brier_metrics,
+        "fixed_reference_threshold_probability_by_season":season_probability_metrics,
         "fixed_reference_threshold_outcomes":threshold_metrics,
         "season_holdout_diagnostics":season_metrics,
         "method":"strict-prior-date-walk-forward-player-rolling-mean",
