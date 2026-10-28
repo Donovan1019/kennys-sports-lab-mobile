@@ -18,6 +18,7 @@ def evaluate(data):
     totals=defaultdict(lambda:{"n":0,"abs_error":0.0,"squared_error":0.0,"baseline_abs_error":0.0,"by_season":{}})
     holdout=defaultdict(lambda:defaultdict(lambda:{"n":0,"abs_error":0.0,"baseline_abs_error":0.0}))
     thresholds=defaultdict(lambda:defaultdict(lambda:{"n":0,"over":0,"under":0,"push":0}))
+    probability_scores=defaultdict(lambda:defaultdict(lambda:{"n":0,"brier":0.0,"baseline_brier":0.0}))
     # Fixed research thresholds only: no sportsbook quote, vig, or wager eligibility.
     reference_lines={"Points":(9.5,19.5,29.5),"Rebounds":(4.5,7.5,10.5),
         "Assists":(3.5,5.5,8.5),"Threes":(1.5,2.5,3.5)}
@@ -61,6 +62,16 @@ def evaluate(data):
                         if len(prior)>=MIN_PRIOR:
                             t=thresholds[market][str(line)]
                             t["n"]+=1
+                            # Only games before this date may inform the estimated over probability.
+                            earlier=[v for d,v in history if d<day]
+                            prior_over=sum(v>line for v in earlier)
+                            # Laplace-smoothed empirical probability, not calibrated sportsbook probability.
+                            p=(prior_over+1)/(len(earlier)+2)
+                            outcome=float(actual>line)
+                            score=probability_scores[market][str(line)]
+                            score["n"]+=1
+                            score["brier"]+=(p-outcome)**2
+                            score["baseline_brier"]+=(0.5-outcome)**2
                             if actual>line:t["over"]+=1
                             elif actual<line:t["under"]+=1
                             else:t["push"]+=1
@@ -86,7 +97,12 @@ def evaluate(data):
     threshold_metrics={market:{line:{"samples":v["n"],"over_rate":round(v["over"]/v["n"],4),
         "under_rate":round(v["under"]/v["n"],4),"pushes":v["push"]}
         for line,v in lines.items() if v["n"]} for market,lines in thresholds.items()}
+    brier_metrics={market:{line:{"samples":v["n"],
+        "walkforward_brier":round(v["brier"]/v["n"],5),
+        "constant_50pct_brier":round(v["baseline_brier"]/v["n"],5)}
+        for line,v in lines.items() if v["n"]} for market,lines in probability_scores.items()}
     return {"status":"research_only","promotion_approved":False,
+        "fixed_reference_threshold_probability_research":brier_metrics,
         "fixed_reference_threshold_outcomes":threshold_metrics,
         "season_holdout_diagnostics":season_metrics,
         "method":"strict-prior-date-walk-forward-player-rolling-mean",
