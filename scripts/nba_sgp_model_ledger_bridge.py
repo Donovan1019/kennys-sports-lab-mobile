@@ -22,6 +22,13 @@ def run():
         for line in LEDGER.read_text().splitlines():
             try: existing.add(str(json.loads(line).get("sgp_id")))
             except (ValueError,TypeError,AttributeError): pass
+    validation_source=Path("feed/basketball_nba_model_validation.json")
+    try:
+        validation=json.loads(validation_source.read_text())
+    except (OSError,ValueError):
+        validation={}
+    if not isinstance(validation,dict): validation={}
+    promotion_approved=validation.get("promotion_approved") is True
     captured=0;rejected=[];already_archived=0
     for row in records:
         if not isinstance(row,dict):
@@ -31,6 +38,8 @@ def run():
             already_archived+=1
             continue
         try:
+            if not promotion_approved:
+                raise ValueError("NBA model promotion not approved by independent validation")
             if row.get("model_recommendation") is not True:
                 raise ValueError("not an independently recorded model recommendation")
             if row.get("research_only") is not True or row.get("bet_eligible") is True:
@@ -86,13 +95,7 @@ def run():
         except (ValueError,TypeError,KeyError) as exc:
             rejected.append(sid+": "+str(exc))
     model_status="UNAVAILABLE"
-    validation_source=Path("feed/basketball_nba_model_validation.json")
-    try:
-        validation=json.loads(validation_source.read_text())
-    except (OSError,ValueError):
-        validation={}
-    if isinstance(validation,dict):
-        model_status=str(validation.get("status") or "UNAVAILABLE")
+    model_status=str(validation.get("status") or "UNAVAILABLE")
     history_path=Path("feed/nba_player_stats.json")
     try:
         history=json.loads(history_path.read_text())
@@ -110,7 +113,7 @@ def run():
     if history_profiles==0: source_blockers.append("no NBA player profiles with at least eight historical game logs")
     if not history_verified: source_blockers.append("NBA player history source unverified")
     if not history_fresh: source_blockers.append("NBA player history snapshot older than 72 hours or missing timestamp")
-    if validation.get("promotion_approved") is not True:
+    if not promotion_approved:
         source_blockers.append("NBA correlation validation has not approved model promotion")
     report={"checked_at":now.isoformat(),"source_present":SOURCE.exists(),
             "source_recommendations":len(records),"captured":captured,
