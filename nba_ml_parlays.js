@@ -9,13 +9,13 @@ async function refresh(){
  out.replaceChildren();status.textContent='Loading NBA moneyline research…';const today=dateET(Date.now());
  try{
  const resp=await fetch('./feed/basketball_nba.json?ml='+Date.now(),{cache:'no-store'});if(!resp.ok)throw Error('NBA odds feed HTTP '+resp.status);
- const data=await resp.json();if(data.status!=='ok'||data.sport!=='basketball_nba')throw Error('NBA odds feed invalid or degraded');const rows=Array.isArray(data.odds)?data.odds:[];const feedAge=Date.parse(data.fetched_at);if(!Number.isFinite(feedAge)||feedAge>Date.now()||Date.now()-feedAge>90*60000)throw Error('NBA odds snapshot stale or missing timestamp');
+ const data=await resp.json();if(data.status!=='ok'||data.sport!=='basketball_nba')throw Error('NBA odds feed invalid or degraded');const rows=Array.isArray(data.odds)?data.odds:[];const feedAge=Date.parse(data.fetched_at);if(!Number.isFinite(feedAge)||feedAge>Date.now()||Date.now()-feedAge>150*60000)throw Error('NBA sportsbook odds older than 150 minutes. The scheduled odds refresh may be delayed or API credits exhausted; no outdated picks shown');
  const now=Date.now();const games=new Map();
  let model=new Map(),modelState='UNAVAILABLE';
  try{
   const mr=await fetch('./feed/nba_ml_predictions.json?ml='+Date.now(),{cache:'no-store'});
   if(mr.ok){const m=await mr.json();const age=Date.parse(m.generated_at);
-   if(m.status==='validated'&&m.sport==='basketball_nba'&&m.calibration_passed===true&&Number.isFinite(age)&&age<=now&&now-age<=90*60000&&Array.isArray(m.predictions)){
+   if(m.status==='validated'&&m.sport==='basketball_nba'&&m.calibration_passed===true&&Number.isFinite(age)&&age<=now&&now-age<=150*60000&&Array.isArray(m.predictions)){
     for(const p of m.predictions){if(!p.event_id||!p.team||!Number.isFinite(p.win_probability)||p.win_probability<=0||p.win_probability>=1||p.date_et!==today)continue;model.set(String(p.event_id)+'|'+String(p.team),p.win_probability)}
     modelState=model.size?'VALIDATED':'UNAVAILABLE';
    }
@@ -23,7 +23,7 @@ async function refresh(){
  }catch(_){modelState='UNAVAILABLE'}
 
  for(const r of rows){if(r.market!=='h2h'||!r.event_id||!r.bookmaker||!r.selection||!Number.isFinite(Number(r.price))||Number(r.price)===0)continue;
- const tip=Date.parse(r.commence_time);const updated=Date.parse(r.updated_at);if(!Number.isFinite(tip)||tip<=now||dateET(tip)!==today||!Number.isFinite(updated)||updated>now||now-updated>90*60000)continue;
+ const tip=Date.parse(r.commence_time);const updated=Date.parse(r.updated_at);if(!Number.isFinite(tip)||tip<=now||dateET(tip)!==today||!Number.isFinite(updated)||updated>now||now-updated>150*60000)continue;
  const key=String(r.event_id),group=games.get(key)||[];group.push(r);games.set(key,group);
  }
  const choices=[];const simulations=10000;const seeded=(seed)=>()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296};
