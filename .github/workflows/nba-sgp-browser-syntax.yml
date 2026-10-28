@@ -1,0 +1,33 @@
+name: NBA SGP Browser JavaScript Syntax
+on:
+  pull_request:
+    paths:
+      - 'nba_sgp_engine.js'
+      - 'nba.html'
+      - '.github/workflows/nba-sgp-browser-syntax.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'nba_sgp_engine.js'
+      - 'nba.html'
+      - '.github/workflows/nba-sgp-browser-syntax.yml'
+jobs:
+  syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Parse NBA SGP engine
+        run: node --check nba_sgp_engine.js
+      - name: Ensure auto cards are invoked and manual builder is absent
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          s=Path('nba_sgp_engine.js').read_text()
+          assert 'section.append(autoSgpCards(game,rows,playerProfiles))' in s
+          assert "Conservative SGP builder" not in s
+          assert "Select a market leg" not in s
+          assert "nba_sgp_engine.js?v=auto-sgp-runtime405" in Path('nba.html').read_text()
+          PY
