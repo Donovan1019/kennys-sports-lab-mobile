@@ -24,7 +24,25 @@ class CandidateTests(unittest.TestCase):
     def test_stale_feed_blocked(self):
         odds,history=source()
         odds["fetched_at"]=(NOW-timedelta(hours=2)).isoformat()
-        self.assertEqual(generate(odds,history,NOW)["predictions"],[])
+        result=generate(odds,history,NOW)
+        self.assertEqual(result["predictions"],[])
+        self.assertEqual(result["feed_freshness"]["status"],"stale")
+        self.assertEqual(result["feed_freshness"]["age_seconds"],7200)
+        self.assertEqual(result["rejections"]["stale_feed"],1)
+    def test_future_and_invalid_feed_timestamps_blocked(self):
+        odds,history=source()
+        odds["fetched_at"]=(NOW+timedelta(minutes=5)).isoformat()
+        result=generate(odds,history,NOW)
+        self.assertEqual(result["feed_freshness"]["status"],"future_timestamp")
+        self.assertEqual(result["predictions"],[])
+        odds["fetched_at"]="bad timestamp"
+        result=generate(odds,history,NOW)
+        self.assertEqual(result["feed_freshness"]["status"],"invalid_timestamp")
+        self.assertEqual(result["predictions"],[])
+    def test_fresh_feed_reports_age(self):
+        result=generate(*source(),NOW)
+        self.assertEqual(result["feed_freshness"]["status"],"fresh")
+        self.assertEqual(result["feed_freshness"]["age_seconds"],120)
     def test_post_tipoff_blocked(self):
         odds,history=source()
         odds["odds"][0]["commence_time"]=(NOW-timedelta(minutes=1)).isoformat()
