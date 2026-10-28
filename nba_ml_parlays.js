@@ -2,14 +2,14 @@
 const status=document.getElementById('nba-ml-status'),out=document.getElementById('nba-ml-cards');if(!out)return;
 const odds=p=>p<0?(-p)/(-p+100):100/(p+100);
 const american=p=>p>=.5?'-'+Math.round(100*p/(1-p)):'+'+Math.round(100*(1-p)/p);
-const dateET=d=>new Intl.DateTimeFormat('en-CA',{timeZone:'America/New_York',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(d));
+const dateET=d=>(()=>{const parts=new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date(d));const get=k=>parts.find(x=>x.type===k).value;return get('year')+'-'+get('month')+'-'+get('day')})();
 const today=dateET(Date.now());
 const node=(tag,value)=>{const n=document.createElement(tag);n.textContent=value;return n};
 async function refresh(){
  out.replaceChildren();status.textContent='Loading NBA moneyline research…';
  try{
- const resp=await fetch('./data/nba_props.json?ml='+Date.now(),{cache:'no-store'});if(!resp.ok)throw Error('NBA odds feed HTTP '+resp.status);
- const data=await resp.json();const rows=Array.isArray(data)?data:Array.isArray(data.rows)?data.rows:Array.isArray(data.odds)?data.odds:[];
+ const resp=await fetch('./feed/basketball_nba.json?ml='+Date.now(),{cache:'no-store'});if(!resp.ok)throw Error('NBA odds feed HTTP '+resp.status);
+ const data=await resp.json();const rows=Array.isArray(data.odds)?data.odds:[];const feedAge=Date.parse(data.fetched_at);if(!Number.isFinite(feedAge)||feedAge>Date.now()||Date.now()-feedAge>90*60000)throw Error('NBA odds snapshot stale or missing timestamp');
  const now=Date.now();const games=new Map();
  for(const r of rows){if(r.market!=='h2h'||!r.event_id||!r.bookmaker||!r.selection||!Number.isFinite(Number(r.price))||Number(r.price)===0)continue;
  const tip=Date.parse(r.commence_time);const updated=Date.parse(r.updated_at);if(!Number.isFinite(tip)||tip<=now||dateET(tip)!==today||!Number.isFinite(updated)||updated>now||now-updated>90*60000)continue;
