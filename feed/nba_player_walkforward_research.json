@@ -71,6 +71,98 @@
       "bet_eligible": false
     }
   },
+  "frozen_forward_segment_audit": {
+    "start_date": "2026-10-29",
+    "segments": [
+      "low_under_20",
+      "change:drop_over_15pct"
+    ],
+    "markets": {
+      "Points": {
+        "low_under_20": {
+          "samples": 0,
+          "candidate_mae": null,
+          "all_prior_mae": null,
+          "recent_10_mae": null,
+          "improves_over_both_baselines": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "change:drop_over_15pct": {
+          "samples": 0,
+          "candidate_mae": null,
+          "all_prior_mae": null,
+          "recent_10_mae": null,
+          "improves_over_both_baselines": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        }
+      },
+      "Rebounds": {
+        "low_under_20": {
+          "samples": 0,
+          "candidate_mae": null,
+          "all_prior_mae": null,
+          "recent_10_mae": null,
+          "improves_over_both_baselines": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "change:drop_over_15pct": {
+          "samples": 0,
+          "candidate_mae": null,
+          "all_prior_mae": null,
+          "recent_10_mae": null,
+          "improves_over_both_baselines": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        }
+      },
+      "Assists": {
+        "low_under_20": {
+          "samples": 0,
+          "candidate_mae": null,
+          "all_prior_mae": null,
+          "recent_10_mae": null,
+          "improves_over_both_baselines": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "change:drop_over_15pct": {
+          "samples": 0,
+          "candidate_mae": null,
+          "all_prior_mae": null,
+          "recent_10_mae": null,
+          "improves_over_both_baselines": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        }
+      },
+      "Threes": {
+        "low_under_20": {
+          "samples": 0,
+          "candidate_mae": null,
+          "all_prior_mae": null,
+          "recent_10_mae": null,
+          "improves_over_both_baselines": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "change:drop_over_15pct": {
+          "samples": 0,
+          "candidate_mae": null,
+          "all_prior_mae": null,
+          "recent_10_mae": null,
+          "improves_over_both_baselines": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        }
+      }
+    },
+    "minimum_samples": 100,
+    "selection_frozen_before_forward_start": true,
+    "promotion_approved": false
+  },
   "fixed_reference_threshold_probability_research": {
     "Points": {
       "9.5": {
@@ -2058,5 +2150,5 @@
     }
   },
   "warning": "Point-in-time sportsbook lines, injury/lineup context, calibration, joint SGP probability and independent validation are unavailable. Workload and opponent adjustments are not applied without verified point-in-time inputs. This is NOT a bet recommendation.",
-  "generated_at": "2026-10-28T19:59:12.621480+00:00"
+  "generated_at": "2026-10-28T20:10:24.157148+00:00"
 }
