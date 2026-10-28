@@ -85,10 +85,25 @@ def run():
             existing.add(sid);captured+=1
         except (ValueError,TypeError,KeyError) as exc:
             rejected.append(sid+": "+str(exc))
+    model_status="UNAVAILABLE"
+    validation_source=Path("feed/basketball_nba_model_validation.json")
+    try:
+        validation=json.loads(validation_source.read_text())
+    except (OSError,ValueError):
+        validation={}
+    if isinstance(validation,dict):
+        model_status=str(validation.get("status") or "UNAVAILABLE")
+    source_blockers=[]
+    if not SOURCE.exists(): source_blockers.append("verified NBA SGP model recommendation feed missing")
+    if not records: source_blockers.append("no independently validated NBA SGP predictions published")
+    if validation.get("promotion_approved") is not True:
+        source_blockers.append("NBA correlation validation has not approved model promotion")
     report={"checked_at":now.isoformat(),"source_present":SOURCE.exists(),
             "source_recommendations":len(records),"captured":captured,
             "already_archived":already_archived,"rejected":rejected,
             "rejected_count":len(rejected),
+            "model_validation_status":model_status,
+            "source_blockers":source_blockers,
             "capture_ready":bool(records) and not rejected and (captured+already_archived)==len(records),
             "status":"PARTIAL_REJECTED" if rejected else ("CAPTURED" if captured else ("ALREADY_ARCHIVED" if already_archived else "NO_NEW_VERIFIED_MODEL_RECOMMENDATIONS")),
             "note":"Only genuine source-recorded recommendations are archived; none are invented."}
