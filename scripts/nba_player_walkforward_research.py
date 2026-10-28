@@ -9,12 +9,16 @@ SOURCE=Path("feed/nba_player_stats.json")
 OUTPUT=Path("feed/nba_player_walkforward_research.json")
 MARKETS=("Points","Rebounds","Assists","Threes")
 MIN_PRIOR=8
+WINDOWS=(5,10,20,"all")
+TRAIN_SEASON="2025-26"
+HOLDOUT_SEASON="2026-27"
 
 def evaluate(data):
     if not isinstance(data,dict) or data.get("source")!="espn-public-boxscore" or data.get("sport")!="nba":
         raise ValueError("Verified NBA player game-log source required")
     players=data.get("players")
     if not isinstance(players,list): raise ValueError("Missing player game logs")
+    window_errors=defaultdict(lambda:defaultdict(lambda:defaultdict(lambda:{"n":0,"absolute_error":0.0,"squared_error":0.0})))
     totals=defaultdict(lambda:{"n":0,"abs_error":0.0,"squared_error":0.0,"baseline_abs_error":0.0,"by_season":{}})
     holdout=defaultdict(lambda:defaultdict(lambda:{"n":0,"abs_error":0.0,"baseline_abs_error":0.0}))
     thresholds=defaultdict(lambda:defaultdict(lambda:{"n":0,"over":0,"under":0,"push":0}))
@@ -54,6 +58,13 @@ def evaluate(data):
                     recent=prior[-10:]
                     prediction=sum(recent)/len(recent)
                     baseline=sum(prior)/len(prior)
+                    for window in WINDOWS:
+                        sample=prior if window=="all" else prior[-window:]
+                        forecast=sum(sample)/len(sample)
+                        bucket=window_errors[market][season][str(window)]
+                        bucket["n"]+=1
+                        bucket["absolute_error"]+=abs(forecast-actual)
+                        bucket["squared_error"]+=(forecast-actual)**2
                     record=totals[market]
                     record["n"]+=1
                     record["abs_error"]+=abs(prediction-actual)
@@ -114,11 +125,42 @@ def evaluate(data):
             for line,r in lines.items() if r["n"]}
             for season,lines in seasons.items()}
         for market,seasons in probability_by_season.items()}
+    window_diagnostics={
+        market:{season:{window:{"samples":r["n"],
+            "mae":round(r["absolute_error"]/r["n"],4),
+            "rmse":round(math.sqrt(r["squared_error"]/r["n"]),4)}
+            for window,r in windows.items() if r["n"]}
+            for season,windows in seasons.items()}
+        for market,seasons in window_errors.items()}
+    # Selection uses training season ONLY. Holdout never selects a window.
+    window_selection={}
+    for market,seasons in window_errors.items():
+        training=seasons.get(TRAIN_SEASON,{})
+        if not training:
+            window_selection[market]={"status":"insufficient_training_data","selected_window":None}
+            continue
+        selected=min(training,key=lambda w:(training[w]["absolute_error"]/training[w]["n"],w))
+        held=seasons.get(HOLDOUT_SEASON,{})
+        selected_holdout=held.get(selected)
+        baseline_holdout=held.get("all")
+        window_selection[market]={
+            "status":"research_only",
+            "training_season":TRAIN_SEASON,
+            "holdout_season":HOLDOUT_SEASON,
+            "selected_window":selected,
+            "training_samples":training[selected]["n"],
+            "holdout_samples":selected_holdout["n"] if selected_holdout else 0,
+            "holdout_mae":round(selected_holdout["absolute_error"]/selected_holdout["n"],4) if selected_holdout else None,
+            "holdout_all_prior_mae":round(baseline_holdout["absolute_error"]/baseline_holdout["n"],4) if baseline_holdout else None,
+            "beats_holdout_all_prior":(selected_holdout["absolute_error"]<baseline_holdout["absolute_error"]) if selected_holdout and baseline_holdout else None,
+        }
     return {"status":"research_only","promotion_approved":False,
         "fixed_reference_threshold_probability_research":brier_metrics,
         "fixed_reference_threshold_probability_by_season":season_probability_metrics,
         "fixed_reference_threshold_outcomes":threshold_metrics,
         "season_holdout_diagnostics":season_metrics,
+        "window_comparison_by_season":window_diagnostics,
+        "training_selected_window_holdout_audit":window_selection,
         "method":"strict-prior-date-walk-forward-player-rolling-mean",
         "minimum_prior_games":MIN_PRIOR,
         "markets":metrics,
