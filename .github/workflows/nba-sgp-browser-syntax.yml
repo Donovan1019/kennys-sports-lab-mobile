@@ -28,7 +28,7 @@ jobs:
           s=Path('nba_sgp_engine.js').read_text()
           assert 'section.append(autoSgpCards(game,rows,playerProfiles))' in s
           for market in ('player_blocks','player_steals','player_points_rebounds_assists'):
-              assert market+\":'\" in s, f'Missing label for {market}'
+              assert (market + ":'") in s, f'Missing label for {market}'
           assert "Conservative SGP builder" not in s
           assert "Select a market leg" not in s
           assert "nba_sgp_engine.js?v=auto-sgp-label408" in Path('nba.html').read_text()
