@@ -45,6 +45,6 @@ def main():
         if not result["predictions"]:raise ValueError("No eligible events")
     except (OSError,ValueError,KeyError,TypeError,OverflowError) as exc:
         result={"status":"unavailable","sport":"basketball_nba","generated_at":now.isoformat(),"calibration_passed":False,"predictions":[],"reason":str(exc)[:200]}
-    output.write_text(json.dumps(result,indent=2)+"\\n")
+    output.write_text(json.dumps(result,indent=2)+"\n")
     print("NBA ML prediction feed:",result["status"],len(result["predictions"]))
 if __name__=="__main__":main()
