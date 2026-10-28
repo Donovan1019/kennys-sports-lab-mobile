@@ -21,7 +21,7 @@ def collect(sport,limit,key):
  events,_=get(base+'/events?'+urlencode({'apiKey':key}))
  if not isinstance(events,list):raise ValueError('Invalid event list')
  now=datetime.now(timezone.utc)
- events=sorted((e for e in events if e.get('id') and e.get('home_team') and e.get('away_team') and e.get('commence_time') and datetime.fromisoformat(e['commence_time'].replace('Z','+00:00'))>now),key=lambda e:e['commence_time'])[:limit]
+ events=sorted((e for e in events if e.get('id') and e.get('home_team') and e.get('away_team') and e.get('commence_time') and datetime.fromisoformat(e['commence_time'].replace('Z','+00:00'))>now),key=lambda e:e['commence_time'])[:limit if limit>0 else None]
  rows=[];errors=[]
  for event in events:
   try:
@@ -53,8 +53,8 @@ def main():
  sport=os.getenv('SPORT','');key=os.getenv('THE_ODDS_API_KEY','')
  try:limit=int(os.getenv('MAX_EVENTS','0'))
  except ValueError:limit=0
- if sport not in MARKETS or not 1<=limit<=3 or not key:
-  print('Explicit SPORT=nba|nhl, MAX_EVENTS=1..3 and API secret required; no calls made');return 2
+ if sport not in MARKETS or not (1<=limit<=3 or (sport=='nba' and limit==0)) or not key:
+  print('Explicit SPORT=nba|nhl, MAX_EVENTS=1..3 or NBA MAX_EVENTS=0 (all), and API secret required; no calls made');return 2
  try:collect(sport,limit,key);return 0
  except HTTPError as exc:print('Collection HTTP error:',exc.code,exc.read(1600).decode('utf-8','replace'));return 1
  except Exception as exc:print('Collection failed:',type(exc).__name__,str(exc));return 1
