@@ -97,6 +97,18 @@ function renderGame(game,rows,playerProfiles){
   navigator.clipboard.writeText(data).then(()=>{snapshotStatus.textContent='Pregame JSON copied locally. Not submitted to the grading ledger or sportsbook.'},()=>{snapshotStatus.textContent='Clipboard permission denied; no snapshot saved.'});
  });
  builder.append(snapshot,snapshotStatus);
+ const connect=el('button','Connect to Grading');connect.type='button';
+ connect.style.cssText='padding:10px;margin:8px;border-radius:8px;cursor:pointer;font-weight:700';
+ const connectHelp=el('p','Submit a pregame snapshot securely through GitHub. You will confirm the submission.');
+ const workflowUrl='https://github.com/Donovan1019/kennys-sports-lab-mobile/actions/workflows/ingest-nba-sgp-snapshot.yml';
+ connect.addEventListener('click',()=>{
+  snapshot.click();
+  connectHelp.textContent='After the snapshot is copied, use Run workflow and paste the JSON in the snapshot field. ';
+  const link=el('a','Open GitHub grading connection');
+  link.href=workflowUrl;link.target='_blank';link.rel='noopener noreferrer';
+  connectHelp.append(link);
+ });
+ builder.append(connect,connectHelp);
  builder.append(el('p','Leg integrity: duplicate or opposite-side selections at the same player/market/line are rejected. All legs must belong to this game.'));
  builder.append(el('p','Preflight: leg eligibility, roster status, current minutes, same-game correlation, joint simulation, SGP-specific price and EV must all pass. This interface never estimates joint odds by multiplying independent probabilities.'));
  const simulation=el('div');simulation.style.cssText='border-top:1px solid #42677b;padding-top:12px;margin-top:12px';
