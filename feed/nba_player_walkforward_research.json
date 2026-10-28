@@ -684,6 +684,25 @@
       "status": "research_only",
       "holdout_improvement_fraction": -0.000418,
       "holdout_gate_passed": false,
+      "training_stability_passed": true,
+      "training_chronological_halves": [
+        {
+          "samples": 13475,
+          "selected_mae": 4.5906,
+          "baseline_mae": 4.6151,
+          "passes": true
+        },
+        {
+          "samples": 10665,
+          "selected_mae": 4.8046,
+          "baseline_mae": 4.9541,
+          "passes": true
+        }
+      ],
+      "research_validation_gate_passed": false,
+      "rejection_reasons": [
+        "HOLDOUT_IMPROVEMENT_BELOW_ONE_PERCENT"
+      ],
       "bet_eligible": false,
       "training_season": "2025-26",
       "holdout_season": "2026-27",
@@ -697,7 +716,26 @@
     "Rebounds": {
       "status": "research_only",
       "holdout_improvement_fraction": 0.001609,
-      "holdout_gate_passed": true,
+      "holdout_gate_passed": false,
+      "training_stability_passed": true,
+      "training_chronological_halves": [
+        {
+          "samples": 13475,
+          "selected_mae": 1.9127,
+          "baseline_mae": 1.9163,
+          "passes": true
+        },
+        {
+          "samples": 10665,
+          "selected_mae": 1.9249,
+          "baseline_mae": 1.961,
+          "passes": true
+        }
+      ],
+      "research_validation_gate_passed": false,
+      "rejection_reasons": [
+        "HOLDOUT_IMPROVEMENT_BELOW_ONE_PERCENT"
+      ],
       "bet_eligible": false,
       "training_season": "2025-26",
       "holdout_season": "2026-27",
@@ -712,6 +750,25 @@
       "status": "research_only",
       "holdout_improvement_fraction": -0.003536,
       "holdout_gate_passed": false,
+      "training_stability_passed": true,
+      "training_chronological_halves": [
+        {
+          "samples": 13475,
+          "selected_mae": 1.3451,
+          "baseline_mae": 1.3464,
+          "passes": true
+        },
+        {
+          "samples": 10665,
+          "selected_mae": 1.395,
+          "baseline_mae": 1.4258,
+          "passes": true
+        }
+      ],
+      "research_validation_gate_passed": false,
+      "rejection_reasons": [
+        "HOLDOUT_IMPROVEMENT_BELOW_ONE_PERCENT"
+      ],
       "bet_eligible": false,
       "training_season": "2025-26",
       "holdout_season": "2026-27",
@@ -725,7 +782,27 @@
     "Threes": {
       "status": "research_only",
       "holdout_improvement_fraction": 0.003232,
-      "holdout_gate_passed": true,
+      "holdout_gate_passed": false,
+      "training_stability_passed": false,
+      "training_chronological_halves": [
+        {
+          "samples": 13475,
+          "selected_mae": 0.9031,
+          "baseline_mae": 0.9012,
+          "passes": false
+        },
+        {
+          "samples": 10665,
+          "selected_mae": 0.8954,
+          "baseline_mae": 0.9074,
+          "passes": true
+        }
+      ],
+      "research_validation_gate_passed": false,
+      "rejection_reasons": [
+        "TRAINING_PERIOD_INSTABILITY_OR_INSUFFICIENT_SAMPLES",
+        "HOLDOUT_IMPROVEMENT_BELOW_ONE_PERCENT"
+      ],
       "bet_eligible": false,
       "training_season": "2025-26",
       "holdout_season": "2026-27",
@@ -736,6 +813,12 @@
       "holdout_all_prior_mae": 0.9053,
       "beats_holdout_all_prior": true
     }
+  },
+  "research_validation_policy": {
+    "minimum_training_half_samples": 100,
+    "minimum_holdout_samples": 1000,
+    "minimum_relative_holdout_mae_improvement": 0.01,
+    "promotion_requires_external_betting_validation": true
   },
   "method": "strict-prior-date-walk-forward-player-rolling-mean",
   "minimum_prior_games": 8,
@@ -782,5 +865,5 @@
     }
   },
   "warning": "Point-in-time sportsbook lines, injury/lineup context, calibration, joint SGP probability and independent validation are unavailable. Workload and opponent adjustments are not applied without verified point-in-time inputs. This is NOT a bet recommendation.",
-  "generated_at": "2026-10-28T13:39:32.601220+00:00"
+  "generated_at": "2026-10-28T13:45:25.728022+00:00"
 }
