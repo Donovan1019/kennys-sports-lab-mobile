@@ -129,10 +129,17 @@ def grade(date):
             result['sports'][sport]={'status':'NO_SNAPSHOT','graded':0}
             continue
         predictions=snap.get('model_predictions',[])
+        # Repeated snapshots can regenerate timestamps for the same research
+        # projection. Count the same event/market/selection/model only once.
         unique={}
         for p in predictions:
-            key=canonical({k:v for k,v in p.items() if k not in ('captured_at',)})
-            unique[key]=p
+            key=canonical({k:p.get(k) for k in (
+                'event_id','event','commence_time','market','selection',
+                'model_version','model_probability','model_source',
+                'research_only','bet_eligible')})
+            existing=unique.get(key)
+            if existing is None or (stamp(p.get('prediction_created_at')) or dt.datetime.max.replace(tzinfo=UTC)) < (stamp(existing.get('prediction_created_at')) or dt.datetime.max.replace(tzinfo=UTC)):
+                unique[key]=p
         predictions=list(unique.values())
         results=read(ROOT/'backtests'/'results'/date/(sport.lower()+'.json'),{})
         games=results.get('games',[]) if isinstance(results,dict) else []
@@ -158,6 +165,8 @@ def grade(date):
         for item in settled:result['summary'][{'win':'wins','loss':'losses','push':'pushes'}[item['outcome']]]+=1
         result['sports'][sport]={'status':'PARTIALLY_SETTLED_MONEYLINES' if settled else ('OUTCOMES_UNVERIFIED' if valid else 'NO_VERIFIED_PREGAME_PREDICTIONS'),
             'saved_quotes':len(snap.get('quotes',[])),'eligible_predictions':len(valid),
+            'research_only_predictions':sum(p.get('research_only') is True for p in valid),
+            'bet_eligible_predictions':sum(p.get('bet_eligible') is True and p.get('research_only') is not True for p in valid),
             'blocked_predictions':blocked,'graded':len(settled),'settled':settled,'pending':len(valid)-len(settled)}
     completed=result['summary']['wins']+result['summary']['losses']
     if completed:result['summary']['hit_rate']=result['summary']['wins']/completed
