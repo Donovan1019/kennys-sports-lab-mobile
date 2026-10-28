@@ -124,6 +124,11 @@ def run():
             "player_history_fresh":history_fresh,
             "player_history_verified":history_verified,
             "source_blockers":source_blockers,
+            "recovery_workflows":{"player_stats":"refresh-nba-nhl-stats.yml",
+                                  "player_props":"refresh-nba-nhl-props.yml",
+                                  "pair_research":"scheduled-pregame-snapshots.yml"},
+            "correlation_validation_status":"NOT_APPROVED" if not promotion_approved else "PROMOTION_GATE_APPROVED",
+            "requires_independent_forward_validation":True,
             "capture_ready":promotion_approved and history_verified and history_fresh and history_profiles>0 and bool(records) and not rejected and (captured+already_archived)==len(records),
             "status":"PARTIAL_REJECTED" if rejected else ("CAPTURED" if captured else ("ALREADY_ARCHIVED" if already_archived else "NO_NEW_VERIFIED_MODEL_RECOMMENDATIONS")),
             "note":"Only genuine source-recorded recommendations are archived; none are invented."}
