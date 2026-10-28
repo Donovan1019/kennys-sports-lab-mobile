@@ -70,7 +70,7 @@ function autoSgpCards(game,rows,profiles){
 function renderGame(game,rows,playerProfiles){
  const section=el('article');section.style.cssText='border:1px solid #42677b;border-radius:12px;padding:14px;margin:14px 0;background:#10283a';
  const title=el('h3',game.event+' · '+kickoff(game));section.append(title);
- const intro=el('p','SGP research · sportsbook prices only. Correlation-adjusted simulations, verified player availability, fair odds and positive EV are REQUIRED before any bet is eligible.');section.append(intro);
+ const intro=el('p','SGP research · sportsbook prices only. Correlation-adjusted simulations, verified player availability, fair odds and positive EV are REQUIRED before any bet is eligible.');section.append(intro);section.append(autoSgpCards(game,rows,playerProfiles));
  const select=el('select');select.setAttribute('aria-label','SGP market category');select.style.cssText='max-width:100%;padding:9px;background:#081426;color:white;border:1px solid #42677b;border-radius:8px';
  for(const [key,label] of Object.entries(buckets)){const opt=el('option',label);opt.value=key;select.append(opt)}
  section.append(select);
@@ -83,85 +83,7 @@ function renderGame(game,rows,playerProfiles){
  const lastQuote=freshnessTimes.length?Math.max(...freshnessTimes):NaN;
  const sourceAudit=el('p',Number.isFinite(lastQuote)?'Latest source quote: '+new Date(lastQuote).toLocaleString('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})+' ET · quote age '+Math.round((Date.now()-lastQuote)/60000)+' min · freshness gate ≤90 min':'Quote timestamp unavailable · NOT BET ELIGIBLE');
  section.append(sourceAudit);
- const builder=el('div');builder.style.cssText='margin-top:12px;padding:10px;border:1px solid #5b6877;border-radius:8px';
- builder.append(el('strong','Conservative SGP builder · NOT BET ELIGIBLE'));
- builder.append(el('p','Four-core NBA framework: primary scorer points, lead rebounder rebounds, primary creator assists, and team/game scoring. Requires confirmed minutes, injuries, opponent matchups, pace and role before thresholds are selected.'));
- const markets=[...new Set(rows.map(x=>x.market))].filter(x=>availableMarkets.has(x));
- builder.append(el('p','Available source markets: '+(markets.map(x=>buckets[x]).join(', ')||'none')+'. Player prop markets absent from the source are explicitly unavailable.'));
- const builderTitle=el('h4','SGP candidate builder · market audit');builder.append(builderTitle);
- const legChoices=rows.filter(x=>availableMarkets.has(x.market)&&Number.isFinite(Number(x.price))&&Number(x.price)!==0);
- const chosen=[];const chooser=el('select');chooser.setAttribute('aria-label','Choose SGP leg');
- chooser.style.cssText='max-width:100%;padding:9px;background:#081426;color:white;border:1px solid #42677b;border-radius:8px';
- const placeholder=el('option','Select a market leg');placeholder.value='';chooser.append(placeholder);
- legChoices.forEach((x,i)=>{const option=el('option',(x.player?x.player+' · ':'')+buckets[x.market]+' · '+x.selection+(x.point!==null&&x.point!==undefined?' '+x.point:'')+' · '+(Number(x.price)>0?'+':'')+x.price+' ('+x.bookmaker+')');option.value=String(i);chooser.append(option)});
- builder.append(chooser);
- const add=el('button','Add leg');add.type='button';add.style.cssText='padding:9px;margin:8px;border-radius:8px;cursor:pointer';
- const clear=el('button','Clear');clear.type='button';clear.style.cssText='padding:9px;border-radius:8px;cursor:pointer';
- const selectedList=el('div');const result=el('p');
- function redraw(){selectedList.replaceChildren();for(const x of chosen)selectedList.append(el('p',(x.player?x.player+' · ':'')+buckets[x.market]+' · '+x.selection+(x.point!==null&&x.point!==undefined?' '+x.point:'')+' · '+x.bookmaker));
- result.textContent=chosen.length+' legs selected · '+[...new Set(chosen.map(x=>x.player||x.selection))].length+' unique selections · SGP joint probability UNAVAILABLE · correlated Monte Carlo UNAVAILABLE · bookmaker SGP quote UNAVAILABLE · EV UNAVAILABLE · NOT BET ELIGIBLE.'}
- add.addEventListener('click',()=>{const x=legChoices[Number(chooser.value)];if(chooser.value===''||!x||chosen.length>=6)return;
- if(chosen.some(y=>y===x))return;
- const marketKey=y=>[String(y.player||y.selection||'').trim().toLowerCase(),y.market,String(y.point)].join('|');
- const opposite=y=>String(y.selection||'').toLowerCase().includes('over')?'under':String(y.selection||'').toLowerCase().includes('under')?'over':'';
- if(chosen.some(y=>marketKey(y)===marketKey(x)&&opposite(y)!==opposite(x)))return;
- if(chosen.some(y=>marketKey(y)===marketKey(x)&&opposite(y)===opposite(x)))return;
- chosen.push(x);redraw()});clear.addEventListener('click',()=>{chosen.length=0;redraw()});
- builder.append(add,clear,selectedList,result);redraw();
- const snapshot=el('button','Copy pregame SGP snapshot');snapshot.type='button';
- snapshot.style.cssText='padding:9px;margin:8px;border-radius:8px;cursor:pointer';
- const snapshotStatus=el('p','Copy a research-only JSON snapshot before tipoff. Not a placed bet or automatic ledger submission.');
- snapshot.addEventListener('click',()=>{
-  const now=new Date(),start=new Date(game.commence_time);
-  if(chosen.length<2||chosen.length>6||!game.event_id||!Number.isFinite(start.getTime())||now>=start){snapshotStatus.textContent='BLOCKED: need 2–6 selected legs, a valid event ID, and a pregame capture.';return}
-  const captured_at=now.toISOString();
-  const legs=chosen.map(x=>({event_id:String(game.event_id),event:game.event,commence_time:game.commence_time,captured_at,updated_at:x.updated_at,player:x.player,market:x.market,selection:x.selection,point:x.point,price:x.price,bookmaker:x.bookmaker}));
-  if(legs.some(x=>!x.player||!x.market.startsWith('player_')||!Number.isFinite(Number(x.point))||!x.bookmaker||!Number.isFinite(Date.parse(x.updated_at))||Date.parse(x.updated_at)>=start.getTime()||Date.parse(x.updated_at)>now.getTime())){snapshotStatus.textContent='BLOCKED: a player line, bookmaker, or valid pre-tipoff source timestamp is missing.';return}
-  const record={schema_version:1,sgp_id:'nba-'+game.event_id+'-'+now.getTime(),event_id:String(game.event_id),event:game.event,commence_time:game.commence_time,captured_at,legs,sgp_bookmaker_quote:null,settlement_status:'NOT_PLACED'};
-  const data=JSON.stringify(record);
-  if(!navigator.clipboard||!navigator.clipboard.writeText){snapshotStatus.textContent='Clipboard unavailable; no snapshot saved.';return}
-  navigator.clipboard.writeText(data).then(()=>{snapshotStatus.textContent='Pregame JSON copied locally. Not submitted to the grading ledger or sportsbook.'},()=>{snapshotStatus.textContent='Clipboard permission denied; no snapshot saved.'});
- });
- builder.append(snapshot,snapshotStatus);
- const connect=el('button','Connect to Grading');connect.type='button';
- connect.style.cssText='padding:10px;margin:8px;border-radius:8px;cursor:pointer;font-weight:700';
- const connectHelp=el('p','Submit a pregame snapshot securely through GitHub. You will confirm the submission.');
- const workflowUrl='https://github.com/Donovan1019/kennys-sports-lab-mobile/actions/workflows/ingest-nba-sgp-snapshot.yml';
- connect.addEventListener('click',()=>{
-  snapshot.click();
-  connectHelp.textContent='After the snapshot is copied, use Run workflow and paste the JSON in the snapshot field. ';
-  const link=el('a','Open GitHub grading connection');
-  link.href=workflowUrl;link.target='_blank';link.rel='noopener noreferrer';
-  connectHelp.append(link);
- });
- builder.append(connect,connectHelp);
- builder.append(el('p','Leg integrity: duplicate or opposite-side selections at the same player/market/line are rejected. All legs must belong to this game.'));
- builder.append(el('p','Preflight: leg eligibility, roster status, current minutes, same-game correlation, joint simulation, SGP-specific price and EV must all pass. This interface never estimates joint odds by multiplying independent probabilities.'));
- const simulation=el('div');simulation.style.cssText='border-top:1px solid #42677b;padding-top:12px;margin-top:12px';
- simulation.append(el('h4','Joint simulation research · gated'));
- const run=el('button','Run SGP simulation audit');run.type='button';run.style.cssText='padding:9px;border-radius:8px;cursor:pointer';
- const simulationResult=el('p','Simulation not run.');simulation.append(run,simulationResult);
- run.addEventListener('click',()=>{
-  if(chosen.length<2){simulationResult.textContent='Select at least two legs. Simulation unavailable.';return}
-  const missing=[];if(!chosen.every(x=>x.player&&availableMarkets.has(x.market)&&x.market.startsWith('player_')))missing.push('joint game/team scoring model');
-  if(!chosen.every(x=>x.player&&playerProfiles.some(p=>String(p.name||'').trim().toLowerCase()===String(x.player||'').trim().toLowerCase())))missing.push('matched player game logs');
-  const freshness=rows.filter(x=>x.updated_at).map(x=>Date.parse(x.updated_at)).filter(Number.isFinite);
-  const newest=freshness.length?Math.max(...freshness):NaN;
-  const age=Number.isFinite(newest)?Math.round((Date.now()-newest)/60000):null;
-  const preflight=[];
-  if(age===null||age<0||age>90)preflight.push('market quotes stale or timestamp unavailable ('+(age===null?'unknown':age+' minutes')+')');
-  if(chosen.some(x=>!x.bookmaker||!Number.isFinite(Number(x.price))))preflight.push('missing book/price');
-  if(chosen.some(x=>!x.player))preflight.push('team/game legs require separate game model');
-  const playerAudit=chosen.filter(x=>x.player).map(x=>{const profile=playerProfiles.find(p=>String(p.name||'').trim().toLowerCase()===String(x.player||'').trim().toLowerCase());if(!profile)return x.player+': missing player history';const games=Array.isArray(profile.games)?profile.games:[];const dated=games.map(g=>Date.parse(g.date)).filter(Number.isFinite).sort((a,b)=>b-a);if(dated.length<8)return x.player+': fewer than 8 dated games';if(Date.now()-dated[0]>21*86400000)return x.player+': last logged game older than 21 days';return null}).filter(Boolean);
-  if(playerAudit.length)preflight.push(...playerAudit);
-  const historic=historicalJoint(chosen,playerProfiles);
-  const pointInTime='POINT-IN-TIME MARKET VALIDATION UNAVAILABLE: current quoted lines are applied retrospectively to historical game logs; archived pregame SGP selections/odds are not linked to these outcomes.';
-  if(preflight.length){simulationResult.textContent='SOURCE / PLAYER QUALITY BLOCKED · '+preflight.join('; ')+' · simulation not run · NOT BET ELIGIBLE';return}
-  if(historic.available){const mc=jointBootstrap(historic,10000);const audit=walkForwardAudit(historic);simulationResult.textContent='EXPERIMENTAL PAIRED-DATE BOOTSTRAP · '+mc.draws.toLocaleString()+' resamples · joint historical co-hit '+historic.hits+'/'+historic.n+' ('+(100*historic.hits/historic.n).toFixed(1)+'%) · resampled '+(100*mc.p).toFixed(1)+'% · bootstrap 95% interval '+(100*mc.lower).toFixed(1)+'–'+(100*mc.upper).toFixed(1)+'% · '+audit+' · '+pointInTime+' · same-date outcomes preserved, but this is NOT a calibrated forward-looking SGP probability · injuries/lineups UNVERIFIED · SGP quote and EV UNAVAILABLE · NOT BET ELIGIBLE.';return}
-  missing.push('verified starting lineups and injuries','aligned same-game player outcomes ('+historic.reason+')','calibrated joint residual distribution','bookmaker SGP quote');
-  simulationResult.textContent='BLOCKED · '+chosen.length+' legs · missing: '+[...new Set(missing)].join('; ')+'. Monte Carlo NOT RUN. Joint probability, fair odds and EV UNAVAILABLE. Do not treat individual implied probabilities as independent.';
- });builder.append(simulation);
- section.append(builder);const profiles=el('div');profiles.style.cssText='margin-top:12px;padding:10px;border:1px solid #42677b;border-radius:8px';profiles.append(el('h4','Player usage & historical minutes audit'));const matched=playerProfiles.filter(p=>[game.event.split(' @ ')[0],game.event.split(' @ ')[1]].some(t=>teamMatches(p.team,t)));profiles.append(el('p',matched.length+' historical player profiles matched to this matchup · current availability UNVERIFIED · projected minutes UNAVAILABLE.'));profiles.append(el('p','Historical recency gate: at least 8 dated player games, latest within 21 days. This does not verify current roster, injury or rotation status.'));for(const p of matched.slice(0,12)){const games=Array.isArray(p.games)?p.games:[];const minutes=games.map(g=>{const v=g.values||{};const k=Object.keys(v).find(k=>/^(minutes|min|mp)$/i.test(k.replace(/[^a-z]/gi,'')));return k?Number(v[k]):NaN}).filter(Number.isFinite).slice(0,10);const avg=minutes.length?minutes.reduce((a,b)=>a+b,0)/minutes.length:null;profiles.append(el('p',String(p.name||'Player')+' · '+p.team+' · '+games.length+' logged games · historical minutes L10: '+(avg===null?'UNAVAILABLE':avg.toFixed(1))+' ('+minutes.length+' samples) · injury/rotation UNVERIFIED'))}section.append(profiles);return section;
+const profiles=el('div');profiles.style.cssText='margin-top:12px;padding:10px;border:1px solid #42677b;border-radius:8px';profiles.append(el('h4','Player usage & historical minutes audit'));const matched=playerProfiles.filter(p=>[game.event.split(' @ ')[0],game.event.split(' @ ')[1]].some(t=>teamMatches(p.team,t)));profiles.append(el('p',matched.length+' historical player profiles matched to this matchup · current availability UNVERIFIED · projected minutes UNAVAILABLE.'));profiles.append(el('p','Historical recency gate: at least 8 dated player games, latest within 21 days. This does not verify current roster, injury or rotation status.'));for(const p of matched.slice(0,12)){const games=Array.isArray(p.games)?p.games:[];const minutes=games.map(g=>{const v=g.values||{};const k=Object.keys(v).find(k=>/^(minutes|min|mp)$/i.test(k.replace(/[^a-z]/gi,'')));return k?Number(v[k]):NaN}).filter(Number.isFinite).slice(0,10);const avg=minutes.length?minutes.reduce((a,b)=>a+b,0)/minutes.length:null;profiles.append(el('p',String(p.name||'Player')+' · '+p.team+' · '+games.length+' logged games · historical minutes L10: '+(avg===null?'UNAVAILABLE':avg.toFixed(1))+' ('+minutes.length+' samples) · injury/rotation UNVERIFIED'))}section.append(profiles);return section;
 }
 const teamMatches=(a,b)=>{const x=String(a||'').toLowerCase(),y=String(b||'').toLowerCase();return x.length>3&&(x===y||y.endsWith(' '+x)||x.endsWith(' '+y))};
 async function load(){
@@ -200,7 +122,8 @@ async function load(){
    archiveStatus.textContent='Automated SGP ledger · '+(recent?String(audit.status||'UNVERIFIED'):'STATUS STALE / UNVERIFIED')+' · captured in latest run: '+Number(audit.captured||0)+' · source recommendations: '+Number(audit.source_recommendations||0)+' · rejected: '+Number(audit.rejected_count||0)+' · historical player profiles (8+ games): '+Number(audit.historical_player_profiles||0)+' · model validation: '+String(audit.model_validation_status||'UNAVAILABLE')+' · '+(audit.capture_ready?'verified source archive ready':'verified source archive not ready')+' · blockers: '+(Array.isArray(audit.source_blockers)&&audit.source_blockers.length?audit.source_blockers.join('; '):'none reported')+' · '+(audit.source_present?'source present':'model recommendation source missing')+' · research only, not placed bets.';
   }else archiveStatus.textContent='Automated SGP ledger: no saved capture report yet · UNVERIFIED.';
  }catch(_){archiveStatus.textContent='Automated SGP ledger status unavailable · UNVERIFIED.'}
- status.textContent=shown.length?'NBA SGP · '+shown.length+' upcoming games · '+(todayGames.length?'today':'next available date')+' · '+rows.length+' source market rows · '+propFeedStatus+' · RESEARCH ONLY':'No upcoming NBA games in published market feed. SGP unavailable until the next feed refresh.';
+ status.textContent=shown.length?'AUTO NBA SGP · +shown.length+' upcoming games · '+(todayGames.length?'today':'next available date')+' · '+rows.length+' source market rows · '+propFeedStatus+' · RESEARCH ONLY':'AUTO NBA SGP · No upcoming NBA games in published market feed. Automatic cards require upcoming games and fresh verified player props; refresh NBA game and player-prop feeds.';
+ if(!shown.length){const empty=el('section');empty.style.cssText='border:2px solid #35b889;border-radius:12px;padding:14px;margin:12px 0';empty.append(el('h3','AUTO NBA SGP · waiting for verified upcoming markets'));empty.append(el('p','No eligible upcoming game rows. The automatic two-, three-, and four-leg research cards will populate when the published schedule and fresh player-prop quotes are available. No synthetic parlays or prices are shown.'));output.append(empty)}
  for(const game of shown)output.append(renderGame(game,game.rows,playerProfiles));
  }catch(err){status.textContent='NBA SGP FEED ERROR: '+err.message+' · NOT BET ELIGIBLE';output.replaceChildren()}
 }
