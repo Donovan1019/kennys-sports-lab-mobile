@@ -29,5 +29,5 @@ jobs:
           assert 'section.append(autoSgpCards(game,rows,playerProfiles))' in s
           assert "Conservative SGP builder" not in s
           assert "Select a market leg" not in s
-          assert "nba_sgp_engine.js?v=auto-sgp-feed406" in Path('nba.html').read_text()
+          assert "nba_sgp_engine.js?v=auto-sgp-all407" in Path('nba.html').read_text()
           PY
