@@ -19,11 +19,16 @@ jobs:
           python-version: '3.12'
       - name: Capture immutable pregame snapshots from available feeds
         run: python -m scripts.three_sport_backtest capture
+      - name: Capture verified NBA pregame quote ledger without illustrated picks
+        run: python -m scripts.nba_automation_batch
+      - name: Grade saved NBA player props and explicit SGP combinations
+        run: python -m scripts.grade_nba_sgp_props
       - name: Archive snapshots
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add backtests/snapshots/
+          git add backtests/snapshots/ feed/nba_automation_coverage.json feed/nba_prop_pregame_grades.json feed/nba_sgp_pregame_grades.json
+          if [ -f feed/nba_prop_pregame_ledger.jsonl ]; then git add feed/nba_prop_pregame_ledger.jsonl; fi
           if ! git diff --cached --quiet; then
             git commit -m "Archive scheduled pregame snapshots"
             git pull --rebase
