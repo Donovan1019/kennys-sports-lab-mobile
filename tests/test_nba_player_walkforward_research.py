@@ -66,6 +66,11 @@ class WalkForwardTests(unittest.TestCase):
         self.assertFalse(result["recent_minutes_segment_holdout_summary"]["Points"]["bet_eligible"])
         self.assertIn("not an independent minutes adjustment",result["recent_minutes_rate_equivalence_note"])
         self.assertIn("posthoc",result["workload_segment_multiple_comparisons_warning"])
+        forward=result["frozen_forward_segment_audit"]
+        self.assertEqual(forward["start_date"],"2026-10-29")
+        self.assertEqual(set(forward["segments"]),{"low_under_20","change:drop_over_15pct"})
+        self.assertFalse(forward["promotion_approved"])
+        self.assertTrue(all(not row["bet_eligible"] for market in forward["markets"].values() for row in market.values()))
         self.assertTrue(all("absolute_mae_difference" in v and "candidate_total_absolute_error" in v for v in segments.values()))
         pair=result["minutes_adjusted_matched_sample_audit"]["Points"]["2025-26"]
         self.assertEqual(pair["samples"],4)
