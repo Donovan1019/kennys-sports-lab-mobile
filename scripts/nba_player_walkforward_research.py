@@ -325,6 +325,10 @@ def evaluate(data):
                 "all_prior_mae":round(r["baseline_abs"]/n,4) if n else None,
                 "recent_10_mae":round(r["recent_10_abs"]/n,4) if n else None,
                 "improves_over_both_baselines":bool(n>=MIN_SEGMENT_HOLDOUT_SAMPLES and r["candidate_abs"]<=0.99*r["baseline_abs"] and r["candidate_abs"]<=0.99*r["recent_10_abs"]),
+                "validation_status":("AWAITING_FORWARD_GAMES" if n==0 else ("INSUFFICIENT_FORWARD_SAMPLES" if n<MIN_SEGMENT_HOLDOUT_SAMPLES else ("RESEARCH_GATE_PASSED" if r["candidate_abs"]<=0.99*r["baseline_abs"] and r["candidate_abs"]<=0.99*r["recent_10_abs"] else "RESEARCH_GATE_FAILED"))),
+                "remaining_samples":max(0,MIN_SEGMENT_HOLDOUT_SAMPLES-n),
+                "relative_improvement_vs_all_prior":round((r["baseline_abs"]-r["candidate_abs"])/r["baseline_abs"],6) if r["baseline_abs"]>0 else None,
+                "relative_improvement_vs_recent_10":round((r["recent_10_abs"]-r["candidate_abs"])/r["recent_10_abs"],6) if r["recent_10_abs"]>0 else None,
                 "promotion_approved":False,"bet_eligible":False}
     segment_summary={}
     for market,seasons in workload_segment_diagnostics.items():
@@ -339,7 +343,7 @@ def evaluate(data):
         }
     return {"status":"research_only","promotion_approved":False,
         "recent_minutes_segment_holdout_summary":segment_summary,
-        "frozen_forward_segment_audit":{"start_date":FORWARD_START_DATE,"segments":list(FROZEN_FORWARD_SEGMENTS),"markets":forward_report,"minimum_samples":MIN_SEGMENT_HOLDOUT_SAMPLES,"selection_frozen_before_forward_start":True,"promotion_approved":False},
+        "frozen_forward_segment_audit":{"start_date":FORWARD_START_DATE,"segments":list(FROZEN_FORWARD_SEGMENTS),"markets":forward_report,"minimum_samples":MIN_SEGMENT_HOLDOUT_SAMPLES,"selection_frozen_before_forward_start":True,"data_source_workflow":"refresh-nba-nhl-stats.yml","promotion_approved":False},
         "fixed_reference_threshold_probability_research":brier_metrics,
         "fixed_reference_threshold_probability_by_season":season_probability_metrics,
         "fixed_reference_threshold_outcomes":threshold_metrics,

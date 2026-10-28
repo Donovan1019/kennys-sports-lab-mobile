@@ -70,6 +70,9 @@ class WalkForwardTests(unittest.TestCase):
         self.assertEqual(forward["start_date"],"2026-10-29")
         self.assertEqual(set(forward["segments"]),{"low_under_20","change:drop_over_15pct"})
         self.assertFalse(forward["promotion_approved"])
+        self.assertEqual(forward["data_source_workflow"],"refresh-nba-nhl-stats.yml")
+        self.assertTrue(all(row["validation_status"] in ("AWAITING_FORWARD_GAMES","INSUFFICIENT_FORWARD_SAMPLES","RESEARCH_GATE_PASSED","RESEARCH_GATE_FAILED") for market in forward["markets"].values() for row in market.values()))
+        self.assertTrue(all(row["remaining_samples"]>=0 for market in forward["markets"].values() for row in market.values()))
         self.assertTrue(all(not row["bet_eligible"] for market in forward["markets"].values() for row in market.values()))
         self.assertTrue(all("absolute_mae_difference" in v and "candidate_total_absolute_error" in v for v in segments.values()))
         pair=result["minutes_adjusted_matched_sample_audit"]["Points"]["2025-26"]
