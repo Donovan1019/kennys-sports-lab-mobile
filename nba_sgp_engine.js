@@ -150,7 +150,13 @@ async function load(){
  const games=[...events.values()].sort((a,b)=>Date.parse(a.commence_time)-Date.parse(b.commence_time));const today=etDate(now),todayGames=games.filter(g=>etDate(g.commence_time)===today),first=games[0]&&etDate(games[0].commence_time);
  const shown=todayGames.length?todayGames:games.filter(g=>etDate(g.commence_time)===first);
  output.replaceChildren();
- const propAge=propFeedFetchedAt&&Number.isFinite(Date.parse(propFeedFetchedAt))?Math.round((now-Date.parse(propFeedFetchedAt))/60000):null;
+ const propTime=Date.parse(propFeedFetchedAt);
+ const propAge=Number.isFinite(propTime)?Math.round((now-propTime)/60000):null;
+ const propHealth=propAge===null?'UNAVAILABLE':propAge<0?'INVALID FUTURE TIMESTAMP':propAge>90?'STALE — BLOCKED':'FRESH';
+ const health=el('p','NBA SGP player-prop feed: '+propHealth+' · age '+(propAge===null?'unknown':propAge+' min')+' · accepted prop rows: '+propRows.length+' · 90-minute maximum · research only, not bet eligible.');
+ health.setAttribute('role','status');
+ health.style.cssText='border:1px solid #42677b;padding:10px;border-radius:8px;font-weight:600';
+ output.append(health);
  const propEvents=new Set(propRows.map(x=>x.event_id));
  const covered=shown.filter(g=>propEvents.has(g.event_id)).length;
  const diagnostics=el('p','Player-prop coverage: '+covered+'/'+shown.length+' upcoming games · prop feed age '+(propAge===null?'unknown':propAge+' minutes')+' · refresh: GitHub Actions → Refresh NBA NHL Player Props (Credit-Limited) → Run workflow → nba. Paid API credits are used only on manual dispatch.');
