@@ -19,8 +19,9 @@ def evaluate(data):
             vals=g.get("values")
             if not pid or not gid or not isinstance(vals,dict):continue
             by_game[gid].append((pid,vals))
-    counts=defaultdict(lambda:{"games":0,"both":0,"first":0,"second":0})
+    counts=defaultdict(lambda:{"games":0,"both":0,"first":0,"second":0,"distinct_game_ids":set(),"max_pairs_in_one_game":0})
     for game,entries in by_game.items():
+        game_pairs=defaultdict(int)
         unique={}
         for pid,vals in entries:unique[pid]=vals
         entries=sorted(unique.items())
@@ -31,13 +32,20 @@ def evaluate(data):
                     if not all(isinstance(v,(int,float)) and not isinstance(v,bool) and math.isfinite(v) and v>=0 for v in (x,y)):continue
                     key=market
                     c=counts[key];c["games"]+=1
+                    c["distinct_game_ids"].add(game)
+                    game_pairs[key]+=1
                     c["first"]+=x>line;c["second"]+=y>line;c["both"]+=(x>line and y>line)
+        for market,n in game_pairs.items():
+            counts[market]["max_pairs_in_one_game"]=max(counts[market]["max_pairs_in_one_game"],n)
     results={}
     for market,c in counts.items():
         n=c["games"]
         if n<100:continue
         pa=c["first"]/n;pb=c["second"]/n;joint=c["both"]/n
-        results[market]={"observed_player_pairs":n,"first_over_rate":round(pa,5),
+        results[market]={"observed_player_pairs":n,
+            "distinct_games":len(c["distinct_game_ids"]),
+            "max_pairs_in_single_game":c["max_pairs_in_one_game"],
+            "independent_sample_size_claim":False,"first_over_rate":round(pa,5),
             "second_over_rate":round(pb,5),"joint_over_rate":round(joint,5),
             "independent_product_reference":round(pa*pb,5),
             "joint_minus_independent":round(joint-pa*pb,5)}
