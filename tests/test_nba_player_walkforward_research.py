@@ -55,6 +55,10 @@ class WalkForwardTests(unittest.TestCase):
         self.assertEqual(recent["recent_rate_mae"],5.125)
         self.assertFalse(recent["bet_eligible"])
         self.assertFalse(result["recent_minutes_rate_selection_eligible"])
+        segments=result["recent_minutes_workload_segment_audit"]["Points"]["2025-26"]
+        self.assertEqual(sum(v["samples"] for k,v in segments.items() if not k.startswith("change:")),recent["samples"])
+        self.assertEqual(sum(v["samples"] for k,v in segments.items() if k.startswith("change:")),recent["samples"])
+        self.assertTrue(all(not v["bet_eligible"] for v in segments.values()))
         pair=result["minutes_adjusted_matched_sample_audit"]["Points"]["2025-26"]
         self.assertEqual(pair["samples"],4)
         self.assertEqual(pair["minutes_mae"],pair["all_prior_mae_same_samples"])
