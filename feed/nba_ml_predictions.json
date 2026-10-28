@@ -1,13 +1,13 @@
 {
   "status": "validated",
   "sport": "basketball_nba",
-  "generated_at": "2026-10-28T21:40:13.505986+00:00",
+  "generated_at": "2026-10-28T21:47:27.301961+00:00",
   "calibration_passed": true,
   "model_version": "elo-walkforward-v1",
   "validation_report": {
-    "walk_forward_games": 1139,
-    "brier": 0.20999,
-    "ece": 0.04114,
+    "walk_forward_games": 1135,
+    "brier": 0.20996,
+    "ece": 0.04184,
     "method": "chronological Elo, 200-game burn-in, no odds inputs"
   },
   "predictions": [

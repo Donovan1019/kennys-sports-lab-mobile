@@ -5,9 +5,9 @@
   "model_version": "elo-walkforward-v1",
   "training_cutoff": "2026-10-28T03:00Z",
   "validation_report": {
-    "walk_forward_games": 1139,
-    "brier": 0.20999,
-    "ece": 0.04114,
+    "walk_forward_games": 1135,
+    "brier": 0.20996,
+    "ece": 0.04184,
     "method": "chronological Elo, 200-game burn-in, no odds inputs"
   },
   "teams": {
@@ -40,10 +40,7 @@
     "Portland Trail Blazers": 1555.8533609695653,
     "Minnesota Timberwolves": 1606.0835043514894,
     "Indiana Pacers": 1330.8008838772664,
-    "Denver Nuggets": 1588.2268593743365,
-    "Team Stars": 1511.9365898147216,
-    "World": 1483.8854872037216,
-    "Team Stripes": 1504.1779229815568
+    "Denver Nuggets": 1588.2268593743365
   },
   "home_advantage": 60,
   "logistic_scale": 173.7178
