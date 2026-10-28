@@ -15,6 +15,7 @@ HOLDOUT_SEASON="2026-27"
 MIN_TRAIN_SPLIT_SAMPLES=100
 MIN_HOLDOUT_SAMPLES=1000
 MIN_HOLDOUT_RELATIVE_IMPROVEMENT=0.01
+MIN_SEGMENT_HOLDOUT_SAMPLES=100
 
 def evaluate(data):
     if not isinstance(data,dict) or data.get("source")!="espn-public-boxscore" or data.get("sport")!="nba":
@@ -217,6 +218,9 @@ def evaluate(data):
                     "recent_rate_mae":round(r["recent_rate_abs"]/r["n"],4),
                     "all_prior_mae_same_samples":round(r["baseline_abs"]/r["n"],4),
                     "relative_improvement_vs_all_prior":round((r["baseline_abs"]-r["recent_rate_abs"])/r["baseline_abs"],6) if r["baseline_abs"]>0 else None,
+                    "sufficient_holdout_samples":bool(season==HOLDOUT_SEASON and r["n"]>=MIN_SEGMENT_HOLDOUT_SAMPLES),
+                    "passes_research_improvement_gate":bool(season==HOLDOUT_SEASON and r["n"]>=MIN_SEGMENT_HOLDOUT_SAMPLES and r["baseline_abs"]>0 and (r["baseline_abs"]-r["recent_rate_abs"])/r["baseline_abs"]>=MIN_HOLDOUT_RELATIVE_IMPROVEMENT),
+                    "promotion_approved":False,
                     "bet_eligible":False}
                 for label,r in segments.items() if r["n"]}
     recent_rate_diagnostics={}
@@ -306,6 +310,7 @@ def evaluate(data):
         "minutes_adjusted_matched_sample_audit":matched_minutes_diagnostics,
         "recent_minutes_rate_matched_sample_audit":recent_rate_diagnostics,
         "recent_minutes_workload_segment_audit":workload_segment_diagnostics,
+        "recent_minutes_segment_research_policy":{"minimum_holdout_samples":MIN_SEGMENT_HOLDOUT_SAMPLES,"minimum_relative_mae_improvement":MIN_HOLDOUT_RELATIVE_IMPROVEMENT,"promotion_approved":False,"requires_independent_validation":True},
         "recent_minutes_rate_selection_eligible":False,
         "minutes_adjusted_selection_eligible":False,
         "minutes_adjusted_selection_blocker":"Research-only minutes model; requires independent validation and verified point-in-time workload inputs before selection",
