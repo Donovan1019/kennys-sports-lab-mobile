@@ -11,6 +11,17 @@ async function refresh(){
  const resp=await fetch('./feed/basketball_nba.json?ml='+Date.now(),{cache:'no-store'});if(!resp.ok)throw Error('NBA odds feed HTTP '+resp.status);
  const data=await resp.json();if(data.status!=='ok'||data.sport!=='basketball_nba')throw Error('NBA odds feed invalid or degraded');const rows=Array.isArray(data.odds)?data.odds:[];const feedAge=Date.parse(data.fetched_at);if(!Number.isFinite(feedAge)||feedAge>Date.now()||Date.now()-feedAge>90*60000)throw Error('NBA odds snapshot stale or missing timestamp');
  const now=Date.now();const games=new Map();
+ let model=new Map(),modelState='UNAVAILABLE';
+ try{
+  const mr=await fetch('./feed/nba_ml_predictions.json?ml='+Date.now(),{cache:'no-store'});
+  if(mr.ok){const m=await mr.json();const age=Date.parse(m.generated_at);
+   if(m.status==='validated'&&m.sport==='basketball_nba'&&m.calibration_passed===true&&Number.isFinite(age)&&age<=now&&now-age<=90*60000&&Array.isArray(m.predictions)){
+    for(const p of m.predictions){if(!p.event_id||!p.team||!Number.isFinite(p.win_probability)||p.win_probability<=0||p.win_probability>=1||p.date_et!==today)continue;model.set(String(p.event_id)+'|'+String(p.team),p.win_probability)}
+    modelState=model.size?'VALIDATED':'UNAVAILABLE';
+   }
+  }
+ }catch(_){modelState='UNAVAILABLE'}
+
  for(const r of rows){if(r.market!=='h2h'||!r.event_id||!r.bookmaker||!r.selection||!Number.isFinite(Number(r.price))||Number(r.price)===0)continue;
  const tip=Date.parse(r.commence_time);const updated=Date.parse(r.updated_at);if(!Number.isFinite(tip)||tip<=now||dateET(tip)!==today||!Number.isFinite(updated)||updated>now||now-updated>90*60000)continue;
  const key=String(r.event_id),group=games.get(key)||[];group.push(r);games.set(key,group);
@@ -23,15 +34,15 @@ async function refresh(){
  if(best)choices.push(best);
  }
  choices.sort((a,b)=>b.p-a.p);
- status.textContent='NBA ML Parlays · '+today+' ET · '+choices.length+' games with fresh two-sided quotes. No independent predictive model or verified EV available.';
+ status.textContent='NBA ML Parlays · '+today+' ET · '+choices.length+' games with fresh two-sided quotes · Independent model: '+modelState+'.';
  for(const [label,n] of [['Safer two-leg',2],['Balanced three-leg',3],['Four-leg',4],['Five-leg',5]]){
  const card=node('section','');card.style.cssText='border:1px solid #42677b;border-radius:12px;padding:14px;margin:12px 0;background:#10283a';card.append(node('h3',label));
  const byBook=new Map();for(const choice of choices){const group=byBook.get(choice.book)||[];group.push(choice);byBook.set(choice.book,group)}const eligibleBooks=[...byBook.entries()].filter(([,group])=>group.length>=n).sort((a,b)=>{const score=g=>g.slice(0,n).reduce((v,l)=>v*Math.max(.0001,l.p),1);return score(b[1])-score(a[1])});const legs=eligibleBooks.length?eligibleBooks[0][1].slice(0,n):[];if(legs.length<n){card.append(node('p','UNAVAILABLE — insufficient eligible games quoted by the SAME sportsbook'));out.append(card);continue}
  const ul=document.createElement('ul');let joint=1,decimal=1;const books=new Set(legs.map(x=>x.book));for(const l of legs){joint*=l.p;decimal*=l.price<0?1+100/-l.price:1+l.price/100;ul.append(node('li',l.team+' ML · '+l.book+' '+(l.price>0?'+':'')+l.price+' · no-vig market '+(100*l.p).toFixed(1)+'%'))}card.append(ul);
- const rand=seeded(2166136261+n);let successes=0;for(let i=0;i<simulations;i++){if(legs.every(l=>rand()<l.p))successes++}const mc=successes/simulations;
- card.append(node('p','10,000-draw independent-market Monte Carlo: '+(mc*100).toFixed(2)+'% (simulation of market-implied probabilities only; NOT an independently calibrated forecast).'));
- card.append(node('p','Model EV: UNAVAILABLE · requires independently validated probabilities and executable same-book parlay prices.'));
- card.append(node('p','Diamond grade: UNVERIFIED · injury, lineup, rest and calibration checks not complete.'));
+ const modelPs=legs.map(l=>model.get(l.id+'|'+l.team));const hasModel=modelPs.every(p=>Number.isFinite(p)&&p>0&&p<1);const rand=seeded(2166136261+n);let successes=0;for(let i=0;i<simulations;i++){if(legs.every((l,k)=>rand()<(hasModel?modelPs[k]:l.p)))successes++}const mc=successes/simulations;
+ card.append(node('p',hasModel?'10,000-draw independently calibrated model Monte Carlo: '+(mc*100).toFixed(2)+'% (assumes independent games; correlation unverified).':'10,000-draw independent-market Monte Carlo: '+(mc*100).toFixed(2)+'% (market-implied probabilities only; NOT an independently calibrated forecast).'));
+ card.append(node('p',hasModel?'Illustrative model EV (UNVERIFIED parlay quote): '+((modelPs.reduce((a,b)=>a*b,1)*decimal-1)*100).toFixed(1)+'% · NOT BET ELIGIBLE until executable parlay odds and correlation are verified.':'Model EV: UNAVAILABLE · requires independently validated probabilities and executable same-book parlay prices.'));
+ card.append(node('p','Diamond grade: UNVERIFIED · injury, lineup, rest, correlation and executable pricing checks not complete.'));
  card.append(node('p',books.size===1?'All legs quoted at '+[...books][0]+'; combined odds are mathematical only, not a verified parlay offer.':'MIXED BOOKMAKERS — combined quoted odds are NOT a purchasable parlay.'));card.append(node('p','Illustrative independent-market product: '+(joint*100).toFixed(1)+'% · fair '+american(joint)+' · combined quoted '+american(1/decimal)+'. NOT a calibrated model probability, EV or verified sportsbook parlay quote.'));
  card.append(node('p','RESEARCH ONLY · lineup, injury, correlated outcomes, sportsbook parlay pricing and model calibration not validated.'));out.append(card);
  }
