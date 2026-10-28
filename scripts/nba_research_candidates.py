@@ -8,6 +8,49 @@ from pathlib import Path
 
 MARKETS={"player_points":"Points","player_rebounds":"Rebounds",
          "player_assists":"Assists","player_threes":"Threes"}
+ESPN_TEAM_NAMES={
+    "ATL": "Atlanta Hawks",
+    "BOS": "Boston Celtics",
+    "BKN": "Brooklyn Nets",
+    "CHA": "Charlotte Hornets",
+    "CHI": "Chicago Bulls",
+    "CLE": "Cleveland Cavaliers",
+    "DAL": "Dallas Mavericks",
+    "DEN": "Denver Nuggets",
+    "DET": "Detroit Pistons",
+    "GS": "Golden State Warriors",
+    "GSW": "Golden State Warriors",
+    "HOU": "Houston Rockets",
+    "IND": "Indiana Pacers",
+    "LAC": "Los Angeles Clippers",
+    "LAL": "Los Angeles Lakers",
+    "MEM": "Memphis Grizzlies",
+    "MIA": "Miami Heat",
+    "MIL": "Milwaukee Bucks",
+    "MIN": "Minnesota Timberwolves",
+    "NO": "New Orleans Pelicans",
+    "NOP": "New Orleans Pelicans",
+    "NY": "New York Knicks",
+    "NYK": "New York Knicks",
+    "OKC": "Oklahoma City Thunder",
+    "ORL": "Orlando Magic",
+    "PHI": "Philadelphia 76ers",
+    "PHX": "Phoenix Suns",
+    "POR": "Portland Trail Blazers",
+    "SAC": "Sacramento Kings",
+    "SA": "San Antonio Spurs",
+    "SAS": "San Antonio Spurs",
+    "TOR": "Toronto Raptors",
+    "UTA": "Utah Jazz",
+    "UTAH": "Utah Jazz",
+    "WAS": "Washington Wizards",
+    "WSH": "Washington Wizards"
+}
+
+def normalized_team(value):
+    team=str(value or "").strip()
+    return ESPN_TEAM_NAMES.get(team.upper(),team).casefold()
+
 ROOT=Path(__file__).resolve().parents[1]
 FEED=ROOT/"feed"
 
@@ -52,7 +95,7 @@ def generate(odds, history, now):
         # A player's historical team must belong to the quoted matchup.
         # Reject ambiguous names, abbreviations and missing team assignments.
         event=row.get("event")
-        team=str(profile.get("team") or "").strip().casefold()
+        team=normalized_team(profile.get("team"))
         if not isinstance(event,str) or event.count(" @ ")!=1 or not team:
             reject("unverified_matchup");continue
         away,home=(part.strip().casefold() for part in event.split(" @ "))
