@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-10-28T20:18:02.012732+00:00",
+  "checked_at": "2026-10-28T20:27:26.529767+00:00",
   "source_present": false,
   "source_recommendations": 0,
   "captured": 0,
@@ -15,6 +15,13 @@
     "no independently validated NBA SGP predictions published",
     "NBA correlation validation has not approved model promotion"
   ],
+  "recovery_workflows": {
+    "player_stats": "refresh-nba-nhl-stats.yml",
+    "player_props": "refresh-nba-nhl-props.yml",
+    "pair_research": "scheduled-pregame-snapshots.yml"
+  },
+  "correlation_validation_status": "NOT_APPROVED",
+  "requires_independent_forward_validation": true,
   "capture_ready": false,
   "status": "NO_NEW_VERIFIED_MODEL_RECOMMENDATIONS",
   "note": "Only genuine source-recorded recommendations are archived; none are invented."

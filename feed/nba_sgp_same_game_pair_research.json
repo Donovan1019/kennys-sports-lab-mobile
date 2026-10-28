@@ -11,6 +11,9 @@
   "markets": {
     "Points": {
       "observed_player_pairs": 314883,
+      "distinct_games": 1372,
+      "max_pairs_in_single_game": 528,
+      "independent_sample_size_claim": false,
       "first_over_rate": 0.17021,
       "second_over_rate": 0.13102,
       "joint_over_rate": 0.02155,
@@ -19,6 +22,9 @@
     },
     "Rebounds": {
       "observed_player_pairs": 314883,
+      "distinct_games": 1372,
+      "max_pairs_in_single_game": 528,
+      "independent_sample_size_claim": false,
       "first_over_rate": 0.13691,
       "second_over_rate": 0.13619,
       "joint_over_rate": 0.01788,
@@ -27,6 +33,9 @@
     },
     "Assists": {
       "observed_player_pairs": 314883,
+      "distinct_games": 1372,
+      "max_pairs_in_single_game": 528,
+      "independent_sample_size_claim": false,
       "first_over_rate": 0.12622,
       "second_over_rate": 0.10263,
       "joint_over_rate": 0.01161,
@@ -35,6 +44,9 @@
     },
     "Threes": {
       "observed_player_pairs": 314883,
+      "distinct_games": 1372,
+      "max_pairs_in_single_game": 528,
+      "independent_sample_size_claim": false,
       "first_over_rate": 0.18848,
       "second_over_rate": 0.15024,
       "joint_over_rate": 0.02785,
@@ -43,5 +55,5 @@
     }
   },
   "limitations": "All player pairs are pooled, overlapping observations are dependent; role/team/opponent, time and player identity are not controlled. Not predictive, not a correlation parameter, and not a betting recommendation.",
-  "generated_at": "2026-10-28T11:53:13.929572+00:00"
+  "generated_at": "2026-10-28T20:27:26.494963+00:00"
 }
