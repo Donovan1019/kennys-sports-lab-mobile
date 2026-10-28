@@ -21,6 +21,7 @@ def evaluate(data):
         raise ValueError("Verified NBA player game-log source required")
     players=data.get("players")
     if not isinstance(players,list): raise ValueError("Missing player game logs")
+    workload_segments=defaultdict(lambda:defaultdict(lambda:defaultdict(lambda:{"n":0,"recent_rate_abs":0.0,"baseline_abs":0.0})))
     recent_rate_matched=defaultdict(lambda:defaultdict(lambda:{"n":0,"candidate_abs":0.0,"baseline_abs":0.0,"blend_abs":0.0}))
     matched_minutes=defaultdict(lambda:defaultdict(lambda:{"n":0,"minutes_abs":0.0,"all_abs":0.0,"blend_abs":0.0,"minutes_wins":0,"all_wins":0,"ties":0}))
     minutes_diagnostics=defaultdict(lambda:{"eligible":0,"missing_prior_minutes":0})
@@ -83,6 +84,16 @@ def evaluate(data):
                             paired["candidate_abs"]+=abs(forecast-actual)
                             paired["baseline_abs"]+=abs(baseline-actual)
                             paired["blend_abs"]+=abs((prediction+baseline)/2-actual)
+                            previous=eligible[-20:-10]
+                            previous_avg=sum(m for m,_ in previous)/len(previous) if len(previous)>=5 else None
+                            shift=(expected_minutes/previous_avg-1) if previous_avg and previous_avg>0 else None
+                            band="low_under_20" if expected_minutes<20 else ("mid_20_to_30" if expected_minutes<30 else "high_30_plus")
+                            change="unknown_prior_window" if shift is None else ("drop_over_15pct" if shift<=-0.15 else ("rise_over_15pct" if shift>=0.15 else "stable"))
+                            for label in (band,"change:"+change):
+                                segment=workload_segments[market][season][label]
+                                segment["n"]+=1
+                                segment["recent_rate_abs"]+=abs(forecast-actual)
+                                segment["baseline_abs"]+=abs(baseline-actual)
                         elif window=="minutes_adjusted":
                             eligible=[(m,v) for _,m,v in prior_minutes if m>0]
                             if len(eligible)<MIN_PRIOR:
@@ -197,6 +208,17 @@ def evaluate(data):
                 "promotion_approved":False,
                 "bet_eligible":False,
             }
+    workload_segment_diagnostics={}
+    for market,seasons in workload_segments.items():
+        workload_segment_diagnostics[market]={}
+        for season,segments in seasons.items():
+            workload_segment_diagnostics[market][season]={
+                label:{"samples":r["n"],
+                    "recent_rate_mae":round(r["recent_rate_abs"]/r["n"],4),
+                    "all_prior_mae_same_samples":round(r["baseline_abs"]/r["n"],4),
+                    "relative_improvement_vs_all_prior":round((r["baseline_abs"]-r["recent_rate_abs"])/r["baseline_abs"],6) if r["baseline_abs"]>0 else None,
+                    "bet_eligible":False}
+                for label,r in segments.items() if r["n"]}
     recent_rate_diagnostics={}
     for market,seasons in recent_rate_matched.items():
         recent_rate_diagnostics[market]={}
@@ -283,6 +305,7 @@ def evaluate(data):
         "minutes_workload_data_coverage":dict(minutes_diagnostics),
         "minutes_adjusted_matched_sample_audit":matched_minutes_diagnostics,
         "recent_minutes_rate_matched_sample_audit":recent_rate_diagnostics,
+        "recent_minutes_workload_segment_audit":workload_segment_diagnostics,
         "recent_minutes_rate_selection_eligible":False,
         "minutes_adjusted_selection_eligible":False,
         "minutes_adjusted_selection_blocker":"Research-only minutes model; requires independent validation and verified point-in-time workload inputs before selection",
