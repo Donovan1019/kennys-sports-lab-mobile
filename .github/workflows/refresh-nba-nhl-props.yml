@@ -10,7 +10,7 @@ on:
           - nba
           - nhl
       max_events:
-        description: Maximum upcoming events (paid API credits per event and market)
+        description: Upcoming events (0 = ALL NBA games; uses paid API credits)
         required: true
         default: '1'
         type: choice
@@ -18,6 +18,7 @@ on:
           - '1'
           - '2'
           - '3'
+          - '0'
 permissions:
   contents: write
 jobs:
