@@ -9,7 +9,7 @@ SOURCE=Path("feed/nba_player_stats.json")
 OUTPUT=Path("feed/nba_player_walkforward_research.json")
 MARKETS=("Points","Rebounds","Assists","Threes")
 MIN_PRIOR=8
-WINDOWS=(5,10,20,"all","blend_25","blend_50","blend_75","minutes_adjusted")
+WINDOWS=(5,10,20,"all","blend_25","blend_50","blend_75","minutes_adjusted","minutes_recent_rate")
 TRAIN_SEASON="2025-26"
 HOLDOUT_SEASON="2026-27"
 MIN_TRAIN_SPLIT_SAMPLES=100
@@ -21,6 +21,7 @@ def evaluate(data):
         raise ValueError("Verified NBA player game-log source required")
     players=data.get("players")
     if not isinstance(players,list): raise ValueError("Missing player game logs")
+    recent_rate_matched=defaultdict(lambda:defaultdict(lambda:{"n":0,"candidate_abs":0.0,"baseline_abs":0.0,"blend_abs":0.0}))
     matched_minutes=defaultdict(lambda:defaultdict(lambda:{"n":0,"minutes_abs":0.0,"all_abs":0.0,"blend_abs":0.0,"minutes_wins":0,"all_wins":0,"ties":0}))
     minutes_diagnostics=defaultdict(lambda:{"eligible":0,"missing_prior_minutes":0})
     training_error_records=defaultdict(list)
@@ -69,7 +70,20 @@ def evaluate(data):
                     prediction=sum(recent)/len(recent)
                     baseline=sum(prior)/len(prior)
                     for window in WINDOWS:
-                        if window=="minutes_adjusted":
+                        if window=="minutes_recent_rate":
+                            eligible=[(m,v) for _,m,v in prior_minutes if m>0]
+                            if len(eligible)<MIN_PRIOR:
+                                continue
+                            recent_eligible=eligible[-10:]
+                            expected_minutes=sum(m for m,_ in recent_eligible)/len(recent_eligible)
+                            rate=sum(v for m,v in recent_eligible)/sum(m for m,v in recent_eligible)
+                            forecast=rate*expected_minutes
+                            paired=recent_rate_matched[market][season]
+                            paired["n"]+=1
+                            paired["candidate_abs"]+=abs(forecast-actual)
+                            paired["baseline_abs"]+=abs(baseline-actual)
+                            paired["blend_abs"]+=abs((prediction+baseline)/2-actual)
+                        elif window=="minutes_adjusted":
                             eligible=[(m,v) for _,m,v in prior_minutes if m>0]
                             if len(eligible)<MIN_PRIOR:
                                 minutes_diagnostics[market]["missing_prior_minutes"]+=1
@@ -183,6 +197,20 @@ def evaluate(data):
                 "promotion_approved":False,
                 "bet_eligible":False,
             }
+    recent_rate_diagnostics={}
+    for market,seasons in recent_rate_matched.items():
+        recent_rate_diagnostics[market]={}
+        for season,r in seasons.items():
+            n=r["n"]
+            improvement=(r["baseline_abs"]-r["candidate_abs"])/r["baseline_abs"] if r["baseline_abs"]>0 else None
+            recent_rate_diagnostics[market][season]={
+                "samples":n,"recent_rate_mae":round(r["candidate_abs"]/n,4),
+                "all_prior_mae_same_samples":round(r["baseline_abs"]/n,4),
+                "blend_50_mae_same_samples":round(r["blend_abs"]/n,4),
+                "relative_improvement_vs_all_prior":round(improvement,6) if improvement is not None else None,
+                "passes_holdout_improvement_threshold":bool(season==HOLDOUT_SEASON and n>=MIN_HOLDOUT_SAMPLES and improvement is not None and improvement>=MIN_HOLDOUT_RELATIVE_IMPROVEMENT),
+                "promotion_approved":False,"bet_eligible":False,
+            }
     window_diagnostics={
         market:{season:{window:{"samples":r["n"],
             "mae":round(r["absolute_error"]/r["n"],4),
@@ -197,7 +225,7 @@ def evaluate(data):
         if not training:
             window_selection[market]={"status":"insufficient_training_data","selected_window":None}
             continue
-        selected=min((w for w in training if w!="minutes_adjusted"),key=lambda w:(training[w]["absolute_error"]/training[w]["n"],w))
+        selected=min((w for w in training if w not in ("minutes_adjusted","minutes_recent_rate")),key=lambda w:(training[w]["absolute_error"]/training[w]["n"],w))
         held=seasons.get(HOLDOUT_SEASON,{})
         selected_holdout=held.get(selected)
         baseline_holdout=held.get("all")
@@ -254,8 +282,10 @@ def evaluate(data):
         "window_comparison_by_season":window_diagnostics,
         "minutes_workload_data_coverage":dict(minutes_diagnostics),
         "minutes_adjusted_matched_sample_audit":matched_minutes_diagnostics,
+        "recent_minutes_rate_matched_sample_audit":recent_rate_diagnostics,
+        "recent_minutes_rate_selection_eligible":False,
         "minutes_adjusted_selection_eligible":False,
-        "minutes_adjusted_selection_blocker":"Requires matched-sample evaluation and verified minutes coverage before model selection",
+        "minutes_adjusted_selection_blocker":"Research-only minutes model; requires independent validation and verified point-in-time workload inputs before selection",
         "training_selected_window_holdout_audit":window_selection,
         "research_validation_policy":{"minimum_training_half_samples":MIN_TRAIN_SPLIT_SAMPLES,"minimum_holdout_samples":MIN_HOLDOUT_SAMPLES,"minimum_relative_holdout_mae_improvement":MIN_HOLDOUT_RELATIVE_IMPROVEMENT,"promotion_requires_external_betting_validation":True},
         "method":"strict-prior-date-walk-forward-player-rolling-mean",
