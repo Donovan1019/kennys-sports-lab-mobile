@@ -1,5 +1,5 @@
 """Validate and append a copied NBA SGP JSON snapshot without inventing a bet."""
-import json,sys
+import json,sys,math
 from pathlib import Path
 from datetime import datetime,timezone
 
@@ -39,9 +39,12 @@ def ingest(record):
             raise ValueError("Missing side/player/book")
         try:
             line=float(leg["point"])
-            if not 0<=line<1000: raise ValueError("Invalid threshold")
+            if not math.isfinite(line) or not 0<=line<1000: raise ValueError("Invalid threshold")
         except (KeyError,TypeError,ValueError):
             raise ValueError("Invalid threshold")
+        price=leg.get("price")
+        if not isinstance(price,(int,float)) or isinstance(price,bool) or not math.isfinite(price) or price==0 or -100<price<100:
+            raise ValueError("Missing or invalid real American sportsbook price")
     existing=[]
     if LEDGER.exists():
         existing=[json.loads(x) for x in LEDGER.read_text().splitlines() if x.strip()]
