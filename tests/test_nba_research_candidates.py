@@ -29,6 +29,18 @@ class CandidateTests(unittest.TestCase):
         odds,history=source()
         odds["odds"][0]["commence_time"]=(NOW-timedelta(minutes=1)).isoformat()
         self.assertEqual(generate(odds,history,NOW)["predictions"],[])
+    def test_espn_abbreviation_matches_full_event_team(self):
+        odds,history=source()
+        odds["odds"][0]["event"]="Miami Heat @ Atlanta Hawks"
+        history["players"][0]["team"]="MIA"
+        self.assertEqual(len(generate(odds,history,NOW)["predictions"]),1)
+    def test_espn_abbreviation_wrong_team_blocked(self):
+        odds,history=source()
+        odds["odds"][0]["event"]="Miami Heat @ Atlanta Hawks"
+        history["players"][0]["team"]="MIL"
+        result=generate(odds,history,NOW)
+        self.assertEqual(result["predictions"],[])
+        self.assertEqual(result["rejections"]["player_team_mismatch"],1)
     def test_player_from_other_team_blocked(self):
         odds,history=source()
         history["players"][0]["team"]="Other Team"
