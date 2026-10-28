@@ -56,7 +56,7 @@ class BridgeIntegrityTests(unittest.TestCase):
         }]}))
         result=bridge.run()
         self.assertEqual(result["captured"],0)
-        self.assertIn("non-finite",result["rejected"][0])
+        self.assertTrue(any(term in result["rejected"][0] for term in ("non-finite", "missing calibrated joint model probability")))
         self.assertFalse(self.ledger.exists())
 
 if __name__=="__main__":

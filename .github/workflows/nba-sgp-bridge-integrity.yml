@@ -1,0 +1,29 @@
+name: NBA SGP Existing Engine Bridge Integrity
+on:
+  pull_request:
+    paths:
+      - 'scripts/nba_sgp_model_ledger_bridge.py'
+      - 'scripts/ingest_nba_sgp_snapshot.py'
+      - 'tests/test_nba_sgp_model_bridge.py'
+      - '.github/workflows/nba-sgp-bridge-integrity.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/nba_sgp_model_ledger_bridge.py'
+      - 'scripts/ingest_nba_sgp_snapshot.py'
+      - 'tests/test_nba_sgp_model_bridge.py'
+      - '.github/workflows/nba-sgp-bridge-integrity.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  bridge-integrity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify missing, incomplete and invalid SGP predictions fail closed
+        run: python -m unittest discover -s tests -p 'test_nba_sgp_model_bridge.py' -v
