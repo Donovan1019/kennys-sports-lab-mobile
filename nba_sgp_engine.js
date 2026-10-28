@@ -7,8 +7,8 @@ const prob=price=>price<0?(-price)/(-price+100):100/(price+100);
 const american=p=>p>=.5?'-'+Math.round(100*p/(1-p)):'+'+Math.round(100*(1-p)/p);
 const el=(tag,txt)=>{const e=document.createElement(tag);if(txt!==undefined)e.textContent=txt;return e};
 const teamName=(row)=>String(row.selection||'');
-const buckets={h2h:'Moneyline',spreads:'Spread',totals:'Game total',player_points:'Points',player_rebounds:'Rebounds',player_assists:'Assists',player_threes:'Threes'};
-const availableMarkets=new Set(['h2h','spreads','totals','player_points','player_rebounds','player_assists','player_threes']);
+const buckets={h2h:'Moneyline',spreads:'Spread',totals:'Game total',player_points:'Points',player_rebounds:'Rebounds',player_assists:'Assists',player_threes:'Threes',player_blocks:'Blocks',player_steals:'Steals',player_points_rebounds_assists:'Points + Rebounds + Assists'};
+const availableMarkets=new Set(Object.keys(buckets));
 const kickoff=g=>new Date(g.commence_time).toLocaleString('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})+' ET';
 function walkForwardAudit(historical){
  // Historical dates are newest first; evaluate each date using strictly older outcomes.
@@ -45,7 +45,7 @@ function autoSgpCards(game,rows,profiles){
  const panel=el('section');panel.style.cssText='border:2px solid #35b889;border-radius:12px;padding:12px;margin:12px 0;background:#0b2930';
  panel.append(el('h4','AUTO NBA SGP · pregame research combinations'));
  const now=Date.now(),tip=Date.parse(game.commence_time);
- const eligible=rows.filter(x=>x.market.startsWith('player_')&&x.player&&Number.isFinite(Number(x.point))&&Number.isFinite(Number(x.price))&&Number(x.price)!==0&&x.bookmaker&&Number.isFinite(Date.parse(x.updated_at))&&Date.parse(x.updated_at)<=now&&now-Date.parse(x.updated_at)<=90*60000&&now<tip&&Number.isFinite(tip)&&Number.isFinite(prob(Number(x.price)))&&prob(Number(x.price))>=.5&&prob(Number(x.price))<1&&profiles.some(p=>String(p.name||'').trim().toLowerCase()===String(x.player).trim().toLowerCase()&&Array.isArray(p.games)&&p.games.length>=8));
+ const eligible=rows.filter(x=>Object.prototype.hasOwnProperty.call(buckets,x.market)&&x.market.startsWith('player_')&&x.player&&Number.isFinite(Number(x.point))&&Number.isFinite(Number(x.price))&&Number(x.price)!==0&&x.bookmaker&&Number.isFinite(Date.parse(x.updated_at))&&Date.parse(x.updated_at)<=now&&now-Date.parse(x.updated_at)<=90*60000&&now<tip&&Number.isFinite(tip)&&Number.isFinite(prob(Number(x.price)))&&prob(Number(x.price))>=.5&&prob(Number(x.price))<1&&profiles.some(p=>String(p.name||'').trim().toLowerCase()===String(x.player).trim().toLowerCase()&&Array.isArray(p.games)&&p.games.length>=8));
  const ranked=[...eligible].sort((a,b)=>prob(Number(b.price))-prob(Number(a.price)));
  const specs=[['Safer two-leg research',2],['Balanced three-leg research',3],['Four-core research',4]];
  if(!ranked.length){panel.append(el('p','No automatic SGP cards: fresh, matched player props unavailable. No fabricated legs.'));const help=el('a','Refresh ALL NBA games — open workflow');help.href='https://github.com/Donovan1019/kennys-sports-lab-mobile/actions/workflows/refresh-nba-nhl-props.yml';help.target='_blank';help.rel='noopener noreferrer';help.style.cssText='display:inline-block;padding:10px;border:1px solid #35b889;border-radius:8px;color:#a5f4d0';panel.append(help);panel.append(el('p','Select Run workflow → nba → max_events = 0 (ALL). Each event uses paid API credits. Fresh quotes must be captured before tipoff; historical player stats do not substitute for odds.'));return panel}
