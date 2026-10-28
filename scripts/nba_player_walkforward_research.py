@@ -12,12 +12,16 @@ MIN_PRIOR=8
 WINDOWS=(5,10,20,"all","blend_25","blend_50","blend_75")
 TRAIN_SEASON="2025-26"
 HOLDOUT_SEASON="2026-27"
+MIN_TRAIN_SPLIT_SAMPLES=100
+MIN_HOLDOUT_SAMPLES=1000
+MIN_HOLDOUT_RELATIVE_IMPROVEMENT=0.01
 
 def evaluate(data):
     if not isinstance(data,dict) or data.get("source")!="espn-public-boxscore" or data.get("sport")!="nba":
         raise ValueError("Verified NBA player game-log source required")
     players=data.get("players")
     if not isinstance(players,list): raise ValueError("Missing player game logs")
+    training_error_records=defaultdict(list)
     window_errors=defaultdict(lambda:defaultdict(lambda:defaultdict(lambda:{"n":0,"absolute_error":0.0,"squared_error":0.0})))
     totals=defaultdict(lambda:{"n":0,"abs_error":0.0,"squared_error":0.0,"baseline_abs_error":0.0,"by_season":{}})
     holdout=defaultdict(lambda:defaultdict(lambda:{"n":0,"abs_error":0.0,"baseline_abs_error":0.0}))
@@ -69,6 +73,8 @@ def evaluate(data):
                         bucket["n"]+=1
                         bucket["absolute_error"]+=abs(forecast-actual)
                         bucket["squared_error"]+=(forecast-actual)**2
+                        if season==TRAIN_SEASON:
+                            training_error_records[market].append((day,str(window),abs(forecast-actual)))
                     record=totals[market]
                     record["n"]+=1
                     record["abs_error"]+=abs(prediction-actual)
@@ -147,11 +153,41 @@ def evaluate(data):
         held=seasons.get(HOLDOUT_SEASON,{})
         selected_holdout=held.get(selected)
         baseline_holdout=held.get("all")
+        # Split the training season chronologically; each candidate must improve
+        # against all-prior in BOTH disjoint training periods.
+        records=training_error_records[market]
+        training_dates=sorted({day for day,_,_ in records})
+        split_day=training_dates[len(training_dates)//2] if training_dates else None
+        halves=[defaultdict(lambda:{"n":0,"error":0.0}) for _ in range(2)]
+        for day,window,error in records:
+            half=halves[0 if day<split_day else 1]
+            half[window]["n"]+=1
+            half[window]["error"]+=error
+        stability=[]
+        for half in halves:
+            candidate=half.get(selected)
+            baseline=half.get("all")
+            enough=bool(candidate and baseline and candidate["n"]>=MIN_TRAIN_SPLIT_SAMPLES and baseline["n"]>=MIN_TRAIN_SPLIT_SAMPLES)
+            stability.append({
+                "samples":candidate["n"] if candidate else 0,
+                "selected_mae":round(candidate["error"]/candidate["n"],4) if candidate and candidate["n"] else None,
+                "baseline_mae":round(baseline["error"]/baseline["n"],4) if baseline and baseline["n"] else None,
+                "passes":bool(enough and candidate["error"]/candidate["n"]<baseline["error"]/baseline["n"]),
+            })
+        stability_passed=all(part["passes"] for part in stability)
         improvement=(baseline_holdout["absolute_error"]-selected_holdout["absolute_error"])/baseline_holdout["absolute_error"] if selected_holdout and baseline_holdout and baseline_holdout["absolute_error"]>0 else None
         window_selection[market]={
             "status":"research_only",
             "holdout_improvement_fraction":round(improvement,6) if improvement is not None else None,
-            "holdout_gate_passed":improvement is not None and improvement>0,
+            "holdout_gate_passed":bool(improvement is not None and improvement>=MIN_HOLDOUT_RELATIVE_IMPROVEMENT and selected_holdout["n"]>=MIN_HOLDOUT_SAMPLES),
+            "training_stability_passed":stability_passed,
+            "training_chronological_halves":stability,
+            "research_validation_gate_passed":bool(stability_passed and improvement is not None and improvement>=MIN_HOLDOUT_RELATIVE_IMPROVEMENT and selected_holdout["n"]>=MIN_HOLDOUT_SAMPLES),
+            "rejection_reasons":(
+                ([] if stability_passed else ["TRAINING_PERIOD_INSTABILITY_OR_INSUFFICIENT_SAMPLES"])
+                + ([] if selected_holdout and selected_holdout["n"]>=MIN_HOLDOUT_SAMPLES else ["INSUFFICIENT_HOLDOUT_SAMPLES"])
+                + ([] if improvement is not None and improvement>=MIN_HOLDOUT_RELATIVE_IMPROVEMENT else ["HOLDOUT_IMPROVEMENT_BELOW_ONE_PERCENT"])
+            ),
             "bet_eligible":False,
             "training_season":TRAIN_SEASON,
             "holdout_season":HOLDOUT_SEASON,
@@ -169,6 +205,7 @@ def evaluate(data):
         "season_holdout_diagnostics":season_metrics,
         "window_comparison_by_season":window_diagnostics,
         "training_selected_window_holdout_audit":window_selection,
+        "research_validation_policy":{"minimum_training_half_samples":MIN_TRAIN_SPLIT_SAMPLES,"minimum_holdout_samples":MIN_HOLDOUT_SAMPLES,"minimum_relative_holdout_mae_improvement":MIN_HOLDOUT_RELATIVE_IMPROVEMENT,"promotion_requires_external_betting_validation":True},
         "method":"strict-prior-date-walk-forward-player-rolling-mean",
         "minimum_prior_games":MIN_PRIOR,
         "markets":metrics,
