@@ -8,7 +8,7 @@ def source():
           "odds":[{"event_id":"game","event":"A @ B","commence_time":(NOW+timedelta(hours=6)).isoformat(),
           "updated_at":(NOW-timedelta(minutes=3)).isoformat(),"player":"Example Player",
           "market":"player_points","selection":"Over","point":19.5,"price":-110,"bookmaker":"fanduel"}]}
-    history={"sport":"nba","source":"espn-public-boxscore","players":[{"name":"Example Player",
+    history={"sport":"nba","source":"espn-public-boxscore","players":[{"name":"Example Player","team":"A",
              "games":[{"date":(NOW-timedelta(days=i)).strftime("%Y-%m-%d"),"values":{"Points":22}} for i in range(1,11)]}]}
     return odds,history
 
@@ -28,6 +28,16 @@ class CandidateTests(unittest.TestCase):
     def test_post_tipoff_blocked(self):
         odds,history=source()
         odds["odds"][0]["commence_time"]=(NOW-timedelta(minutes=1)).isoformat()
+        self.assertEqual(generate(odds,history,NOW)["predictions"],[])
+    def test_player_from_other_team_blocked(self):
+        odds,history=source()
+        history["players"][0]["team"]="Other Team"
+        result=generate(odds,history,NOW)
+        self.assertEqual(result["predictions"],[])
+        self.assertEqual(result["rejections"]["player_team_mismatch"],1)
+    def test_missing_team_blocked(self):
+        odds,history=source()
+        del history["players"][0]["team"]
         self.assertEqual(generate(odds,history,NOW)["predictions"],[])
     def test_unknown_player_blocked(self):
         odds,history=source()
