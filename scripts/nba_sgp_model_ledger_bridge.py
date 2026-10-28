@@ -124,7 +124,7 @@ def run():
             "player_history_fresh":history_fresh,
             "player_history_verified":history_verified,
             "source_blockers":source_blockers,
-            "capture_ready":bool(records) and not rejected and (captured+already_archived)==len(records),
+            "capture_ready":promotion_approved and history_verified and history_fresh and history_profiles>0 and bool(records) and not rejected and (captured+already_archived)==len(records),
             "status":"PARTIAL_REJECTED" if rejected else ("CAPTURED" if captured else ("ALREADY_ARCHIVED" if already_archived else "NO_NEW_VERIFIED_MODEL_RECOMMENDATIONS")),
             "note":"Only genuine source-recorded recommendations are archived; none are invented."}
     REPORT.write_text(json.dumps(report,indent=2)+"\n")
