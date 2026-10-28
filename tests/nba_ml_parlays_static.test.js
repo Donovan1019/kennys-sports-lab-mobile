@@ -5,6 +5,6 @@ assert.match(html,/data-nba-tab="ml"/);assert.match(html,/id="ksl-nba-ml-root"/)
 assert.match(html,/nba_ml_parlays\.js/);assert.match(js,/feed\/basketball_nba\.json/);
 assert.match(js,/data\.status!=='ok'/);assert.match(js,/dateET\(Date\.now\(\)\)/);
 assert.match(js,/simulations=10000/);assert.match(js,/Model EV: UNAVAILABLE/);
-assert.match(js,/Diamond grade: UNVERIFIED/);assert.match(js,/MIXED BOOKMAKERS/);
+assert.match(js,/Diamond grade: UNVERIFIED/);assert.match(js,/eligibleBooks/);assert.match(js,/SAME sportsbook/);
 assert.doesNotMatch(js,/data\/nba_props\.json/);
 console.log('NBA ML static integrity checks passed');
