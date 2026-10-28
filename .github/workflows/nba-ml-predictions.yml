@@ -1,0 +1,33 @@
+name: NBA ML prediction feed
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/30 * * * *'
+permissions:
+  contents: write
+concurrency:
+  group: nba-ml-predictions
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run prediction tests
+        run: python -m unittest discover -s tests -p test_nba_ml_predictions.py
+      - name: Generate fail-closed prediction feed
+        run: python scripts/build_nba_ml_predictions.py
+      - name: Validate JSON
+        run: python -m json.tool feed/nba_ml_predictions.json > /dev/null
+      - name: Publish prediction feed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add feed/nba_ml_predictions.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Update NBA ML prediction feed"
+            git push
+          fi
