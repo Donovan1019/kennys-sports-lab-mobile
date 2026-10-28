@@ -410,6 +410,11 @@
           "samples": 24140,
           "mae": 4.6921,
           "rmse": 6.1761
+        },
+        "minutes_adjusted": {
+          "samples": 24098,
+          "mae": 4.698,
+          "rmse": 6.1849
         }
       },
       "2026-27": {
@@ -447,6 +452,11 @@
           "samples": 1116,
           "mae": 4.97,
           "rmse": 6.3767
+        },
+        "minutes_adjusted": {
+          "samples": 1115,
+          "mae": 4.9177,
+          "rmse": 6.3394
         }
       }
     },
@@ -486,6 +496,11 @@
           "samples": 24140,
           "mae": 1.9268,
           "rmse": 2.5456
+        },
+        "minutes_adjusted": {
+          "samples": 24098,
+          "mae": 1.9198,
+          "rmse": 2.531
         }
       },
       "2026-27": {
@@ -523,6 +538,11 @@
           "samples": 1116,
           "mae": 2.0125,
           "rmse": 2.649
+        },
+        "minutes_adjusted": {
+          "samples": 1115,
+          "mae": 2.0162,
+          "rmse": 2.6497
         }
       }
     },
@@ -562,6 +582,11 @@
           "samples": 24140,
           "mae": 1.3723,
           "rmse": 1.8724
+        },
+        "minutes_adjusted": {
+          "samples": 24098,
+          "mae": 1.3706,
+          "rmse": 1.8685
         }
       },
       "2026-27": {
@@ -599,6 +624,11 @@
           "samples": 1116,
           "mae": 1.4228,
           "rmse": 1.8874
+        },
+        "minutes_adjusted": {
+          "samples": 1115,
+          "mae": 1.421,
+          "rmse": 1.8742
         }
       }
     },
@@ -638,6 +668,11 @@
           "samples": 24140,
           "mae": 0.9035,
           "rmse": 1.2645
+        },
+        "minutes_adjusted": {
+          "samples": 24098,
+          "mae": 0.9015,
+          "rmse": 1.2564
         }
       },
       "2026-27": {
@@ -675,10 +710,35 @@
           "samples": 1116,
           "mae": 0.9092,
           "rmse": 1.2273
+        },
+        "minutes_adjusted": {
+          "samples": 1115,
+          "mae": 0.8999,
+          "rmse": 1.2062
         }
       }
     }
   },
+  "minutes_workload_data_coverage": {
+    "Points": {
+      "eligible": 25213,
+      "missing_prior_minutes": 43
+    },
+    "Rebounds": {
+      "eligible": 25213,
+      "missing_prior_minutes": 43
+    },
+    "Assists": {
+      "eligible": 25213,
+      "missing_prior_minutes": 43
+    },
+    "Threes": {
+      "eligible": 25213,
+      "missing_prior_minutes": 43
+    }
+  },
+  "minutes_adjusted_selection_eligible": false,
+  "minutes_adjusted_selection_blocker": "Requires matched-sample evaluation and verified minutes coverage before model selection",
   "training_selected_window_holdout_audit": {
     "Points": {
       "status": "research_only",
@@ -865,5 +925,5 @@
     }
   },
   "warning": "Point-in-time sportsbook lines, injury/lineup context, calibration, joint SGP probability and independent validation are unavailable. Workload and opponent adjustments are not applied without verified point-in-time inputs. This is NOT a bet recommendation.",
-  "generated_at": "2026-10-28T13:45:25.728022+00:00"
+  "generated_at": "2026-10-28T13:50:02.936102+00:00"
 }
