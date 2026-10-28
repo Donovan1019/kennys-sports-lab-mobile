@@ -9,7 +9,7 @@ def source():
           "updated_at":(NOW-timedelta(minutes=3)).isoformat(),"player":"Example Player",
           "market":"player_points","selection":"Over","point":19.5,"price":-110,"bookmaker":"fanduel"}]}
     history={"sport":"nba","source":"espn-public-boxscore","players":[{"name":"Example Player","team":"A",
-             "games":[{"date":(NOW-timedelta(days=i)).strftime("%Y-%m-%d"),"values":{"Points":22}} for i in range(1,11)]}]}
+             "games":[{"game_id":str(i),"date":(NOW-timedelta(days=i)).strftime("%Y-%m-%d"),"values":{"Points":22}} for i in range(1,11)]}]}
     return odds,history
 
 class CandidateTests(unittest.TestCase):
@@ -51,9 +51,27 @@ class CandidateTests(unittest.TestCase):
         odds,history=source()
         del history["players"][0]["team"]
         self.assertEqual(generate(odds,history,NOW)["predictions"],[])
+    def test_same_day_result_does_not_enter_history(self):
+        odds,history=source()
+        history["players"][0]["games"]=history["players"][0]["games"][:7]+[
+            {"game_id":"today","date":NOW.strftime("%Y-%m-%d"),"values":{"Points":22}}]
+        self.assertEqual(generate(odds,history,NOW)["predictions"],[])
+    def test_duplicate_game_ids_not_counted_twice(self):
+        odds,history=source()
+        for game in history["players"][0]["games"]:
+            game["game_id"]="same"
+        self.assertEqual(generate(odds,history,NOW)["predictions"],[])
+    def test_duplicate_player_names_rejected(self):
+        odds,history=source()
+        history["players"].append(dict(history["players"][0]))
+        result=generate(odds,history,NOW)
+        self.assertEqual(result["predictions"],[])
+        self.assertEqual(result["rejections"]["ambiguous_player_identity"],1)
     def test_unknown_player_blocked(self):
         odds,history=source()
         odds["odds"][0]["player"]="Unknown Player"
-        self.assertEqual(generate(odds,history,NOW)["predictions"],[])
+        result=generate(odds,history,NOW)
+        self.assertEqual(result["predictions"],[])
+        self.assertEqual(result["unmatched_player_names"],["Unknown Player"])
 
 if __name__=="__main__":unittest.main()

@@ -75,8 +75,14 @@ def generate(odds, history, now):
     fetched=stamp(odds.get("fetched_at"))
     if not fetched or not 0<=(now-fetched).total_seconds()<=5400:
         reject("stale_feed");return output
-    profiles={str(p.get("name","")).casefold().strip():p for p in history.get("players",[]) if isinstance(p,dict)}
+    profiles={}
+    for profile in history.get("players",[]):
+        if not isinstance(profile,dict):continue
+        name=str(profile.get("name","")).casefold().strip()
+        if not name:continue
+        profiles.setdefault(name,[]).append(profile)
     seen=set()
+    unmatched_players=set()
     for row in odds.get("odds",[]):
         if not isinstance(row,dict):reject("invalid_row");continue
         market=MARKETS.get(row.get("market"))
@@ -90,8 +96,14 @@ def generate(odds, history, now):
         point=row.get("point")
         if type(point) not in (int,float) or row.get("selection") not in ("Over","Under"):
             reject("invalid_line");continue
-        profile=profiles.get(str(row.get("player","")).casefold().strip())
-        if not profile:reject("player_not_matched");continue
+        matches=profiles.get(str(row.get("player","")).casefold().strip(),[])
+        if not matches:
+            reject("player_not_matched")
+            unmatched_players.add(str(row.get("player","")))
+            continue
+        if len(matches)!=1:
+            reject("ambiguous_player_identity");continue
+        profile=matches[0]
         # A player's historical team must belong to the quoted matchup.
         # Reject ambiguous names, abbreviations and missing team assignments.
         event=row.get("event")
@@ -102,11 +114,17 @@ def generate(odds, history, now):
         if team not in (away,home):
             reject("player_team_mismatch");continue
         games=[]
+        game_ids=set()
         for game in profile.get("games",[]):
             if not isinstance(game,dict):continue
             date=stamp(str(game.get("date",""))+"T00:00:00Z")
             value=(game.get("values") or {}).get(market)
-            if date and date<now and type(value) in (int,float) and value>=0:
+            # Only fully prior calendar days are eligible: today's completed
+            # results cannot leak into another same-day pregame estimate.
+            game_id=str(game.get("game_id") or "")
+            if not game_id or game_id in game_ids:continue
+            if date and date.date()<now.date() and type(value) in (int,float) and value>=0:
+                game_ids.add(game_id)
                 games.append((date,value))
         games.sort(key=lambda g:g[0])
         if len(games)<8 or (now-games[-1][0]).days>21:
@@ -124,6 +142,7 @@ def generate(odds, history, now):
             "model_probability":None,"ev":None,"sgp_joint_probability":None,
             "research_only":True,"bet_eligible":False,
             "warning":"Retrospective hit rate at current line, not calibrated or point-in-time validated. No injury/lineup verification."})
+    output["unmatched_player_names"]=sorted(unmatched_players)
     output["predictions"].sort(key=lambda p:(-p["historical_hit_rate"],-p["sample_size"],p["player"]))
     return output
 
