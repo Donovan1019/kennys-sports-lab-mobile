@@ -61,6 +61,19 @@ class CandidateTests(unittest.TestCase):
         for game in history["players"][0]["games"]:
             game["game_id"]="same"
         self.assertEqual(generate(odds,history,NOW)["predictions"],[])
+    def test_punctuation_alias_matches(self):
+        odds,history=source()
+        odds["odds"][0]["player"]="C.J. McCollum"
+        history["players"][0]["name"]="CJ McCollum"
+        self.assertEqual(len(generate(odds,history,NOW)["predictions"]),1)
+    def test_alias_collision_rejected(self):
+        odds,history=source()
+        odds["odds"][0]["player"]="C.J. McCollum"
+        history["players"][0]["name"]="CJ McCollum"
+        history["players"].append({**history["players"][0],"name":"C. J. McCollum"})
+        result=generate(odds,history,NOW)
+        self.assertEqual(result["predictions"],[])
+        self.assertEqual(result["rejections"]["ambiguous_player_identity"],1)
     def test_duplicate_player_names_rejected(self):
         odds,history=source()
         history["players"].append(dict(history["players"][0]))
