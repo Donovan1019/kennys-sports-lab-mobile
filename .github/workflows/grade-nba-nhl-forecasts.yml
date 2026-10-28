@@ -50,6 +50,8 @@ jobs:
         run: python -m scripts.market_consensus
       - name: Capture NFL pregame research when verified consensus is available
         run: python -m scripts.nfl_pregame_research
+      - name: Grade NBA pregame player props and saved SGPs against verified boxscores
+        run: python -m scripts.grade_nba_sgp_props
       - name: Score previously archived pregame forecasts
         run: python -m scripts.forecast_ledger
       - name: Explain pending versus unmatched forecast outcomes
@@ -71,6 +73,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add feed/nba_completed_games.json feed/nhl_completed_games.json
+          git add feed/nba_prop_pregame_grades.json feed/nba_sgp_pregame_grades.json
           if [ -s feed/nba_player_stats.json ]; then git add feed/nba_player_stats.json; fi
           if [ -s feed/nfl_player_stats.json ]; then git add feed/nfl_player_stats.json; fi
           if [ -s feed/nhl_official_player_stats.json ]; then git add feed/nhl_official_player_stats.json; fi
