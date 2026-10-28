@@ -17,6 +17,10 @@ def evaluate(data):
     if not isinstance(players,list): raise ValueError("Missing player game logs")
     totals=defaultdict(lambda:{"n":0,"abs_error":0.0,"squared_error":0.0,"baseline_abs_error":0.0,"by_season":{}})
     holdout=defaultdict(lambda:defaultdict(lambda:{"n":0,"abs_error":0.0,"baseline_abs_error":0.0}))
+    thresholds=defaultdict(lambda:defaultdict(lambda:{"n":0,"over":0,"under":0,"push":0}))
+    # Fixed research thresholds only: no sportsbook quote, vig, or wager eligibility.
+    reference_lines={"Points":(9.5,19.5,29.5),"Rebounds":(4.5,7.5,10.5),
+        "Assists":(3.5,5.5,8.5),"Threes":(1.5,2.5,3.5)}
     seen=set()
     for player in players:
         if not isinstance(player,dict): continue
@@ -53,6 +57,13 @@ def evaluate(data):
                     record["abs_error"]+=abs(prediction-actual)
                     record["squared_error"]+=(prediction-actual)**2
                     record["baseline_abs_error"]+=abs(baseline-actual)
+                    for line in reference_lines[market]:
+                        if len(prior)>=MIN_PRIOR:
+                            t=thresholds[market][str(line)]
+                            t["n"]+=1
+                            if actual>line:t["over"]+=1
+                            elif actual<line:t["under"]+=1
+                            else:t["push"]+=1
                     block=holdout[market][season]
                     block["n"]+=1
                     block["abs_error"]+=abs(prediction-actual)
@@ -72,7 +83,11 @@ def evaluate(data):
         season_metrics[market]={season:{"samples":r["n"],"mae_last_10":round(r["abs_error"]/r["n"],4),
             "mae_all_prior_baseline":round(r["baseline_abs_error"]/r["n"],4)}
             for season,r in blocks.items() if r["n"]}
+    threshold_metrics={market:{line:{"samples":v["n"],"over_rate":round(v["over"]/v["n"],4),
+        "under_rate":round(v["under"]/v["n"],4),"pushes":v["push"]}
+        for line,v in lines.items() if v["n"]} for market,lines in thresholds.items()}
     return {"status":"research_only","promotion_approved":False,
+        "fixed_reference_threshold_outcomes":threshold_metrics,
         "season_holdout_diagnostics":season_metrics,
         "method":"strict-prior-date-walk-forward-player-rolling-mean",
         "minimum_prior_games":MIN_PRIOR,
