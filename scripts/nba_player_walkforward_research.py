@@ -16,6 +16,8 @@ MIN_TRAIN_SPLIT_SAMPLES=100
 MIN_HOLDOUT_SAMPLES=1000
 MIN_HOLDOUT_RELATIVE_IMPROVEMENT=0.01
 MIN_SEGMENT_HOLDOUT_SAMPLES=100
+FROZEN_FORWARD_SEGMENTS=("low_under_20","change:drop_over_15pct")
+FORWARD_START_DATE="2026-10-29"
 
 def evaluate(data):
     if not isinstance(data,dict) or data.get("source")!="espn-public-boxscore" or data.get("sport")!="nba":
@@ -23,6 +25,7 @@ def evaluate(data):
     players=data.get("players")
     if not isinstance(players,list): raise ValueError("Missing player game logs")
     workload_segments=defaultdict(lambda:defaultdict(lambda:defaultdict(lambda:{"n":0,"recent_rate_abs":0.0,"baseline_abs":0.0})))
+    forward_segments=defaultdict(lambda:defaultdict(lambda:{"n":0,"candidate_abs":0.0,"baseline_abs":0.0,"recent_10_abs":0.0}))
     recent_rate_matched=defaultdict(lambda:defaultdict(lambda:{"n":0,"candidate_abs":0.0,"baseline_abs":0.0,"blend_abs":0.0}))
     matched_minutes=defaultdict(lambda:defaultdict(lambda:{"n":0,"minutes_abs":0.0,"all_abs":0.0,"blend_abs":0.0,"minutes_wins":0,"all_wins":0,"ties":0}))
     minutes_diagnostics=defaultdict(lambda:{"eligible":0,"missing_prior_minutes":0})
@@ -95,6 +98,12 @@ def evaluate(data):
                                 segment["n"]+=1
                                 segment["recent_rate_abs"]+=abs(forecast-actual)
                                 segment["baseline_abs"]+=abs(baseline-actual)
+                                if day>=FORWARD_START_DATE and season==HOLDOUT_SEASON and label in FROZEN_FORWARD_SEGMENTS:
+                                    future=forward_segments[market][label]
+                                    future["n"]+=1
+                                    future["candidate_abs"]+=abs(forecast-actual)
+                                    future["baseline_abs"]+=abs(baseline-actual)
+                                    future["recent_10_abs"]+=abs(prediction-actual)
                         elif window=="minutes_adjusted":
                             eligible=[(m,v) for _,m,v in prior_minutes if m>0]
                             if len(eligible)<MIN_PRIOR:
@@ -304,6 +313,19 @@ def evaluate(data):
             "holdout_all_prior_mae":round(baseline_holdout["absolute_error"]/baseline_holdout["n"],4) if baseline_holdout else None,
             "beats_holdout_all_prior":(selected_holdout["absolute_error"]<baseline_holdout["absolute_error"]) if selected_holdout and baseline_holdout else None,
         }
+    forward_report={}
+    for market in MARKETS:
+        forward_report[market]={}
+        for label in FROZEN_FORWARD_SEGMENTS:
+            r=forward_segments[market][label]
+            n=r["n"]
+            forward_report[market][label]={
+                "samples":n,
+                "candidate_mae":round(r["candidate_abs"]/n,4) if n else None,
+                "all_prior_mae":round(r["baseline_abs"]/n,4) if n else None,
+                "recent_10_mae":round(r["recent_10_abs"]/n,4) if n else None,
+                "improves_over_both_baselines":bool(n>=MIN_SEGMENT_HOLDOUT_SAMPLES and r["candidate_abs"]<=0.99*r["baseline_abs"] and r["candidate_abs"]<=0.99*r["recent_10_abs"]),
+                "promotion_approved":False,"bet_eligible":False}
     segment_summary={}
     for market,seasons in workload_segment_diagnostics.items():
         segments=seasons.get(HOLDOUT_SEASON,{})
@@ -317,6 +339,7 @@ def evaluate(data):
         }
     return {"status":"research_only","promotion_approved":False,
         "recent_minutes_segment_holdout_summary":segment_summary,
+        "frozen_forward_segment_audit":{"start_date":FORWARD_START_DATE,"segments":list(FROZEN_FORWARD_SEGMENTS),"markets":forward_report,"minimum_samples":MIN_SEGMENT_HOLDOUT_SAMPLES,"selection_frozen_before_forward_start":True,"promotion_approved":False},
         "fixed_reference_threshold_probability_research":brier_metrics,
         "fixed_reference_threshold_probability_by_season":season_probability_metrics,
         "fixed_reference_threshold_outcomes":threshold_metrics,
