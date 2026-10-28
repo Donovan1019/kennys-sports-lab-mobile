@@ -120,6 +120,9 @@ def grade_saved_sgps(rows,crosswalk,lookup):
                     records.append(item)
             except json.JSONDecodeError:
                 continue
+    # SGP-only slates must resolve ESPN events even when the single-prop ledger is empty.
+    sgp_crosswalk=build_crosswalk(records)
+    crosswalk={**crosswalk,**sgp_crosswalk}
     output=[]
     for item in records:
         legs=item.get("legs")
