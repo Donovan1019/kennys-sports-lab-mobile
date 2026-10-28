@@ -41,6 +41,32 @@ function historicalJoint(legs,profiles){
  const outcomes=dates.map(d=>Number(legs.every((leg,i)=>{const v=series[i].get(d),line=Number(leg.point);return /over/i.test(leg.selection)?v>line:v<line})));
  const hits=outcomes.reduce((a,b)=>a+b,0);return {available:true,hits,n:dates.length,outcomes};
 }
+function autoSgpCards(game,rows,profiles){
+ const panel=el('section');panel.style.cssText='border:2px solid #35b889;border-radius:12px;padding:12px;margin:12px 0;background:#0b2930';
+ panel.append(el('h4','AUTO NBA SGP · pregame research combinations'));
+ const now=Date.now(),tip=Date.parse(game.commence_time);
+ const eligible=rows.filter(x=>x.market.startsWith('player_')&&x.player&&Number.isFinite(Number(x.point))&&Number.isFinite(Number(x.price))&&Number(x.price)!==0&&x.bookmaker&&Number.isFinite(Date.parse(x.updated_at))&&Date.parse(x.updated_at)<=now&&now-Date.parse(x.updated_at)<=90*60000&&now<tip&&Number.isFinite(tip)&&Number.isFinite(prob(Number(x.price)))&&prob(Number(x.price))>=.5&&prob(Number(x.price))<1&&profiles.some(p=>String(p.name||'').trim().toLowerCase()===String(x.player).trim().toLowerCase()&&Array.isArray(p.games)&&p.games.length>=8));
+ const ranked=[...eligible].sort((a,b)=>prob(Number(b.price))-prob(Number(a.price)));
+ const specs=[['Safer two-leg research',2],['Balanced three-leg research',3],['Four-core research',4]];
+ if(!ranked.length){panel.append(el('p','No automatic SGP cards: fresh, matched player props unavailable. Refresh verified quotes. No fabricated legs.'));return panel}
+ for(const [label,count] of specs){
+  const selected=[],used=new Set(),usedMarkets=new Set();
+  for(const x of ranked){
+   const identity=String(x.player).trim().toLowerCase(),key=identity+'|'+x.market;
+   if(used.has(identity)||usedMarkets.has(x.market)||selected.some(y=>String(y.player).trim().toLowerCase()===identity&&y.market===x.market))continue;
+   selected.push(x);used.add(identity);usedMarkets.add(x.market);
+   if(selected.length===count)break;
+  }
+  const card=el('div');card.style.cssText='border:1px solid #42677b;border-radius:10px;padding:10px;margin:10px 0';
+  card.append(el('strong',label+' · '+(selected.length===count?'AUTO GENERATED':'INSUFFICIENT MARKETS')));
+  if(selected.length!==count){card.append(el('p','Only '+selected.length+'/'+count+' distinct-player and distinct-market legs verified. No complete parlay displayed.'));panel.append(card);continue}
+  for(const x of selected){const line=el('p',x.player+' · '+buckets[x.market]+' '+x.selection+' '+x.point+' · '+x.bookmaker+' '+(Number(x.price)>0?'+':'')+x.price);line.style.cssText='margin:7px 0;padding:6px;border-bottom:1px solid #315163';card.append(line)}
+  card.append(el('p','ORDERING: sportsbook implied probability only, not model confidence. SGP bookmaker price UNAVAILABLE · joint probability UNAVAILABLE · Monte Carlo validation UNAVAILABLE · fair odds/EV UNAVAILABLE · injury and lineup verification UNAVAILABLE · NOT BET ELIGIBLE.'));
+  const copy=el('button','Copy research legs');copy.type='button';copy.addEventListener('click',()=>{const content=game.event+' · '+kickoff(game)+'\\n'+selected.map(x=>x.player+' '+buckets[x.market]+' '+x.selection+' '+x.point+' ('+x.bookmaker+' '+x.price+')').join('\\n')+'\\nRESEARCH ONLY — NOT BET ELIGIBLE; no SGP price or EV';if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(content).catch(()=>{copy.textContent='Clipboard unavailable'})});card.append(copy);panel.append(card);
+ }
+ panel.append(el('p','Automatic research cards are refreshed when the page loads or becomes visible. They are not sportsbook-verified parlays; stale or missing markets fail closed.'));
+ return panel;
+}
 function renderGame(game,rows,playerProfiles){
  const section=el('article');section.style.cssText='border:1px solid #42677b;border-radius:12px;padding:14px;margin:14px 0;background:#10283a';
  const title=el('h3',game.event+' · '+kickoff(game));section.append(title);
