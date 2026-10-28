@@ -30,6 +30,7 @@ class BridgeIntegrityTests(unittest.TestCase):
         self.assertFalse(result["capture_ready"])
         self.assertEqual(result["rejected_count"],0)
         self.assertFalse(self.ledger.exists())
+        self.assertFalse(result["capture_ready"])
         self.assertEqual(json.loads(self.report.read_text())["status"],"NO_NEW_VERIFIED_MODEL_RECOMMENDATIONS")
 
     def test_research_only_without_simulation_cannot_be_promoted(self):
