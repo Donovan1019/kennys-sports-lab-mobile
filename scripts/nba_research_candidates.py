@@ -49,6 +49,15 @@ def generate(odds, history, now):
             reject("invalid_line");continue
         profile=profiles.get(str(row.get("player","")).casefold().strip())
         if not profile:reject("player_not_matched");continue
+        # A player's historical team must belong to the quoted matchup.
+        # Reject ambiguous names, abbreviations and missing team assignments.
+        event=row.get("event")
+        team=str(profile.get("team") or "").strip().casefold()
+        if not isinstance(event,str) or event.count(" @ ")!=1 or not team:
+            reject("unverified_matchup");continue
+        away,home=(part.strip().casefold() for part in event.split(" @ "))
+        if team not in (away,home):
+            reject("player_team_mismatch");continue
         games=[]
         for game in profile.get("games",[]):
             if not isinstance(game,dict):continue
