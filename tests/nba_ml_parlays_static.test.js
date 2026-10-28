@@ -7,4 +7,4 @@ assert.match(js,/data\.status!=='ok'/);assert.match(js,/dateET\(Date\.now\(\)\)/
 assert.match(js,/simulations=10000/);assert.match(js,/Model EV: UNAVAILABLE/);
 assert.match(js,/Diamond grade: UNVERIFIED/);assert.match(js,/eligibleBooks/);assert.match(js,/SAME sportsbook/);
 assert.doesNotMatch(js,/data\/nba_props\.json/);
-console.log('NBA ML static integrity checks passed');
+assert.match(js,/feed\/nba_ml_predictions\.json/);assert.match(js,/calibration_passed===true/);assert.match(js,/NOT BET ELIGIBLE/);assert.match(js,/hasModel/);console.log('NBA ML static integrity checks passed');
