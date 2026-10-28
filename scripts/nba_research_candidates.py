@@ -88,7 +88,9 @@ def generate(odds, history, now):
         output["feed_freshness"]={"status":"future_timestamp","fetched_at":fetched.isoformat(),"age_seconds":round(age,1),"max_age_seconds":5400}
         reject("future_feed_timestamp");return output
     if age>5400:
-        output["feed_freshness"]={"status":"stale","fetched_at":fetched.isoformat(),"age_seconds":round(age,1),"max_age_seconds":5400}
+        output["feed_freshness"]={"status":"stale","fetched_at":fetched.isoformat(),"age_seconds":round(age,1),"max_age_seconds":5400,
+                                  "recovery_workflow":"refresh-nba-nhl-props.yml",
+                                  "recovery_note":"Refresh verified sportsbook quotes; never change fetched_at without fetching fresh quotes."}
         reject("stale_feed");return output
     output["feed_freshness"]={"status":"fresh","fetched_at":fetched.isoformat(),"age_seconds":round(age,1),"max_age_seconds":5400}
     profiles={}
