@@ -373,6 +373,238 @@
       }
     }
   },
+  "window_comparison_by_season": {
+    "Points": {
+      "2025-26": {
+        "5": {
+          "samples": 24140,
+          "mae": 4.8768,
+          "rmse": 6.4271
+        },
+        "10": {
+          "samples": 24140,
+          "mae": 4.7309,
+          "rmse": 6.2325
+        },
+        "20": {
+          "samples": 24140,
+          "mae": 4.7163,
+          "rmse": 6.2023
+        },
+        "all": {
+          "samples": 24140,
+          "mae": 4.7649,
+          "rmse": 6.2666
+        }
+      },
+      "2026-27": {
+        "5": {
+          "samples": 1116,
+          "mae": 5.2113,
+          "rmse": 6.8219
+        },
+        "10": {
+          "samples": 1116,
+          "mae": 5.1241,
+          "rmse": 6.6014
+        },
+        "20": {
+          "samples": 1116,
+          "mae": 5.0637,
+          "rmse": 6.4814
+        },
+        "all": {
+          "samples": 1116,
+          "mae": 4.8851,
+          "rmse": 6.1882
+        }
+      }
+    },
+    "Rebounds": {
+      "2025-26": {
+        "5": {
+          "samples": 24140,
+          "mae": 2.0077,
+          "rmse": 2.6574
+        },
+        "10": {
+          "samples": 24140,
+          "mae": 1.946,
+          "rmse": 2.5727
+        },
+        "20": {
+          "samples": 24140,
+          "mae": 1.9304,
+          "rmse": 2.5464
+        },
+        "all": {
+          "samples": 24140,
+          "mae": 1.9361,
+          "rmse": 2.5556
+        }
+      },
+      "2026-27": {
+        "5": {
+          "samples": 1116,
+          "mae": 2.1133,
+          "rmse": 2.8231
+        },
+        "10": {
+          "samples": 1116,
+          "mae": 2.0544,
+          "rmse": 2.7195
+        },
+        "20": {
+          "samples": 1116,
+          "mae": 2.0183,
+          "rmse": 2.6556
+        },
+        "all": {
+          "samples": 1116,
+          "mae": 1.9896,
+          "rmse": 2.5772
+        }
+      }
+    },
+    "Assists": {
+      "2025-26": {
+        "5": {
+          "samples": 24140,
+          "mae": 1.4197,
+          "rmse": 1.9441
+        },
+        "10": {
+          "samples": 24140,
+          "mae": 1.3846,
+          "rmse": 1.8924
+        },
+        "20": {
+          "samples": 24140,
+          "mae": 1.3785,
+          "rmse": 1.8791
+        },
+        "all": {
+          "samples": 24140,
+          "mae": 1.3815,
+          "rmse": 1.8848
+        }
+      },
+      "2026-27": {
+        "5": {
+          "samples": 1116,
+          "mae": 1.5159,
+          "rmse": 2.0377
+        },
+        "10": {
+          "samples": 1116,
+          "mae": 1.4656,
+          "rmse": 1.9543
+        },
+        "20": {
+          "samples": 1116,
+          "mae": 1.4303,
+          "rmse": 1.9013
+        },
+        "all": {
+          "samples": 1116,
+          "mae": 1.3877,
+          "rmse": 1.8078
+        }
+      }
+    },
+    "Threes": {
+      "2025-26": {
+        "5": {
+          "samples": 24140,
+          "mae": 0.939,
+          "rmse": 1.3277
+        },
+        "10": {
+          "samples": 24140,
+          "mae": 0.9108,
+          "rmse": 1.2792
+        },
+        "20": {
+          "samples": 24140,
+          "mae": 0.9014,
+          "rmse": 1.2611
+        },
+        "all": {
+          "samples": 24140,
+          "mae": 0.9039,
+          "rmse": 1.2603
+        }
+      },
+      "2026-27": {
+        "5": {
+          "samples": 1116,
+          "mae": 0.9231,
+          "rmse": 1.2887
+        },
+        "10": {
+          "samples": 1116,
+          "mae": 0.922,
+          "rmse": 1.2567
+        },
+        "20": {
+          "samples": 1116,
+          "mae": 0.9169,
+          "rmse": 1.2307
+        },
+        "all": {
+          "samples": 1116,
+          "mae": 0.9053,
+          "rmse": 1.2026
+        }
+      }
+    }
+  },
+  "training_selected_window_holdout_audit": {
+    "Points": {
+      "status": "research_only",
+      "training_season": "2025-26",
+      "holdout_season": "2026-27",
+      "selected_window": "20",
+      "training_samples": 24140,
+      "holdout_samples": 1116,
+      "holdout_mae": 5.0637,
+      "holdout_all_prior_mae": 4.8851,
+      "beats_holdout_all_prior": false
+    },
+    "Rebounds": {
+      "status": "research_only",
+      "training_season": "2025-26",
+      "holdout_season": "2026-27",
+      "selected_window": "20",
+      "training_samples": 24140,
+      "holdout_samples": 1116,
+      "holdout_mae": 2.0183,
+      "holdout_all_prior_mae": 1.9896,
+      "beats_holdout_all_prior": false
+    },
+    "Assists": {
+      "status": "research_only",
+      "training_season": "2025-26",
+      "holdout_season": "2026-27",
+      "selected_window": "20",
+      "training_samples": 24140,
+      "holdout_samples": 1116,
+      "holdout_mae": 1.4303,
+      "holdout_all_prior_mae": 1.3877,
+      "beats_holdout_all_prior": false
+    },
+    "Threes": {
+      "status": "research_only",
+      "training_season": "2025-26",
+      "holdout_season": "2026-27",
+      "selected_window": "20",
+      "training_samples": 24140,
+      "holdout_samples": 1116,
+      "holdout_mae": 0.9169,
+      "holdout_all_prior_mae": 0.9053,
+      "beats_holdout_all_prior": false
+    }
+  },
   "method": "strict-prior-date-walk-forward-player-rolling-mean",
   "minimum_prior_games": 8,
   "markets": {
@@ -418,5 +650,5 @@
     }
   },
   "warning": "Point-in-time sportsbook lines, injury/lineup context, calibration, joint SGP probability and independent validation are unavailable. This is NOT a bet recommendation.",
-  "generated_at": "2026-10-28T13:25:24.223412+00:00"
+  "generated_at": "2026-10-28T13:31:30.877131+00:00"
 }
