@@ -415,6 +415,11 @@
           "samples": 24098,
           "mae": 4.698,
           "rmse": 6.1849
+        },
+        "minutes_recent_rate": {
+          "samples": 24098,
+          "mae": 4.7348,
+          "rmse": 6.234
         }
       },
       "2026-27": {
@@ -457,6 +462,11 @@
           "samples": 1115,
           "mae": 4.9177,
           "rmse": 6.3394
+        },
+        "minutes_recent_rate": {
+          "samples": 1115,
+          "mae": 5.1286,
+          "rmse": 6.6016
         }
       }
     },
@@ -501,6 +511,11 @@
           "samples": 24098,
           "mae": 1.9198,
           "rmse": 2.531
+        },
+        "minutes_recent_rate": {
+          "samples": 24098,
+          "mae": 1.9468,
+          "rmse": 2.5726
         }
       },
       "2026-27": {
@@ -543,6 +558,11 @@
           "samples": 1115,
           "mae": 2.0162,
           "rmse": 2.6497
+        },
+        "minutes_recent_rate": {
+          "samples": 1115,
+          "mae": 2.0549,
+          "rmse": 2.7181
         }
       }
     },
@@ -587,6 +607,11 @@
           "samples": 24098,
           "mae": 1.3706,
           "rmse": 1.8685
+        },
+        "minutes_recent_rate": {
+          "samples": 24098,
+          "mae": 1.3862,
+          "rmse": 1.8934
         }
       },
       "2026-27": {
@@ -629,6 +654,11 @@
           "samples": 1115,
           "mae": 1.421,
           "rmse": 1.8742
+        },
+        "minutes_recent_rate": {
+          "samples": 1115,
+          "mae": 1.4677,
+          "rmse": 1.9553
         }
       }
     },
@@ -673,6 +703,11 @@
           "samples": 24098,
           "mae": 0.9015,
           "rmse": 1.2564
+        },
+        "minutes_recent_rate": {
+          "samples": 24098,
+          "mae": 0.9117,
+          "rmse": 1.2797
         }
       },
       "2026-27": {
@@ -715,6 +750,11 @@
           "samples": 1115,
           "mae": 0.8999,
           "rmse": 1.2062
+        },
+        "minutes_recent_rate": {
+          "samples": 1115,
+          "mae": 0.9229,
+          "rmse": 1.2572
         }
       }
     }
@@ -851,8 +891,99 @@
       }
     }
   },
+  "recent_minutes_rate_matched_sample_audit": {
+    "Points": {
+      "2025-26": {
+        "samples": 24098,
+        "recent_rate_mae": 4.7348,
+        "all_prior_mae_same_samples": 4.7675,
+        "blend_50_mae_same_samples": 4.6876,
+        "relative_improvement_vs_all_prior": 0.006859,
+        "passes_holdout_improvement_threshold": false,
+        "promotion_approved": false,
+        "bet_eligible": false
+      },
+      "2026-27": {
+        "samples": 1115,
+        "recent_rate_mae": 5.1286,
+        "all_prior_mae_same_samples": 4.8884,
+        "blend_50_mae_same_samples": 4.8905,
+        "relative_improvement_vs_all_prior": -0.049126,
+        "passes_holdout_improvement_threshold": false,
+        "promotion_approved": false,
+        "bet_eligible": false
+      }
+    },
+    "Rebounds": {
+      "2025-26": {
+        "samples": 24098,
+        "recent_rate_mae": 1.9468,
+        "all_prior_mae_same_samples": 1.9367,
+        "blend_50_mae_same_samples": 1.9187,
+        "relative_improvement_vs_all_prior": -0.005219,
+        "passes_holdout_improvement_threshold": false,
+        "promotion_approved": false,
+        "bet_eligible": false
+      },
+      "2026-27": {
+        "samples": 1115,
+        "recent_rate_mae": 2.0549,
+        "all_prior_mae_same_samples": 1.9908,
+        "blend_50_mae_same_samples": 1.9876,
+        "relative_improvement_vs_all_prior": -0.032219,
+        "passes_holdout_improvement_threshold": false,
+        "promotion_approved": false,
+        "bet_eligible": false
+      }
+    },
+    "Assists": {
+      "2025-26": {
+        "samples": 24098,
+        "recent_rate_mae": 1.3862,
+        "all_prior_mae_same_samples": 1.3822,
+        "blend_50_mae_same_samples": 1.3679,
+        "relative_improvement_vs_all_prior": -0.002879,
+        "passes_holdout_improvement_threshold": false,
+        "promotion_approved": false,
+        "bet_eligible": false
+      },
+      "2026-27": {
+        "samples": 1115,
+        "recent_rate_mae": 1.4677,
+        "all_prior_mae_same_samples": 1.3882,
+        "blend_50_mae_same_samples": 1.3931,
+        "relative_improvement_vs_all_prior": -0.057289,
+        "passes_holdout_improvement_threshold": false,
+        "promotion_approved": false,
+        "bet_eligible": false
+      }
+    },
+    "Threes": {
+      "2025-26": {
+        "samples": 24098,
+        "recent_rate_mae": 0.9117,
+        "all_prior_mae_same_samples": 0.9047,
+        "blend_50_mae_same_samples": 0.9004,
+        "relative_improvement_vs_all_prior": -0.007811,
+        "passes_holdout_improvement_threshold": false,
+        "promotion_approved": false,
+        "bet_eligible": false
+      },
+      "2026-27": {
+        "samples": 1115,
+        "recent_rate_mae": 0.9229,
+        "all_prior_mae_same_samples": 0.9061,
+        "blend_50_mae_same_samples": 0.9032,
+        "relative_improvement_vs_all_prior": -0.018572,
+        "passes_holdout_improvement_threshold": false,
+        "promotion_approved": false,
+        "bet_eligible": false
+      }
+    }
+  },
+  "recent_minutes_rate_selection_eligible": false,
   "minutes_adjusted_selection_eligible": false,
-  "minutes_adjusted_selection_blocker": "Requires matched-sample evaluation and verified minutes coverage before model selection",
+  "minutes_adjusted_selection_blocker": "Research-only minutes model; requires independent validation and verified point-in-time workload inputs before selection",
   "training_selected_window_holdout_audit": {
     "Points": {
       "status": "research_only",
@@ -1039,5 +1170,5 @@
     }
   },
   "warning": "Point-in-time sportsbook lines, injury/lineup context, calibration, joint SGP probability and independent validation are unavailable. Workload and opponent adjustments are not applied without verified point-in-time inputs. This is NOT a bet recommendation.",
-  "generated_at": "2026-10-28T19:20:18.629832+00:00"
+  "generated_at": "2026-10-28T19:27:09.700156+00:00"
 }
