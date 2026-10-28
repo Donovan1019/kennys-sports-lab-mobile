@@ -50,6 +50,20 @@ class BridgeIntegrityTests(unittest.TestCase):
         self.assertFalse(result["capture_ready"])
         self.assertFalse(self.ledger.exists())
 
+    def test_unvalidated_walkforward_cannot_be_archived(self):
+        self.source.write_text(json.dumps({"recommendations":[{
+            "sgp_id":"test-only-unvalidated",
+            "model_recommendation":True,"research_only":True,"bet_eligible":False,
+            "model_probability":0.55,"joint_simulation_id":"test-only",
+            "correlation_model_version":"test-only","simulation_validated":True,
+            "backtest":{"method":"walk_forward","passed":False,"sample_size":100,"brier":0.2},
+            "simulations":10000
+        }]}))
+        result=bridge.run()
+        self.assertEqual(result["captured"],0)
+        self.assertIn("walk-forward",result["rejected"][0])
+        self.assertFalse(self.ledger.exists())
+
     def test_nonfinite_joint_probability_rejected(self):
         self.source.write_text(json.dumps({"recommendations":[{
             "sgp_id":"test-only-nonfinite",
