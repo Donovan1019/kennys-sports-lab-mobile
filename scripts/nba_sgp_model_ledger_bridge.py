@@ -43,6 +43,17 @@ def run():
                 raise ValueError("missing joint simulation or correlation provenance")
             if row.get("simulation_validated") is not True:
                 raise ValueError("joint simulation not validated")
+            evidence=row.get("backtest")
+            if not isinstance(evidence,dict) or evidence.get("method")!="walk_forward" or evidence.get("passed") is not True:
+                raise ValueError("missing independent walk-forward validation")
+            if type(evidence.get("sample_size")) is not int or evidence["sample_size"]<100:
+                raise ValueError("insufficient independent validation sample")
+            brier=evidence.get("brier")
+            if not isinstance(brier,(int,float)) or isinstance(brier,bool) or not math.isfinite(brier) or not 0<=brier<=1:
+                raise ValueError("missing valid calibration Brier score")
+            trials=row.get("simulations")
+            if type(trials) is not int or trials<10000:
+                raise ValueError("insufficient joint simulation trials")
             if not row.get("model_version") or not row.get("model_source"):
                 raise ValueError("missing model provenance")
             captured_at=stamp(row.get("captured_at"))
