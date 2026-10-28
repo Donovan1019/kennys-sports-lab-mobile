@@ -164,7 +164,7 @@ def evaluate(data):
         if not training:
             window_selection[market]={"status":"insufficient_training_data","selected_window":None}
             continue
-        selected=min(training,key=lambda w:(training[w]["absolute_error"]/training[w]["n"],w))
+        selected=min((w for w in training if w!="minutes_adjusted"),key=lambda w:(training[w]["absolute_error"]/training[w]["n"],w))
         held=seasons.get(HOLDOUT_SEASON,{})
         selected_holdout=held.get(selected)
         baseline_holdout=held.get("all")
@@ -220,6 +220,8 @@ def evaluate(data):
         "season_holdout_diagnostics":season_metrics,
         "window_comparison_by_season":window_diagnostics,
         "minutes_workload_data_coverage":dict(minutes_diagnostics),
+        "minutes_adjusted_selection_eligible":False,
+        "minutes_adjusted_selection_blocker":"Requires matched-sample evaluation and verified minutes coverage before model selection",
         "training_selected_window_holdout_audit":window_selection,
         "research_validation_policy":{"minimum_training_half_samples":MIN_TRAIN_SPLIT_SAMPLES,"minimum_holdout_samples":MIN_HOLDOUT_SAMPLES,"minimum_relative_holdout_mae_improvement":MIN_HOLDOUT_RELATIVE_IMPROVEMENT,"promotion_requires_external_betting_validation":True},
         "method":"strict-prior-date-walk-forward-player-rolling-mean",
