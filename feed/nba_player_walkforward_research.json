@@ -71,6 +71,176 @@
       }
     }
   },
+  "fixed_reference_threshold_probability_by_season": {
+    "Points": {
+      "2025-26": {
+        "9.5": {
+          "samples": 24140,
+          "walkforward_brier": 0.16988,
+          "constant_50pct_brier": 0.25,
+          "beats_constant_50pct": true
+        },
+        "19.5": {
+          "samples": 24140,
+          "walkforward_brier": 0.09366,
+          "constant_50pct_brier": 0.25,
+          "beats_constant_50pct": true
+        },
+        "29.5": {
+          "samples": 24140,
+          "walkforward_brier": 0.03018,
+          "constant_50pct_brier": 0.25,
+          "beats_constant_50pct": true
+        }
+      },
+      "2026-27": {
+        "9.5": {
+          "samples": 1116,
+          "walkforward_brier": 0.17156,
+          "constant_50pct_brier": 0.25,
+          "beats_constant_50pct": true
+        },
+        "19.5": {
+          "samples": 1116,
+          "walkforward_brier": 0.08994,
+          "constant_50pct_brier": 0.25,
+          "beats_constant_50pct": true
+        },
+        "29.5": {
+          "samples": 1116,
+          "walkforward_brier": 0.0263,
+          "constant_50pct_brier": 0.25,
+          "beats_constant_50pct": true
+        }
+      }
+    },
+    "Rebounds": {
+      "2025-26": {
+        "4.5": {
+          "samples": 24140,
+          "walkforward_brier": 0.17128,
+          "constant_50pct_brier": 0.25,
+          "beats_constant_50pct": true
+        },
+        "7.5": {
+          "samples": 24140,
+          "walkforward_brier": 0.09356,
+          "constant_50pct_brier": 0.25,
+          "beats_constant_50pct": true
+        },
+        "10.5": {
+          "samples": 24140,
+          "walkforward_brier": 0.03999,
+          "constant_50pct_brier": 0.25,
+          "beats_constant_50pct": true
+        }
+      },
+      "2026-27": {
+        "4.5": {
+          "samples": 1116,
+          "walkforward_brier": 0.1683,
+          "constant_50pct_brier": 0.25,
+          "beats_constant_50pct": true
+        },
+        "7.5": {
+          "samples": 1116,
+          "walkforward_brier": 0.09362,
+          "constant_50pct_brier": 0.25,
+          "beats_constant_50pct": true
+        },
+        "10.5": {
+          "samples": 1116,
+          "walkforward_brier": 0.04042,
+          "constant_50pct_brier": 0.25,
+          "beats_constant_50pct": true
+        }
+      }
+    },
+    "Assists": {
+      "2025-26": {
+        "3.5": {
+          "samples": 24140,
+          "walkforward_brier": 0.13057,
+          "constant_50pct_brier": 0.25,
+          "beats_constant_50pct": true
+        },
+        "5.5": {
+          "samples": 24140,
+          "walkforward_brier": 0.07556,
+          "constant_50pct_brier": 0.25,
+          "beats_constant_50pct": true
+        },
+        "8.5": {
+          "samples": 24140,
+          "walkforward_brier": 0.02829,
+          "constant_50pct_brier": 0.25,
+          "beats_constant_50pct": true
+        }
+      },
+      "2026-27": {
+        "3.5": {
+          "samples": 1116,
+          "walkforward_brier": 0.12339,
+          "constant_50pct_brier": 0.25,
+          "beats_constant_50pct": true
+        },
+        "5.5": {
+          "samples": 1116,
+          "walkforward_brier": 0.06518,
+          "constant_50pct_brier": 0.25,
+          "beats_constant_50pct": true
+        },
+        "8.5": {
+          "samples": 1116,
+          "walkforward_brier": 0.02617,
+          "constant_50pct_brier": 0.25,
+          "beats_constant_50pct": true
+        }
+      }
+    },
+    "Threes": {
+      "2025-26": {
+        "1.5": {
+          "samples": 24140,
+          "walkforward_brier": 0.17402,
+          "constant_50pct_brier": 0.25,
+          "beats_constant_50pct": true
+        },
+        "2.5": {
+          "samples": 24140,
+          "walkforward_brier": 0.12377,
+          "constant_50pct_brier": 0.25,
+          "beats_constant_50pct": true
+        },
+        "3.5": {
+          "samples": 24140,
+          "walkforward_brier": 0.07258,
+          "constant_50pct_brier": 0.25,
+          "beats_constant_50pct": true
+        }
+      },
+      "2026-27": {
+        "1.5": {
+          "samples": 1116,
+          "walkforward_brier": 0.17631,
+          "constant_50pct_brier": 0.25,
+          "beats_constant_50pct": true
+        },
+        "2.5": {
+          "samples": 1116,
+          "walkforward_brier": 0.11913,
+          "constant_50pct_brier": 0.25,
+          "beats_constant_50pct": true
+        },
+        "3.5": {
+          "samples": 1116,
+          "walkforward_brier": 0.06129,
+          "constant_50pct_brier": 0.25,
+          "beats_constant_50pct": true
+        }
+      }
+    }
+  },
   "fixed_reference_threshold_outcomes": {
     "Points": {
       "9.5": {
@@ -248,5 +418,5 @@
     }
   },
   "warning": "Point-in-time sportsbook lines, injury/lineup context, calibration, joint SGP probability and independent validation are unavailable. This is NOT a bet recommendation.",
-  "generated_at": "2026-10-28T11:53:12.522393+00:00"
+  "generated_at": "2026-10-28T13:25:24.223412+00:00"
 }
