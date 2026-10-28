@@ -33,7 +33,13 @@ class WalkForwardTests(unittest.TestCase):
         self.assertIn(audit["selected_window"],["5","10","20","all","blend_25","blend_50","blend_75"])
         self.assertIn("blend_50",result["window_comparison_by_season"]["Points"]["2026-27"])
         self.assertFalse(audit["bet_eligible"])
-        self.assertEqual(audit["holdout_gate_passed"],audit["holdout_improvement_fraction"]>0)
+        self.assertFalse(audit["holdout_gate_passed"])  # Four holdout games cannot pass 1,000-game gate.
+        self.assertFalse(audit["training_stability_passed"])
+        self.assertFalse(audit["research_validation_gate_passed"])
+        self.assertIn("INSUFFICIENT_HOLDOUT_SAMPLES",audit["rejection_reasons"])
+        self.assertIn("TRAINING_PERIOD_INSTABILITY_OR_INSUFFICIENT_SAMPLES",audit["rejection_reasons"])
+        self.assertEqual(len(audit["training_chronological_halves"]),2)
+        self.assertFalse(result["promotion_approved"])
         self.assertFalse(result["promotion_approved"])
         self.assertEqual(result["window_comparison_by_season"]["Points"]["2026-27"]["all"]["samples"],4)
     def test_requires_verified_source(self):
