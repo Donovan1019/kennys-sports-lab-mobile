@@ -30,7 +30,10 @@ class WalkForwardTests(unittest.TestCase):
         self.assertEqual(audit["training_season"],"2025-26")
         self.assertEqual(audit["holdout_season"],"2026-27")
         self.assertEqual(audit["holdout_samples"],4)
-        self.assertIn(audit["selected_window"],["5","10","20","all"])
+        self.assertIn(audit["selected_window"],["5","10","20","all","blend_25","blend_50","blend_75"])
+        self.assertIn("blend_50",result["window_comparison_by_season"]["Points"]["2026-27"])
+        self.assertFalse(audit["bet_eligible"])
+        self.assertEqual(audit["holdout_gate_passed"],audit["holdout_improvement_fraction"]>0)
         self.assertFalse(result["promotion_approved"])
         self.assertEqual(result["window_comparison_by_season"]["Points"]["2026-27"]["all"]["samples"],4)
     def test_requires_verified_source(self):
