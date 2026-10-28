@@ -20,7 +20,7 @@ jobs:
         run: python -m unittest discover -s tests -p 'test_nba_ml_*.py'
       - name: Refresh NBA sportsbook odds (free API quota applies)
         env:
-          THE_ODDS_API_KEY: \${{ secrets.THE_ODDS_API_KEY }}
+          THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
           ODDS_SPORT: basketball_nba
           ODDS_MARKETS: h2h
         run: python scripts/fetch_odds.py
