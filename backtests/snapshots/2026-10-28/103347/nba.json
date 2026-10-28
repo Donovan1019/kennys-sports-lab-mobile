@@ -1,0 +1,3583 @@
+{
+  "schema": 1,
+  "sport": "NBA",
+  "capture_at": "2026-10-28T10:33:47.656308+00:00",
+  "source_file": "feed/nba_props.json",
+  "source_fetched_at": "2026-10-22T11:47:46.348928+00:00",
+  "quotes": [],
+  "rejected_quotes": [
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "LeBron James",
+      "selection": "Over",
+      "point": 7.5,
+      "price": -132,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "LeBron James",
+      "selection": "Under",
+      "point": 7.5,
+      "price": 100,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "James Harden",
+      "selection": "Over",
+      "point": 7.5,
+      "price": 111,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "James Harden",
+      "selection": "Under",
+      "point": 7.5,
+      "price": -147,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Tyrese Maxey",
+      "selection": "Over",
+      "point": 5.5,
+      "price": 102,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Tyrese Maxey",
+      "selection": "Under",
+      "point": 5.5,
+      "price": -135,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Donovan Mitchell",
+      "selection": "Over",
+      "point": 4.5,
+      "price": -134,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Donovan Mitchell",
+      "selection": "Under",
+      "point": 4.5,
+      "price": 102,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Jaylen Brown",
+      "selection": "Over",
+      "point": 3.5,
+      "price": -127,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Jaylen Brown",
+      "selection": "Under",
+      "point": 3.5,
+      "price": -104,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Joel Embiid",
+      "selection": "Over",
+      "point": 3.5,
+      "price": -125,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Joel Embiid",
+      "selection": "Under",
+      "point": 3.5,
+      "price": -105,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Evan Mobley",
+      "selection": "Over",
+      "point": 3.5,
+      "price": 107,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Evan Mobley",
+      "selection": "Under",
+      "point": 3.5,
+      "price": -141,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "VJ Edgecombe",
+      "selection": "Over",
+      "point": 2.5,
+      "price": -109,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "VJ Edgecombe",
+      "selection": "Under",
+      "point": 2.5,
+      "price": -120,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_blocks",
+      "player": "Evan Mobley",
+      "selection": "Over",
+      "point": 1.5,
+      "price": -120,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_blocks",
+      "player": "Evan Mobley",
+      "selection": "Under",
+      "point": 1.5,
+      "price": -110,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_blocks",
+      "player": "Joel Embiid",
+      "selection": "Over",
+      "point": 1.5,
+      "price": 165,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_blocks",
+      "player": "Joel Embiid",
+      "selection": "Under",
+      "point": 1.5,
+      "price": -222,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_blocks",
+      "player": "Jarrett Allen",
+      "selection": "Over",
+      "point": 0.5,
+      "price": -222,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_blocks",
+      "player": "Jarrett Allen",
+      "selection": "Under",
+      "point": 0.5,
+      "price": 165,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Donovan Mitchell",
+      "selection": "Over",
+      "point": 26.5,
+      "price": -107,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Donovan Mitchell",
+      "selection": "Under",
+      "point": 26.5,
+      "price": -119,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Tyrese Maxey",
+      "selection": "Over",
+      "point": 23.5,
+      "price": -107,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Tyrese Maxey",
+      "selection": "Under",
+      "point": 23.5,
+      "price": -119,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Joel Embiid",
+      "selection": "Over",
+      "point": 22.5,
+      "price": -114,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Joel Embiid",
+      "selection": "Under",
+      "point": 22.5,
+      "price": -112,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Jaylen Brown",
+      "selection": "Over",
+      "point": 19.5,
+      "price": -124,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Jaylen Brown",
+      "selection": "Under",
+      "point": 19.5,
+      "price": -103,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "James Harden",
+      "selection": "Over",
+      "point": 18.5,
+      "price": -120,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "James Harden",
+      "selection": "Under",
+      "point": 18.5,
+      "price": -106,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Evan Mobley",
+      "selection": "Over",
+      "point": 17.5,
+      "price": -117,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Evan Mobley",
+      "selection": "Under",
+      "point": 17.5,
+      "price": -109,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "LeBron James",
+      "selection": "Over",
+      "point": 15.5,
+      "price": -116,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "LeBron James",
+      "selection": "Under",
+      "point": 15.5,
+      "price": -110,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Jarrett Allen",
+      "selection": "Over",
+      "point": 13.5,
+      "price": -113,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Jarrett Allen",
+      "selection": "Under",
+      "point": 13.5,
+      "price": -112,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "VJ Edgecombe",
+      "selection": "Over",
+      "point": 10.5,
+      "price": -118,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "VJ Edgecombe",
+      "selection": "Under",
+      "point": 10.5,
+      "price": -108,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Anfernee Simons",
+      "selection": "Over",
+      "point": 9.5,
+      "price": -102,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Anfernee Simons",
+      "selection": "Under",
+      "point": 9.5,
+      "price": -125,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Jaylon Tyson",
+      "selection": "Over",
+      "point": 8.5,
+      "price": -119,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Jaylon Tyson",
+      "selection": "Under",
+      "point": 8.5,
+      "price": -107,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Sam Merrill",
+      "selection": "Over",
+      "point": 8.5,
+      "price": -115,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Sam Merrill",
+      "selection": "Under",
+      "point": 8.5,
+      "price": -110,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Kentavious Caldwell-Pope",
+      "selection": "Over",
+      "point": 6.5,
+      "price": 104,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Kentavious Caldwell-Pope",
+      "selection": "Under",
+      "point": 6.5,
+      "price": -133,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points_rebounds_assists",
+      "player": "Donovan Mitchell",
+      "selection": "Over",
+      "point": 35.5,
+      "price": -122,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points_rebounds_assists",
+      "player": "Donovan Mitchell",
+      "selection": "Under",
+      "point": 35.5,
+      "price": -108,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points_rebounds_assists",
+      "player": "Joel Embiid",
+      "selection": "Over",
+      "point": 34.5,
+      "price": -123,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points_rebounds_assists",
+      "player": "Joel Embiid",
+      "selection": "Under",
+      "point": 34.5,
+      "price": -107,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points_rebounds_assists",
+      "player": "Tyrese Maxey",
+      "selection": "Over",
+      "point": 32.5,
+      "price": -112,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points_rebounds_assists",
+      "player": "Tyrese Maxey",
+      "selection": "Under",
+      "point": 32.5,
+      "price": -118,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points_rebounds_assists",
+      "player": "James Harden",
+      "selection": "Over",
+      "point": 31.5,
+      "price": -110,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points_rebounds_assists",
+      "player": "James Harden",
+      "selection": "Under",
+      "point": 31.5,
+      "price": -119,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points_rebounds_assists",
+      "player": "LeBron James",
+      "selection": "Over",
+      "point": 30.5,
+      "price": -121,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points_rebounds_assists",
+      "player": "LeBron James",
+      "selection": "Under",
+      "point": 30.5,
+      "price": -109,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points_rebounds_assists",
+      "player": "Evan Mobley",
+      "selection": "Over",
+      "point": 30.5,
+      "price": -118,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points_rebounds_assists",
+      "player": "Evan Mobley",
+      "selection": "Under",
+      "point": 30.5,
+      "price": -112,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points_rebounds_assists",
+      "player": "Jaylen Brown",
+      "selection": "Over",
+      "point": 30.5,
+      "price": -112,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points_rebounds_assists",
+      "player": "Jaylen Brown",
+      "selection": "Under",
+      "point": 30.5,
+      "price": -118,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points_rebounds_assists",
+      "player": "VJ Edgecombe",
+      "selection": "Over",
+      "point": 18.5,
+      "price": -114,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points_rebounds_assists",
+      "player": "VJ Edgecombe",
+      "selection": "Under",
+      "point": 18.5,
+      "price": -115,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points_rebounds_assists",
+      "player": "Jaylon Tyson",
+      "selection": "Over",
+      "point": 14.5,
+      "price": -118,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points_rebounds_assists",
+      "player": "Jaylon Tyson",
+      "selection": "Under",
+      "point": 14.5,
+      "price": -112,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points_rebounds_assists",
+      "player": "Anfernee Simons",
+      "selection": "Over",
+      "point": 13.5,
+      "price": -112,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points_rebounds_assists",
+      "player": "Anfernee Simons",
+      "selection": "Under",
+      "point": 13.5,
+      "price": -118,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_rebounds",
+      "player": "Evan Mobley",
+      "selection": "Over",
+      "point": 8.5,
+      "price": -137,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_rebounds",
+      "player": "Evan Mobley",
+      "selection": "Under",
+      "point": 8.5,
+      "price": 104,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_rebounds",
+      "player": "Joel Embiid",
+      "selection": "Over",
+      "point": 7.5,
+      "price": -140,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_rebounds",
+      "player": "Joel Embiid",
+      "selection": "Under",
+      "point": 7.5,
+      "price": 106,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_rebounds",
+      "player": "Jarrett Allen",
+      "selection": "Over",
+      "point": 7.5,
+      "price": -135,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_rebounds",
+      "player": "Jarrett Allen",
+      "selection": "Under",
+      "point": 7.5,
+      "price": 102,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_rebounds",
+      "player": "LeBron James",
+      "selection": "Over",
+      "point": 6.5,
+      "price": -133,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_rebounds",
+      "player": "LeBron James",
+      "selection": "Under",
+      "point": 6.5,
+      "price": 101,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_rebounds",
+      "player": "Jaylen Brown",
+      "selection": "Over",
+      "point": 5.5,
+      "price": -144,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_rebounds",
+      "player": "Jaylen Brown",
+      "selection": "Under",
+      "point": 5.5,
+      "price": 109,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_rebounds",
+      "player": "VJ Edgecombe",
+      "selection": "Over",
+      "point": 4.5,
+      "price": -128,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_rebounds",
+      "player": "VJ Edgecombe",
+      "selection": "Under",
+      "point": 4.5,
+      "price": -103,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_rebounds",
+      "player": "James Harden",
+      "selection": "Over",
+      "point": 4.5,
+      "price": -109,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_rebounds",
+      "player": "James Harden",
+      "selection": "Under",
+      "point": 4.5,
+      "price": -121,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_rebounds",
+      "player": "Donovan Mitchell",
+      "selection": "Over",
+      "point": 4.5,
+      "price": 110,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_rebounds",
+      "player": "Donovan Mitchell",
+      "selection": "Under",
+      "point": 4.5,
+      "price": -145,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_rebounds",
+      "player": "Jaylon Tyson",
+      "selection": "Over",
+      "point": 4.5,
+      "price": 115,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_rebounds",
+      "player": "Jaylon Tyson",
+      "selection": "Under",
+      "point": 4.5,
+      "price": -151,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_rebounds",
+      "player": "Tyrese Maxey",
+      "selection": "Over",
+      "point": 3.5,
+      "price": 108,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_rebounds",
+      "player": "Tyrese Maxey",
+      "selection": "Under",
+      "point": 3.5,
+      "price": -142,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_steals",
+      "player": "Tyrese Maxey",
+      "selection": "Over",
+      "point": 1.5,
+      "price": -108,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_steals",
+      "player": "Tyrese Maxey",
+      "selection": "Under",
+      "point": 1.5,
+      "price": -123,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_steals",
+      "player": "Donovan Mitchell",
+      "selection": "Over",
+      "point": 1.5,
+      "price": 135,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_steals",
+      "player": "Donovan Mitchell",
+      "selection": "Under",
+      "point": 1.5,
+      "price": -180,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_steals",
+      "player": "LeBron James",
+      "selection": "Over",
+      "point": 1.5,
+      "price": 172,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_steals",
+      "player": "LeBron James",
+      "selection": "Under",
+      "point": 1.5,
+      "price": -232,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_steals",
+      "player": "Jaylen Brown",
+      "selection": "Over",
+      "point": 0.5,
+      "price": -228,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_steals",
+      "player": "Jaylen Brown",
+      "selection": "Under",
+      "point": 0.5,
+      "price": 169,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_steals",
+      "player": "James Harden",
+      "selection": "Over",
+      "point": 0.5,
+      "price": -209,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_steals",
+      "player": "James Harden",
+      "selection": "Under",
+      "point": 0.5,
+      "price": 155,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_threes",
+      "player": "Donovan Mitchell",
+      "selection": "Over",
+      "point": 2.5,
+      "price": -154,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_threes",
+      "player": "Donovan Mitchell",
+      "selection": "Under",
+      "point": 2.5,
+      "price": 117,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_threes",
+      "player": "James Harden",
+      "selection": "Over",
+      "point": 2.5,
+      "price": -140,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_threes",
+      "player": "James Harden",
+      "selection": "Under",
+      "point": 2.5,
+      "price": 106,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_threes",
+      "player": "Tyrese Maxey",
+      "selection": "Over",
+      "point": 2.5,
+      "price": -109,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_threes",
+      "player": "Tyrese Maxey",
+      "selection": "Under",
+      "point": 2.5,
+      "price": -120,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_threes",
+      "player": "Sam Merrill",
+      "selection": "Over",
+      "point": 2.5,
+      "price": 136,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_threes",
+      "player": "Sam Merrill",
+      "selection": "Under",
+      "point": 2.5,
+      "price": -180,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_threes",
+      "player": "Anfernee Simons",
+      "selection": "Over",
+      "point": 1.5,
+      "price": -166,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_threes",
+      "player": "Anfernee Simons",
+      "selection": "Under",
+      "point": 1.5,
+      "price": 126,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_threes",
+      "player": "Jaylen Brown",
+      "selection": "Over",
+      "point": 1.5,
+      "price": -106,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_threes",
+      "player": "Jaylen Brown",
+      "selection": "Under",
+      "point": 1.5,
+      "price": -124,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_threes",
+      "player": "VJ Edgecombe",
+      "selection": "Over",
+      "point": 1.5,
+      "price": 118,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_threes",
+      "player": "VJ Edgecombe",
+      "selection": "Under",
+      "point": 1.5,
+      "price": -155,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_threes",
+      "player": "LeBron James",
+      "selection": "Over",
+      "point": 1.5,
+      "price": 121,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_threes",
+      "player": "LeBron James",
+      "selection": "Under",
+      "point": 1.5,
+      "price": -160,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_threes",
+      "player": "Jaylon Tyson",
+      "selection": "Over",
+      "point": 1.5,
+      "price": 122,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_threes",
+      "player": "Jaylon Tyson",
+      "selection": "Under",
+      "point": 1.5,
+      "price": -161,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_threes",
+      "player": "Joel Embiid",
+      "selection": "Over",
+      "point": 1.5,
+      "price": 125,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_threes",
+      "player": "Joel Embiid",
+      "selection": "Under",
+      "point": 1.5,
+      "price": -165,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_threes",
+      "player": "Kentavious Caldwell-Pope",
+      "selection": "Over",
+      "point": 1.5,
+      "price": 134,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_threes",
+      "player": "Kentavious Caldwell-Pope",
+      "selection": "Under",
+      "point": 1.5,
+      "price": -177,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_threes",
+      "player": "Evan Mobley",
+      "selection": "Over",
+      "point": 1.5,
+      "price": 147,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_threes",
+      "player": "Evan Mobley",
+      "selection": "Under",
+      "point": 1.5,
+      "price": -195,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:47:38Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "VJ Edgecombe",
+      "selection": "Over",
+      "point": 2.5,
+      "price": -112,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "VJ Edgecombe",
+      "selection": "Under",
+      "point": 2.5,
+      "price": -118,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "James Harden",
+      "selection": "Over",
+      "point": 7.5,
+      "price": 124,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "James Harden",
+      "selection": "Under",
+      "point": 7.5,
+      "price": -166,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "LeBron James",
+      "selection": "Over",
+      "point": 7.5,
+      "price": -138,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "LeBron James",
+      "selection": "Under",
+      "point": 7.5,
+      "price": 104,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Tyrese Maxey",
+      "selection": "Over",
+      "point": 5.5,
+      "price": -102,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Tyrese Maxey",
+      "selection": "Under",
+      "point": 5.5,
+      "price": -130,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Joel Embiid",
+      "selection": "Over",
+      "point": 3.5,
+      "price": -132,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Joel Embiid",
+      "selection": "Under",
+      "point": 3.5,
+      "price": 100,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Donovan Mitchell",
+      "selection": "Over",
+      "point": 4.5,
+      "price": -144,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Donovan Mitchell",
+      "selection": "Under",
+      "point": 4.5,
+      "price": 108,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Evan Mobley",
+      "selection": "Over",
+      "point": 3.5,
+      "price": -104,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Evan Mobley",
+      "selection": "Under",
+      "point": 3.5,
+      "price": -128,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Jaylen Brown",
+      "selection": "Over",
+      "point": 3.5,
+      "price": -144,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Jaylen Brown",
+      "selection": "Under",
+      "point": 3.5,
+      "price": 108,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_blocks",
+      "player": "Evan Mobley",
+      "selection": "Over",
+      "point": 1.5,
+      "price": -120,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_blocks",
+      "player": "Evan Mobley",
+      "selection": "Under",
+      "point": 1.5,
+      "price": -110,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_blocks",
+      "player": "Jarrett Allen",
+      "selection": "Over",
+      "point": 0.5,
+      "price": -225,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_blocks",
+      "player": "Jarrett Allen",
+      "selection": "Under",
+      "point": 0.5,
+      "price": 164,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_blocks",
+      "player": "Joel Embiid",
+      "selection": "Over",
+      "point": 1.5,
+      "price": 178,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_blocks",
+      "player": "Joel Embiid",
+      "selection": "Under",
+      "point": 1.5,
+      "price": -245,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Anfernee Simons",
+      "selection": "Over",
+      "point": 9.5,
+      "price": 100,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Anfernee Simons",
+      "selection": "Under",
+      "point": 9.5,
+      "price": -132,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Donovan Mitchell",
+      "selection": "Over",
+      "point": 26.5,
+      "price": 102,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Donovan Mitchell",
+      "selection": "Under",
+      "point": 26.5,
+      "price": -136,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Kentavious Caldwell-Pope",
+      "selection": "Over",
+      "point": 6.5,
+      "price": -102,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Kentavious Caldwell-Pope",
+      "selection": "Under",
+      "point": 6.5,
+      "price": -130,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Joel Embiid",
+      "selection": "Over",
+      "point": 22.5,
+      "price": -118,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Joel Embiid",
+      "selection": "Under",
+      "point": 22.5,
+      "price": -112,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "LeBron James",
+      "selection": "Over",
+      "point": 15.5,
+      "price": -108,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "LeBron James",
+      "selection": "Under",
+      "point": 15.5,
+      "price": -122,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Tyrese Maxey",
+      "selection": "Over",
+      "point": 22.5,
+      "price": -136,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Tyrese Maxey",
+      "selection": "Under",
+      "point": 22.5,
+      "price": 102,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Jaylon Tyson",
+      "selection": "Over",
+      "point": 8.5,
+      "price": -120,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Jaylon Tyson",
+      "selection": "Under",
+      "point": 8.5,
+      "price": -110,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "VJ Edgecombe",
+      "selection": "Over",
+      "point": 10.5,
+      "price": -108,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "VJ Edgecombe",
+      "selection": "Under",
+      "point": 10.5,
+      "price": -122,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Sam Merrill",
+      "selection": "Over",
+      "point": 8.5,
+      "price": -104,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Sam Merrill",
+      "selection": "Under",
+      "point": 8.5,
+      "price": -128,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Evan Mobley",
+      "selection": "Over",
+      "point": 17.5,
+      "price": -122,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Evan Mobley",
+      "selection": "Under",
+      "point": 17.5,
+      "price": -108,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Jarrett Allen",
+      "selection": "Over",
+      "point": 13.5,
+      "price": -102,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Jarrett Allen",
+      "selection": "Under",
+      "point": 13.5,
+      "price": -130,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "James Harden",
+      "selection": "Over",
+      "point": 18.5,
+      "price": -130,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "James Harden",
+      "selection": "Under",
+      "point": 18.5,
+      "price": -102,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Jaylen Brown",
+      "selection": "Over",
+      "point": 19.5,
+      "price": -130,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Jaylen Brown",
+      "selection": "Under",
+      "point": 19.5,
+      "price": -102,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points_rebounds_assists",
+      "player": "Jaylen Brown",
+      "selection": "Over",
+      "point": 30.5,
+      "price": -104,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points_rebounds_assists",
+      "player": "Jaylen Brown",
+      "selection": "Under",
+      "point": 30.5,
+      "price": -128,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points_rebounds_assists",
+      "player": "James Harden",
+      "selection": "Over",
+      "point": 30.5,
+      "price": -122,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points_rebounds_assists",
+      "player": "James Harden",
+      "selection": "Under",
+      "point": 30.5,
+      "price": -108,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points_rebounds_assists",
+      "player": "Joel Embiid",
+      "selection": "Over",
+      "point": 34.5,
+      "price": -122,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points_rebounds_assists",
+      "player": "Joel Embiid",
+      "selection": "Under",
+      "point": 34.5,
+      "price": -108,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points_rebounds_assists",
+      "player": "VJ Edgecombe",
+      "selection": "Over",
+      "point": 17.5,
+      "price": -122,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points_rebounds_assists",
+      "player": "VJ Edgecombe",
+      "selection": "Under",
+      "point": 17.5,
+      "price": -106,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points_rebounds_assists",
+      "player": "Anfernee Simons",
+      "selection": "Over",
+      "point": 13.5,
+      "price": -108,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points_rebounds_assists",
+      "player": "Anfernee Simons",
+      "selection": "Under",
+      "point": 13.5,
+      "price": -122,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points_rebounds_assists",
+      "player": "Jaylon Tyson",
+      "selection": "Over",
+      "point": 14.5,
+      "price": -122,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points_rebounds_assists",
+      "player": "Jaylon Tyson",
+      "selection": "Under",
+      "point": 14.5,
+      "price": -108,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points_rebounds_assists",
+      "player": "LeBron James",
+      "selection": "Over",
+      "point": 30.5,
+      "price": -114,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points_rebounds_assists",
+      "player": "LeBron James",
+      "selection": "Under",
+      "point": 30.5,
+      "price": -114,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points_rebounds_assists",
+      "player": "Tyrese Maxey",
+      "selection": "Over",
+      "point": 32.5,
+      "price": -106,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points_rebounds_assists",
+      "player": "Tyrese Maxey",
+      "selection": "Under",
+      "point": 32.5,
+      "price": -122,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points_rebounds_assists",
+      "player": "Evan Mobley",
+      "selection": "Over",
+      "point": 30.5,
+      "price": -118,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points_rebounds_assists",
+      "player": "Evan Mobley",
+      "selection": "Under",
+      "point": 30.5,
+      "price": -112,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points_rebounds_assists",
+      "player": "Donovan Mitchell",
+      "selection": "Over",
+      "point": 35.5,
+      "price": -112,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points_rebounds_assists",
+      "player": "Donovan Mitchell",
+      "selection": "Under",
+      "point": 35.5,
+      "price": -118,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_rebounds",
+      "player": "Jaylen Brown",
+      "selection": "Over",
+      "point": 5.5,
+      "price": -144,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_rebounds",
+      "player": "Jaylen Brown",
+      "selection": "Under",
+      "point": 5.5,
+      "price": 108,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_rebounds",
+      "player": "Jarrett Allen",
+      "selection": "Over",
+      "point": 7.5,
+      "price": -154,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_rebounds",
+      "player": "Jarrett Allen",
+      "selection": "Under",
+      "point": 7.5,
+      "price": 116,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_rebounds",
+      "player": "Tyrese Maxey",
+      "selection": "Over",
+      "point": 3.5,
+      "price": 116,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_rebounds",
+      "player": "Tyrese Maxey",
+      "selection": "Under",
+      "point": 3.5,
+      "price": -154,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_rebounds",
+      "player": "Joel Embiid",
+      "selection": "Over",
+      "point": 7.5,
+      "price": -152,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_rebounds",
+      "player": "Joel Embiid",
+      "selection": "Under",
+      "point": 7.5,
+      "price": 114,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_rebounds",
+      "player": "VJ Edgecombe",
+      "selection": "Over",
+      "point": 4.5,
+      "price": -122,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_rebounds",
+      "player": "VJ Edgecombe",
+      "selection": "Under",
+      "point": 4.5,
+      "price": -106,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_rebounds",
+      "player": "LeBron James",
+      "selection": "Over",
+      "point": 6.5,
+      "price": -132,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_rebounds",
+      "player": "LeBron James",
+      "selection": "Under",
+      "point": 6.5,
+      "price": 100,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_rebounds",
+      "player": "Jaylon Tyson",
+      "selection": "Over",
+      "point": 4.5,
+      "price": 108,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_rebounds",
+      "player": "Jaylon Tyson",
+      "selection": "Under",
+      "point": 4.5,
+      "price": -144,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_rebounds",
+      "player": "Donovan Mitchell",
+      "selection": "Over",
+      "point": 4.5,
+      "price": -104,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_rebounds",
+      "player": "Donovan Mitchell",
+      "selection": "Under",
+      "point": 4.5,
+      "price": -128,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_rebounds",
+      "player": "Evan Mobley",
+      "selection": "Over",
+      "point": 8.5,
+      "price": -144,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_rebounds",
+      "player": "Evan Mobley",
+      "selection": "Under",
+      "point": 8.5,
+      "price": 108,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_rebounds",
+      "player": "James Harden",
+      "selection": "Over",
+      "point": 4.5,
+      "price": -108,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_rebounds",
+      "player": "James Harden",
+      "selection": "Under",
+      "point": 4.5,
+      "price": -122,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_steals",
+      "player": "Jaylen Brown",
+      "selection": "Over",
+      "point": 1.5,
+      "price": 188,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_steals",
+      "player": "Jaylen Brown",
+      "selection": "Under",
+      "point": 1.5,
+      "price": -260,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_steals",
+      "player": "Donovan Mitchell",
+      "selection": "Over",
+      "point": 1.5,
+      "price": 146,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_steals",
+      "player": "Donovan Mitchell",
+      "selection": "Under",
+      "point": 1.5,
+      "price": -198,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_steals",
+      "player": "James Harden",
+      "selection": "Over",
+      "point": 0.5,
+      "price": -200,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_steals",
+      "player": "James Harden",
+      "selection": "Under",
+      "point": 0.5,
+      "price": 148,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_steals",
+      "player": "Tyrese Maxey",
+      "selection": "Over",
+      "point": 1.5,
+      "price": 100,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_steals",
+      "player": "Tyrese Maxey",
+      "selection": "Under",
+      "point": 1.5,
+      "price": -132,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_steals",
+      "player": "LeBron James",
+      "selection": "Over",
+      "point": 1.5,
+      "price": 158,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_steals",
+      "player": "LeBron James",
+      "selection": "Under",
+      "point": 1.5,
+      "price": -215,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_threes",
+      "player": "Anfernee Simons",
+      "selection": "Over",
+      "point": 2.5,
+      "price": 158,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_threes",
+      "player": "Anfernee Simons",
+      "selection": "Under",
+      "point": 2.5,
+      "price": -215,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_threes",
+      "player": "Donovan Mitchell",
+      "selection": "Over",
+      "point": 2.5,
+      "price": -174,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_threes",
+      "player": "Donovan Mitchell",
+      "selection": "Under",
+      "point": 2.5,
+      "price": 130,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_threes",
+      "player": "James Harden",
+      "selection": "Over",
+      "point": 2.5,
+      "price": -144,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_threes",
+      "player": "James Harden",
+      "selection": "Under",
+      "point": 2.5,
+      "price": 108,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_threes",
+      "player": "Tyrese Maxey",
+      "selection": "Over",
+      "point": 2.5,
+      "price": -102,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_threes",
+      "player": "Tyrese Maxey",
+      "selection": "Under",
+      "point": 2.5,
+      "price": -130,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_threes",
+      "player": "Jaylen Brown",
+      "selection": "Over",
+      "point": 1.5,
+      "price": 104,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_threes",
+      "player": "Jaylen Brown",
+      "selection": "Under",
+      "point": 1.5,
+      "price": -138,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_threes",
+      "player": "VJ Edgecombe",
+      "selection": "Over",
+      "point": 1.5,
+      "price": 128,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_threes",
+      "player": "VJ Edgecombe",
+      "selection": "Under",
+      "point": 1.5,
+      "price": -172,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_threes",
+      "player": "Joel Embiid",
+      "selection": "Over",
+      "point": 1.5,
+      "price": 118,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_threes",
+      "player": "Joel Embiid",
+      "selection": "Under",
+      "point": 1.5,
+      "price": -158,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_threes",
+      "player": "LeBron James",
+      "selection": "Over",
+      "point": 1.5,
+      "price": 138,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_threes",
+      "player": "LeBron James",
+      "selection": "Under",
+      "point": 1.5,
+      "price": -186,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_threes",
+      "player": "Evan Mobley",
+      "selection": "Over",
+      "point": 1.5,
+      "price": 142,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "110e33c79c5ec8c0377702aff685f83b",
+      "event": "Cleveland Cavaliers @ Philadelphia 76ers",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_threes",
+      "player": "Evan Mobley",
+      "selection": "Under",
+      "point": 1.5,
+      "price": -192,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:47:02Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    }
+  ],
+  "model_predictions": [],
+  "note": "Saved sportsbook quotes are not model predictions. Independently timestamped model predictions are required before kickoff.",
+  "sha256": "de121a03270578b51b536f95e57302ede0bff2c3af20fc1efddc467c693d4c98"
+}
