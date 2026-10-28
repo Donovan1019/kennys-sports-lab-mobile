@@ -58,7 +58,7 @@ def main():
     # Reject historical non-NBA exhibition events, including entries already cached.
     for key in list(days):
         days[key]=[g for g in days[key] if g.get("home") in NBA_TEAMS and g.get("away") in NBA_TEAMS]
-    CACHE.write_text(json.dumps({"days":days},separators=(",",":"))+"\\n")
+    CACHE.write_text(json.dumps({"days":days},separators=(",",":"))+"\n")
     if failures:raise RuntimeError(f"Historical ingestion incomplete ({len(failures)} days): "+failures[0])
     all_games={g["id"]:g for day in days.values() for g in day}
     ratings,report=fit(list(all_games.values()))
