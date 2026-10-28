@@ -93,9 +93,18 @@ def run():
         validation={}
     if isinstance(validation,dict):
         model_status=str(validation.get("status") or "UNAVAILABLE")
+    history_path=Path("feed/nba_player_stats.json")
+    try:
+        history=json.loads(history_path.read_text())
+    except (OSError,ValueError):
+        history={}
+    players=history.get("players",[]) if isinstance(history,dict) else []
+    if not isinstance(players,list): players=[]
+    history_profiles=sum(bool(isinstance(p,dict) and isinstance(p.get("games"),list) and len(p["games"])>=8) for p in players)
     source_blockers=[]
     if not SOURCE.exists(): source_blockers.append("verified NBA SGP model recommendation feed missing")
     if not records: source_blockers.append("no independently validated NBA SGP predictions published")
+    if history_profiles==0: source_blockers.append("no NBA player profiles with at least eight historical game logs")
     if validation.get("promotion_approved") is not True:
         source_blockers.append("NBA correlation validation has not approved model promotion")
     report={"checked_at":now.isoformat(),"source_present":SOURCE.exists(),
@@ -103,6 +112,7 @@ def run():
             "already_archived":already_archived,"rejected":rejected,
             "rejected_count":len(rejected),
             "model_validation_status":model_status,
+            "historical_player_profiles":history_profiles,
             "source_blockers":source_blockers,
             "capture_ready":bool(records) and not rejected and (captured+already_archived)==len(records),
             "status":"PARTIAL_REJECTED" if rejected else ("CAPTURED" if captured else ("ALREADY_ARCHIVED" if already_archived else "NO_NEW_VERIFIED_MODEL_RECOMMENDATIONS")),
