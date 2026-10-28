@@ -80,8 +80,17 @@ def generate(odds, history, now):
     if odds.get("sport")!="basketball_nba" or history.get("source")!="espn-public-boxscore" or history.get("sport")!="nba":
         reject("unverified_source");return output
     fetched=stamp(odds.get("fetched_at"))
-    if not fetched or not 0<=(now-fetched).total_seconds()<=5400:
+    if not fetched:
+        output["feed_freshness"]={"status":"invalid_timestamp","fetched_at":odds.get("fetched_at"),"max_age_seconds":5400}
+        reject("invalid_feed_timestamp");return output
+    age=(now-fetched).total_seconds()
+    if age<0:
+        output["feed_freshness"]={"status":"future_timestamp","fetched_at":fetched.isoformat(),"age_seconds":round(age,1),"max_age_seconds":5400}
+        reject("future_feed_timestamp");return output
+    if age>5400:
+        output["feed_freshness"]={"status":"stale","fetched_at":fetched.isoformat(),"age_seconds":round(age,1),"max_age_seconds":5400}
         reject("stale_feed");return output
+    output["feed_freshness"]={"status":"fresh","fetched_at":fetched.isoformat(),"age_seconds":round(age,1),"max_age_seconds":5400}
     profiles={}
     for profile in history.get("players",[]):
         if not isinstance(profile,dict):continue
