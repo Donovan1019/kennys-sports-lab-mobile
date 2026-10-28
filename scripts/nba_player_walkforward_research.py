@@ -300,7 +300,19 @@ def evaluate(data):
             "holdout_all_prior_mae":round(baseline_holdout["absolute_error"]/baseline_holdout["n"],4) if baseline_holdout else None,
             "beats_holdout_all_prior":(selected_holdout["absolute_error"]<baseline_holdout["absolute_error"]) if selected_holdout and baseline_holdout else None,
         }
+    segment_summary={}
+    for market,seasons in workload_segment_diagnostics.items():
+        segments=seasons.get(HOLDOUT_SEASON,{})
+        segment_summary[market]={
+            "holdout_segments":len(segments),
+            "sufficient_sample_segments":sum(bool(v["sufficient_holdout_samples"]) for v in segments.values()),
+            "research_gate_passed_segments":[name for name,v in sorted(segments.items()) if v["passes_research_improvement_gate"]],
+            "research_gate_failed_segments":[name for name,v in sorted(segments.items()) if not v["passes_research_improvement_gate"]],
+            "model_promotion_approved":False,
+            "bet_eligible":False,
+        }
     return {"status":"research_only","promotion_approved":False,
+        "recent_minutes_segment_holdout_summary":segment_summary,
         "fixed_reference_threshold_probability_research":brier_metrics,
         "fixed_reference_threshold_probability_by_season":season_probability_metrics,
         "fixed_reference_threshold_outcomes":threshold_metrics,
@@ -327,6 +339,6 @@ def main():
     result["generated_at"]=datetime.now(timezone.utc).isoformat()
     OUTPUT.parent.mkdir(parents=True,exist_ok=True)
     OUTPUT.write_text(json.dumps(result,indent=2)+"\n")
-    print(json.dumps({"status":result["status"],"markets":result["markets"]}))
+    print(json.dumps({"status":result["status"],"markets":result["markets"],"segment_holdout_summary":result["recent_minutes_segment_holdout_summary"]}))
 
 if __name__=="__main__":main()

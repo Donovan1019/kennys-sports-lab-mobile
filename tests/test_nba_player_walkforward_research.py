@@ -62,6 +62,8 @@ class WalkForwardTests(unittest.TestCase):
         self.assertTrue(all(not v["passes_research_improvement_gate"] for v in segments.values()))
         self.assertTrue(all(not v["promotion_approved"] for v in segments.values()))
         self.assertEqual(result["recent_minutes_segment_research_policy"]["minimum_holdout_samples"],100)
+        self.assertIn("Points",result["recent_minutes_segment_holdout_summary"])
+        self.assertFalse(result["recent_minutes_segment_holdout_summary"]["Points"]["bet_eligible"])
         pair=result["minutes_adjusted_matched_sample_audit"]["Points"]["2025-26"]
         self.assertEqual(pair["samples"],4)
         self.assertEqual(pair["minutes_mae"],pair["all_prior_mae_same_samples"])
