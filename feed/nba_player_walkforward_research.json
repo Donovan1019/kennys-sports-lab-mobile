@@ -1,6 +1,76 @@
 {
   "status": "research_only",
   "promotion_approved": false,
+  "recent_minutes_segment_holdout_summary": {
+    "Points": {
+      "holdout_segments": 7,
+      "sufficient_sample_segments": 6,
+      "research_gate_passed_segments": [
+        "change:drop_over_15pct",
+        "low_under_20"
+      ],
+      "research_gate_failed_segments": [
+        "change:rise_over_15pct",
+        "change:stable",
+        "change:unknown_prior_window",
+        "high_30_plus",
+        "mid_20_to_30"
+      ],
+      "model_promotion_approved": false,
+      "bet_eligible": false
+    },
+    "Rebounds": {
+      "holdout_segments": 7,
+      "sufficient_sample_segments": 6,
+      "research_gate_passed_segments": [
+        "change:drop_over_15pct",
+        "low_under_20"
+      ],
+      "research_gate_failed_segments": [
+        "change:rise_over_15pct",
+        "change:stable",
+        "change:unknown_prior_window",
+        "high_30_plus",
+        "mid_20_to_30"
+      ],
+      "model_promotion_approved": false,
+      "bet_eligible": false
+    },
+    "Assists": {
+      "holdout_segments": 7,
+      "sufficient_sample_segments": 6,
+      "research_gate_passed_segments": [
+        "change:drop_over_15pct",
+        "low_under_20"
+      ],
+      "research_gate_failed_segments": [
+        "change:rise_over_15pct",
+        "change:stable",
+        "change:unknown_prior_window",
+        "high_30_plus",
+        "mid_20_to_30"
+      ],
+      "model_promotion_approved": false,
+      "bet_eligible": false
+    },
+    "Threes": {
+      "holdout_segments": 7,
+      "sufficient_sample_segments": 6,
+      "research_gate_passed_segments": [
+        "change:drop_over_15pct",
+        "low_under_20"
+      ],
+      "research_gate_failed_segments": [
+        "change:rise_over_15pct",
+        "change:stable",
+        "change:unknown_prior_window",
+        "high_30_plus",
+        "mid_20_to_30"
+      ],
+      "model_promotion_approved": false,
+      "bet_eligible": false
+    }
+  },
   "fixed_reference_threshold_probability_research": {
     "Points": {
       "9.5": {
@@ -981,6 +1051,598 @@
       }
     }
   },
+  "recent_minutes_workload_segment_audit": {
+    "Points": {
+      "2025-26": {
+        "low_under_20": {
+          "samples": 8731,
+          "recent_rate_mae": 3.6786,
+          "all_prior_mae_same_samples": 3.7739,
+          "relative_improvement_vs_all_prior": 0.025241,
+          "sufficient_holdout_samples": false,
+          "passes_research_improvement_gate": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "change:unknown_prior_window": {
+          "samples": 3472,
+          "recent_rate_mae": 4.3909,
+          "all_prior_mae_same_samples": 4.3699,
+          "relative_improvement_vs_all_prior": -0.004812,
+          "sufficient_holdout_samples": false,
+          "passes_research_improvement_gate": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "change:rise_over_15pct": {
+          "samples": 4674,
+          "recent_rate_mae": 4.6702,
+          "all_prior_mae_same_samples": 4.7483,
+          "relative_improvement_vs_all_prior": 0.016462,
+          "sufficient_holdout_samples": false,
+          "passes_research_improvement_gate": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "change:stable": {
+          "samples": 12214,
+          "recent_rate_mae": 5.0362,
+          "all_prior_mae_same_samples": 5.0245,
+          "relative_improvement_vs_all_prior": -0.002338,
+          "sufficient_holdout_samples": false,
+          "passes_research_improvement_gate": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "change:drop_over_15pct": {
+          "samples": 3738,
+          "recent_rate_mae": 4.1499,
+          "all_prior_mae_same_samples": 4.3209,
+          "relative_improvement_vs_all_prior": 0.039568,
+          "sufficient_holdout_samples": false,
+          "passes_research_improvement_gate": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "mid_20_to_30": {
+          "samples": 9748,
+          "recent_rate_mae": 4.9256,
+          "all_prior_mae_same_samples": 4.9593,
+          "relative_improvement_vs_all_prior": 0.006795,
+          "sufficient_holdout_samples": false,
+          "passes_research_improvement_gate": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "high_30_plus": {
+          "samples": 5619,
+          "recent_rate_mae": 6.0448,
+          "all_prior_mae_same_samples": 5.9785,
+          "relative_improvement_vs_all_prior": -0.01108,
+          "sufficient_holdout_samples": false,
+          "passes_research_improvement_gate": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        }
+      },
+      "2026-27": {
+        "high_30_plus": {
+          "samples": 297,
+          "recent_rate_mae": 6.4981,
+          "all_prior_mae_same_samples": 5.8546,
+          "relative_improvement_vs_all_prior": -0.109913,
+          "sufficient_holdout_samples": true,
+          "passes_research_improvement_gate": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "change:rise_over_15pct": {
+          "samples": 183,
+          "recent_rate_mae": 5.3208,
+          "all_prior_mae_same_samples": 4.4592,
+          "relative_improvement_vs_all_prior": -0.193218,
+          "sufficient_holdout_samples": true,
+          "passes_research_improvement_gate": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "mid_20_to_30": {
+          "samples": 457,
+          "recent_rate_mae": 5.4138,
+          "all_prior_mae_same_samples": 5.0263,
+          "relative_improvement_vs_all_prior": -0.077086,
+          "sufficient_holdout_samples": true,
+          "passes_research_improvement_gate": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "change:stable": {
+          "samples": 647,
+          "recent_rate_mae": 5.4638,
+          "all_prior_mae_same_samples": 5.156,
+          "relative_improvement_vs_all_prior": -0.059694,
+          "sufficient_holdout_samples": true,
+          "passes_research_improvement_gate": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "low_under_20": {
+          "samples": 361,
+          "recent_rate_mae": 3.6408,
+          "all_prior_mae_same_samples": 3.919,
+          "relative_improvement_vs_all_prior": 0.070981,
+          "sufficient_holdout_samples": true,
+          "passes_research_improvement_gate": true,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "change:drop_over_15pct": {
+          "samples": 265,
+          "recent_rate_mae": 4.2034,
+          "all_prior_mae_same_samples": 4.5458,
+          "relative_improvement_vs_all_prior": 0.075318,
+          "sufficient_holdout_samples": true,
+          "passes_research_improvement_gate": true,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "change:unknown_prior_window": {
+          "samples": 20,
+          "recent_rate_mae": 4.7836,
+          "all_prior_mae_same_samples": 4.6992,
+          "relative_improvement_vs_all_prior": -0.017973,
+          "sufficient_holdout_samples": false,
+          "passes_research_improvement_gate": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        }
+      }
+    },
+    "Rebounds": {
+      "2025-26": {
+        "low_under_20": {
+          "samples": 8731,
+          "recent_rate_mae": 1.7216,
+          "all_prior_mae_same_samples": 1.752,
+          "relative_improvement_vs_all_prior": 0.017347,
+          "sufficient_holdout_samples": false,
+          "passes_research_improvement_gate": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "change:unknown_prior_window": {
+          "samples": 3472,
+          "recent_rate_mae": 1.8404,
+          "all_prior_mae_same_samples": 1.8405,
+          "relative_improvement_vs_all_prior": 7.9e-05,
+          "sufficient_holdout_samples": false,
+          "passes_research_improvement_gate": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "change:rise_over_15pct": {
+          "samples": 4674,
+          "recent_rate_mae": 1.9784,
+          "all_prior_mae_same_samples": 1.9644,
+          "relative_improvement_vs_all_prior": -0.007106,
+          "sufficient_holdout_samples": false,
+          "passes_research_improvement_gate": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "change:stable": {
+          "samples": 12214,
+          "recent_rate_mae": 2.0288,
+          "all_prior_mae_same_samples": 1.9858,
+          "relative_improvement_vs_all_prior": -0.021637,
+          "sufficient_holdout_samples": false,
+          "passes_research_improvement_gate": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "change:drop_over_15pct": {
+          "samples": 3738,
+          "recent_rate_mae": 1.7384,
+          "all_prior_mae_same_samples": 1.8309,
+          "relative_improvement_vs_all_prior": 0.050553,
+          "sufficient_holdout_samples": false,
+          "passes_research_improvement_gate": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "mid_20_to_30": {
+          "samples": 9748,
+          "recent_rate_mae": 2.0246,
+          "all_prior_mae_same_samples": 2.0059,
+          "relative_improvement_vs_all_prior": -0.009289,
+          "sufficient_holdout_samples": false,
+          "passes_research_improvement_gate": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "high_30_plus": {
+          "samples": 5619,
+          "recent_rate_mae": 2.1618,
+          "all_prior_mae_same_samples": 2.1036,
+          "relative_improvement_vs_all_prior": -0.027689,
+          "sufficient_holdout_samples": false,
+          "passes_research_improvement_gate": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        }
+      },
+      "2026-27": {
+        "high_30_plus": {
+          "samples": 297,
+          "recent_rate_mae": 2.2524,
+          "all_prior_mae_same_samples": 2.1472,
+          "relative_improvement_vs_all_prior": -0.048991,
+          "sufficient_holdout_samples": true,
+          "passes_research_improvement_gate": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "change:rise_over_15pct": {
+          "samples": 183,
+          "recent_rate_mae": 2.2333,
+          "all_prior_mae_same_samples": 2.1146,
+          "relative_improvement_vs_all_prior": -0.056166,
+          "sufficient_holdout_samples": true,
+          "passes_research_improvement_gate": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "mid_20_to_30": {
+          "samples": 457,
+          "recent_rate_mae": 2.2354,
+          "all_prior_mae_same_samples": 2.1055,
+          "relative_improvement_vs_all_prior": -0.061727,
+          "sufficient_holdout_samples": true,
+          "passes_research_improvement_gate": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "change:stable": {
+          "samples": 647,
+          "recent_rate_mae": 2.1411,
+          "all_prior_mae_same_samples": 2.0425,
+          "relative_improvement_vs_all_prior": -0.048272,
+          "sufficient_holdout_samples": true,
+          "passes_research_improvement_gate": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "low_under_20": {
+          "samples": 361,
+          "recent_rate_mae": 1.664,
+          "all_prior_mae_same_samples": 1.717,
+          "relative_improvement_vs_all_prior": 0.030845,
+          "sufficient_holdout_samples": true,
+          "passes_research_improvement_gate": true,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "change:drop_over_15pct": {
+          "samples": 265,
+          "recent_rate_mae": 1.7083,
+          "all_prior_mae_same_samples": 1.7755,
+          "relative_improvement_vs_all_prior": 0.037865,
+          "sufficient_holdout_samples": true,
+          "passes_research_improvement_gate": true,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "change:unknown_prior_window": {
+          "samples": 20,
+          "recent_rate_mae": 2.2281,
+          "all_prior_mae_same_samples": 2.0376,
+          "relative_improvement_vs_all_prior": -0.093454,
+          "sufficient_holdout_samples": false,
+          "passes_research_improvement_gate": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        }
+      }
+    },
+    "Assists": {
+      "2025-26": {
+        "low_under_20": {
+          "samples": 8731,
+          "recent_rate_mae": 1.0199,
+          "all_prior_mae_same_samples": 1.0402,
+          "relative_improvement_vs_all_prior": 0.019522,
+          "sufficient_holdout_samples": false,
+          "passes_research_improvement_gate": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "change:unknown_prior_window": {
+          "samples": 3472,
+          "recent_rate_mae": 1.3088,
+          "all_prior_mae_same_samples": 1.2995,
+          "relative_improvement_vs_all_prior": -0.007166,
+          "sufficient_holdout_samples": false,
+          "passes_research_improvement_gate": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "change:rise_over_15pct": {
+          "samples": 4674,
+          "recent_rate_mae": 1.3168,
+          "all_prior_mae_same_samples": 1.2896,
+          "relative_improvement_vs_all_prior": -0.021061,
+          "sufficient_holdout_samples": false,
+          "passes_research_improvement_gate": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "change:stable": {
+          "samples": 12214,
+          "recent_rate_mae": 1.5013,
+          "all_prior_mae_same_samples": 1.4873,
+          "relative_improvement_vs_all_prior": -0.009396,
+          "sufficient_holdout_samples": false,
+          "passes_research_improvement_gate": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "change:drop_over_15pct": {
+          "samples": 3738,
+          "recent_rate_mae": 1.169,
+          "all_prior_mae_same_samples": 1.2316,
+          "relative_improvement_vs_all_prior": 0.050845,
+          "sufficient_holdout_samples": false,
+          "passes_research_improvement_gate": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "mid_20_to_30": {
+          "samples": 9748,
+          "recent_rate_mae": 1.463,
+          "all_prior_mae_same_samples": 1.4447,
+          "relative_improvement_vs_all_prior": -0.012719,
+          "sufficient_holdout_samples": false,
+          "passes_research_improvement_gate": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "high_30_plus": {
+          "samples": 5619,
+          "recent_rate_mae": 1.8221,
+          "all_prior_mae_same_samples": 1.8054,
+          "relative_improvement_vs_all_prior": -0.009274,
+          "sufficient_holdout_samples": false,
+          "passes_research_improvement_gate": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        }
+      },
+      "2026-27": {
+        "high_30_plus": {
+          "samples": 297,
+          "recent_rate_mae": 1.8925,
+          "all_prior_mae_same_samples": 1.6884,
+          "relative_improvement_vs_all_prior": -0.12087,
+          "sufficient_holdout_samples": true,
+          "passes_research_improvement_gate": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "change:rise_over_15pct": {
+          "samples": 183,
+          "recent_rate_mae": 1.5787,
+          "all_prior_mae_same_samples": 1.3905,
+          "relative_improvement_vs_all_prior": -0.135344,
+          "sufficient_holdout_samples": true,
+          "passes_research_improvement_gate": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "mid_20_to_30": {
+          "samples": 457,
+          "recent_rate_mae": 1.5888,
+          "all_prior_mae_same_samples": 1.4999,
+          "relative_improvement_vs_all_prior": -0.059292,
+          "sufficient_holdout_samples": true,
+          "passes_research_improvement_gate": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "change:stable": {
+          "samples": 647,
+          "recent_rate_mae": 1.5643,
+          "all_prior_mae_same_samples": 1.4739,
+          "relative_improvement_vs_all_prior": -0.061364,
+          "sufficient_holdout_samples": true,
+          "passes_research_improvement_gate": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "low_under_20": {
+          "samples": 361,
+          "recent_rate_mae": 0.9649,
+          "all_prior_mae_same_samples": 0.9998,
+          "relative_improvement_vs_all_prior": 0.034856,
+          "sufficient_holdout_samples": true,
+          "passes_research_improvement_gate": true,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "change:drop_over_15pct": {
+          "samples": 265,
+          "recent_rate_mae": 1.1687,
+          "all_prior_mae_same_samples": 1.1838,
+          "relative_improvement_vs_all_prior": 0.012784,
+          "sufficient_holdout_samples": true,
+          "passes_research_improvement_gate": true,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "change:unknown_prior_window": {
+          "samples": 20,
+          "recent_rate_mae": 1.2904,
+          "all_prior_mae_same_samples": 1.304,
+          "relative_improvement_vs_all_prior": 0.010389,
+          "sufficient_holdout_samples": false,
+          "passes_research_improvement_gate": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        }
+      }
+    },
+    "Threes": {
+      "2025-26": {
+        "low_under_20": {
+          "samples": 8731,
+          "recent_rate_mae": 0.6675,
+          "all_prior_mae_same_samples": 0.6824,
+          "relative_improvement_vs_all_prior": 0.02181,
+          "sufficient_holdout_samples": false,
+          "passes_research_improvement_gate": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "change:unknown_prior_window": {
+          "samples": 3472,
+          "recent_rate_mae": 0.8449,
+          "all_prior_mae_same_samples": 0.8383,
+          "relative_improvement_vs_all_prior": -0.007822,
+          "sufficient_holdout_samples": false,
+          "passes_research_improvement_gate": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "change:rise_over_15pct": {
+          "samples": 4674,
+          "recent_rate_mae": 0.8881,
+          "all_prior_mae_same_samples": 0.8594,
+          "relative_improvement_vs_all_prior": -0.033374,
+          "sufficient_holdout_samples": false,
+          "passes_research_improvement_gate": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "change:stable": {
+          "samples": 12214,
+          "recent_rate_mae": 0.9806,
+          "all_prior_mae_same_samples": 0.969,
+          "relative_improvement_vs_all_prior": -0.011949,
+          "sufficient_holdout_samples": false,
+          "passes_research_improvement_gate": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "change:drop_over_15pct": {
+          "samples": 3738,
+          "recent_rate_mae": 0.7782,
+          "all_prior_mae_same_samples": 0.8124,
+          "relative_improvement_vs_all_prior": 0.042138,
+          "sufficient_holdout_samples": false,
+          "passes_research_improvement_gate": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "mid_20_to_30": {
+          "samples": 9748,
+          "recent_rate_mae": 0.9733,
+          "all_prior_mae_same_samples": 0.9591,
+          "relative_improvement_vs_all_prior": -0.014739,
+          "sufficient_holdout_samples": false,
+          "passes_research_improvement_gate": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "high_30_plus": {
+          "samples": 5619,
+          "recent_rate_mae": 1.1844,
+          "all_prior_mae_same_samples": 1.1555,
+          "relative_improvement_vs_all_prior": -0.025019,
+          "sufficient_holdout_samples": false,
+          "passes_research_improvement_gate": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        }
+      },
+      "2026-27": {
+        "high_30_plus": {
+          "samples": 297,
+          "recent_rate_mae": 1.2022,
+          "all_prior_mae_same_samples": 1.1431,
+          "relative_improvement_vs_all_prior": -0.051728,
+          "sufficient_holdout_samples": true,
+          "passes_research_improvement_gate": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "change:rise_over_15pct": {
+          "samples": 183,
+          "recent_rate_mae": 0.9628,
+          "all_prior_mae_same_samples": 0.8398,
+          "relative_improvement_vs_all_prior": -0.146523,
+          "sufficient_holdout_samples": true,
+          "passes_research_improvement_gate": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "mid_20_to_30": {
+          "samples": 457,
+          "recent_rate_mae": 0.9503,
+          "all_prior_mae_same_samples": 0.9082,
+          "relative_improvement_vs_all_prior": -0.046364,
+          "sufficient_holdout_samples": true,
+          "passes_research_improvement_gate": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "change:stable": {
+          "samples": 647,
+          "recent_rate_mae": 0.9879,
+          "all_prior_mae_same_samples": 0.9688,
+          "relative_improvement_vs_all_prior": -0.019787,
+          "sufficient_holdout_samples": true,
+          "passes_research_improvement_gate": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "low_under_20": {
+          "samples": 361,
+          "recent_rate_mae": 0.6584,
+          "all_prior_mae_same_samples": 0.7084,
+          "relative_improvement_vs_all_prior": 0.070544,
+          "sufficient_holdout_samples": true,
+          "passes_research_improvement_gate": true,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "change:drop_over_15pct": {
+          "samples": 265,
+          "recent_rate_mae": 0.7691,
+          "all_prior_mae_same_samples": 0.8309,
+          "relative_improvement_vs_all_prior": 0.074399,
+          "sufficient_holdout_samples": true,
+          "passes_research_improvement_gate": true,
+          "promotion_approved": false,
+          "bet_eligible": false
+        },
+        "change:unknown_prior_window": {
+          "samples": 20,
+          "recent_rate_mae": 0.4925,
+          "all_prior_mae_same_samples": 0.4813,
+          "relative_improvement_vs_all_prior": -0.023321,
+          "sufficient_holdout_samples": false,
+          "passes_research_improvement_gate": false,
+          "promotion_approved": false,
+          "bet_eligible": false
+        }
+      }
+    }
+  },
+  "recent_minutes_segment_research_policy": {
+    "minimum_holdout_samples": 100,
+    "minimum_relative_mae_improvement": 0.01,
+    "promotion_approved": false,
+    "requires_independent_validation": true
+  },
   "recent_minutes_rate_selection_eligible": false,
   "minutes_adjusted_selection_eligible": false,
   "minutes_adjusted_selection_blocker": "Research-only minutes model; requires independent validation and verified point-in-time workload inputs before selection",
@@ -1170,5 +1832,5 @@
     }
   },
   "warning": "Point-in-time sportsbook lines, injury/lineup context, calibration, joint SGP probability and independent validation are unavailable. Workload and opponent adjustments are not applied without verified point-in-time inputs. This is NOT a bet recommendation.",
-  "generated_at": "2026-10-28T19:27:09.700156+00:00"
+  "generated_at": "2026-10-28T19:53:16.908446+00:00"
 }
