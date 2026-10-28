@@ -9,7 +9,7 @@ SOURCE=Path("feed/nba_player_stats.json")
 OUTPUT=Path("feed/nba_player_walkforward_research.json")
 MARKETS=("Points","Rebounds","Assists","Threes")
 MIN_PRIOR=8
-WINDOWS=(5,10,20,"all")
+WINDOWS=(5,10,20,"all","blend_25","blend_50","blend_75")
 TRAIN_SEASON="2025-26"
 HOLDOUT_SEASON="2026-27"
 
@@ -59,8 +59,12 @@ def evaluate(data):
                     prediction=sum(recent)/len(recent)
                     baseline=sum(prior)/len(prior)
                     for window in WINDOWS:
-                        sample=prior if window=="all" else prior[-window:]
-                        forecast=sum(sample)/len(sample)
+                        if isinstance(window,str) and window.startswith("blend_"):
+                            weight=int(window.split("_")[1])/100
+                            forecast=weight*prediction+(1-weight)*baseline
+                        else:
+                            sample=prior if window=="all" else prior[-window:]
+                            forecast=sum(sample)/len(sample)
                         bucket=window_errors[market][season][str(window)]
                         bucket["n"]+=1
                         bucket["absolute_error"]+=abs(forecast-actual)
@@ -143,8 +147,12 @@ def evaluate(data):
         held=seasons.get(HOLDOUT_SEASON,{})
         selected_holdout=held.get(selected)
         baseline_holdout=held.get("all")
+        improvement=(baseline_holdout["absolute_error"]-selected_holdout["absolute_error"])/baseline_holdout["absolute_error"] if selected_holdout and baseline_holdout and baseline_holdout["absolute_error"]>0 else None
         window_selection[market]={
             "status":"research_only",
+            "holdout_improvement_fraction":round(improvement,6) if improvement is not None else None,
+            "holdout_gate_passed":improvement is not None and improvement>0,
+            "bet_eligible":False,
             "training_season":TRAIN_SEASON,
             "holdout_season":HOLDOUT_SEASON,
             "selected_window":selected,
@@ -164,7 +172,7 @@ def evaluate(data):
         "method":"strict-prior-date-walk-forward-player-rolling-mean",
         "minimum_prior_games":MIN_PRIOR,
         "markets":metrics,
-        "warning":"Point-in-time sportsbook lines, injury/lineup context, calibration, joint SGP probability and independent validation are unavailable. This is NOT a bet recommendation."}
+        "warning":"Point-in-time sportsbook lines, injury/lineup context, calibration, joint SGP probability and independent validation are unavailable. Workload and opponent adjustments are not applied without verified point-in-time inputs. This is NOT a bet recommendation."}
 
 def main():
     data=json.loads(SOURCE.read_text())
