@@ -2,59 +2,13 @@
   "schema": 1,
   "sport": "UFC",
   "source": "Greco1899/scrape_ufc_stats public CSV mirror",
-  "retrieved_at": "2026-10-27T15:49:19.803280+00:00",
+  "retrieved_at": "2026-10-28T15:55:27.576108+00:00",
   "source_files": [
     "ufc_fighter_details.csv",
     "ufc_fighter_tott.csv",
     "ufc_fight_stats.csv"
   ],
   "fighters": [
-    {
-      "name": "Andre Petroski",
-      "status": "MATCHED_HISTORICAL_STATS",
-      "source_profile": "http://ufcstats.com/fighter-details/5f61780fe5e9b6d0",
-      "height": "6' 0\"",
-      "weight": "185 lbs.",
-      "reach": "73\"",
-      "stance": "Switch",
-      "career_round_totals": {
-        "round_rows": 31,
-        "sig_landed": 370,
-        "sig_attempted": 752,
-        "total_landed": 537,
-        "td_landed": 28,
-        "td_attempted": 53,
-        "submission_attempts": 0,
-        "knockdowns": 0,
-        "control_seconds": 3152
-      },
-      "fighter_status_verified": false,
-      "stats_asof_verified": false,
-      "bet_eligible": false
-    },
-    {
-      "name": "Azamat Bekoev",
-      "status": "MATCHED_HISTORICAL_STATS",
-      "source_profile": "http://ufcstats.com/fighter-details/3bc3f60b21cddc6a",
-      "height": "6' 0\"",
-      "weight": "185 lbs.",
-      "reach": "72\"",
-      "stance": "Orthodox",
-      "career_round_totals": {
-        "round_rows": 8,
-        "sig_landed": 138,
-        "sig_attempted": 264,
-        "total_landed": 246,
-        "td_landed": 7,
-        "td_attempted": 16,
-        "submission_attempts": 0,
-        "knockdowns": 0,
-        "control_seconds": 513
-      },
-      "fighter_status_verified": false,
-      "stats_asof_verified": false,
-      "bet_eligible": false
-    },
     {
       "name": "Cody Durden",
       "status": "MATCHED_HISTORICAL_STATS",
