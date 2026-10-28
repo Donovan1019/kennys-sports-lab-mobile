@@ -50,6 +50,12 @@ class WalkForwardTests(unittest.TestCase):
         audit=result["window_comparison_by_season"]["Points"]["2025-26"]["minutes_adjusted"]
         self.assertEqual(audit["samples"],4)
         self.assertEqual(audit["mae"],5.125)
+        pair=result["minutes_adjusted_matched_sample_audit"]["Points"]["2025-26"]
+        self.assertEqual(pair["samples"],4)
+        self.assertEqual(pair["minutes_mae"],pair["all_prior_mae_same_samples"])
+        self.assertEqual(pair["minutes_wins"]+pair["all_prior_wins"]+pair["ties"],4)
+        self.assertFalse(pair["passes_holdout_improvement_threshold"])
+        self.assertFalse(pair["bet_eligible"])
         self.assertFalse(result["minutes_adjusted_selection_eligible"])
         self.assertFalse(result["promotion_approved"])
     def test_missing_minutes_does_not_generate_minutes_forecast(self):
@@ -59,6 +65,7 @@ class WalkForwardTests(unittest.TestCase):
         result=evaluate({"source":"espn-public-boxscore","sport":"nba","players":[{"id":"1","games":games}]})
         self.assertNotIn("minutes_adjusted",result["window_comparison_by_season"]["Points"]["2025-26"])
         self.assertEqual(result["minutes_workload_data_coverage"]["Points"]["missing_prior_minutes"],4)
+        self.assertNotIn("Points",result["minutes_adjusted_matched_sample_audit"])
     def test_requires_verified_source(self):
         with self.assertRaises(ValueError):
             evaluate({"source":"unverified","sport":"nba","players":[]})
