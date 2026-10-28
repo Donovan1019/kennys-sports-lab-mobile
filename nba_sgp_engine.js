@@ -48,7 +48,7 @@ function autoSgpCards(game,rows,profiles){
  const eligible=rows.filter(x=>x.market.startsWith('player_')&&x.player&&Number.isFinite(Number(x.point))&&Number.isFinite(Number(x.price))&&Number(x.price)!==0&&x.bookmaker&&Number.isFinite(Date.parse(x.updated_at))&&Date.parse(x.updated_at)<=now&&now-Date.parse(x.updated_at)<=90*60000&&now<tip&&Number.isFinite(tip)&&Number.isFinite(prob(Number(x.price)))&&prob(Number(x.price))>=.5&&prob(Number(x.price))<1&&profiles.some(p=>String(p.name||'').trim().toLowerCase()===String(x.player).trim().toLowerCase()&&Array.isArray(p.games)&&p.games.length>=8));
  const ranked=[...eligible].sort((a,b)=>prob(Number(b.price))-prob(Number(a.price)));
  const specs=[['Safer two-leg research',2],['Balanced three-leg research',3],['Four-core research',4]];
- if(!ranked.length){panel.append(el('p','No automatic SGP cards: fresh, matched player props unavailable. Refresh verified quotes. No fabricated legs.'));return panel}
+ if(!ranked.length){panel.append(el('p','No automatic SGP cards: fresh, matched player props unavailable. No fabricated legs.'));const help=el('a','Refresh NBA player-prop quotes (GitHub workflow)');help.href='https://github.com/Donovan1019/kennys-sports-lab-mobile/actions/workflows/refresh-nba-nhl-props.yml';help.target='_blank';help.rel='noopener noreferrer';help.style.cssText='display:inline-block;padding:10px;border:1px solid #35b889;border-radius:8px;color:#a5f4d0';panel.append(help);panel.append(el('p','Select Run workflow → nba → max_events. Each event uses paid API credits. Fresh quotes must be captured before tipoff; historical player stats do not substitute for odds.'));return panel}
  for(const [label,count] of specs){
   const selected=[],used=new Set(),usedMarkets=new Set();
   for(const x of ranked){
@@ -109,7 +109,7 @@ async function load(){
  const covered=shown.filter(g=>propEvents.has(g.event_id)).length;
  const diagnostics=el('p','Player-prop coverage: '+covered+'/'+shown.length+' upcoming games · prop feed age '+(propAge===null?'unknown':propAge+' minutes')+' · refresh: GitHub Actions → Refresh NBA NHL Player Props (Credit-Limited) → Run workflow → nba. Paid API credits are used only on manual dispatch.');
  diagnostics.style.cssText='border:1px solid #42677b;padding:10px;border-radius:8px';
- output.append(diagnostics);
+ output.append(diagnostics);const refresh=el('a','Open NBA player-prop refresh workflow');refresh.href='https://github.com/Donovan1019/kennys-sports-lab-mobile/actions/workflows/refresh-nba-nhl-props.yml';refresh.target='_blank';refresh.rel='noopener noreferrer';refresh.style.cssText='display:inline-block;margin:6px 0 12px;padding:10px;border:1px solid #35b889;border-radius:8px;color:#a5f4d0';output.append(refresh);
  const archiveStatus=el('p','Automated SGP archive: checking saved model capture status…');
  archiveStatus.style.cssText='border:1px solid #42677b;padding:10px;border-radius:8px';
  output.append(archiveStatus);
