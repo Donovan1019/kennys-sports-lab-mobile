@@ -220,6 +220,10 @@ def evaluate(data):
                     "relative_improvement_vs_all_prior":round((r["baseline_abs"]-r["recent_rate_abs"])/r["baseline_abs"],6) if r["baseline_abs"]>0 else None,
                     "sufficient_holdout_samples":bool(season==HOLDOUT_SEASON and r["n"]>=MIN_SEGMENT_HOLDOUT_SAMPLES),
                     "passes_research_improvement_gate":bool(season==HOLDOUT_SEASON and r["n"]>=MIN_SEGMENT_HOLDOUT_SAMPLES and r["baseline_abs"]>0 and (r["baseline_abs"]-r["recent_rate_abs"])/r["baseline_abs"]>=MIN_HOLDOUT_RELATIVE_IMPROVEMENT),
+                    "candidate_total_absolute_error":round(r["recent_rate_abs"],4),
+                    "baseline_total_absolute_error":round(r["baseline_abs"],4),
+                    "absolute_mae_difference":round((r["baseline_abs"]-r["recent_rate_abs"])/r["n"],4),
+                    "comparison_is_posthoc_exploratory":True,
                     "promotion_approved":False,
                     "bet_eligible":False}
                 for label,r in segments.items() if r["n"]}
@@ -324,6 +328,8 @@ def evaluate(data):
         "recent_minutes_workload_segment_audit":workload_segment_diagnostics,
         "recent_minutes_segment_research_policy":{"minimum_holdout_samples":MIN_SEGMENT_HOLDOUT_SAMPLES,"minimum_relative_mae_improvement":MIN_HOLDOUT_RELATIVE_IMPROVEMENT,"promotion_approved":False,"requires_independent_validation":True},
         "recent_minutes_rate_selection_eligible":False,
+        "recent_minutes_rate_equivalence_note":"For the same eligible recent games, sum(stat)/sum(minutes) multiplied by mean(minutes) equals mean(stat); this is a recent-game mean, not an independent minutes adjustment.",
+        "workload_segment_multiple_comparisons_warning":"Segments overlap (minutes bands and change groups); posthoc holdout wins are exploratory and cannot authorize model promotion.",
         "minutes_adjusted_selection_eligible":False,
         "minutes_adjusted_selection_blocker":"Research-only minutes model; requires independent validation and verified point-in-time workload inputs before selection",
         "training_selected_window_holdout_audit":window_selection,
