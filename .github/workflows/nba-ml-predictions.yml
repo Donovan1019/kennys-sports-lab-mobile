@@ -17,7 +17,7 @@ jobs:
         with:
           python-version: '3.11'
       - name: Run prediction tests
-        run: python -m unittest discover -s tests -p test_nba_ml_predictions.py
+        run: python -m unittest discover -s tests -p 'test_nba_ml_*.py'
       - name: Build historical team ratings
         run: python scripts/build_nba_ml_ratings.py
       - name: Generate fail-closed prediction feed
