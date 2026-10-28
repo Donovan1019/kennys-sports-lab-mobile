@@ -64,8 +64,10 @@ def run():
                 raise ValueError("SGP quote timestamp unverified")
             if not row.get("legs") or any(not isinstance(leg,dict) or not isinstance(leg.get("price"),(int,float)) or isinstance(leg.get("price"),bool) or not math.isfinite(leg.get("price")) or not leg.get("bookmaker") or not stamp(leg.get("updated_at")) or (captured_at-stamp(leg.get("updated_at"))).total_seconds()>5400 for leg in row["legs"]):
                 raise ValueError("missing actual sportsbook leg prices")
-            if not math.isfinite(sgp_quote["price"]):
-                raise ValueError("non-finite SGP price")
+            if not math.isfinite(sgp_quote["price"]) or sgp_quote["price"]==0 or -100<sgp_quote["price"]<100:
+                raise ValueError("invalid American SGP quote")
+            if any(stamp(leg["updated_at"])>captured_at or stamp(leg["updated_at"])>=tip for leg in row["legs"]):
+                raise ValueError("leg quote is future-dated or post-tipoff")
             ingest(row)
             existing.add(sid);captured+=1
         except (ValueError,TypeError,KeyError) as exc:
