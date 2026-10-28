@@ -32,12 +32,25 @@ def run():
                 raise ValueError("not an independently recorded model recommendation")
             if row.get("research_only") is not True or row.get("bet_eligible") is True:
                 raise ValueError("research-only recommendation required")
+            if row.get("model_probability") is None or not isinstance(row.get("model_probability"),(int,float)) or isinstance(row.get("model_probability"),bool) or not 0<row["model_probability"]<1:
+                raise ValueError("missing calibrated joint model probability")
+            if not row.get("joint_simulation_id") or not row.get("correlation_model_version"):
+                raise ValueError("missing joint simulation or correlation provenance")
+            if row.get("simulation_validated") is not True:
+                raise ValueError("joint simulation not validated")
             if not row.get("model_version") or not row.get("model_source"):
                 raise ValueError("missing model provenance")
             captured_at=stamp(row.get("captured_at"))
             if not captured_at or captured_at>now:
                 raise ValueError("future or missing capture time")
-            if not row.get("legs") or any(not isinstance(leg,dict) or not leg.get("price") or not leg.get("bookmaker") for leg in row["legs"]):
+            if not row.get("sgp_bookmaker_quote") or not isinstance(row.get("sgp_bookmaker_quote"),dict):
+                raise ValueError("missing actual bookmaker same-game parlay price")
+            sgp_quote=row["sgp_bookmaker_quote"]
+            if not sgp_quote.get("bookmaker") or not isinstance(sgp_quote.get("price"),(int,float)) or isinstance(sgp_quote.get("price"),bool):
+                raise ValueError("invalid bookmaker SGP price")
+            if not stamp(sgp_quote.get("updated_at")) or stamp(sgp_quote["updated_at"])>captured_at:
+                raise ValueError("SGP quote timestamp unverified")
+            if not row.get("legs") or any(not isinstance(leg,dict) or not isinstance(leg.get("price"),(int,float)) or isinstance(leg.get("price"),bool) or not leg.get("bookmaker") for leg in row["legs"]):
                 raise ValueError("missing actual sportsbook leg prices")
             ingest(row)
             existing.add(sid);captured+=1
