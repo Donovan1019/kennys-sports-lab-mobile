@@ -34,6 +34,9 @@ jobs:
           SPORT: ${{ inputs.sport }}
           MAX_EVENTS: ${{ inputs.max_events }}
         run: python -m scripts.fetch_nba_nhl_props
+      - name: Validate and archive NBA quotes before ledger admission
+        if: ${{ inputs.sport == 'nba' }}
+        run: python -m scripts.nba_automation_batch
       - name: Publish player-prop feed
         run: |
           git config user.name "github-actions[bot]"
