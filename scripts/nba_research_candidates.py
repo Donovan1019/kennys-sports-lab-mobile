@@ -3,6 +3,7 @@
 This does not price same-game parlays, calculate EV, or promote a model.
 """
 import json
+import unicodedata
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -47,6 +48,12 @@ ESPN_TEAM_NAMES={
     "WSH": "Washington Wizards"
 }
 
+def normalized_player_name(value):
+    """Normalize punctuation and accents, never guess player identity."""
+    raw=unicodedata.normalize("NFKD",str(value or "")).casefold()
+    return "".join(ch for ch in raw if ch.isalnum())
+
+
 def normalized_team(value):
     team=str(value or "").strip()
     return ESPN_TEAM_NAMES.get(team.upper(),team).casefold()
@@ -78,7 +85,7 @@ def generate(odds, history, now):
     profiles={}
     for profile in history.get("players",[]):
         if not isinstance(profile,dict):continue
-        name=str(profile.get("name","")).casefold().strip()
+        name=normalized_player_name(profile.get("name",""))
         if not name:continue
         profiles.setdefault(name,[]).append(profile)
     seen=set()
@@ -96,7 +103,7 @@ def generate(odds, history, now):
         point=row.get("point")
         if type(point) not in (int,float) or row.get("selection") not in ("Over","Under"):
             reject("invalid_line");continue
-        matches=profiles.get(str(row.get("player","")).casefold().strip(),[])
+        matches=profiles.get(normalized_player_name(row.get("player","")),[])
         if not matches:
             reject("player_not_matched")
             unmatched_players.add(str(row.get("player","")))
