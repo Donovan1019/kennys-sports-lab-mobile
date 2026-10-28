@@ -64,6 +64,9 @@ class WalkForwardTests(unittest.TestCase):
         self.assertEqual(result["recent_minutes_segment_research_policy"]["minimum_holdout_samples"],100)
         self.assertIn("Points",result["recent_minutes_segment_holdout_summary"])
         self.assertFalse(result["recent_minutes_segment_holdout_summary"]["Points"]["bet_eligible"])
+        self.assertIn("not an independent minutes adjustment",result["recent_minutes_rate_equivalence_note"])
+        self.assertIn("posthoc",result["workload_segment_multiple_comparisons_warning"])
+        self.assertTrue(all("absolute_mae_difference" in v and "candidate_total_absolute_error" in v for v in segments.values()))
         pair=result["minutes_adjusted_matched_sample_audit"]["Points"]["2025-26"]
         self.assertEqual(pair["samples"],4)
         self.assertEqual(pair["minutes_mae"],pair["all_prior_mae_same_samples"])
