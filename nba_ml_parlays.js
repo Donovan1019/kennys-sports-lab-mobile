@@ -15,7 +15,7 @@ async function refresh(){
  const tip=Date.parse(r.commence_time);const updated=Date.parse(r.updated_at);if(!Number.isFinite(tip)||tip<=now||dateET(tip)!==today||!Number.isFinite(updated)||updated>now||now-updated>90*60000)continue;
  const key=String(r.event_id),group=games.get(key)||[];group.push(r);games.set(key,group);
  }
- const choices=[];
+ const choices=[];const simulations=10000;const seeded=(seed)=>()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296};
  for(const [id,group] of games){const books=new Map();for(const r of group){const k=String(r.bookmaker);const a=books.get(k)||[];a.push(r);books.set(k,a)}
  let best=null;
  for(const [book,rs] of books){const sides=new Map();for(const r of rs)sides.set(String(r.selection),r);if(sides.size!==2)continue;const pair=[...sides.values()];if(pair.some(r=>r.event!==group[0].event))continue;const expected=String(group[0].event||'').split(' @ ');if(expected.length!==2||!pair.every(r=>expected.includes(String(r.selection))))continue;const duplicateSelection=rs.some(r=>rs.filter(x=>x.selection===r.selection).length>1);if(duplicateSelection)continue;const a=odds(Number(pair[0].price)),b=odds(Number(pair[1].price)),sum=a+b;if(sum<1||sum>1.2)continue;
@@ -28,6 +28,10 @@ async function refresh(){
  const card=node('section','');card.style.cssText='border:1px solid #42677b;border-radius:12px;padding:14px;margin:12px 0;background:#10283a';card.append(node('h3',label));
  const legs=choices.slice(0,n);if(legs.length<n){card.append(node('p','UNAVAILABLE — insufficient eligible games'));out.append(card);continue}
  const ul=document.createElement('ul');let joint=1,decimal=1;const books=new Set(legs.map(x=>x.book));for(const l of legs){joint*=l.p;decimal*=l.price<0?1+100/-l.price:1+l.price/100;ul.append(node('li',l.team+' ML · '+l.book+' '+(l.price>0?'+':'')+l.price+' · no-vig market '+(100*l.p).toFixed(1)+'%'))}card.append(ul);
+ const rand=seeded(2166136261+n);let successes=0;for(let i=0;i<simulations;i++){if(legs.every(l=>rand()<l.p))successes++}const mc=successes/simulations;
+ card.append(node('p','10,000-draw independent-market Monte Carlo: '+(mc*100).toFixed(2)+'% (simulation of market-implied probabilities only; NOT an independently calibrated forecast).'));
+ card.append(node('p','Model EV: UNAVAILABLE · requires independently validated probabilities and executable same-book parlay prices.'));
+ card.append(node('p','Diamond grade: UNVERIFIED · injury, lineup, rest and calibration checks not complete.'));
  card.append(node('p',books.size===1?'All legs quoted at '+[...books][0]+'; combined odds are mathematical only, not a verified parlay offer.':'MIXED BOOKMAKERS — combined quoted odds are NOT a purchasable parlay.'));card.append(node('p','Illustrative independent-market product: '+(joint*100).toFixed(1)+'% · fair '+american(joint)+' · combined quoted '+american(1/decimal)+'. NOT model probability, Monte Carlo, EV or a verified book parlay quote.'));
  card.append(node('p','RESEARCH ONLY · lineup, injury, correlated outcomes, sportsbook parlay pricing and model calibration not validated.'));out.append(card);
  }

@@ -1,0 +1,10 @@
+const fs=require('node:fs');const assert=require('node:assert/strict');const {execFileSync}=require('node:child_process');
+const js=fs.readFileSync('nba_ml_parlays.js','utf8'),html=fs.readFileSync('nba.html','utf8');
+execFileSync(process.execPath,['--check','nba_ml_parlays.js']);
+assert.match(html,/data-nba-tab="ml"/);assert.match(html,/id="ksl-nba-ml-root"/);
+assert.match(html,/nba_ml_parlays\.js/);assert.match(js,/feed\/basketball_nba\.json/);
+assert.match(js,/data\.status!=='ok'/);assert.match(js,/dateET\(Date\.now\(\)\)/);
+assert.match(js,/simulations=10000/);assert.match(js,/Model EV: UNAVAILABLE/);
+assert.match(js,/Diamond grade: UNVERIFIED/);assert.match(js,/MIXED BOOKMAKERS/);
+assert.doesNotMatch(js,/data\/nba_props\.json/);
+console.log('NBA ML static integrity checks passed');
