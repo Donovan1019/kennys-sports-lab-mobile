@@ -28,6 +28,10 @@ jobs:
         run: python scripts/build_nba_ml_ratings.py
       - name: Generate fail-closed prediction feed
         run: python scripts/build_nba_ml_predictions.py
+      - name: Fetch NBA schedule evidence (free ESPN source)
+        run: python scripts/fetch_nba_ml_schedule_evidence.py
+      - name: Archive point-in-time NBA odds and predictions
+        run: python scripts/archive_nba_ml_odds.py
       - name: Audit betting readiness (fail closed)
         run: python scripts/audit_nba_ml_betting_readiness.py
       - name: Validate JSON
@@ -36,7 +40,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add feed/nba_ml_betting_readiness.json feed/basketball_nba.json feed/nba_ml_predictions.json data/nba_ml_historical_games.json data/nba_ml_validated_ratings.json
+          git add data/nba_ml_odds_archive/ feed/nba_ml_schedule_evidence.json feed/nba_ml_betting_readiness.json feed/basketball_nba.json feed/nba_ml_predictions.json data/nba_ml_historical_games.json data/nba_ml_validated_ratings.json
           if ! git diff --cached --quiet; then
             git commit -m "Update NBA ML prediction feed"
             git push
