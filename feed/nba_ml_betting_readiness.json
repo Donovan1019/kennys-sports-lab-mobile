@@ -1,0 +1,14 @@
+{
+  "status": "not_bet_eligible",
+  "checked_at": "2026-10-28T21:54:49.099876+00:00",
+  "checks": {
+    "odds_fresh": true,
+    "model_fresh_and_calibrated": true,
+    "historical_pregame_odds_backtest": false,
+    "closing_line_value_verified": false,
+    "injury_lineup_rest_confirmed": false,
+    "executable_same_book_parlay_quote": false,
+    "correlation_stress_test_verified": false
+  },
+  "reason": "Historical pregame odds, lineup availability, executable parlay prices and correlation validation are not connected; fail closed."
+}
