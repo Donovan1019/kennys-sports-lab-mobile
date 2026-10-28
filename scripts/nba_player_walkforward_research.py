@@ -9,7 +9,7 @@ SOURCE=Path("feed/nba_player_stats.json")
 OUTPUT=Path("feed/nba_player_walkforward_research.json")
 MARKETS=("Points","Rebounds","Assists","Threes")
 MIN_PRIOR=8
-WINDOWS=(5,10,20,"all","blend_25","blend_50","blend_75")
+WINDOWS=(5,10,20,"all","blend_25","blend_50","blend_75","minutes_adjusted")
 TRAIN_SEASON="2025-26"
 HOLDOUT_SEASON="2026-27"
 MIN_TRAIN_SPLIT_SAMPLES=100
@@ -21,6 +21,7 @@ def evaluate(data):
         raise ValueError("Verified NBA player game-log source required")
     players=data.get("players")
     if not isinstance(players,list): raise ValueError("Missing player game logs")
+    minutes_diagnostics=defaultdict(lambda:{"eligible":0,"missing_prior_minutes":0})
     training_error_records=defaultdict(list)
     window_errors=defaultdict(lambda:defaultdict(lambda:defaultdict(lambda:{"n":0,"absolute_error":0.0,"squared_error":0.0})))
     totals=defaultdict(lambda:{"n":0,"abs_error":0.0,"squared_error":0.0,"baseline_abs_error":0.0,"by_season":{}})
@@ -53,9 +54,13 @@ def evaluate(data):
         valid.sort(key=lambda g:(g[0],g[1]))
         for market in MARKETS:
             history=[]
+            minutes_history=[]
             for day,gid,season,values in valid:
                 actual=values.get(market)
                 if not isinstance(actual,(int,float)) or isinstance(actual,bool) or not math.isfinite(actual) or actual<0:continue
+                current_minutes=values.get("Minutes")
+                valid_minutes=isinstance(current_minutes,(int,float)) and not isinstance(current_minutes,bool) and math.isfinite(current_minutes) and 0<current_minutes<=60
+                prior_minutes=[(d,m,v) for d,m,v in minutes_history if d<day]
                 # A same-day result cannot be used to predict another game on that day.
                 prior=[v for d,v in history if d<day]
                 if len(prior)>=MIN_PRIOR:
@@ -63,7 +68,16 @@ def evaluate(data):
                     prediction=sum(recent)/len(recent)
                     baseline=sum(prior)/len(prior)
                     for window in WINDOWS:
-                        if isinstance(window,str) and window.startswith("blend_"):
+                        if window=="minutes_adjusted":
+                            eligible=[(m,v) for _,m,v in prior_minutes if m>0]
+                            if len(eligible)<MIN_PRIOR:
+                                minutes_diagnostics[market]["missing_prior_minutes"]+=1
+                                continue
+                            expected_minutes=sum(m for m,_ in eligible[-10:])/len(eligible[-10:])
+                            prior_rate=sum(v for m,v in eligible)/sum(m for m,v in eligible)
+                            forecast=prior_rate*expected_minutes
+                            minutes_diagnostics[market]["eligible"]+=1
+                        elif isinstance(window,str) and window.startswith("blend_"):
                             weight=int(window.split("_")[1])/100
                             forecast=weight*prediction+(1-weight)*baseline
                         else:
@@ -108,6 +122,7 @@ def evaluate(data):
                     season_count=record["by_season"].setdefault(season,0)
                     record["by_season"][season]=season_count+1
                 history.append((day,float(actual)))
+                if valid_minutes:minutes_history.append((day,float(current_minutes),float(actual)))
     metrics={}
     for market,record in totals.items():
         n=record["n"]
@@ -149,7 +164,7 @@ def evaluate(data):
         if not training:
             window_selection[market]={"status":"insufficient_training_data","selected_window":None}
             continue
-        selected=min(training,key=lambda w:(training[w]["absolute_error"]/training[w]["n"],w))
+        selected=min((w for w in training if w!="minutes_adjusted"),key=lambda w:(training[w]["absolute_error"]/training[w]["n"],w))
         held=seasons.get(HOLDOUT_SEASON,{})
         selected_holdout=held.get(selected)
         baseline_holdout=held.get("all")
@@ -204,6 +219,9 @@ def evaluate(data):
         "fixed_reference_threshold_outcomes":threshold_metrics,
         "season_holdout_diagnostics":season_metrics,
         "window_comparison_by_season":window_diagnostics,
+        "minutes_workload_data_coverage":dict(minutes_diagnostics),
+        "minutes_adjusted_selection_eligible":False,
+        "minutes_adjusted_selection_blocker":"Requires matched-sample evaluation and verified minutes coverage before model selection",
         "training_selected_window_holdout_audit":window_selection,
         "research_validation_policy":{"minimum_training_half_samples":MIN_TRAIN_SPLIT_SAMPLES,"minimum_holdout_samples":MIN_HOLDOUT_SAMPLES,"minimum_relative_holdout_mae_improvement":MIN_HOLDOUT_RELATIVE_IMPROVEMENT,"promotion_requires_external_betting_validation":True},
         "method":"strict-prior-date-walk-forward-player-rolling-mean",

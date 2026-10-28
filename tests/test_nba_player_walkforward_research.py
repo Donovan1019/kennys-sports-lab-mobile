@@ -42,6 +42,23 @@ class WalkForwardTests(unittest.TestCase):
         self.assertFalse(result["promotion_approved"])
         self.assertFalse(result["promotion_approved"])
         self.assertEqual(result["window_comparison_by_season"]["Points"]["2026-27"]["all"]["samples"],4)
+    def test_minutes_workload_requires_prior_minutes_and_never_promotes(self):
+        games=[{"date":f"2026-01-{i:02d}","game_id":str(i),"season":"2025-26",
+                "season_type":"regular","values":{"Points":float(i),"Minutes":20.0}}
+               for i in range(1,13)]
+        result=evaluate({"source":"espn-public-boxscore","sport":"nba","players":[{"id":"1","games":games}]})
+        audit=result["window_comparison_by_season"]["Points"]["2025-26"]["minutes_adjusted"]
+        self.assertEqual(audit["samples"],4)
+        self.assertEqual(audit["mae"],5.125)
+        self.assertFalse(result["minutes_adjusted_selection_eligible"])
+        self.assertFalse(result["promotion_approved"])
+    def test_missing_minutes_does_not_generate_minutes_forecast(self):
+        games=[{"date":f"2026-01-{i:02d}","game_id":str(i),"season":"2025-26",
+                "season_type":"regular","values":{"Points":float(i)}}
+               for i in range(1,13)]
+        result=evaluate({"source":"espn-public-boxscore","sport":"nba","players":[{"id":"1","games":games}]})
+        self.assertNotIn("minutes_adjusted",result["window_comparison_by_season"]["Points"]["2025-26"])
+        self.assertEqual(result["minutes_workload_data_coverage"]["Points"]["missing_prior_minutes"],4)
     def test_requires_verified_source(self):
         with self.assertRaises(ValueError):
             evaluate({"source":"unverified","sport":"nba","players":[]})
