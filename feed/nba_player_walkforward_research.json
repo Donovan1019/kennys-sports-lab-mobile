@@ -395,6 +395,21 @@
           "samples": 24140,
           "mae": 4.7649,
           "rmse": 6.2666
+        },
+        "blend_25": {
+          "samples": 24140,
+          "mae": 4.7094,
+          "rmse": 6.1934
+        },
+        "blend_50": {
+          "samples": 24140,
+          "mae": 4.6851,
+          "rmse": 6.163
+        },
+        "blend_75": {
+          "samples": 24140,
+          "mae": 4.6921,
+          "rmse": 6.1761
         }
       },
       "2026-27": {
@@ -417,6 +432,21 @@
           "samples": 1116,
           "mae": 4.8851,
           "rmse": 6.1882
+        },
+        "blend_25": {
+          "samples": 1116,
+          "mae": 4.8602,
+          "rmse": 6.1661
+        },
+        "blend_50": {
+          "samples": 1116,
+          "mae": 4.8871,
+          "rmse": 6.2298
+        },
+        "blend_75": {
+          "samples": 1116,
+          "mae": 4.97,
+          "rmse": 6.3767
         }
       }
     },
@@ -441,6 +471,21 @@
           "samples": 24140,
           "mae": 1.9361,
           "rmse": 2.5556
+        },
+        "blend_25": {
+          "samples": 24140,
+          "mae": 1.9213,
+          "rmse": 2.537
+        },
+        "blend_50": {
+          "samples": 24140,
+          "mae": 1.9181,
+          "rmse": 2.5336
+        },
+        "blend_75": {
+          "samples": 24140,
+          "mae": 1.9268,
+          "rmse": 2.5456
         }
       },
       "2026-27": {
@@ -463,6 +508,21 @@
           "samples": 1116,
           "mae": 1.9896,
           "rmse": 2.5772
+        },
+        "blend_25": {
+          "samples": 1116,
+          "mae": 1.9804,
+          "rmse": 2.5769
+        },
+        "blend_50": {
+          "samples": 1116,
+          "mae": 1.9864,
+          "rmse": 2.601
+        },
+        "blend_75": {
+          "samples": 1116,
+          "mae": 2.0125,
+          "rmse": 2.649
         }
       }
     },
@@ -487,6 +547,21 @@
           "samples": 24140,
           "mae": 1.3815,
           "rmse": 1.8848
+        },
+        "blend_25": {
+          "samples": 24140,
+          "mae": 1.3703,
+          "rmse": 1.8686
+        },
+        "blend_50": {
+          "samples": 24140,
+          "mae": 1.3672,
+          "rmse": 1.8644
+        },
+        "blend_75": {
+          "samples": 24140,
+          "mae": 1.3723,
+          "rmse": 1.8724
         }
       },
       "2026-27": {
@@ -509,6 +584,21 @@
           "samples": 1116,
           "mae": 1.3877,
           "rmse": 1.8078
+        },
+        "blend_25": {
+          "samples": 1116,
+          "mae": 1.3822,
+          "rmse": 1.8129
+        },
+        "blend_50": {
+          "samples": 1116,
+          "mae": 1.3926,
+          "rmse": 1.8397
+        },
+        "blend_75": {
+          "samples": 1116,
+          "mae": 1.4228,
+          "rmse": 1.8874
         }
       }
     },
@@ -533,6 +623,21 @@
           "samples": 24140,
           "mae": 0.9039,
           "rmse": 1.2603
+        },
+        "blend_25": {
+          "samples": 24140,
+          "mae": 0.8998,
+          "rmse": 1.2549
+        },
+        "blend_50": {
+          "samples": 24140,
+          "mae": 0.8997,
+          "rmse": 1.2563
+        },
+        "blend_75": {
+          "samples": 24140,
+          "mae": 0.9035,
+          "rmse": 1.2645
         }
       },
       "2026-27": {
@@ -555,6 +660,21 @@
           "samples": 1116,
           "mae": 0.9053,
           "rmse": 1.2026
+        },
+        "blend_25": {
+          "samples": 1116,
+          "mae": 0.9004,
+          "rmse": 1.1999
+        },
+        "blend_50": {
+          "samples": 1116,
+          "mae": 0.9023,
+          "rmse": 1.2082
+        },
+        "blend_75": {
+          "samples": 1116,
+          "mae": 0.9092,
+          "rmse": 1.2273
         }
       }
     }
@@ -562,47 +682,59 @@
   "training_selected_window_holdout_audit": {
     "Points": {
       "status": "research_only",
+      "holdout_improvement_fraction": -0.000418,
+      "holdout_gate_passed": false,
+      "bet_eligible": false,
       "training_season": "2025-26",
       "holdout_season": "2026-27",
-      "selected_window": "20",
+      "selected_window": "blend_50",
       "training_samples": 24140,
       "holdout_samples": 1116,
-      "holdout_mae": 5.0637,
+      "holdout_mae": 4.8871,
       "holdout_all_prior_mae": 4.8851,
       "beats_holdout_all_prior": false
     },
     "Rebounds": {
       "status": "research_only",
+      "holdout_improvement_fraction": 0.001609,
+      "holdout_gate_passed": true,
+      "bet_eligible": false,
       "training_season": "2025-26",
       "holdout_season": "2026-27",
-      "selected_window": "20",
+      "selected_window": "blend_50",
       "training_samples": 24140,
       "holdout_samples": 1116,
-      "holdout_mae": 2.0183,
+      "holdout_mae": 1.9864,
       "holdout_all_prior_mae": 1.9896,
-      "beats_holdout_all_prior": false
+      "beats_holdout_all_prior": true
     },
     "Assists": {
       "status": "research_only",
+      "holdout_improvement_fraction": -0.003536,
+      "holdout_gate_passed": false,
+      "bet_eligible": false,
       "training_season": "2025-26",
       "holdout_season": "2026-27",
-      "selected_window": "20",
+      "selected_window": "blend_50",
       "training_samples": 24140,
       "holdout_samples": 1116,
-      "holdout_mae": 1.4303,
+      "holdout_mae": 1.3926,
       "holdout_all_prior_mae": 1.3877,
       "beats_holdout_all_prior": false
     },
     "Threes": {
       "status": "research_only",
+      "holdout_improvement_fraction": 0.003232,
+      "holdout_gate_passed": true,
+      "bet_eligible": false,
       "training_season": "2025-26",
       "holdout_season": "2026-27",
-      "selected_window": "20",
+      "selected_window": "blend_50",
       "training_samples": 24140,
       "holdout_samples": 1116,
-      "holdout_mae": 0.9169,
+      "holdout_mae": 0.9023,
       "holdout_all_prior_mae": 0.9053,
-      "beats_holdout_all_prior": false
+      "beats_holdout_all_prior": true
     }
   },
   "method": "strict-prior-date-walk-forward-player-rolling-mean",
@@ -649,6 +781,6 @@
       }
     }
   },
-  "warning": "Point-in-time sportsbook lines, injury/lineup context, calibration, joint SGP probability and independent validation are unavailable. This is NOT a bet recommendation.",
-  "generated_at": "2026-10-28T13:31:30.877131+00:00"
+  "warning": "Point-in-time sportsbook lines, injury/lineup context, calibration, joint SGP probability and independent validation are unavailable. Workload and opponent adjustments are not applied without verified point-in-time inputs. This is NOT a bet recommendation.",
+  "generated_at": "2026-10-28T13:39:32.601220+00:00"
 }
