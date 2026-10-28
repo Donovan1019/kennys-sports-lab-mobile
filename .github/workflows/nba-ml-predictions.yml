@@ -2,7 +2,7 @@ name: NBA ML prediction feed
 on:
   workflow_dispatch:
   schedule:
-    - cron: '*/30 * * * *'
+    - cron: '17 */2 * * *'
 permissions:
   contents: write
 concurrency:
@@ -18,6 +18,12 @@ jobs:
           python-version: '3.11'
       - name: Run prediction tests
         run: python -m unittest discover -s tests -p 'test_nba_ml_*.py'
+      - name: Refresh NBA sportsbook odds (free API quota applies)
+        env:
+          THE_ODDS_API_KEY: \${{ secrets.THE_ODDS_API_KEY }}
+          ODDS_SPORT: basketball_nba
+          ODDS_MARKETS: h2h
+        run: python scripts/fetch_odds.py
       - name: Build historical team ratings
         run: python scripts/build_nba_ml_ratings.py
       - name: Generate fail-closed prediction feed
@@ -28,7 +34,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add feed/nba_ml_predictions.json data/nba_ml_historical_games.json data/nba_ml_validated_ratings.json
+          git add feed/basketball_nba.json feed/nba_ml_predictions.json data/nba_ml_historical_games.json data/nba_ml_validated_ratings.json
           if ! git diff --cached --quiet; then
             git commit -m "Update NBA ML prediction feed"
             git push
