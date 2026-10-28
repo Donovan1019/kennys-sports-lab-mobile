@@ -737,6 +737,120 @@
       "missing_prior_minutes": 43
     }
   },
+  "minutes_adjusted_matched_sample_audit": {
+    "Points": {
+      "2025-26": {
+        "samples": 24098,
+        "minutes_mae": 4.698,
+        "all_prior_mae_same_samples": 4.7675,
+        "blend_50_mae_same_samples": 4.6876,
+        "relative_improvement_vs_all_prior": 0.014573,
+        "minutes_wins": 11882,
+        "all_prior_wins": 11070,
+        "ties": 1146,
+        "passes_holdout_improvement_threshold": false,
+        "promotion_approved": false,
+        "bet_eligible": false
+      },
+      "2026-27": {
+        "samples": 1115,
+        "minutes_mae": 4.9177,
+        "all_prior_mae_same_samples": 4.8884,
+        "blend_50_mae_same_samples": 4.8905,
+        "relative_improvement_vs_all_prior": -0.005988,
+        "minutes_wins": 563,
+        "all_prior_wins": 549,
+        "ties": 3,
+        "passes_holdout_improvement_threshold": false,
+        "promotion_approved": false,
+        "bet_eligible": false
+      }
+    },
+    "Rebounds": {
+      "2025-26": {
+        "samples": 24098,
+        "minutes_mae": 1.9198,
+        "all_prior_mae_same_samples": 1.9367,
+        "blend_50_mae_same_samples": 1.9187,
+        "relative_improvement_vs_all_prior": 0.008739,
+        "minutes_wins": 11656,
+        "all_prior_wins": 11324,
+        "ties": 1118,
+        "passes_holdout_improvement_threshold": false,
+        "promotion_approved": false,
+        "bet_eligible": false
+      },
+      "2026-27": {
+        "samples": 1115,
+        "minutes_mae": 2.0162,
+        "all_prior_mae_same_samples": 1.9908,
+        "blend_50_mae_same_samples": 1.9876,
+        "relative_improvement_vs_all_prior": -0.012782,
+        "minutes_wins": 535,
+        "all_prior_wins": 576,
+        "ties": 4,
+        "passes_holdout_improvement_threshold": false,
+        "promotion_approved": false,
+        "bet_eligible": false
+      }
+    },
+    "Assists": {
+      "2025-26": {
+        "samples": 24098,
+        "minutes_mae": 1.3706,
+        "all_prior_mae_same_samples": 1.3822,
+        "blend_50_mae_same_samples": 1.3679,
+        "relative_improvement_vs_all_prior": 0.008435,
+        "minutes_wins": 11821,
+        "all_prior_wins": 11139,
+        "ties": 1138,
+        "passes_holdout_improvement_threshold": false,
+        "promotion_approved": false,
+        "bet_eligible": false
+      },
+      "2026-27": {
+        "samples": 1115,
+        "minutes_mae": 1.421,
+        "all_prior_mae_same_samples": 1.3882,
+        "blend_50_mae_same_samples": 1.3931,
+        "relative_improvement_vs_all_prior": -0.023599,
+        "minutes_wins": 526,
+        "all_prior_wins": 585,
+        "ties": 4,
+        "passes_holdout_improvement_threshold": false,
+        "promotion_approved": false,
+        "bet_eligible": false
+      }
+    },
+    "Threes": {
+      "2025-26": {
+        "samples": 24098,
+        "minutes_mae": 0.9015,
+        "all_prior_mae_same_samples": 0.9047,
+        "blend_50_mae_same_samples": 0.9004,
+        "relative_improvement_vs_all_prior": 0.003467,
+        "minutes_wins": 10716,
+        "all_prior_wins": 10711,
+        "ties": 2671,
+        "passes_holdout_improvement_threshold": false,
+        "promotion_approved": false,
+        "bet_eligible": false
+      },
+      "2026-27": {
+        "samples": 1115,
+        "minutes_mae": 0.8999,
+        "all_prior_mae_same_samples": 0.9061,
+        "blend_50_mae_same_samples": 0.9032,
+        "relative_improvement_vs_all_prior": 0.006827,
+        "minutes_wins": 520,
+        "all_prior_wins": 535,
+        "ties": 60,
+        "passes_holdout_improvement_threshold": false,
+        "promotion_approved": false,
+        "bet_eligible": false
+      }
+    }
+  },
   "minutes_adjusted_selection_eligible": false,
   "minutes_adjusted_selection_blocker": "Requires matched-sample evaluation and verified minutes coverage before model selection",
   "training_selected_window_holdout_audit": {
@@ -925,5 +1039,5 @@
     }
   },
   "warning": "Point-in-time sportsbook lines, injury/lineup context, calibration, joint SGP probability and independent validation are unavailable. Workload and opponent adjustments are not applied without verified point-in-time inputs. This is NOT a bet recommendation.",
-  "generated_at": "2026-10-28T13:50:02.936102+00:00"
+  "generated_at": "2026-10-28T13:57:55.782784+00:00"
 }
