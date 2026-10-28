@@ -39,6 +39,8 @@ jobs:
         run: python -m scripts.nba_research_candidates
       - name: Run chronological NBA player walk-forward research audit
         run: python -m scripts.nba_player_walkforward_research
+      - name: Audit NBA same-game pair correlations without promoting picks
+        run: python -m scripts.nba_sgp_pair_research
       - name: Capture only actual saved NBA SGP model recommendations
         run: python -m scripts.nba_sgp_model_ledger_bridge
       - name: Grade saved NBA player props and explicit SGP combinations
@@ -48,7 +50,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.refresh_nba_player_props }}" = "true" ]; then git add feed/nba_props.json; fi
-          git add backtests/snapshots/ feed/nba_player_walkforward_research.json feed/nba_model_candidates.json feed/nba_automation_coverage.json feed/nba_sgp_model_capture_status.json feed/nba_prop_pregame_grades.json feed/nba_sgp_pregame_grades.json
+          git add backtests/snapshots/ feed/nba_player_walkforward_research.json feed/nba_sgp_same_game_pair_research.json feed/nba_model_candidates.json feed/nba_automation_coverage.json feed/nba_sgp_model_capture_status.json feed/nba_prop_pregame_grades.json feed/nba_sgp_pregame_grades.json
           if [ -f feed/nba_prop_pregame_ledger.jsonl ]; then git add feed/nba_prop_pregame_ledger.jsonl; fi
           if [ -f feed/nba_sgp_pregame_ledger.jsonl ]; then git add feed/nba_sgp_pregame_ledger.jsonl; fi
           if ! git diff --cached --quiet; then
