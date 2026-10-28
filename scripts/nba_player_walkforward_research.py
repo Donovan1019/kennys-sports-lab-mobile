@@ -21,6 +21,7 @@ def evaluate(data):
         raise ValueError("Verified NBA player game-log source required")
     players=data.get("players")
     if not isinstance(players,list): raise ValueError("Missing player game logs")
+    matched_minutes=defaultdict(lambda:defaultdict(lambda:{"n":0,"minutes_abs":0.0,"all_abs":0.0,"blend_abs":0.0,"minutes_wins":0,"all_wins":0,"ties":0}))
     minutes_diagnostics=defaultdict(lambda:{"eligible":0,"missing_prior_minutes":0})
     training_error_records=defaultdict(list)
     window_errors=defaultdict(lambda:defaultdict(lambda:defaultdict(lambda:{"n":0,"absolute_error":0.0,"squared_error":0.0})))
@@ -77,6 +78,18 @@ def evaluate(data):
                             prior_rate=sum(v for m,v in eligible)/sum(m for m,v in eligible)
                             forecast=prior_rate*expected_minutes
                             minutes_diagnostics[market]["eligible"]+=1
+                            # All forecasts refer to the exact same player/game observation.
+                            pair=matched_minutes[market][season]
+                            minutes_error=abs(forecast-actual)
+                            all_error=abs(baseline-actual)
+                            blend_error=abs((0.5*prediction+0.5*baseline)-actual)
+                            pair["n"]+=1
+                            pair["minutes_abs"]+=minutes_error
+                            pair["all_abs"]+=all_error
+                            pair["blend_abs"]+=blend_error
+                            if minutes_error<all_error:pair["minutes_wins"]+=1
+                            elif minutes_error>all_error:pair["all_wins"]+=1
+                            else:pair["ties"]+=1
                         elif isinstance(window,str) and window.startswith("blend_"):
                             weight=int(window.split("_")[1])/100
                             forecast=weight*prediction+(1-weight)*baseline
@@ -150,6 +163,26 @@ def evaluate(data):
             for line,r in lines.items() if r["n"]}
             for season,lines in seasons.items()}
         for market,seasons in probability_by_season.items()}
+    matched_minutes_diagnostics={}
+    for market,seasons in matched_minutes.items():
+        matched_minutes_diagnostics[market]={}
+        for season,r in seasons.items():
+            n=r["n"]
+            baseline_error=r["all_abs"]
+            improvement=(baseline_error-r["minutes_abs"])/baseline_error if baseline_error>0 else None
+            matched_minutes_diagnostics[market][season]={
+                "samples":n,
+                "minutes_mae":round(r["minutes_abs"]/n,4),
+                "all_prior_mae_same_samples":round(r["all_abs"]/n,4),
+                "blend_50_mae_same_samples":round(r["blend_abs"]/n,4),
+                "relative_improvement_vs_all_prior":round(improvement,6) if improvement is not None else None,
+                "minutes_wins":r["minutes_wins"],
+                "all_prior_wins":r["all_wins"],
+                "ties":r["ties"],
+                "passes_holdout_improvement_threshold":bool(season==HOLDOUT_SEASON and n>=MIN_HOLDOUT_SAMPLES and improvement is not None and improvement>=MIN_HOLDOUT_RELATIVE_IMPROVEMENT),
+                "promotion_approved":False,
+                "bet_eligible":False,
+            }
     window_diagnostics={
         market:{season:{window:{"samples":r["n"],
             "mae":round(r["absolute_error"]/r["n"],4),
@@ -220,6 +253,7 @@ def evaluate(data):
         "season_holdout_diagnostics":season_metrics,
         "window_comparison_by_season":window_diagnostics,
         "minutes_workload_data_coverage":dict(minutes_diagnostics),
+        "minutes_adjusted_matched_sample_audit":matched_minutes_diagnostics,
         "minutes_adjusted_selection_eligible":False,
         "minutes_adjusted_selection_blocker":"Requires matched-sample evaluation and verified minutes coverage before model selection",
         "training_selected_window_holdout_audit":window_selection,
