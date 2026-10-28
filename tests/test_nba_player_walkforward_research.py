@@ -50,6 +50,11 @@ class WalkForwardTests(unittest.TestCase):
         audit=result["window_comparison_by_season"]["Points"]["2025-26"]["minutes_adjusted"]
         self.assertEqual(audit["samples"],4)
         self.assertEqual(audit["mae"],5.125)
+        recent=result["recent_minutes_rate_matched_sample_audit"]["Points"]["2025-26"]
+        self.assertEqual(recent["samples"],4)
+        self.assertEqual(recent["recent_rate_mae"],5.125)
+        self.assertFalse(recent["bet_eligible"])
+        self.assertFalse(result["recent_minutes_rate_selection_eligible"])
         pair=result["minutes_adjusted_matched_sample_audit"]["Points"]["2025-26"]
         self.assertEqual(pair["samples"],4)
         self.assertEqual(pair["minutes_mae"],pair["all_prior_mae_same_samples"])
@@ -66,6 +71,7 @@ class WalkForwardTests(unittest.TestCase):
         self.assertNotIn("minutes_adjusted",result["window_comparison_by_season"]["Points"]["2025-26"])
         self.assertEqual(result["minutes_workload_data_coverage"]["Points"]["missing_prior_minutes"],4)
         self.assertNotIn("Points",result["minutes_adjusted_matched_sample_audit"])
+        self.assertNotIn("Points",result["recent_minutes_rate_matched_sample_audit"])
     def test_requires_verified_source(self):
         with self.assertRaises(ValueError):
             evaluate({"source":"unverified","sport":"nba","players":[]})
