@@ -1,7 +1,7 @@
 {
   "status": "validated",
   "sport": "basketball_nba",
-  "generated_at": "2026-10-28T22:52:16.792547+00:00",
+  "generated_at": "2026-10-29T01:11:56.544630+00:00",
   "calibration_passed": true,
   "model_version": "elo-walkforward-v1",
   "validation_report": {
@@ -11,114 +11,6 @@
     "method": "chronological Elo, 200-game burn-in, no odds inputs"
   },
   "predictions": [
-    {
-      "event_id": "cc7f8bc2a4554b89f2a35abad3a633ef",
-      "team": "Atlanta Hawks",
-      "date_et": "2026-10-28",
-      "win_probability": 0.712604
-    },
-    {
-      "event_id": "cc7f8bc2a4554b89f2a35abad3a633ef",
-      "team": "Miami Heat",
-      "date_et": "2026-10-28",
-      "win_probability": 0.287396
-    },
-    {
-      "event_id": "7f5287957f506fbf705e198215fa952b",
-      "team": "Detroit Pistons",
-      "date_et": "2026-10-28",
-      "win_probability": 0.675436
-    },
-    {
-      "event_id": "7f5287957f506fbf705e198215fa952b",
-      "team": "Charlotte Hornets",
-      "date_et": "2026-10-28",
-      "win_probability": 0.324564
-    },
-    {
-      "event_id": "f2a1271ffcfd7c85f51640ebff3b7ddd",
-      "team": "Cleveland Cavaliers",
-      "date_et": "2026-10-28",
-      "win_probability": 0.900171
-    },
-    {
-      "event_id": "f2a1271ffcfd7c85f51640ebff3b7ddd",
-      "team": "Washington Wizards",
-      "date_et": "2026-10-28",
-      "win_probability": 0.099829
-    },
-    {
-      "event_id": "5997ee5c9fbdc53f9c86732b02f58158",
-      "team": "Indiana Pacers",
-      "date_et": "2026-10-28",
-      "win_probability": 0.254966
-    },
-    {
-      "event_id": "5997ee5c9fbdc53f9c86732b02f58158",
-      "team": "Philadelphia 76ers",
-      "date_et": "2026-10-28",
-      "win_probability": 0.745034
-    },
-    {
-      "event_id": "67550840fbe9bb9c550d3d4958e259ea",
-      "team": "Toronto Raptors",
-      "date_et": "2026-10-28",
-      "win_probability": 0.553672
-    },
-    {
-      "event_id": "67550840fbe9bb9c550d3d4958e259ea",
-      "team": "Orlando Magic",
-      "date_et": "2026-10-28",
-      "win_probability": 0.446328
-    },
-    {
-      "event_id": "7b9e02686c886a54c9a91dd3f3879326",
-      "team": "Chicago Bulls",
-      "date_et": "2026-10-28",
-      "win_probability": 0.260618
-    },
-    {
-      "event_id": "7b9e02686c886a54c9a91dd3f3879326",
-      "team": "New York Knicks",
-      "date_et": "2026-10-28",
-      "win_probability": 0.739382
-    },
-    {
-      "event_id": "782d6ce7f65b592ad1c43d2f4e53cc82",
-      "team": "New Orleans Pelicans",
-      "date_et": "2026-10-28",
-      "win_probability": 0.288774
-    },
-    {
-      "event_id": "782d6ce7f65b592ad1c43d2f4e53cc82",
-      "team": "Denver Nuggets",
-      "date_et": "2026-10-28",
-      "win_probability": 0.711226
-    },
-    {
-      "event_id": "c6d62b9457cbd8517860e222f1d4f953",
-      "team": "Minnesota Timberwolves",
-      "date_et": "2026-10-28",
-      "win_probability": 0.801675
-    },
-    {
-      "event_id": "c6d62b9457cbd8517860e222f1d4f953",
-      "team": "Golden State Warriors",
-      "date_et": "2026-10-28",
-      "win_probability": 0.198325
-    },
-    {
-      "event_id": "83ca338f605b5664b7b1da34c19a0222",
-      "team": "Milwaukee Bucks",
-      "date_et": "2026-10-28",
-      "win_probability": 0.260849
-    },
-    {
-      "event_id": "83ca338f605b5664b7b1da34c19a0222",
-      "team": "Houston Rockets",
-      "date_et": "2026-10-28",
-      "win_probability": 0.739151
-    },
     {
       "event_id": "e74d54621abaed183e569394f935c362",
       "team": "Utah Jazz",
@@ -142,6 +34,18 @@
       "team": "Oklahoma City Thunder",
       "date_et": "2026-10-28",
       "win_probability": 0.84506
+    },
+    {
+      "event_id": "f91d27cc050b1b85073d745372c73833",
+      "team": "New Orleans Pelicans",
+      "date_et": "2026-10-29",
+      "win_probability": 0.64208
+    },
+    {
+      "event_id": "f91d27cc050b1b85073d745372c73833",
+      "team": "Sacramento Kings",
+      "date_et": "2026-10-29",
+      "win_probability": 0.35792
     },
     {
       "event_id": "ba667ca1b0b042f0661cb9d9af56c165",
