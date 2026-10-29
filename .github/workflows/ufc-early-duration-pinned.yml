@@ -12,6 +12,8 @@ jobs:
           python-version: '3.11'
       - name: Run fail-closed benchmark with pinned source hashes
         run: python -m scripts.ufc_early_duration_probability --expected-source-hashes backtests/manifests/ufc_early_duration_20261025.json --output backtests/reports/ufc_early_duration_pinned.json
+      - name: Verify historical cohort identity
+        run: python -m scripts.ufc_pinned_cohort_gate --expected backtests/manifests/ufc_early_duration_cohort_20261025.json --report backtests/reports/ufc_early_duration_pinned.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
