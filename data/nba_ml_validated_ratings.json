@@ -2,13 +2,25 @@
   "status": "validated",
   "calibration_passed": true,
   "season": "2026-27",
-  "model_version": "elo-walkforward-v1",
+  "model_version": "elo-walkforward-v1-holdout-audit",
   "training_cutoff": "2026-10-29T01:30Z",
   "validation_report": {
     "walk_forward_games": 1146,
     "brier": 0.21011,
     "ece": 0.04088,
-    "method": "chronological Elo, 200-game burn-in, no odds inputs"
+    "method": "chronological Elo, 200-game burn-in, no odds inputs",
+    "holdout": {
+      "games": 270,
+      "start": "2026-03-24T23:00Z",
+      "end": "2026-10-29T01:30Z",
+      "brier": 0.184127,
+      "ece": 0.06885,
+      "constant_baseline_brier": 0.242099,
+      "beats_constant_baseline": true,
+      "method": "untouched chronological final 20%; pregame Elo; descriptive only"
+    },
+    "holdout_promotion_approved": false,
+    "holdout_review_reason": "Holdout metrics are descriptive; independent sportsbook price validation and injury availability remain unverified"
   },
   "teams": {
     "Oklahoma City Thunder": 1723.0275250594505,
