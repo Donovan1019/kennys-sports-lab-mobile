@@ -89,6 +89,7 @@ def main():
     ratings,report=fit(list(all_games.values()))
     report["holdout"]=holdout_audit(list(all_games.values()))
     report["holdout_promotion_approved"]=False
+    report["holdout_review_reason"]="Holdout metrics are descriptive; independent sportsbook price validation and injury availability remain unverified"
     latest=max(g["date"] for g in all_games.values())
     result={"status":"validated","calibration_passed":True,"season":"2026-27","model_version":"elo-walkforward-v1-holdout-audit","training_cutoff":latest,"validation_report":report,"teams":ratings,"home_advantage":60,"logistic_scale":173.7178}
     OUT.write_text(json.dumps(result,indent=2)+"\n")
