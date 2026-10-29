@@ -1,0 +1,16 @@
+name: UFC Free TheRundown Probe
+on:
+  push:
+    branches:
+      - feature/ufc-free-therundown-probe-20261023
+  pull_request:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m unittest discover -s tests -p test_ufc_therundown_free_probe.py -v
