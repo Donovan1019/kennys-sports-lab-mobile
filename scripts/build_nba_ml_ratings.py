@@ -23,6 +23,31 @@ def day_games(day):
         except (KeyError,IndexError,StopIteration,TypeError,ValueError):continue
     return games
 def predict(diff):return 1/(1+math.exp(-max(-30,min(30,diff/173.7178))))
+def holdout_audit(games, burn_in=200, holdout_fraction=0.20):
+    """Evaluate chronological, untouched final block with pregame-only Elo updates."""
+    ordered=sorted((g for g in games if g.get("home") in NBA_TEAMS and g.get("away") in NBA_TEAMS),key=lambda x:(x["date"],x["id"]))
+    if len(ordered)<burn_in+200:raise ValueError("Insufficient games for chronological holdout")
+    boundary=max(burn_in+100,int(len(ordered)*(1-holdout_fraction)))
+    if len(ordered)-boundary<100:raise ValueError("Insufficient holdout games")
+    ratings={}; results=[]
+    for i,g in enumerate(ordered):
+        h,a=g["home"],g["away"]
+        rh,ra=ratings.get(h,1500.),ratings.get(a,1500.)
+        p=predict(rh-ra+60)
+        if i>=boundary:results.append((p,int(g["home_win"])))
+        delta=20*(int(g["home_win"])-p)
+        ratings[h]=rh+delta;ratings[a]=ra-delta
+    brier=sum((p-y)**2 for p,y in results)/len(results)
+    buckets=[[] for _ in range(10)]
+    for p,y in results:buckets[min(9,int(p*10))].append((p,y))
+    ece=sum(len(b)/len(results)*abs(sum(p for p,y in b)/len(b)-sum(y for p,y in b)/len(b)) for b in buckets if b)
+    baseline=sum(y for _,y in results)/len(results)
+    baseline_brier=sum((baseline-y)**2 for _,y in results)/len(results)
+    return {"games":len(results),"start":ordered[boundary]["date"],"end":ordered[-1]["date"],
+            "brier":round(brier,6),"ece":round(ece,6),"constant_baseline_brier":round(baseline_brier,6),
+            "beats_constant_baseline":brier<baseline_brier,
+            "method":"untouched chronological final 20%; pregame Elo; descriptive only"}
+
 def fit(games):
     ratings={}; evaluated=[]; n=0
     for g in sorted(games,key=lambda x:(x["date"],x["id"])):
@@ -62,8 +87,10 @@ def main():
     if failures:raise RuntimeError(f"Historical ingestion incomplete ({len(failures)} days): "+failures[0])
     all_games={g["id"]:g for day in days.values() for g in day}
     ratings,report=fit(list(all_games.values()))
+    report["holdout"]=holdout_audit(list(all_games.values()))
+    report["holdout_promotion_approved"]=False
     latest=max(g["date"] for g in all_games.values())
-    result={"status":"validated","calibration_passed":True,"season":"2026-27","model_version":"elo-walkforward-v1","training_cutoff":latest,"validation_report":report,"teams":ratings,"home_advantage":60,"logistic_scale":173.7178}
+    result={"status":"validated","calibration_passed":True,"season":"2026-27","model_version":"elo-walkforward-v1-holdout-audit","training_cutoff":latest,"validation_report":report,"teams":ratings,"home_advantage":60,"logistic_scale":173.7178}
     OUT.write_text(json.dumps(result,indent=2)+"\n")
     print("Validated NBA ratings:",len(ratings),"teams",report)
 if __name__=="__main__":main()
