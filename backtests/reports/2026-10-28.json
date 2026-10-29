@@ -1,6 +1,6 @@
 {
   "date": "2026-10-28",
-  "generated_at": "2026-10-28T22:49:40.517237+00:00",
+  "generated_at": "2026-10-29T17:02:05.282933+00:00",
   "sports": {
     "NFL": {
       "status": "OUTCOMES_UNVERIFIED",
@@ -25,23 +25,72 @@
       "pending": 54
     },
     "NHL": {
-      "status": "OUTCOMES_UNVERIFIED",
+      "status": "PARTIALLY_SETTLED_MONEYLINES",
       "saved_quotes": 0,
       "eligible_predictions": 104,
       "research_only_predictions": 104,
       "bet_eligible_predictions": 0,
       "blocked_predictions": [],
-      "graded": 0,
-      "settled": [],
-      "pending": 104
+      "graded": 8,
+      "settled": [
+        {
+          "event": "Philadelphia Flyers @ Washington Capitals",
+          "market": "h2h",
+          "selection": "Washington Capitals",
+          "outcome": "win"
+        },
+        {
+          "event": "Philadelphia Flyers @ Washington Capitals",
+          "market": "h2h",
+          "selection": "Philadelphia Flyers",
+          "outcome": "loss"
+        },
+        {
+          "event": "Calgary Flames @ Edmonton Oilers",
+          "market": "h2h",
+          "selection": "Edmonton Oilers",
+          "outcome": "win"
+        },
+        {
+          "event": "Calgary Flames @ Edmonton Oilers",
+          "market": "h2h",
+          "selection": "Calgary Flames",
+          "outcome": "loss"
+        },
+        {
+          "event": "New Jersey Devils @ Colorado Avalanche",
+          "market": "h2h",
+          "selection": "Colorado Avalanche",
+          "outcome": "win"
+        },
+        {
+          "event": "New Jersey Devils @ Colorado Avalanche",
+          "market": "h2h",
+          "selection": "New Jersey Devils",
+          "outcome": "loss"
+        },
+        {
+          "event": "Toronto Maple Leafs @ Seattle Kraken",
+          "market": "h2h",
+          "selection": "Seattle Kraken",
+          "outcome": "win"
+        },
+        {
+          "event": "Toronto Maple Leafs @ Seattle Kraken",
+          "market": "h2h",
+          "selection": "Toronto Maple Leafs",
+          "outcome": "loss"
+        }
+      ],
+      "pending": 96
     }
   },
   "summary": {
-    "verified_picks": 0,
-    "wins": 0,
-    "losses": 0,
+    "verified_picks": 8,
+    "wins": 4,
+    "losses": 4,
     "pushes": 0,
     "roi": null,
-    "hit_rate": null
+    "hit_rate": 0.5
   }
 }
