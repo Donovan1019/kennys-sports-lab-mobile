@@ -23,6 +23,7 @@ def evaluate(archives, games):
         for r in archive.get("rows",[]):
             tip=parse_time(r.get("commence_time"));updated=parse_time(r.get("quote_updated_at"))
             if not tip or not updated or not updated<=captured<tip:continue
+            if (captured-updated).total_seconds()>150*60:continue
             try:prob=implied(r.get("price"))
             except ValueError:continue
             if not isinstance(r.get("selection"),str) or not isinstance(r.get("bookmaker"),str):continue
@@ -30,19 +31,20 @@ def evaluate(archives, games):
     results={}
     for g in games:
         if not all(k in g for k in ("home","away","home_win","date")):continue
+        if type(g["home_win"]) is not int or g["home_win"] not in (0,1):continue
         tip=parse_time(g["date"])
         if not tip:continue
         for team in (g["home"],g["away"]):
             event=f'{g["away"]} @ {g["home"]}'
             for (label,book,selection),values in by_event.items():
                 if label!=event or selection!=team:continue
-                valid=sorted((v for v in values if v[1]==tip),key=lambda v:v[0])
+                valid=sorted((v for v in values if v[1]==tip and v[3].get("event_id")),key=lambda v:v[0])
                 if not valid:continue
                 first=valid[0];close_candidates=[v for v in valid if 0<=(tip-v[0]).total_seconds()<=900]
                 key=(str(g.get("id","")),book,team)
                 if key in results:continue
                 won=int(bool(g["home_win"])) if team==g["home"] else 1-int(bool(g["home_win"]))
-                row={"event_id":g.get("id"),"book":book,"selection":team,"won":won,
+                row={"event_id":g.get("id"),"source_event_id":first[3].get("event_id"),"book":book,"selection":team,"won":won,
                      "opening_reference_implied":round(first[2],6),
                      "opening_reference_brier":round((first[2]-won)**2,6),
                      "snapshots":len({v[0] for v in valid}),
