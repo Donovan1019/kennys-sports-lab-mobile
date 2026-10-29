@@ -1,13 +1,13 @@
 {
   "status": "validated",
   "sport": "basketball_nba",
-  "generated_at": "2026-10-29T02:58:55.040076+00:00",
+  "generated_at": "2026-10-29T04:58:21.104385+00:00",
   "calibration_passed": true,
   "model_version": "elo-walkforward-v1",
   "validation_report": {
-    "walk_forward_games": 1135,
-    "brier": 0.20996,
-    "ece": 0.04184,
+    "walk_forward_games": 1146,
+    "brier": 0.21011,
+    "ece": 0.04088,
     "method": "chronological Elo, 200-game burn-in, no odds inputs"
   },
   "predictions": [
@@ -15,25 +15,25 @@
       "event_id": "b123d92eb8046e43fabf95a33a676634",
       "team": "Atlanta Hawks",
       "date_et": "2026-10-29",
-      "win_probability": 0.521832
+      "win_probability": 0.498462
     },
     {
       "event_id": "b123d92eb8046e43fabf95a33a676634",
       "team": "Cleveland Cavaliers",
       "date_et": "2026-10-29",
-      "win_probability": 0.478168
+      "win_probability": 0.501538
     },
     {
       "event_id": "f91d27cc050b1b85073d745372c73833",
       "team": "New Orleans Pelicans",
       "date_et": "2026-10-29",
-      "win_probability": 0.64208
+      "win_probability": 0.634404
     },
     {
       "event_id": "f91d27cc050b1b85073d745372c73833",
       "team": "Sacramento Kings",
       "date_et": "2026-10-29",
-      "win_probability": 0.35792
+      "win_probability": 0.365596
     },
     {
       "event_id": "ba667ca1b0b042f0661cb9d9af56c165",
@@ -51,61 +51,61 @@
       "event_id": "a6555e8b7252dfb32f1817fc8c59ad83",
       "team": "New York Knicks",
       "date_et": "2026-12-25",
-      "win_probability": 0.459835
+      "win_probability": 0.463638
     },
     {
       "event_id": "a6555e8b7252dfb32f1817fc8c59ad83",
       "team": "San Antonio Spurs",
       "date_et": "2026-12-25",
-      "win_probability": 0.540165
+      "win_probability": 0.536362
     },
     {
       "event_id": "d60e7fc0690e4dff121a086395e24de4",
       "team": "Boston Celtics",
       "date_et": "2026-12-25",
-      "win_probability": 0.797052
+      "win_probability": 0.783457
     },
     {
       "event_id": "d60e7fc0690e4dff121a086395e24de4",
       "team": "Miami Heat",
       "date_et": "2026-12-25",
-      "win_probability": 0.202948
+      "win_probability": 0.216543
     },
     {
       "event_id": "dfd908bad3a3bfcae9e08bf128273b18",
       "team": "Los Angeles Lakers",
       "date_et": "2026-12-25",
-      "win_probability": 0.631724
+      "win_probability": 0.624869
     },
     {
       "event_id": "dfd908bad3a3bfcae9e08bf128273b18",
       "team": "Philadelphia 76ers",
       "date_et": "2026-12-25",
-      "win_probability": 0.368276
+      "win_probability": 0.375131
     },
     {
       "event_id": "2b7218aa25cf98318a40e6f2469a5c5d",
       "team": "Minnesota Timberwolves",
       "date_et": "2026-12-25",
-      "win_probability": 0.3953
+      "win_probability": 0.396495
     },
     {
       "event_id": "2b7218aa25cf98318a40e6f2469a5c5d",
       "team": "Oklahoma City Thunder",
       "date_et": "2026-12-25",
-      "win_probability": 0.6047
+      "win_probability": 0.603505
     },
     {
       "event_id": "85a2379bc49135f2759709e55af0c4c6",
       "team": "Golden State Warriors",
       "date_et": "2026-12-25",
-      "win_probability": 0.353604
+      "win_probability": 0.367215
     },
     {
       "event_id": "85a2379bc49135f2759709e55af0c4c6",
       "team": "Denver Nuggets",
       "date_et": "2026-12-25",
-      "win_probability": 0.646396
+      "win_probability": 0.632785
     }
   ]
 }
