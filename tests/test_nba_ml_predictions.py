@@ -14,4 +14,10 @@ class ModelFeedTests(unittest.TestCase):
   out=build(odds,ratings,NOW)
   self.assertEqual(len(out["predictions"]),2)
   self.assertAlmostEqual(sum(p["win_probability"] for p in out["predictions"]),1,places=5)
+ def test_stale_ratings_fail_closed(self):
+  teams={f"Team {i}":float(i) for i in range(28)}
+  teams.update({"Atlanta Hawks":2.0,"Miami Heat":1.0})
+  ratings={"status":"validated","calibration_passed":True,"training_cutoff":"2026-09-01T00:00:00Z","validation_report":"fixture","season":"2026-27","teams":teams,"logistic_scale":4}
+  with self.assertRaises(ValueError):
+   build({"status":"ok","sport":"basketball_nba","odds":[]},ratings,NOW)
 if __name__=="__main__":unittest.main()
