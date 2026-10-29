@@ -12,6 +12,12 @@ async function refresh(){
  try{
  const resp=await fetch('./feed/basketball_nba.json?ml='+Date.now(),{cache:'no-store'});if(!resp.ok)throw Error('NBA odds feed HTTP '+resp.status);
  const data=await resp.json();if(data.status!=='ok'||data.sport!=='basketball_nba')throw Error('NBA odds feed invalid or degraded');const rows=Array.isArray(data.odds)?data.odds:[];const feedAge=Date.parse(data.fetched_at);if(!Number.isFinite(feedAge)||feedAge>Date.now()||Date.now()-feedAge>150*60000)throw Error('NBA sportsbook odds older than 150 minutes. The scheduled odds refresh may be delayed or API credits exhausted; no outdated picks shown');
+ const readinessResponse=await fetch('./feed/nba_ml_betting_readiness.json?ml='+Date.now(),{cache:'no-store'});
+ if(!readinessResponse.ok)throw Error('NBA moneyline readiness report unavailable; fail closed');
+ const readiness=await readinessResponse.json();
+ const required=['odds_fresh','model_fresh_and_calibrated','schedule_evidence_fresh','pregame_odds_archiving_active','historical_pregame_odds_backtest','closing_line_value_verified','injury_lineup_rest_confirmed','executable_same_book_parlay_quote','correlation_stress_test_verified'];
+ const ready=readiness.status==='bet_eligible'&&required.every(k=>readiness.checks?.[k]===true);
+ if(!ready){status.textContent='NBA ML PARLAYS · RESEARCH ONLY · NOT BET ELIGIBLE';out.append(node('p','Automatic parlay recommendations are disabled until all independent validation, lineup, pricing and correlation checks pass.'));out.append(node('p','Outstanding: '+required.filter(k=>readiness.checks?.[k]!==true).join(', ')));return;}
  const now=Date.now();const games=new Map();
  let model=new Map(),modelState='UNAVAILABLE';
  try{
