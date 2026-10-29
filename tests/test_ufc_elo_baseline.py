@@ -20,6 +20,14 @@ class UFCEloTests(unittest.TestCase):
         base=build([first,second],minimum_history=1)
         more=build([first,second,third],minimum_history=1)
         self.assertEqual(base["forecasts"][0],more["forecasts"][0])
+    def test_same_timestamp_does_not_leak_outcomes(self):
+        past=bout("0","A","B","2026-01-01T12:00:00Z")
+        same1=bout("1","A","B","2026-01-02T12:00:00Z")
+        same2=bout("2","A","B","2026-01-02T12:00:00Z")
+        report=build([past,same1,same2],minimum_history=1)
+        self.assertEqual(report["pre_update_evaluated_fights"],2)
+        self.assertEqual(report["forecasts"][0]["winner_probability"],report["forecasts"][1]["winner_probability"])
+        self.assertEqual(report["historical_bouts_used"],3)
     def test_unverified_outcome_excluded(self):
         bad=bout("1","A","B","2026-01-01T12:00:00Z")
         bad["winner_verified"]=False

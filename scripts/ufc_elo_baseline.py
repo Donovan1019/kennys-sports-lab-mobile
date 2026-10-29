@@ -37,24 +37,33 @@ def build(rows,k=24,minimum_history=5):
     bouts={}
     seen=set()
     forecasts=[]
-    for t,eid,fid,winner,loser in eligible:
-        key=(eid,fid)
-        if key in seen:
-            continue
-        seen.add(key)
-        rw=ratings.get(winner,1500.0)
-        rl=ratings.get(loser,1500.0)
-        probability=1/(1+10**((rl-rw)/400))
-        # Predict before updating; no future outcome leakage.
-        if bouts.get(winner,0)>=minimum_history and bouts.get(loser,0)>=minimum_history:
-            forecasts.append({"fight_id":fid,"event_id":eid,"start_time":t.isoformat(),
-                              "winner":winner,"loser":loser,"winner_probability":probability,
-                              "model_version":"ufc-elo-baseline-v1","research_only":True,"bet_eligible":False})
-        delta=k*(1-probability)
-        ratings[winner]=rw+delta
-        ratings[loser]=rl-delta
-        bouts[winner]=bouts.get(winner,0)+1
-        bouts[loser]=bouts.get(loser,0)+1
+    # A shared event timestamp is not reliable fight order. Freeze the rating
+    # snapshot for all fights at that timestamp before applying any outcomes.
+    from itertools import groupby
+    for t,group in groupby(eligible,key=lambda row:row[0]):
+        updates=[]
+        for _,eid,fid,winner,loser in group:
+            key=(eid,fid)
+            if key in seen:
+                continue
+            seen.add(key)
+            rw=ratings.get(winner,1500.0)
+            rl=ratings.get(loser,1500.0)
+            probability=1/(1+10**((rl-rw)/400))
+            if bouts.get(winner,0)>=minimum_history and bouts.get(loser,0)>=minimum_history:
+                forecasts.append({"fight_id":fid,"event_id":eid,"start_time":t.isoformat(),
+                                  "winner":winner,"loser":loser,"winner_probability":probability,
+                                  "model_version":"ufc-elo-baseline-v1","research_only":True,"bet_eligible":False})
+            updates.append((winner,loser,k*(1-probability)))
+        # Aggregate simultaneous rating changes; no intra-event outcome leakage.
+        changes={}
+        for winner,loser,delta in updates:
+            changes[winner]=changes.get(winner,0)+delta
+            changes[loser]=changes.get(loser,0)-delta
+            bouts[winner]=bouts.get(winner,0)+1
+            bouts[loser]=bouts.get(loser,0)+1
+        for name,change in changes.items():
+            ratings[name]=ratings.get(name,1500.0)+change
     n=len(forecasts)
     brier=sum((1-x["winner_probability"])**2 for x in forecasts)/n if n else None
     loss=sum(-math.log(x["winner_probability"]) for x in forecasts)/n if n else None
@@ -64,7 +73,7 @@ def build(rows,k=24,minimum_history=5):
             "ratings":{name:{"elo":round(ratings[name],2),"historical_bouts":bouts[name]}
                        for name in sorted(ratings)},"forecasts":forecasts,
             "bet_eligible":False,"calibration_status":"INSUFFICIENT_SAMPLE" if n<100 else "REQUIRES_INDEPENDENT_HOLDOUT",
-            "limitations":["Historical fights evaluated chronologically but same-event order may be uncertain",
+            "limitations":["Fights with identical timestamps are scored from a shared pre-event rating snapshot",
                            "No fighter inactivity, age, weight class, injuries, or style adjustments",
                            "No archived odds or independent holdout validation"]}
 
