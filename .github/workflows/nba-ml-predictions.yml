@@ -34,6 +34,8 @@ jobs:
         run: python scripts/archive_nba_ml_odds.py
       - name: Audit historical NBA market evidence coverage
         run: python scripts/audit_nba_ml_market_evidence.py
+      - name: Join NBA outcomes with archived reference odds
+        run: python scripts/audit_nba_ml_outcome_market.py
       - name: Audit betting readiness (fail closed)
         run: python scripts/audit_nba_ml_betting_readiness.py
       - name: Validate JSON
@@ -42,7 +44,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/nba_ml_odds_archive/ feed/nba_ml_schedule_evidence.json feed/nba_ml_betting_readiness.json feed/nba_ml_market_evidence.json feed/basketball_nba.json feed/nba_ml_predictions.json data/nba_ml_historical_games.json data/nba_ml_validated_ratings.json
+          git add data/nba_ml_odds_archive/ feed/nba_ml_schedule_evidence.json feed/nba_ml_betting_readiness.json feed/nba_ml_market_evidence.json feed/nba_ml_outcome_market_audit.json feed/basketball_nba.json feed/nba_ml_predictions.json data/nba_ml_historical_games.json data/nba_ml_validated_ratings.json
           if ! git diff --cached --quiet; then
             git commit -m "Update NBA ML prediction feed"
             git push
