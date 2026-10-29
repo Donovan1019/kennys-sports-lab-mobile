@@ -8,3 +8,7 @@ assert.match(js,/simulations=10000/);assert.match(js,/Model EV: UNAVAILABLE/);
 assert.match(js,/Diamond grade: UNVERIFIED/);assert.match(js,/eligibleBooks/);assert.match(js,/estimatedEV/);assert.match(js,/l\.ev>0/);assert.match(js,/simulation interval/);assert.match(js,/SAME sportsbook/);
 assert.doesNotMatch(js,/data\/nba_props\.json/);
 assert.match(js,/feed\/nba_ml_predictions\.json/);assert.match(js,/calibration_passed===true/);assert.match(js,/NOT BET ELIGIBLE/);assert.match(js,/hasModel/);console.log('NBA ML static integrity checks passed');
+assert.match(js,/feed\\/nba_ml_betting_readiness\\.json/);
+assert.match(js,/readiness\\.status==='bet_eligible'/);
+assert.match(js,/required\\.every\\(k=>readiness\\.checks\\?\\.\\[k\\]===true\\)/);
+assert.match(js,/Automatic parlay recommendations are disabled/);
