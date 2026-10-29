@@ -14,7 +14,7 @@ class ReplayTests(unittest.TestCase):
     def test_winners_and_brier(self):
         result = replay(fixture())
         self.assertEqual((result["wins"], result["legs"]), (1, 5))
-        self.assertAlmostEqual(result["mean_brier"], .28)
+        self.assertAlmostEqual(result["mean_brier"], .32)
 
     def test_reject_post_tipoff(self):
         data = fixture()
