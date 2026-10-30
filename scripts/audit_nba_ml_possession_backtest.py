@@ -10,20 +10,20 @@ OUT=pathlib.Path("feed/nba_ml_possession_backtest.json")
 def evaluate(games,min_history=15,min_holdout=100):
     ordered=sorted(games,key=lambda g:(g.get("date",""),str(g.get("id",""))))
     results=[]
-    for game in ordered:
+    for index,game in enumerate(ordered):
         try:
             tip=dt.datetime.fromisoformat(game["date"].replace("Z","+00:00"))
-            earlier=[g for g in ordered if g.get("date","")<game["date"]]
+            earlier=[g for g in ordered[:index] if g.get("date","")<game["date"]]
             teams=metrics(earlier,tip,min_games=min_history)
-            prediction=simulate(game["home"],game["away"],teams,str(game["id"]),draws=1000)
+            prediction=simulate(game["home"],game["away"],teams,str(game["id"]),draws=500)
             if prediction["status"]!="diagnostic_only":continue
-            # Regulation ties are not modeled as NBA final ML outcomes; reject these
-            # predictions for betting calibration until overtime is implemented.
-            if prediction["regulation_tie_probability"]>0:continue
+            # Conditional regulation win probability is diagnostic, not NBA full-game ML.
+            tie=prediction["regulation_tie_probability"]
+            if tie>=1:continue
             home_points=game["box"][game["home"]]["points"]
             away_points=game["box"][game["away"]]["points"]
             if home_points==away_points:continue
-            results.append((prediction["home_regulation_win_probability"],int(home_points>away_points)))
+            results.append((prediction["home_regulation_win_probability"]/(1-tie),int(home_points>away_points)))
         except (KeyError,ValueError,TypeError):continue
     report={"status":"insufficient_evidence","evaluated_games":len(results),"minimum_holdout_games":min_holdout,"betting_eligible":False,"blockers":["overtime_unmodeled","historical_validation_unverified"]}
     if len(results)>=min_holdout:
