@@ -5,7 +5,7 @@ class CrossSourceTests(unittest.TestCase):
     def setUp(self):
         self.b=[{"event_id":"UFC Test","event_date":"2024-01-01T12:00:00+00:00","fight_id":"id1","winner":"Alpha","loser":"Beta"}]
         self.o=[{"event_name":"UFC Test","event_date":"2024-01-01","winner":"Alpha","loser":"Beta","winner_decimal_odds":1.8,"loser_decimal_odds":2.1}]
-        self.f=[{"event_id":"UFC Test","fight_id":"id1","winner_probability":0.6}]
+        self.f=[{"event_id":"UFC Test","fight_id":"id1","winner_probability":0.6,"start_time":"2024-01-01T12:00:00+00:00"}]
     def test_exact_match(self):
         r=match(self.b,self.o,self.f)
         self.assertEqual(r["matched_holdout"],1)
