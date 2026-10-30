@@ -40,8 +40,10 @@ def build(rows,k=24,minimum_history=5):
     all_forecasts=[]
     # Evaluate every bout against the pre-event rating snapshot, not outcomes
     # from another fight on the same card. Only then apply all event updates.
-    from itertools import groupby
-    for (event_time,event_id),group in groupby(eligible,key=lambda x:(x[0],x[1])):
+    event_groups={}
+    for item in eligible:
+        event_groups.setdefault(item[1],[]).append(item)
+    for event_id,group in sorted(event_groups.items(),key=lambda pair:(min(x[0] for x in pair[1]),pair[0])):
         updates=[]
         for t,eid,fid,winner,loser in group:
             key=(eid,fid)
