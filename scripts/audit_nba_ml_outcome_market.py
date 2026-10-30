@@ -15,6 +15,11 @@ def implied(price):
     if not isinstance(price,(int,float)) or isinstance(price,bool) or price==0 or -100<price<100:raise ValueError("Invalid American odds")
     return (-price)/(-price+100) if price<0 else 100/(price+100)
 
+def unit_return(price, won):
+    """One-unit hypothetical profit at the archived quote, never an executed fill."""
+    if won == 0:return -1.0
+    return 100 / abs(price) if price < 0 else price / 100
+
 def evaluate(archives, games):
     by_event=defaultdict(list)
     for archive in archives:
@@ -50,6 +55,7 @@ def evaluate(archives, games):
                      "opening_reference_brier":round((first[2]-won)**2,6),
                      "snapshots":len({v[0] for v in valid}),
                      "opening_reference_price":first[3]["price"],
+                     "opening_unit_paper_return":round(unit_return(first[3]["price"],won),6),
                      "opening_model_probability":first[3].get("model_probability"),
                      "verified_near_tipoff_quote":bool(close_candidates)}
                 if close_candidates:
@@ -59,7 +65,23 @@ def evaluate(archives, games):
                 results[key]=row
     rows=list(results.values())
     paired=[r for r in rows if r["verified_near_tipoff_quote"] and r["snapshots"]>=2]
+    # A deterministic, one-selection-per-game paper policy avoids counting both sides
+    # and multiple books as independent wagers. This is descriptive, not executable ROI.
+    by_game=defaultdict(list)
+    for row in rows:
+        p=row.get("opening_model_probability")
+        if isinstance(p,(int,float)) and not isinstance(p,bool) and 0<=p<=1:
+            edge=p-row["opening_reference_implied"]
+            if edge>0:by_game[str(row["event_id"])].append((edge,row))
+    selected=[]
+    for event,candidates in by_game.items():
+        selected.append(sorted(candidates,key=lambda x:(-x[0],x[1]["book"],x[1]["selection"]))[0][1])
+    paper_return=sum(r["opening_unit_paper_return"] for r in selected)
     return {"status":"research_only","joined_selection_rows":len(rows),
+            "paper_policy":"one highest model-minus-implied edge per event, deterministic book/selection tie break; descriptive hindsight analysis, not precommitted or executed",
+            "paper_selected_events":len(selected),
+            "paper_unit_stake_net":round(paper_return,6),
+            "paper_roi":round(paper_return/len(selected),6) if selected else None,
             "unique_joined_events":len({r["event_id"] for r in rows}),
             "mean_reference_brier":round(sum(r["opening_reference_brier"] for r in rows)/len(rows),6) if rows else None,
             "near_tipoff_paired_rows":len(paired),
