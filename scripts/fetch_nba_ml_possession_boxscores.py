@@ -4,6 +4,7 @@ Missing data stays missing. Rate limited; no estimates.
 """
 import datetime as dt
 import json
+import os
 import pathlib
 import time
 import urllib.request
@@ -48,9 +49,10 @@ def main():
     try: existing=json.loads(OUTPUT.read_text())
     except (OSError,ValueError):existing={}
     cached={str(g["id"]):g for g in existing.get("games",[]) if "box" in g}
+    max_attempts=max(1,min(600,int(os.getenv('NBA_BOXSCORE_MAX_ATTEMPTS','300'))))
     attempts=0;added=0
     for g in games:
-        if str(g["id"]) in cached or attempts>=80:continue
+        if str(g["id"]) in cached or attempts>=max_attempts:continue
         attempts+=1
         try:
             req=urllib.request.Request(URL.format(event_id=g["id"]),headers={"User-Agent":"KSL-NBA-Boxscore/1.0"})
