@@ -56,11 +56,14 @@ def build(rows,k=24,minimum_history=5):
         bouts[winner]=bouts.get(winner,0)+1
         bouts[loser]=bouts.get(loser,0)+1
     n=len(forecasts)
+    baseline_brier=0.25 if n else None
+    baseline_log_loss=math.log(2) if n else None
     brier=sum((1-x["winner_probability"])**2 for x in forecasts)/n if n else None
     loss=sum(-math.log(x["winner_probability"]) for x in forecasts)/n if n else None
+    improvement_brier=(baseline_brier-brier)/baseline_brier if n else None
     return {"schema":1,"sport":"UFC","model_version":"ufc-elo-baseline-v1",
             "historical_bouts_used":len(seen),"pre_update_evaluated_fights":n,
-            "brier":brier,"log_loss":loss,"minimum_prior_bouts_per_fighter":minimum_history,
+            "brier":brier,"log_loss":loss,"baseline_brier":baseline_brier,"baseline_log_loss":baseline_log_loss,"brier_skill_vs_50pct":improvement_brier,"minimum_prior_bouts_per_fighter":minimum_history,
             "ratings":{name:{"elo":round(ratings[name],2),"historical_bouts":bouts[name]}
                        for name in sorted(ratings)},"forecasts":forecasts,
             "bet_eligible":False,"calibration_status":"INSUFFICIENT_SAMPLE" if n<100 else "REQUIRES_INDEPENDENT_HOLDOUT",
