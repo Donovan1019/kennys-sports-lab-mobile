@@ -33,7 +33,6 @@ def build(rows,k=24,minimum_history=5):
             continue
         eligible.append((t,str(event_id),str(fight_id),winner,loser))
     eligible.sort()
-    # Equal-timestamp bouts must not use another same-event outcome as a prior.
     ratings={}
     bouts={}
     seen=set()
