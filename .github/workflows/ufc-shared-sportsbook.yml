@@ -25,6 +25,7 @@ jobs:
           js=Path('ufc_shared_odds.js').read_text()
           assert 'ksl-shared-odds' in html and 'ufc_shared_odds.js' in html
           assert 'mma_mixed_martial_arts.json' in js
-          assert '15*60*1000' in js and 'Date.parse(q.commence_time)<=now' in js
+          assert '15*60*1000' in js and 'q.commence_time' in js and 'start<=now' in js
+          assert 'isFresh' in js and 'stale saved selections' in js and 'Reload saved odds' in js
           assert 'draftkings' in js and 'fanduel' in js
           PY
