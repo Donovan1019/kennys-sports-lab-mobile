@@ -6,6 +6,7 @@ import argparse
 import datetime as dt
 import json
 import math
+import hashlib
 from pathlib import Path
 
 def parse_time(value):
@@ -105,8 +106,15 @@ def main():
     p.add_argument("--input",required=True)
     p.add_argument("--output",default="backtests/reports/ufc_elo_baseline.json")
     args=p.parse_args()
-    rows=json.loads(Path(args.input).read_text())["results"]
+    raw=Path(args.input).read_bytes()
+    payload=json.loads(raw)
+    if not isinstance(payload,dict) or not isinstance(payload.get("results"),list):
+        raise ValueError("Historical input must contain a results list")
+    rows=payload["results"]
     report=build(rows)
+    report["input_sha256"]=hashlib.sha256(raw).hexdigest()
+    report["input_path"]=str(args.input)
+    report["input_record_count"]=len(rows)
     output=Path(args.output)
     output.parent.mkdir(parents=True,exist_ok=True)
     output.write_text(json.dumps(report,indent=2)+"\n")
