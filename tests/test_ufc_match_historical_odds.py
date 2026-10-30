@@ -10,6 +10,8 @@ class CrossSourceTests(unittest.TestCase):
         r=match(self.b,self.o,self.f)
         self.assertEqual(r["matched_holdout"],1)
         self.assertFalse(r["bet_eligible"])
+        self.assertEqual(r["retrospective_all_periods"]["matched_scored"],1)
+        self.assertEqual(r["retrospective_all_periods"]["status"],"DESCRIPTIVE_IN_SAMPLE_ONLY")
         self.assertIsNotNone(r["market_no_vig"]["brier"])
     def test_mismatched_outcome(self):
         self.o[0]["winner"]="Beta"
@@ -17,5 +19,6 @@ class CrossSourceTests(unittest.TestCase):
         self.assertEqual(match(self.b,self.o,self.f)["matched_holdout"],0)
     def test_duplicate_rejected(self):
         self.assertEqual(match(self.b,self.o*2,self.f)["matched_holdout"],0)
+        self.assertEqual(match(self.b,self.o*2,self.f)["retrospective_all_periods"]["matched_scored"],0)
 if __name__=="__main__":
     unittest.main()

@@ -31,7 +31,8 @@ def match(bouts, candidates, forecasts):
     cutoff=int(len(forecasts)*0.8)
     holdout=forecasts[cutoff:]
     pairs=[]
-    for f in holdout:
+    retrospective_pairs=[]
+    for f in forecasts:
         c=matched.get((f["event_id"],f["fight_id"]))
         if c is None:
             continue
@@ -45,15 +46,17 @@ def match(bouts, candidates, forecasts):
         except (ValueError,TypeError,ZeroDivisionError,KeyError):
             rejected["invalid_probabilities"]+=1
             continue
-        pairs.append((p,market))
+        retrospective_pairs.append((p,market))
+        if f in holdout:
+            pairs.append((p,market))
     matched_dates=sorted(b["event_date"][:10] for b in bouts if (b["event_id"],b["fight_id"]) in matched)
     odds_dates=sorted(c["event_date"][:10] for c in candidates)
     holdout_dates=sorted(f["start_time"][:10] for f in holdout)
     def bounds(xs):
         return [xs[0],xs[-1]] if xs else [None,None]
-    def metrics(i):
-        return {"brier":sum((1-x[i])**2 for x in pairs)/len(pairs) if pairs else None,
-                "log_loss":sum(-math.log(x[i]) for x in pairs)/len(pairs) if pairs else None}
+    def metrics(rows,i):
+        return {"brier":sum((1-x[i])**2 for x in rows)/len(rows) if rows else None,
+                "log_loss":sum(-math.log(x[i]) for x in rows)/len(rows) if rows else None}
     return {"status":"RETROSPECTIVE_ONLY_NOT_CERTIFIED","bet_eligible":False,
             "source_odds_pre_fight_verified":False,
             "historical_bouts":len(bouts),"odds_candidates":len(candidates),
@@ -61,9 +64,14 @@ def match(bouts, candidates, forecasts):
             "matched_holdout":len(pairs),"excluded":dict(rejected),
             "date_ranges":{"odds":bounds(odds_dates),"matched":bounds(matched_dates),"holdout":bounds(holdout_dates)},
             "matched_strict_cohort":sum((f["event_id"],f["fight_id"]) in matched for f in forecasts),
-            "model":metrics(0),"market_no_vig":metrics(1),
+            "model":metrics(pairs,0),"market_no_vig":metrics(pairs,1),
+            "retrospective_all_periods":{"status":"DESCRIPTIVE_IN_SAMPLE_ONLY",
+                "matched_scored":len(retrospective_pairs),
+                "model":metrics(retrospective_pairs,0),
+                "market_no_vig":metrics(retrospective_pairs,1)},
             "limitations":["Retrospective scrape timestamps are not independently verified pre-fight prices",
                            "Exact-match coverage is not betting certification",
+                           "All-period matched comparisons are NOT a held-out market validation",
                            "Scoring is descriptive and must not be used for live bet eligibility"]}
 
 def main():
