@@ -20,6 +20,14 @@ class UFCEloTests(unittest.TestCase):
         base=build([first,second],minimum_history=1)
         more=build([first,second,third],minimum_history=1)
         self.assertEqual(base["forecasts"][0],more["forecasts"][0])
+    def test_calibration_is_research_only_and_fit_pre_holdout(self):
+        rows=[bout(str(i),"A","B",f"2026-01-{i+1:02d}T12:00:00Z") for i in range(10)]
+        r=build(rows,minimum_history=1)
+        a=r["calibration_audit"]
+        self.assertEqual(a["fit_count"]+a["holdout_count"],r["pre_update_evaluated_fights"])
+        self.assertTrue(a["fit_only_on_pre_holdout"])
+        self.assertEqual(a["status"],"RESEARCH_ONLY")
+        self.assertFalse(r["bet_eligible"])
     def test_unverified_outcome_excluded(self):
         bad=bout("1","A","B","2026-01-01T12:00:00Z")
         bad["winner_verified"]=False
