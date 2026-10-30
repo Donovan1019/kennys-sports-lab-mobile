@@ -38,25 +38,30 @@ def build(rows,k=24,minimum_history=5):
     seen=set()
     forecasts=[]
     all_forecasts=[]
-    for t,eid,fid,winner,loser in eligible:
-        key=(eid,fid)
-        if key in seen:
-            continue
-        seen.add(key)
-        rw=ratings.get(winner,1500.0)
-        rl=ratings.get(loser,1500.0)
-        probability=1/(1+10**((rl-rw)/400))
-        # Predict before updating; no future outcome leakage.
-        all_forecasts.append({'fight_id':fid,'event_id':eid,'start_time':t.isoformat(),'winner_probability':probability,'winner_prior_bouts':bouts.get(winner,0),'loser_prior_bouts':bouts.get(loser,0)})
-        if bouts.get(winner,0)>=minimum_history and bouts.get(loser,0)>=minimum_history:
-            forecasts.append({"fight_id":fid,"event_id":eid,"start_time":t.isoformat(),
-                              "winner":winner,"loser":loser,"winner_probability":probability,
-                              "model_version":"ufc-elo-baseline-v1","research_only":True,"bet_eligible":False})
-        delta=k*(1-probability)
-        ratings[winner]=rw+delta
-        ratings[loser]=rl-delta
-        bouts[winner]=bouts.get(winner,0)+1
-        bouts[loser]=bouts.get(loser,0)+1
+    # Evaluate every bout against the pre-event rating snapshot, not outcomes
+    # from another fight on the same card. Only then apply all event updates.
+    from itertools import groupby
+    for (event_time,event_id),group in groupby(eligible,key=lambda x:(x[0],x[1])):
+        updates=[]
+        for t,eid,fid,winner,loser in group:
+            key=(eid,fid)
+            if key in seen:
+                continue
+            seen.add(key)
+            rw=ratings.get(winner,1500.0)
+            rl=ratings.get(loser,1500.0)
+            probability=1/(1+10**((rl-rw)/400))
+            all_forecasts.append({'fight_id':fid,'event_id':eid,'start_time':t.isoformat(),'winner_probability':probability,'winner_prior_bouts':bouts.get(winner,0),'loser_prior_bouts':bouts.get(loser,0)})
+            if bouts.get(winner,0)>=minimum_history and bouts.get(loser,0)>=minimum_history:
+                forecasts.append({'fight_id':fid,'event_id':eid,'start_time':t.isoformat(),
+                                  'winner':winner,'loser':loser,'winner_probability':probability,
+                                  'model_version':'ufc-elo-baseline-v1','research_only':True,'bet_eligible':False})
+            updates.append((winner,loser,rw,rl,k*(1-probability)))
+        for winner,loser,rw,rl,delta in updates:
+            ratings[winner]=rw+delta
+            ratings[loser]=rl-delta
+            bouts[winner]=bouts.get(winner,0)+1
+            bouts[loser]=bouts.get(loser,0)+1
     n=len(forecasts)
     all_n=len(all_forecasts)
     all_brier=sum((1-x['winner_probability'])**2 for x in all_forecasts)/all_n if all_n else None
@@ -72,7 +77,7 @@ def build(rows,k=24,minimum_history=5):
             "all_pre_update_forecasts":all_forecasts,"ratings":{name:{"elo":round(ratings[name],2),"historical_bouts":bouts[name]}
                        for name in sorted(ratings)},"forecasts":forecasts,
             "bet_eligible":False,"calibration_status":"INSUFFICIENT_SAMPLE" if n<100 else "REQUIRES_INDEPENDENT_HOLDOUT",
-            "limitations":["Historical fights evaluated chronologically but same-event order may be uncertain",
+            "limitations":["Same-event predictions use a frozen pre-event rating snapshot",
                            "No fighter inactivity, age, weight class, injuries, or style adjustments",
                            "No archived odds or independent holdout validation"]}
 
