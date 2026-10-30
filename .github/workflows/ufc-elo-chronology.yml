@@ -3,6 +3,8 @@ on:
   pull_request:
     paths:
       - 'scripts/ufc_elo_baseline.py'
+      - 'scripts/ufc_import_historical_csv.py'
+      - 'tests/test_ufc_import_historical_csv.py'
       - 'tests/test_ufc_elo_chronology.py'
       - '.github/workflows/ufc-elo-chronology.yml'
   workflow_dispatch:
@@ -15,6 +17,7 @@ jobs:
         with:
           python-version: '3.11'
       - run: python -m unittest discover -s tests -p 'test_ufc_elo_chronology.py' -v
+      - run: python -m unittest discover -s tests -p 'test_ufc_import_historical_csv.py' -v
       - name: Verify historical input provenance support
         run: |
           python - <<'PY'
