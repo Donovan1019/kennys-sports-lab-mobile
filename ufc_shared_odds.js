@@ -46,5 +46,7 @@ if(!grouped.size)status.textContent='No valid upcoming UFC sportsbook selections
 }catch(e){status.textContent='UNAVAILABLE — '+e.message+' · retry to check published data';}
 finally{refresh.disabled=false;}
 }
+const topRefresh=document.getElementById('ufc-top-reload-odds');const topStatus=document.getElementById('ufc-top-reload-status');
+if(topRefresh)topRefresh.addEventListener('click',()=>{if(topStatus)topStatus.textContent='Refreshing saved UFC odds…';load().then(()=>{if(topStatus)topStatus.textContent=status.textContent;});});
 refresh.addEventListener('click',load);load();
 })();
