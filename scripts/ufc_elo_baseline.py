@@ -104,6 +104,7 @@ def build(rows,k=24,minimum_history=5):
 def main():
     p=argparse.ArgumentParser()
     p.add_argument("--input",required=True)
+    p.add_argument("--minimum-evaluated",type=int,default=0,help="Minimum strict pre-event evaluations required")
     p.add_argument("--output",default="backtests/reports/ufc_elo_baseline.json")
     args=p.parse_args()
     raw=Path(args.input).read_bytes()
@@ -115,6 +116,11 @@ def main():
     report["input_sha256"]=hashlib.sha256(raw).hexdigest()
     report["input_path"]=str(args.input)
     report["input_record_count"]=len(rows)
+    if args.minimum_evaluated < 0:
+        raise ValueError("--minimum-evaluated must be nonnegative")
+    if report["pre_update_evaluated_fights"] < args.minimum_evaluated:
+        raise SystemExit("UFC coverage gate failed: {} evaluated, {} required".format(
+            report["pre_update_evaluated_fights"],args.minimum_evaluated))
     output=Path(args.output)
     output.parent.mkdir(parents=True,exist_ok=True)
     output.write_text(json.dumps(report,indent=2)+"\n")

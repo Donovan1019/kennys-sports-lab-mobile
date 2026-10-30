@@ -34,6 +34,13 @@ class TestEloChronology(unittest.TestCase):
         result=build(rows)
         self.assertEqual(result["historical_bouts_used"],0)
         self.assertEqual(result["excluded_ambiguous_date_events"],1)
+    def test_zero_strict_cohort_is_explicitly_unverified(self):
+        rows=[fight("1","a","2024-01-01T00:00:00Z","A","B")]
+        result=build(rows,minimum_history=5)
+        self.assertEqual(result["pre_update_evaluated_fights"],0)
+        self.assertEqual(result["calibration_status"],"INSUFFICIENT_SAMPLE")
+        self.assertIsNone(result["brier"])
+        self.assertFalse(result["bet_eligible"])
     def test_duplicate_fight_is_not_double_counted(self):
         rows=[fight("1","a","2024-01-01T00:00:00Z","A","B")]*2
         result=build(rows)
