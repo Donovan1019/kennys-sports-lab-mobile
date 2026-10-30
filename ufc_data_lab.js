@@ -37,7 +37,7 @@ async function loadPipeline(){
       card.append(make('p','Opponent adjustment: '+(f.opponent_adjustment.elo_available?'historical Elo':'UNAVAILABLE')+' · verified strength of schedule: UNAVAILABLE'));
       for(const [name,sim] of Object.entries(f.count_simulation||{})){
         const means=sim.count_means||{};
-        card.append(make('p',name+' count simulation: '+(sim.status==='RESEARCH_ONLY'?'historical-rate illustrative sig strikes '+means.sig_landed+', takedowns '+means.takedowns_landed:'UNAVAILABLE')));
+        card.append(make('p',name+' count simulation: '+(sim.status==='RESEARCH_ONLY'?'historical-rate illustrative sig strikes '+means.sig_landed+', takedowns '+means.takedowns_landed:'UNAVAILABLE — '+(sim.reason||'missing verified inputs'))));\n        if(sim.historical_per_round)card.append(make('p','Historical per-round: significant strikes '+sim.historical_per_round.sig_landed+', takedowns '+sim.historical_per_round.td_landed+' (not a full-fight projection)'));
       }
       card.append(make('p','Calibration: UNVERIFIED · EV: UNAVAILABLE · NOT BET ELIGIBLE'));
     }

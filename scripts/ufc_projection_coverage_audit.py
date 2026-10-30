@@ -102,6 +102,9 @@ def research_pipeline():
             rounds=f.get("scheduled_rounds")
             if rounds not in (3,5) or not t or not t.get("round_rows") or any(not isinstance(t.get(k),(int,float)) for k in ("sig_landed","sig_attempted","td_landed","td_attempted")):
                 sims[name]={"status":"UNAVAILABLE","reason":"Verified scheduled rounds or historical count rates missing"}
+                if rounds not in (3,5) and t and t.get("round_rows"):
+                    sims[name]["historical_per_round"]={k:round(t[k]/t["round_rows"],2) for k in ("sig_landed","sig_attempted","td_landed","td_attempted") if isinstance(t.get(k),(int,float))}
+                    sims[name]["reason"]="Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation"
                 continue
             rates={key:t[field]/t["round_rows"] for key,field in (("sig_landed","sig_landed"),("sig_attempted","sig_attempted"),("takedowns_landed","td_landed"),("takedowns_attempted","td_attempted"))}
             result=simulate(rates,rounds,draws=1000,seed=2026)
