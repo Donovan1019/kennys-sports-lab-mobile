@@ -33,6 +33,7 @@ if(!Array.isArray(card.fights)||!Array.isArray(stats.fighters)||!Array.isArray(o
 const profiles=new Map(stats.fighters.map(x=>[normalized(x.name),x]));
 const elos=new Map((elo.projections||[]).map(x=>[String(x.fight_id),x]));
 const records=new Map((history.fighters||[]).map(x=>[normalized(x.name),x]));
+const auditMeta=make('p','Research gates: missing pre-UFC career records, missing verified opponent-specific style features, no calibrated bout-level simulation, and no point-in-time validated EV. Historical model results must not be marketed as live betting signals.');readiness.append(auditMeta);
 let total=0,missing=0;
 for(const f of card.fights.filter(x=>x.red&&x.blue&&Date.parse(x.start_time)>Date.now()-36*3600000)){
 total++;const a=profiles.get(normalized(f.red)),b=profiles.get(normalized(f.blue)),e=elos.get(String(f.id));
