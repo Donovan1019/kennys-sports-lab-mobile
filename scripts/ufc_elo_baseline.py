@@ -33,6 +33,12 @@ def build(rows,k=24,minimum_history=5):
             continue
         eligible.append((t,str(event_id),str(fight_id),winner,loser))
     eligible.sort()
+    # Reject ambiguous chronology: an event must not contain conflicting dates.
+    event_dates={}
+    for t,eid,fid,winner,loser in eligible:
+        event_dates.setdefault(eid,set()).add(t.date())
+    ambiguous_events={eid for eid,dates in event_dates.items() if len(dates)>1}
+    eligible=[row for row in eligible if row[1] not in ambiguous_events]
     ratings={}
     bouts={}
     seen=set()
@@ -85,7 +91,7 @@ def build(rows,k=24,minimum_history=5):
     loss=sum(-math.log(x["winner_probability"]) for x in forecasts)/n if n else None
     improvement_brier=(baseline_brier-brier)/baseline_brier if n else None
     return {"schema":1,"sport":"UFC","model_version":"ufc-elo-baseline-v1",
-            "historical_bouts_used":len(seen),"pre_update_evaluated_fights":n,"all_pre_update_evaluated_fights":all_n,"all_pre_update_brier":all_brier,"all_pre_update_log_loss":all_log_loss,"all_pre_update_brier_skill_vs_50pct":(1-all_brier/0.25) if all_n else None,
+            "historical_bouts_used":len(seen),"excluded_ambiguous_date_events":len(ambiguous_events),"pre_update_evaluated_fights":n,"all_pre_update_evaluated_fights":all_n,"all_pre_update_brier":all_brier,"all_pre_update_log_loss":all_log_loss,"all_pre_update_brier_skill_vs_50pct":(1-all_brier/0.25) if all_n else None,
             "brier":brier,"log_loss":loss,"baseline_brier":baseline_brier,"baseline_log_loss":baseline_log_loss,"brier_skill_vs_50pct":improvement_brier,"minimum_prior_bouts_per_fighter":minimum_history,
             "holdout_evaluated_fights":len(holdout),"holdout_start":holdout_start,"holdout_end":holdout_end,"holdout_brier":holdout_brier,"holdout_log_loss":holdout_log_loss,"holdout_brier_skill_vs_50pct":holdout_skill,"holdout_status":"INSUFFICIENT_SAMPLE" if len(holdout)<30 else "CHRONOLOGICAL_EVALUATION_ONLY","all_pre_update_forecasts":all_forecasts,"ratings":{name:{"elo":round(ratings[name],2),"historical_bouts":bouts[name]}
                        for name in sorted(ratings)},"forecasts":forecasts,
