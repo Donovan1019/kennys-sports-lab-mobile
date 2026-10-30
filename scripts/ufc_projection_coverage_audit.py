@@ -76,6 +76,13 @@ def research_pipeline():
     event, stats, elo = (load(n) for n in ("ufc_research.json", "ufc_fighter_stats_mirror.json", "ufc_elo_projections.json"))
     by_name = {norm(p["name"]): p for p in stats.get("fighters", []) if p.get("name")}
     by_id = {str(p.get("fight_id")): p for p in elo.get("projections", [])}
+    baseline_path = ROOT / "backtests" / "reports" / "ufc_elo_baseline.json"
+    baseline = json.loads(baseline_path.read_text()) if baseline_path.exists() else {}
+    baseline_n = baseline.get("pre_update_evaluated_fights", 0)
+    calibration_certified = (isinstance(baseline_n, int) and baseline_n >= 200
+                             and isinstance(baseline.get("brier"), (int,float))
+                             and isinstance(baseline.get("log_loss"), (int,float))
+                             and baseline.get("point_in_time_certified") is True)
     rows = []
     for f in event.get("fights", []):
         red, blue = f.get("red"), f.get("blue")
@@ -115,7 +122,16 @@ def research_pipeline():
                                                 "red_uncertainty_interval":[round(max(.01,probability-halfwidth),4),round(min(.99,probability+halfwidth),4)],
                                                 "status":"NEUTRAL_PRIOR" if strength==0 else "UNCALIBRATED_RESEARCH"},
                      "count_simulation":sims,
-                     "calibration":{"status":"UNVERIFIED","point_in_time_validated":False},
+                     "input_evidence":{"scheduled_rounds_verified":f.get("scheduled_rounds") in (3,5),
+                                       "fighter_status_verified":f.get("fighter_status_verified") is True,
+                                       "odds_verified":f.get("odds_verified") is True,
+                                       "paired_historical_round_rows":n,
+                                       "opponent_quality_verified":False},
+                     "calibration":{"status":"UNVERIFIED" if not calibration_certified else "HISTORICAL_CERTIFIED_NOT_LIVE",
+                                    "point_in_time_validated":calibration_certified,
+                                    "evaluated_fights":baseline_n,
+                                    "brier":baseline.get("brier") if calibration_certified else None,
+                                    "log_loss":baseline.get("log_loss") if calibration_certified else None},
                      "betting":{"status":"NOT_ELIGIBLE","model_ev":None,"reason":"No calibrated independent live probability and verified executable price"}})
     return {"schema":1,"sport":"UFC","research_only":True,"bet_eligible":False,"fights":rows,
             "limitations":["Pre-UFC career and opponent-adjusted style histories not verified",
