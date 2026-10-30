@@ -23,5 +23,5 @@ jobs:
           assert "Method / round" in j and "Not predicted" in j
           assert "Striking leader" in j and "Takedown leader" in j
           assert "one comparison card per fight" in j
-          assert "ufc_fighter_projections.js?v=8" in Path('ufc.html').read_text()
+          assert "ufc_fighter_projections.js?v=9" in Path('ufc.html').read_text()
           PY

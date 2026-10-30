@@ -7,7 +7,7 @@ const controls=document.createElement('div');controls.className='ksl-ufc-control
 const market=document.createElement('select'),bout=document.createElement('select');market.setAttribute('aria-label','UFC projection market');bout.setAttribute('aria-label','UFC matchup');for(const m of markets){const o=document.createElement('option');o.value=m;o.textContent=m;market.append(o)}const all=document.createElement('option');all.value='';all.textContent='All upcoming matchups';bout.append(all);controls.append(market,bout);market.value='Significant strikes landed';
 const count=document.createElement('p');count.setAttribute('role','status');root.append(count);
 const wrap=document.createElement('div');wrap.className='ksl-ufc-table-wrap';const table=document.createElement('table');const thead=document.createElement('thead');const tr=document.createElement('tr');for(const name of ['Fighter','Opponent','Start ET','Market','Model / baseline','DK / FD','Market %','Status']){const th=document.createElement('th');th.textContent=name;tr.append(th)}thead.append(tr);table.append(thead);const tbody=document.createElement('tbody');table.append(tbody);wrap.append(table);root.append(wrap);const cards=document.createElement('div');cards.className='ksl-ufc-projection-cards';root.append(cards);
-let fights=[],eloById=new Map(),statsByName=new Map(),odds=[],oddsFetched=null;
+let fights=[],eloById=new Map(),statsByName=new Map(),profileByName=new Map(),odds=[],oddsFetched=null;
 const norm=s=>String(s||'').normalize('NFKD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9 ]/g,'').replace(/\s+/g,' ').trim();
 function eastern(s){const d=new Date(s);return Number.isFinite(d.getTime())?d.toLocaleString('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'}):'UNVERIFIED'}
 const fmt=p=>Number.isFinite(p)&&(p<=-100||p>=100)?(p>0?'+':'')+p:'—';
@@ -16,27 +16,29 @@ function implied(a){return a<0?(-a)/((-a)+100):100/(a+100)}
 function quoteGroup(f,book){const target=[norm(f.red),norm(f.blue)];return odds.filter(q=>q.market==='h2h'&&q.bookmaker===book&&validQuote(q)&&target.includes(norm(q.selection))&&target.every(n=>norm(q.event).includes(n)));}
 function marketBaseline(f,fighter){const results=[];for(const book of ['draftkings','fanduel']){const rows=quoteGroup(f,book),a=rows.find(q=>norm(q.selection)===norm(fighter)),other=rows.find(q=>norm(q.selection)===norm(fighter===f.red?f.blue:f.red));if(a&&other&&a.event_id===other.event_id&&a.event===other.event&&a.commence_time===other.commence_time&&Math.abs(Date.parse(a.updated_at)-Date.parse(other.updated_at))<=15*60*1000){const p=implied(a.price),q=implied(other.price);const total=p+q;if(total>=1&&total<=1.35)results.push({book,price:a.price,novig:p/(p+q),timestamp:a.updated_at})}}return results}
 function fairAmerican(p){if(!Number.isFinite(p)||p<=0||p>=1)return '—';return p>=0.5?'-'+Math.round(100*p/(1-p)):'+'+Math.round(100*(1-p)/p)}
-function quoteComparison(f,fighter){const prices=marketBaseline(f,fighter);if(!prices.length)return {market:'No verified two-sided market',fair:'—',ev:'—',model:'—'};const marketP=prices.reduce((n,q)=>n+q.novig,0)/prices.length;const marketFair=fairAmerican(marketP);const estimate=independentWinEstimate(f,fighter);const quote=prices.map(q=>q.book.toUpperCase()+' '+fmt(q.price)).join(' · ');if(!estimate)return {market:(marketP*100).toFixed(1)+'% · '+quote,fair:'Market '+marketFair,ev:'No validated model EV',model:'No independent estimate'};const modelP=estimate.probability;const values=prices.map(q=>{const profit=q.price>0?q.price/100:100/(-q.price);return {book:q.book,ev:modelP*profit-(1-modelP)}});return {market:(marketP*100).toFixed(1)+'% · '+quote,fair:'Market '+marketFair+' · Heuristic '+fairAmerican(modelP),ev:values.map(v=>v.book.toUpperCase()+' '+(v.ev*100).toFixed(1)+'%').join(' · ')+' (UNVALIDATED · NOT A BET)',model:(modelP*100).toFixed(1)+'% · research only'};}
+function missingModelReason(f){const names=[f.red,f.blue];const missing=names.filter(n=>{const p=profileByName.get(norm(n));return !p||p.status!=='MATCHED_HISTORICAL_STATS'||!p.career_round_totals||!(p.career_round_totals.round_rows>0)||!Number.isFinite(p.career_round_totals.sig_landed)});if(missing.length)return 'UNAVAILABLE: '+missing.join(', ')+' missing verified historical striking rounds';const elo=eloById.get(String(f.id));if(elo&&elo.status==='INSUFFICIENT_MATCHED_HISTORY')return 'UNAVAILABLE: insufficient matched historical bouts';return 'UNAVAILABLE: independent model inputs incomplete'}
+function quoteComparison(f,fighter){const prices=marketBaseline(f,fighter);if(!prices.length)return {market:'No verified two-sided market',fair:'—',ev:'—',model:'—'};const marketP=prices.reduce((n,q)=>n+q.novig,0)/prices.length;const marketFair=fairAmerican(marketP);const estimate=independentWinEstimate(f,fighter);const quote=prices.map(q=>q.book.toUpperCase()+' '+fmt(q.price)).join(' · ');if(!estimate)return {market:(marketP*100).toFixed(1)+'% · '+quote,fair:'Market '+marketFair,ev:'No validated model EV',model:missingModelReason(f)};const modelP=estimate.probability;const values=prices.map(q=>{const profit=q.price>0?q.price/100:100/(-q.price);return {book:q.book,ev:modelP*profit-(1-modelP)}});return {market:(marketP*100).toFixed(1)+'% · '+quote,fair:'Market '+marketFair+(estimate.rounds===0?' · Model fair odds UNAVAILABLE (neutral prior)':' · Heuristic '+fairAmerican(modelP)),ev:estimate.rounds===0?'UNAVAILABLE — neutral prior has no predictive edge':values.map(v=>v.book.toUpperCase()+' '+(v.ev*100).toFixed(1)+'%').join(' · ')+' (UNVALIDATED · NOT A BET)',model:(modelP*100).toFixed(1)+'% · '+(estimate.rounds===0?'neutral 50/50 prior, NOT a prediction':'uncalibrated research estimate')};}
 function bookPrices(f,fighter){const results=marketBaseline(f,fighter);return ['draftkings','fanduel'].map(book=>{const x=results.find(v=>v.book===book);return x?fmt(x.price):'—'}).join(' / ')}
 // Transparent first-pass research heuristic. NOT a trained/calibrated probability model.
 function careerRate(s,k){const t=s?.career_round_totals;return t&&t.round_rows>0&&Number.isFinite(t[k])?t[k]/t.round_rows:null}
 function independentWinEstimate(f,fighter){
   const self=statsByName.get(norm(fighter)),opp=statsByName.get(norm(fighter===f.red?f.blue:f.red));
-  if(!self||!opp)return null;
   const sr=careerRate(self,'sig_landed'),or=careerRate(opp,'sig_landed'),st=careerRate(self,'td_landed'),ot=careerRate(opp,'td_landed');
-  if(sr===null||or===null)return null;
+  // Partial-data prior: unavailable fighter rates revert to neutral, not to invented stats.
+  // No history on either side yields exactly 50/50, not a claimed edge.
+  const knownRounds=Math.min(self?.career_round_totals?.round_rows||0,opp?.career_round_totals?.round_rows||0);
   const rawElo=eloById.get(String(f.id));const es=rawElo&&norm(rawElo.red)===norm(f.red)&&norm(rawElo.blue)===norm(f.blue)&&Date.parse(rawElo.start_time)===Date.parse(f.start_time)?rawElo:null;
   const selfElo=es?(fighter===f.red?es.red_elo:es.blue_elo):null;
   const oppElo=es?(fighter===f.red?es.blue_elo:es.red_elo):null;
   const eloTerm=Number.isFinite(selfElo)&&Number.isFinite(oppElo)?Math.max(-0.65,Math.min(0.65,(selfElo-oppElo)/500)):0;
   // Regularized, bounded, symmetric score: strike rate + takedown rate + available Elo.
-  const strikeTerm=Math.max(-0.5,Math.min(0.5,Math.log((sr+3)/(or+3))*0.45));
+  const strikeTerm=Math.max(-0.5,Math.min(0.5,Math.log(((sr??3)+3)/((or??3)+3))*0.45));
   const takedownTerm=Math.max(-0.3,Math.min(0.3,Math.log(((st??0)+0.5)/((ot??0)+0.5))*0.18));
-  const n=Math.min(self.career_round_totals.round_rows,opp.career_round_totals.round_rows);
+  const n=knownRounds;
   const weight=n/(n+24); // conservative shrinkage for sparse histories; not fitted
   const score=weight*(eloTerm+strikeTerm+takedownTerm);
   const probability=1/(1+Math.exp(-score));
-  return {probability,source:'UNCALIBRATED SHRUNK HEURISTIC',rounds:n,weight};
+  return {probability,source:n===0?'NEUTRAL PRIOR — NO INDEPENDENT FIGHTER EVIDENCE':'UNCALIBRATED SHRUNK HEURISTIC',rounds:n,weight};
 }
 function researchProjection(f,fighter,stat){
   const opponent=statsByName.get(norm(fighter===f.red?f.blue:f.red));
@@ -76,7 +78,7 @@ function modeledProp(f,fighter,stat){
 function modelDisplay(f,fighter,stat){
 if(market.value==='Moneyline'){
   const independent=independentWinEstimate(f,fighter);
-  return independent?(independent.probability*100).toFixed(1)+'% research estimate':'NO INDEPENDENT ESTIMATE';
+  return independent?(independent.probability*100).toFixed(1)+'% · '+(independent.rounds===0?'NEUTRAL PRIOR, no fighter evidence':'uncalibrated research estimate'):missingModelReason(f);
 }
 const projected=modeledProp(f,fighter,stat);
 return projected?projected.value.toFixed(1)+' '+projected.units+' ('+projected.expectedRounds.toFixed(2)+' expected rounds / '+projected.horizon+' scheduled; illustrative finish hazard 18% per round)' +(projected.scheduledVerified?'':' · schedule unverified')+(projected.distribution==='POISSON RESEARCH BASELINE'?' · exploratory count model · P(>'+Math.floor(projected.value)+'.5) '+(projected.overAtHalf*100).toFixed(1)+'%':''):'NO MATCHED STAT SAMPLE';
@@ -91,13 +93,13 @@ function boutAssessment(f){
  const a=independentWinEstimate(f,f.red),b=independentWinEstimate(f,f.blue);
  const qa=marketBaseline(f,f.red),qb=marketBaseline(f,f.blue);
  const marketA=qa.length?qa.reduce((n,x)=>n+x.novig,0)/qa.length:null;
- const modelPick=a&&b?(a.probability>=b.probability?f.red:f.blue):null;
+ const modelPick=a&&b&&a.rounds>0&&b.rounds>0&&Math.abs(a.probability-b.probability)>0.001?(a.probability>=b.probability?f.red:f.blue):null;
  const marketPick=marketA===null?null:marketA>=0.5?f.red:f.blue;
  const modelPct=a&&b?Math.max(a.probability,b.probability)*100:null;
  const marketPct=marketA===null?null:Math.max(marketA,1-marketA)*100;
  // A lean is not a bet. No positive EV claim without a calibrated, independently validated model.
  const decision=modelPick?'RESEARCH LEAN · '+modelPick:marketPick?'MARKET FAVORITE · '+marketPick:'NO RELIABLE PICK';
- const basis=modelPick?'Uncalibrated fighter-stat model · '+modelPct.toFixed(1)+'%':marketPick?'Bookmaker consensus · '+marketPct.toFixed(1)+'% no-vig':'No matched model or sportsbook data';
+ const basis=modelPick?'Uncalibrated fighter-stat model · '+modelPct.toFixed(1)+'%':marketPick?'Bookmaker consensus · '+marketPct.toFixed(1)+'% no-vig · neutral model prior where history is missing':'Neutral 50/50 research prior · no reliable fighter history or sportsbook data';
  return {decision,basis,modelPick,marketPick,marketPct,strikes:rateLeader(f,'sig_landed'),takedowns:rateLeader(f,'td_landed')};
 }
 function render(){
@@ -135,13 +137,13 @@ function render(){
  if(!chosen.length)count.textContent='No scheduled UFC card fights in the current feed. This may reflect missing ESPN event coverage or a stale refresh, not an empty UFC calendar.';
 }
 market.addEventListener('change',render);bout.addEventListener('change',render);
-const get=async path=>{const r=await fetch(path,{cache:'no-store'});if(!r.ok)throw Error(path+' unavailable');return r.json()};
+const get=async path=>{const r=await fetch(path+'?reload='+Date.now(),{cache:'no-store'});if(!r.ok)throw Error(path+' unavailable');return r.json()};
 Promise.all([get('./feed/ufc_research.json'),get('./feed/ufc_elo_projections.json').catch(()=>null),get('./feed/ufc_fighter_stats_mirror.json').catch(()=>null),get('./feed/mma_mixed_martial_arts.json').catch(()=>null)]).then(([data,elo,stats,book])=>{
 if(data.sport!=='UFC'||!Array.isArray(data.fights))throw Error('Invalid UFC card feed');
 const cardGenerated=Date.parse(data.generated_at),cardAgeHours=Number.isFinite(cardGenerated)?(Date.now()-cardGenerated)/3600000:null;
 const cardFeedState=cardAgeHours===null||cardAgeHours<0?'CARD FEED TIMESTAMP UNVERIFIED':cardAgeHours>24?'STALE CARD FEED ('+cardAgeHours.toFixed(1)+'h old)':'Card feed updated '+cardAgeHours.toFixed(1)+'h ago';
 if(elo&&elo.sport==='UFC'&&Array.isArray(elo.projections))for(const item of elo.projections)if(item?.fight_id)eloById.set(String(item.fight_id),item);
-if(stats&&stats.sport==='UFC'&&Array.isArray(stats.fighters))for(const f of stats.fighters)if(f.status==='MATCHED_HISTORICAL_STATS'&&f.name)statsByName.set(norm(f.name),f);
+if(stats&&stats.sport==='UFC'&&Array.isArray(stats.fighters))for(const f of stats.fighters){if(!f.name)continue;profileByName.set(norm(f.name),f);if(f.status==='MATCHED_HISTORICAL_STATS')statsByName.set(norm(f.name),f)}
 if(book&&book.sport==='mma_mixed_martial_arts'&&book.source==='the-odds-api-v4'&&book.status==='ok'&&Array.isArray(book.odds)&&Number.isFinite(Date.parse(book.fetched_at))&&Date.parse(book.fetched_at)<=Date.now()&&Date.now()-Date.parse(book.fetched_at)<=6*60*60*1000){odds=book.odds;oddsFetched=book.fetched_at}
 fights=data.fights.filter(f=>f&&f.red&&f.blue&&f.id&&Number.isFinite(Date.parse(f.start_time))&&Date.parse(f.start_time)>Date.now()-36*60*60*1000).sort((a,b)=>Date.parse(a.start_time)-Date.parse(b.start_time));
 for(const f of fights){const o=document.createElement('option');o.value=String(f.id);o.textContent=f.red+' vs '+f.blue+' · '+eastern(f.start_time);bout.append(o)}
