@@ -1,7 +1,13 @@
 name: UFC Projection Coverage Audit
 on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'feed/ufc_unified_research.json'
   pull_request:
   workflow_dispatch:
+permissions:
+  contents: write
 jobs:
   audit:
     runs-on: ubuntu-latest
@@ -34,3 +40,14 @@ jobs:
           path: |
             ufc_projection_coverage.json
             ufc_unified_research.json
+      - name: Publish research feed on main
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          cp ufc_unified_research.json feed/ufc_unified_research.json
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add feed/ufc_unified_research.json
+          if ! git diff --cached --quiet; then
+            git commit -m "data(ufc): refresh unified research-only card feed [skip ci]"
+            git push
+          fi
