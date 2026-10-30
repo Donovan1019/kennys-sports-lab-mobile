@@ -1,0 +1,37 @@
+name: UFC Historical Elo Research Backtest
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  historical-elo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Download public historical UFCStats CSVs
+        run: |
+          mkdir -p /tmp/ufc-history
+          curl --fail --location --retry 3 --max-time 120 --output /tmp/ufc-history/events.csv https://raw.githubusercontent.com/Greco1899/scrape_ufc_stats/main/ufc_event_details.csv
+          curl --fail --location --retry 3 --max-time 120 --output /tmp/ufc-history/fights.csv https://raw.githubusercontent.com/Greco1899/scrape_ufc_stats/main/ufc_fight_results.csv
+          test -s /tmp/ufc-history/events.csv
+          test -s /tmp/ufc-history/fights.csv
+          sha256sum /tmp/ufc-history/events.csv /tmp/ufc-history/fights.csv | tee /tmp/ufc-history/source_sha256.txt
+      - name: Import and evaluate real historical fights
+        run: |
+          python scripts/ufc_import_historical_csv.py --events /tmp/ufc-history/events.csv --fights /tmp/ufc-history/fights.csv --output /tmp/ufc-history/verified_bouts.json
+          python scripts/ufc_elo_baseline.py --input /tmp/ufc-history/verified_bouts.json --output /tmp/ufc-history/elo_report.json --minimum-evaluated 1
+      - name: Archive research results (never auto-publish as betting picks)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ufc-historical-elo-research
+          path: |
+            /tmp/ufc-history/source_sha256.txt
+            /tmp/ufc-history/verified_bouts.json
+            /tmp/ufc-history/elo_report.json
+          if-no-files-found: warn
+          retention-days: 30
