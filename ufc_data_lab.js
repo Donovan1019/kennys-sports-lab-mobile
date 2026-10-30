@@ -36,7 +36,21 @@ async function loadPipeline(){
       const card=make('article');card.className='ksl-ufc-card';pipelineRows.append(card);
       card.append(make('h4',f.red+' vs '+f.blue));
       const p=f.sparse_data_probability;
-      card.append(make('p','Research ML: '+(100*p.red).toFixed(1)+'% / '+(100*p.blue).toFixed(1)+'% · red uncertainty '+(100*p.red_uncertainty_interval[0]).toFixed(0)+'–'+(100*p.red_uncertainty_interval[1]).toFixed(0)+'%'));
+      const validP=p&&Number.isFinite(p.red)&&Number.isFinite(p.blue)&&Math.abs(p.red+p.blue-1)<.02;
+      const hasEvidence=Number(f.input_evidence?.paired_historical_round_rows||0)>0;
+      const estimate=validP&&hasEvidence?'Research model: '+f.red+' '+(100*p.red).toFixed(1)+'% · '+f.blue+' '+(100*p.blue).toFixed(1)+'%':'Independent win estimate: INSUFFICIENT DATA';
+      card.append(make('p',estimate+' · NOT BET ELIGIBLE'));
+      const compact=make('div');compact.className='ufc-compact-forecast';compact.style.cssText='display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:10px 0';card.append(compact);
+      for(const [name,sim] of Object.entries(f.count_simulation||{})){
+        const panel=make('div');panel.style.cssText='min-width:0;padding:10px;border:1px solid #42677b;border-radius:10px';compact.append(panel);
+        panel.append(make('strong',name));
+        const means=sim.count_means||{};
+        const usable=sim.status==='RESEARCH_ONLY'&&Number.isFinite(Number(means.sig_landed))&&Number.isFinite(Number(means.takedowns_landed));
+        panel.append(make('p',usable?'Illustrative strikes '+means.sig_landed+' · TD '+means.takedowns_landed:'Strikes / takedowns: insufficient verified inputs'));
+      }
+      if(!compact.childElementCount)compact.append(make('p','Fighter count projections: insufficient verified inputs'));
+      if(validP&&hasEvidence&&Array.isArray(p.red_uncertainty_interval))card.append(make('p','Red uncertainty: '+(100*p.red_uncertainty_interval[0]).toFixed(0)+'–'+(100*p.red_uncertainty_interval[1]).toFixed(0)+'%'));
+      
       const detail=make('details');detail.append(make('summary','Model evidence and scenario details'));card.append(detail);
       card.append(make('p','Research lean: '+(p.red>p.blue?f.red:f.blue)+' · NOT A BETTING PICK'));
       for(const [name,sim] of Object.entries(f.count_simulation||{})){
