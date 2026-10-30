@@ -46,6 +46,11 @@ def match(bouts, candidates, forecasts):
             rejected["invalid_probabilities"]+=1
             continue
         pairs.append((p,market))
+    matched_dates=sorted(b["event_date"][:10] for b in bouts if (b["event_id"],b["fight_id"]) in matched)
+    odds_dates=sorted(c["event_date"][:10] for c in candidates)
+    holdout_dates=sorted(f["start_time"][:10] for f in holdout)
+    def bounds(xs):
+        return [xs[0],xs[-1]] if xs else [None,None]
     def metrics(i):
         return {"brier":sum((1-x[i])**2 for x in pairs)/len(pairs) if pairs else None,
                 "log_loss":sum(-math.log(x[i]) for x in pairs)/len(pairs) if pairs else None}
@@ -54,6 +59,8 @@ def match(bouts, candidates, forecasts):
             "historical_bouts":len(bouts),"odds_candidates":len(candidates),
             "exact_matched_bouts":len(matched),"strict_cohort_holdout":len(holdout),
             "matched_holdout":len(pairs),"excluded":dict(rejected),
+            "date_ranges":{"odds":bounds(odds_dates),"matched":bounds(matched_dates),"holdout":bounds(holdout_dates)},
+            "matched_strict_cohort":sum((f["event_id"],f["fight_id"]) in matched for f in forecasts),
             "model":metrics(0),"market_no_vig":metrics(1),
             "limitations":["Retrospective scrape timestamps are not independently verified pre-fight prices",
                            "Exact-match coverage is not betting certification",
