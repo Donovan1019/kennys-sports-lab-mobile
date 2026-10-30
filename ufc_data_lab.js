@@ -39,7 +39,9 @@ async function loadPipeline(){
         const means=sim.count_means||{};
         card.append(make('p',name+' count simulation: '+(sim.status==='RESEARCH_ONLY'?'historical-rate illustrative sig strikes '+means.sig_landed+', takedowns '+means.takedowns_landed:'UNAVAILABLE — '+(sim.reason||'missing verified inputs'))));\n        if(sim.historical_per_round)card.append(make('p','Historical per-round: significant strikes '+sim.historical_per_round.sig_landed+', takedowns '+sim.historical_per_round.td_landed+' (not a full-fight projection)'));
       }
-      card.append(make('p','Calibration: UNVERIFIED · EV: UNAVAILABLE · NOT BET ELIGIBLE'));
+      const evidence=f.input_evidence||{};
+      card.append(make('p','Evidence: scheduled rounds '+(evidence.scheduled_rounds_verified?'VERIFIED':'UNVERIFIED')+' · fighter status '+(evidence.fighter_status_verified?'VERIFIED':'UNVERIFIED')+' · odds '+(evidence.odds_verified?'VERIFIED':'UNVERIFIED')+' · paired historical rounds '+(evidence.paired_historical_round_rows||0)));
+      card.append(make('p','Calibration: '+(f.calibration?.status||'UNVERIFIED')+' · EV: UNAVAILABLE · NOT BET ELIGIBLE'));
     }
   }catch(error){pipelineState.textContent='Pipeline report UNAVAILABLE — '+error.message}
 }
