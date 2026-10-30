@@ -35,7 +35,7 @@ jobs:
       - name: Audit historical NBA market evidence coverage
         run: python scripts/audit_nba_ml_market_evidence.py
       - name: Join NBA outcomes with archived reference odds
-        run: python scripts/audit_nba_ml_outcome_market.py
+        run: python -m scripts.audit_nba_ml_outcome_market
       - name: Audit betting readiness (fail closed)
         run: python scripts/audit_nba_ml_betting_readiness.py
       - name: Validate JSON
