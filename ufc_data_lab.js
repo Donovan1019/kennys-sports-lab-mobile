@@ -17,8 +17,8 @@ search.addEventListener('input',draw);draw();
 for(const t of ['Simulated upcoming fights: '+(Array.isArray(sim.simulations)?sim.simulations.length:0),'Blocked simulations: '+(Array.isArray(sim.blocked)?sim.blocked.length:0),'Holdout calibration: '+(health.status||'UNAVAILABLE'),'Historical source: '+history.source,'Model limitations: '+(Array.isArray(health.blockers)?health.blockers.join(', '):'unverified')])audit.append(make('p',t));
 
 // Full-card betting-readiness audit. All fallback priors remain research-only.
-const pipeline=make('section');pipeline.id='ufc-unified-pipeline';root.append(pipeline);
-pipeline.append(make('h3','Unified five-stage UFC research pipeline'));
+const pipeline=make('section');pipeline.id='ufc-unified-pipeline';root.prepend(pipeline);
+pipeline.append(make('h3','UFC Fight Projections — Research Estimates'));
 const pipelineState=make('p','Loading model pipeline report…');pipeline.append(pipelineState);
 const pipelineRows=make('div');pipeline.append(pipelineRows);
 async function loadPipeline(){
@@ -37,15 +37,17 @@ async function loadPipeline(){
       card.append(make('h4',f.red+' vs '+f.blue));
       const p=f.sparse_data_probability;
       card.append(make('p','Research ML: '+(100*p.red).toFixed(1)+'% / '+(100*p.blue).toFixed(1)+'% · red uncertainty '+(100*p.red_uncertainty_interval[0]).toFixed(0)+'–'+(100*p.red_uncertainty_interval[1]).toFixed(0)+'%'));
-      card.append(make('p','Opponent adjustment: '+(f.opponent_adjustment.elo_available?'historical Elo':'UNAVAILABLE')+' · verified strength of schedule: UNAVAILABLE'));
+      const detail=make('details');detail.append(make('summary','Model evidence and scenario details'));card.append(detail);
+      card.append(make('p','Research lean: '+(p.red>p.blue?f.red:f.blue)+' · NOT A BETTING PICK'));
       for(const [name,sim] of Object.entries(f.count_simulation||{})){
         const means=sim.count_means||{};
-        card.append(make('p',name+' count simulation: '+(sim.status==='RESEARCH_ONLY'?'historical-rate illustrative sig strikes '+means.sig_landed+', takedowns '+means.takedowns_landed:'UNAVAILABLE — '+(sim.reason||'missing verified inputs'))));\n        if(sim.historical_per_round)card.append(make('p','Historical per-round: significant strikes '+sim.historical_per_round.sig_landed+', takedowns '+sim.historical_per_round.td_landed+' (not a full-fight projection)'));
-        if(sim.duration_scenarios){for(const rounds of ['3','5']){const scenario=sim.duration_scenarios[rounds];if(scenario){card.append(make('p','HYPOTHETICAL '+rounds+'-round research scenario: sig strikes '+scenario.count_means.sig_landed+', takedowns '+scenario.count_means.takedowns_landed+' · fight length UNVERIFIED · NOT BET ELIGIBLE'));if(scenario.hazard_sensitivity){const h=scenario.hazard_sensitivity;card.append(make('p','Illustrative finish-hazard stress test (8%-30% per round): strikes '+h.sig_landed_mean_range.join('–')+' · takedowns '+h.takedowns_landed_mean_range.join('–')+' · NOT CALIBRATED'));}}}}
+        detail.append(make('p',name+' count simulation: '+(sim.status==='RESEARCH_ONLY'?'historical-rate illustrative sig strikes '+means.sig_landed+', takedowns '+means.takedowns_landed:'UNAVAILABLE — '+(sim.reason||'missing verified inputs'))));
+        if(sim.historical_per_round)detail.append(make('p','Historical per-round: significant strikes '+sim.historical_per_round.sig_landed+', takedowns '+sim.historical_per_round.td_landed+' (not a full-fight projection)'));
+        if(sim.duration_scenarios){for(const rounds of ['3','5']){const scenario=sim.duration_scenarios[rounds];if(scenario){detail.append(make('p','HYPOTHETICAL '+rounds+'-round research scenario: sig strikes '+scenario.count_means.sig_landed+', takedowns '+scenario.count_means.takedowns_landed+' · fight length UNVERIFIED · NOT BET ELIGIBLE'));if(scenario.hazard_sensitivity){const h=scenario.hazard_sensitivity;detail.append(make('p','Illustrative finish-hazard stress test (8%-30% per round): strikes '+h.sig_landed_mean_range.join('–')+' · takedowns '+h.takedowns_landed_mean_range.join('–')+' · NOT CALIBRATED'));}}}}
       }
       const evidence=f.input_evidence||{};
-      card.append(make('p','Evidence: scheduled rounds '+(evidence.scheduled_rounds_verified?'VERIFIED':'UNVERIFIED')+' · fighter status '+(evidence.fighter_status_verified?'VERIFIED':'UNVERIFIED')+' · odds '+(evidence.odds_verified?'VERIFIED':'UNVERIFIED')+' · paired historical rounds '+(evidence.paired_historical_round_rows||0)));
-      card.append(make('p','Calibration: '+(f.calibration?.status||'UNVERIFIED')+' · EV: UNAVAILABLE · NOT BET ELIGIBLE'));
+      detail.append(make('p','Evidence: scheduled rounds '+(evidence.scheduled_rounds_verified?'VERIFIED':'UNVERIFIED')+' · fighter status '+(evidence.fighter_status_verified?'VERIFIED':'UNVERIFIED')+' · odds '+(evidence.odds_verified?'VERIFIED':'UNVERIFIED')+' · paired historical rounds '+(evidence.paired_historical_round_rows||0)));
+      detail.append(make('p','Calibration: '+(f.calibration?.status||'UNVERIFIED')+' · EV: UNAVAILABLE · NOT BET ELIGIBLE'));
     }
   }catch(error){pipelineState.textContent='Pipeline report UNAVAILABLE — '+error.message}
 }
