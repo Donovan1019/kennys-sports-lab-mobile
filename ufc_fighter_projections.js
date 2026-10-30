@@ -110,17 +110,21 @@ function render(){
  for(const f of chosen){
    const assess=boutAssessment(f),card=document.createElement('article');card.className='ksl-ufc-projection-card';
    const title=document.createElement('h3');title.textContent=f.red+' vs '+f.blue;card.append(title);
-   add(card,'Start ET',eastern(f.start_time));add(card,'Fight status',Date.parse(f.start_time)<=Date.now()?'Scheduled start passed · live/result status UNVERIFIED':'Scheduled · not yet started by listed time');add(card,'Winner assessment',assess.decision);add(card,'Prediction basis',assess.basis);
-   add(card,'Market favorite',assess.marketPick?assess.marketPick+' · '+assess.marketPct.toFixed(1)+'% no-vig':'No complete two-sided quote');
-   add(card,'Striking leader',assess.strikes.name);add(card,'Striking comparison',assess.strikes.detail);
-   add(card,'Takedown leader',assess.takedowns.name);add(card,'Takedown comparison',assess.takedowns.detail);
-   for(const fighter of [f.red,f.blue]){const comparison=quoteComparison(f,fighter);add(card,fighter+' · market probability',comparison.market);add(card,fighter+' · model probability',comparison.model);add(card,fighter+' · fair odds',comparison.fair);add(card,fighter+' · hypothetical EV',comparison.ev)}
-   add(card,'Projection audit','Historical count-model calibration is research-only; real pre-fight duration and prop-line calibration not yet validated');
-   add(card,'Fight simulation','Exploratory Poisson count distribution only · NOT a bout-level Monte Carlo');
-   add(card,'Market line probabilities','Exploratory count tails are not calibrated sportsbook-line hit rates');
-   add(card,'Data integrity', 'Fight ID, names and scheduled start checked for Elo; other historical inputs remain unverified for live use');
-   add(card,'Method / round','Not predicted — outcome and duration model not validated');
-   add(card,'Betting decision','RESEARCH ONLY · NO MODEL-VERIFIED EDGE · Market-only baseline historically outperformed fighter heuristic; hypothetical EV is not a betting signal');
+   add(card,'Start ET',eastern(f.start_time));
+   add(card,'Research assessment',assess.modelPick?assess.decision:'Independent winner prediction: insufficient matched fighter history');
+   add(card,'Market favorite (not model)',assess.marketPick?assess.marketPick+' · '+assess.marketPct.toFixed(1)+'% no-vig':'No fresh complete two-sided quote');
+   const detail=document.createElement('details');detail.className='ufc-fight-evidence';const summary=document.createElement('summary');summary.textContent='Expand model evidence, sportsbook odds and audit';detail.append(summary);card.append(detail);
+   add(detail,'Fight status',Date.parse(f.start_time)<=Date.now()?'Start time passed · live/result UNVERIFIED':'Scheduled · not yet started by listed time');
+   add(detail,'Prediction basis',assess.basis);
+   add(detail,'Striking leader',assess.strikes.name);add(detail,'Striking comparison',assess.strikes.detail);
+   add(detail,'Takedown leader',assess.takedowns.name);add(detail,'Takedown comparison',assess.takedowns.detail);
+   for(const fighter of [f.red,f.blue]){const comparison=quoteComparison(f,fighter);add(detail,fighter+' · market probability',comparison.market);add(detail,fighter+' · model probability',comparison.model==='50.0% · neutral 50/50 prior, NOT a prediction'?'INSUFFICIENT DATA — neutral prior only':comparison.model);add(detail,fighter+' · fair odds',comparison.fair);add(detail,fighter+' · hypothetical EV',comparison.ev)}
+   add(detail,'Projection audit','Historical count-model calibration is research-only; duration and prop-line calibration unvalidated');
+   add(detail,'Fight simulation','Exploratory Poisson count distribution only · NOT bout-level Monte Carlo');
+   add(detail,'Market line probabilities','Exploratory count tails are not calibrated sportsbook-line hit rates');
+   add(detail,'Data integrity','Fight ID, names and start checked for Elo; other inputs unverified for live use');
+   add(detail,'Method / round','Not predicted — outcome and duration model unvalidated');
+   add(detail,'Betting decision','RESEARCH ONLY · NO MODEL-VERIFIED EDGE');
    for(const fighter of [f.red,f.blue]){
      const stat=statsByName.get(norm(fighter));if(stat)matched++;
      const model=modelDisplay(f,fighter,stat),price=market.value==='Moneyline'?bookPrices(f,fighter):'No verified prop quote';
@@ -128,8 +132,8 @@ function render(){
      const base=marketBaseline(f,fighter),marketPct=base.length?(base.reduce((n,x)=>n+x.novig,0)/base.length*100).toFixed(1)+'%':'No two-sided market';
      const row=document.createElement('tr');
      for(const val of [fighter,fighter===f.red?f.blue:f.red,eastern(f.start_time),market.value,model,price,marketPct,'Research only']){const td=document.createElement('td');td.textContent=val;row.append(td)}tbody.append(row);
-     add(card,fighter+' · '+market.value,model);
-     if(market.value==='Moneyline'){add(card,fighter+' · DK / FD',price);add(card,fighter+' · no-vig market',marketPct)}
+     add(card,fighter+' · '+market.value,model.includes('NEUTRAL PRIOR')?'INSUFFICIENT DATA — neutral prior only':model);
+     if(market.value==='Moneyline'){add(detail,fighter+' · DK / FD',price);add(detail,fighter+' · no-vig market',marketPct)}
    }
    cards.append(card);
  }
