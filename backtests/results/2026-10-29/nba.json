@@ -1,0 +1,46 @@
+{
+  "sport": "NBA",
+  "date": "2026-10-29",
+  "games": [
+    {
+      "event_id": "401909893",
+      "event": "Cleveland Cavaliers at Atlanta Hawks",
+      "commence_time": "2026-10-30T00:00Z",
+      "home": "Atlanta Hawks",
+      "away": "Cleveland Cavaliers",
+      "home_score": 114,
+      "away_score": 111,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261029&limit=100"
+    },
+    {
+      "event_id": "401909894",
+      "event": "Sacramento Kings at New Orleans Pelicans",
+      "commence_time": "2026-10-30T00:00Z",
+      "home": "New Orleans Pelicans",
+      "away": "Sacramento Kings",
+      "home_score": 132,
+      "away_score": 120,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261029&limit=100"
+    },
+    {
+      "event_id": "401909895",
+      "event": "Memphis Grizzlies at Portland Trail Blazers",
+      "commence_time": "2026-10-30T02:00Z",
+      "home": "Portland Trail Blazers",
+      "away": "Memphis Grizzlies",
+      "home_score": 103,
+      "away_score": 124,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261029&limit=100"
+    }
+  ],
+  "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261029&limit=100"
+}
