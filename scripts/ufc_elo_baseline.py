@@ -77,6 +77,23 @@ def build(rows,k=24,minimum_history=5):
     holdout=forecasts[cutoff:] if cutoff else []
     holdout_brier=sum((1-x['winner_probability'])**2 for x in holdout)/len(holdout) if holdout else None
     holdout_log_loss=sum(-math.log(max(1e-12,x['winner_probability'])) for x in holdout)/len(holdout) if holdout else None
+    # Fit a single probability-shrinkage parameter on the earlier 80% only.
+    # This is an exploratory walk-forward calibration check, not sportsbook validation.
+    train=forecasts[:cutoff]
+    shrinkages=(0.0,0.25,0.5,0.75,1.0)
+    def adjusted(p,weight):
+        return 0.5+weight*(p-0.5)
+    def score(items,weight):
+        return sum(-math.log(max(1e-12,adjusted(x["winner_probability"],weight))) for x in items)/len(items) if items else None
+    chosen=min(shrinkages,key=lambda weight:(score(train,weight),weight)) if train else None
+    calibrated_brier=(sum((1-adjusted(x["winner_probability"],chosen))**2 for x in holdout)/len(holdout)) if holdout and chosen is not None else None
+    calibrated_log_loss=score(holdout,chosen) if chosen is not None else None
+    calibration_audit={"status":"RESEARCH_ONLY","fit_count":len(train),"holdout_count":len(holdout),
+        "fit_only_on_pre_holdout":True,"candidate_shrinkages":list(shrinkages),
+        "selected_shrinkage":chosen,"holdout_brier":calibrated_brier,
+        "holdout_log_loss":calibrated_log_loss,
+        "delta_brier_vs_raw":(calibrated_brier-holdout_brier) if calibrated_brier is not None else None,
+        "delta_log_loss_vs_raw":(calibrated_log_loss-holdout_log_loss) if calibrated_log_loss is not None else None}
     holdout_skill=(1-holdout_brier/0.25) if holdout else None
     # 50% is a diagnostic reference; compare against chronological pre-fight
     # sportsbook probabilities separately when licensed historical odds exist.
@@ -94,7 +111,7 @@ def build(rows,k=24,minimum_history=5):
     return {"schema":1,"sport":"UFC","model_version":"ufc-elo-baseline-v1",
             "historical_bouts_used":len(seen),"excluded_ambiguous_date_events":len(ambiguous_events),"pre_update_evaluated_fights":n,"all_pre_update_evaluated_fights":all_n,"all_pre_update_brier":all_brier,"all_pre_update_log_loss":all_log_loss,"all_pre_update_brier_skill_vs_50pct":(1-all_brier/0.25) if all_n else None,
             "brier":brier,"log_loss":loss,"baseline_brier":baseline_brier,"baseline_log_loss":baseline_log_loss,"brier_skill_vs_50pct":improvement_brier,"minimum_prior_bouts_per_fighter":minimum_history,
-            "holdout_evaluated_fights":len(holdout),"holdout_start":holdout_start,"holdout_end":holdout_end,"holdout_brier":holdout_brier,"holdout_log_loss":holdout_log_loss,"holdout_brier_skill_vs_50pct":holdout_skill,"holdout_status":"INSUFFICIENT_SAMPLE" if len(holdout)<30 else "CHRONOLOGICAL_EVALUATION_ONLY","all_pre_update_forecasts":all_forecasts,"ratings":{name:{"elo":round(ratings[name],2),"historical_bouts":bouts[name]}
+            "holdout_evaluated_fights":len(holdout),"calibration_audit":calibration_audit,"holdout_start":holdout_start,"holdout_end":holdout_end,"holdout_brier":holdout_brier,"holdout_log_loss":holdout_log_loss,"holdout_brier_skill_vs_50pct":holdout_skill,"holdout_status":"INSUFFICIENT_SAMPLE" if len(holdout)<30 else "CHRONOLOGICAL_EVALUATION_ONLY","all_pre_update_forecasts":all_forecasts,"ratings":{name:{"elo":round(ratings[name],2),"historical_bouts":bouts[name]}
                        for name in sorted(ratings)},"forecasts":forecasts,
             "bet_eligible":False,"calibration_status":"INSUFFICIENT_SAMPLE" if n<100 else "REQUIRES_INDEPENDENT_HOLDOUT",
             "limitations":["Same-event predictions use a frozen pre-event rating snapshot",
