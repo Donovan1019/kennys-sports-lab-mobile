@@ -3,10 +3,10 @@
   "betting_eligible": false,
   "readiness_reason": "Player roster/injury validation and multi-game out-of-sample calibration not complete",
   "capture": {
-    "generated_at": "2026-10-29T14:57:51.169871+00:00",
+    "generated_at": "2026-10-29T23:37:10.393925+00:00",
     "target_date": null,
     "expected_upcoming_events": 29,
-    "requested_events": 16,
+    "requested_events": 15,
     "captured_event_ids": [
       "ab2865e9f2d4b012de8bc6fb6de11a7c",
       "9255ca8f32aea590d00aa57de79f6bb6",
@@ -99,13 +99,15 @@
       {
         "event_id": "9760d8f19f84bfee300a74ceb656c95d",
         "error": "no_supported_bookmaker_props"
+      },
+      {
+        "event_id": "17ad7eff2f7875e20a8109abe40470e3",
+        "error": "no_supported_bookmaker_props"
       }
     ],
     "status": "PARTIAL",
     "retry_missing_only": true,
     "attempted_event_ids": [
-      "9255ca8f32aea590d00aa57de79f6bb6",
-      "b9c60db63b1a19ad319f24b33c0defe8",
       "c75744790b7acf6260c78ba5e739c0e5",
       "dc56d980f527ffeef89940133b211b13",
       "014282b888c741b7d70c857c09f40aa7",
@@ -119,7 +121,8 @@
       "ac9d38a18d5c92814233a31aa9a48d78",
       "240e23b02b1e3fef655d04a286b5a623",
       "2922c573ec3df8466c4a34975e446898",
-      "9760d8f19f84bfee300a74ceb656c95d"
+      "9760d8f19f84bfee300a74ceb656c95d",
+      "17ad7eff2f7875e20a8109abe40470e3"
     ]
   },
   "deduplicated": {
