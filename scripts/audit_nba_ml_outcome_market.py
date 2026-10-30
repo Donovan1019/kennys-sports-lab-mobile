@@ -8,6 +8,7 @@ from scripts.audit_nba_ml_market_evidence import parse_time
 
 ARCHIVES=pathlib.Path("data/nba_ml_odds_archive")
 GAMES=pathlib.Path("data/nba_ml_historical_games.json")
+BOX=pathlib.Path("data/nba_ml_possession_boxscores.json")
 OUT=pathlib.Path("feed/nba_ml_outcome_market_audit.json")
 
 def implied(price):
@@ -38,7 +39,7 @@ def evaluate(archives, games):
             event=f'{g["away"]} @ {g["home"]}'
             for (label,book,selection),values in by_event.items():
                 if label!=event or selection!=team:continue
-                valid=sorted((v for v in values if v[1]==tip and v[3].get("event_id")),key=lambda v:v[0])
+                valid=sorted((v for v in values if abs((v[1]-tip).total_seconds())<=900 and v[3].get("event_id")),key=lambda v:v[0])
                 if not valid:continue
                 first=valid[0];close_candidates=[v for v in valid if 0<=(tip-v[0]).total_seconds()<=900]
                 key=(str(g.get("id","")),book,team)
@@ -48,6 +49,8 @@ def evaluate(archives, games):
                      "opening_reference_implied":round(first[2],6),
                      "opening_reference_brier":round((first[2]-won)**2,6),
                      "snapshots":len({v[0] for v in valid}),
+                     "opening_reference_price":first[3]["price"],
+                     "opening_model_probability":first[3].get("model_probability"),
                      "verified_near_tipoff_quote":bool(close_candidates)}
                 if close_candidates:
                     closing=close_candidates[-1]
@@ -71,6 +74,21 @@ def main():
         except (OSError,ValueError):continue
     try:cache=json.loads(GAMES.read_text());games=[g for day in cache.get("days",{}).values() for g in day]
     except (OSError,ValueError):games=[]
+    try:
+        box=json.loads(BOX.read_text()).get("games",[])
+        known={(g.get("home"),g.get("away"),g.get("date")) for g in games}
+        for g in box:
+            try:
+                home,away=g["home"],g["away"]
+                points_home=g["box"][home]["points"]
+                points_away=g["box"][away]["points"]
+                if points_home==points_away:continue
+                key=(home,away,g["date"])
+                if key not in known:
+                    games.append({"id":g["id"],"date":g["date"],"home":home,"away":away,"home_win":int(points_home>points_away)})
+                    known.add(key)
+            except (KeyError,TypeError,ValueError):continue
+    except (OSError,ValueError,TypeError):pass
     report=evaluate(archives,games)
     OUT.parent.mkdir(parents=True,exist_ok=True)
     OUT.write_text(json.dumps(report,indent=2)+"\n")
