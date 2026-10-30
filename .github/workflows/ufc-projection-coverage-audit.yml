@@ -42,6 +42,30 @@ jobs:
           assert all(abs(f['sparse_data_probability']['red']+f['sparse_data_probability']['blue']-1)<.0002 for f in result['fights'])
           print('Full-card pipeline coverage:',len(observed),'research-only gates PASS')
           PY
+      - name: Verify UFC scenario determinism and valid count bounds
+        run: |
+          python scripts/ufc_projection_coverage_audit.py --pipeline-output ufc_unified_research_repeat.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          first=json.loads(Path('ufc_unified_research.json').read_text())
+          repeat=json.loads(Path('ufc_unified_research_repeat.json').read_text())
+          assert first==repeat, 'Research simulations are not reproducible'
+          scenarios=0
+          for fight in first['fights']:
+              for fighter in fight['count_simulation'].values():
+                  for rounds,scenario in fighter.get('duration_scenarios',{}).items():
+                      scenarios+=1
+                      assert rounds in ('3','5')
+                      assert scenario['status']=='HYPOTHETICAL_RESEARCH_ONLY'
+                      counts=scenario['count_means']
+                      assert all(isinstance(v,(int,float)) and 0<=v<10000 for v in counts.values())
+                      if 'sig_landed' in counts and 'sig_attempted' in counts:
+                          assert counts['sig_landed']<=counts['sig_attempted']+0.02
+                      if 'takedowns_landed' in counts and 'takedowns_attempted' in counts:
+                          assert counts['takedowns_landed']<=counts['takedowns_attempted']+0.02
+          print('Deterministic UFC research scenarios validated:',scenarios)
+          PY
       - uses: actions/upload-artifact@v4
         with:
           name: ufc-projection-coverage
