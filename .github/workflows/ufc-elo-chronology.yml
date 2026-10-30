@@ -6,6 +6,8 @@ on:
       - 'scripts/ufc_import_historical_csv.py'
       - 'scripts/ufc_betting_certification.py'
       - 'scripts/ufc_market_holdout.py'
+      - 'scripts/ufc_historical_odds_candidates.py'
+      - 'tests/test_ufc_historical_odds_candidates.py'
       - 'tests/test_ufc_market_holdout.py'
       - 'tests/test_ufc_betting_certification.py'
       - 'tests/test_ufc_import_historical_csv.py'
@@ -24,6 +26,7 @@ jobs:
       - run: python -m unittest discover -s tests -p 'test_ufc_import_historical_csv.py' -v
       - run: python -m unittest discover -s tests -p 'test_ufc_betting_certification.py' -v
       - run: python -m unittest discover -s tests -p 'test_ufc_market_holdout.py' -v
+      - run: python -m unittest discover -s tests -p 'test_ufc_historical_odds_candidates.py' -v
       - name: Verify historical input provenance support
         run: |
           python - <<'PY'
