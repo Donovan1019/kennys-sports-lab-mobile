@@ -24,6 +24,18 @@ jobs:
         run: |
           python scripts/ufc_import_historical_csv.py --events /tmp/ufc-history/events.csv --fights /tmp/ufc-history/fights.csv --output /tmp/ufc-history/verified_bouts.json
           python scripts/ufc_elo_baseline.py --input /tmp/ufc-history/verified_bouts.json --output /tmp/ufc-history/elo_report.json --minimum-evaluated 1
+      - name: Download and audit free historical odds candidates
+        run: |
+          curl --fail --location --retry 3 --max-time 120 --output /tmp/ufc-history/historical_odds.csv https://raw.githubusercontent.com/jansen88/ufc-data/main/data/complete_ufc_data.csv
+          test -s /tmp/ufc-history/historical_odds.csv
+          sha256sum /tmp/ufc-history/historical_odds.csv | tee -a /tmp/ufc-history/source_sha256.txt
+          python scripts/ufc_historical_odds_candidates.py --input /tmp/ufc-history/historical_odds.csv --output /tmp/ufc-history/odds_candidates.json
+      - name: Produce fail-closed betting certification verdict
+        if: always()
+        run: |
+          if test -s /tmp/ufc-history/elo_report.json; then
+            python scripts/ufc_betting_certification.py --report /tmp/ufc-history/elo_report.json --output /tmp/ufc-history/betting_certification.json || test -s /tmp/ufc-history/betting_certification.json
+          fi
       - name: Archive research results (never auto-publish as betting picks)
         if: always()
         uses: actions/upload-artifact@v4
@@ -33,5 +45,7 @@ jobs:
             /tmp/ufc-history/source_sha256.txt
             /tmp/ufc-history/verified_bouts.json
             /tmp/ufc-history/elo_report.json
+            /tmp/ufc-history/odds_candidates.json
+            /tmp/ufc-history/betting_certification.json
           if-no-files-found: warn
           retention-days: 30
