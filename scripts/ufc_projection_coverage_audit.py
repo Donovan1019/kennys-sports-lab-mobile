@@ -117,8 +117,14 @@ def research_pipeline():
                         scenarios={}
                         for hypothetical_rounds in (3,5):
                             scenario=simulate(rates,hypothetical_rounds,draws=1000,seed=2026)
+                            low=simulate(rates,hypothetical_rounds,draws=1000,seed=2026,finish_hazard=.08)
+                            high=simulate(rates,hypothetical_rounds,draws=1000,seed=2026,finish_hazard=.30)
                             scenarios[str(hypothetical_rounds)]={"status":"HYPOTHETICAL_RESEARCH_ONLY",
-                                "count_means":{k:round(v["mean"],2) for k,v in scenario["markets"].items()}}
+                                "count_means":{k:round(v["mean"],2) for k,v in scenario["markets"].items()},
+                                "hazard_sensitivity":{"low_finish_hazard":0.08,"high_finish_hazard":0.30,
+                                    "sig_landed_mean_range":sorted([round(low["markets"]["sig_landed"]["mean"],2),round(high["markets"]["sig_landed"]["mean"],2)]),
+                                    "takedowns_landed_mean_range":sorted([round(low["markets"]["takedowns_landed"]["mean"],2),round(high["markets"]["takedowns_landed"]["mean"],2)])},
+                                "hazard_warning":"Illustrative 8%-30% per-round finish hazards, not empirically calibrated"}
                         sims[name]["duration_scenarios"]=scenarios
                         sims[name]["scenario_warning"]="Unverified fight length; hypothetical 3/5-round counts are not predictions or bet-eligible"
                 continue
