@@ -45,14 +45,14 @@ async function loadPipeline(){
         const panel=make('div');panel.style.cssText='min-width:0;padding:10px;border:1px solid #42677b;border-radius:10px';compact.append(panel);
         panel.append(make('strong',name));
         const means=sim.count_means||{};
-        const usable=sim.status==='RESEARCH_ONLY'&&Number.isFinite(Number(means.sig_landed))&&Number.isFinite(Number(means.takedowns_landed));
+        const usable=sim.status==='RESEARCH_ONLY'&&typeof means.sig_landed==='number'&&Number.isFinite(means.sig_landed)&&means.sig_landed>=0&&typeof means.takedowns_landed==='number'&&Number.isFinite(means.takedowns_landed)&&means.takedowns_landed>=0;
         panel.append(make('p',usable?'Illustrative strikes '+means.sig_landed+' · TD '+means.takedowns_landed:'Strikes / takedowns: insufficient verified inputs'));
       }
       if(!compact.childElementCount)compact.append(make('p','Fighter count projections: insufficient verified inputs'));
-      if(validP&&hasEvidence&&Array.isArray(p.red_uncertainty_interval))card.append(make('p','Red uncertainty: '+(100*p.red_uncertainty_interval[0]).toFixed(0)+'–'+(100*p.red_uncertainty_interval[1]).toFixed(0)+'%'));
+      if(validP&&hasEvidence&&Array.isArray(p.red_uncertainty_interval)&&p.red_uncertainty_interval.length===2&&p.red_uncertainty_interval.every(x=>typeof x==='number'&&Number.isFinite(x)&&x>=0&&x<=1))card.append(make('p','Red uncertainty: '+(100*p.red_uncertainty_interval[0]).toFixed(0)+'–'+(100*p.red_uncertainty_interval[1]).toFixed(0)+'%'));
       
       const detail=make('details');detail.append(make('summary','Model evidence and scenario details'));card.append(detail);
-      card.append(make('p','Research lean: '+(p.red>p.blue?f.red:f.blue)+' · NOT A BETTING PICK'));
+      card.append(make('p',validP&&hasEvidence&&Math.abs(p.red-p.blue)>.001?'Uncalibrated research lean: '+(p.red>p.blue?f.red:f.blue)+' · NOT A BETTING PICK':'Research lean: INSUFFICIENT EVIDENCE · NO PICK'));
       for(const [name,sim] of Object.entries(f.count_simulation||{})){
         const means=sim.count_means||{};
         detail.append(make('p',name+' count simulation: '+(sim.status==='RESEARCH_ONLY'?'historical-rate illustrative sig strikes '+means.sig_landed+', takedowns '+means.takedowns_landed:'UNAVAILABLE — '+(sim.reason||'missing verified inputs'))));
