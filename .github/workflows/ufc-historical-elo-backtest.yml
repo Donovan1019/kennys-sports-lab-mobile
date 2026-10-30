@@ -30,6 +30,9 @@ jobs:
           test -s /tmp/ufc-history/historical_odds.csv
           sha256sum /tmp/ufc-history/historical_odds.csv | tee -a /tmp/ufc-history/source_sha256.txt
           python scripts/ufc_historical_odds_candidates.py --input /tmp/ufc-history/historical_odds.csv --output /tmp/ufc-history/odds_candidates.json
+      - name: Cross-match retrospective historical odds and Elo holdout
+        run: |
+          python scripts/ufc_match_historical_odds.py --bouts /tmp/ufc-history/verified_bouts.json --odds /tmp/ufc-history/odds_candidates.json --elo-report /tmp/ufc-history/elo_report.json --output /tmp/ufc-history/retrospective_market_comparison.json
       - name: Produce fail-closed betting certification verdict
         if: always()
         run: |
@@ -46,6 +49,7 @@ jobs:
             /tmp/ufc-history/verified_bouts.json
             /tmp/ufc-history/elo_report.json
             /tmp/ufc-history/odds_candidates.json
+            /tmp/ufc-history/retrospective_market_comparison.json
             /tmp/ufc-history/betting_certification.json
           if-no-files-found: warn
           retention-days: 30
