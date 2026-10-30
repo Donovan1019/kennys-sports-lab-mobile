@@ -4,6 +4,8 @@ on:
     paths:
       - 'scripts/ufc_elo_baseline.py'
       - 'scripts/ufc_import_historical_csv.py'
+      - 'scripts/ufc_betting_certification.py'
+      - 'tests/test_ufc_betting_certification.py'
       - 'tests/test_ufc_import_historical_csv.py'
       - 'tests/test_ufc_elo_chronology.py'
       - '.github/workflows/ufc-elo-chronology.yml'
@@ -18,6 +20,7 @@ jobs:
           python-version: '3.11'
       - run: python -m unittest discover -s tests -p 'test_ufc_elo_chronology.py' -v
       - run: python -m unittest discover -s tests -p 'test_ufc_import_historical_csv.py' -v
+      - run: python -m unittest discover -s tests -p 'test_ufc_betting_certification.py' -v
       - name: Verify historical input provenance support
         run: |
           python - <<'PY'
