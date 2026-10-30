@@ -62,6 +62,13 @@ def build(rows,k=24,minimum_history=5):
             ratings[loser]=rl-delta
             bouts[winner]=bouts.get(winner,0)+1
             bouts[loser]=bouts.get(loser,0)+1
+    # Time-ordered holdout on the strict minimum-history cohort.
+    # Do not fit Elo hyperparameters on the holdout window.
+    cutoff=int(len(forecasts)*0.8)
+    holdout=forecasts[cutoff:] if cutoff else []
+    holdout_brier=sum((1-x['winner_probability'])**2 for x in holdout)/len(holdout) if holdout else None
+    holdout_log_loss=sum(-math.log(max(1e-12,x['winner_probability'])) for x in holdout)/len(holdout) if holdout else None
+    holdout_skill=(1-holdout_brier/0.25) if holdout else None
     n=len(forecasts)
     all_n=len(all_forecasts)
     all_brier=sum((1-x['winner_probability'])**2 for x in all_forecasts)/all_n if all_n else None
@@ -74,12 +81,12 @@ def build(rows,k=24,minimum_history=5):
     return {"schema":1,"sport":"UFC","model_version":"ufc-elo-baseline-v1",
             "historical_bouts_used":len(seen),"pre_update_evaluated_fights":n,"all_pre_update_evaluated_fights":all_n,"all_pre_update_brier":all_brier,"all_pre_update_log_loss":all_log_loss,"all_pre_update_brier_skill_vs_50pct":(1-all_brier/0.25) if all_n else None,
             "brier":brier,"log_loss":loss,"baseline_brier":baseline_brier,"baseline_log_loss":baseline_log_loss,"brier_skill_vs_50pct":improvement_brier,"minimum_prior_bouts_per_fighter":minimum_history,
-            "all_pre_update_forecasts":all_forecasts,"ratings":{name:{"elo":round(ratings[name],2),"historical_bouts":bouts[name]}
+            "holdout_evaluated_fights":len(holdout),"holdout_brier":holdout_brier,"holdout_log_loss":holdout_log_loss,"holdout_brier_skill_vs_50pct":holdout_skill,"holdout_status":"INSUFFICIENT_SAMPLE" if len(holdout)<30 else "CHRONOLOGICAL_EVALUATION_ONLY","all_pre_update_forecasts":all_forecasts,"ratings":{name:{"elo":round(ratings[name],2),"historical_bouts":bouts[name]}
                        for name in sorted(ratings)},"forecasts":forecasts,
             "bet_eligible":False,"calibration_status":"INSUFFICIENT_SAMPLE" if n<100 else "REQUIRES_INDEPENDENT_HOLDOUT",
             "limitations":["Same-event predictions use a frozen pre-event rating snapshot",
                            "No fighter inactivity, age, weight class, injuries, or style adjustments",
-                           "No archived odds or independent holdout validation"]}
+                           "Chronological holdout is descriptive only; no independent external validation or archived odds"]}
 
 def main():
     p=argparse.ArgumentParser()
