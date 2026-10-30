@@ -17,19 +17,26 @@ async function refresh(){
  const readiness=await readinessResponse.json();
  const required=['odds_fresh','model_fresh_and_calibrated','schedule_evidence_fresh','pregame_odds_archiving_active','historical_pregame_odds_backtest','closing_line_value_verified','injury_lineup_rest_confirmed','executable_same_book_parlay_quote','correlation_stress_test_verified'];
  const ready=readiness.status==='bet_eligible'&&required.every(k=>readiness.checks?.[k]===true);
- if(!ready){status.textContent='NBA ML PARLAYS · RESEARCH ONLY · NOT BET ELIGIBLE';out.append(node('p','Automatic betting recommendations remain disabled until independent validation, lineup, pricing and correlation checks pass.'));out.append(node('p','Outstanding: '+required.filter(k=>readiness.checks?.[k]!==true).join(', ')));const now=Date.now();const games=new Map();for(const r of rows){if(r.market!=='h2h'||!r.event_id||!r.bookmaker||!r.selection||!Number.isFinite(Number(r.price))||Number(r.price)===0)continue;const tip=Date.parse(r.commence_time),updated=Date.parse(r.updated_at);if(!Number.isFinite(tip)||tip<=now||(tip-now)>48*60*60000||!Number.isFinite(updated)||updated>now||now-updated>150*60000)continue;const key=String(r.event_id)+'|'+String(r.bookmaker);const group=games.get(key)||[];group.push(r);games.set(key,group)}const candidates=[];for(const [key,group] of games){const byTeam=new Map();for(const r of group){if(byTeam.has(r.selection)){byTeam.clear();break}byTeam.set(r.selection,r)}if(byTeam.size!==2)continue;const pair=[...byTeam.values()];const teams=String(pair[0].event||'').split(' @ ');if(teams.length!==2||!pair.every(r=>teams.includes(String(r.selection))))continue;const implied=pair.map(r=>odds(Number(r.price))),total=implied[0]+implied[1];if(total<1||total>1.2)continue;for(let i=0;i<2;i++)candidates.push({id:String(pair[i].event_id),team:String(pair[i].selection),book:String(pair[i].bookmaker),price:Number(pair[i].price),p:implied[i]/total,tip:pair[i].commence_time})}candidates.sort((a,b)=>b.p-a.p);out.append(node('h3','Upcoming NBA moneyline market research (next 48 hours)'));out.append(node('p','These are sportsbook-implied favorites, NOT model predictions, positive-EV bets or betting recommendations. All parlay prices below are illustrative only.'));const byBook=new Map();for(const c of candidates){if(c.p<0.60||c.price>=0)continue;const group=byBook.get(c.book)||[];group.push(c);byBook.set(c.book,group)}
- for(const group of byBook.values()){group.sort((a,b)=>b.p-a.p);const seen=new Set();for(let i=0;i<group.length;){if(seen.has(group[i].id))group.splice(i,1);else{seen.add(group[i].id);i++}}}
- out.append(node('p','Conservative market screen: only moneyline favorites with at least 60% no-vig market probability. This is NOT a calibrated model prediction or a verified positive-EV bet. Underdogs are excluded from this screen, not automatically classified as bad bets.'));
- for(const [label,n] of [['Two-leg conservative screen',2],['Three-leg conservative screen',3],['Four-leg conservative screen',4],['Five-leg conservative screen',5]]){
- const eligible=[...byBook.entries()].filter(([,g])=>g.length>=n).sort((a,b)=>b[1].slice(0,n).reduce((v,l)=>v*l.p,1)-a[1].slice(0,n).reduce((v,l)=>v*l.p,1));
- const card=node('section','');card.style.cssText='border:1px solid #42677b;border-radius:12px;padding:14px;margin:12px 0;background:#10283a';card.append(node('h3',label));
- if(!eligible.length){card.append(node('p','UNAVAILABLE — fewer than '+n+' distinct favorites at one sportsbook meet the 60% no-vig threshold. No forced underdogs or filler legs.'));out.append(card);continue}
- const [book,group]=eligible[0],legs=group.slice(0,n);const ul=node('ul','');let joint=1,decimal=1;
- for(const l of legs){joint*=l.p;decimal*=decimalPrice(l.price);ul.append(node('li',l.team+' ML · '+dateET(Date.parse(l.tip))+' ET · '+book+' '+(l.price>0?'+':'')+l.price+' · no-vig market '+(100*l.p).toFixed(1)+'%'))}
- card.append(ul);card.append(node('p','Independent-market illustration: '+(100*joint).toFixed(1)+'% · mathematical combined odds '+american(1/decimal)+'. No verified executable parlay quote, calibrated model probability, correlation adjustment or EV.'));
- card.append(node('p','RESEARCH ONLY · NOT BET ELIGIBLE · Do not treat this screen as a recommendation.'));out.append(card)
- }
- if(!candidates.length)out.append(node('p','No upcoming fresh complete two-sided moneyline pairs are available in the next 48 hours.'));return;}
+ if(!ready){
+ status.textContent='NBA ML PARLAYS · NO BET-CERTIFIED PARLAY';
+ out.append(node('p','No betting recommendations: model simulation and independent verification must pass before a parlay is displayed.'));
+ out.append(node('p','Outstanding certification checks: '+required.filter(k=>readiness.checks?.[k]!==true).join(', ')));
+ try{
+  const auditResponse=await fetch('./feed/nba_ml_simulation_audit.json?ml='+Date.now(),{cache:'no-store'});
+  if(auditResponse.ok){
+   const audit=await auditResponse.json(),age=Date.now()-Date.parse(audit.generated_at);
+   if(Number.isFinite(age)&&age>=0&&age<=150*60000&&audit.status==='simulated_not_bet_eligible'){
+    out.append(node('p','MODEL SIMULATION DIAGNOSTICS · '+audit.draws+' draws · '+audit.games.length+' game-side evaluations · '+audit.parlays.length+' independent-game parlay scenarios · NOT BET ELIGIBLE.'));
+    out.append(node('p','Monte Carlo samples independent model win probabilities; injury, lineup, correlation and executable quote checks remain separate. This is not a possession-level NBA simulator.'));
+    const ul=node('ul','');
+    for(const g of audit.games.filter(x=>x.single_leg_ev>0).sort((a,b)=>b.single_leg_ev-a.single_leg_ev).slice(0,10))
+     ul.append(node('li',g.team+' · '+g.bookmaker+' '+(g.price>0?'+':'')+g.price+' · model '+(100*g.model_probability).toFixed(1)+'% · MC '+(100*g.mc_probability).toFixed(1)+'% · indicative single-leg EV '+(100*g.single_leg_ev).toFixed(1)+'% · 3pp stress EV '+(100*g.stress_ev_minus_3pp).toFixed(1)+'% · UNVERIFIED'));
+    if(ul.children.length){out.append(node('h3','Uncertified simulation diagnostics — not picks'));out.append(ul)}
+   }else out.append(node('p','Simulation audit missing, stale or unavailable. No selections issued.'));
+  }
+ }catch(_){out.append(node('p','Simulation audit unavailable. No selections issued.'))}
+ return;
+}
  const now=Date.now();const games=new Map();
  let model=new Map(),modelState='UNAVAILABLE';
  try{
