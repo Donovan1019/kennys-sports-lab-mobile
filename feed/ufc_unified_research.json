@@ -1,0 +1,457 @@
+{
+  "schema": 1,
+  "sport": "UFC",
+  "research_only": true,
+  "bet_eligible": false,
+  "fights": [
+    {
+      "fight_id": "401914105",
+      "red": "Tainara Lisboa",
+      "blue": "Lucia Szabov\u00e1",
+      "opponent_adjustment": {
+        "elo_available": false,
+        "verified_strength_of_schedule": false
+      },
+      "sparse_data_probability": {
+        "red": 0.5,
+        "blue": 0.5,
+        "red_uncertainty_interval": [
+          0.01,
+          0.99
+        ],
+        "status": "NEUTRAL_PRIOR"
+      },
+      "count_simulation": {
+        "Tainara Lisboa": {
+          "status": "UNAVAILABLE",
+          "reason": "Verified scheduled rounds or historical count rates missing"
+        },
+        "Lucia Szabov\u00e1": {
+          "status": "UNAVAILABLE",
+          "reason": "Verified scheduled rounds or historical count rates missing"
+        }
+      },
+      "calibration": {
+        "status": "UNVERIFIED",
+        "point_in_time_validated": false
+      },
+      "betting": {
+        "status": "NOT_ELIGIBLE",
+        "model_ev": null,
+        "reason": "No calibrated independent live probability and verified executable price"
+      }
+    },
+    {
+      "fight_id": "401914106",
+      "red": "Joe Kropschot",
+      "blue": "Nick Klein",
+      "opponent_adjustment": {
+        "elo_available": false,
+        "verified_strength_of_schedule": false
+      },
+      "sparse_data_probability": {
+        "red": 0.5,
+        "blue": 0.5,
+        "red_uncertainty_interval": [
+          0.01,
+          0.99
+        ],
+        "status": "NEUTRAL_PRIOR"
+      },
+      "count_simulation": {
+        "Joe Kropschot": {
+          "status": "UNAVAILABLE",
+          "reason": "Verified scheduled rounds or historical count rates missing"
+        },
+        "Nick Klein": {
+          "status": "UNAVAILABLE",
+          "reason": "Verified scheduled rounds or historical count rates missing"
+        }
+      },
+      "calibration": {
+        "status": "UNVERIFIED",
+        "point_in_time_validated": false
+      },
+      "betting": {
+        "status": "NOT_ELIGIBLE",
+        "model_ev": null,
+        "reason": "No calibrated independent live probability and verified executable price"
+      }
+    },
+    {
+      "fight_id": "401928105",
+      "red": "Piera Rodriguez",
+      "blue": "Talita Alencar",
+      "opponent_adjustment": {
+        "elo_available": true,
+        "verified_strength_of_schedule": false
+      },
+      "sparse_data_probability": {
+        "red": 0.5206,
+        "blue": 0.4794,
+        "red_uncertainty_interval": [
+          0.2527,
+          0.7884
+        ],
+        "status": "UNCALIBRATED_RESEARCH"
+      },
+      "count_simulation": {
+        "Piera Rodriguez": {
+          "status": "UNAVAILABLE",
+          "reason": "Verified scheduled rounds or historical count rates missing"
+        },
+        "Talita Alencar": {
+          "status": "UNAVAILABLE",
+          "reason": "Verified scheduled rounds or historical count rates missing"
+        }
+      },
+      "calibration": {
+        "status": "UNVERIFIED",
+        "point_in_time_validated": false
+      },
+      "betting": {
+        "status": "NOT_ELIGIBLE",
+        "model_ev": null,
+        "reason": "No calibrated independent live probability and verified executable price"
+      }
+    },
+    {
+      "fight_id": "401928106",
+      "red": "Theodor Berggren",
+      "blue": "Rodrigo Sezinando",
+      "opponent_adjustment": {
+        "elo_available": true,
+        "verified_strength_of_schedule": false
+      },
+      "sparse_data_probability": {
+        "red": 0.4902,
+        "blue": 0.5098,
+        "red_uncertainty_interval": [
+          0.1054,
+          0.8749
+        ],
+        "status": "UNCALIBRATED_RESEARCH"
+      },
+      "count_simulation": {
+        "Theodor Berggren": {
+          "status": "UNAVAILABLE",
+          "reason": "Verified scheduled rounds or historical count rates missing"
+        },
+        "Rodrigo Sezinando": {
+          "status": "UNAVAILABLE",
+          "reason": "Verified scheduled rounds or historical count rates missing"
+        }
+      },
+      "calibration": {
+        "status": "UNVERIFIED",
+        "point_in_time_validated": false
+      },
+      "betting": {
+        "status": "NOT_ELIGIBLE",
+        "model_ev": null,
+        "reason": "No calibrated independent live probability and verified executable price"
+      }
+    },
+    {
+      "fight_id": "401928109",
+      "red": "Julian Erosa",
+      "blue": "JeongYeong Lee",
+      "opponent_adjustment": {
+        "elo_available": true,
+        "verified_strength_of_schedule": false
+      },
+      "sparse_data_probability": {
+        "red": 0.5401,
+        "blue": 0.4599,
+        "red_uncertainty_interval": [
+          0.2378,
+          0.8423
+        ],
+        "status": "UNCALIBRATED_RESEARCH"
+      },
+      "count_simulation": {
+        "Julian Erosa": {
+          "status": "UNAVAILABLE",
+          "reason": "Verified scheduled rounds or historical count rates missing"
+        },
+        "JeongYeong Lee": {
+          "status": "UNAVAILABLE",
+          "reason": "Verified scheduled rounds or historical count rates missing"
+        }
+      },
+      "calibration": {
+        "status": "UNVERIFIED",
+        "point_in_time_validated": false
+      },
+      "betting": {
+        "status": "NOT_ELIGIBLE",
+        "model_ev": null,
+        "reason": "No calibrated independent live probability and verified executable price"
+      }
+    },
+    {
+      "fight_id": "401931615",
+      "red": "Dakota Hope",
+      "blue": "Francis Marshall",
+      "opponent_adjustment": {
+        "elo_available": true,
+        "verified_strength_of_schedule": false
+      },
+      "sparse_data_probability": {
+        "red": 0.5241,
+        "blue": 0.4759,
+        "red_uncertainty_interval": [
+          0.1523,
+          0.8959
+        ],
+        "status": "UNCALIBRATED_RESEARCH"
+      },
+      "count_simulation": {
+        "Dakota Hope": {
+          "status": "UNAVAILABLE",
+          "reason": "Verified scheduled rounds or historical count rates missing"
+        },
+        "Francis Marshall": {
+          "status": "UNAVAILABLE",
+          "reason": "Verified scheduled rounds or historical count rates missing"
+        }
+      },
+      "calibration": {
+        "status": "UNVERIFIED",
+        "point_in_time_validated": false
+      },
+      "betting": {
+        "status": "NOT_ELIGIBLE",
+        "model_ev": null,
+        "reason": "No calibrated independent live probability and verified executable price"
+      }
+    },
+    {
+      "fight_id": "401931617",
+      "red": "Mickey Gall",
+      "blue": "Zach Reese",
+      "opponent_adjustment": {
+        "elo_available": true,
+        "verified_strength_of_schedule": false
+      },
+      "sparse_data_probability": {
+        "red": 0.4937,
+        "blue": 0.5063,
+        "red_uncertainty_interval": [
+          0.0797,
+          0.9077
+        ],
+        "status": "UNCALIBRATED_RESEARCH"
+      },
+      "count_simulation": {
+        "Mickey Gall": {
+          "status": "UNAVAILABLE",
+          "reason": "Verified scheduled rounds or historical count rates missing"
+        },
+        "Zach Reese": {
+          "status": "UNAVAILABLE",
+          "reason": "Verified scheduled rounds or historical count rates missing"
+        }
+      },
+      "calibration": {
+        "status": "UNVERIFIED",
+        "point_in_time_validated": false
+      },
+      "betting": {
+        "status": "NOT_ELIGIBLE",
+        "model_ev": null,
+        "reason": "No calibrated independent live probability and verified executable price"
+      }
+    },
+    {
+      "fight_id": "401921310",
+      "red": "Renato Moicano",
+      "blue": "Tom Nolan",
+      "opponent_adjustment": {
+        "elo_available": true,
+        "verified_strength_of_schedule": false
+      },
+      "sparse_data_probability": {
+        "red": 0.5097,
+        "blue": 0.4903,
+        "red_uncertainty_interval": [
+          0.2223,
+          0.797
+        ],
+        "status": "UNCALIBRATED_RESEARCH"
+      },
+      "count_simulation": {
+        "Renato Moicano": {
+          "status": "UNAVAILABLE",
+          "reason": "Verified scheduled rounds or historical count rates missing"
+        },
+        "Tom Nolan": {
+          "status": "UNAVAILABLE",
+          "reason": "Verified scheduled rounds or historical count rates missing"
+        }
+      },
+      "calibration": {
+        "status": "UNVERIFIED",
+        "point_in_time_validated": false
+      },
+      "betting": {
+        "status": "NOT_ELIGIBLE",
+        "model_ev": null,
+        "reason": "No calibrated independent live probability and verified executable price"
+      }
+    },
+    {
+      "fight_id": "401928104",
+      "red": "Yana Santos",
+      "blue": "Luana Santos",
+      "opponent_adjustment": {
+        "elo_available": true,
+        "verified_strength_of_schedule": false
+      },
+      "sparse_data_probability": {
+        "red": 0.5069,
+        "blue": 0.4931,
+        "red_uncertainty_interval": [
+          0.2449,
+          0.7689
+        ],
+        "status": "UNCALIBRATED_RESEARCH"
+      },
+      "count_simulation": {
+        "Yana Santos": {
+          "status": "UNAVAILABLE",
+          "reason": "Verified scheduled rounds or historical count rates missing"
+        },
+        "Luana Santos": {
+          "status": "UNAVAILABLE",
+          "reason": "Verified scheduled rounds or historical count rates missing"
+        }
+      },
+      "calibration": {
+        "status": "UNVERIFIED",
+        "point_in_time_validated": false
+      },
+      "betting": {
+        "status": "NOT_ELIGIBLE",
+        "model_ev": null,
+        "reason": "No calibrated independent live probability and verified executable price"
+      }
+    },
+    {
+      "fight_id": "401928107",
+      "red": "Jean-Paul Lebosnoyani",
+      "blue": "Farman Hasanov",
+      "opponent_adjustment": {
+        "elo_available": true,
+        "verified_strength_of_schedule": false
+      },
+      "sparse_data_probability": {
+        "red": 0.5092,
+        "blue": 0.4908,
+        "red_uncertainty_interval": [
+          0.1375,
+          0.881
+        ],
+        "status": "UNCALIBRATED_RESEARCH"
+      },
+      "count_simulation": {
+        "Jean-Paul Lebosnoyani": {
+          "status": "UNAVAILABLE",
+          "reason": "Verified scheduled rounds or historical count rates missing"
+        },
+        "Farman Hasanov": {
+          "status": "UNAVAILABLE",
+          "reason": "Verified scheduled rounds or historical count rates missing"
+        }
+      },
+      "calibration": {
+        "status": "UNVERIFIED",
+        "point_in_time_validated": false
+      },
+      "betting": {
+        "status": "NOT_ELIGIBLE",
+        "model_ev": null,
+        "reason": "No calibrated independent live probability and verified executable price"
+      }
+    },
+    {
+      "fight_id": "401931555",
+      "red": "Ode' Osbourne",
+      "blue": "Cody Durden",
+      "opponent_adjustment": {
+        "elo_available": false,
+        "verified_strength_of_schedule": false
+      },
+      "sparse_data_probability": {
+        "red": 0.5,
+        "blue": 0.5,
+        "red_uncertainty_interval": [
+          0.01,
+          0.99
+        ],
+        "status": "NEUTRAL_PRIOR"
+      },
+      "count_simulation": {
+        "Ode' Osbourne": {
+          "status": "UNAVAILABLE",
+          "reason": "Verified scheduled rounds or historical count rates missing"
+        },
+        "Cody Durden": {
+          "status": "UNAVAILABLE",
+          "reason": "Verified scheduled rounds or historical count rates missing"
+        }
+      },
+      "calibration": {
+        "status": "UNVERIFIED",
+        "point_in_time_validated": false
+      },
+      "betting": {
+        "status": "NOT_ELIGIBLE",
+        "model_ev": null,
+        "reason": "No calibrated independent live probability and verified executable price"
+      }
+    },
+    {
+      "fight_id": "401931616",
+      "red": "Randy Brown",
+      "blue": "Jacobe Smith",
+      "opponent_adjustment": {
+        "elo_available": true,
+        "verified_strength_of_schedule": false
+      },
+      "sparse_data_probability": {
+        "red": 0.4931,
+        "blue": 0.5069,
+        "red_uncertainty_interval": [
+          0.1446,
+          0.8416
+        ],
+        "status": "UNCALIBRATED_RESEARCH"
+      },
+      "count_simulation": {
+        "Randy Brown": {
+          "status": "UNAVAILABLE",
+          "reason": "Verified scheduled rounds or historical count rates missing"
+        },
+        "Jacobe Smith": {
+          "status": "UNAVAILABLE",
+          "reason": "Verified scheduled rounds or historical count rates missing"
+        }
+      },
+      "calibration": {
+        "status": "UNVERIFIED",
+        "point_in_time_validated": false
+      },
+      "betting": {
+        "status": "NOT_ELIGIBLE",
+        "model_ev": null,
+        "reason": "No calibrated independent live probability and verified executable price"
+      }
+    }
+  ],
+  "limitations": [
+    "Pre-UFC career and opponent-adjusted style histories not verified",
+    "No independent point-in-time calibration or validated EV",
+    "Count Monte Carlo uses illustrative finish hazard only"
+  ]
+}
