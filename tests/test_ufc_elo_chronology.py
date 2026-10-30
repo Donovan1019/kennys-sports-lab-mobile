@@ -28,6 +28,12 @@ class TestEloChronology(unittest.TestCase):
         self.assertEqual(report["all_pre_update_evaluated_fights"],2)
         self.assertAlmostEqual(report["all_pre_update_forecasts"][1]["winner_probability"],0.5)
         self.assertEqual(report["pre_update_evaluated_fights"],0)
+    def test_conflicting_event_dates_are_excluded(self):
+        rows=[fight("card","a","2024-01-01T01:00:00Z","A","B"),
+              fight("card","b","2024-01-03T01:00:00Z","C","D")]
+        result=build(rows)
+        self.assertEqual(result["historical_bouts_used"],0)
+        self.assertEqual(result["excluded_ambiguous_date_events"],1)
     def test_duplicate_fight_is_not_double_counted(self):
         rows=[fight("1","a","2024-01-01T00:00:00Z","A","B")]*2
         result=build(rows)
