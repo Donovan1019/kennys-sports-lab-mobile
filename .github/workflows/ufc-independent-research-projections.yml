@@ -22,5 +22,5 @@ jobs:
           assert "marketBaseline(f,fighter)" in s
           assert "researchProjection(f,fighter,stat)" in s
           assert '3-round equivalent' in s
-          assert 'ufc_fighter_projections.js?v=9' in Path('ufc.html').read_text()
+          assert 'ufc_fighter_projections.js?v=11' in Path('ufc.html').read_text()
           PY
