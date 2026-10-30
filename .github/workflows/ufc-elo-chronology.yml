@@ -1,0 +1,17 @@
+name: UFC Elo Chronological Integrity
+on:
+  pull_request:
+    paths:
+      - 'scripts/ufc_elo_baseline.py'
+      - 'tests/test_ufc_elo_chronology.py'
+      - '.github/workflows/ufc-elo-chronology.yml'
+  workflow_dispatch:
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m unittest discover -s tests -p 'test_ufc_elo_chronology.py' -v
