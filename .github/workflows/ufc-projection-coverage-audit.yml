@@ -30,6 +30,10 @@ jobs:
           observed={f['fight_id'] for f in result['fights']}
           assert observed==expected, (expected-observed, observed-expected)
           assert result['bet_eligible'] is False
+          assert result['coverage']['fights']==len(expected)
+          assert result['coverage']['bet_eligible'] is False
+          assert result['coverage']['model_ev_verified']==0
+          assert result['coverage']['count_simulations_available']==sum(v['status']=='RESEARCH_ONLY' for f in result['fights'] for v in f['count_simulation'].values())
           assert all(not f['input_evidence']['odds_verified'] or f['betting']['status']=='NOT_ELIGIBLE' for f in result['fights'])
           assert all(not f['input_evidence']['scheduled_rounds_verified'] or all(v['status'] in ('RESEARCH_ONLY','UNAVAILABLE') for v in f['count_simulation'].values()) for f in result['fights'])
           assert all(f['calibration']['status'] in ('UNVERIFIED','HISTORICAL_CERTIFIED_NOT_LIVE') for f in result['fights'])

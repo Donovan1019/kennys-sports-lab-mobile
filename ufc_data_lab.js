@@ -28,7 +28,10 @@ async function loadPipeline(){
     const data=await response.json();
     if(data.sport!=='UFC'||data.bet_eligible!==false||!Array.isArray(data.fights))throw Error('Invalid research-only report');
     pipelineRows.replaceChildren();
-    pipelineState.textContent=data.fights.length+' matchups · historical estimates and count simulations · NOT BET ELIGIBLE';
+    const c=data.coverage||{};
+    pipelineState.textContent=data.fights.length+' matchups · '+(c.historical_per_round_available??'?')+' historical fighter-rate profiles · '+(c.count_simulations_available??0)+' research simulations · NOT BET ELIGIBLE';
+    const coverageLine=make('p','Evidence coverage: verified rounds '+(c.scheduled_rounds_verified??0)+'/'+data.fights.length+' · verified fighter status '+(c.fighter_status_verified??0)+'/'+data.fights.length+' · verified odds '+(c.odds_verified??0)+'/'+data.fights.length+' · paired histories '+(c.paired_historical_round_rows??0)+'/'+data.fights.length+' · calibration '+(c.point_in_time_calibration_certified?'HISTORICAL ONLY':'UNVERIFIED'));
+    pipelineRows.append(coverageLine);
     for(const f of data.fights){
       const card=make('article');card.className='ksl-ufc-card';pipelineRows.append(card);
       card.append(make('h4',f.red+' vs '+f.blue));

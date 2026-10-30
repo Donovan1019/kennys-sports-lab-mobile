@@ -133,7 +133,20 @@ def research_pipeline():
                                     "brier":baseline.get("brier") if calibration_certified else None,
                                     "log_loss":baseline.get("log_loss") if calibration_certified else None},
                      "betting":{"status":"NOT_ELIGIBLE","model_ev":None,"reason":"No calibrated independent live probability and verified executable price"}})
-    return {"schema":1,"sport":"UFC","research_only":True,"bet_eligible":False,"fights":rows,
+    coverage = {
+        "fights":len(rows),
+        "scheduled_rounds_verified":sum(f["input_evidence"]["scheduled_rounds_verified"] for f in rows),
+        "fighter_status_verified":sum(f["input_evidence"]["fighter_status_verified"] for f in rows),
+        "odds_verified":sum(f["input_evidence"]["odds_verified"] for f in rows),
+        "paired_historical_round_rows":sum(f["input_evidence"]["paired_historical_round_rows"]>0 for f in rows),
+        "paired_elo_available":sum(f["opponent_adjustment"]["elo_available"] for f in rows),
+        "count_simulations_available":sum(v["status"]=="RESEARCH_ONLY" for f in rows for v in f["count_simulation"].values()),
+        "historical_per_round_available":sum("historical_per_round" in v for f in rows for v in f["count_simulation"].values()),
+        "point_in_time_calibration_certified":calibration_certified,
+        "model_ev_verified":0,
+        "bet_eligible":False
+    }
+    return {"schema":1,"sport":"UFC","research_only":True,"bet_eligible":False,"coverage":coverage,"fights":rows,
             "limitations":["Pre-UFC career and opponent-adjusted style histories not verified",
                            "No independent point-in-time calibration or validated EV",
                            "Count Monte Carlo uses illustrative finish hazard only"]}
