@@ -26,7 +26,7 @@ jobs:
           python scripts/ufc_elo_baseline.py --input /tmp/ufc-history/verified_bouts.json --output /tmp/ufc-history/elo_report.json --minimum-evaluated 1
       - name: Download and audit free historical odds candidates
         run: |
-          curl --fail --location --retry 3 --max-time 120 --output /tmp/ufc-history/historical_odds.csv https://raw.githubusercontent.com/jansen88/ufc-data/main/data/complete_ufc_data.csv
+          curl --fail --location --retry 3 --max-time 120 --output /tmp/ufc-history/historical_odds.csv https://raw.githubusercontent.com/jansen88/ufc-data/master/data/complete_ufc_data.csv
           test -s /tmp/ufc-history/historical_odds.csv
           sha256sum /tmp/ufc-history/historical_odds.csv | tee -a /tmp/ufc-history/source_sha256.txt
           python scripts/ufc_historical_odds_candidates.py --input /tmp/ufc-history/historical_odds.csv --output /tmp/ufc-history/odds_candidates.json
