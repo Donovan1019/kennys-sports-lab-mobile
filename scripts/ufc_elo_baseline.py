@@ -37,6 +37,7 @@ def build(rows,k=24,minimum_history=5):
     bouts={}
     seen=set()
     forecasts=[]
+    all_forecasts=[]
     for t,eid,fid,winner,loser in eligible:
         key=(eid,fid)
         if key in seen:
@@ -46,6 +47,7 @@ def build(rows,k=24,minimum_history=5):
         rl=ratings.get(loser,1500.0)
         probability=1/(1+10**((rl-rw)/400))
         # Predict before updating; no future outcome leakage.
+        all_forecasts.append({'fight_id':fid,'event_id':eid,'start_time':t.isoformat(),'winner_probability':probability,'winner_prior_bouts':bouts.get(winner,0),'loser_prior_bouts':bouts.get(loser,0)})
         if bouts.get(winner,0)>=minimum_history and bouts.get(loser,0)>=minimum_history:
             forecasts.append({"fight_id":fid,"event_id":eid,"start_time":t.isoformat(),
                               "winner":winner,"loser":loser,"winner_probability":probability,
@@ -56,15 +58,18 @@ def build(rows,k=24,minimum_history=5):
         bouts[winner]=bouts.get(winner,0)+1
         bouts[loser]=bouts.get(loser,0)+1
     n=len(forecasts)
+    all_n=len(all_forecasts)
+    all_brier=sum((1-x['winner_probability'])**2 for x in all_forecasts)/all_n if all_n else None
+    all_log_loss=sum(-math.log(max(1e-12,x['winner_probability'])) for x in all_forecasts)/all_n if all_n else None
     baseline_brier=0.25 if n else None
     baseline_log_loss=math.log(2) if n else None
     brier=sum((1-x["winner_probability"])**2 for x in forecasts)/n if n else None
     loss=sum(-math.log(x["winner_probability"]) for x in forecasts)/n if n else None
     improvement_brier=(baseline_brier-brier)/baseline_brier if n else None
     return {"schema":1,"sport":"UFC","model_version":"ufc-elo-baseline-v1",
-            "historical_bouts_used":len(seen),"pre_update_evaluated_fights":n,
+            "historical_bouts_used":len(seen),"pre_update_evaluated_fights":n,"all_pre_update_evaluated_fights":all_n,"all_pre_update_brier":all_brier,"all_pre_update_log_loss":all_log_loss,"all_pre_update_brier_skill_vs_50pct":(1-all_brier/0.25) if all_n else None,
             "brier":brier,"log_loss":loss,"baseline_brier":baseline_brier,"baseline_log_loss":baseline_log_loss,"brier_skill_vs_50pct":improvement_brier,"minimum_prior_bouts_per_fighter":minimum_history,
-            "ratings":{name:{"elo":round(ratings[name],2),"historical_bouts":bouts[name]}
+            "all_pre_update_forecasts":all_forecasts,"ratings":{name:{"elo":round(ratings[name],2),"historical_bouts":bouts[name]}
                        for name in sorted(ratings)},"forecasts":forecasts,
             "bet_eligible":False,"calibration_status":"INSUFFICIENT_SAMPLE" if n<100 else "REQUIRES_INDEPENDENT_HOLDOUT",
             "limitations":["Historical fights evaluated chronologically but same-event order may be uncertain",
