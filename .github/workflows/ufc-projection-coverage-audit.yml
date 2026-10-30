@@ -12,7 +12,25 @@ jobs:
           python-version: '3.11'
       - name: Run fighter coverage and odds freshness audit
         run: python scripts/ufc_projection_coverage_audit.py | tee ufc_projection_coverage.json
-      - name: Run unified five-stage UFC research pipeline\n        run: |\n          python scripts/ufc_projection_coverage_audit.py --pipeline-output ufc_unified_research.json\n          python - <<'PY'\n          import json\n          from pathlib import Path\n          card=json.loads(Path('feed/ufc_research.json').read_text())\n          result=json.loads(Path('ufc_unified_research.json').read_text())\n          expected={str(f['id']) for f in card['fights'] if f.get('red') and f.get('blue')}\n          observed={f['fight_id'] for f in result['fights']}\n          assert observed==expected, (expected-observed, observed-expected)\n          assert result['bet_eligible'] is False\n          assert all(f['betting']['status']=='NOT_ELIGIBLE' and f['betting']['model_ev'] is None for f in result['fights'])\n          assert all(abs(f['sparse_data_probability']['red']+f['sparse_data_probability']['blue']-1)<.0002 for f in result['fights'])\n          print('Full-card pipeline coverage:',len(observed),'research-only gates PASS')\n          PY\n      - uses: actions/upload-artifact@v4
+      - name: Run unified five-stage UFC research pipeline
+        run: |
+          python scripts/ufc_projection_coverage_audit.py --pipeline-output ufc_unified_research.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          card=json.loads(Path('feed/ufc_research.json').read_text())
+          result=json.loads(Path('ufc_unified_research.json').read_text())
+          expected={str(f['id']) for f in card['fights'] if f.get('red') and f.get('blue')}
+          observed={f['fight_id'] for f in result['fights']}
+          assert observed==expected, (expected-observed, observed-expected)
+          assert result['bet_eligible'] is False
+          assert all(f['betting']['status']=='NOT_ELIGIBLE' and f['betting']['model_ev'] is None for f in result['fights'])
+          assert all(abs(f['sparse_data_probability']['red']+f['sparse_data_probability']['blue']-1)<.0002 for f in result['fights'])
+          print('Full-card pipeline coverage:',len(observed),'research-only gates PASS')
+          PY
+      - uses: actions/upload-artifact@v4
         with:
           name: ufc-projection-coverage
-          path: |\n            ufc_projection_coverage.json\n            ufc_unified_research.json
+          path: |
+            ufc_projection_coverage.json
+            ufc_unified_research.json
