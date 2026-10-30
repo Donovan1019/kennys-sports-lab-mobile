@@ -21,7 +21,7 @@ jobs:
           j=Path('ufc_fighter_projections.js').read_text()
           assert '.ksl-ufc-table-wrap{display:none!important}' in h
           assert '.ksl-ufc-projection-cards{display:grid!important' in h
-          assert 'ufc_fighter_projections.js?v=12' in h
+          assert 'ufc_fighter_projections.js?v=13' in h
           assert 'cards.append(card)' in j
           assert 'Last odds capture:' in j
           assert 'confirm current odds' in j

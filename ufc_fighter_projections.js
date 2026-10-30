@@ -7,7 +7,7 @@ const controls=document.createElement('div');controls.className='ksl-ufc-control
 const market=document.createElement('select'),bout=document.createElement('select');market.setAttribute('aria-label','UFC projection market');bout.setAttribute('aria-label','UFC matchup');for(const m of markets){const o=document.createElement('option');o.value=m;o.textContent=m;market.append(o)}const all=document.createElement('option');all.value='';all.textContent='All upcoming matchups';bout.append(all);controls.append(market,bout);market.value='Significant strikes landed';
 const count=document.createElement('p');count.setAttribute('role','status');root.append(count);
 const wrap=document.createElement('div');wrap.className='ksl-ufc-table-wrap';const table=document.createElement('table');const thead=document.createElement('thead');const tr=document.createElement('tr');for(const name of ['Fighter','Opponent','Start ET','Market','Model / baseline','DK / FD','Market %','Status']){const th=document.createElement('th');th.textContent=name;tr.append(th)}thead.append(tr);table.append(thead);const tbody=document.createElement('tbody');table.append(tbody);wrap.append(table);root.append(wrap);const cards=document.createElement('div');cards.className='ksl-ufc-projection-cards';root.append(cards);
-let fights=[],eloById=new Map(),statsByName=new Map(),profileByName=new Map(),odds=[],oddsFetched=null;
+let fights=[],eloById=new Map(),statsByName=new Map(),profileByName=new Map(),odds=[],oddsFetched=null,statsSource='unverified',statsRetrieved=null;
 const norm=s=>String(s||'').normalize('NFKD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9 ]/g,'').replace(/\s+/g,' ').trim();
 function eastern(s){const d=new Date(s);return Number.isFinite(d.getTime())?d.toLocaleString('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'}):'UNVERIFIED'}
 const fmt=p=>Number.isFinite(p)&&(p<=-100||p>=100)?(p>0?'+':'')+p:'—';
@@ -123,6 +123,8 @@ function render(){
    add(detail,'Striking leader',assess.strikes.name);add(detail,'Striking comparison',assess.strikes.detail);
    add(detail,'Takedown leader',assess.takedowns.name);add(detail,'Takedown comparison',assess.takedowns.detail);
    for(const fighter of [f.red,f.blue]){const comparison=quoteComparison(f,fighter);add(detail,fighter+' · market probability',comparison.market);add(detail,fighter+' · model probability',comparison.model==='50.0% · neutral 50/50 prior, NOT a prediction'?'INSUFFICIENT DATA — neutral prior only':comparison.model);add(detail,fighter+' · fair odds',comparison.fair);add(detail,fighter+' · hypothetical EV',comparison.ev)}
+   add(detail,'Historical stats source',statsSource+' · retrieved '+(statsRetrieved?eastern(statsRetrieved):'unverified')+' · fighter-level timestamps not verified');
+   for(const fighter of [f.red,f.blue]){const profile=profileByName.get(norm(fighter));add(detail,fighter+' · UFCStats profile',profile?.source_profile||'not matched');}
    add(detail,'Projection audit','Historical count-model calibration is research-only; duration and prop-line calibration unvalidated');
    add(detail,'Fight simulation','Exploratory Poisson count distribution only · NOT bout-level Monte Carlo');
    add(detail,'Market line probabilities','Exploratory count tails are not calibrated sportsbook-line hit rates');
@@ -151,7 +153,7 @@ if(data.sport!=='UFC'||!Array.isArray(data.fights))throw Error('Invalid UFC card
 const cardGenerated=Date.parse(data.generated_at),cardAgeHours=Number.isFinite(cardGenerated)?(Date.now()-cardGenerated)/3600000:null;
 const cardFeedState=cardAgeHours===null||cardAgeHours<0?'CARD FEED TIMESTAMP UNVERIFIED':cardAgeHours>24?'STALE CARD FEED ('+cardAgeHours.toFixed(1)+'h old)':'Card feed updated '+cardAgeHours.toFixed(1)+'h ago';
 if(elo&&elo.sport==='UFC'&&Array.isArray(elo.projections))for(const item of elo.projections)if(item?.fight_id)eloById.set(String(item.fight_id),item);
-if(stats&&stats.sport==='UFC'&&Array.isArray(stats.fighters))for(const f of stats.fighters){if(!f.name)continue;profileByName.set(norm(f.name),f);if(f.status==='MATCHED_HISTORICAL_STATS')statsByName.set(norm(f.name),f)}
+if(stats&&stats.sport==='UFC'&&Array.isArray(stats.fighters)){statsSource=String(stats.source||'unverified');statsRetrieved=stats.retrieved_at||null;for(const f of stats.fighters){if(!f.name)continue;profileByName.set(norm(f.name),f);if(f.status==='MATCHED_HISTORICAL_STATS')statsByName.set(norm(f.name),f)}}
 if(book&&book.sport==='mma_mixed_martial_arts'&&book.source==='the-odds-api-v4'&&book.status==='ok'&&Array.isArray(book.odds)&&Number.isFinite(Date.parse(book.fetched_at))&&Date.parse(book.fetched_at)<=Date.now()&&Date.now()-Date.parse(book.fetched_at)<=6*60*60*1000){odds=book.odds;oddsFetched=book.fetched_at}
 fights=data.fights.filter(f=>f&&f.red&&f.blue&&f.id&&Number.isFinite(Date.parse(f.start_time))&&Date.parse(f.start_time)>Date.now()-36*60*60*1000).sort((a,b)=>Date.parse(a.start_time)-Date.parse(b.start_time));
 for(const f of fights){const o=document.createElement('option');o.value=String(f.id);o.textContent=f.red+' vs '+f.blue+' · '+eastern(f.start_time);bout.append(o)}
