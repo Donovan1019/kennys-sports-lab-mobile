@@ -128,7 +128,7 @@ if __name__ == "__main__":
     if args.pipeline_output:
         report=research_pipeline()
         args.pipeline_output.parent.mkdir(parents=True,exist_ok=True)
-        args.pipeline_output.write_text(json.dumps(report,indent=2)+"\\n")
+        args.pipeline_output.write_text(json.dumps(report,indent=2)+"\n")
         print(json.dumps({"fights":len(report["fights"]),"bet_eligible":False}))
     else:
         audit()
