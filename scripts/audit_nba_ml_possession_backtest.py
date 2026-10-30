@@ -17,15 +17,12 @@ def evaluate(games,min_history=15,min_holdout=100):
             teams=metrics(earlier,tip,min_games=min_history)
             prediction=simulate(game["home"],game["away"],teams,str(game["id"]),draws=500)
             if prediction["status"]!="diagnostic_only":continue
-            # Conditional regulation win probability is diagnostic, not NBA full-game ML.
-            tie=prediction["regulation_tie_probability"]
-            if tie>=1:continue
             home_points=game["box"][game["home"]]["points"]
             away_points=game["box"][game["away"]]["points"]
             if home_points==away_points:continue
-            results.append((prediction["home_regulation_win_probability"]/(1-tie),int(home_points>away_points)))
+            results.append((prediction["home_full_game_win_probability"],int(home_points>away_points)))
         except (KeyError,ValueError,TypeError):continue
-    report={"status":"insufficient_evidence","evaluated_games":len(results),"minimum_holdout_games":min_holdout,"betting_eligible":False,"blockers":["overtime_unmodeled","historical_validation_unverified"]}
+    report={"status":"insufficient_evidence","evaluated_games":len(results),"minimum_holdout_games":min_holdout,"betting_eligible":False,"blockers":["overtime_approximation_unvalidated","historical_validation_unverified"]}
     if len(results)>=min_holdout:
         report.update({"status":"descriptive_only","brier":round(sum((p-y)**2 for p,y in results)/len(results),6),"accuracy":round(sum((p>=.5)==bool(y) for p,y in results)/len(results),6)})
     return report
