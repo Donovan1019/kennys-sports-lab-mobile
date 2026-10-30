@@ -1,18 +1,27 @@
 {
   "status": "research_only",
-  "matched_forecasts": 2,
-  "metrics_sample_size": 2,
-  "log_loss": 0.645681,
-  "empirical_home_rate_baseline_brier": 0.25,
+  "matched_forecasts": 11,
+  "metrics_sample_size": 11,
+  "log_loss": 0.652177,
+  "empirical_home_rate_baseline_brier": 0.247934,
   "calibration_bins": [
+    {
+      "range": [
+        0.2,
+        0.4
+      ],
+      "count": 1,
+      "mean_predicted": 0.397315,
+      "observed_home_win_rate": 1.0
+    },
     {
       "range": [
         0.4,
         0.6
       ],
-      "count": 1,
-      "mean_predicted": 0.547766,
-      "observed_home_win_rate": 0.0
+      "count": 9,
+      "mean_predicted": 0.534578,
+      "observed_home_win_rate": 0.444444
     },
     {
       "range": [
@@ -26,10 +35,18 @@
   ],
   "calibration_warning": "Small samples and in-sample baseline cannot establish predictive edge",
   "unique_events_in_ledger": 14,
-  "unmatched_events": 12,
-  "mean_brier": 0.226909,
+  "unmatched_events": 3,
+  "mean_brier": 0.229635,
   "notes": "One earliest forecast per event; strict exact teams and unique start-time proximity; ambiguous or unverified results excluded",
   "scored": [
+    {
+      "forecast_id": "05a8ed51399342594c33ae0faa0f9027|2026-10-29T20:47:38.821105+00:00",
+      "provider_event_id": "401892603",
+      "match_method": "exact_teams_unique_start_within_20m",
+      "home_probability": 0.586659,
+      "home_won": 1,
+      "brier": 0.170851
+    },
     {
       "forecast_id": "0b4bab4d663e04a571655ec7477eb10a|2026-10-21T06:22:56.869393+00:00",
       "provider_event_id": "401892550",
@@ -39,12 +56,76 @@
       "brier": 0.300048
     },
     {
+      "forecast_id": "35f166bc5dbb833315fe376ae27e63a3|2026-10-29T20:47:38.821105+00:00",
+      "provider_event_id": "401892600",
+      "match_method": "exact_teams_unique_start_within_20m",
+      "home_probability": 0.554182,
+      "home_won": 1,
+      "brier": 0.198754
+    },
+    {
+      "forecast_id": "5020318cfd7098bd38fae6c907029f0f|2026-10-29T20:47:38.821105+00:00",
+      "provider_event_id": "401892607",
+      "match_method": "exact_teams_unique_start_within_20m",
+      "home_probability": 0.569315,
+      "home_won": 0,
+      "brier": 0.32412
+    },
+    {
       "forecast_id": "5736c2282f978bfdf849f4b10876080e|2026-10-21T06:22:56.869393+00:00",
       "provider_event_id": "401892551",
       "match_method": "exact_teams_unique_start_within_20m",
       "home_probability": 0.607863,
       "home_won": 1,
       "brier": 0.153771
+    },
+    {
+      "forecast_id": "923b47df7869b8b2c5d758b7f21d4b4a|2026-10-29T20:47:38.821105+00:00",
+      "provider_event_id": "401892605",
+      "match_method": "exact_teams_unique_start_within_20m",
+      "home_probability": 0.472534,
+      "home_won": 0,
+      "brier": 0.223288
+    },
+    {
+      "forecast_id": "b07a2b3d9d717c9eb693422aef404555|2026-10-29T20:47:38.821105+00:00",
+      "provider_event_id": "401892610",
+      "match_method": "exact_teams_unique_start_within_20m",
+      "home_probability": 0.573964,
+      "home_won": 1,
+      "brier": 0.181507
+    },
+    {
+      "forecast_id": "b8f3c483149e46a5f7c24ea941be8649|2026-10-29T20:47:38.821105+00:00",
+      "provider_event_id": "401892602",
+      "match_method": "exact_teams_unique_start_within_20m",
+      "home_probability": 0.482241,
+      "home_won": 0,
+      "brier": 0.232556
+    },
+    {
+      "forecast_id": "c8abddd6d4a9c96f45dcdd287f392537|2026-10-29T20:47:38.821105+00:00",
+      "provider_event_id": "401892608",
+      "match_method": "exact_teams_unique_start_within_20m",
+      "home_probability": 0.446756,
+      "home_won": 0,
+      "brier": 0.199591
+    },
+    {
+      "forecast_id": "ed751626a7b1f47888222319fec01199|2026-10-29T20:47:38.821105+00:00",
+      "provider_event_id": "401892609",
+      "match_method": "exact_teams_unique_start_within_20m",
+      "home_probability": 0.397315,
+      "home_won": 1,
+      "brier": 0.363229
+    },
+    {
+      "forecast_id": "f27b209b3ed34a6dfb27f1670ffa514f|2026-10-29T20:47:38.821105+00:00",
+      "provider_event_id": "401892601",
+      "match_method": "exact_teams_unique_start_within_20m",
+      "home_probability": 0.577786,
+      "home_won": 1,
+      "brier": 0.178265
     }
   ]
 }

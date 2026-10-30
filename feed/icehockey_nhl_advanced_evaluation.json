@@ -1,32 +1,45 @@
 {
   "status": "research_only",
-  "sample_size": 2,
-  "brier": 0.22691,
-  "log_loss": 0.645681,
-  "classification_accuracy": 0.5,
+  "sample_size": 11,
+  "brier": 0.229634,
+  "log_loss": 0.652177,
+  "classification_accuracy": 0.727273,
   "classification_accuracy_wilson_95": [
-    0.094529,
-    0.905471
+    0.43435,
+    0.902541
   ],
-  "expected_calibration_error": 0.469951,
-  "mean_home_probability": 0.577815,
-  "observed_home_win_rate": 0.5,
+  "expected_calibration_error": 0.164184,
+  "mean_home_probability": 0.528762,
+  "observed_home_win_rate": 0.545455,
   "observed_home_win_rate_wilson_95": [
-    0.094529,
-    0.905471
+    0.280088,
+    0.78729
   ],
   "calibration_bins": [
+    {
+      "range": [
+        0.2,
+        0.4
+      ],
+      "n": 1,
+      "predicted": 0.397315,
+      "observed": 1.0,
+      "observed_wilson_95": [
+        0.206543,
+        1
+      ]
+    },
     {
       "range": [
         0.4,
         0.6
       ],
-      "n": 1,
-      "predicted": 0.547766,
-      "observed": 0.0,
+      "n": 9,
+      "predicted": 0.534578,
+      "observed": 0.444444,
       "observed_wilson_95": [
-        0,
-        0.793457
+        0.188775,
+        0.733353
       ]
     },
     {
@@ -43,7 +56,7 @@
       ]
     }
   ],
-  "future_or_unmatched_events": 12,
+  "future_or_unmatched_events": 3,
   "edge_claim_allowed": false,
   "warning": "Descriptive in-sample diagnostics only; require independent pregame bookmaker baselines and out-of-sample validation before claims of edge."
 }
