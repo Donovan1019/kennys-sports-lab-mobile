@@ -32,6 +32,7 @@ jobs:
           assert result['bet_eligible'] is False
           assert result['coverage']['fights']==len(expected)
           assert result['coverage']['bet_eligible'] is False
+          assert all(not v.get('duration_scenarios') or (not f['input_evidence']['scheduled_rounds_verified'] and set(v['duration_scenarios'])=={'3','5'} and all(x['status']=='HYPOTHETICAL_RESEARCH_ONLY' for x in v['duration_scenarios'].values())) for f in result['fights'] for v in f['count_simulation'].values())
           assert result['coverage']['model_ev_verified']==0
           assert result['coverage']['count_simulations_available']==sum(v['status']=='RESEARCH_ONLY' for f in result['fights'] for v in f['count_simulation'].values())
           assert all(not f['input_evidence']['odds_verified'] or f['betting']['status']=='NOT_ELIGIBLE' for f in result['fights'])
