@@ -14,36 +14,30 @@ OUTPUT=ROOT/"nba_ml_possession_boxscores.json"
 URL="https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary?event={event_id}"
 STAT_ALIASES={"fieldGoalsAttempted":"fga","freeThrowsAttempted":"fta","offensiveRebounds":"orb","turnovers":"turnovers"}
 def extract(summary,game):
-    box=summary.get("boxscore",{}).get("players",[])
     result={}
-    for side in box:
+    # ESPN summary exposes authoritative team totals in boxscore.teams[].statistics.
+    # Names and abbreviations vary; reject incomplete or malformed records.
+    for side in summary.get("boxscore",{}).get("teams",[]):
         name=side.get("team",{}).get("displayName")
         if name not in (game["home"],game["away"]):continue
-        totals={}
-        for statgroup in side.get("statistics",[]):
-            labels=statgroup.get("labels",[])
-            # ESPN totals are supplied as final row; verify labels and numeric fields.
-            athletes=statgroup.get("athletes",[])
-            if not athletes:continue
-            total=next((x for x in athletes if x.get("athlete",{}).get("displayName")=="TEAM"),None)
-            if total is None:continue
-            for label,value in zip(labels,total.get("stats",[])):
-                totals[label]=value
-        result[name]=totals
-    # Prefer official team statistics, not summed player entries or inferred possessions.
-    competitors=summary.get("header",{}).get("competitions",[{}])[0].get("competitors",[])
-    for c in competitors:
-        name=c.get("team",{}).get("displayName")
-        if name not in (game["home"],game["away"]):continue
         stats={}
-        for x in c.get("statistics",[]):
-            key=x.get("name")
+        for item in side.get("statistics",[]):
+            key=item.get("name")
+            value=item.get("displayValue",item.get("value"))
             if key in STAT_ALIASES:
-                try:stats[STAT_ALIASES[key]]=float(x.get("displayValue",x.get("value")))
+                try:stats[STAT_ALIASES[key]]=float(value)
                 except (TypeError,ValueError):pass
-        try:stats["points"]=float(c["score"])
-        except (KeyError,ValueError,TypeError):pass
-        if len(stats)==5:result[name]=stats
+            elif key in ("fieldGoalsMade-fieldGoalsAttempted","fieldGoalsMadeAttempted","fieldGoals"):
+                try:stats["fga"]=float(str(value).split("-")[-1])
+                except (TypeError,ValueError):pass
+            elif key in ("freeThrowsMade-freeThrowsAttempted","freeThrowsMadeAttempted","freeThrows"):
+                try:stats["fta"]=float(str(value).split("-")[-1])
+                except (TypeError,ValueError):pass
+        try:
+            competitor=next(c for c in summary.get("header",{}).get("competitions",[{}])[0].get("competitors",[]) if c.get("team",{}).get("displayName")==name)
+            stats["points"]=float(competitor["score"])
+        except (StopIteration,KeyError,IndexError,TypeError,ValueError):pass
+        if len(stats)==5 and all(v>=0 for v in stats.values()):result[name]=stats
     if len(result)!=2 or any(not all(k in result[t] for k in ("fga","fta","orb","turnovers","points")) for t in (game["home"],game["away"])):
         return None
     return {"id":str(game["id"]),"date":game["date"],"home":game["home"],"away":game["away"],"box":result}
