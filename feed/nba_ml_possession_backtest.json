@@ -1,12 +1,12 @@
 {
   "status": "descriptive_only",
-  "evaluated_games": 144,
+  "evaluated_games": 443,
   "minimum_holdout_games": 100,
   "betting_eligible": false,
   "blockers": [
-    "overtime_unmodeled",
+    "overtime_approximation_unvalidated",
     "historical_validation_unverified"
   ],
-  "brier": 0.22489,
-  "accuracy": 0.638889
+  "brier": 0.208015,
+  "accuracy": 0.69526
 }
