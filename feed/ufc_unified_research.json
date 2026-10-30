@@ -3,6 +3,19 @@
   "sport": "UFC",
   "research_only": true,
   "bet_eligible": false,
+  "coverage": {
+    "fights": 12,
+    "scheduled_rounds_verified": 0,
+    "fighter_status_verified": 0,
+    "odds_verified": 0,
+    "paired_historical_round_rows": 8,
+    "paired_elo_available": 9,
+    "count_simulations_available": 0,
+    "historical_per_round_available": 20,
+    "point_in_time_calibration_certified": false,
+    "model_ev_verified": 0,
+    "bet_eligible": false
+  },
   "fights": [
     {
       "fight_id": "401914105",
