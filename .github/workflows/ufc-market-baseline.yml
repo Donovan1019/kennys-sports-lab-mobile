@@ -23,5 +23,5 @@ jobs:
           assert 'both fighters have data' in j
           assert 'missingModelReason' in j and 'NEUTRAL PRIOR' in j
           assert 'marketBaseline(f,fighter)' in j
-          assert 'ufc_fighter_projections.js?v=9' in Path('ufc.html').read_text()
+          assert 'ufc_fighter_projections.js?v=11' in Path('ufc.html').read_text()
           PY
