@@ -10,50 +10,50 @@
   },
   "markets": {
     "Points": {
-      "observed_player_pairs": 317517,
-      "distinct_games": 1384,
+      "observed_player_pairs": 318237,
+      "distinct_games": 1387,
       "max_pairs_in_single_game": 528,
       "independent_sample_size_claim": false,
       "first_over_rate": 0.17008,
-      "second_over_rate": 0.13108,
-      "joint_over_rate": 0.02152,
-      "independent_product_reference": 0.02229,
-      "joint_minus_independent": -0.00078
+      "second_over_rate": 0.13109,
+      "joint_over_rate": 0.02155,
+      "independent_product_reference": 0.0223,
+      "joint_minus_independent": -0.00075
     },
     "Rebounds": {
-      "observed_player_pairs": 317517,
-      "distinct_games": 1384,
+      "observed_player_pairs": 318237,
+      "distinct_games": 1387,
       "max_pairs_in_single_game": 528,
       "independent_sample_size_claim": false,
-      "first_over_rate": 0.13722,
-      "second_over_rate": 0.13629,
+      "first_over_rate": 0.13719,
+      "second_over_rate": 0.13635,
       "joint_over_rate": 0.01791,
-      "independent_product_reference": 0.0187,
-      "joint_minus_independent": -0.00079
+      "independent_product_reference": 0.01871,
+      "joint_minus_independent": -0.0008
     },
     "Assists": {
-      "observed_player_pairs": 317517,
-      "distinct_games": 1384,
+      "observed_player_pairs": 318237,
+      "distinct_games": 1387,
       "max_pairs_in_single_game": 528,
       "independent_sample_size_claim": false,
-      "first_over_rate": 0.126,
-      "second_over_rate": 0.1028,
+      "first_over_rate": 0.12598,
+      "second_over_rate": 0.1029,
       "joint_over_rate": 0.01162,
-      "independent_product_reference": 0.01295,
-      "joint_minus_independent": -0.00134
+      "independent_product_reference": 0.01296,
+      "joint_minus_independent": -0.00135
     },
     "Threes": {
-      "observed_player_pairs": 317517,
-      "distinct_games": 1384,
+      "observed_player_pairs": 318237,
+      "distinct_games": 1387,
       "max_pairs_in_single_game": 528,
       "independent_sample_size_claim": false,
-      "first_over_rate": 0.18843,
-      "second_over_rate": 0.1504,
+      "first_over_rate": 0.1884,
+      "second_over_rate": 0.15042,
       "joint_over_rate": 0.02787,
       "independent_product_reference": 0.02834,
       "joint_minus_independent": -0.00047
     }
   },
   "limitations": "All player pairs are pooled, overlapping observations are dependent; role/team/opponent, time and player identity are not controlled. Not predictive, not a correlation parameter, and not a betting recommendation.",
-  "generated_at": "2026-10-29T22:17:58.852714+00:00"
+  "generated_at": "2026-10-30T11:50:52.856544+00:00"
 }
