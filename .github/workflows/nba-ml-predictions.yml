@@ -38,13 +38,13 @@ jobs:
         run: python -m scripts.audit_nba_ml_outcome_market
       - name: Audit betting readiness (fail closed)
         run: python scripts/audit_nba_ml_betting_readiness.py
-      - name: Simulate NBA ML model and parlay stress scenarios\n        run: python scripts/simulate_nba_ml.py\n      - name: Possession-level NBA ML diagnostics (evidence gated)\n        run: python scripts/simulate_nba_ml_possessions.py\n      - name: Validate JSON
+      - name: Simulate NBA ML model and parlay stress scenarios\n        run: python scripts/simulate_nba_ml.py\n      - name: Fetch historical NBA possession box-score evidence\n        run: python scripts/fetch_nba_ml_possession_boxscores.py\n      - name: Possession-level NBA ML diagnostics (evidence gated)\n        run: python scripts/simulate_nba_ml_possessions.py\n      - name: Validate JSON
         run: python -m json.tool feed/nba_ml_predictions.json > /dev/null
       - name: Publish prediction feed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add feed/nba_ml_possession_audit.json feed/nba_ml_simulation_audit.json data/nba_ml_odds_archive/ feed/nba_ml_schedule_evidence.json feed/nba_ml_betting_readiness.json feed/nba_ml_market_evidence.json feed/nba_ml_outcome_market_audit.json feed/basketball_nba.json feed/nba_ml_predictions.json data/nba_ml_historical_games.json data/nba_ml_validated_ratings.json
+          git add data/nba_ml_possession_boxscores.json feed/nba_ml_possession_audit.json feed/nba_ml_simulation_audit.json data/nba_ml_odds_archive/ feed/nba_ml_schedule_evidence.json feed/nba_ml_betting_readiness.json feed/nba_ml_market_evidence.json feed/nba_ml_outcome_market_audit.json feed/basketball_nba.json feed/nba_ml_predictions.json data/nba_ml_historical_games.json data/nba_ml_validated_ratings.json
           if ! git diff --cached --quiet; then
             git commit -m "Update NBA ML prediction feed"
             git push
