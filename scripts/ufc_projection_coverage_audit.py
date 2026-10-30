@@ -72,7 +72,7 @@ def research_pipeline():
     is passed off as independently verified pre-fight information.
     """
     import math
-    from scripts.ufc_bout_monte_carlo import simulate
+    from ufc_bout_monte_carlo import simulate
     event, stats, elo = (load(n) for n in ("ufc_research.json", "ufc_fighter_stats_mirror.json", "ufc_elo_projections.json"))
     by_name = {norm(p["name"]): p for p in stats.get("fighters", []) if p.get("name")}
     by_id = {str(p.get("fight_id")): p for p in elo.get("projections", [])}
