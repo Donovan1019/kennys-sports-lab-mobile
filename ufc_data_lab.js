@@ -17,6 +17,33 @@ search.addEventListener('input',draw);draw();
 for(const t of ['Simulated upcoming fights: '+(Array.isArray(sim.simulations)?sim.simulations.length:0),'Blocked simulations: '+(Array.isArray(sim.blocked)?sim.blocked.length:0),'Holdout calibration: '+(health.status||'UNAVAILABLE'),'Historical source: '+history.source,'Model limitations: '+(Array.isArray(health.blockers)?health.blockers.join(', '):'unverified')])audit.append(make('p',t));
 
 // Full-card betting-readiness audit. All fallback priors remain research-only.
+const pipeline=make('section');pipeline.id='ufc-unified-pipeline';root.append(pipeline);
+pipeline.append(make('h3','Unified five-stage UFC research pipeline'));
+const pipelineState=make('p','Loading model pipeline report…');pipeline.append(pipelineState);
+const pipelineRows=make('div');pipeline.append(pipelineRows);
+async function loadPipeline(){
+  try{
+    const response=await fetch('./feed/ufc_unified_research.json?refresh='+Date.now(),{cache:'no-store'});
+    if(!response.ok)throw Error('Report not published yet (HTTP '+response.status+')');
+    const data=await response.json();
+    if(data.sport!=='UFC'||data.bet_eligible!==false||!Array.isArray(data.fights))throw Error('Invalid research-only report');
+    pipelineRows.replaceChildren();
+    pipelineState.textContent=data.fights.length+' matchups · historical estimates and count simulations · NOT BET ELIGIBLE';
+    for(const f of data.fights){
+      const card=make('article');card.className='ksl-ufc-card';pipelineRows.append(card);
+      card.append(make('h4',f.red+' vs '+f.blue));
+      const p=f.sparse_data_probability;
+      card.append(make('p','Research ML: '+(100*p.red).toFixed(1)+'% / '+(100*p.blue).toFixed(1)+'% · red uncertainty '+(100*p.red_uncertainty_interval[0]).toFixed(0)+'–'+(100*p.red_uncertainty_interval[1]).toFixed(0)+'%'));
+      card.append(make('p','Opponent adjustment: '+(f.opponent_adjustment.elo_available?'historical Elo':'UNAVAILABLE')+' · verified strength of schedule: UNAVAILABLE'));
+      for(const [name,sim] of Object.entries(f.count_simulation||{})){
+        const means=sim.count_means||{};
+        card.append(make('p',name+' count simulation: '+(sim.status==='RESEARCH_ONLY'?'historical-rate illustrative sig strikes '+means.sig_landed+', takedowns '+means.takedowns_landed:'UNAVAILABLE')));
+      }
+      card.append(make('p','Calibration: UNVERIFIED · EV: UNAVAILABLE · NOT BET ELIGIBLE'));
+    }
+  }catch(error){pipelineState.textContent='Pipeline report UNAVAILABLE — '+error.message}
+}
+loadPipeline();
 const readiness=make('div');readiness.id='ufc-five-stage-audit';root.append(readiness);
 const heading=make('h3','Five-stage UFC betting readiness');readiness.append(heading);
 const explanation=make('p','Career coverage · opponent adjustment · sparse-data estimate · simulation · validated EV. Missing evidence is explicitly flagged, not fabricated.');readiness.append(explanation);
