@@ -55,5 +55,19 @@ jobs:
           git add feed/nba_ml_possession_backtest.json data/nba_ml_possession_boxscores.json feed/nba_ml_possession_audit.json feed/nba_ml_simulation_audit.json data/nba_ml_odds_archive/ feed/nba_ml_schedule_evidence.json feed/nba_ml_betting_readiness.json feed/nba_ml_market_evidence.json feed/nba_ml_outcome_market_audit.json feed/basketball_nba.json feed/nba_ml_predictions.json data/nba_ml_historical_games.json data/nba_ml_validated_ratings.json
           if ! git diff --cached --quiet; then
             git commit -m "Update NBA ML prediction feed"
-            git push
+            for attempt in 1 2 3 4 5; do
+              if git push origin HEAD:main; then
+                exit 0
+              fi
+              echo "Concurrent update to main; rebasing generated feed commit (attempt $attempt)"
+              git fetch origin main
+              if ! git rebase origin/main; then
+                echo "Rebase conflict: aborting safely, no force push"
+                git rebase --abort
+                exit 1
+              fi
+              sleep $((attempt * 2))
+            done
+            echo "Unable to publish NBA ML feed after bounded retries"
+            exit 1
           fi
