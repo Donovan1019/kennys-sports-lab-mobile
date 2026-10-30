@@ -116,6 +116,8 @@ def main():
     report["input_sha256"]=hashlib.sha256(raw).hexdigest()
     report["input_path"]=str(args.input)
     report["input_record_count"]=len(rows)
+    report["input_verified_winner_count"]=sum(isinstance(row,dict) and row.get("winner_verified") is True for row in rows)
+    report["input_rejected_count"]=len(rows)-report["historical_bouts_used"]
     if args.minimum_evaluated < 0:
         raise ValueError("--minimum-evaluated must be nonnegative")
     if report["pre_update_evaluated_fights"] < args.minimum_evaluated:
