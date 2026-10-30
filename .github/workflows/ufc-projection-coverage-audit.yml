@@ -58,6 +58,10 @@ jobs:
                       scenarios+=1
                       assert rounds in ('3','5')
                       assert scenario['status']=='HYPOTHETICAL_RESEARCH_ONLY'
+                      h=scenario['hazard_sensitivity']
+                      assert h['low_finish_hazard']==0.08 and h['high_finish_hazard']==0.30
+                      for key in ('sig_landed_mean_range','takedowns_landed_mean_range'):
+                          assert len(h[key])==2 and all(isinstance(v,(int,float)) and v>=0 for v in h[key]) and h[key][0]<=h[key][1]
                       counts=scenario['count_means']
                       assert all(isinstance(v,(int,float)) and 0<=v<10000 for v in counts.values())
                       if 'sig_landed' in counts and 'sig_attempted' in counts:
