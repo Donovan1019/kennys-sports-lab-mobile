@@ -112,6 +112,15 @@ def research_pipeline():
                 if rounds not in (3,5) and t and t.get("round_rows"):
                     sims[name]["historical_per_round"]={k:round(t[k]/t["round_rows"],2) for k in ("sig_landed","sig_attempted","td_landed","td_attempted") if isinstance(t.get(k),(int,float))}
                     sims[name]["reason"]="Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation"
+                    if all(isinstance(t.get(k),(int,float)) and t[k]>=0 for k in ("sig_landed","sig_attempted","td_landed","td_attempted")) and t["sig_landed"]<=t["sig_attempted"] and t["td_landed"]<=t["td_attempted"]:
+                        rates={key:t[field]/t["round_rows"] for key,field in (("sig_landed","sig_landed"),("sig_attempted","sig_attempted"),("takedowns_landed","td_landed"),("takedowns_attempted","td_attempted"))}
+                        scenarios={}
+                        for hypothetical_rounds in (3,5):
+                            scenario=simulate(rates,hypothetical_rounds,draws=1000,seed=2026)
+                            scenarios[str(hypothetical_rounds)]={"status":"HYPOTHETICAL_RESEARCH_ONLY",
+                                "count_means":{k:round(v["mean"],2) for k,v in scenario["markets"].items()}}
+                        sims[name]["duration_scenarios"]=scenarios
+                        sims[name]["scenario_warning"]="Unverified fight length; hypothetical 3/5-round counts are not predictions or bet-eligible"
                 continue
             rates={key:t[field]/t["round_rows"] for key,field in (("sig_landed","sig_landed"),("sig_attempted","sig_attempted"),("takedowns_landed","td_landed"),("takedowns_attempted","td_attempted"))}
             result=simulate(rates,rounds,draws=1000,seed=2026)
