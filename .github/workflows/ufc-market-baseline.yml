@@ -21,7 +21,7 @@ jobs:
           assert 'p/(p+q)' in j
           assert 'market no-vig' in j or 'market no-vig' in j.lower() or 'market no-vig' in j.lower() or 'marketPct' in j
           assert 'both fighters have data' in j
-          assert 'NO INDEPENDENT ESTIMATE' in j
+          assert 'missingModelReason' in j and 'NEUTRAL PRIOR' in j
           assert 'marketBaseline(f,fighter)' in j
-          assert 'ufc_fighter_projections.js?v=8' in Path('ufc.html').read_text()
+          assert 'ufc_fighter_projections.js?v=9' in Path('ufc.html').read_text()
           PY
