@@ -3,10 +3,12 @@
   "status": "ok",
   "sport": "mma_mixed_martial_arts",
   "markets_requested": [
-    "h2h"
+    "h2h",
+    "spreads",
+    "totals"
   ],
-  "fetched_at": "2026-10-30T10:10:49.939115+00:00",
-  "remaining_credits": "53",
+  "fetched_at": "2026-10-30T10:12:17.983737+00:00",
+  "remaining_credits": "50",
   "odds": [
     {
       "event": "Ode Osbourne @ Cody Durden",
@@ -20,7 +22,7 @@
       "point": null,
       "price": -118,
       "bookmaker": "draftkings",
-      "updated_at": "2026-10-30T10:10:12Z"
+      "updated_at": "2026-10-30T10:11:16Z"
     },
     {
       "event": "Ode Osbourne @ Cody Durden",
@@ -34,7 +36,63 @@
       "point": null,
       "price": -102,
       "bookmaker": "draftkings",
-      "updated_at": "2026-10-30T10:10:12Z"
+      "updated_at": "2026-10-30T10:11:16Z"
+    },
+    {
+      "event": "Ode Osbourne @ Cody Durden",
+      "event_id": "0c220210154452bc3a64e0311c292811",
+      "commence_time": "2026-10-31T21:00:00Z",
+      "sport": "mma_mixed_martial_arts",
+      "market": "spreads",
+      "description": null,
+      "player": null,
+      "selection": "Cody Durden",
+      "point": -3.5,
+      "price": 130,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-30T10:11:16Z"
+    },
+    {
+      "event": "Ode Osbourne @ Cody Durden",
+      "event_id": "0c220210154452bc3a64e0311c292811",
+      "commence_time": "2026-10-31T21:00:00Z",
+      "sport": "mma_mixed_martial_arts",
+      "market": "spreads",
+      "description": null,
+      "player": null,
+      "selection": "Ode Osbourne",
+      "point": 3.5,
+      "price": -175,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-30T10:11:16Z"
+    },
+    {
+      "event": "Ode Osbourne @ Cody Durden",
+      "event_id": "0c220210154452bc3a64e0311c292811",
+      "commence_time": "2026-10-31T21:00:00Z",
+      "sport": "mma_mixed_martial_arts",
+      "market": "totals",
+      "description": null,
+      "player": null,
+      "selection": "Over",
+      "point": 1.5,
+      "price": -175,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-30T10:11:16Z"
+    },
+    {
+      "event": "Ode Osbourne @ Cody Durden",
+      "event_id": "0c220210154452bc3a64e0311c292811",
+      "commence_time": "2026-10-31T21:00:00Z",
+      "sport": "mma_mixed_martial_arts",
+      "market": "totals",
+      "description": null,
+      "player": null,
+      "selection": "Under",
+      "point": 1.5,
+      "price": 135,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-30T10:11:16Z"
     },
     {
       "event": "Ode Osbourne @ Cody Durden",
@@ -48,7 +106,7 @@
       "point": null,
       "price": -115,
       "bookmaker": "fanduel",
-      "updated_at": "2026-10-30T10:10:13Z"
+      "updated_at": "2026-10-30T10:11:38Z"
     },
     {
       "event": "Ode Osbourne @ Cody Durden",
@@ -62,7 +120,7 @@
       "point": null,
       "price": -105,
       "bookmaker": "fanduel",
-      "updated_at": "2026-10-30T10:10:13Z"
+      "updated_at": "2026-10-30T10:11:38Z"
     },
     {
       "event": "Lucia Szabová @ Tainara Lisboa",
@@ -76,7 +134,7 @@
       "point": null,
       "price": -675,
       "bookmaker": "draftkings",
-      "updated_at": "2026-10-30T10:10:12Z"
+      "updated_at": "2026-10-30T10:11:16Z"
     },
     {
       "event": "Lucia Szabová @ Tainara Lisboa",
@@ -90,7 +148,63 @@
       "point": null,
       "price": 490,
       "bookmaker": "draftkings",
-      "updated_at": "2026-10-30T10:10:12Z"
+      "updated_at": "2026-10-30T10:11:16Z"
+    },
+    {
+      "event": "Lucia Szabová @ Tainara Lisboa",
+      "event_id": "300f1ecfecf6966da9aecbd7945f294b",
+      "commence_time": "2026-10-31T21:10:00Z",
+      "sport": "mma_mixed_martial_arts",
+      "market": "spreads",
+      "description": null,
+      "player": null,
+      "selection": "Lucia Szabová",
+      "point": -7.5,
+      "price": -190,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-30T10:11:16Z"
+    },
+    {
+      "event": "Lucia Szabová @ Tainara Lisboa",
+      "event_id": "300f1ecfecf6966da9aecbd7945f294b",
+      "commence_time": "2026-10-31T21:10:00Z",
+      "sport": "mma_mixed_martial_arts",
+      "market": "spreads",
+      "description": null,
+      "player": null,
+      "selection": "Tainara Lisboa",
+      "point": 7.5,
+      "price": 140,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-30T10:11:16Z"
+    },
+    {
+      "event": "Lucia Szabová @ Tainara Lisboa",
+      "event_id": "300f1ecfecf6966da9aecbd7945f294b",
+      "commence_time": "2026-10-31T21:10:00Z",
+      "sport": "mma_mixed_martial_arts",
+      "market": "totals",
+      "description": null,
+      "player": null,
+      "selection": "Over",
+      "point": 2.5,
+      "price": 120,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-30T10:11:16Z"
+    },
+    {
+      "event": "Lucia Szabová @ Tainara Lisboa",
+      "event_id": "300f1ecfecf6966da9aecbd7945f294b",
+      "commence_time": "2026-10-31T21:10:00Z",
+      "sport": "mma_mixed_martial_arts",
+      "market": "totals",
+      "description": null,
+      "player": null,
+      "selection": "Under",
+      "point": 2.5,
+      "price": -154,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-30T10:11:16Z"
     },
     {
       "event": "Lucia Szabová @ Tainara Lisboa",
@@ -104,7 +218,7 @@
       "point": null,
       "price": -700,
       "bookmaker": "fanduel",
-      "updated_at": "2026-10-30T10:10:13Z"
+      "updated_at": "2026-10-30T10:11:38Z"
     },
     {
       "event": "Lucia Szabová @ Tainara Lisboa",
@@ -118,7 +232,7 @@
       "point": null,
       "price": 470,
       "bookmaker": "fanduel",
-      "updated_at": "2026-10-30T10:10:13Z"
+      "updated_at": "2026-10-30T10:11:38Z"
     },
     {
       "event": "Talita Alencar @ Piera Rodriguez",
@@ -132,7 +246,7 @@
       "point": null,
       "price": -278,
       "bookmaker": "draftkings",
-      "updated_at": "2026-10-30T10:10:12Z"
+      "updated_at": "2026-10-30T10:11:16Z"
     },
     {
       "event": "Talita Alencar @ Piera Rodriguez",
@@ -146,7 +260,63 @@
       "point": null,
       "price": 225,
       "bookmaker": "draftkings",
-      "updated_at": "2026-10-30T10:10:12Z"
+      "updated_at": "2026-10-30T10:11:16Z"
+    },
+    {
+      "event": "Talita Alencar @ Piera Rodriguez",
+      "event_id": "80ba973c37247bf87a44c12d859c05a1",
+      "commence_time": "2026-10-31T21:35:00Z",
+      "sport": "mma_mixed_martial_arts",
+      "market": "spreads",
+      "description": null,
+      "player": null,
+      "selection": "Piera Rodriguez",
+      "point": -3.5,
+      "price": -120,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-30T10:11:16Z"
+    },
+    {
+      "event": "Talita Alencar @ Piera Rodriguez",
+      "event_id": "80ba973c37247bf87a44c12d859c05a1",
+      "commence_time": "2026-10-31T21:35:00Z",
+      "sport": "mma_mixed_martial_arts",
+      "market": "spreads",
+      "description": null,
+      "player": null,
+      "selection": "Talita Alencar",
+      "point": 3.5,
+      "price": -110,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-30T10:11:16Z"
+    },
+    {
+      "event": "Talita Alencar @ Piera Rodriguez",
+      "event_id": "80ba973c37247bf87a44c12d859c05a1",
+      "commence_time": "2026-10-31T21:35:00Z",
+      "sport": "mma_mixed_martial_arts",
+      "market": "totals",
+      "description": null,
+      "player": null,
+      "selection": "Over",
+      "point": 2.5,
+      "price": -298,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-30T10:11:16Z"
+    },
+    {
+      "event": "Talita Alencar @ Piera Rodriguez",
+      "event_id": "80ba973c37247bf87a44c12d859c05a1",
+      "commence_time": "2026-10-31T21:35:00Z",
+      "sport": "mma_mixed_martial_arts",
+      "market": "totals",
+      "description": null,
+      "player": null,
+      "selection": "Under",
+      "point": 2.5,
+      "price": 220,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-30T10:11:16Z"
     },
     {
       "event": "Talita Alencar @ Piera Rodriguez",
@@ -160,7 +330,7 @@
       "point": null,
       "price": -300,
       "bookmaker": "fanduel",
-      "updated_at": "2026-10-30T10:10:13Z"
+      "updated_at": "2026-10-30T10:11:38Z"
     },
     {
       "event": "Talita Alencar @ Piera Rodriguez",
@@ -174,7 +344,7 @@
       "point": null,
       "price": 235,
       "bookmaker": "fanduel",
-      "updated_at": "2026-10-30T10:10:13Z"
+      "updated_at": "2026-10-30T10:11:38Z"
     },
     {
       "event": "Nick Klein @ Joseph Kropschot",
@@ -188,7 +358,7 @@
       "point": null,
       "price": -310,
       "bookmaker": "draftkings",
-      "updated_at": "2026-10-30T10:10:12Z"
+      "updated_at": "2026-10-30T10:11:16Z"
     },
     {
       "event": "Nick Klein @ Joseph Kropschot",
@@ -202,7 +372,63 @@
       "point": null,
       "price": 250,
       "bookmaker": "draftkings",
-      "updated_at": "2026-10-30T10:10:12Z"
+      "updated_at": "2026-10-30T10:11:16Z"
+    },
+    {
+      "event": "Nick Klein @ Joseph Kropschot",
+      "event_id": "db6e188beac0b1d61e66fcf162c7307c",
+      "commence_time": "2026-10-31T22:00:00Z",
+      "sport": "mma_mixed_martial_arts",
+      "market": "spreads",
+      "description": null,
+      "player": null,
+      "selection": "Joseph Kropschot",
+      "point": -7.5,
+      "price": -175,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-30T10:11:16Z"
+    },
+    {
+      "event": "Nick Klein @ Joseph Kropschot",
+      "event_id": "db6e188beac0b1d61e66fcf162c7307c",
+      "commence_time": "2026-10-31T22:00:00Z",
+      "sport": "mma_mixed_martial_arts",
+      "market": "spreads",
+      "description": null,
+      "player": null,
+      "selection": "Nick Klein",
+      "point": 7.5,
+      "price": 130,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-30T10:11:16Z"
+    },
+    {
+      "event": "Nick Klein @ Joseph Kropschot",
+      "event_id": "db6e188beac0b1d61e66fcf162c7307c",
+      "commence_time": "2026-10-31T22:00:00Z",
+      "sport": "mma_mixed_martial_arts",
+      "market": "totals",
+      "description": null,
+      "player": null,
+      "selection": "Over",
+      "point": 1.5,
+      "price": -115,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-30T10:11:16Z"
+    },
+    {
+      "event": "Nick Klein @ Joseph Kropschot",
+      "event_id": "db6e188beac0b1d61e66fcf162c7307c",
+      "commence_time": "2026-10-31T22:00:00Z",
+      "sport": "mma_mixed_martial_arts",
+      "market": "totals",
+      "description": null,
+      "player": null,
+      "selection": "Under",
+      "point": 1.5,
+      "price": -115,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-30T10:11:16Z"
     },
     {
       "event": "Zachary Reese @ Mickey Gall",
@@ -216,7 +442,7 @@
       "point": null,
       "price": 265,
       "bookmaker": "fanduel",
-      "updated_at": "2026-10-30T10:10:13Z"
+      "updated_at": "2026-10-30T10:11:38Z"
     },
     {
       "event": "Zachary Reese @ Mickey Gall",
@@ -230,7 +456,7 @@
       "point": null,
       "price": -350,
       "bookmaker": "fanduel",
-      "updated_at": "2026-10-30T10:10:13Z"
+      "updated_at": "2026-10-30T10:11:38Z"
     },
     {
       "event": "Zachary Reese @ Mickey Gall",
@@ -244,7 +470,7 @@
       "point": null,
       "price": 300,
       "bookmaker": "draftkings",
-      "updated_at": "2026-10-30T10:10:12Z"
+      "updated_at": "2026-10-30T10:11:16Z"
     },
     {
       "event": "Zachary Reese @ Mickey Gall",
@@ -258,7 +484,63 @@
       "point": null,
       "price": -380,
       "bookmaker": "draftkings",
-      "updated_at": "2026-10-30T10:10:12Z"
+      "updated_at": "2026-10-30T10:11:16Z"
+    },
+    {
+      "event": "Zachary Reese @ Mickey Gall",
+      "event_id": "bcace46c2ac73a12c347366092a7329e",
+      "commence_time": "2026-10-31T22:25:00Z",
+      "sport": "mma_mixed_martial_arts",
+      "market": "spreads",
+      "description": null,
+      "player": null,
+      "selection": "Mickey Gall",
+      "point": 7.5,
+      "price": 180,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-30T10:11:16Z"
+    },
+    {
+      "event": "Zachary Reese @ Mickey Gall",
+      "event_id": "bcace46c2ac73a12c347366092a7329e",
+      "commence_time": "2026-10-31T22:25:00Z",
+      "sport": "mma_mixed_martial_arts",
+      "market": "spreads",
+      "description": null,
+      "player": null,
+      "selection": "Zachary Reese",
+      "point": -7.5,
+      "price": -250,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-30T10:11:16Z"
+    },
+    {
+      "event": "Zachary Reese @ Mickey Gall",
+      "event_id": "bcace46c2ac73a12c347366092a7329e",
+      "commence_time": "2026-10-31T22:25:00Z",
+      "sport": "mma_mixed_martial_arts",
+      "market": "totals",
+      "description": null,
+      "player": null,
+      "selection": "Over",
+      "point": 1.5,
+      "price": 140,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-30T10:11:16Z"
+    },
+    {
+      "event": "Zachary Reese @ Mickey Gall",
+      "event_id": "bcace46c2ac73a12c347366092a7329e",
+      "commence_time": "2026-10-31T22:25:00Z",
+      "sport": "mma_mixed_martial_arts",
+      "market": "totals",
+      "description": null,
+      "player": null,
+      "selection": "Under",
+      "point": 1.5,
+      "price": -180,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-30T10:11:16Z"
     },
     {
       "event": "Julian Erosa @ Jeongyoung Lee",
@@ -272,7 +554,7 @@
       "point": null,
       "price": -155,
       "bookmaker": "draftkings",
-      "updated_at": "2026-10-30T10:10:12Z"
+      "updated_at": "2026-10-30T10:11:16Z"
     },
     {
       "event": "Julian Erosa @ Jeongyoung Lee",
@@ -286,7 +568,63 @@
       "point": null,
       "price": 130,
       "bookmaker": "draftkings",
-      "updated_at": "2026-10-30T10:10:12Z"
+      "updated_at": "2026-10-30T10:11:16Z"
+    },
+    {
+      "event": "Julian Erosa @ Jeongyoung Lee",
+      "event_id": "71f805453406ee20a60006831d2e6629",
+      "commence_time": "2026-10-31T22:50:00Z",
+      "sport": "mma_mixed_martial_arts",
+      "market": "spreads",
+      "description": null,
+      "player": null,
+      "selection": "Jeongyoung Lee",
+      "point": -7.5,
+      "price": -120,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-30T10:11:16Z"
+    },
+    {
+      "event": "Julian Erosa @ Jeongyoung Lee",
+      "event_id": "71f805453406ee20a60006831d2e6629",
+      "commence_time": "2026-10-31T22:50:00Z",
+      "sport": "mma_mixed_martial_arts",
+      "market": "spreads",
+      "description": null,
+      "player": null,
+      "selection": "Julian Erosa",
+      "point": 7.5,
+      "price": -110,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-30T10:11:16Z"
+    },
+    {
+      "event": "Julian Erosa @ Jeongyoung Lee",
+      "event_id": "71f805453406ee20a60006831d2e6629",
+      "commence_time": "2026-10-31T22:50:00Z",
+      "sport": "mma_mixed_martial_arts",
+      "market": "totals",
+      "description": null,
+      "player": null,
+      "selection": "Over",
+      "point": 1.5,
+      "price": -110,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-30T10:11:16Z"
+    },
+    {
+      "event": "Julian Erosa @ Jeongyoung Lee",
+      "event_id": "71f805453406ee20a60006831d2e6629",
+      "commence_time": "2026-10-31T22:50:00Z",
+      "sport": "mma_mixed_martial_arts",
+      "market": "totals",
+      "description": null,
+      "player": null,
+      "selection": "Under",
+      "point": 1.5,
+      "price": -120,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-30T10:11:16Z"
     },
     {
       "event": "Rodrigo Sezinando @ Theodor Berggren",
@@ -300,7 +638,7 @@
       "point": null,
       "price": -185,
       "bookmaker": "draftkings",
-      "updated_at": "2026-10-30T10:10:12Z"
+      "updated_at": "2026-10-30T10:11:16Z"
     },
     {
       "event": "Rodrigo Sezinando @ Theodor Berggren",
@@ -314,7 +652,63 @@
       "point": null,
       "price": 154,
       "bookmaker": "draftkings",
-      "updated_at": "2026-10-30T10:10:12Z"
+      "updated_at": "2026-10-30T10:11:16Z"
+    },
+    {
+      "event": "Rodrigo Sezinando @ Theodor Berggren",
+      "event_id": "f479a7e8b8fdd2e2ba2cfb9022f6aea2",
+      "commence_time": "2026-10-31T23:15:00Z",
+      "sport": "mma_mixed_martial_arts",
+      "market": "spreads",
+      "description": null,
+      "player": null,
+      "selection": "Rodrigo Sezinando",
+      "point": -5.5,
+      "price": -120,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-30T10:11:16Z"
+    },
+    {
+      "event": "Rodrigo Sezinando @ Theodor Berggren",
+      "event_id": "f479a7e8b8fdd2e2ba2cfb9022f6aea2",
+      "commence_time": "2026-10-31T23:15:00Z",
+      "sport": "mma_mixed_martial_arts",
+      "market": "spreads",
+      "description": null,
+      "player": null,
+      "selection": "Theodor Berggren",
+      "point": 5.5,
+      "price": -110,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-30T10:11:16Z"
+    },
+    {
+      "event": "Rodrigo Sezinando @ Theodor Berggren",
+      "event_id": "f479a7e8b8fdd2e2ba2cfb9022f6aea2",
+      "commence_time": "2026-10-31T23:15:00Z",
+      "sport": "mma_mixed_martial_arts",
+      "market": "totals",
+      "description": null,
+      "player": null,
+      "selection": "Over",
+      "point": 1.5,
+      "price": -145,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-30T10:11:16Z"
+    },
+    {
+      "event": "Rodrigo Sezinando @ Theodor Berggren",
+      "event_id": "f479a7e8b8fdd2e2ba2cfb9022f6aea2",
+      "commence_time": "2026-10-31T23:15:00Z",
+      "sport": "mma_mixed_martial_arts",
+      "market": "totals",
+      "description": null,
+      "player": null,
+      "selection": "Under",
+      "point": 1.5,
+      "price": 114,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-30T10:11:16Z"
     },
     {
       "event": "Rodrigo Sezinando @ Theodor Berggren",
@@ -328,7 +722,7 @@
       "point": null,
       "price": -176,
       "bookmaker": "fanduel",
-      "updated_at": "2026-10-30T10:10:13Z"
+      "updated_at": "2026-10-30T10:11:38Z"
     },
     {
       "event": "Rodrigo Sezinando @ Theodor Berggren",
@@ -342,7 +736,7 @@
       "point": null,
       "price": 142,
       "bookmaker": "fanduel",
-      "updated_at": "2026-10-30T10:10:13Z"
+      "updated_at": "2026-10-30T10:11:38Z"
     },
     {
       "event": "Francis Marshall @ Dakota Hope",
@@ -356,7 +750,7 @@
       "point": null,
       "price": 180,
       "bookmaker": "draftkings",
-      "updated_at": "2026-10-30T10:10:12Z"
+      "updated_at": "2026-10-30T10:11:16Z"
     },
     {
       "event": "Francis Marshall @ Dakota Hope",
@@ -370,7 +764,63 @@
       "point": null,
       "price": -218,
       "bookmaker": "draftkings",
-      "updated_at": "2026-10-30T10:10:12Z"
+      "updated_at": "2026-10-30T10:11:16Z"
+    },
+    {
+      "event": "Francis Marshall @ Dakota Hope",
+      "event_id": "cb8bbfa745f8248ce8453d9f561e86d7",
+      "commence_time": "2026-10-31T23:40:00Z",
+      "sport": "mma_mixed_martial_arts",
+      "market": "spreads",
+      "description": null,
+      "player": null,
+      "selection": "Dakota Hope",
+      "point": 3.5,
+      "price": -110,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-30T10:11:16Z"
+    },
+    {
+      "event": "Francis Marshall @ Dakota Hope",
+      "event_id": "cb8bbfa745f8248ce8453d9f561e86d7",
+      "commence_time": "2026-10-31T23:40:00Z",
+      "sport": "mma_mixed_martial_arts",
+      "market": "spreads",
+      "description": null,
+      "player": null,
+      "selection": "Francis Marshall",
+      "point": -3.5,
+      "price": -120,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-30T10:11:16Z"
+    },
+    {
+      "event": "Francis Marshall @ Dakota Hope",
+      "event_id": "cb8bbfa745f8248ce8453d9f561e86d7",
+      "commence_time": "2026-10-31T23:40:00Z",
+      "sport": "mma_mixed_martial_arts",
+      "market": "totals",
+      "description": null,
+      "player": null,
+      "selection": "Over",
+      "point": 2.5,
+      "price": -160,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-30T10:11:16Z"
+    },
+    {
+      "event": "Francis Marshall @ Dakota Hope",
+      "event_id": "cb8bbfa745f8248ce8453d9f561e86d7",
+      "commence_time": "2026-10-31T23:40:00Z",
+      "sport": "mma_mixed_martial_arts",
+      "market": "totals",
+      "description": null,
+      "player": null,
+      "selection": "Under",
+      "point": 2.5,
+      "price": 124,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-30T10:11:16Z"
     },
     {
       "event": "Francis Marshall @ Dakota Hope",
@@ -384,7 +834,7 @@
       "point": null,
       "price": 186,
       "bookmaker": "fanduel",
-      "updated_at": "2026-10-30T10:10:13Z"
+      "updated_at": "2026-10-30T10:11:38Z"
     },
     {
       "event": "Francis Marshall @ Dakota Hope",
@@ -398,7 +848,7 @@
       "point": null,
       "price": -235,
       "bookmaker": "fanduel",
-      "updated_at": "2026-10-30T10:10:13Z"
+      "updated_at": "2026-10-30T10:11:38Z"
     },
     {
       "event": "Jean-Paul Lebosnoyani @ Farman Hasanov",
@@ -412,7 +862,7 @@
       "point": null,
       "price": 225,
       "bookmaker": "draftkings",
-      "updated_at": "2026-10-30T10:10:12Z"
+      "updated_at": "2026-10-30T10:11:16Z"
     },
     {
       "event": "Jean-Paul Lebosnoyani @ Farman Hasanov",
@@ -426,7 +876,63 @@
       "point": null,
       "price": -278,
       "bookmaker": "draftkings",
-      "updated_at": "2026-10-30T10:10:12Z"
+      "updated_at": "2026-10-30T10:11:16Z"
+    },
+    {
+      "event": "Jean-Paul Lebosnoyani @ Farman Hasanov",
+      "event_id": "df9dc29c8fb008aa275d85007b3bb2e7",
+      "commence_time": "2026-11-01T00:15:00Z",
+      "sport": "mma_mixed_martial_arts",
+      "market": "spreads",
+      "description": null,
+      "player": null,
+      "selection": "Farman Hasanov",
+      "point": 7.5,
+      "price": 100,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-30T10:11:16Z"
+    },
+    {
+      "event": "Jean-Paul Lebosnoyani @ Farman Hasanov",
+      "event_id": "df9dc29c8fb008aa275d85007b3bb2e7",
+      "commence_time": "2026-11-01T00:15:00Z",
+      "sport": "mma_mixed_martial_arts",
+      "market": "spreads",
+      "description": null,
+      "player": null,
+      "selection": "Jean-Paul Lebosnoyani",
+      "point": -7.5,
+      "price": -135,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-30T10:11:16Z"
+    },
+    {
+      "event": "Jean-Paul Lebosnoyani @ Farman Hasanov",
+      "event_id": "df9dc29c8fb008aa275d85007b3bb2e7",
+      "commence_time": "2026-11-01T00:15:00Z",
+      "sport": "mma_mixed_martial_arts",
+      "market": "totals",
+      "description": null,
+      "player": null,
+      "selection": "Over",
+      "point": 2.5,
+      "price": 114,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-30T10:11:16Z"
+    },
+    {
+      "event": "Jean-Paul Lebosnoyani @ Farman Hasanov",
+      "event_id": "df9dc29c8fb008aa275d85007b3bb2e7",
+      "commence_time": "2026-11-01T00:15:00Z",
+      "sport": "mma_mixed_martial_arts",
+      "market": "totals",
+      "description": null,
+      "player": null,
+      "selection": "Under",
+      "point": 2.5,
+      "price": -145,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-30T10:11:16Z"
     },
     {
       "event": "Jean-Paul Lebosnoyani @ Farman Hasanov",
@@ -440,7 +946,7 @@
       "point": null,
       "price": 235,
       "bookmaker": "fanduel",
-      "updated_at": "2026-10-30T10:10:13Z"
+      "updated_at": "2026-10-30T10:11:38Z"
     },
     {
       "event": "Jean-Paul Lebosnoyani @ Farman Hasanov",
@@ -454,7 +960,7 @@
       "point": null,
       "price": -300,
       "bookmaker": "fanduel",
-      "updated_at": "2026-10-30T10:10:13Z"
+      "updated_at": "2026-10-30T10:11:38Z"
     },
     {
       "event": "Yana Santos @ Luana Santos",
@@ -468,7 +974,7 @@
       "point": null,
       "price": -325,
       "bookmaker": "draftkings",
-      "updated_at": "2026-10-30T10:10:12Z"
+      "updated_at": "2026-10-30T10:11:16Z"
     },
     {
       "event": "Yana Santos @ Luana Santos",
@@ -482,7 +988,63 @@
       "point": null,
       "price": 260,
       "bookmaker": "draftkings",
-      "updated_at": "2026-10-30T10:10:12Z"
+      "updated_at": "2026-10-30T10:11:16Z"
+    },
+    {
+      "event": "Yana Santos @ Luana Santos",
+      "event_id": "2dce4e1e4c2249c65b10dab7c8bdad6a",
+      "commence_time": "2026-11-01T00:45:00Z",
+      "sport": "mma_mixed_martial_arts",
+      "market": "spreads",
+      "description": null,
+      "player": null,
+      "selection": "Luana Santos",
+      "point": -3.5,
+      "price": -130,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-30T10:11:16Z"
+    },
+    {
+      "event": "Yana Santos @ Luana Santos",
+      "event_id": "2dce4e1e4c2249c65b10dab7c8bdad6a",
+      "commence_time": "2026-11-01T00:45:00Z",
+      "sport": "mma_mixed_martial_arts",
+      "market": "spreads",
+      "description": null,
+      "player": null,
+      "selection": "Yana Santos",
+      "point": 3.5,
+      "price": -105,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-30T10:11:16Z"
+    },
+    {
+      "event": "Yana Santos @ Luana Santos",
+      "event_id": "2dce4e1e4c2249c65b10dab7c8bdad6a",
+      "commence_time": "2026-11-01T00:45:00Z",
+      "sport": "mma_mixed_martial_arts",
+      "market": "totals",
+      "description": null,
+      "player": null,
+      "selection": "Over",
+      "point": 2.5,
+      "price": -360,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-30T10:11:16Z"
+    },
+    {
+      "event": "Yana Santos @ Luana Santos",
+      "event_id": "2dce4e1e4c2249c65b10dab7c8bdad6a",
+      "commence_time": "2026-11-01T00:45:00Z",
+      "sport": "mma_mixed_martial_arts",
+      "market": "totals",
+      "description": null,
+      "player": null,
+      "selection": "Under",
+      "point": 2.5,
+      "price": 260,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-30T10:11:16Z"
     },
     {
       "event": "Yana Santos @ Luana Santos",
@@ -496,7 +1058,7 @@
       "point": null,
       "price": -290,
       "bookmaker": "fanduel",
-      "updated_at": "2026-10-30T10:10:13Z"
+      "updated_at": "2026-10-30T10:11:38Z"
     },
     {
       "event": "Yana Santos @ Luana Santos",
@@ -510,7 +1072,7 @@
       "point": null,
       "price": 225,
       "bookmaker": "fanduel",
-      "updated_at": "2026-10-30T10:10:13Z"
+      "updated_at": "2026-10-30T10:11:38Z"
     },
     {
       "event": "Randy Brown @ Jacobe Smith",
@@ -524,7 +1086,7 @@
       "point": null,
       "price": -290,
       "bookmaker": "fanduel",
-      "updated_at": "2026-10-30T10:10:13Z"
+      "updated_at": "2026-10-30T10:11:38Z"
     },
     {
       "event": "Randy Brown @ Jacobe Smith",
@@ -538,7 +1100,7 @@
       "point": null,
       "price": 225,
       "bookmaker": "fanduel",
-      "updated_at": "2026-10-30T10:10:13Z"
+      "updated_at": "2026-10-30T10:11:38Z"
     },
     {
       "event": "Randy Brown @ Jacobe Smith",
@@ -552,7 +1114,7 @@
       "point": null,
       "price": -258,
       "bookmaker": "draftkings",
-      "updated_at": "2026-10-30T10:10:12Z"
+      "updated_at": "2026-10-30T10:11:16Z"
     },
     {
       "event": "Randy Brown @ Jacobe Smith",
@@ -566,7 +1128,63 @@
       "point": null,
       "price": 210,
       "bookmaker": "draftkings",
-      "updated_at": "2026-10-30T10:10:12Z"
+      "updated_at": "2026-10-30T10:11:16Z"
+    },
+    {
+      "event": "Randy Brown @ Jacobe Smith",
+      "event_id": "3ff93a8fb39e5f3cb3bc71ed27f6cc06",
+      "commence_time": "2026-11-01T01:45:00Z",
+      "sport": "mma_mixed_martial_arts",
+      "market": "spreads",
+      "description": null,
+      "player": null,
+      "selection": "Jacobe Smith",
+      "point": -7.5,
+      "price": -175,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-30T10:11:16Z"
+    },
+    {
+      "event": "Randy Brown @ Jacobe Smith",
+      "event_id": "3ff93a8fb39e5f3cb3bc71ed27f6cc06",
+      "commence_time": "2026-11-01T01:45:00Z",
+      "sport": "mma_mixed_martial_arts",
+      "market": "spreads",
+      "description": null,
+      "player": null,
+      "selection": "Randy Brown",
+      "point": 7.5,
+      "price": 130,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-30T10:11:16Z"
+    },
+    {
+      "event": "Randy Brown @ Jacobe Smith",
+      "event_id": "3ff93a8fb39e5f3cb3bc71ed27f6cc06",
+      "commence_time": "2026-11-01T01:45:00Z",
+      "sport": "mma_mixed_martial_arts",
+      "market": "totals",
+      "description": null,
+      "player": null,
+      "selection": "Over",
+      "point": 1.5,
+      "price": 100,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-30T10:11:16Z"
+    },
+    {
+      "event": "Randy Brown @ Jacobe Smith",
+      "event_id": "3ff93a8fb39e5f3cb3bc71ed27f6cc06",
+      "commence_time": "2026-11-01T01:45:00Z",
+      "sport": "mma_mixed_martial_arts",
+      "market": "totals",
+      "description": null,
+      "player": null,
+      "selection": "Under",
+      "point": 1.5,
+      "price": -130,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-30T10:11:16Z"
     },
     {
       "event": "Renato Moicano @ Tom Nolan",
@@ -580,7 +1198,7 @@
       "point": null,
       "price": -130,
       "bookmaker": "draftkings",
-      "updated_at": "2026-10-30T10:10:12Z"
+      "updated_at": "2026-10-30T10:11:16Z"
     },
     {
       "event": "Renato Moicano @ Tom Nolan",
@@ -594,7 +1212,63 @@
       "point": null,
       "price": 110,
       "bookmaker": "draftkings",
-      "updated_at": "2026-10-30T10:10:12Z"
+      "updated_at": "2026-10-30T10:11:16Z"
+    },
+    {
+      "event": "Renato Moicano @ Tom Nolan",
+      "event_id": "75a36e7aaccd373717f328b7c297f099",
+      "commence_time": "2026-11-01T02:15:00Z",
+      "sport": "mma_mixed_martial_arts",
+      "market": "spreads",
+      "description": null,
+      "player": null,
+      "selection": "Renato Moicano",
+      "point": -5.5,
+      "price": -105,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-30T10:11:16Z"
+    },
+    {
+      "event": "Renato Moicano @ Tom Nolan",
+      "event_id": "75a36e7aaccd373717f328b7c297f099",
+      "commence_time": "2026-11-01T02:15:00Z",
+      "sport": "mma_mixed_martial_arts",
+      "market": "spreads",
+      "description": null,
+      "player": null,
+      "selection": "Tom Nolan",
+      "point": 5.5,
+      "price": -130,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-30T10:11:16Z"
+    },
+    {
+      "event": "Renato Moicano @ Tom Nolan",
+      "event_id": "75a36e7aaccd373717f328b7c297f099",
+      "commence_time": "2026-11-01T02:15:00Z",
+      "sport": "mma_mixed_martial_arts",
+      "market": "totals",
+      "description": null,
+      "player": null,
+      "selection": "Over",
+      "point": 1.5,
+      "price": -210,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-30T10:11:16Z"
+    },
+    {
+      "event": "Renato Moicano @ Tom Nolan",
+      "event_id": "75a36e7aaccd373717f328b7c297f099",
+      "commence_time": "2026-11-01T02:15:00Z",
+      "sport": "mma_mixed_martial_arts",
+      "market": "totals",
+      "description": null,
+      "player": null,
+      "selection": "Under",
+      "point": 1.5,
+      "price": 160,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-30T10:11:16Z"
     },
     {
       "event": "Renato Moicano @ Tom Nolan",
@@ -608,7 +1282,7 @@
       "point": null,
       "price": -120,
       "bookmaker": "fanduel",
-      "updated_at": "2026-10-30T10:10:13Z"
+      "updated_at": "2026-10-30T10:11:38Z"
     },
     {
       "event": "Renato Moicano @ Tom Nolan",
@@ -622,7 +1296,7 @@
       "point": null,
       "price": -102,
       "bookmaker": "fanduel",
-      "updated_at": "2026-10-30T10:10:13Z"
+      "updated_at": "2026-10-30T10:11:38Z"
     },
     {
       "event": "Amanda Nunes @ Kayla Harrison",
@@ -636,7 +1310,7 @@
       "point": null,
       "price": 164,
       "bookmaker": "draftkings",
-      "updated_at": "2026-10-30T10:10:12Z"
+      "updated_at": "2026-10-30T10:11:16Z"
     },
     {
       "event": "Amanda Nunes @ Kayla Harrison",
@@ -650,7 +1324,7 @@
       "point": null,
       "price": -198,
       "bookmaker": "draftkings",
-      "updated_at": "2026-10-30T10:10:12Z"
+      "updated_at": "2026-10-30T10:11:16Z"
     },
     {
       "event": "Amanda Nunes @ Kayla Harrison",
@@ -664,7 +1338,7 @@
       "point": null,
       "price": 162,
       "bookmaker": "fanduel",
-      "updated_at": "2026-10-30T10:10:13Z"
+      "updated_at": "2026-10-30T10:11:38Z"
     },
     {
       "event": "Amanda Nunes @ Kayla Harrison",
@@ -678,7 +1352,7 @@
       "point": null,
       "price": -210,
       "bookmaker": "fanduel",
-      "updated_at": "2026-10-30T10:10:13Z"
+      "updated_at": "2026-10-30T10:11:38Z"
     },
     {
       "event": "Josh Hokit @ Ciryl Gane",
@@ -692,7 +1366,7 @@
       "point": null,
       "price": -265,
       "bookmaker": "draftkings",
-      "updated_at": "2026-10-30T10:10:12Z"
+      "updated_at": "2026-10-30T10:11:16Z"
     },
     {
       "event": "Josh Hokit @ Ciryl Gane",
@@ -706,7 +1380,7 @@
       "point": null,
       "price": 215,
       "bookmaker": "draftkings",
-      "updated_at": "2026-10-30T10:10:12Z"
+      "updated_at": "2026-10-30T10:11:16Z"
     },
     {
       "event": "Josh Hokit @ Ciryl Gane",
@@ -720,7 +1394,7 @@
       "point": null,
       "price": -265,
       "bookmaker": "fanduel",
-      "updated_at": "2026-10-30T10:10:13Z"
+      "updated_at": "2026-10-30T10:11:38Z"
     },
     {
       "event": "Josh Hokit @ Ciryl Gane",
@@ -734,7 +1408,7 @@
       "point": null,
       "price": 200,
       "bookmaker": "fanduel",
-      "updated_at": "2026-10-30T10:10:13Z"
+      "updated_at": "2026-10-30T10:11:38Z"
     },
     {
       "event": "Alex Pereira @ Sergey Pavlovich",
@@ -748,7 +1422,7 @@
       "point": null,
       "price": 164,
       "bookmaker": "draftkings",
-      "updated_at": "2026-10-30T10:10:12Z"
+      "updated_at": "2026-10-30T10:11:16Z"
     },
     {
       "event": "Alex Pereira @ Sergey Pavlovich",
@@ -762,7 +1436,7 @@
       "point": null,
       "price": -198,
       "bookmaker": "draftkings",
-      "updated_at": "2026-10-30T10:10:12Z"
+      "updated_at": "2026-10-30T10:11:16Z"
     },
     {
       "event": "Alex Pereira @ Sergey Pavlovich",
@@ -776,7 +1450,7 @@
       "point": null,
       "price": 158,
       "bookmaker": "fanduel",
-      "updated_at": "2026-10-30T10:10:13Z"
+      "updated_at": "2026-10-30T10:11:38Z"
     },
     {
       "event": "Alex Pereira @ Sergey Pavlovich",
@@ -790,7 +1464,7 @@
       "point": null,
       "price": -205,
       "bookmaker": "fanduel",
-      "updated_at": "2026-10-30T10:10:13Z"
+      "updated_at": "2026-10-30T10:11:38Z"
     },
     {
       "event": "Diego Lopes @ Charles Oliveira",
@@ -804,7 +1478,7 @@
       "point": null,
       "price": -148,
       "bookmaker": "draftkings",
-      "updated_at": "2026-10-30T10:10:12Z"
+      "updated_at": "2026-10-30T10:11:16Z"
     },
     {
       "event": "Diego Lopes @ Charles Oliveira",
@@ -818,7 +1492,7 @@
       "point": null,
       "price": 124,
       "bookmaker": "draftkings",
-      "updated_at": "2026-10-30T10:10:12Z"
+      "updated_at": "2026-10-30T10:11:16Z"
     },
     {
       "event": "Diego Lopes @ Charles Oliveira",
@@ -832,7 +1506,7 @@
       "point": null,
       "price": -162,
       "bookmaker": "fanduel",
-      "updated_at": "2026-10-30T10:10:13Z"
+      "updated_at": "2026-10-30T10:11:38Z"
     },
     {
       "event": "Diego Lopes @ Charles Oliveira",
@@ -846,7 +1520,7 @@
       "point": null,
       "price": 126,
       "bookmaker": "fanduel",
-      "updated_at": "2026-10-30T10:10:13Z"
+      "updated_at": "2026-10-30T10:11:38Z"
     },
     {
       "event": "Michael Morales @ Carlos Prates",
@@ -860,7 +1534,7 @@
       "point": null,
       "price": -162,
       "bookmaker": "draftkings",
-      "updated_at": "2026-10-30T10:10:12Z"
+      "updated_at": "2026-10-30T10:11:16Z"
     },
     {
       "event": "Michael Morales @ Carlos Prates",
@@ -874,7 +1548,7 @@
       "point": null,
       "price": 136,
       "bookmaker": "draftkings",
-      "updated_at": "2026-10-30T10:10:12Z"
+      "updated_at": "2026-10-30T10:11:16Z"
     },
     {
       "event": "Michael Morales @ Carlos Prates",
@@ -888,7 +1562,7 @@
       "point": null,
       "price": -184,
       "bookmaker": "fanduel",
-      "updated_at": "2026-10-30T10:10:13Z"
+      "updated_at": "2026-10-30T10:11:38Z"
     },
     {
       "event": "Michael Morales @ Carlos Prates",
@@ -902,7 +1576,7 @@
       "point": null,
       "price": 142,
       "bookmaker": "fanduel",
-      "updated_at": "2026-10-30T10:10:13Z"
+      "updated_at": "2026-10-30T10:11:38Z"
     },
     {
       "event": "Manel Kape @ Joshua Van",
@@ -916,7 +1590,7 @@
       "point": null,
       "price": -122,
       "bookmaker": "draftkings",
-      "updated_at": "2026-10-30T10:10:12Z"
+      "updated_at": "2026-10-30T10:11:16Z"
     },
     {
       "event": "Manel Kape @ Joshua Van",
@@ -930,7 +1604,7 @@
       "point": null,
       "price": 102,
       "bookmaker": "draftkings",
-      "updated_at": "2026-10-30T10:10:12Z"
+      "updated_at": "2026-10-30T10:11:16Z"
     },
     {
       "event": "Manel Kape @ Joshua Van",
@@ -944,7 +1618,7 @@
       "point": null,
       "price": -138,
       "bookmaker": "fanduel",
-      "updated_at": "2026-10-30T10:10:13Z"
+      "updated_at": "2026-10-30T10:11:38Z"
     },
     {
       "event": "Manel Kape @ Joshua Van",
@@ -958,7 +1632,7 @@
       "point": null,
       "price": 108,
       "bookmaker": "fanduel",
-      "updated_at": "2026-10-30T10:10:13Z"
+      "updated_at": "2026-10-30T10:11:38Z"
     }
   ]
 }
