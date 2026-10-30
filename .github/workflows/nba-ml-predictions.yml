@@ -38,7 +38,13 @@ jobs:
         run: python -m scripts.audit_nba_ml_outcome_market
       - name: Audit betting readiness (fail closed)
         run: python scripts/audit_nba_ml_betting_readiness.py
-      - name: Simulate NBA ML model and parlay stress scenarios\n        run: python scripts/simulate_nba_ml.py\n      - name: Fetch historical NBA possession box-score evidence\n        run: python scripts/fetch_nba_ml_possession_boxscores.py\n      - name: Possession-level NBA ML diagnostics (evidence gated)\n        run: python scripts/simulate_nba_ml_possessions.py\n      - name: Validate JSON
+      - name: Simulate NBA ML model and parlay stress scenarios
+        run: python scripts/simulate_nba_ml.py
+      - name: Fetch historical NBA possession box-score evidence
+        run: python scripts/fetch_nba_ml_possession_boxscores.py
+      - name: Possession-level NBA ML diagnostics (evidence gated)
+        run: python scripts/simulate_nba_ml_possessions.py
+      - name: Validate JSON
         run: python -m json.tool feed/nba_ml_predictions.json > /dev/null
       - name: Publish prediction feed
         run: |
