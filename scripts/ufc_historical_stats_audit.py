@@ -15,6 +15,8 @@ def audit(path, bouts_path=None):
         rows=0
         empty=Counter()
         identities=Counter()
+        invalid_reasons=Counter()
+        round_examples=[]
         seen=set()
         verified=set()
         matched=set()
@@ -29,6 +31,12 @@ def audit(path, bouts_path=None):
             pair=[x.strip() for x in (row.get("BOUT") or "").split(" vs. ")]
             fighter=(row.get("FIGHTER") or "").strip()
             rnd=(row.get("ROUND") or "").strip()
+            if not event: invalid_reasons["missing_event"]+=1
+            if len(pair)!=2 or len(set(pair))!=2: invalid_reasons["bad_bout"]+=1
+            if fighter not in pair: invalid_reasons["fighter_not_in_bout"]+=1
+            if not rnd.isdigit() or int(rnd)<1: 
+                invalid_reasons["non_numeric_round"]+=1
+                if rnd not in round_examples and len(round_examples)<8: round_examples.append(rnd)
             if not event or len(pair)!=2 or len(set(pair))!=2 or fighter not in pair or not rnd.isdigit() or int(rnd)<1:
                 identities["invalid_rows"]+=1
             else:
@@ -50,7 +58,8 @@ def audit(path, bouts_path=None):
     return {"status":"RAW_FIGHT_STATS_AVAILABLE_RESEARCH_ONLY",
             "source":"Greco1899/scrape_ufc_stats/ufc_fight_stats.csv",
             "rows":rows,"columns":columns,"empty_by_column":dict(empty),
-            "identity_audit":dict(identities),"matched_verified_bouts":len(matched),
+            "identity_audit":dict(identities),"invalid_reasons":dict(invalid_reasons),
+            "round_format_examples":round_examples,"matched_verified_bouts":len(matched),
             "verified_bouts":len(verified),"identity_matching_performed":bool(bouts_path),
             "pre_fight_feature_ready":False,
             "matched_to_verified_bouts":False,
