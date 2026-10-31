@@ -6,7 +6,7 @@ import math
 from collections import Counter
 from pathlib import Path
 
-def match(bouts, candidates, forecasts):
+def match(bouts, candidates, forecasts, holdout_start):
     # Exact normalized event date, event name and unordered fighter pair.
     # No fuzzy matching or winner-dependent selection.
     def norm(s):
@@ -28,8 +28,8 @@ def match(bouts, candidates, forecasts):
             rejected["winner_disagreement"]+=1
             continue
         matched[(b["event_id"],b["fight_id"])]=c
-    cutoff=int(len(forecasts)*0.8)
-    holdout=forecasts[cutoff:]
+    holdout=[f for f in forecasts if f["start_time"]>=holdout_start]
+    holdout_ids={(f["event_id"],f["fight_id"]) for f in holdout}
     pairs=[]
     retrospective_pairs=[]
     for f in forecasts:
@@ -47,8 +47,18 @@ def match(bouts, candidates, forecasts):
             rejected["invalid_probabilities"]+=1
             continue
         retrospective_pairs.append((p,market))
-        if f in holdout:
+        if (f["event_id"],f["fight_id"]) in holdout_ids:
             pairs.append((p,market))
+    # Evidence gates are intentionally independent of retrospective matching.
+    # A scraped quote cannot become a verified pre-fight quote by matching outcomes.
+    evidence=Counter()
+    for c in candidates:
+        if c.get("source_verified") is True:
+            evidence["source_verified"]+=1
+        if c.get("pre_fight_verified") is True:
+            evidence["pre_fight_verified"]+=1
+        if c.get("source_verified") is True and c.get("pre_fight_verified") is True:
+            evidence["both_verified"]+=1
     matched_dates=sorted(b["event_date"][:10] for b in bouts if (b["event_id"],b["fight_id"]) in matched)
     odds_dates=sorted(c["event_date"][:10] for c in candidates)
     holdout_dates=sorted(f["start_time"][:10] for f in holdout)
@@ -59,6 +69,11 @@ def match(bouts, candidates, forecasts):
                 "log_loss":sum(-math.log(x[i]) for x in rows)/len(rows) if rows else None}
     return {"status":"RETROSPECTIVE_ONLY_NOT_CERTIFIED","bet_eligible":False,
             "source_odds_pre_fight_verified":False,
+            "evidence_audit":{"source_verified_candidates":evidence["source_verified"],
+                "pre_fight_verified_candidates":evidence["pre_fight_verified"],
+                "both_verified_candidates":evidence["both_verified"],
+                "point_in_time_eligible":False,
+                "reason":"No independent original sportsbook quote timestamp and provenance validation"},
             "historical_bouts":len(bouts),"odds_candidates":len(candidates),
             "exact_matched_bouts":len(matched),"strict_cohort_holdout":len(holdout),
             "matched_holdout":len(pairs),"excluded":dict(rejected),
@@ -83,8 +98,9 @@ def main():
     a=p.parse_args()
     bouts=json.loads(Path(a.bouts).read_text())["results"]
     odds=json.loads(Path(a.odds).read_text())["odds_candidates"]
-    forecasts=json.loads(Path(a.elo_report).read_text())["forecasts"]
-    report=match(bouts,odds,forecasts)
+    elo=json.loads(Path(a.elo_report).read_text())
+    forecasts=elo["forecasts"]
+    report=match(bouts,odds,forecasts,elo["holdout_start"])
     Path(a.output).write_text(json.dumps(report,indent=2)+"\n")
     print(json.dumps(report))
 if __name__=="__main__":
