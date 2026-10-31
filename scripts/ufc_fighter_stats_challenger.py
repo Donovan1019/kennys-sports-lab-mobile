@@ -1,0 +1,77 @@
+#!/usr/bin/env python3
+"""Chronological UFC fighter-stat challenger; research only, no live promotion."""
+import argparse
+import json
+import math
+from pathlib import Path
+
+def evaluate(elo,features):
+    lookup={x["fight_id"]:x for x in features["features"]}
+    rows=[]
+    for forecast in elo["forecasts"]:
+        record=lookup.get(forecast["fight_id"])
+        if not record or record["winner"]!=forecast["winner"] or record["loser"]!=forecast["loser"]:
+            continue
+        a=record["pre_fight"][forecast["winner"]]
+        b=record["pre_fight"][forecast["loser"]]
+        if min(a["prior_fights"],b["prior_fights"])<5:
+            continue
+        if any(a[k] is None or b[k] is None for k in ("prior_sig_strikes_per_recorded_round","prior_takedowns_per_recorded_round")):
+            continue
+        p=forecast["winner_probability"]
+        if not 0<p<1:
+            continue
+        ds=max(-3,min(3,(a["prior_sig_strikes_per_recorded_round"]-b["prior_sig_strikes_per_recorded_round"])/10))
+        dt=max(-3,min(3,(a["prior_takedowns_per_recorded_round"]-b["prior_takedowns_per_recorded_round"])/1))
+        rows.append((forecast["start_time"],forecast["fight_id"],p,ds,dt))
+    rows.sort(key=lambda x:(x[0],x[1]))
+    # Use Elo's original chronological holdout boundary; never redefine the holdout to
+    # make a better-looking challenger sample.
+    holdout_start=elo["holdout_start"]
+    train=[r for r in rows if r[0]<holdout_start]
+    test=[r for r in rows if r[0]>=holdout_start]
+    def probability(r,cs,ct):
+        _,_,p,ds,dt=r
+        logit=math.log(p/(1-p))+cs*ds+ct*dt
+        return 1/(1+math.exp(-max(-30,min(30,logit))))
+    def metrics(items,cs,ct):
+        if not items:
+            return {"count":0,"brier":None,"log_loss":None}
+        ps=[probability(r,cs,ct) for r in items]
+        return {"count":len(ps),"brier":sum((1-p)**2 for p in ps)/len(ps),
+                "log_loss":sum(-math.log(max(1e-12,p)) for p in ps)/len(ps)}
+    candidates=(-0.4,-0.2,0.0,0.2,0.4)
+    # All observed rows are oriented toward the winner, but a signed difference
+    # is antisymmetric: the equivalent loser-oriented sample has y=0 and 1-p.
+    # This yields exactly the same proper scoring loss without doubling rows.
+    if len(train)<100 or len(test)<30:
+        return {"status":"INSUFFICIENT_COHORT","train_count":len(train),"holdout_count":len(test),
+                "deployed_to_live_predictions":False}
+    selected=min(((cs,ct) for cs in candidates for ct in candidates),
+                 key=lambda pair:(metrics(train,*pair)["log_loss"],abs(pair[0])+abs(pair[1]),pair))
+    baseline=metrics(test,0,0)
+    challenger=metrics(test,*selected)
+    return {"status":"RESEARCH_ONLY_NOT_BET_ELIGIBLE",
+            "train_count":len(train),"holdout_count":len(test),
+            "original_elo_holdout_start":holdout_start,
+            "selection":"train_log_loss_only_grid_search",
+            "selected_sig_coefficient":selected[0],"selected_td_coefficient":selected[1],
+            "matched_cohort_elo":baseline,"matched_cohort_challenger":challenger,
+            "delta_brier":challenger["brier"]-baseline["brier"],
+            "delta_log_loss":challenger["log_loss"]-baseline["log_loss"],
+            "independent_market_validation":False,"deployed_to_live_predictions":False,
+            "limitations":["Post-fight mirror stats are used only through prior-dated aggregates",
+                           "Matched cohort comparison is not the full 501-fight Elo holdout",
+                           "No independent sportsbook odds validation or betting certification"]}
+
+def main():
+    p=argparse.ArgumentParser()
+    p.add_argument("--elo",required=True)
+    p.add_argument("--features",required=True)
+    p.add_argument("--output",required=True)
+    args=p.parse_args()
+    report=evaluate(json.loads(Path(args.elo).read_text()),json.loads(Path(args.features).read_text()))
+    Path(args.output).write_text(json.dumps(report,indent=2)+"\n")
+    print(json.dumps(report))
+if __name__=="__main__":
+    main()

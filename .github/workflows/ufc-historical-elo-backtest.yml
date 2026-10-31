@@ -35,6 +35,9 @@ jobs:
       - name: Build historical pre-fight fighter statistics (research only)
         run: |
           python scripts/ufc_chronological_fighter_features.py --bouts /tmp/ufc-history/verified_bouts.json --stats /tmp/ufc-history/fight_stats.csv --output /tmp/ufc-history/chronological_fighter_features.json
+      - name: Compare Elo against prior-fight striking and takedown challenger
+        run: |
+          python scripts/ufc_fighter_stats_challenger.py --elo /tmp/ufc-history/elo_report.json --features /tmp/ufc-history/chronological_fighter_features.json --output /tmp/ufc-history/fighter_stats_challenger.json
       - name: Publish chronological calibration audit to workflow summary
         run: |
           python - <<'PY'
@@ -102,6 +105,7 @@ jobs:
             /tmp/ufc-history/verified_bouts.json
             /tmp/ufc-history/fight_stats_audit.json
             /tmp/ufc-history/chronological_fighter_features.json
+            /tmp/ufc-history/fighter_stats_challenger.json
             /tmp/ufc-history/elo_report.json
             /tmp/ufc-history/odds_candidates.json
             /tmp/ufc-history/retrospective_market_comparison.json
