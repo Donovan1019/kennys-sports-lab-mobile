@@ -104,6 +104,33 @@ def evaluate(elo,features):
     uncertainty={"method":"paired_date_cluster_bootstrap","replicates":len(deltas_brier),
                  "delta_brier_95pct_interval":interval(deltas_brier),
                  "delta_log_loss_95pct_interval":interval(deltas_loss)}
+    # Winner-oriented probabilities have target 1.0; audit bins are descriptive,
+    # not calibration fitting. No holdout values influence coefficients.
+    def reliability_bins(items,cs,ct):
+        bins=[]
+        for low,high in ((0.0,0.2),(0.2,0.4),(0.4,0.6),(0.6,0.8),(0.8,1.0)):
+            ps=[probability(r,cs,ct) for r in items if low<=probability(r,cs,ct)<high or (high==1.0 and probability(r,cs,ct)==1.0)]
+            bins.append({"range":[low,high],"count":len(ps),
+                         "mean_predicted_winner_probability":sum(ps)/len(ps) if ps else None,
+                         "observed_winner_rate":1.0 if ps else None})
+        return bins
+    # Confidence strata defined by the unchanged Elo probability, ensuring
+    # baseline and challenger are compared on exactly the same fight subsets.
+    strata=[]
+    for low,high in ((0.0,0.4),(0.4,0.5),(0.5,0.6),(0.6,0.7),(0.7,1.0)):
+        subset=[r for r in test if low<=r[2]<high or (high==1.0 and r[2]==1.0)]
+        base=metrics(subset,0,0)
+        changed=metrics(subset,*selected)
+        strata.append({"elo_probability_range":[low,high],"count":len(subset),
+                       "elo":base,"challenger":changed,
+                       "delta_brier":changed["brier"]-base["brier"] if subset else None,
+                       "delta_log_loss":changed["log_loss"]-base["log_loss"] if subset else None})
+    calibration_audit={"status":"DESCRIPTIVE_HOLDOUT_ONLY",
+                       "target_orientation":"winner_probability_y_equals_one",
+                       "elo_bins":reliability_bins(test,0,0),
+                       "challenger_bins":reliability_bins(test,*selected),
+                       "fixed_elo_confidence_strata":strata,
+                       "calibration_fitted_on_holdout":False}
     baseline=metrics(test,0,0)
     challenger=metrics(test,*selected)
     return {"status":"RESEARCH_ONLY_NOT_BET_ELIGIBLE",
@@ -111,7 +138,7 @@ def evaluate(elo,features):
             "original_elo_holdout_start":holdout_start,
             "selection":"train_log_loss_only_grid_search",
             "selected_sig_coefficient":selected[0],"selected_td_coefficient":selected[1],
-            "walk_forward":walk_forward,"uncertainty":uncertainty,"matched_cohort_elo":baseline,"matched_cohort_challenger":challenger,
+            "walk_forward":walk_forward,"uncertainty":uncertainty,"calibration_audit":calibration_audit,"matched_cohort_elo":baseline,"matched_cohort_challenger":challenger,
             "delta_brier":challenger["brier"]-baseline["brier"],
             "delta_log_loss":challenger["log_loss"]-baseline["log_loss"],
             "promotion_gate":{"status":"BLOCKED_INDEPENDENT_MARKET_VALIDATION","approved_for_live_predictions":False},"independent_market_validation":False,"deployed_to_live_predictions":False,
