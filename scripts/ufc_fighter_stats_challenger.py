@@ -132,6 +132,47 @@ def evaluate(elo,features):
     challenger_points=binary_points(test,*selected)
     elo_bins=reliability_bins(baseline_points)
     challenger_bins=reliability_bins(challenger_points)
+    # Fixed bins alone can exaggerate apparent calibration gains.
+    # Resample whole event dates to preserve within-event dependence.
+    def shifted_ece(points,shift):
+        edges=[0.0]+[v for v in (shift,shift+0.2,shift+0.4,shift+0.6,shift+0.8) if 0<v<1]+[1.0]
+        groups=[]
+        for low,high in zip(edges,edges[1:]):
+            group=[(p,y) for p,y in points if low<=p<high or (high==1.0 and p==1.0)]
+            if group:
+                groups.append((len(group),abs(sum(p-y for p,y in group)/len(group))))
+        return sum(n*err for n,err in groups)/len(points) if points else None
+    shifts=(0.0,0.05,0.1,0.15)
+    sensitivity=[{"bin_shift":shift,"elo_ece":shifted_ece(baseline_points,shift),
+                  "challenger_ece":shifted_ece(challenger_points,shift),
+                  "delta_ece":shifted_ece(challenger_points,shift)-shifted_ece(baseline_points,shift)}
+                 for shift in shifts]
+    date_groups={}
+    for row in test:
+        date_groups.setdefault(row[0][:10],[]).append(row)
+    event_dates=sorted(date_groups)
+    ece_deltas=[]
+    elo_ece_samples=[]
+    challenger_ece_samples=[]
+    if len(event_dates)>=20:
+        bootstrap_rng=random.Random(18019)
+        for _ in range(500):
+            sampled=[row for day in bootstrap_rng.choices(event_dates,k=len(event_dates))
+                     for row in date_groups[day]]
+            raw_points=binary_points(sampled,0,0)
+            adj_points=binary_points(sampled,*selected)
+            raw_ece=shifted_ece(raw_points,0.0)
+            adj_ece=shifted_ece(adj_points,0.0)
+            elo_ece_samples.append(raw_ece)
+            challenger_ece_samples.append(adj_ece)
+            ece_deltas.append(adj_ece-raw_ece)
+    calibration_uncertainty={"method":"paired_event_date_cluster_bootstrap",
+                             "replicates":len(ece_deltas),
+                             "elo_ece_95pct_interval":interval(elo_ece_samples),
+                             "challenger_ece_95pct_interval":interval(challenger_ece_samples),
+                             "delta_ece_95pct_interval":interval(ece_deltas),
+                             "bin_boundary_sensitivity":sensitivity,
+                             "research_only":True}
     calibration_audit={"status":"BINARY_CANONICAL_FIGHTER_HOLDOUT",
                        "orientation":"lexicographically_first_fighter_pre_result",
                        "one_record_per_fight":True,"holdout_count":len(test),
@@ -141,6 +182,7 @@ def evaluate(elo,features):
                        "elo_expected_calibration_error":ece(elo_bins,len(test)),
                        "challenger_expected_calibration_error":ece(challenger_bins,len(test)),
                        "calibration_fitted_on_holdout":False,
+                       "uncertainty_and_sensitivity":calibration_uncertainty,
                        "note":"Descriptive fixed-width ECE; not a betting edge or certification"}
     baseline=metrics(test,0,0)
     challenger=metrics(test,*selected)
