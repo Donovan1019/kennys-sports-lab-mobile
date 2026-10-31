@@ -42,6 +42,7 @@ def build(rows,k=24,minimum_history=5):
     eligible=[row for row in eligible if row[1] not in ambiguous_events]
     ratings={}
     bouts={}
+    last_fight={}
     seen=set()
     forecasts=[]
     all_forecasts=[]
@@ -60,10 +61,12 @@ def build(rows,k=24,minimum_history=5):
             rw=ratings.get(winner,1500.0)
             rl=ratings.get(loser,1500.0)
             probability=1/(1+10**((rl-rw)/400))
-            all_forecasts.append({'fight_id':fid,'event_id':eid,'start_time':t.isoformat(),'winner_probability':probability,'winner_prior_bouts':bouts.get(winner,0),'loser_prior_bouts':bouts.get(loser,0)})
+            winner_days=(t-last_fight[winner]).days if winner in last_fight else None
+            loser_days=(t-last_fight[loser]).days if loser in last_fight else None
+            all_forecasts.append({'fight_id':fid,'event_id':eid,'start_time':t.isoformat(),'winner_probability':probability,'winner_prior_bouts':bouts.get(winner,0),'loser_prior_bouts':bouts.get(loser,0),'winner_days_since_last_fight':winner_days,'loser_days_since_last_fight':loser_days})
             if bouts.get(winner,0)>=minimum_history and bouts.get(loser,0)>=minimum_history:
                 forecasts.append({'fight_id':fid,'event_id':eid,'start_time':t.isoformat(),
-                                  'winner':winner,'loser':loser,'winner_probability':probability,
+                                  'winner':winner,'loser':loser,'winner_probability':probability,'inactivity_gap_days':(winner_days-loser_days) if winner_days is not None and loser_days is not None else None,
                                   'model_version':'ufc-elo-baseline-v1','research_only':True,'bet_eligible':False})
             updates.append((winner,loser,rw,rl,k*(1-probability)))
         for winner,loser,rw,rl,delta in updates:
@@ -71,6 +74,8 @@ def build(rows,k=24,minimum_history=5):
             ratings[loser]=rl-delta
             bouts[winner]=bouts.get(winner,0)+1
             bouts[loser]=bouts.get(loser,0)+1
+            last_fight[winner]=group[0][0]
+            last_fight[loser]=group[0][0]
     # Time-ordered holdout on the strict minimum-history cohort.
     # Do not fit Elo hyperparameters on the holdout window.
     cutoff=int(len(forecasts)*0.8)
