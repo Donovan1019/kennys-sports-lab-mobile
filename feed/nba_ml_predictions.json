@@ -1,7 +1,7 @@
 {
   "status": "validated",
   "sport": "basketball_nba",
-  "generated_at": "2026-10-31T20:45:24.225518+00:00",
+  "generated_at": "2026-10-31T22:44:27.670787+00:00",
   "calibration_passed": true,
   "model_version": "elo-walkforward-v1-holdout-audit",
   "validation_report": {
@@ -24,18 +24,6 @@
   },
   "training_cutoff": "2026-10-31T02:00Z",
   "predictions": [
-    {
-      "event_id": "067d97a124c10ea2d206546384500c5e",
-      "team": "Charlotte Hornets",
-      "date_et": "2026-10-31",
-      "win_probability": 0.540859
-    },
-    {
-      "event_id": "067d97a124c10ea2d206546384500c5e",
-      "team": "Philadelphia 76ers",
-      "date_et": "2026-10-31",
-      "win_probability": 0.459141
-    },
     {
       "event_id": "77270837bc694d198c10f42937690d75",
       "team": "New Orleans Pelicans",
