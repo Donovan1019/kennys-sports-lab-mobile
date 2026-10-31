@@ -104,33 +104,44 @@ def evaluate(elo,features):
     uncertainty={"method":"paired_date_cluster_bootstrap","replicates":len(deltas_brier),
                  "delta_brier_95pct_interval":interval(deltas_brier),
                  "delta_log_loss_95pct_interval":interval(deltas_loss)}
-    # Winner-oriented probabilities have target 1.0; audit bins are descriptive,
-    # not calibration fitting. No holdout values influence coefficients.
-    def reliability_bins(items,cs,ct):
+    # Canonical fighter orientation is independent of fight outcomes.
+    # Each fight contributes exactly one binary label, never mirrored twice.
+    outcomes={x["fight_id"]:(x["winner"],x["loser"]) for x in features["features"]}
+    def binary_points(items,cs,ct):
+        points=[]
+        for row in items:
+            winner,loser=outcomes[row[1]]
+            canonical=min(winner,loser)
+            winner_probability=probability(row,cs,ct)
+            points.append((winner_probability if canonical==winner else 1-winner_probability,
+                           int(canonical==winner)))
+        return points
+    def reliability_bins(points):
         bins=[]
         for low,high in ((0.0,0.2),(0.2,0.4),(0.4,0.6),(0.6,0.8),(0.8,1.0)):
-            ps=[probability(r,cs,ct) for r in items if low<=probability(r,cs,ct)<high or (high==1.0 and probability(r,cs,ct)==1.0)]
-            bins.append({"range":[low,high],"count":len(ps),
-                         "mean_predicted_winner_probability":sum(ps)/len(ps) if ps else None,
-                         "observed_winner_rate":1.0 if ps else None})
+            subset=[(p,y) for p,y in points if low<=p<high or (high==1.0 and p==1.0)]
+            count=len(subset)
+            bins.append({"range":[low,high],"count":count,
+                         "mean_predicted_probability":sum(p for p,y in subset)/count if count else None,
+                         "observed_win_rate":sum(y for p,y in subset)/count if count else None})
         return bins
-    # Confidence strata defined by the unchanged Elo probability, ensuring
-    # baseline and challenger are compared on exactly the same fight subsets.
-    strata=[]
-    for low,high in ((0.0,0.4),(0.4,0.5),(0.5,0.6),(0.6,0.7),(0.7,1.0)):
-        subset=[r for r in test if low<=r[2]<high or (high==1.0 and r[2]==1.0)]
-        base=metrics(subset,0,0)
-        changed=metrics(subset,*selected)
-        strata.append({"elo_probability_range":[low,high],"count":len(subset),
-                       "elo":base,"challenger":changed,
-                       "delta_brier":changed["brier"]-base["brier"] if subset else None,
-                       "delta_log_loss":changed["log_loss"]-base["log_loss"] if subset else None})
-    calibration_audit={"status":"DESCRIPTIVE_HOLDOUT_ONLY",
-                       "target_orientation":"winner_probability_y_equals_one",
-                       "elo_bins":reliability_bins(test,0,0),
-                       "challenger_bins":reliability_bins(test,*selected),
-                       "fixed_elo_confidence_strata":strata,
-                       "calibration_fitted_on_holdout":False}
+    def ece(bins,total):
+        return sum(b["count"]*abs(b["mean_predicted_probability"]-b["observed_win_rate"])
+                   for b in bins if b["count"])/total if total else None
+    baseline_points=binary_points(test,0,0)
+    challenger_points=binary_points(test,*selected)
+    elo_bins=reliability_bins(baseline_points)
+    challenger_bins=reliability_bins(challenger_points)
+    calibration_audit={"status":"BINARY_CANONICAL_FIGHTER_HOLDOUT",
+                       "orientation":"lexicographically_first_fighter_pre_result",
+                       "one_record_per_fight":True,"holdout_count":len(test),
+                       "observed_wins":sum(y for p,y in baseline_points),
+                       "observed_losses":sum(1-y for p,y in baseline_points),
+                       "elo_bins":elo_bins,"challenger_bins":challenger_bins,
+                       "elo_expected_calibration_error":ece(elo_bins,len(test)),
+                       "challenger_expected_calibration_error":ece(challenger_bins,len(test)),
+                       "calibration_fitted_on_holdout":False,
+                       "note":"Descriptive fixed-width ECE; not a betting edge or certification"}
     baseline=metrics(test,0,0)
     challenger=metrics(test,*selected)
     return {"status":"RESEARCH_ONLY_NOT_BET_ELIGIBLE",
