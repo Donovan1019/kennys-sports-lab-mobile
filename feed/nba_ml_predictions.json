@@ -1,7 +1,7 @@
 {
   "status": "validated",
   "sport": "basketball_nba",
-  "generated_at": "2026-10-30T23:22:46.487971+00:00",
+  "generated_at": "2026-10-31T01:09:51.052835+00:00",
   "calibration_passed": true,
   "model_version": "elo-walkforward-v1-holdout-audit",
   "validation_report": {
@@ -25,78 +25,6 @@
   "training_cutoff": "2026-10-30T02:00Z",
   "predictions": [
     {
-      "event_id": "036a93ca33d6261c21d4bfa6e0d02568",
-      "team": "Boston Celtics",
-      "date_et": "2026-10-30",
-      "win_probability": 0.880056
-    },
-    {
-      "event_id": "036a93ca33d6261c21d4bfa6e0d02568",
-      "team": "Chicago Bulls",
-      "date_et": "2026-10-30",
-      "win_probability": 0.119944
-    },
-    {
-      "event_id": "64df299b882ea19ad5f8cb0ed5516a6f",
-      "team": "Brooklyn Nets",
-      "date_et": "2026-10-30",
-      "win_probability": 0.144982
-    },
-    {
-      "event_id": "64df299b882ea19ad5f8cb0ed5516a6f",
-      "team": "Detroit Pistons",
-      "date_et": "2026-10-30",
-      "win_probability": 0.855018
-    },
-    {
-      "event_id": "96a166bbd49782dbd9a61c2fb9069787",
-      "team": "Philadelphia 76ers",
-      "date_et": "2026-10-30",
-      "win_probability": 0.549734
-    },
-    {
-      "event_id": "96a166bbd49782dbd9a61c2fb9069787",
-      "team": "New York Knicks",
-      "date_et": "2026-10-30",
-      "win_probability": 0.450266
-    },
-    {
-      "event_id": "a0f5d89a4fc51e52edd0e70d1e4cbaf2",
-      "team": "Toronto Raptors",
-      "date_et": "2026-10-30",
-      "win_probability": 0.578907
-    },
-    {
-      "event_id": "a0f5d89a4fc51e52edd0e70d1e4cbaf2",
-      "team": "Orlando Magic",
-      "date_et": "2026-10-30",
-      "win_probability": 0.421093
-    },
-    {
-      "event_id": "b9778d0e3a26167eb49901dcae7eeb98",
-      "team": "Dallas Mavericks",
-      "date_et": "2026-10-30",
-      "win_probability": 0.281086
-    },
-    {
-      "event_id": "b9778d0e3a26167eb49901dcae7eeb98",
-      "team": "Houston Rockets",
-      "date_et": "2026-10-30",
-      "win_probability": 0.718914
-    },
-    {
-      "event_id": "c3a424e24d426af94a693e06a33e3037",
-      "team": "Miami Heat",
-      "date_et": "2026-10-30",
-      "win_probability": 0.773198
-    },
-    {
-      "event_id": "c3a424e24d426af94a693e06a33e3037",
-      "team": "Indiana Pacers",
-      "date_et": "2026-10-30",
-      "win_probability": 0.226802
-    },
-    {
       "event_id": "9ae108f7a23e86e8102237053dd9e58d",
       "team": "Phoenix Suns",
       "date_et": "2026-10-30",
@@ -119,6 +47,66 @@
       "team": "Los Angeles Lakers",
       "date_et": "2026-10-30",
       "win_probability": 0.654978
+    },
+    {
+      "event_id": "d47417c3b1a2cd427cce74c9d00f1046",
+      "team": "Utah Jazz",
+      "date_et": "2026-10-31",
+      "win_probability": 0.25572
+    },
+    {
+      "event_id": "d47417c3b1a2cd427cce74c9d00f1046",
+      "team": "Portland Trail Blazers",
+      "date_et": "2026-10-31",
+      "win_probability": 0.74428
+    },
+    {
+      "event_id": "77270837bc694d198c10f42937690d75",
+      "team": "New Orleans Pelicans",
+      "date_et": "2026-10-31",
+      "win_probability": 0.327682
+    },
+    {
+      "event_id": "77270837bc694d198c10f42937690d75",
+      "team": "Atlanta Hawks",
+      "date_et": "2026-10-31",
+      "win_probability": 0.672318
+    },
+    {
+      "event_id": "6d7e1e0af6d568f4435d35a1763a3622",
+      "team": "Milwaukee Bucks",
+      "date_et": "2026-10-31",
+      "win_probability": 0.278764
+    },
+    {
+      "event_id": "6d7e1e0af6d568f4435d35a1763a3622",
+      "team": "Cleveland Cavaliers",
+      "date_et": "2026-10-31",
+      "win_probability": 0.721236
+    },
+    {
+      "event_id": "863ae1092be42c6b563b2c4f099a3eb3",
+      "team": "Memphis Grizzlies",
+      "date_et": "2026-10-31",
+      "win_probability": 0.6526
+    },
+    {
+      "event_id": "863ae1092be42c6b563b2c4f099a3eb3",
+      "team": "Sacramento Kings",
+      "date_et": "2026-10-31",
+      "win_probability": 0.3474
+    },
+    {
+      "event_id": "06a03fb0ce0f81a970c6000fb71fdc6d",
+      "team": "San Antonio Spurs",
+      "date_et": "2026-10-31",
+      "win_probability": 0.718484
+    },
+    {
+      "event_id": "06a03fb0ce0f81a970c6000fb71fdc6d",
+      "team": "Minnesota Timberwolves",
+      "date_et": "2026-10-31",
+      "win_probability": 0.281516
     },
     {
       "event_id": "a6555e8b7252dfb32f1817fc8c59ad83",
