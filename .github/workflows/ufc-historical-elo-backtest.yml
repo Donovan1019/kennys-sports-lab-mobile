@@ -34,6 +34,7 @@ jobs:
           audit=report['calibration_audit']
           inactivity=report['inactivity_audit']
           walk_forward=report['inactivity_walk_forward']
+          feature_readiness=report['fighter_feature_readiness']
           fields=[
               ('Calibration status',audit['status']),
               ('Training fights',audit['fit_count']),
@@ -56,10 +57,14 @@ jobs:
           summary+='\\nNot sportsbook-verified; not betting certified.\\n'
           summary+='\\n## Expanding-window inactivity checks\\n\\n| Train | Test | Coefficient | Brier delta | Log-loss delta |\\n|---:|---:|---:|---:|---:|\\n'
           summary+=''.join(f"| {w['train_count']} | {w['test_count']} | {w['selected_coefficient']} | {w['delta_brier']:.6f} | {w['delta_log_loss']:.6f} |\\n" for w in walk_forward['windows'])
+          summary+='\\n## Fighter-stat feature readiness\\n\\n'
+          summary+=f"Status: **{feature_readiness['status']}**\\n\\n"
+          summary+='Unavailable: '+', '.join(feature_readiness['unavailable'])+'\\n\\n'
+          summary+='No fabricated striking or grappling predictions.\\n'
           with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as output:
               output.write(summary)
           print(json.dumps({'calibration_audit':audit,'raw_holdout_brier':report['holdout_brier'],
-                            'raw_holdout_log_loss':report['holdout_log_loss'], 'inactivity_audit':inactivity,'inactivity_walk_forward':walk_forward}))
+                            'raw_holdout_log_loss':report['holdout_log_loss'], 'inactivity_audit':inactivity,'inactivity_walk_forward':walk_forward,'fighter_feature_readiness':feature_readiness}))
           PY
       - name: Download and audit free historical odds candidates
         run: |
