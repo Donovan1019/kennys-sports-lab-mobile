@@ -32,7 +32,6 @@ jobs:
       - name: Match historical stat identities against verified bouts
         run: |
           python scripts/ufc_historical_stats_audit.py --input /tmp/ufc-history/fight_stats.csv --bouts /tmp/ufc-history/verified_bouts.json --output /tmp/ufc-history/fight_stats_audit.json
-          python -c "import json; from pathlib import Path; a=json.loads(Path(\u0027/tmp/ufc-history/fight_stats_audit.json\u0027).read_text()); print(\u0027UFC identity failure categories:\u0027, a[\u0027invalid_reasons\u0027]); print(\u0027Round examples:\u0027, a[\u0027round_format_examples\u0027])"
       - name: Publish chronological calibration audit to workflow summary
         run: |
           python - <<'PY'
