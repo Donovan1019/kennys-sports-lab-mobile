@@ -29,6 +29,9 @@ jobs:
         run: |
           python scripts/ufc_import_historical_csv.py --events /tmp/ufc-history/events.csv --fights /tmp/ufc-history/fights.csv --output /tmp/ufc-history/verified_bouts.json
           python scripts/ufc_elo_baseline.py --input /tmp/ufc-history/verified_bouts.json --output /tmp/ufc-history/elo_report.json --minimum-evaluated 1
+      - name: Match historical stat identities against verified bouts
+        run: |
+          python scripts/ufc_historical_stats_audit.py --input /tmp/ufc-history/fight_stats.csv --bouts /tmp/ufc-history/verified_bouts.json --output /tmp/ufc-history/fight_stats_audit.json
       - name: Publish chronological calibration audit to workflow summary
         run: |
           python - <<'PY'
