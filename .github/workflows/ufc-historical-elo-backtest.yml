@@ -19,7 +19,12 @@ jobs:
           curl --fail --location --retry 3 --max-time 120 --output /tmp/ufc-history/fights.csv https://raw.githubusercontent.com/Greco1899/scrape_ufc_stats/main/ufc_fight_results.csv
           test -s /tmp/ufc-history/events.csv
           test -s /tmp/ufc-history/fights.csv
-          sha256sum /tmp/ufc-history/events.csv /tmp/ufc-history/fights.csv | tee /tmp/ufc-history/source_sha256.txt
+          curl --fail --location --retry 3 --max-time 120 --output /tmp/ufc-history/fight_stats.csv https://raw.githubusercontent.com/Greco1899/scrape_ufc_stats/main/ufc_fight_stats.csv
+          test -s /tmp/ufc-history/fight_stats.csv
+          sha256sum /tmp/ufc-history/events.csv /tmp/ufc-history/fights.csv /tmp/ufc-history/fight_stats.csv | tee /tmp/ufc-history/source_sha256.txt
+      - name: Audit fighter-level historical stats feed
+        run: |
+          python scripts/ufc_historical_stats_audit.py --input /tmp/ufc-history/fight_stats.csv --output /tmp/ufc-history/fight_stats_audit.json
       - name: Import and evaluate real historical fights
         run: |
           python scripts/ufc_import_historical_csv.py --events /tmp/ufc-history/events.csv --fights /tmp/ufc-history/fights.csv --output /tmp/ufc-history/verified_bouts.json
@@ -89,6 +94,7 @@ jobs:
           path: |
             /tmp/ufc-history/source_sha256.txt
             /tmp/ufc-history/verified_bouts.json
+            /tmp/ufc-history/fight_stats_audit.json
             /tmp/ufc-history/elo_report.json
             /tmp/ufc-history/odds_candidates.json
             /tmp/ufc-history/retrospective_market_comparison.json
