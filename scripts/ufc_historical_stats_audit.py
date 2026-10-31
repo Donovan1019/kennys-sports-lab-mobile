@@ -3,6 +3,7 @@
 import argparse
 import csv
 import json
+import re
 from collections import Counter
 from pathlib import Path
 
@@ -34,13 +35,14 @@ def audit(path, bouts_path=None):
             if not event: invalid_reasons["missing_event"]+=1
             if len(pair)!=2 or len(set(pair))!=2: invalid_reasons["bad_bout"]+=1
             if fighter not in pair: invalid_reasons["fighter_not_in_bout"]+=1
-            if not rnd.isdigit() or int(rnd)<1: 
+            round_match=re.fullmatch(r"(?:Round )?([1-5])",rnd)
+            if round_match is None: 
                 invalid_reasons["non_numeric_round"]+=1
                 if rnd not in round_examples and len(round_examples)<8: round_examples.append(rnd)
-            if not event or len(pair)!=2 or len(set(pair))!=2 or fighter not in pair or not rnd.isdigit() or int(rnd)<1:
+            if not event or len(pair)!=2 or len(set(pair))!=2 or fighter not in pair or round_match is None:
                 identities["invalid_rows"]+=1
             else:
-                key=(event,frozenset(pair),fighter,int(rnd))
+                key=(event,frozenset(pair),fighter,int(round_match.group(1)))
                 if key in seen:
                     identities["duplicate_rows"]+=1
                 seen.add(key)
