@@ -33,6 +33,7 @@ jobs:
           report=json.loads(Path('/tmp/ufc-history/elo_report.json').read_text())
           audit=report['calibration_audit']
           inactivity=report['inactivity_audit']
+          walk_forward=report['inactivity_walk_forward']
           fields=[
               ('Calibration status',audit['status']),
               ('Training fights',audit['fit_count']),
@@ -53,10 +54,12 @@ jobs:
           summary='## UFC Elo chronological calibration (research only)\\n\\n| Metric | Value |\\n|---|---|\\n'
           summary+=''.join(f'| {name} | {value} |\\n' for name,value in fields)
           summary+='\\nNot sportsbook-verified; not betting certified.\\n'
+          summary+='\\n## Expanding-window inactivity checks\\n\\n| Train | Test | Coefficient | Brier delta | Log-loss delta |\\n|---:|---:|---:|---:|---:|\\n'
+          summary+=''.join(f"| {w['train_count']} | {w['test_count']} | {w['selected_coefficient']} | {w['delta_brier']:.6f} | {w['delta_log_loss']:.6f} |\\n" for w in walk_forward['windows'])
           with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as output:
               output.write(summary)
           print(json.dumps({'calibration_audit':audit,'raw_holdout_brier':report['holdout_brier'],
-                            'raw_holdout_log_loss':report['holdout_log_loss'], 'inactivity_audit':inactivity}))
+                            'raw_holdout_log_loss':report['holdout_log_loss'], 'inactivity_audit':inactivity,'inactivity_walk_forward':walk_forward}))
           PY
       - name: Download and audit free historical odds candidates
         run: |
