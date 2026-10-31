@@ -6,7 +6,7 @@ import json
 from collections import Counter
 from pathlib import Path
 
-def audit(path):
+def audit(path, bouts_path=None):
     with open(path, newline="", encoding="utf-8-sig") as fh:
         reader=csv.DictReader(fh)
         columns=reader.fieldnames or []
@@ -14,10 +14,34 @@ def audit(path):
             raise ValueError("Missing or duplicate columns")
         rows=0
         empty=Counter()
+        identities=Counter()
+        seen=set()
+        verified=set()
+        matched=set()
+        if bouts_path:
+            bouts=json.loads(Path(bouts_path).read_text())["results"]
+            verified={(b["event_id"],frozenset((b["winner"],b["loser"]))) for b in bouts}
         for row in reader:
             if None in row:
                 raise ValueError("Malformed CSV row")
             rows+=1
+            event=(row.get("EVENT") or "").strip()
+            pair=[x.strip() for x in (row.get("BOUT") or "").split(" vs. ")]
+            fighter=(row.get("FIGHTER") or "").strip()
+            rnd=(row.get("ROUND") or "").strip()
+            if not event or len(pair)!=2 or len(set(pair))!=2 or fighter not in pair or not rnd.isdigit() or int(rnd)<1:
+                identities["invalid_rows"]+=1
+            else:
+                key=(event,frozenset(pair),fighter,int(rnd))
+                if key in seen:
+                    identities["duplicate_rows"]+=1
+                seen.add(key)
+                bout_key=(event,frozenset(pair))
+                if bout_key in verified:
+                    identities["matched_rows"]+=1
+                    matched.add(bout_key)
+                else:
+                    identities["unmatched_rows"]+=1
             for col in columns:
                 if not (row.get(col) or "").strip():
                     empty[col]+=1
@@ -26,6 +50,8 @@ def audit(path):
     return {"status":"RAW_FIGHT_STATS_AVAILABLE_RESEARCH_ONLY",
             "source":"Greco1899/scrape_ufc_stats/ufc_fight_stats.csv",
             "rows":rows,"columns":columns,"empty_by_column":dict(empty),
+            "identity_audit":dict(identities),"matched_verified_bouts":len(matched),
+            "verified_bouts":len(verified),"identity_matching_performed":bool(bouts_path),
             "pre_fight_feature_ready":False,
             "matched_to_verified_bouts":False,
             "leakage_safe_chronological_aggregates_ready":False,
@@ -38,8 +64,9 @@ def main():
     p=argparse.ArgumentParser()
     p.add_argument("--input",required=True)
     p.add_argument("--output",required=True)
+    p.add_argument("--bouts")
     args=p.parse_args()
-    report=audit(args.input)
+    report=audit(args.input,args.bouts)
     Path(args.output).write_text(json.dumps(report,indent=2)+"\n")
     print(json.dumps(report))
 if __name__=="__main__":
