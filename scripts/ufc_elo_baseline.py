@@ -157,6 +157,18 @@ def build(rows,k=24,minimum_history=5):
     inactivity_walk_forward={"status":"RESEARCH_ONLY",
         "method":"expanding_train_disjoint_test_windows",
         "windows":window_audit,"deployed_to_live_predictions":False}
+    # Source contract: the imported fight-results feed contains winners and
+    # dates, not verified per-fighter striking/takedown statistics. Never
+    # fabricate these fields or fit a challenger on unavailable measurements.
+    feature_readiness={"status":"BLOCKED_MISSING_VERIFIED_FIGHT_STATS",
+        "source":"Greco1899 UFCStats event/results CSVs",
+        "available":["historical_outcomes","prior_opponent_elo","prior_bout_count","inactivity_days"],
+        "unavailable":["pre_fight_significant_strikes","pre_fight_takedowns",
+                       "pre_fight_control_time","pre_fight_weight_class"],
+        "striking_challenger_evaluated":False,
+        "grappling_challenger_evaluated":False,
+        "live_predictions_modified":False,
+        "reason":"Results-only import has no timestamped per-fighter fight statistics"}
     holdout_skill=(1-holdout_brier/0.25) if holdout else None
     # 50% is a diagnostic reference; compare against chronological pre-fight
     # sportsbook probabilities separately when licensed historical odds exist.
@@ -174,7 +186,7 @@ def build(rows,k=24,minimum_history=5):
     return {"schema":1,"sport":"UFC","model_version":"ufc-elo-baseline-v1",
             "historical_bouts_used":len(seen),"excluded_ambiguous_date_events":len(ambiguous_events),"pre_update_evaluated_fights":n,"all_pre_update_evaluated_fights":all_n,"all_pre_update_brier":all_brier,"all_pre_update_log_loss":all_log_loss,"all_pre_update_brier_skill_vs_50pct":(1-all_brier/0.25) if all_n else None,
             "brier":brier,"log_loss":loss,"baseline_brier":baseline_brier,"baseline_log_loss":baseline_log_loss,"brier_skill_vs_50pct":improvement_brier,"minimum_prior_bouts_per_fighter":minimum_history,
-            "holdout_evaluated_fights":len(holdout),"calibration_audit":calibration_audit,"inactivity_audit":inactivity_audit,"inactivity_walk_forward":inactivity_walk_forward,"holdout_start":holdout_start,"holdout_end":holdout_end,"holdout_brier":holdout_brier,"holdout_log_loss":holdout_log_loss,"holdout_brier_skill_vs_50pct":holdout_skill,"holdout_status":"INSUFFICIENT_SAMPLE" if len(holdout)<30 else "CHRONOLOGICAL_EVALUATION_ONLY","all_pre_update_forecasts":all_forecasts,"ratings":{name:{"elo":round(ratings[name],2),"historical_bouts":bouts[name]}
+            "holdout_evaluated_fights":len(holdout),"calibration_audit":calibration_audit,"inactivity_audit":inactivity_audit,"inactivity_walk_forward":inactivity_walk_forward,"fighter_feature_readiness":feature_readiness,"holdout_start":holdout_start,"holdout_end":holdout_end,"holdout_brier":holdout_brier,"holdout_log_loss":holdout_log_loss,"holdout_brier_skill_vs_50pct":holdout_skill,"holdout_status":"INSUFFICIENT_SAMPLE" if len(holdout)<30 else "CHRONOLOGICAL_EVALUATION_ONLY","all_pre_update_forecasts":all_forecasts,"ratings":{name:{"elo":round(ratings[name],2),"historical_bouts":bouts[name]}
                        for name in sorted(ratings)},"forecasts":forecasts,
             "bet_eligible":False,"calibration_status":"INSUFFICIENT_SAMPLE" if n<100 else "REQUIRES_INDEPENDENT_HOLDOUT",
             "limitations":["Same-event predictions use a frozen pre-event rating snapshot",
