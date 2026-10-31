@@ -99,6 +99,40 @@ def build(rows,k=24,minimum_history=5):
         "holdout_log_loss":calibrated_log_loss,
         "delta_brier_vs_raw":(calibrated_brier-holdout_brier) if calibrated_brier is not None else None,
         "delta_log_loss_vs_raw":(calibrated_log_loss-holdout_log_loss) if calibrated_log_loss is not None else None}
+    # Train inactivity adjustment on the earlier cohort only; never tune on holdout.
+    # The gap is signed relative to the actual winner, with a symmetric
+    # pre-fight logit adjustment. Keep the baseline untouched.
+    def inactivity_prob(item,coefficient):
+        p=min(1-1e-12,max(1e-12,item["winner_probability"]))
+        gap=item.get("inactivity_gap_days")
+        if gap is None:
+            return p
+        gap=max(-365,min(365,gap))/365.0
+        logit=math.log(p/(1-p))-coefficient*gap
+        return 1/(1+math.exp(-logit))
+    def inactivity_metrics(items,coefficient):
+        if not items:
+            return {"count":0,"brier":None,"log_loss":None}
+        probabilities=[inactivity_prob(x,coefficient) for x in items]
+        return {"count":len(items),
+                "brier":sum((1-p)**2 for p in probabilities)/len(items),
+                "log_loss":sum(-math.log(max(1e-12,p)) for p in probabilities)/len(items)}
+    inactivity_candidates=(-1.0,-0.5,-0.25,0.0,0.25,0.5,1.0)
+    usable_train=[x for x in train if x.get("inactivity_gap_days") is not None]
+    usable_holdout=[x for x in holdout if x.get("inactivity_gap_days") is not None]
+    selected_inactivity=(min(inactivity_candidates,
+        key=lambda c:(inactivity_metrics(usable_train,c)["log_loss"],abs(c),c))
+        if len(usable_train)>=30 else 0.0)
+    inactivity_raw=inactivity_metrics(holdout,0.0)
+    inactivity_adjusted=inactivity_metrics(holdout,selected_inactivity)
+    inactivity_audit={"status":"RESEARCH_ONLY","train_available":len(usable_train),
+        "holdout_available":len(usable_holdout),"holdout_total":len(holdout),
+        "candidate_coefficients":list(inactivity_candidates),
+        "selected_coefficient":selected_inactivity,"fit_only_on_pre_holdout":True,
+        "raw_holdout":inactivity_raw,"adjusted_holdout":inactivity_adjusted,
+        "delta_brier":inactivity_adjusted["brier"]-inactivity_raw["brier"] if holdout else None,
+        "delta_log_loss":inactivity_adjusted["log_loss"]-inactivity_raw["log_loss"] if holdout else None,
+        "deployed_to_live_predictions":False}
     holdout_skill=(1-holdout_brier/0.25) if holdout else None
     # 50% is a diagnostic reference; compare against chronological pre-fight
     # sportsbook probabilities separately when licensed historical odds exist.
@@ -116,11 +150,11 @@ def build(rows,k=24,minimum_history=5):
     return {"schema":1,"sport":"UFC","model_version":"ufc-elo-baseline-v1",
             "historical_bouts_used":len(seen),"excluded_ambiguous_date_events":len(ambiguous_events),"pre_update_evaluated_fights":n,"all_pre_update_evaluated_fights":all_n,"all_pre_update_brier":all_brier,"all_pre_update_log_loss":all_log_loss,"all_pre_update_brier_skill_vs_50pct":(1-all_brier/0.25) if all_n else None,
             "brier":brier,"log_loss":loss,"baseline_brier":baseline_brier,"baseline_log_loss":baseline_log_loss,"brier_skill_vs_50pct":improvement_brier,"minimum_prior_bouts_per_fighter":minimum_history,
-            "holdout_evaluated_fights":len(holdout),"calibration_audit":calibration_audit,"holdout_start":holdout_start,"holdout_end":holdout_end,"holdout_brier":holdout_brier,"holdout_log_loss":holdout_log_loss,"holdout_brier_skill_vs_50pct":holdout_skill,"holdout_status":"INSUFFICIENT_SAMPLE" if len(holdout)<30 else "CHRONOLOGICAL_EVALUATION_ONLY","all_pre_update_forecasts":all_forecasts,"ratings":{name:{"elo":round(ratings[name],2),"historical_bouts":bouts[name]}
+            "holdout_evaluated_fights":len(holdout),"calibration_audit":calibration_audit,"inactivity_audit":inactivity_audit,"holdout_start":holdout_start,"holdout_end":holdout_end,"holdout_brier":holdout_brier,"holdout_log_loss":holdout_log_loss,"holdout_brier_skill_vs_50pct":holdout_skill,"holdout_status":"INSUFFICIENT_SAMPLE" if len(holdout)<30 else "CHRONOLOGICAL_EVALUATION_ONLY","all_pre_update_forecasts":all_forecasts,"ratings":{name:{"elo":round(ratings[name],2),"historical_bouts":bouts[name]}
                        for name in sorted(ratings)},"forecasts":forecasts,
             "bet_eligible":False,"calibration_status":"INSUFFICIENT_SAMPLE" if n<100 else "REQUIRES_INDEPENDENT_HOLDOUT",
             "limitations":["Same-event predictions use a frozen pre-event rating snapshot",
-                           "No fighter inactivity, age, weight class, injuries, or style adjustments",
+                           "Inactivity adjustment evaluated as research only; no age, weight class, injuries, or style adjustments in live predictions",
                            "Chronological holdout is descriptive only; no independent external validation or archived odds"]}
 
 def main():
