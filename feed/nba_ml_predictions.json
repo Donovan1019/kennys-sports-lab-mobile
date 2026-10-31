@@ -1,7 +1,7 @@
 {
   "status": "validated",
   "sport": "basketball_nba",
-  "generated_at": "2026-10-31T18:53:59.816582+00:00",
+  "generated_at": "2026-10-31T20:45:24.225518+00:00",
   "calibration_passed": true,
   "model_version": "elo-walkforward-v1-holdout-audit",
   "validation_report": {
@@ -24,18 +24,6 @@
   },
   "training_cutoff": "2026-10-31T02:00Z",
   "predictions": [
-    {
-      "event_id": "d47417c3b1a2cd427cce74c9d00f1046",
-      "team": "Utah Jazz",
-      "date_et": "2026-10-31",
-      "win_probability": 0.25572
-    },
-    {
-      "event_id": "d47417c3b1a2cd427cce74c9d00f1046",
-      "team": "Portland Trail Blazers",
-      "date_et": "2026-10-31",
-      "win_probability": 0.74428
-    },
     {
       "event_id": "067d97a124c10ea2d206546384500c5e",
       "team": "Charlotte Hornets",
