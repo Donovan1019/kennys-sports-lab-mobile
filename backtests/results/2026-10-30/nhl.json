@@ -1,0 +1,46 @@
+{
+  "sport": "NHL",
+  "date": "2026-10-30",
+  "games": [
+    {
+      "event_id": "401892611",
+      "event": "New Jersey Devils at Vegas Golden Knights",
+      "commence_time": "2026-10-30T22:00Z",
+      "home": "Vegas Golden Knights",
+      "away": "New Jersey Devils",
+      "home_score": 2,
+      "away_score": 5,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261030&limit=100"
+    },
+    {
+      "event_id": "401892612",
+      "event": "Winnipeg Jets at Florida Panthers",
+      "commence_time": "2026-10-30T23:00Z",
+      "home": "Florida Panthers",
+      "away": "Winnipeg Jets",
+      "home_score": 5,
+      "away_score": 2,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261030&limit=100"
+    },
+    {
+      "event_id": "401892613",
+      "event": "Seattle Kraken at Calgary Flames",
+      "commence_time": "2026-10-31T00:00Z",
+      "home": "Calgary Flames",
+      "away": "Seattle Kraken",
+      "home_score": 6,
+      "away_score": 2,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261030&limit=100"
+    }
+  ],
+  "source_url": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261030&limit=100"
+}

@@ -1,6 +1,6 @@
 {
   "date": "2026-10-30",
-  "generated_at": "2026-10-30T22:48:30.769764+00:00",
+  "generated_at": "2026-10-31T16:46:46.724368+00:00",
   "sports": {
     "NFL": {
       "status": "OUTCOMES_UNVERIFIED",
@@ -14,34 +14,180 @@
       "pending": 26
     },
     "NBA": {
-      "status": "OUTCOMES_UNVERIFIED",
+      "status": "PARTIALLY_SETTLED_MONEYLINES",
       "saved_quotes": 1460,
       "eligible_predictions": 54,
       "research_only_predictions": 54,
       "bet_eligible_predictions": 0,
       "blocked_predictions": [],
-      "graded": 0,
-      "settled": [],
-      "pending": 54
+      "graded": 18,
+      "settled": [
+        {
+          "event": "Charlotte Hornets @ Washington Wizards",
+          "market": "h2h",
+          "selection": "Washington Wizards",
+          "outcome": "win"
+        },
+        {
+          "event": "Charlotte Hornets @ Washington Wizards",
+          "market": "h2h",
+          "selection": "Charlotte Hornets",
+          "outcome": "loss"
+        },
+        {
+          "event": "Chicago Bulls @ Boston Celtics",
+          "market": "h2h",
+          "selection": "Boston Celtics",
+          "outcome": "win"
+        },
+        {
+          "event": "Chicago Bulls @ Boston Celtics",
+          "market": "h2h",
+          "selection": "Chicago Bulls",
+          "outcome": "loss"
+        },
+        {
+          "event": "Detroit Pistons @ Brooklyn Nets",
+          "market": "h2h",
+          "selection": "Brooklyn Nets",
+          "outcome": "loss"
+        },
+        {
+          "event": "Detroit Pistons @ Brooklyn Nets",
+          "market": "h2h",
+          "selection": "Detroit Pistons",
+          "outcome": "win"
+        },
+        {
+          "event": "New York Knicks @ Philadelphia 76ers",
+          "market": "h2h",
+          "selection": "Philadelphia 76ers",
+          "outcome": "win"
+        },
+        {
+          "event": "New York Knicks @ Philadelphia 76ers",
+          "market": "h2h",
+          "selection": "New York Knicks",
+          "outcome": "loss"
+        },
+        {
+          "event": "Orlando Magic @ Toronto Raptors",
+          "market": "h2h",
+          "selection": "Toronto Raptors",
+          "outcome": "loss"
+        },
+        {
+          "event": "Orlando Magic @ Toronto Raptors",
+          "market": "h2h",
+          "selection": "Orlando Magic",
+          "outcome": "win"
+        },
+        {
+          "event": "Houston Rockets @ Dallas Mavericks",
+          "market": "h2h",
+          "selection": "Dallas Mavericks",
+          "outcome": "win"
+        },
+        {
+          "event": "Houston Rockets @ Dallas Mavericks",
+          "market": "h2h",
+          "selection": "Houston Rockets",
+          "outcome": "loss"
+        },
+        {
+          "event": "Indiana Pacers @ Miami Heat",
+          "market": "h2h",
+          "selection": "Miami Heat",
+          "outcome": "win"
+        },
+        {
+          "event": "Indiana Pacers @ Miami Heat",
+          "market": "h2h",
+          "selection": "Indiana Pacers",
+          "outcome": "loss"
+        },
+        {
+          "event": "Denver Nuggets @ Phoenix Suns",
+          "market": "h2h",
+          "selection": "Phoenix Suns",
+          "outcome": "loss"
+        },
+        {
+          "event": "Denver Nuggets @ Phoenix Suns",
+          "market": "h2h",
+          "selection": "Denver Nuggets",
+          "outcome": "win"
+        },
+        {
+          "event": "Los Angeles Lakers @ Golden State Warriors",
+          "market": "h2h",
+          "selection": "Golden State Warriors",
+          "outcome": "win"
+        },
+        {
+          "event": "Los Angeles Lakers @ Golden State Warriors",
+          "market": "h2h",
+          "selection": "Los Angeles Lakers",
+          "outcome": "loss"
+        }
+      ],
+      "pending": 36
     },
     "NHL": {
-      "status": "OUTCOMES_UNVERIFIED",
+      "status": "PARTIALLY_SETTLED_MONEYLINES",
       "saved_quotes": 0,
       "eligible_predictions": 102,
       "research_only_predictions": 102,
       "bet_eligible_predictions": 0,
       "blocked_predictions": [],
-      "graded": 0,
-      "settled": [],
-      "pending": 102
+      "graded": 6,
+      "settled": [
+        {
+          "event": "New Jersey Devils @ Vegas Golden Knights",
+          "market": "h2h",
+          "selection": "Vegas Golden Knights",
+          "outcome": "loss"
+        },
+        {
+          "event": "New Jersey Devils @ Vegas Golden Knights",
+          "market": "h2h",
+          "selection": "New Jersey Devils",
+          "outcome": "win"
+        },
+        {
+          "event": "Winnipeg Jets @ Florida Panthers",
+          "market": "h2h",
+          "selection": "Florida Panthers",
+          "outcome": "win"
+        },
+        {
+          "event": "Winnipeg Jets @ Florida Panthers",
+          "market": "h2h",
+          "selection": "Winnipeg Jets",
+          "outcome": "loss"
+        },
+        {
+          "event": "Seattle Kraken @ Calgary Flames",
+          "market": "h2h",
+          "selection": "Calgary Flames",
+          "outcome": "win"
+        },
+        {
+          "event": "Seattle Kraken @ Calgary Flames",
+          "market": "h2h",
+          "selection": "Seattle Kraken",
+          "outcome": "loss"
+        }
+      ],
+      "pending": 96
     }
   },
   "summary": {
-    "verified_picks": 0,
-    "wins": 0,
-    "losses": 0,
+    "verified_picks": 24,
+    "wins": 12,
+    "losses": 12,
     "pushes": 0,
     "roi": null,
-    "hit_rate": null
+    "hit_rate": 0.5
   }
 }
