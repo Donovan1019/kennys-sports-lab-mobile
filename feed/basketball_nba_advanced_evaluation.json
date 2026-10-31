@@ -1,19 +1,19 @@
 {
   "status": "research_only",
-  "sample_size": 16,
-  "brier": 0.213512,
-  "log_loss": 0.616173,
-  "classification_accuracy": 0.75,
+  "sample_size": 25,
+  "brier": 0.23924,
+  "log_loss": 0.668319,
+  "classification_accuracy": 0.64,
   "classification_accuracy_wilson_95": [
-    0.505012,
-    0.898181
+    0.445182,
+    0.797523
   ],
-  "expected_calibration_error": 0.152121,
-  "mean_home_probability": 0.600094,
-  "observed_home_win_rate": 0.6875,
+  "expected_calibration_error": 0.213458,
+  "mean_home_probability": 0.553877,
+  "observed_home_win_rate": 0.68,
   "observed_home_win_rate_wilson_95": [
-    0.444039,
-    0.858356
+    0.484099,
+    0.82795
   ],
   "calibration_bins": [
     {
@@ -21,12 +21,25 @@
         0,
         0.2
       ],
-      "n": 1,
-      "predicted": 0.175642,
+      "n": 2,
+      "predicted": 0.181497,
       "observed": 0.0,
       "observed_wilson_95": [
         0,
-        0.793457
+        0.657628
+      ]
+    },
+    {
+      "range": [
+        0.2,
+        0.4
+      ],
+      "n": 3,
+      "predicted": 0.313063,
+      "observed": 1.0,
+      "observed_wilson_95": [
+        0.438494,
+        1
       ]
     },
     {
@@ -34,12 +47,12 @@
         0.4,
         0.6
       ],
-      "n": 6,
-      "predicted": 0.513965,
-      "observed": 0.833333,
+      "n": 8,
+      "predicted": 0.49509,
+      "observed": 0.75,
       "observed_wilson_95": [
-        0.436491,
-        0.969947
+        0.40927,
+        0.928522
       ]
     },
     {
@@ -47,16 +60,29 @@
         0.6,
         0.8
       ],
-      "n": 9,
-      "predicted": 0.704675,
-      "observed": 0.666667,
+      "n": 11,
+      "predicted": 0.702608,
+      "observed": 0.636364,
       "observed_wilson_95": [
-        0.354197,
-        0.879418
+        0.353797,
+        0.848338
+      ]
+    },
+    {
+      "range": [
+        0.8,
+        1
+      ],
+      "n": 1,
+      "predicted": 0.855317,
+      "observed": 1.0,
+      "observed_wilson_95": [
+        0.206543,
+        1
       ]
     }
   ],
-  "future_or_unmatched_events": 14,
+  "future_or_unmatched_events": 5,
   "edge_claim_allowed": false,
   "warning": "Descriptive in-sample diagnostics only; require independent pregame bookmaker baselines and out-of-sample validation before claims of edge."
 }
