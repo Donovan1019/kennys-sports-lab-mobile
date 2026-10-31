@@ -49,6 +49,37 @@ def evaluate(elo,features):
                 "deployed_to_live_predictions":False}
     selected=min(((cs,ct) for cs in candidates for ct in candidates),
                  key=lambda pair:(metrics(train,*pair)["log_loss"],abs(pair[0])+abs(pair[1]),pair))
+    # Expanding chronological windows with non-overlapping test intervals.
+    # Entire timestamp groups remain in one fold to avoid same-event leakage.
+    folds=[]
+    for train_fraction,end_fraction in ((0.5,0.6),(0.6,0.7),(0.7,0.8),(0.8,1.0)):
+        start_index=int(len(rows)*train_fraction)
+        end_index=int(len(rows)*end_fraction)
+        if start_index>=len(rows):
+            continue
+        start_time=rows[start_index][0]
+        end_time=rows[end_index][0] if end_index<len(rows) else None
+        past=[r for r in rows if r[0]<start_time]
+        future=[r for r in rows if r[0]>=start_time and (end_time is None or r[0]<end_time)]
+        if len(past)<100 or len(future)<30:
+            continue
+        coeff=min(((cs,ct) for cs in candidates for ct in candidates),
+                  key=lambda pair:(metrics(past,*pair)["log_loss"],abs(pair[0])+abs(pair[1]),pair))
+        raw=metrics(future,0,0)
+        adjusted=metrics(future,*coeff)
+        folds.append({"train_count":len(past),"test_count":len(future),
+                      "start_time":start_time,"end_time":future[-1][0],
+                      "sig_coefficient":coeff[0],"td_coefficient":coeff[1],
+                      "elo_brier":raw["brier"],"challenger_brier":adjusted["brier"],
+                      "delta_brier":adjusted["brier"]-raw["brier"],
+                      "elo_log_loss":raw["log_loss"],"challenger_log_loss":adjusted["log_loss"],
+                      "delta_log_loss":adjusted["log_loss"]-raw["log_loss"]})
+    walk_forward={"status":"RESEARCH_ONLY","method":"expanding_train_disjoint_date_grouped_test",
+                  "windows":folds,"brier_improved_windows":sum(w["delta_brier"]<0 for w in folds),
+                  "log_loss_improved_windows":sum(w["delta_log_loss"]<0 for w in folds),
+                  "coefficient_grid_boundary":0.4,
+                  "boundary_selected_windows":sum(abs(w["sig_coefficient"])==0.4 or abs(w["td_coefficient"])==0.4 for w in folds),
+                  "live_predictions_updated":False}
     baseline=metrics(test,0,0)
     challenger=metrics(test,*selected)
     return {"status":"RESEARCH_ONLY_NOT_BET_ELIGIBLE",
@@ -56,7 +87,7 @@ def evaluate(elo,features):
             "original_elo_holdout_start":holdout_start,
             "selection":"train_log_loss_only_grid_search",
             "selected_sig_coefficient":selected[0],"selected_td_coefficient":selected[1],
-            "matched_cohort_elo":baseline,"matched_cohort_challenger":challenger,
+            "walk_forward":walk_forward,"matched_cohort_elo":baseline,"matched_cohort_challenger":challenger,
             "delta_brier":challenger["brier"]-baseline["brier"],
             "delta_log_loss":challenger["log_loss"]-baseline["log_loss"],
             "independent_market_validation":False,"deployed_to_live_predictions":False,
