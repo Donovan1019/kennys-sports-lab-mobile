@@ -133,6 +133,30 @@ def build(rows,k=24,minimum_history=5):
         "delta_brier":inactivity_adjusted["brier"]-inactivity_raw["brier"] if holdout else None,
         "delta_log_loss":inactivity_adjusted["log_loss"]-inactivity_raw["log_loss"] if holdout else None,
         "deployed_to_live_predictions":False}
+    # Expanding-window evaluation: each fold trains only on earlier fights.
+    # No overlapping evaluation windows, and no coefficient tuned on test fights.
+    window_audit=[]
+    for train_fraction,test_fraction in ((0.5,0.1),(0.6,0.1),(0.7,0.1),(0.8,0.2)):
+        start=int(len(forecasts)*train_fraction)
+        end=min(len(forecasts),int(len(forecasts)*(train_fraction+test_fraction)))
+        past=[x for x in forecasts[:start] if x.get("inactivity_gap_days") is not None]
+        future=forecasts[start:end]
+        if len(past)<30 or len(future)<30:
+            continue
+        coefficient=min(inactivity_candidates,
+            key=lambda c:(inactivity_metrics(past,c)["log_loss"],abs(c),c))
+        raw=inactivity_metrics(future,0.0)
+        adjusted_window=inactivity_metrics(future,coefficient)
+        window_audit.append({"train_count":start,"test_count":len(future),
+            "start_time":future[0]["start_time"],"end_time":future[-1]["start_time"],
+            "selected_coefficient":coefficient,"raw_brier":raw["brier"],
+            "adjusted_brier":adjusted_window["brier"],
+            "delta_brier":adjusted_window["brier"]-raw["brier"],
+            "raw_log_loss":raw["log_loss"],"adjusted_log_loss":adjusted_window["log_loss"],
+            "delta_log_loss":adjusted_window["log_loss"]-raw["log_loss"]})
+    inactivity_walk_forward={"status":"RESEARCH_ONLY",
+        "method":"expanding_train_disjoint_test_windows",
+        "windows":window_audit,"deployed_to_live_predictions":False}
     holdout_skill=(1-holdout_brier/0.25) if holdout else None
     # 50% is a diagnostic reference; compare against chronological pre-fight
     # sportsbook probabilities separately when licensed historical odds exist.
@@ -150,7 +174,7 @@ def build(rows,k=24,minimum_history=5):
     return {"schema":1,"sport":"UFC","model_version":"ufc-elo-baseline-v1",
             "historical_bouts_used":len(seen),"excluded_ambiguous_date_events":len(ambiguous_events),"pre_update_evaluated_fights":n,"all_pre_update_evaluated_fights":all_n,"all_pre_update_brier":all_brier,"all_pre_update_log_loss":all_log_loss,"all_pre_update_brier_skill_vs_50pct":(1-all_brier/0.25) if all_n else None,
             "brier":brier,"log_loss":loss,"baseline_brier":baseline_brier,"baseline_log_loss":baseline_log_loss,"brier_skill_vs_50pct":improvement_brier,"minimum_prior_bouts_per_fighter":minimum_history,
-            "holdout_evaluated_fights":len(holdout),"calibration_audit":calibration_audit,"inactivity_audit":inactivity_audit,"holdout_start":holdout_start,"holdout_end":holdout_end,"holdout_brier":holdout_brier,"holdout_log_loss":holdout_log_loss,"holdout_brier_skill_vs_50pct":holdout_skill,"holdout_status":"INSUFFICIENT_SAMPLE" if len(holdout)<30 else "CHRONOLOGICAL_EVALUATION_ONLY","all_pre_update_forecasts":all_forecasts,"ratings":{name:{"elo":round(ratings[name],2),"historical_bouts":bouts[name]}
+            "holdout_evaluated_fights":len(holdout),"calibration_audit":calibration_audit,"inactivity_audit":inactivity_audit,"inactivity_walk_forward":inactivity_walk_forward,"holdout_start":holdout_start,"holdout_end":holdout_end,"holdout_brier":holdout_brier,"holdout_log_loss":holdout_log_loss,"holdout_brier_skill_vs_50pct":holdout_skill,"holdout_status":"INSUFFICIENT_SAMPLE" if len(holdout)<30 else "CHRONOLOGICAL_EVALUATION_ONLY","all_pre_update_forecasts":all_forecasts,"ratings":{name:{"elo":round(ratings[name],2),"historical_bouts":bouts[name]}
                        for name in sorted(ratings)},"forecasts":forecasts,
             "bet_eligible":False,"calibration_status":"INSUFFICIENT_SAMPLE" if n<100 else "REQUIRES_INDEPENDENT_HOLDOUT",
             "limitations":["Same-event predictions use a frozen pre-event rating snapshot",
