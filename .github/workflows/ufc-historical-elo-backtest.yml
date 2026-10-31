@@ -32,6 +32,7 @@ jobs:
           from pathlib import Path
           report=json.loads(Path('/tmp/ufc-history/elo_report.json').read_text())
           audit=report['calibration_audit']
+          inactivity=report['inactivity_audit']
           fields=[
               ('Calibration status',audit['status']),
               ('Training fights',audit['fit_count']),
@@ -43,6 +44,11 @@ jobs:
               ('Raw holdout log loss',report['holdout_log_loss']),
               ('Calibrated holdout log loss',audit['holdout_log_loss']),
               ('Log-loss delta (negative is better)',audit['delta_log_loss_vs_raw']),
+              ('Inactivity training coverage',inactivity['train_available']),
+              ('Inactivity holdout coverage',inactivity['holdout_available']),
+              ('Inactivity coefficient',inactivity['selected_coefficient']),
+              ('Inactivity holdout Brier delta',inactivity['delta_brier']),
+              ('Inactivity holdout log-loss delta',inactivity['delta_log_loss']),
           ]
           summary='## UFC Elo chronological calibration (research only)\\n\\n| Metric | Value |\\n|---|---|\\n'
           summary+=''.join(f'| {name} | {value} |\\n' for name,value in fields)
@@ -50,7 +56,7 @@ jobs:
           with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as output:
               output.write(summary)
           print(json.dumps({'calibration_audit':audit,'raw_holdout_brier':report['holdout_brier'],
-                            'raw_holdout_log_loss':report['holdout_log_loss']}))
+                            'raw_holdout_log_loss':report['holdout_log_loss'], 'inactivity_audit':inactivity}))
           PY
       - name: Download and audit free historical odds candidates
         run: |
