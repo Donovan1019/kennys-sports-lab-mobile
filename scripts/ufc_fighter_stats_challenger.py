@@ -40,7 +40,7 @@ def evaluate(elo,features):
         ps=[probability(r,cs,ct) for r in items]
         return {"count":len(ps),"brier":sum((1-p)**2 for p in ps)/len(ps),
                 "log_loss":sum(-math.log(max(1e-12,p)) for p in ps)/len(ps)}
-    candidates=(-0.4,-0.2,0.0,0.2,0.4)
+    candidates=(-1.0,-0.8,-0.6,-0.4,-0.2,0.0,0.2,0.4,0.6,0.8,1.0)
     # All observed rows are oriented toward the winner, but a signed difference
     # is antisymmetric: the equivalent loser-oriented sample has y=0 and 1-p.
     # This yields exactly the same proper scoring loss without doubling rows.
@@ -77,9 +77,33 @@ def evaluate(elo,features):
     walk_forward={"status":"RESEARCH_ONLY","method":"expanding_train_disjoint_date_grouped_test",
                   "windows":folds,"brier_improved_windows":sum(w["delta_brier"]<0 for w in folds),
                   "log_loss_improved_windows":sum(w["delta_log_loss"]<0 for w in folds),
-                  "coefficient_grid_boundary":0.4,
-                  "boundary_selected_windows":sum(abs(w["sig_coefficient"])==0.4 or abs(w["td_coefficient"])==0.4 for w in folds),
+                  "coefficient_grid_boundary":1.0,
+                  "boundary_selected_windows":sum(abs(w["sig_coefficient"])==1.0 or abs(w["td_coefficient"])==1.0 for w in folds),
                   "live_predictions_updated":False}
+    # Paired date-cluster bootstrap; preserve dependence among fights on one card.
+    import random
+    rng=random.Random(16016)
+    grouped={}
+    for row in test:
+        grouped.setdefault(row[0][:10],[]).append(row)
+    dates=sorted(grouped)
+    deltas_brier=[]
+    deltas_loss=[]
+    if len(dates)>=20:
+        for _ in range(500):
+            sample=[row for date in rng.choices(dates,k=len(dates)) for row in grouped[date]]
+            base=metrics(sample,0,0)
+            changed=metrics(sample,*selected)
+            deltas_brier.append(changed["brier"]-base["brier"])
+            deltas_loss.append(changed["log_loss"]-base["log_loss"])
+    def interval(values):
+        if not values:
+            return None
+        values.sort()
+        return [values[int(.025*(len(values)-1))],values[int(.975*(len(values)-1))]]
+    uncertainty={"method":"paired_date_cluster_bootstrap","replicates":len(deltas_brier),
+                 "delta_brier_95pct_interval":interval(deltas_brier),
+                 "delta_log_loss_95pct_interval":interval(deltas_loss)}
     baseline=metrics(test,0,0)
     challenger=metrics(test,*selected)
     return {"status":"RESEARCH_ONLY_NOT_BET_ELIGIBLE",
@@ -87,10 +111,10 @@ def evaluate(elo,features):
             "original_elo_holdout_start":holdout_start,
             "selection":"train_log_loss_only_grid_search",
             "selected_sig_coefficient":selected[0],"selected_td_coefficient":selected[1],
-            "walk_forward":walk_forward,"matched_cohort_elo":baseline,"matched_cohort_challenger":challenger,
+            "walk_forward":walk_forward,"uncertainty":uncertainty,"matched_cohort_elo":baseline,"matched_cohort_challenger":challenger,
             "delta_brier":challenger["brier"]-baseline["brier"],
             "delta_log_loss":challenger["log_loss"]-baseline["log_loss"],
-            "independent_market_validation":False,"deployed_to_live_predictions":False,
+            "promotion_gate":{"status":"BLOCKED_INDEPENDENT_MARKET_VALIDATION","approved_for_live_predictions":False},"independent_market_validation":False,"deployed_to_live_predictions":False,
             "limitations":["Post-fight mirror stats are used only through prior-dated aggregates",
                            "Matched cohort comparison is not the full 501-fight Elo holdout",
                            "No independent sportsbook odds validation or betting certification"]}
