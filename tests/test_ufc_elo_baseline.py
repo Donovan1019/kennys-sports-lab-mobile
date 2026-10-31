@@ -28,6 +28,13 @@ class UFCEloTests(unittest.TestCase):
         self.assertTrue(a["fit_only_on_pre_holdout"])
         self.assertEqual(a["status"],"RESEARCH_ONLY")
         self.assertFalse(r["bet_eligible"])
+    def test_inactivity_uses_prior_fights_only(self):
+        rows=[bout('1','A','B','2026-01-01T12:00:00Z'),bout('2','A','B','2026-01-11T12:00:00Z')]
+        r=build(rows,minimum_history=1)
+        self.assertEqual(r['forecasts'][0]['inactivity_gap_days'],0)
+        self.assertEqual(r['all_pre_update_forecasts'][0]['winner_days_since_last_fight'],None)
+        self.assertEqual(r['all_pre_update_forecasts'][1]['winner_days_since_last_fight'],10)
+        self.assertFalse(r['bet_eligible'])
     def test_unverified_outcome_excluded(self):
         bad=bout("1","A","B","2026-01-01T12:00:00Z")
         bad["winner_verified"]=False
