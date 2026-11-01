@@ -1,7 +1,7 @@
 {
   "status": "validated",
   "sport": "basketball_nba",
-  "generated_at": "2026-10-31T22:44:27.670787+00:00",
+  "generated_at": "2026-11-01T01:18:55.309091+00:00",
   "calibration_passed": true,
   "model_version": "elo-walkforward-v1-holdout-audit",
   "validation_report": {
@@ -24,66 +24,6 @@
   },
   "training_cutoff": "2026-10-31T02:00Z",
   "predictions": [
-    {
-      "event_id": "77270837bc694d198c10f42937690d75",
-      "team": "New Orleans Pelicans",
-      "date_et": "2026-10-31",
-      "win_probability": 0.327682
-    },
-    {
-      "event_id": "77270837bc694d198c10f42937690d75",
-      "team": "Atlanta Hawks",
-      "date_et": "2026-10-31",
-      "win_probability": 0.672318
-    },
-    {
-      "event_id": "6d7e1e0af6d568f4435d35a1763a3622",
-      "team": "Milwaukee Bucks",
-      "date_et": "2026-10-31",
-      "win_probability": 0.278764
-    },
-    {
-      "event_id": "6d7e1e0af6d568f4435d35a1763a3622",
-      "team": "Cleveland Cavaliers",
-      "date_et": "2026-10-31",
-      "win_probability": 0.721236
-    },
-    {
-      "event_id": "863ae1092be42c6b563b2c4f099a3eb3",
-      "team": "Memphis Grizzlies",
-      "date_et": "2026-10-31",
-      "win_probability": 0.6526
-    },
-    {
-      "event_id": "863ae1092be42c6b563b2c4f099a3eb3",
-      "team": "Sacramento Kings",
-      "date_et": "2026-10-31",
-      "win_probability": 0.3474
-    },
-    {
-      "event_id": "06a03fb0ce0f81a970c6000fb71fdc6d",
-      "team": "San Antonio Spurs",
-      "date_et": "2026-10-31",
-      "win_probability": 0.711127
-    },
-    {
-      "event_id": "06a03fb0ce0f81a970c6000fb71fdc6d",
-      "team": "Minnesota Timberwolves",
-      "date_et": "2026-10-31",
-      "win_probability": 0.288873
-    },
-    {
-      "event_id": "c30d3bdf126e98ced5b9389db8617926",
-      "team": "Houston Rockets",
-      "date_et": "2026-10-31",
-      "win_probability": 0.425536
-    },
-    {
-      "event_id": "c30d3bdf126e98ced5b9389db8617926",
-      "team": "Oklahoma City Thunder",
-      "date_et": "2026-10-31",
-      "win_probability": 0.574464
-    },
     {
       "event_id": "a6555e8b7252dfb32f1817fc8c59ad83",
       "team": "New York Knicks",
