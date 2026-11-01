@@ -1,0 +1,19 @@
+name: NBA ML UI CI
+on:
+  pull_request:
+    paths:
+      - 'nba_ml_parlays.js'
+      - '.github/workflows/nba-ml-ui-ci.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate NBA ML JavaScript syntax
+        run: node --check nba_ml_parlays.js
