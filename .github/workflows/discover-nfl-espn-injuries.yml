@@ -34,6 +34,17 @@ jobs:
         run: python scripts/stage_nfl_espn_injuries.py
       - name: Audit live ESPN injury data quality
         run: python scripts/audit_nfl_espn_staging.py
+      - name: Refresh NFL schedule from authorized odds feed when configured
+        env:
+          THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
+          ODDS_SPORT: americanfootball_nfl
+          ODDS_MARKETS: h2h
+        run: |
+          if [ -n "$THE_ODDS_API_KEY" ]; then
+            python scripts/fetch_odds.py
+          else
+            echo 'No authorized odds key; schedule matching will report BLOCKED_STALE_SOURCE when stale'
+          fi
       - name: Audit exact NFL schedule matches
         run: python scripts/audit_nfl_espn_event_matches.py
       - name: Upload schedule match audit
