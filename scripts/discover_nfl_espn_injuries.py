@@ -25,11 +25,10 @@ def inspect_nested_injuries(data):
     teams=[]
     for row in rows[:32]:
         if not isinstance(row,dict):continue
-        team=row.get('team')
         injuries=row.get('injuries')
-        if not isinstance(team,dict) or not isinstance(injuries,list):continue
+        if not isinstance(row.get('id'),str) or not isinstance(row.get('displayName'),str) or not isinstance(injuries,list):continue
         first=next((p for p in injuries if isinstance(p,dict)),None)
-        teams.append({'team_keys':sorted(team.keys()),'injury_count':len(injuries),'injury_keys':sorted(first.keys()) if first else [],'athlete_keys':sorted(first['athlete'].keys()) if first and isinstance(first.get('athlete'),dict) else []})
+        teams.append({'team_keys':sorted(row.keys()),'injury_count':len(injuries),'injury_keys':sorted(first.keys()) if first else [],'athlete_keys':sorted(first['athlete'].keys()) if first and isinstance(first.get('athlete'),dict) else []})
     return {'status':'SCHEMA_ONLY','teams_with_arrays':len(teams),'sample_shapes':teams[:3],'all_injury_keys':sorted({key for row in rows if isinstance(row,dict) for injury in (row.get('injuries') if isinstance(row.get('injuries'),list) else []) if isinstance(injury,dict) for key in injury.keys()}),'all_athlete_keys':sorted({key for row in rows if isinstance(row,dict) for injury in (row.get('injuries') if isinstance(row.get('injuries'),list) else []) if isinstance(injury,dict) and isinstance(injury.get('athlete'),dict) for key in injury['athlete'].keys()})}
 
 def main():
