@@ -29,7 +29,9 @@ def stage(payload,fetched_at):
             raw_status=item.get('status')
             players.append({'athlete_id':athlete_id,'name':name.strip(),'raw_status':raw_status if isinstance(raw_status,str) else None,'injury_date':item.get('date') if isinstance(item.get('date'),str) else None})
         if players:groups.append({'espn_team_id':team_id,'team_name':team_name,'players':players})
-    if not groups:raise ValueError('No ESPN injury players mapped; check live athlete identity types and grouping schema')
+    if not groups:
+        summary=[{'team_id_type':type(g.get('id')).__name__,'team_name_type':type(g.get('displayName')).__name__,'injuries_count':len(g.get('injuries')) if isinstance(g.get('injuries'),list) else None,'athlete_keys':sorted(next((i['athlete'] for i in g.get('injuries',[]) if isinstance(i,dict) and isinstance(i.get('athlete'),dict)),{}).keys())} for g in payload['injuries'][:3] if isinstance(g,dict)]
+        raise ValueError('No ESPN injury players mapped; schema summary: '+json.dumps(summary))
     return {'source_url':URL,'fetched_at':fetched_at,'source_reported_at':payload.get('timestamp') if isinstance(payload.get('timestamp'),str) else None,'status':'STAGED_UNVERIFIED','verified_player_reports':0,'projection_impact':'NOT_APPLIED','teams':groups}
 
 def main():
