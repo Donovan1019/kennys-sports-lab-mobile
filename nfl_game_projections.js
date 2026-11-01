@@ -88,7 +88,7 @@ function verdict(card,g,sim,sourceStale){
   const winner=homeP>=awayP?g.home:g.away,winP=Math.max(homeP,awayP);
   message('MOST LIKELY WINNER (simulation): '+winner);
   panel.append(row('Win probability',fmt(winP*100)+'%'));
-  message(winP>=0.65?'Model confidence tier: HIGH (uncalibrated)':winP>=0.55?'Model confidence tier: MODERATE (uncalibrated)':'Model confidence tier: LOW / CLOSE GAME');
+  message('SIMULATED LEAN ONLY — confidence tier unavailable until walk-forward calibration passes.');
  }else{
   const likely=candidates.slice().sort((a,b)=>b.probability-a.probability)[0];
   if(likely){message('MOST LIKELY OUTCOME (simulation): '+likely.selection);panel.append(row('Simulated probability',fmt(likely.probability*100)+'%'))}
@@ -104,7 +104,7 @@ function verdict(card,g,sim,sourceStale){
   panel.append(row('Research EV / unit',fmt(best.ev*100)+'%'));
   panel.append(row('Quote time',timeET(best.updated)));
  }
- message('BETTING STATUS: PASS / NOT BET ELIGIBLE - '+(sourceStale?'Historical inputs are stale; ':'')+'Uncalibrated bootstrap; injuries and starting lineups not verified. Confidence tiers are descriptive, not validated.');
+ message('BETTING STATUS: PASS / NOT BET ELIGIBLE - '+(sourceStale?'Historical inputs are stale; ':'')+'Uncalibrated bootstrap; injuries and starting lineups not verified. Win probabilities are research-only and no confidence tier is assigned.');
  card.append(panel);
 }
 async function loadOdds(){

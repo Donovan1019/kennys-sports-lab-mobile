@@ -21,7 +21,7 @@ assert(projections.includes('sample=p.projection+deviations[Math.floor(uniform()
 assert(projections.includes('walk-forward residual bootstrap; calibration pending'),'Simulator must disclose residual method and calibration status');
 assert(!projections.includes('empirical game residual bootstrap'),'Legacy raw game-deviation simulator must stay removed');
 assert(!html.includes('nfl_all_markets.js'),'Unwanted standalone NFL market catalog must stay removed');
-assert(html.includes('nfl_game_projections.js?v=20261101-history-guard-517'),'Integrated NFL game projections missing or stale cache version');
+assert(html.includes('nfl_game_projections.js?v=20261101-confidence-guard-518'),'Integrated NFL game projections missing or stale cache version');
 const gameProjections=fs.readFileSync('nfl_game_projections.js','utf8');new vm.Script(gameProjections,{filename:'nfl_game_projections.js'});
 for(const label of ['Moneyline','Spread','Game Total','Team Total','1st quarter','4th quarter','1st half','2nd half','10000'])assert(gameProjections.includes(label),'Missing projection market or simulator '+label);
 assert(gameProjections.includes('MutationObserver'),'Async projection panel must receive game projections');
@@ -47,4 +47,6 @@ assert(projections.includes("'NOT BET ELIGIBLE'" ) || projections.includes('NOT 
 assert(gameProjections.includes('Date.parse(x.date)<cutoff'),'NFL game bootstrap must reject post-kickoff scores');
 assert(gameProjections.includes('Date.parse(b.date)-Date.parse(a.date)'),'NFL historical games must be sorted newest-first before truncation');
 assert(gameProjections.includes('history(away,g.commence_time),hh=history(home,g.commence_time)'),'NFL bootstrap must use event kickoff as historical cutoff');
+assert(gameProjections.includes('confidence tier unavailable until walk-forward calibration passes'),'NFL confidence must be withheld until calibrated');
+assert(!gameProjections.includes('Model confidence tier: HIGH'),'Uncalibrated high confidence label must be removed');
 console.log('PASS main NFL page, scripts and position/market integrity');
