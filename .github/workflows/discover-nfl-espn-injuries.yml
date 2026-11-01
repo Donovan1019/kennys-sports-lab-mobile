@@ -24,6 +24,12 @@ jobs:
         run: python scripts/test_nfl_espn_discovery.py
       - name: Probe free ESPN injury endpoint
         run: python scripts/discover_nfl_espn_injuries.py
+      - name: Upload schema diagnostic for review
+        uses: actions/upload-artifact@v4
+        with:
+          name: nfl-espn-injury-schema
+          path: feed/nfl_injury_espn_discovery.json
+          retention-days: 7
       - name: Commit schema health only, never unverified players
         if: github.event_name != 'pull_request'
         run: |
