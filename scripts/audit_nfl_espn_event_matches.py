@@ -25,26 +25,30 @@ def match(staging,schedule,now=None):
         timestamp=parse_time(item.get('fetched_at'))
         if timestamp>now+timedelta(minutes=5) or now-timestamp>=timedelta(hours=6):raise ValueError('Stale or future source')
     events={}
+    window_start=now-timedelta(hours=4)
+    window_end=now+timedelta(days=7)
     for row in schedule['odds']:
         if not isinstance(row,dict) or not isinstance(row.get('event_id'),str) or not isinstance(row.get('event'),str):continue
         parts=row['event'].split(' @ ')
         if len(parts)!=2:continue
         key=row['event_id']
-        if key in events and events[key]!=tuple(parts):raise ValueError('Conflicting schedule event')
-        events[key]=tuple(parts)
+        kickoff=parse_time(row.get('commence_time'))
+        if key in events and events[key]!=(tuple(parts),kickoff):raise ValueError('Conflicting schedule event')
+        events[key]=(tuple(parts),kickoff)
     if not events:raise ValueError('No NFL events')
+    eligible={event_id:teams for event_id,(teams,kickoff) in events.items() if window_start<=kickoff<=window_end}
     teams=staging.get('teams')
     if not isinstance(teams,list) or not teams:raise ValueError('No staged teams')
     output=[];matched=0;ambiguous=0
     for team in teams:
         if not isinstance(team,dict) or not isinstance(team.get('team_name'),str):continue
         name=team['team_name']
-        candidates=[event_id for event_id,pair in events.items() if normalize(name) in (normalize(pair[0]),normalize(pair[1]))]
+        candidates=[event_id for event_id,pair in eligible.items() if normalize(name) in (normalize(pair[0]),normalize(pair[1]))]
         if len(candidates)==1:matched+=1;status='EXACT_NAME_MATCH_UNVERIFIED'
         elif candidates:ambiguous+=1;status='AMBIGUOUS'
         else:status='UNMATCHED'
         output.append({'espn_team_id':team.get('espn_team_id'),'team_name':name,'match_status':status,'candidate_event_ids':sorted(candidates),'staged_players':len(team.get('players',[])) if isinstance(team.get('players'),list) else 0})
-    return {'status':'EVENT_MATCH_AUDIT_ONLY','staged_team_count':len(output),'matched_teams':matched,'ambiguous_teams':ambiguous,'unmatched_teams':len(output)-matched-ambiguous,'schedule_event_count':len(events),'team_matches':output,'verified_player_reports':0,'publication_allowed':False,'projection_impact':'NOT_APPLIED'}
+    return {'status':'EVENT_MATCH_AUDIT_ONLY','staged_team_count':len(output),'matched_teams':matched,'ambiguous_teams':ambiguous,'unmatched_teams':len(output)-matched-ambiguous,'schedule_event_count':len(events),'eligible_event_count':len(eligible),'team_matches':output,'verified_player_reports':0,'publication_allowed':False,'projection_impact':'NOT_APPLIED'}
 
 def main():
     staging=json.loads(STAGING.read_text(encoding='utf-8'))
