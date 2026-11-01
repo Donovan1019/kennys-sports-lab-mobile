@@ -1,0 +1,28 @@
+name: Validate NFL Injury Report Contract
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/validate_nfl_injury_reports.py'
+      - 'scripts/test_nfl_injury_reports.py'
+      - 'nfl_injury_report.js'
+      - '.github/workflows/nfl-injury-contract.yml'
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test injury report contract
+        run: python scripts/test_nfl_injury_reports.py
+      - name: Validate any published injury report feed
+        run: |
+          if test -f feed/nfl_injury_reports.json; then
+            python scripts/validate_nfl_injury_reports.py feed/nfl_injury_reports.json
+          else
+            echo "No verified player feed published; fail-closed display remains in place"
+          fi
