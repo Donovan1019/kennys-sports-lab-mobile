@@ -60,4 +60,5 @@ assert(injuryReport.includes('https://www.nfl.com/injuries/'),'Official NFL inju
 assert(injuryReport.includes('not the same as confirmed game-day inactives'),'Do not confuse injury designations with official inactive confirmation');
 assert(injuryReport.includes("button.textContent='Refresh Injury Report'"),'Injury tab must expose dedicated refresh button');
 assert(injuryReport.includes('if(refreshing)return')&&injuryReport.includes('finally{refreshing=false'),'Refresh must guard concurrent requests and reset state');
+assert(injuryReport.includes('feed/americanfootball_nfl.json'),'NFL injury tab needs current market schedule');
 console.log('PASS main NFL page, scripts and position/market integrity');
