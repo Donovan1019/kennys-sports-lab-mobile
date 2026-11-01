@@ -14,6 +14,11 @@ class StagingTests(unittest.TestCase):
         row={'athlete':{'id':'12','fullName':'Example Player'},'status':'Out'}
         data=stage({'injuries':[{'id':'19','displayName':'New York Giants','injuries':[row,row,{'athlete':{'id':'13'}}]}]},'2026-11-01T12:01:00Z')
         self.assertEqual(len(data['teams'][0]['players']),1)
+    def test_numeric_athlete_id(self):
+        data=stage({'injuries':[{'id':19,'displayName':'New York Giants','injuries':[{'athlete':{'id':123,'displayName':'Example Player'},'status':'Out'}]}]},'2026-11-01T12:01:00Z')
+        self.assertEqual(data['teams'][0]['players'][0]['athlete_id'],'123')
+    def test_rejects_empty_extraction(self):
+        with self.assertRaisesRegex(ValueError,'No ESPN injury players mapped'):stage({'injuries':[]},'2026-11-01T12:01:00Z')
     def test_rejects_missing_groups(self):
         with self.assertRaises(ValueError):stage({},'2026-11-01T12:01:00Z')
 if __name__=='__main__':unittest.main()
