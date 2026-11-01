@@ -1,0 +1,26 @@
+name: NFL Combined Odds and Simulation Tests
+on:
+  pull_request:
+    paths:
+      - 'nfl_combined_odds_simulations.js'
+      - 'nfl.html'
+      - 'tests/nfl_combined_odds.test.cjs'
+      - '.github/workflows/nfl-combined-odds-tests.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax check
+        run: node --check nfl_combined_odds_simulations.js
+      - name: Smoke test
+        run: node tests/nfl_combined_odds.test.cjs
+      - name: Verify screen integration
+        run: |
+          grep -q 'nfl_combined_odds_simulations.js' nfl.html
