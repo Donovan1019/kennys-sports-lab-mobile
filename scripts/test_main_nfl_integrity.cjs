@@ -52,7 +52,7 @@ assert(moduleNav.includes("['Injury Report','#nfl-injury-report']"),'NFL injury 
 const injuryReport=fs.readFileSync('nfl_injury_report.js','utf8');new vm.Script(injuryReport,{filename:'nfl_injury_report.js'});
 assert(injuryReport.includes('kickoff-90*60000'),'Official inactive report deadline must be 90 minutes before individual kickoff');
 assert(injuryReport.includes('UNVERIFIED — no sourced inactive list'),'No invented official inactive statuses');
-assert(html.includes('nfl_injury_report.js?v=20261101-source-health-523'),'NFL injury report cache must be refreshed');
+assert(html.includes('nfl_injury_report.js?v=20261101-health-freshness-524'),'NFL injury report cache must be refreshed');
 assert(injuryReport.includes('entry.verified===true')&&injuryReport.includes('entry.event_id===g.event_id'),'Injury report must verify source and exact event');
 assert(injuryReport.includes('entry.source_url')&&injuryReport.includes('entry.fetched_at'),'Injury reports must include source URL and timestamp');
 assert(injuryReport.includes('NOT APPLIED — model recalculation not connected'),'Do not claim automatic projection updates without integration');
