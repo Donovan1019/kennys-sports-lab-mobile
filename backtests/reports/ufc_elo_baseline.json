@@ -2,13 +2,13 @@
   "schema": 1,
   "sport": "UFC",
   "model_version": "ufc-elo-baseline-v1",
-  "historical_bouts_used": 994,
+  "historical_bouts_used": 1001,
   "excluded_ambiguous_date_events": 0,
   "pre_update_evaluated_fights": 0,
-  "all_pre_update_evaluated_fights": 994,
-  "all_pre_update_brier": 0.24807157783151823,
-  "all_pre_update_log_loss": 0.6892848669271874,
-  "all_pre_update_brier_skill_vs_50pct": 0.007713688673927077,
+  "all_pre_update_evaluated_fights": 1001,
+  "all_pre_update_brier": 0.24804421935960852,
+  "all_pre_update_log_loss": 0.6892303794966264,
+  "all_pre_update_brier_skill_vs_50pct": 0.00782312256156592,
   "brier": null,
   "log_loss": null,
   "baseline_brier": null,
@@ -10036,6 +10036,76 @@
       "loser_prior_bouts": 2,
       "winner_days_since_last_fight": 195,
       "loser_days_since_last_fight": 49
+    },
+    {
+      "fight_id": "401914105",
+      "event_id": "600061420",
+      "start_time": "2026-10-31T21:00:00+00:00",
+      "winner_probability": 0.5333174487323169,
+      "winner_prior_bouts": 0,
+      "loser_prior_bouts": 2,
+      "winner_days_since_last_fight": null,
+      "loser_days_since_last_fight": 378
+    },
+    {
+      "fight_id": "401914106",
+      "event_id": "600061420",
+      "start_time": "2026-10-31T21:00:00+00:00",
+      "winner_probability": 0.5510336042388566,
+      "winner_prior_bouts": 1,
+      "loser_prior_bouts": 2,
+      "winner_days_since_last_fight": 80,
+      "loser_days_since_last_fight": 454
+    },
+    {
+      "fight_id": "401928105",
+      "event_id": "600061420",
+      "start_time": "2026-10-31T21:00:00+00:00",
+      "winner_probability": 0.48459738406947234,
+      "winner_prior_bouts": 3,
+      "loser_prior_bouts": 4,
+      "winner_days_since_last_fight": 231,
+      "loser_days_since_last_fight": 189
+    },
+    {
+      "fight_id": "401928106",
+      "event_id": "600061420",
+      "start_time": "2026-10-31T21:00:00+00:00",
+      "winner_probability": 0.49883087802299586,
+      "winner_prior_bouts": 1,
+      "loser_prior_bouts": 1,
+      "winner_days_since_last_fight": 413,
+      "loser_days_since_last_fight": 126
+    },
+    {
+      "fight_id": "401928109",
+      "event_id": "600061420",
+      "start_time": "2026-10-31T21:00:00+00:00",
+      "winner_probability": 0.5017469632744459,
+      "winner_prior_bouts": 2,
+      "loser_prior_bouts": 2,
+      "winner_days_since_last_fight": 532,
+      "loser_days_since_last_fight": 538
+    },
+    {
+      "fight_id": "401931615",
+      "event_id": "600061420",
+      "start_time": "2026-10-31T21:00:00+00:00",
+      "winner_probability": 0.4325470735216674,
+      "winner_prior_bouts": 1,
+      "loser_prior_bouts": 3,
+      "winner_days_since_last_fight": 210,
+      "loser_days_since_last_fight": 189
+    },
+    {
+      "fight_id": "401931617",
+      "event_id": "600061420",
+      "start_time": "2026-10-31T21:00:00+00:00",
+      "winner_probability": 0.5497972361788224,
+      "winner_prior_bouts": 3,
+      "loser_prior_bouts": 2,
+      "winner_days_since_last_fight": 112,
+      "loser_days_since_last_fight": 713
     }
   ],
   "ratings": {
@@ -10848,8 +10918,8 @@
       "historical_bouts": 5
     },
     "Dakota Hope": {
-      "elo": 1488.0,
-      "historical_bouts": 1
+      "elo": 1501.62,
+      "historical_bouts": 2
     },
     "Damian Pinas": {
       "elo": 1534.4,
@@ -11208,8 +11278,8 @@
       "historical_bouts": 1
     },
     "Francis Marshall": {
-      "elo": 1535.16,
-      "historical_bouts": 3
+      "elo": 1521.54,
+      "historical_bouts": 4
     },
     "Francisco Prado": {
       "elo": 1500.8,
@@ -11648,8 +11718,8 @@
       "historical_bouts": 2
     },
     "JeongYeong Lee": {
-      "elo": 1499.59,
-      "historical_bouts": 2
+      "elo": 1487.63,
+      "historical_bouts": 3
     },
     "Jeremiah Wells": {
       "elo": 1514.36,
@@ -11716,8 +11786,8 @@
       "historical_bouts": 1
     },
     "Joe Kropschot": {
-      "elo": 1512.0,
-      "historical_bouts": 1
+      "elo": 1522.78,
+      "historical_bouts": 2
     },
     "Joe Solecki": {
       "elo": 1488.0,
@@ -11856,8 +11926,8 @@
       "historical_bouts": 6
     },
     "Julian Erosa": {
-      "elo": 1500.8,
-      "historical_bouts": 2
+      "elo": 1512.76,
+      "historical_bouts": 3
     },
     "Juliana Miller": {
       "elo": 1511.17,
@@ -12174,6 +12244,10 @@
     "Lucas Rocha": {
       "elo": 1500.0,
       "historical_bouts": 2
+    },
+    "Lucia Szabov\u00e1": {
+      "elo": 1511.2,
+      "historical_bouts": 1
     },
     "Lucie Pudilova": {
       "elo": 1488.41,
@@ -12524,8 +12598,8 @@
       "historical_bouts": 4
     },
     "Mickey Gall": {
-      "elo": 1476.01,
-      "historical_bouts": 2
+      "elo": 1465.21,
+      "historical_bouts": 3
     },
     "Miesha Tate": {
       "elo": 1488.43,
@@ -12708,8 +12782,8 @@
       "historical_bouts": 2
     },
     "Nick Klein": {
-      "elo": 1476.41,
-      "historical_bouts": 2
+      "elo": 1465.64,
+      "historical_bouts": 3
     },
     "Nicolas Dalby": {
       "elo": 1500.41,
@@ -12864,8 +12938,8 @@
       "historical_bouts": 1
     },
     "Piera Rodriguez": {
-      "elo": 1513.64,
-      "historical_bouts": 3
+      "elo": 1526.01,
+      "historical_bouts": 4
     },
     "Piero Guaylupo": {
       "elo": 1512.0,
@@ -13072,8 +13146,8 @@
       "historical_bouts": 2
     },
     "Rodrigo Sezinando": {
-      "elo": 1488.0,
-      "historical_bouts": 1
+      "elo": 1500.03,
+      "historical_bouts": 2
     },
     "Rodrigo Vera": {
       "elo": 1512.0,
@@ -13344,16 +13418,16 @@
       "historical_bouts": 3
     },
     "Tainara Lisboa": {
-      "elo": 1476.81,
-      "historical_bouts": 2
+      "elo": 1465.61,
+      "historical_bouts": 3
     },
     "Taiyilake Nueraji": {
       "elo": 1511.6,
       "historical_bouts": 1
     },
     "Talita Alencar": {
-      "elo": 1524.35,
-      "historical_bouts": 4
+      "elo": 1511.98,
+      "historical_bouts": 5
     },
     "Tallison Teixeira": {
       "elo": 1488.47,
@@ -13400,8 +13474,8 @@
       "historical_bouts": 1
     },
     "Theodor Berggren": {
-      "elo": 1488.81,
-      "historical_bouts": 1
+      "elo": 1476.78,
+      "historical_bouts": 2
     },
     "Thiago Mois\u00e9s": {
       "elo": 1499.97,
@@ -13688,8 +13762,8 @@
       "historical_bouts": 1
     },
     "Zach Reese": {
-      "elo": 1510.73,
-      "historical_bouts": 3
+      "elo": 1521.54,
+      "historical_bouts": 4
     },
     "Zach Scroggin": {
       "elo": 1488.0,
@@ -13728,9 +13802,9 @@
     "Inactivity adjustment evaluated as research only; no age, weight class, injuries, or style adjustments in live predictions",
     "Chronological holdout is descriptive only; no independent external validation or archived odds"
   ],
-  "input_sha256": "a4cc0f472717089abda35d97e75ce526b209ce2dc2f48ccd7b0d99a072f1cf0d",
+  "input_sha256": "d59fea84e40bca83d765a5c34aed410a1bb2646e25ed4a932a174e56d9ef69ed",
   "input_path": "feed/ufc_historical_backfill.json",
-  "input_record_count": 994,
-  "input_verified_winner_count": 994,
+  "input_record_count": 1001,
+  "input_verified_winner_count": 1001,
   "input_rejected_count": 0
 }

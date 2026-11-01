@@ -10936,6 +10936,83 @@
       "method_verified": false,
       "winner_verified": true,
       "source_url": "https://site.api.espn.com/apis/site/v2/sports/mma/ufc/scoreboard?dates=20261024"
+    },
+    {
+      "event_id": "600061420",
+      "fight_id": "401914105",
+      "event_date": "2026-10-31T21:00:00+00:00",
+      "winner": "Lucia Szabov\u00e1",
+      "loser": "Tainara Lisboa",
+      "method": null,
+      "method_verified": false,
+      "winner_verified": true,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/mma/ufc/scoreboard?dates=20261031"
+    },
+    {
+      "event_id": "600061420",
+      "fight_id": "401914106",
+      "event_date": "2026-10-31T21:00:00+00:00",
+      "winner": "Joe Kropschot",
+      "loser": "Nick Klein",
+      "method": null,
+      "method_verified": false,
+      "winner_verified": true,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/mma/ufc/scoreboard?dates=20261031"
+    },
+    {
+      "event_id": "600061420",
+      "fight_id": "401928105",
+      "event_date": "2026-10-31T21:00:00+00:00",
+      "winner": "Piera Rodriguez",
+      "loser": "Talita Alencar",
+      "method": null,
+      "method_verified": false,
+      "winner_verified": true,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/mma/ufc/scoreboard?dates=20261031"
+    },
+    {
+      "event_id": "600061420",
+      "fight_id": "401928106",
+      "event_date": "2026-10-31T21:00:00+00:00",
+      "winner": "Rodrigo Sezinando",
+      "loser": "Theodor Berggren",
+      "method": null,
+      "method_verified": false,
+      "winner_verified": true,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/mma/ufc/scoreboard?dates=20261031"
+    },
+    {
+      "event_id": "600061420",
+      "fight_id": "401928109",
+      "event_date": "2026-10-31T21:00:00+00:00",
+      "winner": "Julian Erosa",
+      "loser": "JeongYeong Lee",
+      "method": null,
+      "method_verified": false,
+      "winner_verified": true,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/mma/ufc/scoreboard?dates=20261031"
+    },
+    {
+      "event_id": "600061420",
+      "fight_id": "401931615",
+      "event_date": "2026-10-31T21:00:00+00:00",
+      "winner": "Dakota Hope",
+      "loser": "Francis Marshall",
+      "method": null,
+      "method_verified": false,
+      "winner_verified": true,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/mma/ufc/scoreboard?dates=20261031"
+    },
+    {
+      "event_id": "600061420",
+      "fight_id": "401931617",
+      "event_date": "2026-10-31T21:00:00+00:00",
+      "winner": "Zach Reese",
+      "loser": "Mickey Gall",
+      "method": null,
+      "method_verified": false,
+      "winner_verified": true,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/mma/ufc/scoreboard?dates=20261031"
     }
   ],
   "successful_days": [
@@ -11972,11 +12049,12 @@
     "2026-10-27",
     "2026-10-28",
     "2026-10-29",
-    "2026-10-30"
+    "2026-10-30",
+    "2026-10-31"
   ],
   "failed_days": [],
   "newly_queried_days": 1,
-  "verified_fights": 994,
+  "verified_fights": 1001,
   "bet_eligible": false,
   "limitations": [
     "Public scoreboard may omit events and incomplete methods",
