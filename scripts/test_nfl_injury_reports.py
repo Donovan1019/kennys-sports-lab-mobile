@@ -17,6 +17,17 @@ class InjuryValidationTests(unittest.TestCase):
     def test_stale(self):
         r=report();r["fetched_at"]="2026-11-01T10:00:00Z"
         with self.assertRaises(ValueError):validate({"reports":[r]},NOW)
+    def test_stale_schedule(self):
+        schedule={'fetched_at':'2026-11-01T09:00:00Z','odds':[{'event_id':'event-123','event':'Test Team @ Away','commence_time':'2026-11-01T20:00:00Z'}]}
+        with self.assertRaisesRegex(ValueError,'Stale NFL event schedule'):validate({'reports':[report()]},NOW,schedule=schedule)
+    def test_duplicate_report(self):
+        with self.assertRaisesRegex(ValueError,'Duplicate report type'):validate({'reports':[report(),report()]},NOW)
+    def test_duplicate_player(self):
+        r=report();r['players'].append(dict(r['players'][0]))
+        with self.assertRaisesRegex(ValueError,'Duplicate player status'):validate({'reports':[r]},NOW)
+    def test_conflicting_events(self):
+        schedule={'fetched_at':'2026-11-01T17:00:00Z','odds':[{'event_id':'event-123','event':'Test Team @ Away','commence_time':'2026-11-01T20:00:00Z'},{'event_id':'event-123','event':'Test Team @ Other','commence_time':'2026-11-01T20:00:00Z'}]}
+        with self.assertRaisesRegex(ValueError,'Conflicting NFL event records'):validate({'reports':[report()]},NOW,schedule=schedule)
     def test_empty(self):
         with self.assertRaises(ValueError):validate({"reports":[]},NOW)
 if __name__=="__main__":unittest.main()
