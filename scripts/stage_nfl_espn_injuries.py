@@ -15,11 +15,13 @@ def stage(payload,fetched_at):
     for group in payload['injuries']:
         if not isinstance(group,dict):continue
         team_id=group.get('id');team_name=group.get('displayName');injuries=group.get('injuries')
+        if isinstance(team_id,int):team_id=str(team_id)
         if not isinstance(team_id,str) or not team_id.strip() or not isinstance(team_name,str) or not team_name.strip() or not isinstance(injuries,list):continue
         players=[]
         for item in injuries:
             if not isinstance(item,dict) or not isinstance(item.get('athlete'),dict):continue
-            athlete=item['athlete'];name=athlete.get('fullName');athlete_id=athlete.get('id')
+            athlete=item['athlete'];name=athlete.get('fullName') or athlete.get('displayName');athlete_id=athlete.get('id')
+            if isinstance(athlete_id,int):athlete_id=str(athlete_id)
             if not isinstance(name,str) or not name.strip() or not isinstance(athlete_id,str) or not athlete_id.strip():continue
             key=(team_id,athlete_id)
             if key in seen:continue
@@ -27,6 +29,7 @@ def stage(payload,fetched_at):
             raw_status=item.get('status')
             players.append({'athlete_id':athlete_id,'name':name.strip(),'raw_status':raw_status if isinstance(raw_status,str) else None,'injury_date':item.get('date') if isinstance(item.get('date'),str) else None})
         if players:groups.append({'espn_team_id':team_id,'team_name':team_name,'players':players})
+    if not groups:raise ValueError('No ESPN injury players mapped; check live athlete identity types and grouping schema')
     return {'source_url':URL,'fetched_at':fetched_at,'source_reported_at':payload.get('timestamp') if isinstance(payload.get('timestamp'),str) else None,'status':'STAGED_UNVERIFIED','verified_player_reports':0,'projection_impact':'NOT_APPLIED','teams':groups}
 
 def main():
