@@ -1,6 +1,6 @@
 {
   "date": "2026-10-31",
-  "generated_at": "2026-10-31T16:46:46.778495+00:00",
+  "generated_at": "2026-11-01T16:47:18.438274+00:00",
   "sports": {
     "NFL": {
       "status": "OUTCOMES_UNVERIFIED",
@@ -25,23 +25,144 @@
       "pending": 36
     },
     "NHL": {
-      "status": "OUTCOMES_UNVERIFIED",
+      "status": "PARTIALLY_SETTLED_MONEYLINES",
       "saved_quotes": 0,
       "eligible_predictions": 120,
       "research_only_predictions": 120,
       "bet_eligible_predictions": 0,
       "blocked_predictions": [],
-      "graded": 0,
-      "settled": [],
-      "pending": 120
+      "graded": 20,
+      "settled": [
+        {
+          "event": "Chicago Blackhawks @ Boston Bruins",
+          "market": "h2h",
+          "selection": "Boston Bruins",
+          "outcome": "win"
+        },
+        {
+          "event": "Chicago Blackhawks @ Boston Bruins",
+          "market": "h2h",
+          "selection": "Chicago Blackhawks",
+          "outcome": "loss"
+        },
+        {
+          "event": "St. Louis Blues @ Detroit Red Wings",
+          "market": "h2h",
+          "selection": "Detroit Red Wings",
+          "outcome": "loss"
+        },
+        {
+          "event": "St. Louis Blues @ Detroit Red Wings",
+          "market": "h2h",
+          "selection": "St. Louis Blues",
+          "outcome": "win"
+        },
+        {
+          "event": "Tampa Bay Lightning @ Nashville Predators",
+          "market": "h2h",
+          "selection": "Nashville Predators",
+          "outcome": "win"
+        },
+        {
+          "event": "Tampa Bay Lightning @ Nashville Predators",
+          "market": "h2h",
+          "selection": "Tampa Bay Lightning",
+          "outcome": "loss"
+        },
+        {
+          "event": "Edmonton Oilers @ New York Islanders",
+          "market": "h2h",
+          "selection": "New York Islanders",
+          "outcome": "loss"
+        },
+        {
+          "event": "Edmonton Oilers @ New York Islanders",
+          "market": "h2h",
+          "selection": "Edmonton Oilers",
+          "outcome": "win"
+        },
+        {
+          "event": "Buffalo Sabres @ Los Angeles Kings",
+          "market": "h2h",
+          "selection": "Los Angeles Kings",
+          "outcome": "loss"
+        },
+        {
+          "event": "Buffalo Sabres @ Los Angeles Kings",
+          "market": "h2h",
+          "selection": "Buffalo Sabres",
+          "outcome": "win"
+        },
+        {
+          "event": "Ottawa Senators @ San Jose Sharks",
+          "market": "h2h",
+          "selection": "San Jose Sharks",
+          "outcome": "loss"
+        },
+        {
+          "event": "Ottawa Senators @ San Jose Sharks",
+          "market": "h2h",
+          "selection": "Ottawa Senators",
+          "outcome": "win"
+        },
+        {
+          "event": "Pittsburgh Penguins @ Montreal Canadiens",
+          "market": "h2h",
+          "selection": "Montreal Canadiens",
+          "outcome": "win"
+        },
+        {
+          "event": "Pittsburgh Penguins @ Montreal Canadiens",
+          "market": "h2h",
+          "selection": "Pittsburgh Penguins",
+          "outcome": "loss"
+        },
+        {
+          "event": "Toronto Maple Leafs @ Vancouver Canucks",
+          "market": "h2h",
+          "selection": "Vancouver Canucks",
+          "outcome": "loss"
+        },
+        {
+          "event": "Toronto Maple Leafs @ Vancouver Canucks",
+          "market": "h2h",
+          "selection": "Toronto Maple Leafs",
+          "outcome": "win"
+        },
+        {
+          "event": "Columbus Blue Jackets @ Dallas Stars",
+          "market": "h2h",
+          "selection": "Dallas Stars",
+          "outcome": "win"
+        },
+        {
+          "event": "Columbus Blue Jackets @ Dallas Stars",
+          "market": "h2h",
+          "selection": "Columbus Blue Jackets",
+          "outcome": "loss"
+        },
+        {
+          "event": "Calgary Flames @ Colorado Avalanche",
+          "market": "h2h",
+          "selection": "Colorado Avalanche",
+          "outcome": "win"
+        },
+        {
+          "event": "Calgary Flames @ Colorado Avalanche",
+          "market": "h2h",
+          "selection": "Calgary Flames",
+          "outcome": "loss"
+        }
+      ],
+      "pending": 100
     }
   },
   "summary": {
-    "verified_picks": 0,
-    "wins": 0,
-    "losses": 0,
+    "verified_picks": 20,
+    "wins": 10,
+    "losses": 10,
     "pushes": 0,
     "roi": null,
-    "hit_rate": null
+    "hit_rate": 0.5
   }
 }
