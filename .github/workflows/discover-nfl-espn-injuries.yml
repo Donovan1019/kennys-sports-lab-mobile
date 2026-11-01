@@ -3,6 +3,8 @@ on:
   pull_request:
     paths:
       - 'scripts/discover_nfl_espn_injuries.py'
+      - 'scripts/stage_nfl_espn_injuries.py'
+      - 'scripts/test_nfl_espn_staging.py'
       - '.github/workflows/discover-nfl-espn-injuries.yml'
   workflow_dispatch:
   schedule:
@@ -21,9 +23,17 @@ jobs:
         with:
           python-version: '3.12'
       - name: Test schema discovery
-        run: python scripts/test_nfl_espn_discovery.py && python scripts/test_nfl_espn_schema_contract.py
+        run: python scripts/test_nfl_espn_discovery.py && python scripts/test_nfl_espn_schema_contract.py && python scripts/test_nfl_espn_staging.py
       - name: Probe free ESPN injury endpoint
         run: python scripts/discover_nfl_espn_injuries.py
+      - name: Stage player records without verification
+        run: python scripts/stage_nfl_espn_injuries.py
+      - name: Upload staging diagnostic
+        uses: actions/upload-artifact@v4
+        with:
+          name: nfl-espn-player-staging
+          path: feed/nfl_injury_espn_player_staging.json
+          retention-days: 3
       - name: Upload schema diagnostic for review
         uses: actions/upload-artifact@v4
         with:
