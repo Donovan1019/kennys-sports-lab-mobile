@@ -25,6 +25,11 @@ async function refresh(){
  if(readiness.checked_at){const checked=Date.parse(readiness.checked_at);if(Number.isFinite(checked))out.append(node('p','Certification audit last generated: '+new Date(checked).toLocaleString('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'})+'.'));}
  const details=readiness.check_details||{};
  for(const key of outstanding){const info=details[key];if(info&&typeof info.reason==='string')out.append(node('p',key+': '+info.reason+'.'));}
+ if(readiness.research_warning?.status==='RESEARCH_ONLY'){
+  const w=readiness.research_warning;
+  if(Number.isFinite(w.paper_roi)&&Number.isInteger(w.paper_selected_events)&&w.paper_selected_events>0)
+   out.append(node('p','HISTORICAL PAPER-RISK WARNING · '+w.paper_selected_events+' retrospectively selected events · '+(w.paper_roi*100).toFixed(1)+'% hypothetical ROI · research only, not executed bets or forward-tested performance.'));
+ }
  if(readiness.reason)out.append(node('p','Readiness reason: '+String(readiness.reason)));
  try{
   const auditResponse=await fetch('./feed/nba_ml_simulation_audit.json?ml='+Date.now(),{cache:'no-store'});
