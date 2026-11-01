@@ -1,0 +1,20 @@
+{
+  "sport": "NHL",
+  "date": "2026-11-01",
+  "games": [
+    {
+      "event_id": "401892624",
+      "event": "Winnipeg Jets at Carolina Hurricanes",
+      "commence_time": "2026-11-01T18:00Z",
+      "home": "Carolina Hurricanes",
+      "away": "Winnipeg Jets",
+      "home_score": 7,
+      "away_score": 0,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261101&limit=100"
+    }
+  ],
+  "source_url": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261101&limit=100"
+}

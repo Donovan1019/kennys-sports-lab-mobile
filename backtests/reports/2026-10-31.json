@@ -1,17 +1,114 @@
 {
   "date": "2026-10-31",
-  "generated_at": "2026-11-01T16:47:18.438274+00:00",
+  "generated_at": "2026-11-01T22:44:59.784440+00:00",
   "sports": {
     "NFL": {
-      "status": "OUTCOMES_UNVERIFIED",
+      "status": "PARTIALLY_SETTLED_MONEYLINES",
       "saved_quotes": 0,
       "eligible_predictions": 26,
       "research_only_predictions": 26,
       "bet_eligible_predictions": 0,
       "blocked_predictions": [],
-      "graded": 0,
-      "settled": [],
-      "pending": 26
+      "graded": 16,
+      "settled": [
+        {
+          "event": "Arizona Cardinals @ Dallas Cowboys",
+          "market": "h2h",
+          "selection": "Dallas Cowboys",
+          "outcome": "loss"
+        },
+        {
+          "event": "Arizona Cardinals @ Dallas Cowboys",
+          "market": "h2h",
+          "selection": "Arizona Cardinals",
+          "outcome": "win"
+        },
+        {
+          "event": "Atlanta Falcons @ Tampa Bay Buccaneers",
+          "market": "h2h",
+          "selection": "Tampa Bay Buccaneers",
+          "outcome": "win"
+        },
+        {
+          "event": "Atlanta Falcons @ Tampa Bay Buccaneers",
+          "market": "h2h",
+          "selection": "Atlanta Falcons",
+          "outcome": "loss"
+        },
+        {
+          "event": "Baltimore Ravens @ Buffalo Bills",
+          "market": "h2h",
+          "selection": "Buffalo Bills",
+          "outcome": "win"
+        },
+        {
+          "event": "Baltimore Ravens @ Buffalo Bills",
+          "market": "h2h",
+          "selection": "Baltimore Ravens",
+          "outcome": "loss"
+        },
+        {
+          "event": "Tennessee Titans @ Cincinnati Bengals",
+          "market": "h2h",
+          "selection": "Cincinnati Bengals",
+          "outcome": "win"
+        },
+        {
+          "event": "Tennessee Titans @ Cincinnati Bengals",
+          "market": "h2h",
+          "selection": "Tennessee Titans",
+          "outcome": "loss"
+        },
+        {
+          "event": "Cleveland Browns @ Pittsburgh Steelers",
+          "market": "h2h",
+          "selection": "Pittsburgh Steelers",
+          "outcome": "win"
+        },
+        {
+          "event": "Cleveland Browns @ Pittsburgh Steelers",
+          "market": "h2h",
+          "selection": "Cleveland Browns",
+          "outcome": "loss"
+        },
+        {
+          "event": "Minnesota Vikings @ Detroit Lions",
+          "market": "h2h",
+          "selection": "Detroit Lions",
+          "outcome": "win"
+        },
+        {
+          "event": "Minnesota Vikings @ Detroit Lions",
+          "market": "h2h",
+          "selection": "Minnesota Vikings",
+          "outcome": "loss"
+        },
+        {
+          "event": "Indianapolis Colts @ Jacksonville Jaguars",
+          "market": "h2h",
+          "selection": "Jacksonville Jaguars",
+          "outcome": "win"
+        },
+        {
+          "event": "Indianapolis Colts @ Jacksonville Jaguars",
+          "market": "h2h",
+          "selection": "Indianapolis Colts",
+          "outcome": "loss"
+        },
+        {
+          "event": "Las Vegas Raiders @ New York Jets",
+          "market": "h2h",
+          "selection": "New York Jets",
+          "outcome": "loss"
+        },
+        {
+          "event": "Las Vegas Raiders @ New York Jets",
+          "market": "h2h",
+          "selection": "Las Vegas Raiders",
+          "outcome": "win"
+        }
+      ],
+      "pending": 10
     },
     "NBA": {
       "status": "OUTCOMES_UNVERIFIED",
@@ -31,7 +128,7 @@
       "research_only_predictions": 120,
       "bet_eligible_predictions": 0,
       "blocked_predictions": [],
-      "graded": 20,
+      "graded": 22,
       "settled": [
         {
           "event": "Chicago Blackhawks @ Boston Bruins",
@@ -152,15 +249,27 @@
           "market": "h2h",
           "selection": "Calgary Flames",
           "outcome": "loss"
+        },
+        {
+          "event": "Winnipeg Jets @ Carolina Hurricanes",
+          "market": "h2h",
+          "selection": "Carolina Hurricanes",
+          "outcome": "win"
+        },
+        {
+          "event": "Winnipeg Jets @ Carolina Hurricanes",
+          "market": "h2h",
+          "selection": "Winnipeg Jets",
+          "outcome": "loss"
         }
       ],
-      "pending": 100
+      "pending": 98
     }
   },
   "summary": {
-    "verified_picks": 20,
-    "wins": 10,
-    "losses": 10,
+    "verified_picks": 38,
+    "wins": 19,
+    "losses": 19,
     "pushes": 0,
     "roi": null,
     "hit_rate": 0.5
