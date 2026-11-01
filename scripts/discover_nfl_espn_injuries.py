@@ -30,7 +30,7 @@ def inspect_nested_injuries(data):
         if not isinstance(team,dict) or not isinstance(injuries,list):continue
         first=next((p for p in injuries if isinstance(p,dict)),None)
         teams.append({'team_keys':sorted(team.keys()),'injury_count':len(injuries),'injury_keys':sorted(first.keys()) if first else [],'athlete_keys':sorted(first['athlete'].keys()) if first and isinstance(first.get('athlete'),dict) else []})
-    return {'status':'SCHEMA_ONLY','teams_with_arrays':len(teams),'sample_shapes':teams[:3]}
+    return {'status':'SCHEMA_ONLY','teams_with_arrays':len(teams),'sample_shapes':teams[:3],'all_injury_keys':sorted({key for row in rows if isinstance(row,dict) for injury in (row.get('injuries') if isinstance(row.get('injuries'),list) else []) if isinstance(injury,dict) for key in injury.keys()}),'all_athlete_keys':sorted({key for row in rows if isinstance(row,dict) for injury in (row.get('injuries') if isinstance(row.get('injuries'),list) else []) if isinstance(injury,dict) and isinstance(injury.get('athlete'),dict) for key in injury['athlete'].keys()})}
 
 def main():
     record={'checked_at':datetime.now(timezone.utc).isoformat(),'source_url':URL,'status':'UNAVAILABLE','verified_player_reports':0,'player_ingestion_enabled':False}
