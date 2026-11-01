@@ -21,7 +21,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Test schema discovery
-        run: python scripts/test_nfl_espn_discovery.py
+        run: python scripts/test_nfl_espn_discovery.py && python scripts/test_nfl_espn_schema_contract.py
       - name: Probe free ESPN injury endpoint
         run: python scripts/discover_nfl_espn_injuries.py
       - name: Upload schema diagnostic for review
