@@ -14,6 +14,9 @@ class StagingTests(unittest.TestCase):
         row={'athlete':{'id':'12','fullName':'Example Player'},'status':'Out'}
         data=stage({'injuries':[{'id':'19','displayName':'New York Giants','injuries':[row,row,{'athlete':{'id':'13'}}]}]},'2026-11-01T12:01:00Z')
         self.assertEqual(len(data['teams'][0]['players']),1)
+    def test_live_athlete_without_id(self):
+        data=stage({'injuries':[{'id':'19','displayName':'New York Giants','injuries':[{'athlete':{'displayName':'Example Player'},'status':'Questionable'}]}]},'2026-11-01T12:01:00Z')
+        self.assertEqual(data['teams'][0]['players'][0]['athlete_id'],'name:example player')
     def test_numeric_athlete_id(self):
         data=stage({'injuries':[{'id':19,'displayName':'New York Giants','injuries':[{'athlete':{'id':123,'displayName':'Example Player'},'status':'Out'}]}]},'2026-11-01T12:01:00Z')
         self.assertEqual(data['teams'][0]['players'][0]['athlete_id'],'123')
