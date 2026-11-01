@@ -17,7 +17,20 @@ def inspect_payload(data):
     for key,value in data.items():
         if isinstance(value,list):
             candidates[key]={'count':len(value),'first_item_keys':sorted(value[0].keys()) if value and isinstance(value[0],dict) else []}
-    return {'top_level_keys':keys,'array_shapes':candidates}
+    return {'top_level_keys':keys,'array_shapes':candidates,'injury_nested_shapes':inspect_nested_injuries(data)}
+
+def inspect_nested_injuries(data):
+    rows=data.get('injuries')
+    if not isinstance(rows,list):return {'status':'UNAVAILABLE'}
+    teams=[]
+    for row in rows[:32]:
+        if not isinstance(row,dict):continue
+        team=row.get('team')
+        injuries=row.get('injuries')
+        if not isinstance(team,dict) or not isinstance(injuries,list):continue
+        first=next((p for p in injuries if isinstance(p,dict)),None)
+        teams.append({'team_keys':sorted(team.keys()),'injury_count':len(injuries),'injury_keys':sorted(first.keys()) if first else [],'athlete_keys':sorted(first['athlete'].keys()) if first and isinstance(first.get('athlete'),dict) else []})
+    return {'status':'SCHEMA_ONLY','teams_with_arrays':len(teams),'sample_shapes':teams[:3]}
 
 def main():
     record={'checked_at':datetime.now(timezone.utc).isoformat(),'source_url':URL,'status':'UNAVAILABLE','verified_player_reports':0,'player_ingestion_enabled':False}
