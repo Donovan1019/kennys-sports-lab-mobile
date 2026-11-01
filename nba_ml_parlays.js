@@ -20,7 +20,12 @@ async function refresh(){
  if(!ready){
  status.textContent='NBA ML PARLAYS · NO BET-CERTIFIED PARLAY';
  out.append(node('p','No betting recommendations: model simulation and independent verification must pass before a parlay is displayed.'));
- out.append(node('p','Outstanding certification checks: '+required.filter(k=>readiness.checks?.[k]!==true).join(', ')));
+ const outstanding=required.filter(k=>readiness.checks?.[k]!==true);
+ out.append(node('p','Outstanding certification checks: '+outstanding.join(', ')));
+ if(readiness.checked_at){const checked=Date.parse(readiness.checked_at);if(Number.isFinite(checked))out.append(node('p','Certification audit last generated: '+new Date(checked).toLocaleString('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'})+'.'));}
+ const details=readiness.check_details||{};
+ for(const key of outstanding){const info=details[key];if(info&&typeof info.reason==='string')out.append(node('p',key+': '+info.reason+'.'));}
+ if(readiness.reason)out.append(node('p','Readiness reason: '+String(readiness.reason)));
  try{
   const auditResponse=await fetch('./feed/nba_ml_simulation_audit.json?ml='+Date.now(),{cache:'no-store'});
   if(auditResponse.ok){
