@@ -21,7 +21,7 @@ assert(projections.includes('sample=p.projection+deviations[Math.floor(uniform()
 assert(projections.includes('walk-forward residual bootstrap; calibration pending'),'Simulator must disclose residual method and calibration status');
 assert(!projections.includes('empirical game residual bootstrap'),'Legacy raw game-deviation simulator must stay removed');
 assert(!html.includes('nfl_all_markets.js'),'Unwanted standalone NFL market catalog must stay removed');
-assert(html.includes('nfl_game_projections.js?v=20261101-auto-sportsbook-513'),'Integrated NFL game projections missing or stale cache version');
+assert(html.includes('nfl_game_projections.js?v=20261101-quality-gates-516'),'Integrated NFL game projections missing or stale cache version');
 const gameProjections=fs.readFileSync('nfl_game_projections.js','utf8');new vm.Script(gameProjections,{filename:'nfl_game_projections.js'});
 for(const label of ['Moneyline','Spread','Game Total','Team Total','1st quarter','4th quarter','1st half','2nd half','10000'])assert(gameProjections.includes(label),'Missing projection market or simulator '+label);
 assert(gameProjections.includes('MutationObserver'),'Async projection panel must receive game projections');
