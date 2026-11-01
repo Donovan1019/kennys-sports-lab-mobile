@@ -47,7 +47,8 @@ def main():
             record['final_source_url']=response.geturl()
     except Exception as error:
         record['reason']=type(error).__name__
+        record['failure_detail']=str(error)[:180]
     DEST.parent.mkdir(parents=True,exist_ok=True)
     DEST.write_text(json.dumps(record,indent=2)+'\n',encoding='utf-8')
-    print(record['status'])
+    print(json.dumps({'status':record['status'],'reason':record.get('reason'),'top_level_keys':record.get('top_level_keys'),'nested':record.get('injury_nested_shapes',{}).get('status')}))
 if __name__=='__main__':main()
