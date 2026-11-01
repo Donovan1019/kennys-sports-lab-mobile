@@ -47,7 +47,13 @@ def match(staging,schedule,now=None):
     return {'status':'EVENT_MATCH_AUDIT_ONLY','staged_team_count':len(output),'matched_teams':matched,'ambiguous_teams':ambiguous,'unmatched_teams':len(output)-matched-ambiguous,'schedule_event_count':len(events),'team_matches':output,'verified_player_reports':0,'publication_allowed':False,'projection_impact':'NOT_APPLIED'}
 
 def main():
-    result=match(json.loads(STAGING.read_text(encoding='utf-8')),json.loads(SCHEDULE.read_text(encoding='utf-8')))
+    staging=json.loads(STAGING.read_text(encoding='utf-8'))
+    schedule=json.loads(SCHEDULE.read_text(encoding='utf-8'))
+    try:
+        result=match(staging,schedule)
+    except ValueError as error:
+        if str(error)!='Stale or future source':raise
+        result={'status':'BLOCKED_STALE_SOURCE','reason':'Stale or future source','staged_team_count':len(staging.get('teams',[])),'matched_teams':0,'ambiguous_teams':0,'unmatched_teams':len(staging.get('teams',[])),'schedule_event_count':0,'team_matches':[],'verified_player_reports':0,'publication_allowed':False,'projection_impact':'NOT_APPLIED'}
     DEST.parent.mkdir(parents=True,exist_ok=True)
     DEST.write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8')
     print(json.dumps({k:v for k,v in result.items() if k!='team_matches'}))
