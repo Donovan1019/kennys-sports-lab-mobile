@@ -1,0 +1,26 @@
+name: Check Official NFL Injury Source
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '15,45 14-23 * * 0,1,4'
+permissions:
+  contents: write
+concurrency:
+  group: nfl-injury-source-check
+  cancel-in-progress: false
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Probe official NFL injury source without inferring player availability
+        run: python scripts/check_nfl_official_injuries.py
+      - name: Commit source health
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add feed/nfl_injury_source_health.json
+          git diff --cached --quiet || (git commit -m "Update NFL official injury source health" && git push)
