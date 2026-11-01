@@ -1,6 +1,6 @@
 {
   "status": "not_bet_eligible",
-  "checked_at": "2026-11-01T20:46:48.038285+00:00",
+  "checked_at": "2026-11-01T21:18:37.796129+00:00",
   "checks": {
     "odds_fresh": true,
     "model_fresh_and_calibrated": true,
@@ -12,5 +12,39 @@
     "executable_same_book_parlay_quote": false,
     "correlation_stress_test_verified": false
   },
-  "reason": "Historical pregame odds, lineup availability, executable parlay prices and correlation validation are not connected; fail closed."
+  "check_details": {
+    "historical_pregame_odds_backtest": {
+      "status": "UNVERIFIED",
+      "source": "outcome_market",
+      "reason": "Research-only evidence is not certification"
+    },
+    "closing_line_value_verified": {
+      "status": "UNVERIFIED",
+      "source": "outcome_market",
+      "reason": "Research-only evidence is not certification"
+    },
+    "injury_lineup_rest_confirmed": {
+      "status": "UNVERIFIED",
+      "source": "availability",
+      "reason": "No current independent verification record"
+    },
+    "executable_same_book_parlay_quote": {
+      "status": "UNVERIFIED",
+      "source": "parlay_quotes",
+      "reason": "No current independent verification record"
+    },
+    "correlation_stress_test_verified": {
+      "status": "UNVERIFIED",
+      "source": "correlation",
+      "reason": "No current independent verification record"
+    }
+  },
+  "outstanding_checks": [
+    "historical_pregame_odds_backtest",
+    "closing_line_value_verified",
+    "injury_lineup_rest_confirmed",
+    "executable_same_book_parlay_quote",
+    "correlation_stress_test_verified"
+  ],
+  "reason": "Unverified: historical_pregame_odds_backtest, closing_line_value_verified, injury_lineup_rest_confirmed, executable_same_book_parlay_quote, correlation_stress_test_verified"
 }
