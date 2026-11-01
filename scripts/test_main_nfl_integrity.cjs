@@ -58,4 +58,6 @@ assert(injuryReport.includes('entry.source_url')&&injuryReport.includes('entry.f
 assert(injuryReport.includes('NOT APPLIED — model recalculation not connected'),'Do not claim automatic projection updates without integration');
 assert(injuryReport.includes('https://www.nfl.com/injuries/'),'Official NFL injury source must be linked');
 assert(injuryReport.includes('not the same as confirmed game-day inactives'),'Do not confuse injury designations with official inactive confirmation');
+assert(injuryReport.includes("button.textContent='Refresh Injury Report'"),'Injury tab must expose dedicated refresh button');
+assert(injuryReport.includes('if(refreshing)return')&&injuryReport.includes('finally{refreshing=false'),'Refresh must guard concurrent requests and reset state');
 console.log('PASS main NFL page, scripts and position/market integrity');
