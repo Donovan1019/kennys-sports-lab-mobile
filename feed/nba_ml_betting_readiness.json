@@ -1,6 +1,6 @@
 {
   "status": "not_bet_eligible",
-  "checked_at": "2026-11-01T21:27:13.368071+00:00",
+  "checked_at": "2026-11-01T22:45:22.733861+00:00",
   "checks": {
     "odds_fresh": true,
     "model_fresh_and_calibrated": true,
@@ -11,6 +11,12 @@
     "injury_lineup_rest_confirmed": false,
     "executable_same_book_parlay_quote": false,
     "correlation_stress_test_verified": false
+  },
+  "research_warning": {
+    "status": "RESEARCH_ONLY",
+    "paper_roi": -0.386712,
+    "paper_selected_events": 26,
+    "reason": "Retrospective paper returns are not executed bets or a validated forward test; investigate negative performance before certification."
   },
   "check_details": {
     "historical_pregame_odds_backtest": {
