@@ -52,7 +52,7 @@ assert(moduleNav.includes("['Injury Report','#nfl-injury-report']"),'NFL injury 
 const injuryReport=fs.readFileSync('nfl_injury_report.js','utf8');new vm.Script(injuryReport,{filename:'nfl_injury_report.js'});
 assert(injuryReport.includes('kickoff-90*60000'),'Official inactive report deadline must be 90 minutes before individual kickoff');
 assert(injuryReport.includes('UNVERIFIED — no sourced inactive list'),'No invented official inactive statuses');
-assert(html.includes('nfl_injury_report.js?v=20261101-injury-refresh-521'),'NFL injury report cache must be refreshed');
+assert(html.includes('nfl_injury_report.js?v=20261101-current-schedule-522'),'NFL injury report cache must be refreshed');
 assert(injuryReport.includes('entry.verified===true')&&injuryReport.includes('entry.event_id===g.event_id'),'Injury report must verify source and exact event');
 assert(injuryReport.includes('entry.source_url')&&injuryReport.includes('entry.fetched_at'),'Injury reports must include source URL and timestamp');
 assert(injuryReport.includes('NOT APPLIED — model recalculation not connected'),'Do not claim automatic projection updates without integration');
@@ -60,4 +60,5 @@ assert(injuryReport.includes('https://www.nfl.com/injuries/'),'Official NFL inju
 assert(injuryReport.includes('not the same as confirmed game-day inactives'),'Do not confuse injury designations with official inactive confirmation');
 assert(injuryReport.includes("button.textContent='Refresh Injury Report'"),'Injury tab must expose dedicated refresh button');
 assert(injuryReport.includes('if(refreshing)return')&&injuryReport.includes('finally{refreshing=false'),'Refresh must guard concurrent requests and reset state');
+assert(injuryReport.includes('feed/americanfootball_nfl.json'),'NFL injury tab needs current market schedule');
 console.log('PASS main NFL page, scripts and position/market integrity');
