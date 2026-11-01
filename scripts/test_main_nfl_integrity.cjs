@@ -49,7 +49,10 @@ assert(gameProjections.includes('Date.parse(b.date)-Date.parse(a.date)'),'NFL hi
 assert(gameProjections.includes('history(away,g.commence_time),hh=history(home,g.commence_time)'),'NFL bootstrap must use event kickoff as historical cutoff');
 assert(/nfl_injury_report\.js\?v=20261101-[a-z0-9-]+/.test(html),'NFL injury report script must be loaded');
 assert(moduleNav.includes("['Injury Report','#nfl-injury-report']"),'NFL injury report must appear in horizontal navigation');
-const injuryReport=fs.readFileSync('nfl_injury_report.js','utf8');new vm.Script(injuryReport,{filename:'nfl_injury_report.js'});
+const injuryReport=fs.readFileSync('nfl_injury_report.js','utf8');
+assert(injuryReport.includes('entry.players.length>0'),'Empty injury reports must not be verified');
+assert(injuryReport.includes("p.status==='inactive'"),'Early inactives must be rejected');
+assert(injuryReport.includes('espn\\.com'),'Injury source URL must be restricted');new vm.Script(injuryReport,{filename:'nfl_injury_report.js'});
 assert(injuryReport.includes('kickoff-90*60000'),'Official inactive report deadline must be 90 minutes before individual kickoff');
 assert(injuryReport.includes('UNVERIFIED — no sourced inactive list'),'No invented official inactive statuses');
 assert(html.includes('nfl_injury_report.js?v=20261101-injury-safety-525'),'NFL injury report cache must be refreshed');
