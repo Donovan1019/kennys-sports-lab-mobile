@@ -35,3 +35,14 @@ class EvidenceProvenanceTests(unittest.TestCase):
   out=audit({}, {}, NOW, evidence=evidence)
   self.assertTrue(out["checks"]["closing_line_value_verified"])
   self.assertEqual(out["status"],"not_bet_eligible")
+
+class ResearchRiskTests(unittest.TestCase):
+ def test_negative_research_roi_is_disclosed_without_certification(self):
+  evidence={"outcome_market":{"status":"research_only","paper_roi":-0.386712,"paper_selected_events":26}}
+  out=audit({}, {}, NOW, evidence=evidence)
+  self.assertEqual(out["research_warning"]["paper_selected_events"],26)
+  self.assertLess(out["research_warning"]["paper_roi"],0)
+  self.assertEqual(out["status"],"not_bet_eligible")
+ def test_missing_research_roi_is_not_invented(self):
+  out=audit({}, {}, NOW, evidence={"outcome_market":{"status":"research_only"}})
+  self.assertNotIn("research_warning",out)
