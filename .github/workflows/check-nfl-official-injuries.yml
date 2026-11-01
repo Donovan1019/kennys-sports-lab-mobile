@@ -16,6 +16,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Test injury source probe redirect safeguards
+        run: python scripts/test_nfl_injury_source_health.py
       - name: Probe official NFL injury source without inferring player availability
         run: python scripts/check_nfl_official_injuries.py
       - name: Commit source health
