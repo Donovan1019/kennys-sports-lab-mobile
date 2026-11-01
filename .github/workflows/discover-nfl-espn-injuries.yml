@@ -1,5 +1,9 @@
 name: Discover Free ESPN NFL Injury Feed
 on:
+  pull_request:
+    paths:
+      - 'scripts/discover_nfl_espn_injuries.py'
+      - '.github/workflows/discover-nfl-espn-injuries.yml'
   workflow_dispatch:
   schedule:
     - cron: '25 14,18,22 * * 0,1,4'
@@ -21,6 +25,7 @@ jobs:
       - name: Probe free ESPN injury endpoint
         run: python scripts/discover_nfl_espn_injuries.py
       - name: Commit schema health only, never unverified players
+        if: github.event_name != 'pull_request'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
