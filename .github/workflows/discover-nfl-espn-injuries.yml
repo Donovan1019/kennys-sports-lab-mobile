@@ -5,6 +5,8 @@ on:
       - 'scripts/discover_nfl_espn_injuries.py'
       - 'scripts/stage_nfl_espn_injuries.py'
       - 'scripts/test_nfl_espn_staging.py'
+      - 'scripts/audit_nfl_espn_staging.py'
+      - 'scripts/test_nfl_espn_quality_audit.py'
       - '.github/workflows/discover-nfl-espn-injuries.yml'
   workflow_dispatch:
   schedule:
@@ -23,11 +25,19 @@ jobs:
         with:
           python-version: '3.12'
       - name: Test schema discovery
-        run: python scripts/test_nfl_espn_discovery.py && python scripts/test_nfl_espn_schema_contract.py && python scripts/test_nfl_espn_staging.py
+        run: python scripts/test_nfl_espn_discovery.py && python scripts/test_nfl_espn_schema_contract.py && python scripts/test_nfl_espn_staging.py && python scripts/test_nfl_espn_quality_audit.py
       - name: Probe free ESPN injury endpoint
         run: python scripts/discover_nfl_espn_injuries.py
       - name: Stage player records without verification
         run: python scripts/stage_nfl_espn_injuries.py
+      - name: Audit live ESPN injury data quality
+        run: python scripts/audit_nfl_espn_staging.py
+      - name: Upload quality audit
+        uses: actions/upload-artifact@v4
+        with:
+          name: nfl-espn-injury-quality-audit
+          path: feed/nfl_injury_espn_quality_audit.json
+          retention-days: 7
       - name: Upload staging diagnostic
         uses: actions/upload-artifact@v4
         with:
