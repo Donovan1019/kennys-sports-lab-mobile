@@ -1,0 +1,150 @@
+{
+  "checked_at": "2026-11-01T15:00:04.203373+00:00",
+  "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+  "status": "SCHEMA_DISCOVERED_NOT_VALIDATED",
+  "verified_player_reports": 0,
+  "player_ingestion_enabled": false,
+  "top_level_keys": [
+    "injuries",
+    "season",
+    "status",
+    "timestamp"
+  ],
+  "array_shapes": {
+    "injuries": {
+      "count": 32,
+      "first_item_keys": [
+        "displayName",
+        "id",
+        "injuries"
+      ]
+    }
+  },
+  "injury_nested_shapes": {
+    "status": "SCHEMA_ONLY",
+    "teams_with_arrays": 32,
+    "sample_shapes": [
+      {
+        "team_keys": [
+          "displayName",
+          "id",
+          "injuries"
+        ],
+        "injury_count": 25,
+        "injury_keys": [
+          "athlete",
+          "date",
+          "id",
+          "longComment",
+          "shortComment",
+          "source",
+          "status",
+          "type"
+        ],
+        "athlete_keys": [
+          "displayName",
+          "firstName",
+          "headshot",
+          "lastName",
+          "links",
+          "notes",
+          "position",
+          "shortName",
+          "status",
+          "team"
+        ]
+      },
+      {
+        "team_keys": [
+          "displayName",
+          "id",
+          "injuries"
+        ],
+        "injury_count": 25,
+        "injury_keys": [
+          "athlete",
+          "date",
+          "details",
+          "id",
+          "longComment",
+          "shortComment",
+          "source",
+          "status",
+          "type"
+        ],
+        "athlete_keys": [
+          "displayName",
+          "firstName",
+          "headshot",
+          "lastName",
+          "links",
+          "notes",
+          "position",
+          "shortName",
+          "status",
+          "team"
+        ]
+      },
+      {
+        "team_keys": [
+          "displayName",
+          "id",
+          "injuries"
+        ],
+        "injury_count": 25,
+        "injury_keys": [
+          "athlete",
+          "date",
+          "details",
+          "id",
+          "longComment",
+          "shortComment",
+          "source",
+          "status",
+          "type"
+        ],
+        "athlete_keys": [
+          "displayName",
+          "firstName",
+          "headshot",
+          "lastName",
+          "links",
+          "notes",
+          "position",
+          "shortName",
+          "status",
+          "team"
+        ]
+      }
+    ],
+    "all_injury_keys": [
+      "athlete",
+      "date",
+      "details",
+      "id",
+      "longComment",
+      "shortComment",
+      "source",
+      "status",
+      "type"
+    ],
+    "all_team_keys": [
+      "displayName",
+      "id",
+      "injuries"
+    ],
+    "all_athlete_keys": [
+      "displayName",
+      "firstName",
+      "headshot",
+      "lastName",
+      "links",
+      "notes",
+      "position",
+      "shortName",
+      "status",
+      "team"
+    ]
+  },
+  "final_source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries"
+}
