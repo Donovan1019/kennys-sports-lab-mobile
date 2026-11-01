@@ -11,7 +11,7 @@ for(const x of ['Full game','1st half','2nd half','1st quarter','2nd quarter','3
 section.append(market,period,matchup);const thresholds=document.createElement('div');const spreadInput=document.createElement('input'),totalInput=document.createElement('input');for(const [input,label,value] of [[spreadInput,'Home spread',-3.5],[totalInput,'Game total',45.5]]){input.type='number';input.step='0.5';input.value=String(value);input.setAttribute('aria-label',label);input.style.cssText='max-width:105px;padding:9px;background:#10283a;color:white;border:1px solid #42677b;border-radius:8px';const wrap=document.createElement('label');wrap.textContent=label+' ';wrap.style.cssText='display:inline-flex;gap:8px;align-items:center;margin:6px 12px 6px 0';wrap.append(input);thresholds.append(wrap)}section.append(thresholds);
 const status=document.createElement('p');const output=document.createElement('div');section.append(status,output);
 const attachToProjectionPanel=()=>{const playerBox=Array.from(document.querySelectorAll('section')).find(x=>x.querySelector('h2')?.textContent?.includes('Player Projections · Model Estimates'));if(!playerBox)return false;playerBox.id='nfl-player-projections';section.id='nfl-game-projections';const playerMarket=playerBox.querySelector('select[aria-label="Projection market"]');if(playerMarket&&section.parentNode!==playerBox)playerBox.insertBefore(section,playerMarket);else if(!playerMarket&&section.parentNode!==playerBox)playerBox.append(section);return true};if(!attachToProjectionPanel()){const observer=new MutationObserver(()=>{if(attachToProjectionPanel())observer.disconnect()});observer.observe(document.body,{childList:true,subtree:true})}
-let games=[],quotes=[];const clean=x=>String(x||'').toLowerCase().replace(/[^a-z0-9]/g,'');
+let games=[],quotes=[],oddsCheckedAt=null,oddsError='';const clean=x=>String(x||'').toLowerCase().replace(/[^a-z0-9]/g,'');
 const isRegular=x=>{const d=new Date(x.date);return Number.isFinite(d.getTime())&&d.getUTCMonth()!==7&&d.getTime()<Date.now()};
 const history=t=>(t?.score_history||[]).filter(x=>isRegular(x)&&Number.isFinite(Number(x.scored))&&Number.isFinite(Number(x.allowed))).slice(0,12);
 const mean=x=>x.reduce((a,b)=>a+b,0)/x.length;
@@ -26,6 +26,37 @@ const range=k=>{const x=draws.map(d=>d[k]).sort((a,b)=>a-b);return {mid:pct(x,.5
 return {aMean,hMean,away:range('away'),home:range('home'),total:range('total'),margin:range('margin'),aWins,hWins,ties,draws,n:draws.length,ah:ah.length,hh:hh.length}}
 const row=(label,value)=>{const d=document.createElement('div');d.style.cssText='display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid #29475b;flex-wrap:wrap';const l=document.createElement('span');l.textContent=label;const v=document.createElement('strong');v.textContent=value;d.append(l,v);return d};
 const fmt=x=>Number(x).toFixed(1);
+const american=p=>p>0?'+'+p:String(p);
+const decimal=p=>p>0?1+p/100:1+100/Math.abs(p);
+const fair=p=>p>0&&p<1?(p>=.5?'-'+Math.round(100*p/(1-p)):'+'+Math.round(100*(1-p)/p)):'unavailable';
+const timeET=x=>new Date(x).toLocaleString('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})+' ET';
+const matchEvent=(q,g)=>clean(q.event)===clean(g.event)&&Math.abs(Date.parse(q.commence_time)-Date.parse(g.commence_time))<=600000;
+const isFresh=(q,g)=>matchEvent(q,g)&&['draftkings','fanduel'].includes(String(q.bookmaker).toLowerCase())&&Number.isFinite(q.price)&&Math.abs(q.price)>=100&&Number.isFinite(Date.parse(q.updated_at))&&Date.parse(q.updated_at)<=Date.now()+60000&&Date.now()-Date.parse(q.updated_at)<=21600000&&Date.parse(g.commence_time)>Date.now();
+const matchQuotes=(g,m)=>quotes.filter(q=>isFresh(q,g)&&q.market===m);
+function oddsRows(card,g,sim){
+ const kind=market.value==='Moneyline'?'h2h':market.value==='Spread'?'spreads':market.value==='Game Total'?'totals':null;
+ if(!kind){card.append(row('DK/FD','No verified team-total quote integration'));return}
+ const matching=matchQuotes(g,kind);let shown=0;
+ for(const book of ['draftkings','fanduel']){
+ const selection=matching.filter(q=>q.bookmaker===book);
+ for(const q of selection){
+ let p=null,push=0,point='';
+ if(kind==='h2h'){if(![g.away,g.home].some(x=>clean(x)===clean(q.selection)))continue;p=clean(q.selection)===clean(g.home)?sim.hWins/sim.n:sim.aWins/sim.n;push=sim.ties/sim.n}
+ if(kind==='spreads'){if(!Number.isFinite(q.point)||![g.away,g.home].some(x=>clean(x)===clean(q.selection)))continue;const home=clean(q.selection)===clean(g.home);p=sim.draws.filter(d=>(home?d.margin:-d.margin)+q.point>0).length/sim.n;push=sim.draws.filter(d=>(home?d.margin:-d.margin)+q.point===0).length/sim.n;point=' '+(q.point>0?'+':'')+q.point}
+ if(kind==='totals'){if(!Number.isFinite(q.point)||!['over','under'].includes(String(q.selection).toLowerCase()))continue;const over=String(q.selection).toLowerCase()==='over';p=sim.draws.filter(d=>over?d.total>q.point:d.total<q.point).length/sim.n;push=sim.draws.filter(d=>d.total===q.point).length/sim.n;point=' '+q.point}
+ if(p===null)continue;
+ const ev=p*(decimal(q.price)-1)-(1-p-push);
+ card.append(row(book.toUpperCase()+' · '+q.selection+point,american(q.price)+' · '+timeET(q.updated_at)));
+ card.append(row('Model probability / push',fmt(p*100)+'% / '+fmt(push*100)+'%'));
+ card.append(row('Model fair odds (push excluded)',fair(p/(1-push))));
+ card.append(row('Research EV / unit',fmt(ev*100)+'% · NOT BET ELIGIBLE'));shown++;
+ }}
+ if(!shown)card.append(row('DraftKings / FanDuel',oddsError?'Feed error: '+oddsError:'No verified current matching '+kind+' quote'+(oddsCheckedAt?' · checked '+timeET(oddsCheckedAt):' · feed not checked')));
+}
+async function loadOdds(){
+ try{const r=await fetch('./feed/americanfootball_nfl.json?projection_odds='+Date.now(),{cache:'no-store'});if(!r.ok)throw Error('HTTP '+r.status);const d=await r.json();if(!Array.isArray(d.odds))throw Error('invalid feed');quotes=d.odds;oddsError='';oddsCheckedAt=Date.now()}
+ catch(e){quotes=[];oddsError=e.message;oddsCheckedAt=Date.now()}draw()
+}
 function draw(){output.replaceChildren();const g=games.find(x=>x.event_id===matchup.value);if(!g){status.textContent='No upcoming scheduled matchup with verified team inputs';return}
 const card=document.createElement('article');card.style.cssText='border:1px solid #45687d;border-radius:12px;padding:14px;background:#10283a;margin-top:12px';
 const h=document.createElement('h3');h.textContent=g.away+' @ '+g.home;card.append(h);
@@ -37,7 +68,7 @@ if(market.value==='Moneyline'){card.append(row(g.home+' win simulation',fmt(100*
 if(market.value==='Spread'){const line=Number(spreadInput.value);if(!Number.isFinite(line)||spreadInput.value==='')card.append(row('Spread probabilities','Enter a valid home spread'));else{const cover=sim.draws.filter(d=>d.margin+line>0).length, push=sim.draws.filter(d=>d.margin+line===0).length;card.append(row('Home projected margin',fmt(sim.hMean-sim.aMean)),row('80% simulated home margin',fmt(sim.margin.low)+' to '+fmt(sim.margin.high)),row(g.home+' '+(line>0?'+':'')+line+' covers',fmt(100*cover/sim.n)+'%'),row(g.away+' '+(line<0?'+':'')+(-line)+' covers',fmt(100*(sim.n-cover-push)/sim.n)+'%'),row('Spread push',fmt(100*push/sim.n)+'%'))}}
 if(market.value==='Game Total'){const line=Number(totalInput.value);if(!Number.isFinite(line)||totalInput.value===''||line<=0)card.append(row('Total probabilities','Enter a valid total'));else{const over=sim.draws.filter(d=>d.total>line).length,push=sim.draws.filter(d=>d.total===line).length;card.append(row('Projected total',fmt(sim.aMean+sim.hMean)),row('80% simulated total',fmt(sim.total.low)+' to '+fmt(sim.total.high)),row('Over '+line,fmt(100*over/sim.n)+'%'),row('Under '+line,fmt(100*(sim.n-over-push)/sim.n)+'%'),row('Total push',fmt(100*push/sim.n)+'%'))}}
 if(market.value==='Team Total'){card.append(row(g.away+' projected points',fmt(sim.aMean)),row(g.away+' 80% range',fmt(sim.away.low)+' to '+fmt(sim.away.high)),row(g.home+' projected points',fmt(sim.hMean)),row(g.home+' 80% range',fmt(sim.home.low)+' to '+fmt(sim.home.high)))}
-card.append(row('DraftKings / FanDuel','No verified current matching game-market quote'),row('Validation','EXPERIMENTAL · not calibrated · no injury/starting-lineup verification'));output.append(card)}
-for(const x of [market,period,matchup,spreadInput,totalInput])x.addEventListener('change',draw);
+oddsRows(card,g,sim);card.append(row('Validation','EXPERIMENTAL · not calibrated · no injury/starting-lineup verification'));output.append(card)}
+for(const x of [market,period,matchup,spreadInput,totalInput])x.addEventListener('change',draw);const refresh=document.createElement('button');refresh.type='button';refresh.textContent='Refresh DK/FD published odds';refresh.addEventListener('click',loadOdds);section.insertBefore(refresh,status);loadOdds();
 fetch('./feed/independent_game_inputs.json?game_projection='+Date.now(),{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('inputs unavailable');return r.json()}).then(d=>{games=(d.games||[]).filter(g=>Date.parse(g.commence_time)>Date.now()&&Array.isArray(g.teams)&&g.teams.length===2).sort((a,b)=>Date.parse(a.commence_time)-Date.parse(b.commence_time));for(const g of games){const o=document.createElement('option');o.value=g.event_id;o.textContent=g.event;matchup.append(o)}draw()}).catch(()=>{status.textContent='Independent team scoring feed unavailable; projections disabled'});
 })();
