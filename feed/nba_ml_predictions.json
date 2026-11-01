@@ -1,7 +1,7 @@
 {
   "status": "validated",
   "sport": "basketball_nba",
-  "generated_at": "2026-11-01T01:18:55.309091+00:00",
+  "generated_at": "2026-11-01T02:57:14.033708+00:00",
   "calibration_passed": true,
   "model_version": "elo-walkforward-v1-holdout-audit",
   "validation_report": {
@@ -24,6 +24,42 @@
   },
   "training_cutoff": "2026-10-31T02:00Z",
   "predictions": [
+    {
+      "event_id": "e8559eaac12af915cfe6597644620c13",
+      "team": "Orlando Magic",
+      "date_et": "2026-11-01",
+      "win_probability": 0.464081
+    },
+    {
+      "event_id": "e8559eaac12af915cfe6597644620c13",
+      "team": "Boston Celtics",
+      "date_et": "2026-11-01",
+      "win_probability": 0.535919
+    },
+    {
+      "event_id": "fc3e945a5be88d3f933456bc512c956d",
+      "team": "Indiana Pacers",
+      "date_et": "2026-11-01",
+      "win_probability": 0.635479
+    },
+    {
+      "event_id": "fc3e945a5be88d3f933456bc512c956d",
+      "team": "Brooklyn Nets",
+      "date_et": "2026-11-01",
+      "win_probability": 0.364521
+    },
+    {
+      "event_id": "31fc89cbf3846e545e8e41a543a71d24",
+      "team": "Los Angeles Lakers",
+      "date_et": "2026-11-01",
+      "win_probability": 0.673827
+    },
+    {
+      "event_id": "31fc89cbf3846e545e8e41a543a71d24",
+      "team": "Toronto Raptors",
+      "date_et": "2026-11-01",
+      "win_probability": 0.326173
+    },
     {
       "event_id": "a6555e8b7252dfb32f1817fc8c59ad83",
       "team": "New York Knicks",
