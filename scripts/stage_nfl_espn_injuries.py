@@ -22,7 +22,9 @@ def stage(payload,fetched_at):
             if not isinstance(item,dict) or not isinstance(item.get('athlete'),dict):continue
             athlete=item['athlete'];name=athlete.get('fullName') or athlete.get('displayName');athlete_id=athlete.get('id')
             if isinstance(athlete_id,int):athlete_id=str(athlete_id)
-            if not isinstance(name,str) or not name.strip() or not isinstance(athlete_id,str) or not athlete_id.strip():continue
+            if not isinstance(name,str) or not name.strip():continue
+            if not isinstance(athlete_id,str) or not athlete_id.strip():athlete_id='name:'+name.strip().casefold()
+
             key=(team_id,athlete_id)
             if key in seen:continue
             seen.add(key)
