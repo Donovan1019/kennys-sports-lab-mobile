@@ -6,7 +6,7 @@ NOW=datetime(2026,11,1,18,tzinfo=timezone.utc)
 def staging(name='New York Giants'):
     return {'status':'STAGED_UNVERIFIED','verified_player_reports':0,'fetched_at':'2026-11-01T17:00:00Z','teams':[{'espn_team_id':'19','team_name':name,'players':[{'name':'Test'}]}]}
 def schedule():
-    return {'fetched_at':'2026-11-01T17:00:00Z','odds':[{'event_id':'abc','event':'New York Giants @ Dallas Cowboys'}]}
+    return {'fetched_at':'2026-11-01T17:00:00Z','odds':[{'event_id':'abc','event':'New York Giants @ Dallas Cowboys','commence_time':'2026-11-01T20:00:00Z'}]}
 class MatchTests(unittest.TestCase):
     def test_exact_name_match_unverified(self):
         result=match(staging(),schedule(),NOW)
@@ -22,7 +22,16 @@ class MatchTests(unittest.TestCase):
         result=match(staging(),schedule(),NOW)
         self.assertEqual(result['verified_player_reports'],0)
         self.assertEqual(result['projection_impact'],'NOT_APPLIED')
+    def test_old_event_excluded(self):
+        s=schedule();s['odds'].append({'event_id':'old','event':'New York Giants @ Philadelphia Eagles','commence_time':'2026-10-20T20:00:00Z'})
+        self.assertEqual(match(staging(),s,NOW)['matched_teams'],1)
+    def test_far_future_event_excluded(self):
+        s=schedule();s['odds'].append({'event_id':'future','event':'New York Giants @ Philadelphia Eagles','commence_time':'2026-11-20T20:00:00Z'})
+        self.assertEqual(match(staging(),s,NOW)['matched_teams'],1)
+    def test_conflicting_kickoff_rejected(self):
+        s=schedule();s['odds'].append({'event_id':'abc','event':'New York Giants @ Dallas Cowboys','commence_time':'2026-11-02T20:00:00Z'})
+        with self.assertRaises(ValueError):match(staging(),s,NOW)
     def test_ambiguous_double_header(self):
-        s=schedule();s['odds'].append({'event_id':'xyz','event':'New York Giants @ Philadelphia Eagles'})
+        s=schedule();s['odds'].append({'event_id':'xyz','event':'New York Giants @ Philadelphia Eagles','commence_time':'2026-11-03T20:00:00Z'})
         self.assertEqual(match(staging(),s,NOW)['ambiguous_teams'],1)
 if __name__=='__main__':unittest.main()
