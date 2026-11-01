@@ -83,17 +83,28 @@ function verdict(card,g,sim){
   candidates.push({selection,book:q.bookmaker,price:q.price,probability,push,ev,updated:q.updated_at});
  }
  candidates.sort((a,b)=>b.ev-a.ev||b.probability-a.probability);
+ if(kind==='h2h'){
+  const homeP=sim.hWins/sim.n,awayP=sim.aWins/sim.n;
+  const winner=homeP>=awayP?g.home:g.away,winP=Math.max(homeP,awayP);
+  message('MOST LIKELY WINNER (simulation): '+winner);
+  panel.append(row('Win probability',fmt(winP*100)+'%'));
+  message(winP>=0.65?'Model confidence tier: HIGH (uncalibrated)':winP>=0.55?'Model confidence tier: MODERATE (uncalibrated)':'Model confidence tier: LOW / CLOSE GAME');
+ }else{
+  const likely=candidates.slice().sort((a,b)=>b.probability-a.probability)[0];
+  if(likely){message('MOST LIKELY OUTCOME (simulation): '+likely.selection);panel.append(row('Simulated probability',fmt(likely.probability*100)+'%'))}
+  else message('MOST LIKELY OUTCOME: unavailable without a verified current line.');
+ }
  const best=candidates[0];
- if(!best)message('PASS - No verified current matching sportsbook quote for this market.');
- else if(best.ev<=0)message('PASS - No positive research-model edge at verified sportsbook prices.');
+ if(!best)message('BEST VALUE OPPORTUNITY: PASS - No verified current matching sportsbook quote.');
+ else if(best.ev<=0)message('BEST VALUE OPPORTUNITY: PASS - No positive research-model EV.');
  else{
-  message('Research model lean: '+best.selection+' / '+best.book.toUpperCase()+' '+american(best.price));
-  panel.append(row('Model probability / push',fmt(best.probability*100)+'% / '+fmt(best.push*100)+'%'));
+  message('BEST VALUE OPPORTUNITY (research only): '+best.selection+' / '+best.book.toUpperCase()+' '+american(best.price));
+  panel.append(row('Value probability / push',fmt(best.probability*100)+'% / '+fmt(best.push*100)+'%'));
   panel.append(row('Model fair odds',fair(best.probability/(1-best.push))));
   panel.append(row('Research EV / unit',fmt(best.ev*100)+'%'));
   panel.append(row('Quote time',timeET(best.updated)));
  }
- message('NOT BET ELIGIBLE - Experimental historical bootstrap; calibration and injury/lineup checks unavailable.');
+ message('BETTING STATUS: PASS / NOT BET ELIGIBLE - Uncalibrated bootstrap; injuries and starting lineups not verified. Confidence tiers are descriptive, not validated.');
  card.append(panel);
 }
 async function loadOdds(){
