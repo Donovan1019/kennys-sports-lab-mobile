@@ -51,6 +51,18 @@ def audit(odds, model, now, schedule=None, archive=None, evidence=None):
                 else "No current independent verification record"
             ),
         }
+    market = evidence.get("outcome_market", {})
+    roi = market.get("paper_roi")
+    sample = market.get("paper_selected_events")
+    if (market.get("status") == "research_only"
+            and isinstance(roi, (int, float)) and not isinstance(roi, bool)
+            and isinstance(sample, int) and not isinstance(sample, bool) and sample > 0):
+        report["research_warning"] = {
+            "status": "RESEARCH_ONLY",
+            "paper_roi": roi,
+            "paper_selected_events": sample,
+            "reason": "Retrospective paper returns are not executed bets or a validated forward test; investigate negative performance before certification."
+        }
     report["check_details"] = details
     missing = [name for name, passed in checks.items() if not passed]
     report["outstanding_checks"] = missing
