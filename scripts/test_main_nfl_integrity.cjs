@@ -56,7 +56,7 @@ assert(injuryReport.includes("entry.report_type==='official_inactives'"),'Early 
 assert(injuryReport.includes('espn\\.com'),'Injury source URL must be restricted');new vm.Script(injuryReport,{filename:'nfl_injury_report.js'});
 assert(injuryReport.includes('kickoff-90*60000'),'Official inactive report deadline must be 90 minutes before individual kickoff');
 assert(injuryReport.includes('UNVERIFIED — no sourced inactive list'),'No invented official inactive statuses');
-assert(html.includes('nfl_injury_report.js?v=20261101-report-timestamp-531'),'NFL injury report cache must be refreshed');
+assert(html.includes('nfl_injury_report.js?v=20261101-espn-source-status-535'),'NFL injury report cache must be refreshed');
 assert(injuryReport.includes('entry.verified===true')&&injuryReport.includes('entry.event_id===g.event_id'),'Injury report must verify source and exact event');
 assert(injuryReport.includes('entry.source_url')&&injuryReport.includes('entry.fetched_at'),'Injury reports must include source URL and timestamp');
 assert(injuryReport.includes('NOT APPLIED — model recalculation not connected'),'Do not claim automatic projection updates without integration');
