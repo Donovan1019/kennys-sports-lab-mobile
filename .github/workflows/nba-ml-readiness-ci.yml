@@ -1,0 +1,20 @@
+name: NBA ML readiness CI
+on:
+  pull_request:
+    paths:
+      - 'scripts/audit_nba_ml_betting_readiness.py'
+      - 'tests/test_nba_ml_betting_readiness.py'
+      - '.github/workflows/nba-ml-readiness-ci.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  readiness-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: NBA ML readiness regression tests
+        run: python -m unittest discover -s tests -p 'test_nba_ml_betting_readiness.py' -v
