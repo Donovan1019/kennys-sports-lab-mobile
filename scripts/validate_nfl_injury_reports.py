@@ -5,6 +5,8 @@ from datetime import datetime,timezone
 from pathlib import Path
 from urllib.parse import urlparse
 
+SCHEDULE=Path('feed/americanfootball_nfl.json')
+
 ALLOWED={"nfl.com","www.nfl.com","espn.com","www.espn.com"}
 STATUS={"game_designation":{"out","doubtful","questionable"},"official_inactives":{"active","inactive"}}
 def parse_time(value):
@@ -12,15 +14,27 @@ def parse_time(value):
     t=datetime.fromisoformat(value.replace("Z","+00:00"))
     if t.tzinfo is None:raise ValueError("timezone required")
     return t
-def validate(data,now=None):
+def validate(data,now=None,schedule=None):
     now=now or datetime.now(timezone.utc)
     if not isinstance(data,dict) or not isinstance(data.get("reports"),list):raise ValueError("reports array required")
     if not data["reports"]:raise ValueError("No verified reports to publish")
+    events={}
+    if schedule and isinstance(schedule.get('odds'),list):
+        for row in schedule['odds']:
+            if isinstance(row,dict) and row.get('event_id') and isinstance(row.get('event'),str):
+                events[row['event_id']]=row
     for report in data["reports"]:
         if not isinstance(report,dict) or report.get("verified") is not True:raise ValueError("Unverified report")
         kind=report.get("report_type")
         if kind not in STATUS:raise ValueError("Invalid report type")
         if not isinstance(report.get("event_id"),str) or not report["event_id"].strip():raise ValueError("Event id required")
+        if schedule is not None:
+            event=events.get(report['event_id'])
+            if not event:raise ValueError('Unknown event id')
+            teams=event['event'].split(' @ ')
+            if len(teams)!=2:raise ValueError('Invalid event teams')
+            if any(p.get('team') not in teams for p in report.get('players',[]) if isinstance(p,dict)):raise ValueError('Player team mismatch')
+            if report['report_type']=='official_inactives' and now < parse_time(event.get('commence_time'))-__import__('datetime').timedelta(minutes=90):raise ValueError('Premature official inactives')
         parsed=urlparse(str(report.get("source_url","")))
         if parsed.scheme!="https" or parsed.hostname not in ALLOWED or parsed.username or parsed.password:raise ValueError("Untrusted source")
         fetched=parse_time(report.get("fetched_at"))
@@ -33,5 +47,7 @@ def validate(data,now=None):
     return len(data["reports"])
 if __name__=="__main__":
     if len(sys.argv)!=2:raise SystemExit("Usage: validate_nfl_injury_reports.py PATH")
-    count=validate(json.loads(Path(sys.argv[1]).read_text(encoding="utf-8")))
+    schedule=json.loads(SCHEDULE.read_text(encoding='utf-8')) if SCHEDULE.exists() else None
+    if schedule is None:raise SystemExit('Cannot validate publication without current NFL event schedule')
+    count=validate(json.loads(Path(sys.argv[1]).read_text(encoding='utf-8')),schedule=schedule)
     print("Validated",count,"source-backed injury reports")
