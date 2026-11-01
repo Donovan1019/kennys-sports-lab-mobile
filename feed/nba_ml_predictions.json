@@ -1,7 +1,7 @@
 {
   "status": "validated",
   "sport": "basketball_nba",
-  "generated_at": "2026-11-01T18:53:45.048909+00:00",
+  "generated_at": "2026-11-01T20:46:47.473587+00:00",
   "calibration_passed": true,
   "model_version": "elo-walkforward-v1-holdout-audit",
   "validation_report": {
@@ -24,18 +24,6 @@
   },
   "training_cutoff": "2026-11-01T00:30Z",
   "predictions": [
-    {
-      "event_id": "e8559eaac12af915cfe6597644620c13",
-      "team": "Orlando Magic",
-      "date_et": "2026-11-01",
-      "win_probability": 0.464081
-    },
-    {
-      "event_id": "e8559eaac12af915cfe6597644620c13",
-      "team": "Boston Celtics",
-      "date_et": "2026-11-01",
-      "win_probability": 0.535919
-    },
     {
       "event_id": "fc3e945a5be88d3f933456bc512c956d",
       "team": "Indiana Pacers",
