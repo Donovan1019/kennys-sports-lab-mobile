@@ -5,7 +5,7 @@ from validate_nfl_injury_reports import validate
 
 NOW=datetime(2026,11,1,18,0,tzinfo=timezone.utc)
 def report(kind="game_designation",status="questionable"):
-    return {"verified":True,"event_id":"event-123","report_type":kind,"source_url":"https://www.nfl.com/injuries/","fetched_at":"2026-11-01T17:00:00Z","players":[{"name":"Test Player","team":"Test Team","status":status}]}
+    return {"verified":True,"event_id":"event-123","report_type":kind,"source_url":"https://www.nfl.com/injuries/","fetched_at":"2026-11-01T17:00:00Z","reported_at":"2026-11-01T16:30:00Z","players":[{"name":"Test Player","team":"Test Team","status":status}]}
 class InjuryValidationTests(unittest.TestCase):
     def test_designation(self):self.assertEqual(validate({"reports":[report()]},NOW),1)
     def test_inactives(self):self.assertEqual(validate({"reports":[report("official_inactives","inactive")]},NOW),1)
