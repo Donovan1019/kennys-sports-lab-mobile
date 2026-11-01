@@ -47,6 +47,11 @@ def validate(data,now=None,schedule=None):
         parsed=urlparse(str(report.get("source_url","")))
         if parsed.scheme!="https" or parsed.hostname not in ALLOWED or parsed.username or parsed.password:raise ValueError("Untrusted source")
         fetched=parse_time(report.get("fetched_at"))
+        published=parse_time(report.get('reported_at'))
+        if published>fetched or (fetched-published)>=timedelta(hours=6):raise ValueError('Invalid report publication time')
+        if schedule is not None and kind=='official_inactives':
+            kickoff=parse_time(events[report['event_id']].get('commence_time'))
+            if published<kickoff-timedelta(minutes=90):raise ValueError('Inactive report predates official release window')
         if fetched>now or (now-fetched).total_seconds()>=21600:raise ValueError("Stale source")
         players=report.get("players")
         if not isinstance(players,list) or not players:raise ValueError("Empty report")
