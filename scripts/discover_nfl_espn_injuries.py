@@ -1,0 +1,40 @@
+#!/usr/bin/env python3
+"""Discover ESPN's public NFL injury JSON shape without publishing unverified player statuses."""
+import json
+import urllib.request
+from datetime import datetime,timezone
+from pathlib import Path
+from urllib.parse import urlparse
+
+URL='https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries'
+DEST=Path('feed/nfl_injury_espn_discovery.json')
+MAX_BYTES=12_000_000
+
+def inspect_payload(data):
+    if not isinstance(data,dict):raise ValueError('Expected JSON object')
+    keys=sorted(data.keys())
+    candidates={}
+    for key,value in data.items():
+        if isinstance(value,list):
+            candidates[key]={'count':len(value),'first_item_keys':sorted(value[0].keys()) if value and isinstance(value[0],dict) else []}
+    return {'top_level_keys':keys,'array_shapes':candidates}
+
+def main():
+    record={'checked_at':datetime.now(timezone.utc).isoformat(),'source_url':URL,'status':'UNAVAILABLE','verified_player_reports':0,'player_ingestion_enabled':False}
+    try:
+        req=urllib.request.Request(URL,headers={'User-Agent':'Mozilla/5.0 KennySportsLab/1.0','Accept':'application/json'})
+        with urllib.request.urlopen(req,timeout=25) as response:
+            final=urlparse(response.geturl())
+            if final.scheme!='https' or final.hostname!='site.api.espn.com':raise ValueError('Unexpected redirect')
+            if 'json' not in response.headers.get('Content-Type','').lower():raise ValueError('Unexpected content type')
+            payload=response.read(MAX_BYTES+1)
+            if len(payload)>MAX_BYTES:raise ValueError('Response too large')
+            record.update(inspect_payload(json.loads(payload)))
+            record['status']='SCHEMA_DISCOVERED_NOT_VALIDATED'
+            record['final_source_url']=response.geturl()
+    except Exception as error:
+        record['reason']=type(error).__name__
+    DEST.parent.mkdir(parents=True,exist_ok=True)
+    DEST.write_text(json.dumps(record,indent=2)+'\n',encoding='utf-8')
+    print(record['status'])
+if __name__=='__main__':main()
