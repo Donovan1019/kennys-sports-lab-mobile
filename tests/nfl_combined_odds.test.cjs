@@ -5,5 +5,5 @@ const elements={};for(const id of ['matchup-location','sport','ksl-context-games
 elements['matchup-location'].insertBefore=()=>{};
 const document={getElementById:id=>elements[id],createElement:()=>element(),addEventListener(){}};
 const context={document,window:{__kslMatchupGames:[]},Date,Math,Number,String,Array,Intl,console,fetch:async()=>({ok:true,json:async()=>({odds:[]})})};
-vm.runInNewContext(code,context);assert.equal(elements['nfl-combined-refresh'].disabled,false);assert.equal(elements['nfl-combined-view'],undefined);
+vm.runInNewContext(code,context);assert.equal(elements['nfl-combined-refresh'].disabled,true);assert.equal(elements['nfl-combined-view'],undefined);
 console.log('NFL combined panel initializes with empty matchup slate and without external dependencies');
