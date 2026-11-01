@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Probe the official NFL injury page; never infer player statuses from page text."""
 import json
+import ssl
+from urllib.parse import urlparse
 import urllib.request
 from datetime import datetime,timezone
 from pathlib import Path
@@ -13,13 +15,17 @@ def main():
     record={"source_url":URL,"checked_at":now,"verified_player_reports":0,"ingestion_status":"UNAVAILABLE","reason":"No validated official player-level parser configured"}
     try:
         request=urllib.request.Request(URL,headers={"User-Agent":"Mozilla/5.0 KennySportsLab-InjurySourceCheck/1.0","Accept":"text/html"})
-        with urllib.request.urlopen(request,timeout=20) as response:
+        with urllib.request.urlopen(request,timeout=20,context=ssl.create_default_context()) as response:
+            final=urlparse(response.geturl())
+            if final.scheme!="https" or final.hostname not in {"nfl.com","www.nfl.com"}:raise ValueError("Unexpected redirect destination")
             content_type=response.headers.get("Content-Type","")
             payload=response.read(2_000_001)
             if len(payload)>2_000_000:raise ValueError("Oversized response")
             if "html" not in content_type.lower():raise ValueError("Unexpected content type")
             if not payload.strip():raise ValueError("Empty response")
             record["source_reachable"]=True
+            record["final_source_url"]=response.geturl()
+            record["http_status"]=response.status
             record["ingestion_status"]="SOURCE_REACHABLE_PARSER_UNAVAILABLE"
     except Exception as error:
         record["source_reachable"]=False
