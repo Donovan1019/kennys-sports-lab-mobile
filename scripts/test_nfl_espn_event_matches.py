@@ -18,6 +18,10 @@ class MatchTests(unittest.TestCase):
     def test_stale_schedule_rejected(self):
         s=schedule();s['fetched_at']='2026-11-01T08:00:00Z'
         with self.assertRaises(ValueError):match(staging(),s,NOW)
+    def test_unverified_never_published(self):
+        result=match(staging(),schedule(),NOW)
+        self.assertEqual(result['verified_player_reports'],0)
+        self.assertEqual(result['projection_impact'],'NOT_APPLIED')
     def test_ambiguous_double_header(self):
         s=schedule();s['odds'].append({'event_id':'xyz','event':'New York Giants @ Philadelphia Eagles'})
         self.assertEqual(match(staging(),s,NOW)['ambiguous_teams'],1)
