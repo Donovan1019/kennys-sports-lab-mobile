@@ -2,6 +2,8 @@ name: NFL SGP Readiness Integration
 on:
   pull_request:
     paths:
+      - 'nfl_sgp_readiness_policy.js'
+      - 'tests/nfl_sgp_readiness_policy.test.cjs'
       - 'scripts/audit_nfl_sgp_readiness.py'
       - 'tests/test_nfl_sgp_readiness.py'
       - '.github/workflows/nfl-sgp-readiness-integration.yml'
@@ -22,5 +24,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --check nfl_sgp_readiness_policy.js
+      - run: node --test tests/nfl_sgp_readiness_policy.test.cjs
       - run: python -m unittest discover -s tests -p 'test_nfl_sgp_readiness.py' -v
       - run: python scripts/audit_nfl_sgp_readiness.py
