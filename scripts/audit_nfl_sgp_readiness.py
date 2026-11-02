@@ -45,8 +45,11 @@ def audit():
     market_status={name:{"status":entry.get("status","UNKNOWN"),"eligible_for_live_use":entry.get("eligible_for_live_use") is True} for name,entry in markets.items() if isinstance(entry,dict)}
     nfl=readiness.get("sports",{}).get("NFL",{})
     quotes=readiness.get("source_integrity",{}).get("NFL_archived_player_props",{})
-    official_injuries_verified=injury.get("verified_player_reports",0)>0 and injury.get("ingestion_status")=="VERIFIED"
-    espn_injuries_verified=espn.get("verified_player_reports",0)>0 and espn.get("player_ingestion_enabled") is True
+    def recent_injury_source(source):
+        checked=parse_time(source.get("checked_at") or source.get("fetched_at"))
+        return bool(checked and timedelta(0)<=now-checked<timedelta(hours=6))
+    official_injuries_verified=injury.get("verified_player_reports",0)>0 and injury.get("ingestion_status")=="VERIFIED" and recent_injury_source(injury)
+    espn_injuries_verified=espn.get("verified_player_reports",0)>0 and espn.get("player_ingestion_enabled") is True and recent_injury_source(espn)
     checks={
         "player_game_logs_present":bool(logs),
         "complete_game_identity":bool(logs) and ids==len(logs),
