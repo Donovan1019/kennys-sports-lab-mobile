@@ -1,6 +1,6 @@
 {
   "status": "simulated_not_bet_eligible",
-  "generated_at": "2026-11-02T00:30:18.685538+00:00",
+  "generated_at": "2026-11-02T00:41:23.863571+00:00",
   "draws": 10000,
   "games": [
     {
@@ -421,6 +421,34 @@
       "single_leg_ev": 0.0582,
       "stress_ev_minus_3pp": 0.0202,
       "stress_ev_minus_5pp": -0.00513,
+      "betting_eligible": false
+    },
+    {
+      "event_id": "6907851d65a9d0046d4c6c2f4ffb5e80",
+      "team": "Milwaukee Bucks",
+      "bookmaker": "fanduel",
+      "price": 370,
+      "model_probability": 0.164578,
+      "mc_probability": 0.1627,
+      "mc_standard_error": 0.003691,
+      "fair_decimal": 6.0761,
+      "single_leg_ev": -0.22648,
+      "stress_ev_minus_3pp": -0.36748,
+      "stress_ev_minus_5pp": -0.46148,
+      "betting_eligible": false
+    },
+    {
+      "event_id": "6907851d65a9d0046d4c6c2f4ffb5e80",
+      "team": "Minnesota Timberwolves",
+      "bookmaker": "fanduel",
+      "price": -480,
+      "model_probability": 0.835422,
+      "mc_probability": 0.8346,
+      "mc_standard_error": 0.003715,
+      "fair_decimal": 1.197,
+      "single_leg_ev": 0.00947,
+      "stress_ev_minus_3pp": -0.02678,
+      "stress_ev_minus_5pp": -0.05095,
       "betting_eligible": false
     },
     {
