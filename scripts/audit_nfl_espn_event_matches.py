@@ -27,6 +27,10 @@ def match(staging,schedule,now=None):
     events={}
     for row in schedule['odds']:
         if not isinstance(row,dict) or not isinstance(row.get('event_id'),str) or not isinstance(row.get('event'),str):continue
+        kickoff=row.get('commence_time')
+        try: kickoff_time=parse_time(kickoff)
+        except (ValueError,TypeError,AttributeError):continue
+        if kickoff_time<=now:continue
         parts=row['event'].split(' @ ')
         if len(parts)!=2:continue
         key=row['event_id']
