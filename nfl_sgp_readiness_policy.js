@@ -11,7 +11,7 @@ const players=Array.isArray(stats?.players)?stats.players:[];
 const currentQuotes=Array.isArray(live?.odds)?live.odds:[];
 const now=Date.now();
 const freshQuotes=currentQuotes.filter(q=>['draftkings','fanduel'].includes(q.bookmaker)&&Number.isFinite(Date.parse(q.updated_at))&&now-Date.parse(q.updated_at)>=0&&now-Date.parse(q.updated_at)<=30*60000&&Date.parse(q.commence_time)>now);
-const paired=new Map();for(const q of freshQuotes){if(!['Over','Under'].includes(q.selection)||!Number.isFinite(Number(q.point)))continue;const k=[q.event_id,q.bookmaker,q.player,q.market,Number(q.point)].join('|');if(!paired.has(k))paired.set(k,new Set());paired.get(k).add(q.selection)}
+const paired=new Map();for(const q of freshQuotes){if(!['Over','Under'].includes(q.selection)||typeof q.point!=='number'||!Number.isFinite(q.point)||!['event_id','bookmaker','player','market'].every(k=>typeof q[k]==='string'&&q[k].trim()))continue;const k=[q.event_id,q.bookmaker,q.player,q.market,Number(q.point)].join('|');if(!paired.has(k))paired.set(k,new Set());paired.get(k).add(q.selection)}
 const freshPairs=[...paired.values()].filter(s=>s.has('Over')&&s.has('Under')).length;
 const recentSource=s=>{const t=Date.parse(s?.checked_at||s?.fetched_at);return Number.isFinite(t)&&now-t>=0&&now-t<6*3600000};
 const logs=players.flatMap(p=>Array.isArray(p?.games)?p.games:[]);
