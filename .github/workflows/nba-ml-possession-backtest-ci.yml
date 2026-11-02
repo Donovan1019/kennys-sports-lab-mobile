@@ -1,0 +1,20 @@
+name: NBA ML possession backtest CI
+on:
+  pull_request:
+    paths:
+      - 'scripts/audit_nba_ml_possession_backtest.py'
+      - 'tests/test_nba_ml_possession_backtest.py'
+      - '.github/workflows/nba-ml-possession-backtest-ci.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  possession-backtest-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Chronological NBA ML backtest tests
+        run: python -m unittest discover -s tests -p 'test_nba_ml_possession_backtest.py' -v
