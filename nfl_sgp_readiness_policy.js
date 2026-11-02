@@ -13,13 +13,14 @@ const now=Date.now();
 const freshQuotes=currentQuotes.filter(q=>['draftkings','fanduel'].includes(q.bookmaker)&&Number.isFinite(Date.parse(q.updated_at))&&now-Date.parse(q.updated_at)>=0&&now-Date.parse(q.updated_at)<=30*60000&&Date.parse(q.commence_time)>now);
 const paired=new Map();for(const q of freshQuotes){if(!['Over','Under'].includes(q.selection)||!Number.isFinite(Number(q.point)))continue;const k=[q.event_id,q.bookmaker,q.player,q.market,Number(q.point)].join('|');if(!paired.has(k))paired.set(k,new Set());paired.get(k).add(q.selection)}
 const freshPairs=[...paired.values()].filter(s=>s.has('Over')&&s.has('Under')).length;
+const recentSource=s=>{const t=Date.parse(s?.checked_at||s?.fetched_at);return Number.isFinite(t)&&now-t>=0&&now-t<6*3600000};
 const logs=players.flatMap(p=>Array.isArray(p?.games)?p.games:[]);
 const identified=logs.filter(g=>g?.game_id||g?.event_id).length;
 const checks=[
  ['Player logs with event IDs',logs.length>0&&identified===logs.length,identified+'/'+logs.length],
  ['Market calibration',Object.keys(markets).length>0&&failed.length===0,failed.length+' not approved'],
  ['Verified NFL player recommendations',nfl.fully_verified_player_recommendations>0,String(nfl.fully_verified_player_recommendations||0)],
- ['Verified injury player reports',(injury?.ingestion_status==='VERIFIED'&&injury?.verified_player_reports>0)||(espn?.player_ingestion_enabled===true&&espn?.verified_player_reports>0),'NFL official: '+(injury?.ingestion_status||'unavailable')+'; ESPN: '+(espn?.status||'unavailable')],
+ ['Verified injury player reports',(injury?.ingestion_status==='VERIFIED'&&injury?.verified_player_reports>0&&recentSource(injury))||(espn?.player_ingestion_enabled===true&&espn?.verified_player_reports>0&&recentSource(espn)),'NFL official: '+(injury?.ingestion_status||'unavailable')+'; ESPN: '+(espn?.status||'unavailable')],
  ['Independent roster assignments',quotes.current_roster_source_connected===true&&quotes.verified_player_team_assignments>0,String(quotes.verified_player_team_assignments||0)],
  ['Fresh DK/FD prop quotes',freshQuotes.length>0,freshQuotes.length+' current pregame selections (30-minute window)'],
  ['Fresh same-book two-way lines',freshPairs>0,String(freshPairs)+' paired lines'],
