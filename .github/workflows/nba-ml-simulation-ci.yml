@@ -1,0 +1,20 @@
+name: NBA ML simulation CI
+on:
+  pull_request:
+    paths:
+      - 'scripts/simulate_nba_ml.py'
+      - 'tests/test_nba_ml_simulation.py'
+      - '.github/workflows/nba-ml-simulation-ci.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  simulation-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: NBA ML simulation regression tests
+        run: python -m unittest discover -s tests -p 'test_nba_ml_simulation.py' -v

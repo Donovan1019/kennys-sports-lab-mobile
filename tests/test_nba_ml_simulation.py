@@ -26,4 +26,19 @@ class TestSimulation(unittest.TestCase):
     def test_invalid_model_fails_closed(self):
         odds,model=fixture();model["calibration_passed"]=False
         self.assertEqual(build(odds,model,{},NOW)["games"],[])
+class TestHistoricalRisk(unittest.TestCase):
+    def test_negative_paper_roi_is_blocked(self):
+        odds, model = fixture()
+        result = build(odds, model, {"checks": {}}, NOW, 100, historical={
+            "status": "research_only", "paper_roi": -0.386712, "paper_selected_events": 26})
+        self.assertEqual(result["historical_research"]["paper_selected_events"], 26)
+        self.assertIn("negative_historical_paper_roi", result["blockers"])
+        self.assertFalse(result["betting_eligible"])
+
+    def test_missing_research_not_fabricated(self):
+        odds, model = fixture()
+        result = build(odds, model, {"checks": {}}, NOW, 100)
+        self.assertNotIn("historical_research", result)
+        self.assertNotIn("negative_historical_paper_roi", result["blockers"])
+
 if __name__=="__main__":unittest.main()
