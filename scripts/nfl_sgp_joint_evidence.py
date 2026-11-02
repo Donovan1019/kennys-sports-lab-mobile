@@ -42,6 +42,9 @@ def validate(records, quotes=()):
             issues.append({"row": i, "reason": "conflicting_event_kickoff"})
             continue
         kickoff_by_event[event] = kickoff
+        if outcome == line:
+            issues.append({"row": i, "reason": "push_requires_separate_settlement"})
+            continue
         slip = r.get("slip_id")
         if isinstance(slip, str) and slip.strip():
             # The same player/market cannot count twice toward one parlay.
@@ -51,9 +54,6 @@ def validate(records, quotes=()):
                 continue
             slip_legs.add(leg_key)
         hit = outcome > line if r["side"] == "over" else outcome < line
-        if outcome == line:
-            issues.append({"row": i, "reason": "push_requires_separate_settlement"})
-            continue
         slip = r.get("slip_id")
         if not isinstance(slip, str) or not slip.strip():
             issues.append({"row": i, "reason": "missing_slip_id_for_joint_evaluation"})
