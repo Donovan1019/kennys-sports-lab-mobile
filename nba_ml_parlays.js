@@ -19,18 +19,23 @@ async function refresh(){
  const ready=readiness.status==='bet_eligible'&&required.every(k=>readiness.checks?.[k]===true);
  if(!ready){
  status.textContent='NBA ML PARLAYS · NO BET-CERTIFIED PARLAY';
- out.append(node('p','No betting recommendations: model simulation and independent verification must pass before a parlay is displayed.'));
+ out.append(node('p','Research mode · no bet-certified parlays. Simulation data below is unverified and is not a betting recommendation.'));
  const outstanding=required.filter(k=>readiness.checks?.[k]!==true);
- out.append(node('p','Outstanding certification checks: '+outstanding.join(', ')));
- if(readiness.checked_at){const checked=Date.parse(readiness.checked_at);if(Number.isFinite(checked))out.append(node('p','Certification audit last generated: '+new Date(checked).toLocaleString('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'})+'.'));}
- const details=readiness.check_details||{};
- for(const key of outstanding){const info=details[key];if(info&&typeof info.reason==='string')out.append(node('p',key+': '+info.reason+'.'));}
+ const details=document.createElement('details');details.className='nba-ml-certification-details';
+ const summary=node('summary','Certification details · '+outstanding.length+' outstanding checks · tap to expand');
+ details.append(summary);
+ const labels={historical_pregame_odds_backtest:'Historical odds backtest',closing_line_value_verified:'Closing-line value',injury_lineup_rest_confirmed:'Injuries, lineups and rest',executable_same_book_parlay_quote:'Same-book parlay quote',correlation_stress_test_verified:'Correlation stress validation'};
+ const list=node('ul','');
+ for(const key of outstanding){const info=readiness.check_details?.[key];list.append(node('li',(labels[key]||key)+' — '+(info?.reason||'Not independently verified')));}
+ details.append(list);
+ if(readiness.checked_at){const checked=Date.parse(readiness.checked_at);if(Number.isFinite(checked))details.append(node('p','Audit: '+new Date(checked).toLocaleString('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'})));}
+ if(readiness.reason)details.append(node('p','Readiness: '+String(readiness.reason)));
+ out.append(details);
  if(readiness.research_warning?.status==='RESEARCH_ONLY'){
   const w=readiness.research_warning;
   if(Number.isFinite(w.paper_roi)&&Number.isInteger(w.paper_selected_events)&&w.paper_selected_events>0)
-   out.append(node('p','HISTORICAL PAPER-RISK WARNING · '+w.paper_selected_events+' retrospectively selected events · '+(w.paper_roi*100).toFixed(1)+'% hypothetical ROI · research only, not executed bets or forward-tested performance.'));
+   out.append(node('p','HISTORICAL RISK · '+w.paper_selected_events+' retrospective paper events · '+(w.paper_roi*100).toFixed(1)+'% hypothetical ROI. Not executed bets or a forward test.'));
  }
- if(readiness.reason)out.append(node('p','Readiness reason: '+String(readiness.reason)));
  try{
   const auditResponse=await fetch('./feed/nba_ml_simulation_audit.json?ml='+Date.now(),{cache:'no-store'});
   if(auditResponse.ok){
@@ -41,7 +46,8 @@ async function refresh(){
     const ul=node('ul','');
     for(const g of audit.games.filter(x=>x.single_leg_ev>0).sort((a,b)=>b.single_leg_ev-a.single_leg_ev).slice(0,10))
      ul.append(node('li',g.team+' · '+g.bookmaker+' '+(g.price>0?'+':'')+g.price+' · model '+(100*g.model_probability).toFixed(1)+'% · MC '+(100*g.mc_probability).toFixed(1)+'% · indicative single-leg EV '+(100*g.single_leg_ev).toFixed(1)+'% · 3pp stress EV '+(100*g.stress_ev_minus_3pp).toFixed(1)+'% · UNVERIFIED'));
-    if(ul.children.length){out.append(node('h3','Uncertified simulation diagnostics — not picks'));out.append(ul)}
+    if(ul.children.length){out.append(node('h3','NBA ML research · model simulations (not picks)'));out.append(ul)}
+    else out.append(node('p','No positive-EV simulation research rows available.'));
    }else out.append(node('p','Simulation audit missing, stale or unavailable. No selections issued.'));
   }
  }catch(_){out.append(node('p','Simulation audit unavailable. No selections issued.'))}
