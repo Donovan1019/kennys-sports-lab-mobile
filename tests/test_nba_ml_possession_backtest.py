@@ -28,6 +28,9 @@ class TestCalibrationRegression(unittest.TestCase):
   self.assertEqual(sum(x["count"] for x in r["calibration_bins"]),4)
   self.assertTrue(all(0<=b["observed_wilson_95"][0]<=b["observed_win_rate"]<=b["observed_wilson_95"][1]<=1 for b in r["calibration_bins"]))
   self.assertGreater(r["log_loss"],0)
+  self.assertEqual(r["calibration_coverage"]["binned_games"],4)
+  self.assertEqual(r["calibration_coverage"]["excluded_games"],0)
+  self.assertEqual(r["calibration_coverage"]["total_evaluated"],4)
   self.assertFalse(r["betting_eligible"])
 
  def test_invalid_probability_is_excluded(self):
