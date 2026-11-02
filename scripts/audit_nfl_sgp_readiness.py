@@ -15,6 +15,8 @@ def audit():
     walk=load("feed/nfl_sgp_walkforward_accuracy.json")
     readiness=load("feed/player_recommendation_readiness.json")
     live=load("feed/nfl_props.json")
+    injury=load("feed/nfl_injury_source_health.json")
+    espn=load("feed/nfl_injury_espn_discovery.json")
     now=datetime.now(timezone.utc)
     def parse_time(value):
         try:
@@ -43,12 +45,15 @@ def audit():
     market_status={name:{"status":entry.get("status","UNKNOWN"),"eligible_for_live_use":entry.get("eligible_for_live_use") is True} for name,entry in markets.items() if isinstance(entry,dict)}
     nfl=readiness.get("sports",{}).get("NFL",{})
     quotes=readiness.get("source_integrity",{}).get("NFL_archived_player_props",{})
+    official_injuries_verified=injury.get("verified_player_reports",0)>0 and injury.get("ingestion_status")=="VERIFIED"
+    espn_injuries_verified=espn.get("verified_player_reports",0)>0 and espn.get("player_ingestion_enabled") is True
     checks={
         "player_game_logs_present":bool(logs),
         "complete_game_identity":bool(logs) and ids==len(logs),
         "unique_player_game_identity":duplicate_ids==0,
         "all_reported_markets_live_eligible":bool(market_status) and all(x["eligible_for_live_use"] for x in market_status.values()),
         "verified_player_recommendations_present":nfl.get("fully_verified_player_recommendations",0)>0,
+        "verified_player_injury_reports_present":official_injuries_verified or espn_injuries_verified,
         "independent_roster_verification":quotes.get("current_roster_source_connected") is True and quotes.get("verified_player_team_assignments",0)>0,
         "fresh_bookmaker_quotes_present":len(fresh)>0,
         "fresh_same_book_two_way_lines_present":paired_count>0,
@@ -61,6 +66,7 @@ def audit():
             "fresh_quote_count":len(fresh),
             "fresh_two_way_pairs":paired_count,
             "quote_freshness_window_minutes":30,
+            "injury_source_status":{"official":injury.get("ingestion_status","UNAVAILABLE"),"official_verified_reports":injury.get("verified_player_reports",0),"espn":espn.get("status","UNAVAILABLE"),"espn_verified_reports":espn.get("verified_player_reports",0)},
             "reason":"Evidence and independent joint/EV validation required before promotion"}
 if __name__=="__main__":
     print(json.dumps(audit(),indent=2,sort_keys=True))

@@ -3,7 +3,7 @@
 const panel=document.getElementById('nfl-sgp-readiness-policy');if(!panel)return;
 const set=(message)=>{panel.textContent=message};
 const get=async path=>{const r=await fetch(path+'?readiness='+Date.now(),{cache:'no-store'});if(!r.ok)throw Error(path+' unavailable');return r.json()};
-Promise.all([get('./feed/nfl_sgp_walkforward_accuracy.json'),get('./feed/player_recommendation_readiness.json'),get('./feed/nfl_player_stats.json'),get('./feed/nfl_props.json')]).then(([walk,ready,stats,live])=>{
+Promise.all([get('./feed/nfl_sgp_walkforward_accuracy.json'),get('./feed/player_recommendation_readiness.json'),get('./feed/nfl_player_stats.json'),get('./feed/nfl_props.json'),get('./feed/nfl_injury_source_health.json'),get('./feed/nfl_injury_espn_discovery.json')]).then(([walk,ready,stats,live,injury,espn])=>{
 const markets=walk?.frozen_forward_holdout?.markets||{};
 const failed=Object.entries(markets).filter(([,v])=>v?.eligible_for_live_use!==true).map(([name])=>name);
 const nfl=ready?.sports?.NFL||{}, quotes=ready?.source_integrity?.NFL_archived_player_props||{};
@@ -19,6 +19,7 @@ const checks=[
  ['Player logs with event IDs',logs.length>0&&identified===logs.length,identified+'/'+logs.length],
  ['Market calibration',Object.keys(markets).length>0&&failed.length===0,failed.length+' not approved'],
  ['Verified NFL player recommendations',nfl.fully_verified_player_recommendations>0,String(nfl.fully_verified_player_recommendations||0)],
+ ['Verified injury player reports',(injury?.ingestion_status==='VERIFIED'&&injury?.verified_player_reports>0)||(espn?.player_ingestion_enabled===true&&espn?.verified_player_reports>0),'NFL official: '+(injury?.ingestion_status||'unavailable')+'; ESPN: '+(espn?.status||'unavailable')],
  ['Independent roster assignments',quotes.current_roster_source_connected===true&&quotes.verified_player_team_assignments>0,String(quotes.verified_player_team_assignments||0)],
  ['Fresh DK/FD prop quotes',freshQuotes.length>0,freshQuotes.length+' current pregame selections (30-minute window)'],
  ['Fresh same-book two-way lines',freshPairs>0,String(freshPairs)+' paired lines'],
