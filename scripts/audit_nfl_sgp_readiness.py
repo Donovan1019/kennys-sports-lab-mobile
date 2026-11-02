@@ -31,7 +31,8 @@ def audit():
         if updated and kickoff and timedelta(0)<=now-updated<=timedelta(minutes=30) and kickoff>now:fresh.append(q)
     pairs={}
     for q in fresh:
-        if q.get("selection") not in ("Over","Under") or not isinstance(q.get("point"),(int,float)):continue
+        if q.get("selection") not in ("Over","Under") or type(q.get("point")) not in (int,float):continue
+        if not all(isinstance(q.get(k),str) and q[k].strip() for k in ("event_id","bookmaker","player","market")):continue
         key=(q.get("event_id"),q.get("bookmaker"),q.get("player"),q.get("market"),q.get("point"))
         pairs.setdefault(key,set()).add(q["selection"])
     paired_count=sum({"Over","Under"}<=sides for sides in pairs.values())
