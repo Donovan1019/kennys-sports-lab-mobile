@@ -1,14 +1,15 @@
 {
-  "generated_at": "2026-11-02T14:58:49.170288+00:00",
+  "generated_at": "2026-11-02T22:54:37.031859+00:00",
   "target_date": null,
   "expected_upcoming_events": 16,
-  "requested_events": 15,
+  "requested_events": 16,
   "captured_event_ids": [
     "7d664fbcd39350e559d83c0068ba7169",
     "c75744790b7acf6260c78ba5e739c0e5",
     "dc56d980f527ffeef89940133b211b13",
     "014282b888c741b7d70c857c09f40aa7",
     "e571bab6736f9338130a78a4f75c3231",
+    "415fc42e72888c63e82f7bce24c65391",
     "44d8c37868b700e90f816db7c5df5cdd",
     "e354e6a04b1cb9c96e549b863debb92e",
     "89de07377e0aa8ffaa2ae6a7dc0855cc",
@@ -18,19 +19,14 @@
     "2922c573ec3df8466c4a34975e446898",
     "17ad7eff2f7875e20a8109abe40470e3"
   ],
-  "captured_events": 13,
+  "captured_events": 14,
   "missing_event_ids": [
-    "415fc42e72888c63e82f7bce24c65391",
     "240e23b02b1e3fef655d04a286b5a623",
     "9760d8f19f84bfee300a74ceb656c95d"
   ],
   "unrequested_events": 0,
   "complete": false,
   "errors": [
-    {
-      "event_id": "415fc42e72888c63e82f7bce24c65391",
-      "error": "no_supported_bookmaker_props"
-    },
     {
       "event_id": "240e23b02b1e3fef655d04a286b5a623",
       "error": "no_supported_bookmaker_props"
@@ -41,8 +37,9 @@
     }
   ],
   "status": "PARTIAL",
-  "retry_missing_only": true,
+  "retry_missing_only": false,
   "attempted_event_ids": [
+    "7d664fbcd39350e559d83c0068ba7169",
     "c75744790b7acf6260c78ba5e739c0e5",
     "dc56d980f527ffeef89940133b211b13",
     "014282b888c741b7d70c857c09f40aa7",
