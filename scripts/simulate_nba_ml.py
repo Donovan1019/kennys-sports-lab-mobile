@@ -10,10 +10,19 @@ import random
 def decimal(price):
     return 1 + (100 / -price if price < 0 else price / 100)
 
-def build(odds, model, readiness, now, draws=10000):
+def build(odds, model, readiness, now, draws=10000, historical=None):
     report={"status":"unavailable","generated_at":now.isoformat(),"draws":draws,"games":[],"parlays":[],"betting_eligible":False,"blockers":[]}
     required=("odds_fresh","model_fresh_and_calibrated","schedule_evidence_fresh","pregame_odds_archiving_active","historical_pregame_odds_backtest","closing_line_value_verified","injury_lineup_rest_confirmed","executable_same_book_parlay_quote","correlation_stress_test_verified")
     report["blockers"]=[key for key in required if readiness.get("checks",{}).get(key) is not True]
+    historical = historical or {}
+    roi = historical.get("paper_roi")
+    count = historical.get("paper_selected_events")
+    if (historical.get("status") == "research_only"
+            and isinstance(roi, (int, float)) and not isinstance(roi, bool)
+            and isinstance(count, int) and not isinstance(count, bool) and count > 0):
+        report["historical_research"] = {"status": "research_only", "paper_roi": roi, "paper_selected_events": count}
+        if roi < 0:
+            report["blockers"].append("negative_historical_paper_roi")
     if model.get("status")!="validated" or model.get("calibration_passed") is not True or odds.get("status")!="ok":
         report["blockers"].append("validated_model_or_odds_missing")
         return report
@@ -63,7 +72,7 @@ def main():
     def load(p):
         try:return json.loads(pathlib.Path(p).read_text())
         except (OSError,ValueError):return {}
-    result=build(load("feed/basketball_nba.json"),load("feed/nba_ml_predictions.json"),load("feed/nba_ml_betting_readiness.json"),dt.datetime.now(dt.timezone.utc))
+    result=build(load("feed/basketball_nba.json"),load("feed/nba_ml_predictions.json"),load("feed/nba_ml_betting_readiness.json"),dt.datetime.now(dt.timezone.utc),historical=load("feed/nba_ml_outcome_market_audit.json"))
     p=pathlib.Path("feed/nba_ml_simulation_audit.json");p.parent.mkdir(parents=True,exist_ok=True);p.write_text(json.dumps(result,indent=2)+"\n")
     print(result["status"],len(result["games"]),"games",len(result["parlays"]),"parlays")
 if __name__=="__main__":main()
