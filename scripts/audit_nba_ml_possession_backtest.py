@@ -45,6 +45,31 @@ def evaluate(games,min_history=15,min_holdout=100):
             report["calibration_bins"].append({"range":[lo/100,(lo+10)/100],"count":n,"mean_predicted":round(sum(p for p,_ in sample)/n,6),"observed_win_rate":round(observed,6),"observed_wilson_95":[round(max(0,center-half),6),round(min(1,center+half),6)]})
         report["baseline"]={"constant_home_win_rate":round(sum(y for _,y in results)/len(results),6),"constant_brier":round(sum((sum(y for _,y in results)/len(results)-y)**2 for _,y in results)/len(results),6),"warning":"In-sample constant-rate comparator, not a point-in-time bookmaker or independent out-of-sample baseline."}
         report["calibration_coverage"]={"total_evaluated":len(results),"binned_games":sum(b["count"] for b in report["calibration_bins"]),"excluded_games":len(results)-sum(b["count"] for b in report["calibration_bins"]),"small_sample_bins":[b["range"] for b in report["calibration_bins"] if b["count"]<50],"minimum_bin_sample_warning":50}
+        # Strictly forward-scored constant baseline: each game's baseline uses only
+        # earlier evaluated outcomes, never the outcome being scored.
+        forward=[]
+        prior_wins=0
+        for i,(p,y) in enumerate(results):
+            if i>=min_holdout:
+                baseline_probability=prior_wins/i
+                forward.append((p,y,baseline_probability))
+            prior_wins+=y
+        if len(forward)>=min_holdout:
+            def score(probability,outcome):
+                q=max(1e-9,min(1-1e-9,probability))
+                return -outcome*math.log(q)-(1-outcome)*math.log(1-q)
+            report["forward_baseline"]={
+                "status":"descriptive_only",
+                "warmup_games":min_holdout,
+                "evaluated_games":len(forward),
+                "model_brier":round(sum((p-y)**2 for p,y,_ in forward)/len(forward),6),
+                "baseline_brier":round(sum((b-y)**2 for _,y,b in forward)/len(forward),6),
+                "model_log_loss":round(sum(score(p,y) for p,y,_ in forward)/len(forward),6),
+                "baseline_log_loss":round(sum(score(b,y) for _,y,b in forward)/len(forward),6),
+                "warning":"Sequential past-only constant-rate baseline; neither independently frozen model validation nor bookmaker comparison."
+            }
+        else:
+            report["forward_baseline"]={"status":"insufficient_evidence","warmup_games":min_holdout,"evaluated_games":len(forward)}
         report["calibration_warning"]="Chronological diagnostic only; Wilson intervals reflect binomial sampling uncertainty, not time dependence or model uncertainty. No independent market baseline, executed odds, or validated forward performance."
 
     return report
