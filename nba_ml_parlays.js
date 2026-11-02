@@ -43,6 +43,37 @@ async function refresh(){
    if(Number.isFinite(age)&&age>=0&&age<=150*60000&&audit.status==='simulated_not_bet_eligible'){
     out.append(node('p','MODEL SIMULATION DIAGNOSTICS · '+audit.draws+' draws · '+audit.games.length+' game-side evaluations · '+audit.parlays.length+' independent-game parlay scenarios · NOT BET ELIGIBLE.'));
     out.append(node('p','Monte Carlo samples independent model win probabilities; injury, lineup, correlation and executable quote checks remain separate. This is not a possession-level NBA simulator.'));
+    // Surface the already-published parlay simulations before single-game diagnostics.
+    // This is research-only; never promote an unverified scenario to a bet.
+    const scenarios=Array.isArray(audit.parlays)?audit.parlays:[];
+    out.append(node('h3','NBA ML parlay scenarios · research only'));
+    if(!scenarios.length)out.append(node('p','No simulated parlays published. No bet-certified parlays available.'));
+    else{
+      const shown=new Set();
+      for(const p of scenarios){
+        if(!Array.isArray(p.legs)||p.legs.length<2||p.legs.length>5||!p.bookmaker)continue;
+        if(p.betting_eligible===true||p.executable_parlay_quote_verified===true)continue;
+        const key=p.bookmaker+'|'+p.legs.length;
+        if(shown.has(key))continue;
+        const valid=p.legs.every(l=>l&&l.event_id&&l.team)&&new Set(p.legs.map(l=>String(l.event_id))).size===p.legs.length;
+        if(!valid)continue;
+        shown.add(key);
+        const card=node('section','');
+        card.style.cssText='border:1px solid #42677b;border-radius:12px;padding:14px;margin:12px 0;background:#10283a';
+        card.append(node('h4',p.legs.length+'-leg · '+p.bookmaker+' · UNVERIFIED'));
+        const legList=node('ul','');
+        for(const leg of p.legs){
+          const match=(audit.games||[]).find(g=>String(g.event_id)===String(leg.event_id)&&g.team===leg.team&&g.bookmaker===p.bookmaker);
+          legList.append(node('li',leg.team+' ML'+(match&&Number.isFinite(match.price)?' · '+(match.price>0?'+':'')+match.price:' · price unavailable')));
+        }
+        card.append(legList);
+        if(Number.isFinite(p.independent_mc_probability))card.append(node('p','10,000-draw independent-game Monte Carlo: '+(100*p.independent_mc_probability).toFixed(1)+'%'));
+        if(Number.isFinite(p.stress_probability_minus_3pp))card.append(node('p','3pp per-leg stress probability: '+(100*p.stress_probability_minus_3pp).toFixed(1)+'%'));
+        card.append(node('p','Combined executable sportsbook odds: UNAVAILABLE · correlation: UNVERIFIED · NOT BET ELIGIBLE'));
+        out.append(card);
+      }
+      if(!shown.size)out.append(node('p','No valid independent-game parlay scenarios available.'));
+    }
     const researchGames=new Map();
     for(const g of audit.games||[]){
       if(!g.event_id||!g.team||!Number.isFinite(g.model_probability)||!Number.isFinite(g.mc_probability))continue;
