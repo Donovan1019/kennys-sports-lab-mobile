@@ -26,6 +26,7 @@ class TestCalibrationRegression(unittest.TestCase):
   self.assertAlmostEqual(r["brier"],.065,places=6)
   self.assertEqual(r["baseline"]["constant_brier"],.25)
   self.assertEqual(sum(x["count"] for x in r["calibration_bins"]),4)
+  self.assertTrue(all(0<=b["observed_wilson_95"][0]<=b["observed_win_rate"]<=b["observed_wilson_95"][1]<=1 for b in r["calibration_bins"]))
   self.assertGreater(r["log_loss"],0)
   self.assertFalse(r["betting_eligible"])
 
