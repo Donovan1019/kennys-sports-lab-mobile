@@ -18,10 +18,14 @@ def evaluate(games,min_history=15,min_holdout=100):
             teams=metrics(earlier,tip,min_games=min_history)
             prediction=simulate(game["home"],game["away"],teams,str(game["id"]),draws=500)
             if prediction["status"]!="diagnostic_only":continue
+            probability=prediction["home_full_game_win_probability"]
+            if (not isinstance(probability,(int,float)) or isinstance(probability,bool)
+                    or not math.isfinite(probability) or not 0<=probability<=1):
+                continue
             home_points=game["box"][game["home"]]["points"]
             away_points=game["box"][game["away"]]["points"]
             if home_points==away_points:continue
-            results.append((prediction["home_full_game_win_probability"],int(home_points>away_points)))
+            results.append((probability,int(home_points>away_points)))
         except (KeyError,ValueError,TypeError):continue
     report={"status":"insufficient_evidence","evaluated_games":len(results),"minimum_holdout_games":min_holdout,"betting_eligible":False,"blockers":["overtime_approximation_unvalidated","historical_validation_unverified"]}
     if len(results)>=min_holdout:
@@ -33,6 +37,7 @@ def evaluate(games,min_history=15,min_holdout=100):
             sample=[(p,y) for p,y in results if lo/100<=p<(lo+10)/100 or (lo==90 and p==1)]
             if not sample:continue
             report["calibration_bins"].append({"range":[lo/100,(lo+10)/100],"count":len(sample),"mean_predicted":round(sum(p for p,_ in sample)/len(sample),6),"observed_win_rate":round(sum(y for _,y in sample)/len(sample),6)})
+        report["baseline"]={"constant_home_win_rate":round(sum(y for _,y in results)/len(results),6),"constant_brier":round(sum((sum(y for _,y in results)/len(results)-y)**2 for _,y in results)/len(results),6),"warning":"In-sample constant-rate comparator, not a point-in-time bookmaker or independent out-of-sample baseline."}
         report["calibration_warning"]="Chronological diagnostic only; no independent market baseline, executed odds, or validated forward performance."
 
     return report
