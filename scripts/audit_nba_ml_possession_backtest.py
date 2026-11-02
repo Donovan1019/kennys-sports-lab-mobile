@@ -36,9 +36,15 @@ def evaluate(games,min_history=15,min_holdout=100):
         for lo in range(0,100,10):
             sample=[(p,y) for p,y in results if lo/100<=p<(lo+10)/100 or (lo==90 and p==1)]
             if not sample:continue
-            report["calibration_bins"].append({"range":[lo/100,(lo+10)/100],"count":len(sample),"mean_predicted":round(sum(p for p,_ in sample)/len(sample),6),"observed_win_rate":round(sum(y for _,y in sample)/len(sample),6)})
+            n=len(sample)
+            observed=sum(y for _,y in sample)/n
+            z=1.96
+            denominator=1+z*z/n
+            center=(observed+z*z/(2*n))/denominator
+            half=z*math.sqrt(observed*(1-observed)/n+z*z/(4*n*n))/denominator
+            report["calibration_bins"].append({"range":[lo/100,(lo+10)/100],"count":n,"mean_predicted":round(sum(p for p,_ in sample)/n,6),"observed_win_rate":round(observed,6),"observed_wilson_95":[round(max(0,center-half),6),round(min(1,center+half),6)]})
         report["baseline"]={"constant_home_win_rate":round(sum(y for _,y in results)/len(results),6),"constant_brier":round(sum((sum(y for _,y in results)/len(results)-y)**2 for _,y in results)/len(results),6),"warning":"In-sample constant-rate comparator, not a point-in-time bookmaker or independent out-of-sample baseline."}
-        report["calibration_warning"]="Chronological diagnostic only; no independent market baseline, executed odds, or validated forward performance."
+        report["calibration_warning"]="Chronological diagnostic only; Wilson intervals reflect binomial sampling uncertainty, not time dependence or model uncertainty. No independent market baseline, executed odds, or validated forward performance."
 
     return report
 def main():
