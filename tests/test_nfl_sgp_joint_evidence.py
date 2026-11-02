@@ -46,6 +46,12 @@ class TestSGPJointEvidence(unittest.TestCase):
         self.assertEqual(result["rejected_rows"][0]["reason"],"duplicate_forecast")
     def test_push_rejected(self):
         self.assertEqual(validate([dict(BASE,outcome=49.5)])["valid_legs"],0)
+    def test_invalid_observation_does_not_block_valid_forecast(self):
+        bad=dict(BASE,probability="not-a-number")
+        result=validate([bad,BASE])
+        self.assertEqual(result["valid_legs"],1)
+        self.assertIn("invalid_pregame_or_numeric_data",[x["reason"] for x in result["rejected_rows"]])
+        self.assertNotIn("duplicate_forecast",[x["reason"] for x in result["rejected_rows"]])
     def test_pushed_leg_does_not_block_valid_same_market_leg(self):
         pushed=dict(BASE,outcome=49.5)
         valid=dict(BASE,forecast_at="2026-10-25T12:15:00-04:00")
