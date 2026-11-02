@@ -31,6 +31,7 @@ class TestCalibrationRegression(unittest.TestCase):
   self.assertEqual(r["calibration_coverage"]["binned_games"],4)
   self.assertEqual(r["calibration_coverage"]["excluded_games"],0)
   self.assertEqual(r["calibration_coverage"]["total_evaluated"],4)
+  self.assertEqual(r["forward_baseline"]["status"],"insufficient_evidence")
   self.assertFalse(r["betting_eligible"])
 
  def test_invalid_probability_is_excluded(self):
@@ -42,4 +43,13 @@ class TestCalibrationRegression(unittest.TestCase):
   self.assertEqual(r["evaluated_games"],1)
   self.assertEqual(r["status"],"insufficient_evidence")
   self.assertNotIn("log_loss",r)
+ def test_forward_baseline_uses_only_prior_outcomes(self):
+  games=[{"id":str(i),"date":f"2026-01-{i+1:02d}T00:00:00Z","home":"H","away":"A","box":{"H":{"points":110 if i%2==0 else 90},"A":{"points":100}}} for i in range(6)]
+  with patch("scripts.audit_nba_ml_possession_backtest.metrics",return_value={}),patch("scripts.audit_nba_ml_possession_backtest.simulate",side_effect=[{"status":"diagnostic_only","home_full_game_win_probability":.5} for _ in games]):
+   r=evaluate(games,min_history=0,min_holdout=2)
+  f=r["forward_baseline"]
+  self.assertEqual(f["status"],"descriptive_only")
+  self.assertEqual(f["evaluated_games"],4)
+  self.assertAlmostEqual(f["baseline_brier"],.263889,places=5)
+  self.assertFalse(r["betting_eligible"])
 if __name__=="__main__":unittest.main()
