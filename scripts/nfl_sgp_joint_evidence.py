@@ -20,7 +20,6 @@ def validate(records, quotes=()):
         if key in seen:
             issues.append({"row": i, "reason": "duplicate_forecast"})
             continue
-        seen.add(key)
         try:
             from datetime import datetime
             forecast = datetime.fromisoformat(str(r["forecast_at"]).replace("Z", "+00:00"))
@@ -37,6 +36,7 @@ def validate(records, quotes=()):
         except (ValueError, TypeError, OverflowError):
             issues.append({"row": i, "reason": "invalid_pregame_or_numeric_data"})
             continue
+        seen.add(key)
         event = str(r["event_id"])
         if event in kickoff_by_event and kickoff_by_event[event] != kickoff:
             issues.append({"row": i, "reason": "conflicting_event_kickoff"})
