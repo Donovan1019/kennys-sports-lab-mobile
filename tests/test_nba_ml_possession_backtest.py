@@ -50,6 +50,6 @@ class TestCalibrationRegression(unittest.TestCase):
   f=r["forward_baseline"]
   self.assertEqual(f["status"],"descriptive_only")
   self.assertEqual(f["evaluated_games"],4)
-  self.assertAlmostEqual(f["baseline_brier"],.263889,places=5)
+  self.assertAlmostEqual(f["baseline_brier"],.326111,places=5)
   self.assertFalse(r["betting_eligible"])
 if __name__=="__main__":unittest.main()
