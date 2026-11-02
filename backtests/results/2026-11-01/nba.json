@@ -1,0 +1,59 @@
+{
+  "sport": "NBA",
+  "date": "2026-11-01",
+  "games": [
+    {
+      "event_id": "401909903",
+      "event": "Boston Celtics at Orlando Magic",
+      "commence_time": "2026-11-01T20:30Z",
+      "home": "Orlando Magic",
+      "away": "Boston Celtics",
+      "home_score": 97,
+      "away_score": 108,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261101&limit=100"
+    },
+    {
+      "event_id": "401909904",
+      "event": "Brooklyn Nets at Indiana Pacers",
+      "commence_time": "2026-11-01T22:00Z",
+      "home": "Indiana Pacers",
+      "away": "Brooklyn Nets",
+      "home_score": 90,
+      "away_score": 98,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261101&limit=100"
+    },
+    {
+      "event_id": "401909905",
+      "event": "LA Clippers at Golden State Warriors",
+      "commence_time": "2026-11-02T01:30Z",
+      "home": "Golden State Warriors",
+      "away": "LA Clippers",
+      "home_score": 124,
+      "away_score": 112,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261101&limit=100"
+    },
+    {
+      "event_id": "401909906",
+      "event": "Toronto Raptors at Los Angeles Lakers",
+      "commence_time": "2026-11-02T02:00Z",
+      "home": "Los Angeles Lakers",
+      "away": "Toronto Raptors",
+      "home_score": 131,
+      "away_score": 125,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261101&limit=100"
+    }
+  ],
+  "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261101&limit=100"
+}
