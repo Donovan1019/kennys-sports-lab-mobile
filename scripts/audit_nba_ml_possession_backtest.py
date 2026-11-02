@@ -2,6 +2,7 @@
 """Chronological, out-of-sample NBA possession ML validation. Never promote without evidence."""
 import datetime as dt
 import json
+import math
 import pathlib
 from scripts.simulate_nba_ml_possessions import metrics, simulate
 
@@ -24,7 +25,16 @@ def evaluate(games,min_history=15,min_holdout=100):
         except (KeyError,ValueError,TypeError):continue
     report={"status":"insufficient_evidence","evaluated_games":len(results),"minimum_holdout_games":min_holdout,"betting_eligible":False,"blockers":["overtime_approximation_unvalidated","historical_validation_unverified"]}
     if len(results)>=min_holdout:
-        report.update({"status":"descriptive_only","brier":round(sum((p-y)**2 for p,y in results)/len(results),6),"accuracy":round(sum((p>=.5)==bool(y) for p,y in results)/len(results),6)})
+        brier=sum((p-y)**2 for p,y in results)/len(results)
+        log_loss=-sum(y*math.log(max(1e-9,min(1-1e-9,p)))+(1-y)*math.log(max(1e-9,min(1-1e-9,1-p))) for p,y in results)/len(results)
+        report.update({"status":"descriptive_only","brier":round(brier,6),"log_loss":round(log_loss,6),"accuracy":round(sum((p>=.5)==bool(y) for p,y in results)/len(results),6)})
+        report["calibration_bins"]=[]
+        for lo in range(0,100,10):
+            sample=[(p,y) for p,y in results if lo/100<=p<(lo+10)/100 or (lo==90 and p==1)]
+            if not sample:continue
+            report["calibration_bins"].append({"range":[lo/100,(lo+10)/100],"count":len(sample),"mean_predicted":round(sum(p for p,_ in sample)/len(sample),6),"observed_win_rate":round(sum(y for _,y in sample)/len(sample),6)})
+        report["calibration_warning"]="Chronological diagnostic only; no independent market baseline, executed odds, or validated forward performance."
+
     return report
 def main():
     try:games=json.loads(SOURCE.read_text()).get("games",[])
