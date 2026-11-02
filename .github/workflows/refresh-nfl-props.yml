@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
     inputs:
       max_events:
-        description: "Upcoming NFL games to query (each may consume multiple API credits)"
+        description: "Upcoming NFL games to refresh, including previously captured games (API credits apply)"
         required: true
         default: "3"
         type: choice
@@ -46,7 +46,7 @@ jobs:
           THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
           MAX_EVENTS: ${{ inputs.max_events || '16' }}
           TARGET_DATE: ''
-          RETRY_MISSING_ONLY: '1'
+          RETRY_MISSING_ONLY: '0'
         run: python scripts/fetch_nfl_props.py
       - name: Export and archive genuine pregame forecasts immediately after refresh
         shell: bash
