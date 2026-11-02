@@ -4,7 +4,7 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const vm=require('node:vm');
 const script=fs.readFileSync('nfl_sgp_readiness_policy.js','utf8');
-async function render(quoteTime, kickoff){
+async function render(quoteTime, kickoff, mutate){
  const panel={textContent:'',children:[],replaceChildren(){this.children=[]},append(x){this.children.push(x)}};
  const fixtures={
   './feed/nfl_sgp_walkforward_accuracy.json':{frozen_forward_holdout:{markets:{player_pass_yds:{eligible_for_live_use:false}}}},
@@ -14,6 +14,7 @@ async function render(quoteTime, kickoff){
   './feed/nfl_injury_espn_discovery.json':{status:'SCHEMA_DISCOVERED_NOT_VALIDATED',verified_player_reports:0,player_ingestion_enabled:false},
   './feed/nfl_props.json':{odds:['Over','Under'].map(selection=>({event_id:'game',bookmaker:'draftkings',player:'Player',market:'player_pass_yds',point:199.5,selection,updated_at:quoteTime,commence_time:kickoff}))}
  };
+ if(mutate)mutate(fixtures);
  const ctx={document:{getElementById:()=>panel,createElement:()=>({textContent:'',style:{},children:[],append(x){this.children.push(x)}})},fetch:async url=>({ok:true,json:async()=>fixtures[url.split('?')[0]]}),Date,Promise};
  vm.runInNewContext(script,ctx);
  await new Promise(resolve=>setImmediate(resolve));
@@ -34,4 +35,9 @@ test('stale quotes remain blocked',async()=>{
 test('past kickoff cannot be treated as fresh pregame',async()=>{
  const rows=await render(new Date(Date.now()-60000).toISOString(),new Date(Date.now()-1000).toISOString());
  assert.ok(rows.some(x=>x.includes('BLOCKED · Fresh DK/FD prop quotes')));
+});
+
+test('missing player identity cannot create a valid paired line',async()=>{
+ const rows=await render(new Date(Date.now()-60000).toISOString(),new Date(Date.now()+3600000).toISOString(),f=>{f['./feed/nfl_props.json'].odds.forEach(q=>{q.player='';q.point=null})});
+ assert.ok(rows.some(x=>x.includes('BLOCKED · Fresh same-book two-way lines')));
 });
