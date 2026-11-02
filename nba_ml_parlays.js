@@ -43,6 +43,28 @@ async function refresh(){
    if(Number.isFinite(age)&&age>=0&&age<=150*60000&&audit.status==='simulated_not_bet_eligible'){
     out.append(node('p','MODEL SIMULATION DIAGNOSTICS · '+audit.draws+' draws · '+audit.games.length+' game-side evaluations · '+audit.parlays.length+' independent-game parlay scenarios · NOT BET ELIGIBLE.'));
     out.append(node('p','Monte Carlo samples independent model win probabilities; injury, lineup, correlation and executable quote checks remain separate. This is not a possession-level NBA simulator.'));
+    const researchGames=new Map();
+    for(const g of audit.games||[]){
+      if(!g.event_id||!g.team||!Number.isFinite(g.model_probability)||!Number.isFinite(g.mc_probability))continue;
+      const key=String(g.event_id),arr=researchGames.get(key)||[];
+      arr.push(g);researchGames.set(key,arr);
+    }
+    const winners=[];
+    for(const group of researchGames.values()){
+      const sorted=group.slice().sort((a,b)=>b.model_probability-a.model_probability);
+      if(sorted.length<2||sorted[0].team===sorted[1].team)continue;
+      const best=sorted[0];
+      if(best.model_probability<=0.5)continue;
+      winners.push(best);
+    }
+    winners.sort((a,b)=>b.model_probability-a.model_probability);
+    if(winners.length){
+      out.append(node('h3','Projected game winners · research only'));
+      const winnerList=node('ul','');
+      for(const g of winners.slice(0,12))
+        winnerList.append(node('li',g.team+' · model '+(g.model_probability*100).toFixed(1)+'% · Monte Carlo '+(g.mc_probability*100).toFixed(1)+'% · '+g.bookmaker+' '+(g.price>0?'+':'')+g.price+' · UNVERIFIED'));
+      out.append(winnerList);
+    }else out.append(node('p','Projected game winners unavailable: no valid paired model game sides.'));
     const ul=node('ul','');
     for(const g of audit.games.filter(x=>x.single_leg_ev>0).sort((a,b)=>b.single_leg_ev-a.single_leg_ev).slice(0,10))
      ul.append(node('li',g.team+' · '+g.bookmaker+' '+(g.price>0?'+':'')+g.price+' · model '+(100*g.model_probability).toFixed(1)+'% · MC '+(100*g.mc_probability).toFixed(1)+'% · indicative single-leg EV '+(100*g.single_leg_ev).toFixed(1)+'% · 3pp stress EV '+(100*g.stress_ev_minus_3pp).toFixed(1)+'% · UNVERIFIED'));
