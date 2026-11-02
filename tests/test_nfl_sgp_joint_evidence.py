@@ -46,6 +46,13 @@ class TestSGPJointEvidence(unittest.TestCase):
         self.assertEqual(result["rejected_rows"][0]["reason"],"duplicate_forecast")
     def test_push_rejected(self):
         self.assertEqual(validate([dict(BASE,outcome=49.5)])["valid_legs"],0)
+    def test_pushed_leg_does_not_block_valid_same_market_leg(self):
+        pushed=dict(BASE,outcome=49.5)
+        valid=dict(BASE,forecast_at="2026-10-25T12:15:00-04:00")
+        result=validate([pushed,valid])
+        self.assertEqual(result["valid_legs"],1)
+        self.assertIn("push_requires_separate_settlement",[x["reason"] for x in result["rejected_rows"]])
+        self.assertNotIn("repeated_player_market_in_slip",[x["reason"] for x in result["rejected_rows"]])
     def test_unverified_quotes_cannot_promote(self):
         result=validate([BASE],quotes=[{"odds":200}])
         self.assertFalse(result["verified_actual_sgp_bookmaker_quote"])
