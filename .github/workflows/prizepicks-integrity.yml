@@ -5,6 +5,7 @@ on:
       - 'prizepicks*'
       - 'tests/prizepicks*'
       - 'scripts/prizepicks_ingest.js'
+      - 'scripts/prizepicks_feed_health.js'
       - '.github/workflows/prizepicks-ingest.yml'
       - '.github/workflows/prizepicks-integrity.yml'
   push:
@@ -25,3 +26,4 @@ jobs:
       - run: node tests/prizepicks_research.test.js
       - run: node tests/prizepicks_auto_page.test.js
       - run: node --check scripts/prizepicks_ingest.js && node tests/prizepicks_ingest.test.js
+      - run: node tests/prizepicks_feed_health.test.js
