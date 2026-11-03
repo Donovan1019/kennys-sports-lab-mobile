@@ -50,6 +50,16 @@ class Ingestion(unittest.TestCase):
   result=build([a,b])
   self.assertEqual(len(result["players"][0]["games"]),2)
   self.assertIn("Foyesade Oluokun",result["players"][0]["name_variants"])
+ def test_verified_robert_beal_alias(self):
+  a=dict(BASE,player_id='00-0038603',player_display_name='Robert Beal Jr.')
+  b=dict(a,player_display_name='Rob Beal Jr.',game_id='2026_04_A_B',week='4')
+  result=build([a,b])
+  self.assertEqual(len(result['players'][0]['games']),2)
+  self.assertIn('Rob Beal Jr.',result['players'][0]['name_variants'])
+ def test_robert_beal_alias_rejected_for_other_id(self):
+  a=dict(BASE,player_display_name='Robert Beal Jr.')
+  b=dict(a,player_display_name='Rob Beal Jr.',game_id='2026_04_A_B',week='4')
+  with self.assertRaisesRegex(ValueError,'conflicting player identity'):build([a,b])
  def test_alias_rejected_for_other_id(self):
   a=dict(BASE,player_display_name="Foye Oluokun")
   b=dict(a,player_display_name="Foyesade Oluokun",game_id="2026_04_A_B",week="4")
