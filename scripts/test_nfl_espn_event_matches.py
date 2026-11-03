@@ -11,10 +11,14 @@ class MatchTests(unittest.TestCase):
     def test_exact_name_match_unverified(self):
         result=match(staging(),schedule(),NOW)
         self.assertEqual(result['matched_teams'],1)
+        self.assertEqual(result['matched_staged_players_unverified'],1)
+        self.assertEqual(result['unmatched_staged_players'],0)
         self.assertFalse(result['publication_allowed'])
         self.assertEqual(result['team_matches'][0]['candidate_event_ids'],['abc'])
     def test_no_guessing_abbreviation(self):
-        self.assertEqual(match(staging('NY Giants'),schedule(),NOW)['unmatched_teams'],1)
+        result=match(staging('NY Giants'),schedule(),NOW)
+        self.assertEqual(result['unmatched_teams'],1)
+        self.assertEqual(result['unmatched_staged_players'],1)
     def test_stale_schedule_rejected(self):
         s=schedule();s['fetched_at']='2026-11-01T08:00:00Z'
         with self.assertRaises(ValueError):match(staging(),s,NOW)
@@ -30,5 +34,7 @@ class MatchTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'No NFL events'):match(staging(),s,NOW)
     def test_ambiguous_double_header(self):
         s=schedule();s['odds'].append({'event_id':'xyz','event':'New York Giants @ Philadelphia Eagles','commence_time':'2026-11-03T18:00:00Z'})
-        self.assertEqual(match(staging(),s,NOW)['ambiguous_teams'],1)
+        result=match(staging(),s,NOW)
+        self.assertEqual(result['ambiguous_teams'],1)
+        self.assertEqual(result['ambiguous_staged_players'],1)
 if __name__=='__main__':unittest.main()
