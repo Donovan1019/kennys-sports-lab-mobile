@@ -1,34 +1,34 @@
 {
   "status": "simulated_not_bet_eligible",
-  "generated_at": "2026-11-03T11:02:46.021204+00:00",
+  "generated_at": "2026-11-03T13:15:29.916700+00:00",
   "draws": 10000,
   "games": [
     {
       "event_id": "91df86557819598ca270ba35410cfcfa",
       "team": "Detroit Pistons",
       "bookmaker": "fanduel",
-      "price": -126,
+      "price": -120,
       "model_probability": 0.669147,
       "mc_probability": 0.6623,
       "mc_standard_error": 0.004729,
       "fair_decimal": 1.4944,
-      "single_leg_ev": 0.20022,
-      "stress_ev_minus_3pp": 0.14641,
-      "stress_ev_minus_5pp": 0.11053,
+      "single_leg_ev": 0.22677,
+      "stress_ev_minus_3pp": 0.17177,
+      "stress_ev_minus_5pp": 0.1351,
       "betting_eligible": false
     },
     {
       "event_id": "91df86557819598ca270ba35410cfcfa",
       "team": "Philadelphia 76ers",
       "bookmaker": "fanduel",
-      "price": 108,
+      "price": 102,
       "model_probability": 0.330853,
       "mc_probability": 0.3299,
       "mc_standard_error": 0.004702,
       "fair_decimal": 3.0225,
-      "single_leg_ev": -0.31183,
-      "stress_ev_minus_3pp": -0.37423,
-      "stress_ev_minus_5pp": -0.41583,
+      "single_leg_ev": -0.33168,
+      "stress_ev_minus_3pp": -0.39228,
+      "stress_ev_minus_5pp": -0.43268,
       "betting_eligible": false
     },
     {
