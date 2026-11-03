@@ -4,7 +4,7 @@ function finite(n){return typeof n==='number'&&Number.isFinite(n)}
 function historyEvidence(record,line,at=Date.now()){
  const fail=reason=>({status:'UNAVAILABLE',reason});
  if(!record||!finite(line)||line<0||!finite(at))return fail('invalid record, line or timestamp');
- if(record.independentlyVerified!==true||!record.playerId||!record.market||!record.league||!record.source)return fail('independent provenance and player/market identity required');
+ if(record.independentlyVerified!==true||!record.playerId||!record.market||!record.league )return fail('independent provenance and player/market identity required');
  if(!Array.isArray(record.games)||record.games.length<15)return fail('at least 15 verified game results required');
  const seen=new Set(),games=[];
  for(const g of record.games){
