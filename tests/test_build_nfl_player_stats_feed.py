@@ -1,8 +1,8 @@
 import sys,unittest,json,tempfile
-from audit_nfl_player_stats_feed import inspect
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/"scripts"))
 from build_nfl_player_stats_feed import build,schedule_index
+from audit_nfl_player_stats_feed import inspect
 BASE={"season":"2026","season_type":"REG","week":"3","player_id":"p1","player_display_name":"Player One","game_id":"2026_03_A_B","passing_yards":"203","rushing_yards":"0"}
 class Ingestion(unittest.TestCase):
  def test_audit_provenance_verified_only_with_game_dates(self):
