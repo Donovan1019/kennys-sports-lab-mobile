@@ -1,0 +1,6 @@
+/* Authenticated, fail-closed provider connectivity check. Never prints keys or raw player lines. */
+const https=require('node:https');
+const key=process.env.PRIZEPICKS_API_KEY;
+if(!key){console.log('UNAVAILABLE: PRIZEPICKS_API_KEY secret not configured; no provider request made');process.exit(0)}
+const url='https://prizepicksapi.com/api/v1/projections?league=NBA&view=compact&limit=5';
+const req=https.get(url,{timeout:15000,headers:{Authorization:'Bearer '+key,'X-User-Request':'Scheduled Kenny Sports Lab PrizePicks source connectivity verification','Accept':'application/json'}},res=>{let raw='';res.on('data',c=>{raw+=c;if(raw.length>100000){req.destroy(new Error('Response too large'))}});res.on('end',()=>{if(res.statusCode!==200){console.error('Provider unavailable HTTP '+res.statusCode);process.exitCode=1;return}try{const body=JSON.parse(raw);const rows=body.data;if(!Array.isArray(rows)||body.meta?.mode==='demo'||rows.some(r=>r.is_demo===true)){throw Error('Missing live schema or demo data')}console.log('LIVE_PROVIDER_REACHABLE: '+rows.length+' sample records; not yet verified for ranking');}catch(e){console.error('Provider schema verification failed: '+e.message);process.exitCode=1}})});req.on('timeout',()=>req.destroy(new Error('Timeout')));req.on('error',e=>{console.error('Provider request failed: '+e.message);process.exitCode=1});
