@@ -1,0 +1,16 @@
+'use strict';
+const assert=require('node:assert/strict');
+const {runAudit}=require('../scripts/prizepicks_history_automation');
+const now=Date.parse('2026-11-03T20:00:00Z');
+const feed={status:'RAW_LINES_ONLY',generated_at:'2026-11-03T19:50:00Z',lines:[{id:'x',league:'NBA',player:'Example',player_id:'pp-1',market:'Points',period:'Full game',line:15.5}]};
+const games=Array.from({length:15},(_,i)=>({eventId:'e'+i,playedAt:'2026-10-'+String(i+1).padStart(2,'0')+'T00:00:00Z',verified:true,value:i+10}));
+const history={schema_version:1,status:'VERIFIED_GAME_LOGS',source:'independent',generated_at:'2026-11-03T19:00:00Z',records:[{playerId:'hist-1',providerPlayerId:'hist-1',league:'NBA',market:'Points',period:'Full game',source:'independent',independentlyVerified:true,games}]};
+const crosswalk=[{verified:true,league:'NBA',prizepicksPlayerId:'pp-1',historyPlayerId:'hist-1',historySource:'independent'}];
+const good=runAudit(feed,history,crosswalk,now);
+assert.equal(good.coverage.matched,1);assert.equal(good.rows[0].last5.sample,5);
+assert.equal(good.betEligible,false);assert.equal(good.rows[0].betEligible,false);
+assert.equal(runAudit(feed,null,null,now).status,'UNAVAILABLE');
+assert.equal(runAudit({...feed,generated_at:'2026-11-03T18:00:00Z'},history,crosswalk,now).status,'UNAVAILABLE');
+assert.equal(runAudit({...feed,generated_at:'2026-11-03T20:02:00Z'},history,crosswalk,now).status,'UNAVAILABLE');
+assert.equal(runAudit(feed,history,[],now).status,'UNAVAILABLE');
+console.log('Automated PrizePicks history audit fail-closed tests passed');
