@@ -1,7 +1,7 @@
 {
   "status": "validated",
   "sport": "basketball_nba",
-  "generated_at": "2026-11-03T20:56:59.076913+00:00",
+  "generated_at": "2026-11-03T22:55:16.384525+00:00",
   "calibration_passed": true,
   "model_version": "elo-walkforward-v1-holdout-audit",
   "validation_report": {
@@ -35,6 +35,18 @@
       "team": "Philadelphia 76ers",
       "date_et": "2026-11-04",
       "win_probability": 0.330853
+    },
+    {
+      "event_id": "05200821a78e4f6db8131cff1652550f",
+      "team": "Washington Wizards",
+      "date_et": "2026-11-04",
+      "win_probability": 0.268767
+    },
+    {
+      "event_id": "05200821a78e4f6db8131cff1652550f",
+      "team": "Atlanta Hawks",
+      "date_et": "2026-11-04",
+      "win_probability": 0.731233
     },
     {
       "event_id": "6b33f8632d4dd100cba8453db82213fa",
@@ -97,6 +109,30 @@
       "win_probability": 0.362948
     },
     {
+      "event_id": "50bdc20ea9ea3c88d4bfa261b9b2307e",
+      "team": "Denver Nuggets",
+      "date_et": "2026-11-04",
+      "win_probability": 0.671654
+    },
+    {
+      "event_id": "50bdc20ea9ea3c88d4bfa261b9b2307e",
+      "team": "Toronto Raptors",
+      "date_et": "2026-11-04",
+      "win_probability": 0.328346
+    },
+    {
+      "event_id": "d3d91c40111aca301d41c9cdb9d64608",
+      "team": "Phoenix Suns",
+      "date_et": "2026-11-04",
+      "win_probability": 0.476776
+    },
+    {
+      "event_id": "d3d91c40111aca301d41c9cdb9d64608",
+      "team": "Portland Trail Blazers",
+      "date_et": "2026-11-04",
+      "win_probability": 0.523224
+    },
+    {
       "event_id": "6b25f3932db93d4c5ad7658def2645bf",
       "team": "San Antonio Spurs",
       "date_et": "2026-11-04",
@@ -107,6 +143,18 @@
       "team": "Dallas Mavericks",
       "date_et": "2026-11-04",
       "win_probability": 0.113167
+    },
+    {
+      "event_id": "29988f1011d7738962e13e0a0beb693f",
+      "team": "Sacramento Kings",
+      "date_et": "2026-11-04",
+      "win_probability": 0.225794
+    },
+    {
+      "event_id": "29988f1011d7738962e13e0a0beb693f",
+      "team": "Los Angeles Lakers",
+      "date_et": "2026-11-04",
+      "win_probability": 0.774206
     }
   ]
 }
