@@ -3,6 +3,11 @@ on:
   workflow_dispatch:
   schedule:
     - cron: '7 0,6,12,18 * * *'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/prizepicks_ingest.js'
+      - '.github/workflows/prizepicks-ingest.yml'
   pull_request:
     paths:
       - 'scripts/prizepicks_ingest.js'
