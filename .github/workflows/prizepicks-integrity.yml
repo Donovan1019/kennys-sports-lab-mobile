@@ -4,6 +4,8 @@ on:
     paths:
       - 'prizepicks*'
       - 'tests/prizepicks*'
+      - 'scripts/prizepicks_ingest.js'
+      - '.github/workflows/prizepicks-ingest.yml'
       - '.github/workflows/prizepicks-integrity.yml'
   push:
     branches: [main]
@@ -22,3 +24,4 @@ jobs:
       - run: node --check prizepicks_research.js
       - run: node tests/prizepicks_research.test.js
       - run: node tests/prizepicks_auto_page.test.js
+      - run: node --check scripts/prizepicks_ingest.js && node tests/prizepicks_ingest.test.js

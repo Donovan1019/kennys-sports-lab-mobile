@@ -2,7 +2,7 @@ name: PrizePicks Automated Raw Line Feed
 on:
   workflow_dispatch:
   schedule:
-    - cron: '7,37 * * * *'
+    - cron: '7 0,6,12,18 * * *'
   pull_request:
     paths:
       - 'scripts/prizepicks_ingest.js'
