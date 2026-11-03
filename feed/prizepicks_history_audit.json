@@ -1,15 +1,14 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-03T21:53:57.881Z",
+  "generated_at": "2026-11-03T22:03:38.934Z",
   "status": "UNAVAILABLE",
   "reason": "verified game-log payload missing",
   "coverage": {
-    "total": 600,
+    "total": 400,
     "matched": 0,
-    "unavailable": 600,
+    "unavailable": 400,
     "byLeague": {
       "NBA": 200,
-      "NFL": 200,
       "NHL": 200
     }
   },
@@ -18,7 +17,7 @@
   "modelValidated": false,
   "sourceStatus": "UNAVAILABLE",
   "identityReadiness": {
-    "providerPlayers": 258,
+    "providerPlayers": 241,
     "providerPlayersMissingId": 0,
     "historicalPlayerMarketRecords": 0,
     "verifiedMappingsProvided": 0,
@@ -34,12 +33,6 @@
         "historicalPlayerMarketRecords": 0,
         "verifiedPlayerMappings": 0
       },
-      "NFL": {
-        "sourceLines": 200,
-        "providerPlayers": 17,
-        "historicalPlayerMarketRecords": 0,
-        "verifiedPlayerMappings": 0
-      },
       "NHL": {
         "sourceLines": 200,
         "providerPlayers": 200,
@@ -47,6 +40,16 @@
         "verifiedPlayerMappings": 0
       }
     }
+  },
+  "historySourceDiagnostics": {
+    "explicitHistory": {
+      "status": "NOT_CONFIGURED"
+    },
+    "nflArchive": {
+      "status": "UNAVAILABLE",
+      "reason": "existing nflverse archive unavailable or unrecognized"
+    },
+    "selected": "NONE"
   },
   "inputs": {
     "rawLines": "PRESENT",
