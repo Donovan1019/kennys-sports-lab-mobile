@@ -3,6 +3,8 @@ on:
   pull_request:
     paths:
       - 'prizepicks*'
+      - 'scripts/prizepicks_feed_audit.js'
+      - '.github/workflows/prizepicks-feed-audit.yml'
       - 'tests/prizepicks*'
       - '.github/workflows/prizepicks-integrity.yml'
   push:
@@ -22,3 +24,4 @@ jobs:
       - run: node --check prizepicks_research.js
       - run: node tests/prizepicks_research.test.js
       - run: node tests/prizepicks_auto_page.test.js
+      - run: node scripts/prizepicks_feed_audit.js

@@ -1,0 +1,26 @@
+name: PrizePicks Automated Feed Audit
+on:
+  schedule:
+    - cron: '17,47 * * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/prizepicks_feed_audit.js'
+      - '.github/workflows/prizepicks-feed-audit.yml'
+      - 'prizepicks_research.js'
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node scripts/prizepicks_feed_audit.js
+      - uses: actions/upload-artifact@v4
+        with:
+          name: prizepicks-feed-status
+          path: audit/prizepicks_status.json
