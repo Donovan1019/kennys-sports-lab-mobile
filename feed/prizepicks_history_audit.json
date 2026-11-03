@@ -1,12 +1,17 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-03T21:30:04.654Z",
+  "generated_at": "2026-11-03T21:36:25.906Z",
   "status": "UNAVAILABLE",
   "reason": "verified provider identity crosswalk missing",
   "coverage": {
-    "total": 0,
+    "total": 600,
     "matched": 0,
-    "unavailable": 0
+    "unavailable": 600,
+    "byLeague": {
+      "NBA": 200,
+      "NFL": 200,
+      "NHL": 200
+    }
   },
   "rows": [],
   "betEligible": false,
