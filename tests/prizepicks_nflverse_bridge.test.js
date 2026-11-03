@@ -2,8 +2,8 @@
 const assert=require('node:assert/strict');
 const {bridgeNflverseArchive}=require('../scripts/prizepicks_nflverse_bridge');
 const now=Date.parse('2026-11-03T20:00:00Z');
-const games=Array.from({length:15},(_,i)=>({eventId:'nfl-'+i,playedAt:'2026-10-'+String(i+1).padStart(2,'0')+'T00:00:00Z',values:{'Receiving yards':i+20}}));
-const archive={source:'nflverse-stats-player-week',fetched_at:'2026-11-03T19:00:00Z',players:[{player_id:'nfl-123',games}]};
+const games=Array.from({length:15},(_,i)=>({eventId:'nfl-'+i,playedAt:'2026-10-'+String(i+1).padStart(2,'0')+'T00:00:00Z',verified:true,values:{'Receiving yards':i+20}}));
+const archive={source:'nflverse-stats-player-week',independentlyVerified:true,fetched_at:'2026-11-03T19:00:00Z',players:[{player_id:'nfl-123',games}]};
 const good=bridgeNflverseArchive(archive,now);
 assert.equal(good.status,'VERIFIED_GAME_LOGS');
 assert.equal(good.records.length,1);
