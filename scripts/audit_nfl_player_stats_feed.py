@@ -43,7 +43,8 @@ def inspect(path):
                 key=(player.get("player_id") or player.get("name"),str(event))
                 if key in seen:result["duplicate_player_events"]+=1
                 seen.add(key)
-            if game.get("verified") is not True or not game.get("game_date"):\n                result["issues"].append("missing_verified_game_date")
+            if game.get("verified") is not True or not game.get("game_date"):
+                result["issues"].append("missing_verified_game_date")
             values=game.get("values")
             if not isinstance(values,dict) or not values:
                 result["missing_values"]+=1
