@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 from collections import defaultdict
 from pathlib import Path
 FIELDS={"Passing yards":"passing_yards","Passing touchdowns":"passing_tds","Rushing yards":"rushing_yards","Receiving yards":"receiving_yards","Receptions":"receptions","Pass Attempts":"attempts","Completions":"completions","Rush Attempts":"carries","Targets":"targets","Rushing touchdowns":"rushing_tds","Receiving touchdowns":"receiving_tds"}
-VERIFIED_PLAYER_ALIASES={"00-0034413":{"foyeoluokun","foyesadeoluokun"},"00-0038603":{"robertbealjr","robbealjr"}}
+VERIFIED_PLAYER_ALIASES={"00-0034413":{"foyeoluokun","foyesadeoluokun"},"00-0038603":{"robertbealjr","robbealjr"},"00-0040744":{"jaylahntuimolaou","jaylahntuimoloau"}}
 def normalized_name(value):
     return "".join(ch for ch in unicodedata.normalize("NFKD",value).casefold() if ch.isalnum())
 def schedule_index(rows):
