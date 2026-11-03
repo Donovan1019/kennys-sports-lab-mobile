@@ -7,6 +7,9 @@ on:
       - '.github/workflows/nfl-real-player-stats-ingestion.yml'
       - 'scripts/prizepicks_ingest.js'
       - 'scripts/prizepicks_feed_health.js'
+      - 'scripts/prizepicks_history_*.js'
+      - 'scripts/prizepicks_nflverse_bridge.js'
+      - 'feed/prizepicks_verified_crosswalk.json'
       - '.github/workflows/prizepicks-ingest.yml'
       - '.github/workflows/prizepicks-integrity.yml'
   push:
