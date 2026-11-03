@@ -1,9 +1,23 @@
-import sys,unittest
+import sys,unittest,json,tempfile
+from audit_nfl_player_stats_feed import inspect
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/"scripts"))
 from build_nfl_player_stats_feed import build,schedule_index
 BASE={"season":"2026","season_type":"REG","week":"3","player_id":"p1","player_display_name":"Player One","game_id":"2026_03_A_B","passing_yards":"203","rushing_yards":"0"}
 class Ingestion(unittest.TestCase):
+ def test_audit_provenance_verified_only_with_game_dates(self):
+  data=build([BASE],None,{BASE['game_id']:'2026-09-27T00:00:00+00:00'})
+  with tempfile.TemporaryDirectory() as d:
+   p=Path(d)/'stats.json'
+   p.write_text(json.dumps(data))
+   self.assertEqual(inspect(p)['status'],'SOURCE_PROVENANCE_VERIFIED')
+   data['players'][0]['games'][0].pop('game_date')
+   p.write_text(json.dumps(data))
+   self.assertEqual(inspect(p)['status'],'BLOCKED')
+   data['players'][0]['games'][0]['game_date']='2026-09-27T00:00:00+00:00'
+   data['independentlyVerified']=False
+   p.write_text(json.dumps(data))
+   self.assertEqual(inspect(p)['status'],'BLOCKED')
  def test_verified_game_dates_for_archive_bridge(self):
   r=build([BASE],None,{BASE['game_id']:'2026-09-27T00:00:00+00:00'})
   self.assertTrue(r['independentlyVerified'])
