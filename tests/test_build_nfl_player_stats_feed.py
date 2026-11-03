@@ -4,6 +4,16 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[1]/"scripts"))
 from build_nfl_player_stats_feed import build,schedule_index
 BASE={"season":"2026","season_type":"REG","week":"3","player_id":"p1","player_display_name":"Player One","game_id":"2026_03_A_B","passing_yards":"203","rushing_yards":"0"}
 class Ingestion(unittest.TestCase):
+ def test_verified_game_dates_for_archive_bridge(self):
+  r=build([BASE],None,{BASE['game_id']:'2026-09-27T00:00:00+00:00'})
+  self.assertTrue(r['independentlyVerified'])
+  self.assertEqual(r['players'][0]['games'][0]['game_date'],'2026-09-27T00:00:00+00:00')
+  self.assertTrue(r['players'][0]['games'][0]['verified'])
+  self.assertIn('fetched_at',r)
+ def test_missing_game_dates_not_verified(self):
+  r=build([BASE])
+  self.assertFalse(r['independentlyVerified'])
+  self.assertNotIn('verified',r['players'][0]['games'][0])
  def test_schedule_join(self):
   row=dict(BASE,game_id="",recent_team="NYJ")
   schedule=schedule_index([{"season":"2026","week":"3","game_id":"2026_03_NYJ_BUF","home_team":"NYJ","away_team":"BUF"}])

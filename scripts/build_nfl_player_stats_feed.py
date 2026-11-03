@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Build NFL player game feed from a genuine nflverse player-stats CSV. No fabricated IDs."""
 import argparse,csv,json,sys,unicodedata
+from datetime import datetime, timezone
 from collections import defaultdict
 from pathlib import Path
 FIELDS={"Passing yards":"passing_yards","Passing touchdowns":"passing_tds","Rushing yards":"rushing_yards","Receiving yards":"receiving_yards","Receptions":"receptions","Pass Attempts":"attempts","Completions":"completions","Rush Attempts":"carries","Targets":"targets","Rushing touchdowns":"rushing_tds","Receiving touchdowns":"receiving_tds"}
@@ -22,7 +23,7 @@ def schedule_index(rows):
             index[key]=event
     return index
 
-def build(rows, schedule=None):
+def build(rows, schedule=None, schedule_dates=None):
     players=defaultdict(lambda:{"games":[]})
     seen=set()
     quarantined=[]
@@ -67,9 +68,13 @@ def build(rows, schedule=None):
         else:
             player["name"]=name
         player["player_id"]=player_id
-        player["games"].append({"game_id":game_id,"season":int(season),"week":int(week),"season_type":"REG","values":values})
+        game={"game_id":game_id,"season":int(season),"week":int(week),"season_type":"REG","values":values}
+        if schedule_dates and game_id in schedule_dates:
+            game["game_date"]=schedule_dates[game_id]
+            game["verified"]=True
+        player["games"].append(game)
     if not seen:raise ValueError("No valid 2025–26 regular season observations; refusing empty feed")
-    return {"source":"nflverse-stats-player-week","source_note":"Observed nflverse CSV; game IDs direct or joined from verified team/week schedule","players":list(players.values()),"quarantine":{"count":len(quarantined),"records":quarantined}}
+    return {"source":"nflverse-stats-player-week","fetched_at":datetime.now(timezone.utc).isoformat(),"independentlyVerified":bool(schedule_dates) and all(g.get("verified") is True for p in players.values() for g in p["games"]),"source_note":"Observed nflverse CSV; game IDs direct or joined from verified team/week schedule","players":list(players.values()),"quarantine":{"count":len(quarantined),"records":quarantined}}
 def main():
     ap=argparse.ArgumentParser()
     ap.add_argument("--input",type=Path,required=True,action="append",help="Verified nflverse player_stats CSV")
@@ -77,9 +82,20 @@ def main():
     ap.add_argument("--schedule",type=Path)
     args=ap.parse_args()
     schedule=None
+    schedule_dates={}
     if args.schedule:
         with args.schedule.open(newline="",encoding="utf-8-sig") as sf:
-            schedule=schedule_index(csv.DictReader(sf))
+            schedule_rows=list(csv.DictReader(sf))
+            schedule=schedule_index(schedule_rows)
+            for row in schedule_rows:
+                game_id=str(row.get('game_id') or '').strip()
+                date=str(row.get('gameday') or '').strip()
+                try:
+                    parsed=datetime.strptime(date,'%Y-%m-%d').replace(tzinfo=timezone.utc)
+                except ValueError:
+                    continue
+                if game_id:
+                    schedule_dates[game_id]=parsed.isoformat()
         if not schedule:raise SystemExit("No valid schedule game IDs")
     all_rows=[]
     for path in args.input:
@@ -91,7 +107,7 @@ def main():
             if schedule is None and "game_id" not in reader.fieldnames:
                 raise SystemExit(f"{path}: No game_id or verified schedule")
             all_rows.extend(reader)
-    result=build(all_rows,schedule)
+    result=build(all_rows,schedule,schedule_dates)
     args.output.parent.mkdir(parents=True,exist_ok=True)
     tmp=args.output.with_suffix(".tmp")
     tmp.write_text(json.dumps(result,separators=(",",":")),encoding="utf-8")
