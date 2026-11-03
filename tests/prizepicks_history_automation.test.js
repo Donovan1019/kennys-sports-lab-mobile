@@ -1,6 +1,6 @@
 'use strict';
 const assert=require('node:assert/strict');
-const {runAudit}=require('../scripts/prizepicks_history_automation');
+const {runAudit,chooseVerifiedHistory}=require('../scripts/prizepicks_history_automation');
 const now=Date.parse('2026-11-03T20:00:00Z');
 const feed={status:'RAW_LINES_ONLY',generated_at:'2026-11-03T19:50:00Z',lines:[{id:'x',league:'NBA',player:'Example',player_id:'pp-1',market:'Points',period:'Full game',line:15.5}]};
 const games=Array.from({length:15},(_,i)=>({eventId:'e'+i,playedAt:'2026-10-'+String(i+1).padStart(2,'0')+'T00:00:00Z',verified:true,value:i+10}));
@@ -13,4 +13,9 @@ assert.equal(runAudit(feed,null,null,now).status,'UNAVAILABLE');
 assert.equal(runAudit({...feed,generated_at:'2026-11-03T18:00:00Z'},history,crosswalk,now).status,'UNAVAILABLE');
 assert.equal(runAudit({...feed,generated_at:'2026-11-03T20:02:00Z'},history,crosswalk,now).status,'UNAVAILABLE');
 assert.equal(runAudit(feed,history,[],now).status,'UNAVAILABLE');
+assert.equal(chooseVerifiedHistory(null,null,now),null);
+assert.equal(chooseVerifiedHistory(history,null,now),history);
+const archive={source:'nflverse-stats-player-week',independentlyVerified:true,fetched_at:'2026-11-03T19:00:00Z',players:[{player_id:'nfl-123',games:games.map(g=>({...g,verified:true,values:{'Receiving yards':g.value}}))}]};
+assert.equal(chooseVerifiedHistory(null,archive,now).status,'VERIFIED_GAME_LOGS');
+assert.equal(chooseVerifiedHistory(null,{...archive,independentlyVerified:false},now),null);
 console.log('Automated PrizePicks history audit fail-closed tests passed');
