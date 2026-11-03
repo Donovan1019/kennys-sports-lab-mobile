@@ -53,6 +53,19 @@ jobs:
         env:
           PRIZEPICKS_NFL_ARCHIVE_PATH: /tmp/prizepicks-nfl-player-stats.json
         run: node scripts/prizepicks_history_automation.js
+      - name: Validate audit artifact and source provenance
+        if: github.event_name != 'pull_request' && steps.eastern.outputs.run == 'true'
+        run: |
+          node -e "const fs=require('fs'); const a=JSON.parse(fs.readFileSync('feed/prizepicks_history_audit.json')); const f=JSON.parse(fs.readFileSync('feed/prizepicks_lines.json')); if(!a.inputs || a.inputs.nflArchive!=='FOUND' || f.status!=='RAW_LINES_ONLY' || a.betEligible!==false || !Array.isArray(a.rows))process.exit(1); console.log(JSON.stringify({audit:a.status,reason:a.reason,inputs:a.inputs,coverage:a.coverage}));"
+      - name: Upload automated research diagnostics
+        if: github.event_name != 'pull_request' && steps.eastern.outputs.run == 'true' && always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: prizepicks-research-diagnostics
+          if-no-files-found: warn
+          path: |
+            feed/prizepicks_lines.json
+            feed/prizepicks_history_audit.json
       - name: Publish fresh feed
         if: github.event_name != 'pull_request' && steps.eastern.outputs.run == 'true'
         run: |
