@@ -28,3 +28,4 @@ jobs:
       - run: node --check scripts/prizepicks_ingest.js && node tests/prizepicks_ingest.test.js
       - run: node tests/prizepicks_feed_health.test.js
       - run: node tests/prizepicks_schedule.test.js
+      - run: node tests/prizepicks_board_quality.test.js
