@@ -81,10 +81,15 @@ jobs:
       - name: Publish fresh feed
         if: github.event_name != 'pull_request' && steps.eastern.outputs.run == 'true'
         run: |
+          cp feed/prizepicks_lines.json /tmp/prizepicks-lines-publish.json
+          cp feed/prizepicks_history_audit.json /tmp/prizepicks-history-audit-publish.json
           git fetch origin main
           git checkout -B main origin/main
+          cp /tmp/prizepicks-lines-publish.json feed/prizepicks_lines.json
+          cp /tmp/prizepicks-history-audit-publish.json feed/prizepicks_history_audit.json
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          node -e "const fs=require('fs');const f=JSON.parse(fs.readFileSync('feed/prizepicks_lines.json'));const a=JSON.parse(fs.readFileSync('feed/prizepicks_history_audit.json'));if(a.coverage.total!==f.lines.length||a.betEligible!==false||a.coverage.matched+a.coverage.unavailable!==a.coverage.total)process.exit(1)"
           git add feed/prizepicks_lines.json feed/prizepicks_history_audit.json
           if ! git diff --cached --quiet; then
             git commit -m 'data: refresh PrizePicks source lines [skip ci]'
