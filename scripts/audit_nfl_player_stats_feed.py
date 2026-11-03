@@ -20,6 +20,8 @@ def inspect(path):
     if not isinstance(players,list) or not players:
         result["issues"].append("no_player_records")
         return result
+    provenance_ok=data.get("independentlyVerified") is True and bool(data.get("fetched_at")) and bool(data.get("source_note"))
+    if not provenance_ok:result["issues"].append("missing_independent_source_provenance")
     seen=set()
     for player in players:
         if not isinstance(player,dict):
@@ -41,6 +43,8 @@ def inspect(path):
                 key=(player.get("player_id") or player.get("name"),str(event))
                 if key in seen:result["duplicate_player_events"]+=1
                 seen.add(key)
+            if game.get("verified") is not True or not game.get("game_date"):
+                result["issues"].append("missing_verified_game_date")
             values=game.get("values")
             if not isinstance(values,dict) or not values:
                 result["missing_values"]+=1
@@ -48,7 +52,7 @@ def inspect(path):
     if result["event_id_coverage"]!=result["game_count"]:result["issues"].append("missing_game_ids")
     if result["missing_values"]:result["issues"].append("missing_stat_values")
     if result["duplicate_player_events"]:result["issues"].append("duplicate_player_game_ids")
-    if not result["issues"]:result["status"]="DATA_PRESENT_UNVERIFIED"
+    if not result["issues"]:result["status"]="SOURCE_PROVENANCE_VERIFIED"
     return result
 
 if __name__=="__main__":
