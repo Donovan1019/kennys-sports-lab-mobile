@@ -39,7 +39,7 @@ def match(staging,schedule,now=None):
     if not events:raise ValueError('No NFL events')
     teams=staging.get('teams')
     if not isinstance(teams,list) or not teams:raise ValueError('No staged teams')
-    output=[];matched=0;ambiguous=0
+    output=[];matched=0;ambiguous=0;matched_players=0;ambiguous_players=0;unmatched_players=0
     for team in teams:
         if not isinstance(team,dict) or not isinstance(team.get('team_name'),str):continue
         name=team['team_name']
@@ -47,8 +47,12 @@ def match(staging,schedule,now=None):
         if len(candidates)==1:matched+=1;status='EXACT_NAME_MATCH_UNVERIFIED'
         elif candidates:ambiguous+=1;status='AMBIGUOUS'
         else:status='UNMATCHED'
+        player_count=len(team.get('players',[])) if isinstance(team.get('players'),list) else 0
+        if status=='EXACT_NAME_MATCH_UNVERIFIED':matched_players+=player_count
+        elif status=='AMBIGUOUS':ambiguous_players+=player_count
+        else:unmatched_players+=player_count
         output.append({'espn_team_id':team.get('espn_team_id'),'team_name':name,'match_status':status,'candidate_event_ids':sorted(candidates),'staged_players':len(team.get('players',[])) if isinstance(team.get('players'),list) else 0})
-    return {'status':'EVENT_MATCH_AUDIT_ONLY','staged_team_count':len(output),'matched_teams':matched,'ambiguous_teams':ambiguous,'unmatched_teams':len(output)-matched-ambiguous,'schedule_event_count':len(events),'team_matches':output,'verified_player_reports':0,'publication_allowed':False,'projection_impact':'NOT_APPLIED'}
+    return {'status':'EVENT_MATCH_AUDIT_ONLY','staged_team_count':len(output),'matched_teams':matched,'ambiguous_teams':ambiguous,'unmatched_teams':len(output)-matched-ambiguous,'schedule_event_count':len(events),'matched_staged_players_unverified':matched_players,'ambiguous_staged_players':ambiguous_players,'unmatched_staged_players':unmatched_players,'team_matches':output,'verified_player_reports':0,'publication_allowed':False,'projection_impact':'NOT_APPLIED'}
 
 def main():
     staging=json.loads(STAGING.read_text(encoding='utf-8'))
