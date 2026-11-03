@@ -1,0 +1,12 @@
+'use strict';
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const workflow=fs.readFileSync('.github/workflows/nfl-real-player-stats-ingestion.yml','utf8');
+assert.match(workflow,/concurrency:\s*\n\s*group: nfl-history-publish/);
+assert.match(workflow,/cancel-in-progress: false/);
+assert.match(workflow,/contents: \$\{\{ github\.event_name == 'pull_request' && 'read' \|\| 'write' \}\}/);
+assert.match(workflow,/git fetch origin main/);
+assert.match(workflow,/git checkout -B main origin\/main/);
+assert.match(workflow,/git push origin HEAD:main/);
+assert.match(workflow,/independentlyVerified/);
+console.log('NFL audited archive publishing safety tests passed');
