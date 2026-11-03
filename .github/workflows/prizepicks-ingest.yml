@@ -12,6 +12,7 @@ on:
     paths:
       - 'scripts/prizepicks_ingest.js'
       - 'scripts/prizepicks_history_identity.js'
+      - 'scripts/prizepicks_history_join.js'
       - 'scripts/prizepicks_history_automation.js'
       - 'scripts/prizepicks_history_source.js'
       - 'scripts/prizepicks_nflverse_bridge.js'
@@ -22,6 +23,7 @@ on:
       - 'scripts/prizepicks_ingest.js'
       - 'tests/prizepicks_ingest.test.js'
       - 'scripts/prizepicks_history_identity.js'
+      - 'scripts/prizepicks_history_join.js'
       - 'scripts/prizepicks_history_automation.js'
       - 'scripts/prizepicks_history_source.js'
       - 'scripts/prizepicks_nflverse_bridge.js'
