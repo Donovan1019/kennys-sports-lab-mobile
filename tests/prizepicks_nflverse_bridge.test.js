@@ -12,4 +12,10 @@ assert.equal(bridgeNflverseArchive({...archive,fetched_at:'2026-10-01T00:00:00Z'
 assert.equal(bridgeNflverseArchive({...archive,players:[{name:'Unknown',games}]},now).status,'UNAVAILABLE');
 assert.equal(bridgeNflverseArchive({...archive,players:[{player_id:'nfl-123',games:games.map(g=>({...g,playedAt:undefined}))}]},now).status,'UNAVAILABLE');
 assert.equal(bridgeNflverseArchive({...archive,players:[{player_id:'nfl-123',games:[...games.slice(1),games[1]]}]},now).status,'UNAVAILABLE');
+const negativeGames=games.map((g,i)=>({...g,values:{'Rushing yards':i===0?-7:i+1}}));
+const negative=bridgeNflverseArchive({...archive,players:[{player_id:'nfl-123',games:negativeGames}]},now);
+assert.equal(negative.status,'VERIFIED_GAME_LOGS');
+assert.equal(negative.records.find(r=>r.market==='Rushing yards').games[0].value,-7);
+const negativeReceptions=games.map((g,i)=>({...g,values:{Receptions:i===0?-1:i+1}}));
+assert.equal(bridgeNflverseArchive({...archive,players:[{player_id:'nfl-123',games:negativeReceptions}]},now).status,'UNAVAILABLE');
 console.log('Existing NFL archive bridge provenance tests passed');
