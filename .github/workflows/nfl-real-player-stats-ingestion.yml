@@ -17,7 +17,7 @@ jobs:
   ingest:
     runs-on: ubuntu-latest
     permissions:
-      contents: ${{ github.event_name == 'pull_request' && 'read' || 'write' }}
+      contents: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
