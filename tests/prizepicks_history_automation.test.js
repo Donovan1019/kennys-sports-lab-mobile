@@ -12,7 +12,9 @@ assert.equal(good.betEligible,false);assert.equal(good.rows[0].betEligible,false
 assert.equal(runAudit(feed,null,null,now).status,'UNAVAILABLE');
 assert.equal(runAudit({...feed,generated_at:'2026-11-03T18:00:00Z'},history,crosswalk,now).status,'UNAVAILABLE');
 assert.equal(runAudit({...feed,generated_at:'2026-11-03T20:02:00Z'},history,crosswalk,now).status,'UNAVAILABLE');
-assert.equal(runAudit(feed,history,[],now).status,'UNAVAILABLE');
+const missingCrosswalk=runAudit(feed,history,[],now);
+assert.equal(missingCrosswalk.status,'UNAVAILABLE');
+assert.deepEqual(missingCrosswalk.coverage,{total:1,matched:0,unavailable:1,byLeague:{NBA:1}});
 assert.equal(chooseVerifiedHistory(null,null,now),null);
 assert.equal(chooseVerifiedHistory(history,null,now),history);
 const archive={source:'nflverse-stats-player-week',independentlyVerified:true,fetched_at:'2026-11-03T19:00:00Z',players:[{player_id:'nfl-123',games:games.map(g=>({...g,verified:true,values:{'Receiving yards':g.value}}))}]};
