@@ -9,11 +9,19 @@ on:
       - 'scripts/prizepicks_ingest.js'
       - 'scripts/prizepicks_history_identity.js'
       - 'scripts/prizepicks_history_automation.js'
+      - 'scripts/prizepicks_history_source.js'
+      - 'scripts/prizepicks_nflverse_bridge.js'
+      - 'tests/prizepicks_history_automation.test.js'
       - '.github/workflows/prizepicks-ingest.yml'
   pull_request:
     paths:
       - 'scripts/prizepicks_ingest.js'
       - 'tests/prizepicks_ingest.test.js'
+      - 'scripts/prizepicks_history_identity.js'
+      - 'scripts/prizepicks_history_automation.js'
+      - 'scripts/prizepicks_history_source.js'
+      - 'scripts/prizepicks_nflverse_bridge.js'
+      - 'tests/prizepicks_history_automation.test.js'
       - '.github/workflows/prizepicks-ingest.yml'
 concurrency:
   group: prizepicks-raw-line-publish
