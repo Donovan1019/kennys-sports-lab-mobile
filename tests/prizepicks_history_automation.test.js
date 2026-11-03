@@ -57,6 +57,13 @@ assert.equal(identityReadiness(feed,history,[]).verifiedMappingsWithBothIdsPrese
 const {canonicalMarket}=require('../scripts/prizepicks_history_join');
 assert.equal(canonicalMarket('NFL','Pass Yards'),'Passing yards');
 assert.equal(canonicalMarket('NFL','Pass TDs'),'Passing touchdowns');
+assert.equal(canonicalMarket('NFL','Pass Completions'),'Pass Completions');
+assert.equal(canonicalMarket('NFL','Pass Attempts'),'Pass Attempts');
+assert.equal(canonicalMarket('NFL','Rush Attempts'),'Rush Attempts');
+const {MARKET_VALUES}=require('../scripts/prizepicks_nflverse_bridge');
+assert.equal(MARKET_VALUES['Pass Completions'],'Completions');
+assert.equal(MARKET_VALUES['Pass Attempts'],'Pass Attempts');
+assert.equal(MARKET_VALUES['Rush Attempts'],'Rush Attempts');
 assert.equal(canonicalMarket('NFL','Rec Yards'),'Receiving yards');
 assert.equal(canonicalMarket('NFL','Anytime TDs'),'Anytime TDs');
 assert.equal(canonicalMarket('NBA','Pass Yards'),'Pass Yards');
