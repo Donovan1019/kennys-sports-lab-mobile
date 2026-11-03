@@ -1,0 +1,59 @@
+{
+  "sport": "NHL",
+  "date": "2026-11-02",
+  "games": [
+    {
+      "event_id": "401892629",
+      "event": "Vegas Golden Knights at Boston Bruins",
+      "commence_time": "2026-11-03T00:00Z",
+      "home": "Boston Bruins",
+      "away": "Vegas Golden Knights",
+      "home_score": 3,
+      "away_score": 2,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261102&limit=100"
+    },
+    {
+      "event_id": "401892630",
+      "event": "Detroit Red Wings at Florida Panthers",
+      "commence_time": "2026-11-03T00:00Z",
+      "home": "Florida Panthers",
+      "away": "Detroit Red Wings",
+      "home_score": 3,
+      "away_score": 5,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261102&limit=100"
+    },
+    {
+      "event_id": "401892631",
+      "event": "Colorado Avalanche at Chicago Blackhawks",
+      "commence_time": "2026-11-03T01:00Z",
+      "home": "Chicago Blackhawks",
+      "away": "Colorado Avalanche",
+      "home_score": 2,
+      "away_score": 5,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261102&limit=100"
+    },
+    {
+      "event_id": "401892632",
+      "event": "Calgary Flames at San Jose Sharks",
+      "commence_time": "2026-11-03T02:00Z",
+      "home": "San Jose Sharks",
+      "away": "Calgary Flames",
+      "home_score": 1,
+      "away_score": 2,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261102&limit=100"
+    }
+  ],
+  "source_url": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261102&limit=100"
+}
