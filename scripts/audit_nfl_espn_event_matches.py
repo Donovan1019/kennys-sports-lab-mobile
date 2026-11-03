@@ -24,7 +24,7 @@ def match(staging,schedule,now=None):
     for item in (staging,schedule):
         timestamp=parse_time(item.get('fetched_at'))
         if timestamp>now+timedelta(minutes=5) or now-timestamp>=timedelta(hours=6):raise ValueError('Stale or future source')
-    events={}
+    events={};event_kickoffs={}
     for row in schedule['odds']:
         if not isinstance(row,dict) or not isinstance(row.get('event_id'),str) or not isinstance(row.get('event'),str):continue
         kickoff=row.get('commence_time')
@@ -34,8 +34,9 @@ def match(staging,schedule,now=None):
         parts=row['event'].split(' @ ')
         if len(parts)!=2:continue
         key=row['event_id']
-        if key in events and events[key]!=tuple(parts):raise ValueError('Conflicting schedule event')
+        if key in events and (events[key]!=tuple(parts) or event_kickoffs[key]!=kickoff_time):raise ValueError('Conflicting schedule event')
         events[key]=tuple(parts)
+        event_kickoffs[key]=kickoff_time
     if not events:raise ValueError('No NFL events')
     teams=staging.get('teams')
     if not isinstance(teams,list) or not teams:raise ValueError('No staged teams')
