@@ -1,7 +1,7 @@
 {
   "status": "validated",
   "sport": "basketball_nba",
-  "generated_at": "2026-11-03T05:04:02.069665+00:00",
+  "generated_at": "2026-11-03T07:23:13.532368+00:00",
   "calibration_passed": true,
   "model_version": "elo-walkforward-v1-holdout-audit",
   "validation_report": {
@@ -47,6 +47,18 @@
       "team": "Charlotte Hornets",
       "date_et": "2026-11-04",
       "win_probability": 0.743795
+    },
+    {
+      "event_id": "38fdb396939e8aabebd93cb509618927",
+      "team": "Oklahoma City Thunder",
+      "date_et": "2026-11-04",
+      "win_probability": 0.742798
+    },
+    {
+      "event_id": "38fdb396939e8aabebd93cb509618927",
+      "team": "Cleveland Cavaliers",
+      "date_et": "2026-11-04",
+      "win_probability": 0.257202
     },
     {
       "event_id": "b2557f74f4d7675ed3b76a4a064e0bc9",

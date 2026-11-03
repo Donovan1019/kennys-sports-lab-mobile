@@ -1,32 +1,9 @@
 {
   "status": "diagnostic_only",
-  "generated_at": "2026-11-03T05:04:08.584462+00:00",
+  "generated_at": "2026-11-03T07:23:14.551521+00:00",
   "source": "historical team box-score possessions, not Elo or bookmaker odds",
   "qualified_teams": 30,
   "games": [
-    {
-      "event_id": "27c333f22603d4eda3b9b6a3888476dc",
-      "status": "diagnostic_only",
-      "home": "Golden State Warriors",
-      "away": "Phoenix Suns",
-      "draws": 10000,
-      "estimated_possessions": 99.27,
-      "home_offense_ppp": 1.1462,
-      "away_offense_ppp": 1.1564,
-      "home_regulation_win_probability": 0.4694,
-      "regulation_tie_probability": 0.0223,
-      "home_full_game_win_probability": 0.4694,
-      "overtime_periods_simulated": 251,
-      "overtime_unmodeled": false,
-      "injuries_rest_unmodeled": true,
-      "historical_calibration_unverified": true,
-      "betting_eligible": false
-    },
-    {
-      "event_id": "afde8462706839f30115ea9d5f761066",
-      "status": "unavailable",
-      "reason": "historical_box_score_possessions_missing"
-    },
     {
       "event_id": "91df86557819598ca270ba35410cfcfa",
       "status": "diagnostic_only",
@@ -58,6 +35,24 @@
       "regulation_tie_probability": 0.0228,
       "home_full_game_win_probability": 0.3555,
       "overtime_periods_simulated": 252,
+      "overtime_unmodeled": false,
+      "injuries_rest_unmodeled": true,
+      "historical_calibration_unverified": true,
+      "betting_eligible": false
+    },
+    {
+      "event_id": "38fdb396939e8aabebd93cb509618927",
+      "status": "diagnostic_only",
+      "home": "Oklahoma City Thunder",
+      "away": "Cleveland Cavaliers",
+      "draws": 10000,
+      "estimated_possessions": 100.5,
+      "home_offense_ppp": 1.1569,
+      "away_offense_ppp": 1.1269,
+      "home_regulation_win_probability": 0.5684,
+      "regulation_tie_probability": 0.0211,
+      "home_full_game_win_probability": 0.5684,
+      "overtime_periods_simulated": 222,
       "overtime_unmodeled": false,
       "injuries_rest_unmodeled": true,
       "historical_calibration_unverified": true,
