@@ -2,7 +2,7 @@ name: PrizePicks Automated Raw Line Feed
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 14,20 * * *'
+    - cron: '0 14,15,20,21 * * *'
   push:
     branches: [main]
     paths:
@@ -26,8 +26,17 @@ jobs:
         with:
           node-version: '22'
       - run: node --check scripts/prizepicks_ingest.js && node tests/prizepicks_ingest.test.js
+      - name: Eastern schedule gate
+        id: eastern
+        run: |
+          hour=$(TZ=America/New_York date +%H)
+          if [ "${{ github.event_name }}" != 'schedule' ] || [ "$hour" = '10' ] || [ "$hour" = '16' ]; then
+            echo 'run=true' >> "$GITHUB_OUTPUT"
+          else
+            echo 'run=false' >> "$GITHUB_OUTPUT"
+          fi
       - name: Fetch authenticated source lines
-        if: github.event_name != 'pull_request'
+        if: github.event_name != 'pull_request' && steps.eastern.outputs.run == 'true'
         env:
           PRIZEPICKS_API_KEY: ${{ secrets.PRIZEPICKS_API_KEY }}
         run: node scripts/prizepicks_ingest.js
