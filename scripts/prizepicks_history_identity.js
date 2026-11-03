@@ -6,12 +6,15 @@ function attachVerifiedIdentity(feed,payload,crosswalk){
  if(!feed||feed.status!=='RAW_LINES_ONLY'||!Array.isArray(feed.lines))return fail('raw provider lines missing');
  if(!payload||payload.schema_version!==1||payload.status!=='VERIFIED_GAME_LOGS'||!Array.isArray(payload.records))return fail('verified game-log payload missing');
  if(!Array.isArray(crosswalk)||!crosswalk.length)return fail('verified provider identity crosswalk missing');
- const bySource=new Map(),blocked=new Set();
+ const bySource=new Map(),blocked=new Set(),reverse=new Map(),reverseBlocked=new Set();
  for(const m of crosswalk){
   if(!m||m.verified!==true||!m.league||!m.prizepicksPlayerId||!m.historyPlayerId||!m.historySource)continue;
   const k=[m.league,m.prizepicksPlayerId,m.historySource].join('|');
   if(bySource.has(k))blocked.add(k);
   bySource.set(k,m.historyPlayerId);
+  const reverseKey=[m.league,m.historyPlayerId,m.historySource].join('|');
+  if(reverse.has(reverseKey))reverseBlocked.add(reverseKey);
+  reverse.set(reverseKey,m.prizepicksPlayerId);
  }
  const feedIds=new Set(feed.lines.filter(x=>x.player_id).map(x=>[x.league,x.player_id].join('|')));
  const records=[];
@@ -20,7 +23,8 @@ function attachVerifiedIdentity(feed,payload,crosswalk){
   for(const m of crosswalk){
    if(!m||m.verified!==true||m.league!==r.league||m.historySource!==r.source||m.historyPlayerId!==r.playerId)continue;
    const key=[m.league,m.prizepicksPlayerId,m.historySource].join('|');
-   if(blocked.has(key)||bySource.get(key)!==r.playerId||!feedIds.has([m.league,m.prizepicksPlayerId].join('|')))continue;
+   const reverseKey=[m.league,m.historyPlayerId,m.historySource].join('|');
+   if(blocked.has(key)||reverseBlocked.has(reverseKey)||bySource.get(key)!==r.playerId||reverse.get(reverseKey)!==m.prizepicksPlayerId||!feedIds.has([m.league,m.prizepicksPlayerId].join('|')))continue;
    records.push({...r,providerPlayerId:m.prizepicksPlayerId,playerId:m.prizepicksPlayerId});
   }
  }
