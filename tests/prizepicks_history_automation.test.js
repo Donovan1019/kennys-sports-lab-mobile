@@ -1,6 +1,6 @@
 'use strict';
 const assert=require('node:assert/strict');
-const {runAudit,chooseVerifiedHistory}=require('../scripts/prizepicks_history_automation');
+const {runAudit,chooseVerifiedHistory,identityReadiness}=require('../scripts/prizepicks_history_automation');
 const now=Date.parse('2026-11-03T20:00:00Z');
 const feed={status:'RAW_LINES_ONLY',generated_at:'2026-11-03T19:50:00Z',lines:[{id:'x',league:'NBA',player:'Example',player_id:'pp-1',market:'Points',period:'Full game',line:15.5}]};
 const games=Array.from({length:15},(_,i)=>({eventId:'e'+i,playedAt:'2026-10-'+String(i+1).padStart(2,'0')+'T00:00:00Z',verified:true,value:i+10}));
@@ -27,4 +27,10 @@ const fs=require('node:fs');
 const script=fs.readFileSync(require.resolve('../scripts/prizepicks_history_automation'),'utf8');
 assert.ok(script.includes("PRIZEPICKS_CROSSWALK_PATH||'feed/prizepicks_verified_crosswalk.json'"));
 assert.match(script,/verifiedCrosswalk:/);
+const readiness=identityReadiness(feed,history,crosswalk);
+assert.equal(readiness.providerPlayers,1);
+assert.equal(readiness.verifiedMappingsWithBothIdsPresent,1);
+assert.equal(readiness.distinctProviderPlayersWithCandidateMappings,1);
+assert.equal(readiness.automaticNameMatching,false);
+assert.equal(identityReadiness(feed,history,[]).verifiedMappingsWithBothIdsPresent,0);
 console.log('Automated PrizePicks history audit fail-closed tests passed');
