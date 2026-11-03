@@ -21,3 +21,4 @@ jobs:
           node-version: '22'
       - run: node --check prizepicks_research.js
       - run: node tests/prizepicks_research.test.js
+      - run: node tests/prizepicks_auto_page.test.js
