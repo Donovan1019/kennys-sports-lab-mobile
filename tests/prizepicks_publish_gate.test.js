@@ -1,0 +1,10 @@
+'use strict';
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const workflow=fs.readFileSync('.github/workflows/prizepicks-ingest.yml','utf8');
+assert.match(workflow,/cron: '0 14,15,20,21 \* \* \*'/);
+assert.match(workflow,/TZ=America\/New_York date \+%H/);
+assert.match(workflow,/contents: \$\{\{ github\.event_name == 'pull_request' && 'read' \|\| 'write' \}\}/);
+const gates=workflow.match(/if: github\.event_name != 'pull_request' && steps\.eastern\.outputs\.run == 'true'/g)||[];
+assert.equal(gates.length,2,'both fetch and publish must use Eastern gate');
+console.log('PrizePicks schedule and publication gate tests passed');
