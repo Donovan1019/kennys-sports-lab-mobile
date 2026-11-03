@@ -15,4 +15,8 @@ assert.equal(attachVerifiedIdentity(feed,payload,[{...crosswalk[0],verified:fals
 assert.equal(attachVerifiedIdentity(feed,payload,[{...crosswalk[0],historyPlayerId:'wrong'}]).status,'UNAVAILABLE');
 assert.equal(attachVerifiedIdentity(feed,payload,[...crosswalk,crosswalk[0]]).status,'UNAVAILABLE');
 assert.equal(attachVerifiedIdentity(feed,{...payload,records:[{...record,source:'different'}]},crosswalk).status,'UNAVAILABLE');
+const twoFeed={...feed,lines:[...feed.lines,{...feed.lines[0],id:'y',player_id:'pp-2'}]};
+const ambiguous=[...crosswalk,{...crosswalk[0],prizepicksPlayerId:'pp-2'}];
+assert.equal(attachVerifiedIdentity(twoFeed,payload,ambiguous).status,'UNAVAILABLE');
+assert.equal(buildCrossSourceHistoryAudit(twoFeed,payload,ambiguous,now).status,'UNAVAILABLE');
 console.log('PrizePicks independent identity crosswalk tests passed');
