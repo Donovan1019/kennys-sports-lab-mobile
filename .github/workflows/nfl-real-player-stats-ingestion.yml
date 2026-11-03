@@ -1,13 +1,15 @@
 name: NFL Real Player Stats Ingestion
 on:
   workflow_dispatch:
+  schedule:
+    - cron: '30 8 * * *'
   pull_request:
     paths:
       - 'scripts/build_nfl_player_stats_feed.py'
       - 'tests/test_build_nfl_player_stats_feed.py'
       - '.github/workflows/nfl-real-player-stats-ingestion.yml'
 permissions:
-  contents: read
+  contents: write
 jobs:
   ingest:
     runs-on: ubuntu-latest
@@ -30,6 +32,7 @@ jobs:
           python scripts/build_nfl_player_stats_feed.py --input /tmp/nflverse-player-stats-2025.csv --input /tmp/nflverse-player-stats-2026.csv --schedule /tmp/nflverse-games.csv --output /tmp/nfl_player_stats.json
           python scripts/audit_nfl_player_stats_feed.py /tmp/nfl_player_stats.json > /tmp/nfl_player_stats_audit.json
           python -c "import json; r=json.load(open('/tmp/nfl_player_stats_audit.json')); assert r['status']=='DATA_PRESENT_UNVERIFIED',r"
+          python -c "import json; r=json.load(open('/tmp/nfl_player_stats.json')); assert r.get('independentlyVerified') is True and all(g.get('verified') is True and g.get('game_date') for p in r['players'] for g in p['games']), 'Missing schedule provenance'"
       - uses: actions/upload-artifact@v4
         if: github.event_name != 'pull_request'
         with:
@@ -37,3 +40,17 @@ jobs:
           path: |
             /tmp/nfl_player_stats.json
             /tmp/nfl_player_stats_audit.json
+      - name: Publish audited NFL historical archive
+        if: github.event_name != 'pull_request'
+        run: |
+          mkdir -p feed
+          cp /tmp/nfl_player_stats.json feed/nfl_player_stats.json
+          cp /tmp/nfl_player_stats_audit.json feed/nfl_player_stats_audit.json
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add feed/nfl_player_stats.json feed/nfl_player_stats_audit.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'data: refresh audited NFL player history [skip ci]'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
