@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-03T23:28:53.335Z",
+  "generated_at": "2026-11-03T23:32:55.080Z",
   "status": "UNAVAILABLE",
   "reason": "verified provider identity crosswalk missing",
   "coverage": {
@@ -47,6 +47,169 @@
         "historicalPlayerMarketRecords": 0,
         "verifiedPlayerMappings": 0
       }
+    }
+  },
+  "marketReadiness": {
+    "NBA": {
+      "sourceLines": 200,
+      "markets": {
+        "Points": {
+          "lines": 35,
+          "historyMarket": "Points",
+          "historyMarketAvailable": false
+        },
+        "Pts+Rebs+Asts": {
+          "lines": 38,
+          "historyMarket": "Pts+Rebs+Asts",
+          "historyMarketAvailable": false
+        },
+        "Double-Double": {
+          "lines": 16,
+          "historyMarket": "Double-Double",
+          "historyMarketAvailable": false
+        },
+        "Pts+Asts": {
+          "lines": 7,
+          "historyMarket": "Pts+Asts",
+          "historyMarketAvailable": false
+        },
+        "Rebs+Asts": {
+          "lines": 15,
+          "historyMarket": "Rebs+Asts",
+          "historyMarketAvailable": false
+        },
+        "Blocked Shots": {
+          "lines": 4,
+          "historyMarket": "Blocked Shots",
+          "historyMarketAvailable": false
+        },
+        "Rebounds": {
+          "lines": 9,
+          "historyMarket": "Rebounds",
+          "historyMarketAvailable": false
+        },
+        "Assists": {
+          "lines": 15,
+          "historyMarket": "Assists",
+          "historyMarketAvailable": false
+        },
+        "3-PT Made": {
+          "lines": 21,
+          "historyMarket": "3-PT Made",
+          "historyMarketAvailable": false
+        },
+        "Steals": {
+          "lines": 23,
+          "historyMarket": "Steals",
+          "historyMarketAvailable": false
+        },
+        "Pts+Rebs": {
+          "lines": 14,
+          "historyMarket": "Pts+Rebs",
+          "historyMarketAvailable": false
+        },
+        "Triple-Double": {
+          "lines": 1,
+          "historyMarket": "Triple-Double",
+          "historyMarketAvailable": false
+        },
+        "Blks+Stls": {
+          "lines": 2,
+          "historyMarket": "Blks+Stls",
+          "historyMarketAvailable": false
+        }
+      },
+      "supportedLines": 0,
+      "unsupportedLines": 200
+    },
+    "NFL": {
+      "sourceLines": 200,
+      "markets": {
+        "Pass TDs": {
+          "lines": 6,
+          "historyMarket": "Passing touchdowns",
+          "historyMarketAvailable": true
+        },
+        "Pass Yards": {
+          "lines": 11,
+          "historyMarket": "Passing yards",
+          "historyMarketAvailable": true
+        },
+        "Anytime TDs": {
+          "lines": 19,
+          "historyMarket": "Anytime TDs",
+          "historyMarketAvailable": false
+        },
+        "Pass Completions": {
+          "lines": 8,
+          "historyMarket": "Pass Completions",
+          "historyMarketAvailable": false
+        },
+        "INT": {
+          "lines": 1,
+          "historyMarket": "INT",
+          "historyMarketAvailable": false
+        },
+        "Pass Attempts": {
+          "lines": 11,
+          "historyMarket": "Pass Attempts",
+          "historyMarketAvailable": false
+        },
+        "Completion Percentage": {
+          "lines": 1,
+          "historyMarket": "Completion Percentage",
+          "historyMarketAvailable": false
+        },
+        "Rush Yards": {
+          "lines": 14,
+          "historyMarket": "Rushing yards",
+          "historyMarketAvailable": true
+        },
+        "Rush+Rec Yds": {
+          "lines": 7,
+          "historyMarket": "Rush+Rec Yds",
+          "historyMarketAvailable": false
+        },
+        "Receptions": {
+          "lines": 39,
+          "historyMarket": "Receptions",
+          "historyMarketAvailable": true
+        },
+        "Receiving Yards": {
+          "lines": 61,
+          "historyMarket": "Receiving yards",
+          "historyMarketAvailable": true
+        },
+        "Fantasy Score": {
+          "lines": 16,
+          "historyMarket": "Fantasy Score",
+          "historyMarketAvailable": false
+        },
+        "Rush Attempts": {
+          "lines": 5,
+          "historyMarket": "Rush Attempts",
+          "historyMarketAvailable": false
+        },
+        "Rush Yards Per Carry": {
+          "lines": 1,
+          "historyMarket": "Rush Yards Per Carry",
+          "historyMarketAvailable": false
+        }
+      },
+      "supportedLines": 131,
+      "unsupportedLines": 69
+    },
+    "NHL": {
+      "sourceLines": 200,
+      "markets": {
+        "Points": {
+          "lines": 200,
+          "historyMarket": "Points",
+          "historyMarketAvailable": false
+        }
+      },
+      "supportedLines": 0,
+      "unsupportedLines": 200
     }
   },
   "historySourceDiagnostics": {
