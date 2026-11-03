@@ -29,3 +29,4 @@ jobs:
       - run: node tests/prizepicks_feed_health.test.js
       - run: node tests/prizepicks_schedule.test.js
       - run: node tests/prizepicks_board_quality.test.js
+      - run: node tests/prizepicks_history_evidence.test.js
