@@ -70,6 +70,24 @@ class Ingestion(unittest.TestCase):
   a=dict(BASE,player_display_name="Jaylahn Tuimolaou")
   b=dict(a,player_display_name="Jaylahn Tuimoloau",game_id="2026_04_A_B",week="4")
   with self.assertRaisesRegex(ValueError,"conflicting player identity"):build([a,b])
+ def test_verified_moreno_cropper_alias(self):
+  a=dict(BASE,player_id="00-0038740",player_display_name="Jalen Moreno-Cropper")
+  b=dict(a,player_display_name="Jalen Cropper",game_id="2026_04_A_B",week="4")
+  result=build([a,b])
+  self.assertEqual(len(result["players"][0]["games"]),2)
+  self.assertIn("Jalen Cropper",result["players"][0]["name_variants"])
+ def test_multiple_identity_conflicts_reported_together(self):
+  a=dict(BASE,player_display_name="First Name")
+  b=dict(a,player_display_name="Wrong Name",game_id="2026_04_A_B",week="4")
+  c=dict(a,player_id="p2",player_display_name="Another Name",game_id="2026_05_A_B",week="5")
+  d=dict(c,player_display_name="Another Wrong Name",game_id="2026_06_A_B",week="6")
+  with self.assertRaisesRegex(ValueError,"2 conflicting player identity rows") as ctx:build([a,b,c,d])
+  self.assertIn("Wrong Name",str(ctx.exception))
+  self.assertIn("Another Wrong Name",str(ctx.exception))
+ def test_cropper_alias_rejected_for_other_id(self):
+  a=dict(BASE,player_display_name="Jalen Moreno-Cropper")
+  b=dict(a,player_display_name="Jalen Cropper",game_id="2026_04_A_B",week="4")
+  with self.assertRaisesRegex(ValueError,"conflicting player identity"):build([a,b])
  def test_alias_rejected_for_other_id(self):
   a=dict(BASE,player_display_name="Foye Oluokun")
   b=dict(a,player_display_name="Foyesade Oluokun",game_id="2026_04_A_B",week="4")

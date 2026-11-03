@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 from collections import defaultdict
 from pathlib import Path
 FIELDS={"Passing yards":"passing_yards","Passing touchdowns":"passing_tds","Rushing yards":"rushing_yards","Receiving yards":"receiving_yards","Receptions":"receptions","Pass Attempts":"attempts","Completions":"completions","Rush Attempts":"carries","Targets":"targets","Rushing touchdowns":"rushing_tds","Receiving touchdowns":"receiving_tds"}
-VERIFIED_PLAYER_ALIASES={"00-0034413":{"foyeoluokun","foyesadeoluokun"},"00-0038603":{"robertbealjr","robbealjr"},"00-0040744":{"jaylahntuimolaou","jaylahntuimoloau"}}
+VERIFIED_PLAYER_ALIASES={"00-0034413":{"foyeoluokun","foyesadeoluokun"},"00-0038603":{"robertbealjr","robbealjr"},"00-0040744":{"jaylahntuimolaou","jaylahntuimoloau"},"00-0038740":{"jalenmorenocropper","jalencropper"}}
 def normalized_name(value):
     return "".join(ch for ch in unicodedata.normalize("NFKD",value).casefold() if ch.isalnum())
 def schedule_index(rows):
@@ -27,6 +27,7 @@ def build(rows, schedule=None, schedule_dates=None):
     players=defaultdict(lambda:{"games":[]})
     seen=set()
     quarantined=[]
+    identity_conflicts=[]
     for n,r in enumerate(rows,2):
         season=str(r.get("season") or "").strip()
         if season not in ("2025","2026") or str(r.get("season_type") or "").strip().upper()!="REG":continue
@@ -61,7 +62,8 @@ def build(rows, schedule=None, schedule_dates=None):
         player=players[player_id]
         if player.get("name") and player["name"]!=name:
             if normalized_name(player["name"])!=normalized_name(name) and {normalized_name(player["name"]),normalized_name(name)} != VERIFIED_PLAYER_ALIASES.get(player_id,set()):
-                raise ValueError(f"row {n}: conflicting player identity for player_id={player_id!r}: previous_name={player['name']!r}, incoming_name={name!r}")
+                identity_conflicts.append(f"row {n}: conflicting player identity for player_id={player_id!r}: previous_name={player['name']!r}, incoming_name={name!r}")
+                continue
             player.setdefault("name_variants",[])
             if name not in player["name_variants"]:
                 player["name_variants"].append(name)
@@ -73,6 +75,8 @@ def build(rows, schedule=None, schedule_dates=None):
             game["game_date"]=schedule_dates[game_id]
             game["verified"]=True
         player["games"].append(game)
+    if identity_conflicts:
+        raise ValueError(f"{len(identity_conflicts)} conflicting player identity rows (first 30 shown):\n" + "\n".join(identity_conflicts[:30]))
     if not seen:raise ValueError("No valid 2025–26 regular season observations; refusing empty feed")
     return {"source":"nflverse-stats-player-week","fetched_at":datetime.now(timezone.utc).isoformat(),"independentlyVerified":bool(schedule_dates) and all(g.get("verified") is True for p in players.values() for g in p["games"]),"source_note":"Observed nflverse CSV; game IDs direct or joined from verified team/week schedule","players":list(players.values()),"quarantine":{"count":len(quarantined),"records":quarantined}}
 def main():
