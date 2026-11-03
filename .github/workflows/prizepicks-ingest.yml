@@ -89,6 +89,7 @@ jobs:
           cp /tmp/prizepicks-history-audit-publish.json feed/prizepicks_history_audit.json
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          node -e "const fs=require('fs');const f=JSON.parse(fs.readFileSync('feed/prizepicks_lines.json'));const a=JSON.parse(fs.readFileSync('feed/prizepicks_history_audit.json'));if(a.coverage.total!==f.lines.length||a.betEligible!==false||a.coverage.matched+a.coverage.unavailable!==a.coverage.total)process.exit(1)"
           git add feed/prizepicks_lines.json feed/prizepicks_history_audit.json
           if ! git diff --cached --quiet; then
             git commit -m 'data: refresh PrizePicks source lines [skip ci]'
