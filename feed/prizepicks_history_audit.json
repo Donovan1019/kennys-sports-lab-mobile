@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-03T21:49:01.986Z",
+  "generated_at": "2026-11-03T21:53:57.881Z",
   "status": "UNAVAILABLE",
-  "reason": "verified provider identity crosswalk missing",
+  "reason": "verified game-log payload missing",
   "coverage": {
     "total": 600,
     "matched": 0,
@@ -20,17 +20,37 @@
   "identityReadiness": {
     "providerPlayers": 258,
     "providerPlayersMissingId": 0,
-    "historicalPlayerMarketRecords": 6265,
+    "historicalPlayerMarketRecords": 0,
     "verifiedMappingsProvided": 0,
     "verifiedMappingsWithBothIdsPresent": 0,
     "distinctProviderPlayersWithCandidateMappings": 0,
     "conflictingProviderMappings": 0,
     "conflictingHistoryMappings": 0,
-    "automaticNameMatching": false
+    "automaticNameMatching": false,
+    "byLeague": {
+      "NBA": {
+        "sourceLines": 200,
+        "providerPlayers": 41,
+        "historicalPlayerMarketRecords": 0,
+        "verifiedPlayerMappings": 0
+      },
+      "NFL": {
+        "sourceLines": 200,
+        "providerPlayers": 17,
+        "historicalPlayerMarketRecords": 0,
+        "verifiedPlayerMappings": 0
+      },
+      "NHL": {
+        "sourceLines": 200,
+        "providerPlayers": 200,
+        "historicalPlayerMarketRecords": 0,
+        "verifiedPlayerMappings": 0
+      }
+    }
   },
   "inputs": {
     "rawLines": "PRESENT",
-    "historicalSource": "PRESENT",
+    "historicalSource": "MISSING_OR_UNVERIFIED",
     "verifiedCrosswalk": "MISSING",
     "nflArchive": "FOUND"
   }
