@@ -20,10 +20,12 @@ function bridgeNflverseArchive(archive,now=Date.now()){
     const eventId=game?.eventId||game?.game_id;
     const playedAt=game?.playedAt||game?.game_date;
     const value=game?.values?.[key];
+    if(value===undefined||value===null)continue;
     if(game?.verified!==true||!eventId||!playedAt||!Number.isFinite(Date.parse(playedAt))||Date.parse(playedAt)>now||typeof value!=='number'||!Number.isFinite(value)||(value<0&&!['Passing yards','Rushing yards','Receiving yards'].includes(market))||value< -1000){valid=false;break}
     games.push({eventId:String(eventId),playedAt,verified:true,value});
    }
    if(!valid||games.length<15||new Set(games.map(g=>g.eventId)).size!==games.length)continue;
+   games.sort((a,b)=>Date.parse(a.playedAt)-Date.parse(b.playedAt));
    records.push({playerId:String(id),providerPlayerId:String(id),league:'NFL',market,period:'Full game',source:'nflverse-stats-player-week',independentlyVerified:true,games});
   }
  }
