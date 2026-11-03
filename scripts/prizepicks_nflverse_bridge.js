@@ -3,7 +3,11 @@
 const MARKET_VALUES=Object.freeze({'Passing yards':'Passing yards','Rushing yards':'Rushing yards','Receiving yards':'Receiving yards','Receptions':'Receptions','Passing touchdowns':'Passing touchdowns','Rushing touchdowns':'Rushing touchdowns','Receiving touchdowns':'Receiving touchdowns'});
 function bridgeNflverseArchive(archive,now=Date.now()){
  const fail=reason=>({status:'UNAVAILABLE',reason,records:[]});
- if(!archive||archive.source!=='nflverse-stats-player-week'||!Array.isArray(archive.players)||!archive.fetched_at||archive.independentlyVerified!==true)return fail('existing nflverse archive unavailable or unrecognized');
+ if(!archive)return fail('nflverse archive missing or unreadable');
+ if(archive.source!=='nflverse-stats-player-week')return fail('nflverse archive source identifier not recognized');
+ if(!Array.isArray(archive.players))return fail('nflverse archive players array missing');
+ if(archive.independentlyVerified!==true)return fail('nflverse archive lacks independent verification');
+ if(!archive.fetched_at)return fail('nflverse archive fetch timestamp missing');
  const fetched=Date.parse(archive.fetched_at);
  if(!Number.isFinite(fetched)||fetched>now+60000||now-fetched>7*86400000)return fail('nflverse archive timestamp missing or stale');
  const records=[];
