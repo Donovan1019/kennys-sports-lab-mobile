@@ -20,7 +20,7 @@ jobs:
   ingest:
     runs-on: ubuntu-latest
     permissions:
-      contents: ${{ github.event_name == 'pull_request' && 'read' || 'write' }}
+      contents: write
     steps:
       - uses: actions/checkout@v4
         with:
@@ -43,8 +43,15 @@ jobs:
         env:
           PRIZEPICKS_API_KEY: ${{ secrets.PRIZEPICKS_API_KEY }}
         run: node scripts/prizepicks_ingest.js
+      - name: Refresh latest audited NFL archive before research join
+        if: github.event_name != 'pull_request' && steps.eastern.outputs.run == 'true'
+        run: |
+          git fetch origin main
+          git show origin/main:feed/nfl_player_stats.json > /tmp/prizepicks-nfl-player-stats.json
       - name: Build fail-closed historical research audit
         if: github.event_name != 'pull_request' && steps.eastern.outputs.run == 'true'
+        env:
+          PRIZEPICKS_NFL_ARCHIVE_PATH: /tmp/prizepicks-nfl-player-stats.json
         run: node scripts/prizepicks_history_automation.js
       - name: Publish fresh feed
         if: github.event_name != 'pull_request' && steps.eastern.outputs.run == 'true'
