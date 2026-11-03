@@ -47,7 +47,9 @@ jobs:
         id: eastern
         run: |
           hour=$(TZ=America/New_York date +%H)
-          if [ "${{ github.event_name }}" != 'schedule' ] || [ "$hour" = '10' ] || [ "$hour" = '16' ]; then
+          if [ "${{ github.event_name }}" = 'workflow_run' ] && [ "${{ github.event.workflow_run.conclusion }}" != 'success' ]; then
+            echo 'run=false' >> "$GITHUB_OUTPUT"
+          elif [ "${{ github.event_name }}" != 'schedule' ] || [ "$hour" = '10' ] || [ "$hour" = '16' ]; then
             echo 'run=true' >> "$GITHUB_OUTPUT"
           else
             echo 'run=false' >> "$GITHUB_OUTPUT"
