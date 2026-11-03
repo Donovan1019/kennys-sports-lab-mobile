@@ -1,11 +1,18 @@
 name: NFL Real Player Stats Ingestion
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/audit_nfl_player_stats_feed.py'
+      - 'scripts/build_nfl_player_stats_feed.py'
+      - '.github/workflows/nfl-real-player-stats-ingestion.yml'
   schedule:
     - cron: '30 8 * * *'
   pull_request:
     paths:
       - 'scripts/build_nfl_player_stats_feed.py'
+      - 'scripts/audit_nfl_player_stats_feed.py'
       - 'tests/test_build_nfl_player_stats_feed.py'
       - '.github/workflows/nfl-real-player-stats-ingestion.yml'
 permissions:
