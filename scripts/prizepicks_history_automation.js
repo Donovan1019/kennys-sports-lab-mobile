@@ -4,6 +4,7 @@ const fs=require('node:fs');
 const path=require('node:path');
 const {buildCrossSourceHistoryAudit}=require('./prizepicks_history_identity');
 const {bridgeNflverseArchive}=require('./prizepicks_nflverse_bridge');
+const {verifySourcePayload}=require('./prizepicks_history_source');
 function readJson(file){try{return JSON.parse(fs.readFileSync(file,'utf8'))}catch{return null}}
 function runAudit(feed,history,crosswalk,now=Date.now()){
  if(!feed||feed.status!=='RAW_LINES_ONLY'||!Array.isArray(feed.lines))return {status:'UNAVAILABLE',reason:'fresh raw lines missing',coverage:{total:0,matched:0,unavailable:0},rows:[],betEligible:false};
@@ -13,7 +14,7 @@ function runAudit(feed,history,crosswalk,now=Date.now()){
  return {...audit,betEligible:false,modelValidated:false,sourceStatus:audit.status==='PARTIAL_HISTORY'?'VERIFIED_RESEARCH_ONLY':'UNAVAILABLE'};
 }
 function chooseVerifiedHistory(explicitHistory,archive,now=Date.now()){
- if(explicitHistory)return explicitHistory;
+ if(explicitHistory&&verifySourcePayload(explicitHistory,now).status==='VERIFIED_HISTORY_INPUT')return explicitHistory;
  const bridged=bridgeNflverseArchive(archive,now);
  return bridged.status==='VERIFIED_GAME_LOGS'?bridged:null;
 }
