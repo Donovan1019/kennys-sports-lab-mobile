@@ -38,7 +38,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: node --check scripts/prizepicks_ingest.js && node tests/prizepicks_ingest.test.js
+      - run: node --check scripts/prizepicks_ingest.js && node tests/prizepicks_ingest.test.js && node tests/prizepicks_history_automation.test.js
       - name: Eastern schedule gate
         id: eastern
         run: |
@@ -58,10 +58,12 @@ jobs:
         run: |
           git fetch origin main
           git show origin/main:feed/nfl_player_stats.json > /tmp/prizepicks-nfl-player-stats.json
+          git show origin/main:feed/nfl_player_stats_audit.json > /tmp/prizepicks-nfl-player-stats-audit.json
       - name: Build fail-closed historical research audit
         if: github.event_name != 'pull_request' && steps.eastern.outputs.run == 'true'
         env:
           PRIZEPICKS_NFL_ARCHIVE_PATH: /tmp/prizepicks-nfl-player-stats.json
+          PRIZEPICKS_NFL_ARCHIVE_AUDIT_PATH: /tmp/prizepicks-nfl-player-stats-audit.json
         run: node scripts/prizepicks_history_automation.js
       - name: Validate audit artifact and source provenance
         if: github.event_name != 'pull_request' && steps.eastern.outputs.run == 'true'

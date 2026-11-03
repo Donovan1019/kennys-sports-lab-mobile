@@ -21,11 +21,15 @@ const archive={source:'nflverse-stats-player-week',independentlyVerified:true,fe
 assert.equal(chooseVerifiedHistory(null,archive,now).status,'VERIFIED_GAME_LOGS');
 assert.equal(historySourceDiagnostics(null,archive,now).selected,'NFL_ARCHIVE');
 assert.equal(historySourceDiagnostics(null,{...archive,independentlyVerified:false},now).nflArchive.status,'UNAVAILABLE');
-assert.match(historySourceDiagnostics(null,{...archive,independentlyVerified:false},now).nflArchive.reason,/unavailable or unrecognized/);
+assert.match(historySourceDiagnostics(null,{...archive,independentlyVerified:false},now).nflArchive.reason,/independent verification/);
 assert.equal(chooseVerifiedHistory({status:'UNAVAILABLE'},archive,now).status,'VERIFIED_GAME_LOGS');
 assert.equal(chooseVerifiedHistory({...history,generated_at:'2026-01-01T00:00:00Z'},archive,now).status,'VERIFIED_GAME_LOGS');
 assert.equal(chooseVerifiedHistory({status:'UNAVAILABLE'},null,now),null);
 assert.equal(chooseVerifiedHistory(null,{...archive,independentlyVerified:false},now),null);
+assert.match(historySourceDiagnostics(null,{...archive,independentlyVerified:false},now).nflArchive.reason,/independent verification/);
+assert.match(historySourceDiagnostics(null,{...archive,source:'unknown'},now).nflArchive.reason,/source identifier/);
+assert.match(historySourceDiagnostics(null,{...archive,players:null},now).nflArchive.reason,/players array/);
+assert.match(historySourceDiagnostics(null,{...archive,fetched_at:'2025-01-01T00:00:00Z'},now).nflArchive.reason,/stale/);
 const fs=require('node:fs');
 const script=fs.readFileSync(require.resolve('../scripts/prizepicks_history_automation'),'utf8');
 assert.ok(script.includes("PRIZEPICKS_CROSSWALK_PATH||'feed/prizepicks_verified_crosswalk.json'"));
