@@ -1,6 +1,6 @@
 {
   "status": "simulated_not_bet_eligible",
-  "generated_at": "2026-11-03T07:23:14.043610+00:00",
+  "generated_at": "2026-11-03T09:00:32.525900+00:00",
   "draws": 10000,
   "games": [
     {
@@ -119,28 +119,28 @@
       "event_id": "38fdb396939e8aabebd93cb509618927",
       "team": "Cleveland Cavaliers",
       "bookmaker": "fanduel",
-      "price": 110,
+      "price": 122,
       "model_probability": 0.257202,
       "mc_probability": 0.26,
       "mc_standard_error": 0.004386,
       "fair_decimal": 3.888,
-      "single_leg_ev": -0.45988,
-      "stress_ev_minus_3pp": -0.52288,
-      "stress_ev_minus_5pp": -0.56488,
+      "single_leg_ev": -0.42901,
+      "stress_ev_minus_3pp": -0.49561,
+      "stress_ev_minus_5pp": -0.54001,
       "betting_eligible": false
     },
     {
       "event_id": "38fdb396939e8aabebd93cb509618927",
       "team": "Oklahoma City Thunder",
       "bookmaker": "fanduel",
-      "price": -130,
+      "price": -144,
       "model_probability": 0.742798,
       "mc_probability": 0.744,
       "mc_standard_error": 0.004364,
       "fair_decimal": 1.3463,
-      "single_leg_ev": 0.31418,
-      "stress_ev_minus_3pp": 0.2611,
-      "stress_ev_minus_5pp": 0.22572,
+      "single_leg_ev": 0.25863,
+      "stress_ev_minus_3pp": 0.2078,
+      "stress_ev_minus_5pp": 0.17391,
       "betting_eligible": false
     },
     {
@@ -505,13 +505,13 @@
           "team": "Minnesota Timberwolves"
         },
         {
-          "event_id": "38fdb396939e8aabebd93cb509618927",
-          "team": "Oklahoma City Thunder"
+          "event_id": "6b33f8632d4dd100cba8453db82213fa",
+          "team": "Charlotte Hornets"
         }
       ],
-      "independent_mc_probability": 0.2739,
-      "independent_model_product": 0.2696,
-      "stress_probability_minus_3pp": 0.23732,
+      "independent_mc_probability": 0.2742,
+      "independent_model_product": 0.26996,
+      "stress_probability_minus_3pp": 0.23766,
       "correlation_verified": false,
       "executable_parlay_quote_verified": false,
       "betting_eligible": false
@@ -524,12 +524,12 @@
           "team": "Minnesota Timberwolves"
         },
         {
-          "event_id": "38fdb396939e8aabebd93cb509618927",
-          "team": "Oklahoma City Thunder"
-        },
-        {
           "event_id": "6b33f8632d4dd100cba8453db82213fa",
           "team": "Charlotte Hornets"
+        },
+        {
+          "event_id": "38fdb396939e8aabebd93cb509618927",
+          "team": "Oklahoma City Thunder"
         }
       ],
       "independent_mc_probability": 0.2007,
@@ -547,19 +547,19 @@
           "team": "Minnesota Timberwolves"
         },
         {
-          "event_id": "38fdb396939e8aabebd93cb509618927",
-          "team": "Oklahoma City Thunder"
-        },
-        {
           "event_id": "6b33f8632d4dd100cba8453db82213fa",
           "team": "Charlotte Hornets"
+        },
+        {
+          "event_id": "38fdb396939e8aabebd93cb509618927",
+          "team": "Oklahoma City Thunder"
         },
         {
           "event_id": "91df86557819598ca270ba35410cfcfa",
           "team": "Detroit Pistons"
         }
       ],
-      "independent_mc_probability": 0.144,
+      "independent_mc_probability": 0.1436,
       "independent_model_product": 0.13418,
       "stress_probability_minus_3pp": 0.10827,
       "correlation_verified": false,
