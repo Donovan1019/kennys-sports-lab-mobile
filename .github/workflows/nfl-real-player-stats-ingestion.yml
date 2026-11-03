@@ -38,6 +38,7 @@ jobs:
           python scripts/audit_nfl_player_stats_feed.py /tmp/nfl_player_stats.json > /tmp/nfl_player_stats_audit.json
           python -c "import json; r=json.load(open('/tmp/nfl_player_stats_audit.json')); assert r['status']=='DATA_PRESENT_UNVERIFIED',r"
           python -c "import json; r=json.load(open('/tmp/nfl_player_stats.json')); assert r.get('independentlyVerified') is True and all(g.get('verified') is True and g.get('game_date') for p in r['players'] for g in p['games']), 'Missing schedule provenance'"
+          python -c "import json; a=json.load(open('/tmp/nfl_player_stats_audit.json')); r=json.load(open('/tmp/nfl_player_stats.json')); assert a['game_count']>0 and a['player_count']>0 and a['event_id_coverage']==a['game_count'] and a['duplicate_player_events']==0 and a['missing_values']==0, 'Archive audit failed'; assert sum(len(p['games']) for p in r['players'])==a['game_count'], 'Audit mismatch'"
       - uses: actions/upload-artifact@v4
         if: github.event_name != 'pull_request'
         with:
