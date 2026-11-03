@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-03T22:50:21.606Z",
+  "generated_at": "2026-11-03T23:10:18.717Z",
   "status": "UNAVAILABLE",
-  "reason": "verified game-log payload missing",
+  "reason": "verified provider identity crosswalk missing",
   "coverage": {
     "total": 600,
     "matched": 0,
@@ -20,7 +20,7 @@
   "identityReadiness": {
     "providerPlayers": 258,
     "providerPlayersMissingId": 0,
-    "historicalPlayerMarketRecords": 0,
+    "historicalPlayerMarketRecords": 6265,
     "verifiedMappingsProvided": 0,
     "verifiedMappingsWithBothIdsPresent": 0,
     "distinctProviderPlayersWithCandidateMappings": 0,
@@ -37,7 +37,7 @@
       "NFL": {
         "sourceLines": 200,
         "providerPlayers": 18,
-        "historicalPlayerMarketRecords": 0,
+        "historicalPlayerMarketRecords": 6265,
         "verifiedPlayerMappings": 0
       },
       "NHL": {
@@ -53,19 +53,19 @@
       "status": "NOT_CONFIGURED"
     },
     "nflArchive": {
-      "status": "UNAVAILABLE",
-      "reason": "nflverse archive lacks independent verification"
+      "status": "VERIFIED_GAME_LOGS",
+      "reason": null
     },
-    "selected": "NONE",
+    "selected": "NFL_ARCHIVE",
     "archiveAudit": {
-      "status": "DATA_PRESENT_UNVERIFIED",
+      "status": "SOURCE_PROVENANCE_VERIFIED",
       "gameCount": 26942,
       "playerCount": 2349
     }
   },
   "inputs": {
     "rawLines": "PRESENT",
-    "historicalSource": "MISSING_OR_UNVERIFIED",
+    "historicalSource": "PRESENT",
     "verifiedCrosswalk": "MISSING",
     "nflArchive": "FOUND"
   }
