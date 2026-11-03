@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-03T21:44:53.203Z",
+  "generated_at": "2026-11-03T21:49:01.986Z",
   "status": "UNAVAILABLE",
   "reason": "verified provider identity crosswalk missing",
   "coverage": {
@@ -24,6 +24,8 @@
     "verifiedMappingsProvided": 0,
     "verifiedMappingsWithBothIdsPresent": 0,
     "distinctProviderPlayersWithCandidateMappings": 0,
+    "conflictingProviderMappings": 0,
+    "conflictingHistoryMappings": 0,
     "automaticNameMatching": false
   },
   "inputs": {
