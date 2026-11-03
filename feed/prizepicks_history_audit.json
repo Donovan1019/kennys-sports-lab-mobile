@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-03T21:36:25.906Z",
+  "generated_at": "2026-11-03T21:40:33.253Z",
   "status": "UNAVAILABLE",
   "reason": "verified provider identity crosswalk missing",
   "coverage": {
@@ -17,6 +17,15 @@
   "betEligible": false,
   "modelValidated": false,
   "sourceStatus": "UNAVAILABLE",
+  "identityReadiness": {
+    "providerPlayers": 259,
+    "providerPlayersMissingId": 0,
+    "historicalPlayerMarketRecords": 6265,
+    "verifiedMappingsProvided": 0,
+    "verifiedMappingsWithBothIdsPresent": 0,
+    "distinctProviderPlayersWithCandidateMappings": 0,
+    "automaticNameMatching": false
+  },
   "inputs": {
     "rawLines": "PRESENT",
     "historicalSource": "PRESENT",
