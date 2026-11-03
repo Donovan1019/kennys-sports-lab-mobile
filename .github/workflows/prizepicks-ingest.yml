@@ -1,6 +1,10 @@
 name: PrizePicks Automated Raw Line Feed
 on:
   workflow_dispatch:
+  workflow_run:
+    workflows: ['NFL Real Player Stats Ingestion']
+    types: [completed]
+    branches: [main]
   schedule:
     - cron: '0 14,15,20,21 * * *'
   push:
@@ -43,13 +47,15 @@ jobs:
         id: eastern
         run: |
           hour=$(TZ=America/New_York date +%H)
-          if [ "${{ github.event_name }}" != 'schedule' ] || [ "$hour" = '10' ] || [ "$hour" = '16' ]; then
+          if [ "${{ github.event_name }}" = 'workflow_run' ] && [ "${{ github.event.workflow_run.conclusion }}" != 'success' ]; then
+            echo 'run=false' >> "$GITHUB_OUTPUT"
+          elif [ "${{ github.event_name }}" != 'schedule' ] || [ "$hour" = '10' ] || [ "$hour" = '16' ]; then
             echo 'run=true' >> "$GITHUB_OUTPUT"
           else
             echo 'run=false' >> "$GITHUB_OUTPUT"
           fi
       - name: Fetch authenticated source lines
-        if: github.event_name != 'pull_request' && steps.eastern.outputs.run == 'true'
+        if: github.event_name != 'pull_request' && (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success') && steps.eastern.outputs.run == 'true'
         env:
           PRIZEPICKS_API_KEY: ${{ secrets.PRIZEPICKS_API_KEY }}
         run: node scripts/prizepicks_ingest.js
