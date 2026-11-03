@@ -1,0 +1,24 @@
+name: PrizePicks Provider Connectivity
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '23 */6 * * *'
+  pull_request:
+    paths:
+      - 'scripts/prizepicks_provider_probe.js'
+      - '.github/workflows/prizepicks-provider-probe.yml'
+jobs:
+  connectivity:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --check scripts/prizepicks_provider_probe.js
+      - name: Probe permitted PrizePicks API if configured
+        env:
+          PRIZEPICKS_API_KEY: ${{ secrets.PRIZEPICKS_API_KEY }}
+        run: node scripts/prizepicks_provider_probe.js
