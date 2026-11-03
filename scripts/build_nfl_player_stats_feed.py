@@ -76,7 +76,7 @@ def build(rows, schedule=None, schedule_dates=None):
             game["verified"]=True
         player["games"].append(game)
     if identity_conflicts:
-        raise ValueError(f"{len(identity_conflicts)} conflicting player identity rows (first 30 shown):\\n" + "\\n".join(identity_conflicts[:30]))
+        raise ValueError(f"{len(identity_conflicts)} conflicting player identity rows (first 30 shown):\n" + "\n".join(identity_conflicts[:30]))
     if not seen:raise ValueError("No valid 2025–26 regular season observations; refusing empty feed")
     return {"source":"nflverse-stats-player-week","fetched_at":datetime.now(timezone.utc).isoformat(),"independentlyVerified":bool(schedule_dates) and all(g.get("verified") is True for p in players.values() for g in p["games"]),"source_note":"Observed nflverse CSV; game IDs direct or joined from verified team/week schedule","players":list(players.values()),"quarantine":{"count":len(quarantined),"records":quarantined}}
 def main():
