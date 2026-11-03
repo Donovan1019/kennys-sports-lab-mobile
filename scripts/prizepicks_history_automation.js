@@ -23,9 +23,19 @@ function identityReadiness(feed,history,crosswalk){
  const providerIds=new Set(lines.filter(x=>x.player_id).map(x=>[x.league,x.player_id].join('|')));
  const historyIds=new Set((history?.records||[]).filter(x=>x.playerId).map(x=>[x.league,x.playerId,x.source].join('|')));
  const mappings=Array.isArray(crosswalk)?crosswalk:[];
- const usable=mappings.filter(m=>m?.verified===true&&providerIds.has([m.league,m.prizepicksPlayerId].join('|'))&&historyIds.has([m.league,m.historyPlayerId,m.historySource].join('|')));
- const unique=new Set(usable.map(m=>[m.league,m.prizepicksPlayerId].join('|')));
- return {providerPlayers:providerIds.size,providerPlayersMissingId:lines.filter(x=>!x.player_id).length,historicalPlayerMarketRecords:history?.records?.length||0,verifiedMappingsProvided:mappings.filter(m=>m?.verified===true).length,verifiedMappingsWithBothIdsPresent:usable.length,distinctProviderPlayersWithCandidateMappings:unique.size,automaticNameMatching:false};
+ const verified=mappings.filter(m=>m?.verified===true);
+ const usable=verified.filter(m=>providerIds.has([m.league,m.prizepicksPlayerId].join('|'))&&historyIds.has([m.league,m.historyPlayerId,m.historySource].join('|')));
+ const byProvider=new Map(),byHistory=new Map();
+ for(const m of usable){
+  const p=[m.league,m.prizepicksPlayerId,m.historySource].join('|');
+  const h=[m.league,m.historyPlayerId,m.historySource].join('|');
+  byProvider.set(p,(byProvider.get(p)||0)+1);
+  byHistory.set(h,(byHistory.get(h)||0)+1);
+ }
+ const conflictingProviderKeys=new Set([...byProvider].filter(([,n])=>n>1).map(([k])=>k));
+ const conflictingHistoryKeys=new Set([...byHistory].filter(([,n])=>n>1).map(([k])=>k));
+ const safe=new Set(usable.filter(m=>!conflictingProviderKeys.has([m.league,m.prizepicksPlayerId,m.historySource].join('|'))&&!conflictingHistoryKeys.has([m.league,m.historyPlayerId,m.historySource].join('|'))).map(m=>[m.league,m.prizepicksPlayerId].join('|')));
+ return {providerPlayers:providerIds.size,providerPlayersMissingId:lines.filter(x=>!x.player_id).length,historicalPlayerMarketRecords:history?.records?.length||0,verifiedMappingsProvided:verified.length,verifiedMappingsWithBothIdsPresent:usable.length,distinctProviderPlayersWithCandidateMappings:safe.size,conflictingProviderMappings:conflictingProviderKeys.size,conflictingHistoryMappings:conflictingHistoryKeys.size,automaticNameMatching:false};
 }
 function main(){
  const now=Date.now();
