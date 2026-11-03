@@ -1,0 +1,15 @@
+'use strict';
+const assert=require('node:assert/strict');
+const {bridgeNflverseArchive}=require('../scripts/prizepicks_nflverse_bridge');
+const now=Date.parse('2026-11-03T20:00:00Z');
+const games=Array.from({length:15},(_,i)=>({eventId:'nfl-'+i,playedAt:'2026-10-'+String(i+1).padStart(2,'0')+'T00:00:00Z',verified:true,values:{'Receiving yards':i+20}}));
+const archive={source:'nflverse-stats-player-week',independentlyVerified:true,fetched_at:'2026-11-03T19:00:00Z',players:[{player_id:'nfl-123',games}]};
+const good=bridgeNflverseArchive(archive,now);
+assert.equal(good.status,'VERIFIED_GAME_LOGS');
+assert.equal(good.records.length,1);
+assert.equal(good.records[0].games.length,15);
+assert.equal(bridgeNflverseArchive({...archive,fetched_at:'2026-10-01T00:00:00Z'},now).status,'UNAVAILABLE');
+assert.equal(bridgeNflverseArchive({...archive,players:[{name:'Unknown',games}]},now).status,'UNAVAILABLE');
+assert.equal(bridgeNflverseArchive({...archive,players:[{player_id:'nfl-123',games:games.map(g=>({...g,playedAt:undefined}))}]},now).status,'UNAVAILABLE');
+assert.equal(bridgeNflverseArchive({...archive,players:[{player_id:'nfl-123',games:[...games.slice(1),games[1]]}]},now).status,'UNAVAILABLE');
+console.log('Existing NFL archive bridge provenance tests passed');

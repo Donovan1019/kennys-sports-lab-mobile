@@ -36,3 +36,4 @@ jobs:
       - run: node tests/prizepicks_history_identity.test.js
       - run: node tests/prizepicks_publish_gate.test.js
       - run: node tests/prizepicks_history_automation.test.js
+      - run: node tests/prizepicks_nflverse_bridge.test.js
