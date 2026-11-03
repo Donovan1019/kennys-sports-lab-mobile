@@ -1,0 +1,23 @@
+name: PrizePicks Research Integrity
+on:
+  pull_request:
+    paths:
+      - 'prizepicks*'
+      - 'tests/prizepicks*'
+      - '.github/workflows/prizepicks-integrity.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'prizepicks*'
+      - 'tests/prizepicks*'
+      - '.github/workflows/prizepicks-integrity.yml'
+jobs:
+  integrity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --check prizepicks_research.js
+      - run: node tests/prizepicks_research.test.js
