@@ -9,10 +9,15 @@ on:
       - 'tests/test_build_nfl_player_stats_feed.py'
       - '.github/workflows/nfl-real-player-stats-ingestion.yml'
 permissions:
-  contents: write
+  contents: read
+concurrency:
+  group: nfl-history-publish
+  cancel-in-progress: false
 jobs:
   ingest:
     runs-on: ubuntu-latest
+    permissions:
+      contents: ${{ github.event_name == 'pull_request' && 'read' || 'write' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -43,6 +48,8 @@ jobs:
       - name: Publish audited NFL historical archive
         if: github.event_name != 'pull_request'
         run: |
+          git fetch origin main
+          git checkout -B main origin/main
           mkdir -p feed
           cp /tmp/nfl_player_stats.json feed/nfl_player_stats.json
           cp /tmp/nfl_player_stats_audit.json feed/nfl_player_stats_audit.json
@@ -51,6 +58,5 @@ jobs:
           git add feed/nfl_player_stats.json feed/nfl_player_stats_audit.json
           if ! git diff --cached --quiet; then
             git commit -m 'data: refresh audited NFL player history [skip ci]'
-            git pull --rebase origin main
             git push origin HEAD:main
           fi

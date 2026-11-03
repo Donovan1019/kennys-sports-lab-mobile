@@ -4,6 +4,7 @@ on:
     paths:
       - 'prizepicks*'
       - 'tests/prizepicks*'
+      - '.github/workflows/nfl-real-player-stats-ingestion.yml'
       - 'scripts/prizepicks_ingest.js'
       - 'scripts/prizepicks_feed_health.js'
       - '.github/workflows/prizepicks-ingest.yml'
@@ -37,3 +38,4 @@ jobs:
       - run: node tests/prizepicks_publish_gate.test.js
       - run: node tests/prizepicks_history_automation.test.js
       - run: node tests/prizepicks_nflverse_bridge.test.js
+      - run: node tests/prizepicks_nfl_publish_workflow.test.js
