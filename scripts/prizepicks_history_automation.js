@@ -35,7 +35,16 @@ function identityReadiness(feed,history,crosswalk){
  const conflictingProviderKeys=new Set([...byProvider].filter(([,n])=>n>1).map(([k])=>k));
  const conflictingHistoryKeys=new Set([...byHistory].filter(([,n])=>n>1).map(([k])=>k));
  const safe=new Set(usable.filter(m=>!conflictingProviderKeys.has([m.league,m.prizepicksPlayerId,m.historySource].join('|'))&&!conflictingHistoryKeys.has([m.league,m.historyPlayerId,m.historySource].join('|'))).map(m=>[m.league,m.prizepicksPlayerId].join('|')));
- return {providerPlayers:providerIds.size,providerPlayersMissingId:lines.filter(x=>!x.player_id).length,historicalPlayerMarketRecords:history?.records?.length||0,verifiedMappingsProvided:verified.length,verifiedMappingsWithBothIdsPresent:usable.length,distinctProviderPlayersWithCandidateMappings:safe.size,conflictingProviderMappings:conflictingProviderKeys.size,conflictingHistoryMappings:conflictingHistoryKeys.size,automaticNameMatching:false};
+ const byLeague={};
+ for(const line of lines){
+  const league=line?.league||'UNKNOWN';
+  if(!byLeague[league])byLeague[league]={sourceLines:0,providerPlayers:0,historicalPlayerMarketRecords:0,verifiedPlayerMappings:0};
+  byLeague[league].sourceLines++;
+ }
+ for(const key of providerIds){const league=key.split('|')[0];if(byLeague[league])byLeague[league].providerPlayers++;}
+ for(const record of history?.records||[]){if(byLeague[record.league])byLeague[record.league].historicalPlayerMarketRecords++;}
+ for(const key of safe){const league=key.split('|')[0];if(byLeague[league])byLeague[league].verifiedPlayerMappings++;}
+ return {providerPlayers:providerIds.size,providerPlayersMissingId:lines.filter(x=>!x.player_id).length,historicalPlayerMarketRecords:history?.records?.length||0,verifiedMappingsProvided:verified.length,verifiedMappingsWithBothIdsPresent:usable.length,distinctProviderPlayersWithCandidateMappings:safe.size,conflictingProviderMappings:conflictingProviderKeys.size,conflictingHistoryMappings:conflictingHistoryKeys.size,automaticNameMatching:false,byLeague};
 }
 function main(){
  const now=Date.now();

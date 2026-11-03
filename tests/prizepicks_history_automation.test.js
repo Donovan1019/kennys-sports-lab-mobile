@@ -29,6 +29,8 @@ assert.ok(script.includes("PRIZEPICKS_CROSSWALK_PATH||'feed/prizepicks_verified_
 assert.match(script,/verifiedCrosswalk:/);
 const readiness=identityReadiness(feed,history,crosswalk);
 assert.equal(readiness.providerPlayers,1);
+assert.deepEqual(readiness.byLeague.NBA,{sourceLines:1,providerPlayers:1,historicalPlayerMarketRecords:1,verifiedPlayerMappings:1});
+assert.equal(identityReadiness(feed,null,[]).byLeague.NBA.historicalPlayerMarketRecords,0);
 assert.equal(readiness.verifiedMappingsWithBothIdsPresent,1);
 assert.equal(readiness.distinctProviderPlayersWithCandidateMappings,1);
 assert.equal(readiness.automaticNameMatching,false);
