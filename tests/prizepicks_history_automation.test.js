@@ -20,6 +20,6 @@ assert.equal(chooseVerifiedHistory(null,archive,now).status,'VERIFIED_GAME_LOGS'
 assert.equal(chooseVerifiedHistory(null,{...archive,independentlyVerified:false},now),null);
 const fs=require('node:fs');
 const script=fs.readFileSync(require.resolve('../scripts/prizepicks_history_automation'),'utf8');
-assert.match(script,/PRIZEPICKS_CROSSWALK_PATH\\|\\|'feed\\/prizepicks_verified_crosswalk.json'/);
+assert.ok(script.includes("PRIZEPICKS_CROSSWALK_PATH||'feed/prizepicks_verified_crosswalk.json'"));
 assert.match(script,/verifiedCrosswalk:/);
 console.log('Automated PrizePicks history audit fail-closed tests passed');
