@@ -32,7 +32,12 @@ function attachVerifiedIdentity(feed,payload,crosswalk){
 }
 function buildCrossSourceHistoryAudit(feed,payload,crosswalk,now=Date.now()){
  const mapped=attachVerifiedIdentity(feed,payload,crosswalk);
- if(mapped.status!=='VERIFIED_IDENTITY_MAPPING')return {status:'UNAVAILABLE',reason:mapped.reason,coverage:{total:0,matched:0,unavailable:0},rows:[]};
+ if(mapped.status!=='VERIFIED_IDENTITY_MAPPING'){
+  const lines=Array.isArray(feed?.lines)?feed.lines:[];
+  const byLeague={};
+  for(const line of lines){const league=line?.league||'UNKNOWN';byLeague[league]=(byLeague[league]||0)+1;}
+  return {status:'UNAVAILABLE',reason:mapped.reason,coverage:{total:lines.length,matched:0,unavailable:lines.length,byLeague},rows:[]};
+ }
  return buildHistoryAudit(feed,{...payload,records:mapped.records},now);
 }
 module.exports={attachVerifiedIdentity,buildCrossSourceHistoryAudit};
