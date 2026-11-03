@@ -41,6 +41,12 @@ assert.equal(identityReadiness(feed,null,[]).byLeague.NBA.historicalPlayerMarket
 assert.equal(readiness.verifiedMappingsWithBothIdsPresent,1);
 assert.equal(readiness.distinctProviderPlayersWithCandidateMappings,1);
 assert.equal(readiness.automaticNameMatching,false);
+assert.deepEqual(readiness.unverifiedExactIdOverlaps,{});
+const sameIdHistory={...history,records:[{...history.records[0],playerId:'pp-1'}]};
+const overlap=identityReadiness(feed,sameIdHistory,[]);
+assert.equal(overlap.unverifiedExactIdOverlaps.NBA,1);
+assert.equal(overlap.verifiedMappingsWithBothIdsPresent,0);
+assert.equal(runAudit(feed,sameIdHistory,[],now).coverage.matched,0);
 assert.equal(readiness.conflictingProviderMappings,0);
 assert.equal(readiness.conflictingHistoryMappings,0);
 const duplicate=identityReadiness(feed,history,[...crosswalk,...crosswalk]);

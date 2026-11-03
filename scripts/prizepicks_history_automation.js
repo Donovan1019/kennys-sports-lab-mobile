@@ -41,6 +41,8 @@ function identityReadiness(feed,history,crosswalk){
  const conflictingHistoryKeys=new Set([...byHistory].filter(([,n])=>n>1).map(([k])=>k));
  const safe=new Set(usable.filter(m=>!conflictingProviderKeys.has([m.league,m.prizepicksPlayerId,m.historySource].join('|'))&&!conflictingHistoryKeys.has([m.league,m.historyPlayerId,m.historySource].join('|'))).map(m=>[m.league,m.prizepicksPlayerId].join('|')));
  const byLeague={};
+ const exactIdOverlapByLeague={};
+ for(const key of providerIds){const [league,id]=key.split('|');if([...historyIds].some(h=>h.startsWith(league+'|'+id+'|')))exactIdOverlapByLeague[league]=(exactIdOverlapByLeague[league]||0)+1;}
  for(const line of lines){
   const league=line?.league||'UNKNOWN';
   if(!byLeague[league])byLeague[league]={sourceLines:0,providerPlayers:0,historicalPlayerMarketRecords:0,verifiedPlayerMappings:0};
@@ -49,7 +51,7 @@ function identityReadiness(feed,history,crosswalk){
  for(const key of providerIds){const league=key.split('|')[0];if(byLeague[league])byLeague[league].providerPlayers++;}
  for(const record of history?.records||[]){if(byLeague[record.league])byLeague[record.league].historicalPlayerMarketRecords++;}
  for(const key of safe){const league=key.split('|')[0];if(byLeague[league])byLeague[league].verifiedPlayerMappings++;}
- return {providerPlayers:providerIds.size,providerPlayersMissingId:lines.filter(x=>!x.player_id).length,historicalPlayerMarketRecords:history?.records?.length||0,verifiedMappingsProvided:verified.length,verifiedMappingsWithBothIdsPresent:usable.length,distinctProviderPlayersWithCandidateMappings:safe.size,conflictingProviderMappings:conflictingProviderKeys.size,conflictingHistoryMappings:conflictingHistoryKeys.size,automaticNameMatching:false,byLeague};
+ return {providerPlayers:providerIds.size,providerPlayersMissingId:lines.filter(x=>!x.player_id).length,historicalPlayerMarketRecords:history?.records?.length||0,verifiedMappingsProvided:verified.length,verifiedMappingsWithBothIdsPresent:usable.length,distinctProviderPlayersWithCandidateMappings:safe.size,conflictingProviderMappings:conflictingProviderKeys.size,conflictingHistoryMappings:conflictingHistoryKeys.size,automaticNameMatching:false,unverifiedExactIdOverlaps:exactIdOverlapByLeague,byLeague};
 }
 function main(){
  const now=Date.now();
