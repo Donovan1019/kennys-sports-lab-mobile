@@ -81,4 +81,7 @@ assert.equal(combined.games.length,15);
 assert.equal(combined.games[0].value,21);
 const incomplete={...combinedArchive,players:[{player_id:'nfl-123',games:combinedArchive.players[0].games.map((g,i)=>i===0?{...g,values:{'Rushing yards':10}}:g)}]};
 assert.equal(bridgeNflverseArchive(incomplete,now).records.some(r=>r.market==='Rush+Rec Yds'),false);
+const negative={...combinedArchive,players:[{player_id:'nfl-123',games:combinedArchive.players[0].games.map((g,i)=>i===0?{...g,values:{'Rushing yards':-5,'Receiving yards':2}}:g)}]};
+const negativeRecord=bridgeNflverseArchive(negative,now).records.find(r=>r.market==='Rush+Rec Yds');
+assert.equal(negativeRecord.games.find(g=>g.eventId==='e0').value,-3);
 console.log('Automated PrizePicks history audit fail-closed tests passed');
