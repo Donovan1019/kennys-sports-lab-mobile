@@ -61,8 +61,34 @@ async function collect(feed,now=Date.now(),fetcher=fetch){
   }catch(e){output.diagnostics.rosterFailures.push(team+': '+e.message)}
  });
  if(output.diagnostics.rosterFailures.length){
-  output.diagnostics.reason='incomplete league roster coverage prevents unique identity verification';
-  return output;
+  // Independent NHL Stats REST bios are a fallback for incomplete Web API rosters.
+  // Only accept a complete, paginated season roster; never use a partial page.
+  try{
+   const season=seasonId(new Date(now));
+   const url='https://api.nhle.com/stats/rest/en/skater/bios?cayenneExp='+encodeURIComponent('seasonId='+season)+'&limit=-1';
+   const data=await getJson(url,fetcher);
+   if(!Array.isArray(data.data)||!data.data.length||!(Number.isInteger(data.total)&&data.total===data.data.length))throw Error('incomplete NHL Stats REST bios');
+   const candidates=new Map();
+   for(const p of data.data){
+    const id=p.playerId,full=[p.firstName,p.lastName].filter(Boolean).join(' ');
+    if(!Number.isInteger(id)||!names.has(cleanName(full)))continue;
+    const key=cleanName(full);
+    if(!candidates.has(key))candidates.set(key,new Set());
+    candidates.get(key).add(id);
+   }
+   // Preserve goalie candidates only when independently resolved by Web API rosters.
+   const missing=[...names].filter(n=>!candidates.has(n)&&!idsByName.has(n));
+   if(missing.length)throw Error('NHL Stats REST bios missing '+missing.length+' player candidates');
+   for(const [name,ids] of candidates){
+    if(!idsByName.has(name))idsByName.set(name,new Set());
+    for(const id of ids)idsByName.get(name).add(id);
+   }
+   output.diagnostics.rosterFallback='NHL_STATS_REST_BIOS';
+   output.diagnostics.rosterFailures=[];
+  }catch(e){
+   output.diagnostics.reason='incomplete league roster coverage; NHL Stats REST fallback: '+e.message;
+   return output;
+  }
  }
  const ids=new Set();
  for(const line of feed.lines||[]){
