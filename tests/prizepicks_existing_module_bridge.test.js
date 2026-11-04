@@ -1,0 +1,17 @@
+'use strict';
+const assert=require('node:assert/strict');
+const {adapt}=require('../scripts/prizepicks_existing_module_bridge');
+const now=Date.parse('2026-11-04T16:00:00Z');
+const games=Array.from({length:15},(_,i)=>({game_id:String(400000+i),date:'2026-10-'+String(i+1).padStart(2,'0'),values:{Points:20,Rebounds:8,Assists:5,Threes:2,'Shots on goal':3,Goals:1,Saves:24}}));
+const nba={source:'espn-public-boxscore',sport:'nba',fetched_at:'2026-11-04T14:00:00Z',players:[{id:'123',games}]};
+const nhl={source:'nhl-official-boxscore',sport:'nhl',fetched_at:'2026-11-04T14:00:00Z',players:[{id:'456',games}]};
+assert.equal(adapt(nba,'NBA',now).status,'VERIFIED_GAME_LOGS');
+assert.equal(adapt(nba,'NBA',now).records.length,4);
+assert.equal(adapt(nhl,'NHL',now).records.length,4);
+assert.equal(adapt(nhl,'NHL',now).records.find(x=>x.market==='Shots on Goal').games.length,15);
+assert.equal(adapt({...nhl,source:'espn-public-boxscore'},'NHL',now).status,'UNAVAILABLE');
+assert.equal(adapt({...nba,fetched_at:'2026-10-01T00:00:00Z'},'NBA',now).status,'UNAVAILABLE');
+assert.equal(adapt({...nba,players:[{id:'123',games:games.slice(0,14)}]},'NBA',now).records.length,0);
+assert.equal(adapt({...nhl,players:[{id:'456',games:games.map(g=>({...g,quality_flags:['sog_mismatch']}))}]},'NHL',now).records.some(r=>r.market==='Shots on Goal'),false);
+assert.equal(adapt({...nba,players:[{id:'123',games:games.map(g=>({...g,values:{Points:null}}))}]},'NBA',now).records.length,0);
+console.log('Existing NBA and NHL module archive bridge tests passed');
