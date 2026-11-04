@@ -152,6 +152,22 @@ jobs:
       - name: Explain provider outage without hiding player connector diagnostics
         if: always() && github.event_name != 'pull_request' && steps.eastern.outputs.run == 'true' && steps.provider.outcome != 'success'
         run: echo "::warning::PrizePicks live source returned no schema-verified lines; NBA/NHL collection and diagnostics were attempted independently. No stale betting feed published."
+      - name: Publish verified league game logs independently of PrizePicks provider
+        if: github.event_name != 'pull_request' && steps.eastern.outputs.run == 'true' && steps.provider.outcome != 'success'
+        run: |
+          cp feed/prizepicks_nhl_verified_history.json /tmp/prizepicks-nhl-history-independent.json
+          cp feed/prizepicks_nba_verified_history.json /tmp/prizepicks-nba-history-independent.json
+          git fetch origin main
+          git checkout -B main origin/main
+          cp /tmp/prizepicks-nhl-history-independent.json feed/prizepicks_nhl_verified_history.json
+          cp /tmp/prizepicks-nba-history-independent.json feed/prizepicks_nba_verified_history.json
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add feed/prizepicks_nhl_verified_history.json feed/prizepicks_nba_verified_history.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'data: refresh independent NBA NHL player histories [skip ci]'
+            git push origin HEAD:main
+          fi
       - name: Publish fresh feed
         if: steps.provider.outcome == 'success' && github.event_name != 'pull_request' && (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success') && steps.eastern.outputs.run == 'true'
         run: |
