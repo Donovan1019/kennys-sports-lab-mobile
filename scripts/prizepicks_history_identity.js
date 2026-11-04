@@ -1,6 +1,11 @@
 /* Explicit, independently verified provider identity crosswalk. No name-based guessing. */
 'use strict';
 const {buildHistoryAudit}=require('./prizepicks_history_source');
+function hasIdentityEvidence(m){
+ if(!m||m.verified!==true||!m.evidence||typeof m.evidence!=='object')return false;
+ const e=m.evidence;
+ return e.provider==='PrizePicksAPI.com'&&e.historySource===m.historySource&&e.prizepicksPlayerId===m.prizepicksPlayerId&&e.historyPlayerId===m.historyPlayerId&&typeof e.providerReference==='string'&&e.providerReference.length>0&&typeof e.historyReference==='string'&&e.historyReference.length>0&&Number.isFinite(Date.parse(e.checkedAt))&&Date.parse(e.checkedAt)<=Date.now();
+}
 function attachVerifiedIdentity(feed,payload,crosswalk){
  const fail=reason=>({status:'UNAVAILABLE',reason,records:[]});
  if(!feed||feed.status!=='RAW_LINES_ONLY'||!Array.isArray(feed.lines))return fail('raw provider lines missing');
@@ -8,7 +13,7 @@ function attachVerifiedIdentity(feed,payload,crosswalk){
  if(!Array.isArray(crosswalk)||!crosswalk.length)return fail('verified provider identity crosswalk missing');
  const bySource=new Map(),blocked=new Set(),reverse=new Map(),reverseBlocked=new Set();
  for(const m of crosswalk){
-  if(!m||m.verified!==true||!m.league||!m.prizepicksPlayerId||!m.historyPlayerId||!m.historySource)continue;
+  if(!m||!hasIdentityEvidence(m)||!m.league||!m.prizepicksPlayerId||!m.historyPlayerId||!m.historySource)continue;
   const k=[m.league,m.prizepicksPlayerId,m.historySource].join('|');
   if(bySource.has(k))blocked.add(k);
   bySource.set(k,m.historyPlayerId);
@@ -21,7 +26,7 @@ function attachVerifiedIdentity(feed,payload,crosswalk){
  for(const r of payload.records){
   if(!r||!(payload.source==='MULTI_SOURCE_VERIFIED'&&Array.isArray(payload.sources)?payload.sources.includes(r.source):r.source===payload.source)||!r.playerId||!r.league||!r.market||!r.period)continue;
   for(const m of crosswalk){
-   if(!m||m.verified!==true||m.league!==r.league||m.historySource!==r.source||m.historyPlayerId!==r.playerId)continue;
+   if(!m||!hasIdentityEvidence(m)||m.league!==r.league||m.historySource!==r.source||m.historyPlayerId!==r.playerId)continue;
    const key=[m.league,m.prizepicksPlayerId,m.historySource].join('|');
    const reverseKey=[m.league,m.historyPlayerId,m.historySource].join('|');
    if(blocked.has(key)||reverseBlocked.has(reverseKey)||bySource.get(key)!==r.playerId||reverse.get(reverseKey)!==m.prizepicksPlayerId||!feedIds.has([m.league,m.prizepicksPlayerId].join('|')))continue;
@@ -40,4 +45,4 @@ function buildCrossSourceHistoryAudit(feed,payload,crosswalk,now=Date.now()){
  }
  return buildHistoryAudit(feed,{...payload,records:mapped.records},now);
 }
-module.exports={attachVerifiedIdentity,buildCrossSourceHistoryAudit};
+module.exports={attachVerifiedIdentity,buildCrossSourceHistoryAudit,hasIdentityEvidence};
