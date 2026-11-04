@@ -72,6 +72,8 @@ jobs:
         env:
           PRIZEPICKS_NFL_ARCHIVE_PATH: /tmp/prizepicks-nfl-player-stats.json
           PRIZEPICKS_NFL_ARCHIVE_AUDIT_PATH: /tmp/prizepicks-nfl-player-stats-audit.json
+          PRIZEPICKS_HISTORY_PATH: feed/prizepicks_verified_history.json
+          PRIZEPICKS_CROSSWALK_PATH: feed/prizepicks_verified_crosswalk.json
         run: node scripts/prizepicks_history_automation.js
       - name: Validate audit artifact and source provenance
         if: github.event_name != 'pull_request' && steps.eastern.outputs.run == 'true'
