@@ -41,6 +41,8 @@ async function collect(feed,now=Date.now(),fetcher=fetch){
  diagnostics.events=events.size;
  const ids=[...events].slice(0,250);
  for(let i=0;i<ids.length;i+=4){const batch=ids.slice(i,i+4);const settled=await Promise.allSettled(batch.map(id=>json(BASE+'summary?event='+id,fetcher)));settled.forEach((r,j)=>{if(r.status==='rejected'){diagnostics.failures.push('summary '+batch[j]+': '+r.reason.message);return}const games=boxscore(r.value,batch[j],now);if(games.length){diagnostics.boxscores++;rows.push(...games)}})}
+ const nameIds=new Map();for(const r of rows){const n=norm(r.name);if(!nameIds.has(n))nameIds.set(n,new Set());nameIds.get(n).add(r.id)}
+ diagnostics.identityCandidates=[...new Map((feed.lines||[]).filter(x=>x.league==='NBA'&&x.player_id).map(x=>[String(x.player_id),x])).values()].map(line=>({prizepicksPlayerId:String(line.player_id),player:line.player,espnCandidateIds:[...(nameIds.get(norm(line.player))||[])],status:'UNVERIFIED_NAME_CANDIDATE'}));
  const history=records(rows,feed);if(!history.length)diagnostics.reason='No player-market has 15 validated ESPN games';
  return {schema_version:1,status:history.length?'VERIFIED_GAME_LOGS':'UNAVAILABLE',source:SOURCE,generated_at:new Date(now).toISOString(),records:history,diagnostics};
 }
