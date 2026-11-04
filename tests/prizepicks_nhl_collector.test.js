@@ -1,0 +1,21 @@
+'use strict';
+const assert=require('node:assert/strict');
+const {collect,convertLog,seasonId}=require('../scripts/prizepicks_nhl_collector');
+const now=Date.parse('2026-11-03T20:00:00Z');
+assert.equal(seasonId(new Date(now)),'20262027');
+const log=Array.from({length:15},(_,i)=>({gameId:100+i,gameDate:'2026-10-'+String(i+1).padStart(2,'0'),shots:3,goals:1,assists:1,points:2,blockedShots:0}));
+assert.equal(convertLog(123,log,now).length,5);
+assert.equal(convertLog(123,log.slice(0,14),now).length,0);
+assert.equal(convertLog(123,log.map(g=>({...g,shots:undefined})),now).some(r=>r.market==='Shots on Goal'),false);
+const mock=async url=>({ok:true,json:async()=>url.includes('/roster/BOS/')?{forwards:[{id:123,firstName:{default:'Jane'},lastName:{default:'Example'}}]}:url.includes('/roster/')?{forwards:[]}:url.includes('/player/123/')?{gameLog:log}:{gameLog:[]}});
+(async()=>{
+ const feed={lines:[{league:'NHL',player:'Jane Example'}]};
+ const result=await collect(feed,now,mock);
+ assert.equal(result.status,'VERIFIED_GAME_LOGS');
+ assert.equal(result.records.length,5);
+ assert.equal(result.records[0].source,'api-web.nhle.com/v1');
+ assert.equal(result.diagnostics.matchedRosterIds,1);
+ const unavailable=await collect({lines:[{league:'NHL',player:'Unknown'}]},now,mock);
+ assert.equal(unavailable.status,'UNAVAILABLE');
+ console.log('Official NHL historical collector tests passed');
+})().catch(e=>{console.error(e);process.exitCode=1});
