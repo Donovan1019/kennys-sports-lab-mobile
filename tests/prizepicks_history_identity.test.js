@@ -6,7 +6,7 @@ const feed={status:'RAW_LINES_ONLY',lines:[{id:'x',league:'NBA',player:'Example'
 const games=Array.from({length:15},(_,i)=>({eventId:'g'+i,playedAt:'2026-10-'+String(i+1).padStart(2,'0')+'T00:00:00Z',verified:true,value:10+i}));
 const record={playerId:'history-1',providerPlayerId:'history-1',league:'NBA',market:'Points',period:'Full game',source:'trusted-history',independentlyVerified:true,games};
 const payload={schema_version:1,status:'VERIFIED_GAME_LOGS',source:'trusted-history',generated_at:'2026-11-03T18:00:00Z',records:[record]};
-const crosswalk=[{verified:true,league:'NBA',prizepicksPlayerId:'pp-1',historyPlayerId:'history-1',historySource:'trusted-history'}];
+const crosswalk=[{verified:true,league:'NBA',prizepicksPlayerId:'pp-1',historyPlayerId:'history-1',historySource:'trusted-history',evidence:{provider:'PrizePicksAPI.com',historySource:'trusted-history',prizepicksPlayerId:'pp-1',historyPlayerId:'history-1',providerReference:'provider-profile',historyReference:'history-profile',checkedAt:'2026-11-03T19:00:00Z'}}];
 assert.equal(attachVerifiedIdentity(feed,payload,crosswalk).records.length,1);
 assert.equal(buildCrossSourceHistoryAudit(feed,payload,crosswalk,now).coverage.matched,1);
 assert.equal(buildCrossSourceHistoryAudit(feed,payload,crosswalk,now).rows[0].betEligible,false);
@@ -16,7 +16,7 @@ assert.equal(attachVerifiedIdentity(feed,payload,[{...crosswalk[0],historyPlayer
 assert.equal(attachVerifiedIdentity(feed,payload,[...crosswalk,crosswalk[0]]).status,'UNAVAILABLE');
 assert.equal(attachVerifiedIdentity(feed,{...payload,records:[{...record,source:'different'}]},crosswalk).status,'UNAVAILABLE');
 const twoFeed={...feed,lines:[...feed.lines,{...feed.lines[0],id:'y',player_id:'pp-2'}]};
-const ambiguous=[...crosswalk,{...crosswalk[0],prizepicksPlayerId:'pp-2'}];
+const ambiguous=[...crosswalk,{...crosswalk[0],prizepicksPlayerId:'pp-2',evidence:{...crosswalk[0].evidence,prizepicksPlayerId:'pp-2'}}];
 assert.equal(attachVerifiedIdentity(twoFeed,payload,ambiguous).status,'UNAVAILABLE');
 assert.equal(buildCrossSourceHistoryAudit(twoFeed,payload,ambiguous,now).status,'UNAVAILABLE');
 console.log('PrizePicks independent identity crosswalk tests passed');
