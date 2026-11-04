@@ -84,4 +84,11 @@ assert.equal(bridgeNflverseArchive(incomplete,now).records.some(r=>r.market==='R
 const negative={...combinedArchive,players:[{player_id:'nfl-123',games:combinedArchive.players[0].games.map((g,i)=>i===0?{...g,values:{'Rushing yards':-5,'Receiving yards':2}}:g)}]};
 const negativeRecord=bridgeNflverseArchive(negative,now).records.find(r=>r.market==='Rush+Rec Yds');
 assert.equal(negativeRecord.games.find(g=>g.eventId==='e0').value,-3);
+const rateArchive={...archive,players:[{player_id:'nfl-123',games:games.map(g=>({...g,values:{'Pass Attempts':20,'Completions':15,'Rushing yards':-4,'Rush Attempts':2}}))}]};
+const rateRecords=bridgeNflverseArchive(rateArchive,now).records;
+assert.equal(rateRecords.find(r=>r.market==='Completion Percentage').games[0].value,75);
+assert.equal(rateRecords.find(r=>r.market==='Rush Yards Per Carry').games[0].value,-2);
+const noDenominator={...rateArchive,players:[{player_id:'nfl-123',games:rateArchive.players[0].games.map((g,i)=>i===0?{...g,values:{...g.values,'Pass Attempts':0,'Rush Attempts':0}}:g)}]};
+assert.equal(bridgeNflverseArchive(noDenominator,now).records.some(r=>r.market==='Completion Percentage'),false);
+assert.equal(bridgeNflverseArchive(noDenominator,now).records.some(r=>r.market==='Rush Yards Per Carry'),false);
 console.log('Automated PrizePicks history audit fail-closed tests passed');
