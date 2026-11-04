@@ -1,7 +1,7 @@
 /* Join provider source lines to separately verified historical game logs. No inferred identities. */
 'use strict';
 const {historyEvidence}=require('./prizepicks_history_evidence');
-const NFL_ALIASES=Object.freeze({'pass yards':'Passing yards','passing yards':'Passing yards','pass tds':'Passing touchdowns','passing touchdowns':'Passing touchdowns','rush yards':'Rushing yards','rushing yards':'Rushing yards','rec yards':'Receiving yards','receiving yards':'Receiving yards','receptions':'Receptions','rush tds':'Rushing touchdowns','rushing touchdowns':'Rushing touchdowns','rec tds':'Receiving touchdowns','receiving touchdowns':'Receiving touchdowns'});
+const NFL_ALIASES=Object.freeze({'pass yards':'Passing yards','passing yards':'Passing yards','pass tds':'Passing touchdowns','passing touchdowns':'Passing touchdowns','rush yards':'Rushing yards','rushing yards':'Rushing yards','rec yards':'Receiving yards','receiving yards':'Receiving yards','receptions':'Receptions','rush tds':'Rushing touchdowns','rushing touchdowns':'Rushing touchdowns','rec tds':'Receiving touchdowns','receiving touchdowns':'Receiving touchdowns','pass completions':'Pass Completions','pass attempts':'Pass Attempts','rush attempts':'Rush Attempts'});
 function canonicalMarket(league,market){return league==='NFL'?(NFL_ALIASES[String(market||'').trim().toLowerCase()]||market):market;}
 function joinHistory(feed,records,now=Date.now()){
  if(!feed||feed.status!=='RAW_LINES_ONLY'||!Array.isArray(feed.lines)||!Array.isArray(records))return {status:'UNAVAILABLE',reason:'source or history schema missing',rows:[]};

@@ -1,6 +1,6 @@
 /* Reuse existing nflverse player-game archive, never infer identity or event dates. */
 'use strict';
-const MARKET_VALUES=Object.freeze({'Passing yards':'Passing yards','Rushing yards':'Rushing yards','Receiving yards':'Receiving yards','Receptions':'Receptions','Passing touchdowns':'Passing touchdowns','Rushing touchdowns':'Rushing touchdowns','Receiving touchdowns':'Receiving touchdowns'});
+const MARKET_VALUES=Object.freeze({'Passing yards':'Passing yards','Rushing yards':'Rushing yards','Receiving yards':'Receiving yards','Receptions':'Receptions','Passing touchdowns':'Passing touchdowns','Rushing touchdowns':'Rushing touchdowns','Receiving touchdowns':'Receiving touchdowns','Pass Attempts':'Pass Attempts','Pass Completions':'Completions','Rush Attempts':'Rush Attempts'});
 function bridgeNflverseArchive(archive,now=Date.now()){
  const fail=reason=>({status:'UNAVAILABLE',reason,records:[]});
  if(!archive)return fail('nflverse archive missing or unreadable');
