@@ -8,7 +8,7 @@ assert.match(workflow,/permissions:\s*\n\s*contents: write/);
 assert.doesNotMatch(workflow,/contents:\s*\$\{\{/);
 const gates=workflow.match(/if: github\.event_name != 'pull_request' && \(github\.event_name != 'workflow_run' \|\| github\.event\.workflow_run\.conclusion == 'success'\) && steps\.eastern\.outputs\.run == 'true'/g)||[];
 const originalGates=workflow.match(/if: github\.event_name != 'pull_request' && steps\.eastern\.outputs\.run == 'true'/g)||[];
-assert.equal(gates.length+originalGates.length,7,'fetch, NHL collection, archive refresh, research audit, validation, diagnostics and publish must use Eastern gate');
+assert.equal(gates.length+originalGates.length,8,'fetch, NHL collection, NHL validation, archive refresh, research audit, validation, diagnostics and publish must use Eastern gate');
 assert.match(workflow,/workflow_run:\s*\n\s*workflows: \['NFL Real Player Stats Ingestion'\]/);
 assert.ok(workflow.includes("github.event.workflow_run.conclusion }}\" != 'success'"));
 assert.ok(workflow.includes('Validate audit artifact and source provenance'));

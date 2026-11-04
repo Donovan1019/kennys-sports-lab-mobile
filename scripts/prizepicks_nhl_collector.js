@@ -39,8 +39,8 @@ function convertLog(id,log,now=Date.now()){
 async function batches(items,limit,fn){for(let i=0;i<items.length;i+=limit)await Promise.all(items.slice(i,i+limit).map(fn))}
 async function collect(feed,now=Date.now(),fetcher=fetch){
  const names=new Set((feed?.lines||[]).filter(x=>x.league==='NHL'&&x.player).map(x=>cleanName(x.player)));
- const output={schema_version:1,status:'UNAVAILABLE',source:SOURCE,generated_at:new Date(now).toISOString(),records:[],diagnostics:{candidateNames:names.size,rosterFailures:[],gameLogFailures:[],matchedRosterIds:0,ambiguousRosterNames:[]}};
- if(!names.size)return output;
+ const output={schema_version:1,status:'UNAVAILABLE',source:SOURCE,generated_at:new Date(now).toISOString(),records:[],diagnostics:{candidateNames:names.size,rosterFailures:[],gameLogFailures:[],matchedRosterIds:0,ambiguousRosterNames:[],verifiedMarketRecords:0,reason:null}};
+ if(!names.size){output.diagnostics.reason='no NHL candidate names in source feed';return output}
  const idsByName=new Map();
  await batches(TEAMS,6,async team=>{
   try{
@@ -80,7 +80,9 @@ async function collect(feed,now=Date.now(),fetcher=fetch){
    output.records.push(...convertLog(id,logs,now));
   }catch(e){output.diagnostics.gameLogFailures.push(String(id)+': '+e.message)}
  });
+ output.diagnostics.verifiedMarketRecords=output.records.length;
  if(output.records.length)output.status='VERIFIED_GAME_LOGS';
+ else output.diagnostics.reason=output.diagnostics.matchedRosterIds?'no NHL player has 15 distinct verified games per market':'no unambiguous NHL roster matches';
  return output;
 }
 async function main(){
