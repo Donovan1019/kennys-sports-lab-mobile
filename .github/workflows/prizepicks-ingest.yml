@@ -70,6 +70,10 @@ jobs:
       - name: Collect official NHL player game logs
         if: github.event_name != 'pull_request' && (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success') && steps.eastern.outputs.run == 'true'
         run: node scripts/prizepicks_nhl_collector.js
+      - name: Validate NHL collector artifact and explain missing history
+        if: github.event_name != 'pull_request' && (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success') && steps.eastern.outputs.run == 'true'
+        run: |
+          node -e "const fs=require('fs');const d=JSON.parse(fs.readFileSync('feed/prizepicks_nhl_verified_history.json'));if(d.source!=='api-web.nhle.com/v1'||!Array.isArray(d.records)||!d.diagnostics||!['VERIFIED_GAME_LOGS','UNAVAILABLE'].includes(d.status)||(d.status==='VERIFIED_GAME_LOGS'&&!d.records.length)||(d.status==='UNAVAILABLE'&&!d.diagnostics.reason))process.exit(1);console.log(JSON.stringify({source:d.source,status:d.status,records:d.records.length,reason:d.diagnostics.reason,rosterFailures:d.diagnostics.rosterFailures.length,gameLogFailures:d.diagnostics.gameLogFailures.length,matchedRosterIds:d.diagnostics.matchedRosterIds}));"
       - name: Refresh latest audited NFL archive before research join
         if: github.event_name != 'pull_request' && (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success') && steps.eastern.outputs.run == 'true'
         run: |
