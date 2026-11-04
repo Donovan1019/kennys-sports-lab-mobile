@@ -15,8 +15,12 @@ function build(feed,nbaHistory,nhlHistory){
     for(const id of c.espnCandidateIds||[])if(historyIds.has(String(id)))byProvider.get(key).add(String(id));
    }
   }else{
-   // NHL game-log payload has official IDs, but no trustworthy player names.
-   // Never equate a PrizePicks ID with an NHL ID or fabricate a name join.
+   // Roster-name matches are candidates only, never verified provider identities.
+   for(const c of history?.diagnostics?.identityCandidates||[]){
+    const key=String(c.prizepicksPlayerId);
+    if(!byProvider.has(key))byProvider.set(key,new Set());
+    for(const id of c.nhlCandidateIds||[])if(historyIds.has(String(id)))byProvider.get(key).add(String(id));
+   }
   }
   const seen=new Set();
   for(const line of feed?.lines||[]){
