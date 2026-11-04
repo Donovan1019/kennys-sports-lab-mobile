@@ -20,6 +20,7 @@ on:
       - 'scripts/prizepicks_nba_collector.js'
       - 'scripts/prizepicks_nba_espn_fallback.js'
       - 'scripts/prizepicks_identity_candidates.js'
+      - 'scripts/prizepicks_external_id_crosswalk.js'
       - 'tests/prizepicks_identity_candidates.test.js'
       - 'tests/prizepicks_nba_espn_fallback.test.js'
       - 'scripts/prizepicks_existing_module_bridge.js'
@@ -70,7 +71,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: node --check scripts/prizepicks_ingest.js && node tests/prizepicks_ingest.test.js && node tests/prizepicks_history_automation.test.js && node tests/prizepicks_nhl_collector.test.js && node tests/prizepicks_nba_collector.test.js && node tests/prizepicks_nba_espn_fallback.test.js && node tests/prizepicks_identity_candidates.test.js && node tests/prizepicks_connectors_health.test.js && node tests/prizepicks_existing_module_bridge.test.js
+      - run: node --check scripts/prizepicks_ingest.js && node tests/prizepicks_ingest.test.js && node tests/prizepicks_history_automation.test.js && node tests/prizepicks_nhl_collector.test.js && node tests/prizepicks_nba_collector.test.js && node tests/prizepicks_nba_espn_fallback.test.js && node tests/prizepicks_identity_candidates.test.js && node tests/prizepicks_external_id_crosswalk.test.js && node tests/prizepicks_connectors_health.test.js && node tests/prizepicks_existing_module_bridge.test.js
       - name: Eastern schedule gate
         id: eastern
         run: |
@@ -126,6 +127,9 @@ jobs:
       - name: Build identity candidate report for automated production diagnostics
         if: github.event_name != 'pull_request' && steps.eastern.outputs.run == 'true'
         run: node scripts/prizepicks_identity_candidates.js
+      - name: Build independently matched explicit external-ID crosswalk
+        if: steps.provider.outcome == 'success' && github.event_name != 'pull_request' && steps.eastern.outputs.run == 'true'
+        run: node scripts/prizepicks_external_id_crosswalk.js
       - name: Reuse existing NBA and official NHL module player archives
         if: github.event_name != 'pull_request' && (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success') && steps.eastern.outputs.run == 'true'
         run: node scripts/prizepicks_existing_module_bridge.js
@@ -165,6 +169,7 @@ jobs:
             feed/prizepicks_nba_module_history.json
             feed/prizepicks_nhl_module_history.json
             feed/prizepicks_identity_candidates.json
+            feed/prizepicks_verified_crosswalk.json
       - name: Explain provider outage without hiding player connector diagnostics
         if: always() && github.event_name != 'pull_request' && steps.eastern.outputs.run == 'true' && steps.provider.outcome != 'success'
         run: echo "::warning::PrizePicks live source returned no schema-verified lines; NBA/NHL collection and diagnostics were attempted independently. No stale betting feed published."

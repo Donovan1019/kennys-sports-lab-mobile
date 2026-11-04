@@ -1,0 +1,11 @@
+'use strict';const assert=require('node:assert/strict');const {build}=require('../scripts/prizepicks_external_id_crosswalk');
+const now=new Date().toISOString();
+const feed={lines:[{league:'NHL',player_id:'pp1',id:'projection1',external_ids:{nhl:'8478402'}},{league:'NBA',player_id:'pp2',id:'projection2',external_ids:{espn:'3908809'}}]};
+const nhl={records:[{league:'NHL',source:'api-web.nhle.com/v1',playerId:'8478402'}]};
+const nba={records:[{league:'NBA',source:'espn-public-boxscore',playerId:'3908809'}]};
+const good=build(feed,nba,nhl,now);assert.equal(good.verifiedMappings,2);assert.equal(good.mappings[0].verified,true);
+assert.equal(build({lines:[{league:'NHL',player_id:'pp1',id:'x'}]},nba,nhl,now).verifiedMappings,0);
+assert.equal(build({lines:[{...feed.lines[0],external_ids:{nhl:'wrong'}}]},nba,nhl,now).verifiedMappings,0);
+assert.equal(build({lines:[feed.lines[0],{...feed.lines[0],external_ids:{nhl:'123'}}]},nba,nhl,now).verifiedMappings,0);
+assert.equal(build({lines:[feed.lines[0],{...feed.lines[0],player_id:'pp3'}]},nba,nhl,now).verifiedMappings,0);
+console.log('explicit external ID crosswalk tests passed');
