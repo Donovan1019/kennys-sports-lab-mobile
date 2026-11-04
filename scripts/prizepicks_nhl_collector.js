@@ -39,7 +39,7 @@ function convertLog(id,log,now=Date.now(),position='skater'){
 async function batches(items,limit,fn){for(let i=0;i<items.length;i+=limit)await Promise.all(items.slice(i,i+limit).map(fn))}
 async function collect(feed,now=Date.now(),fetcher=fetch){
  const names=new Set((feed?.lines||[]).filter(x=>x.league==='NHL'&&x.player).map(x=>cleanName(x.player)));
- const output={schema_version:1,status:'UNAVAILABLE',source:SOURCE,generated_at:new Date(now).toISOString(),records:[],diagnostics:{candidateNames:names.size,rosterFailures:[],gameLogFailures:[],matchedRosterIds:0,ambiguousRosterNames:[],verifiedMarketRecords:0,reason:null}};
+ const output={schema_version:1,status:'UNAVAILABLE',source:SOURCE,generated_at:new Date(now).toISOString(),records:[],diagnostics:{candidateNames:names.size,rosterFailures:[],gameLogFailures:[],matchedRosterIds:0,ambiguousRosterNames:[],identityCandidates:[],verifiedMarketRecords:0,reason:null}};
  if(!names.size){output.diagnostics.reason='no NHL candidate names in source feed';return output}
  const idsByName=new Map();
  const positionById=new Map();
@@ -62,6 +62,11 @@ async function collect(feed,now=Date.now(),fetcher=fetch){
   return output;
  }
  const ids=new Set();
+ for(const line of feed.lines||[]){
+  if(line.league!=='NHL'||!line.player_id||!line.player)continue;
+  const matches=idsByName.get(cleanName(line.player))||new Set();
+  if(!output.diagnostics.identityCandidates.some(c=>c.prizepicksPlayerId===String(line.player_id)))output.diagnostics.identityCandidates.push({prizepicksPlayerId:String(line.player_id),player:line.player,nhlCandidateIds:[...matches].map(String),status:'UNVERIFIED_NAME_CANDIDATE'});
+ }
  for(const [name,matches] of idsByName){
   if(matches.size!==1){output.diagnostics.ambiguousRosterNames.push(name);continue}
   ids.add([...matches][0]);
