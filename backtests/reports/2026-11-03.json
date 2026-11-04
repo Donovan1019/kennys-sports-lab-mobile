@@ -1,6 +1,6 @@
 {
   "date": "2026-11-03",
-  "generated_at": "2026-11-03T22:54:56.707353+00:00",
+  "generated_at": "2026-11-04T17:04:15.873086+00:00",
   "sports": {
     "NFL": {
       "status": "NO_VERIFIED_PREGAME_PREDICTIONS",
@@ -25,23 +25,156 @@
       "pending": 36
     },
     "NHL": {
-      "status": "OUTCOMES_UNVERIFIED",
+      "status": "PARTIALLY_SETTLED_MONEYLINES",
       "saved_quotes": 0,
       "eligible_predictions": 114,
       "research_only_predictions": 114,
       "bet_eligible_predictions": 0,
       "blocked_predictions": [],
-      "graded": 0,
-      "settled": [],
-      "pending": 114
+      "graded": 22,
+      "settled": [
+        {
+          "event": "Utah Mammoth @ Toronto Maple Leafs",
+          "market": "h2h",
+          "selection": "Toronto Maple Leafs",
+          "outcome": "loss"
+        },
+        {
+          "event": "Utah Mammoth @ Toronto Maple Leafs",
+          "market": "h2h",
+          "selection": "Utah Mammoth",
+          "outcome": "win"
+        },
+        {
+          "event": "Winnipeg Jets @ Montreal Canadiens",
+          "market": "h2h",
+          "selection": "Montreal Canadiens",
+          "outcome": "loss"
+        },
+        {
+          "event": "Winnipeg Jets @ Montreal Canadiens",
+          "market": "h2h",
+          "selection": "Winnipeg Jets",
+          "outcome": "win"
+        },
+        {
+          "event": "Detroit Red Wings @ Tampa Bay Lightning",
+          "market": "h2h",
+          "selection": "Tampa Bay Lightning",
+          "outcome": "win"
+        },
+        {
+          "event": "Detroit Red Wings @ Tampa Bay Lightning",
+          "market": "h2h",
+          "selection": "Detroit Red Wings",
+          "outcome": "loss"
+        },
+        {
+          "event": "St. Louis Blues @ New York Rangers",
+          "market": "h2h",
+          "selection": "New York Rangers",
+          "outcome": "win"
+        },
+        {
+          "event": "St. Louis Blues @ New York Rangers",
+          "market": "h2h",
+          "selection": "St. Louis Blues",
+          "outcome": "loss"
+        },
+        {
+          "event": "Minnesota Wild @ Philadelphia Flyers",
+          "market": "h2h",
+          "selection": "Philadelphia Flyers",
+          "outcome": "loss"
+        },
+        {
+          "event": "Minnesota Wild @ Philadelphia Flyers",
+          "market": "h2h",
+          "selection": "Minnesota Wild",
+          "outcome": "win"
+        },
+        {
+          "event": "Vegas Golden Knights @ Pittsburgh Penguins",
+          "market": "h2h",
+          "selection": "Pittsburgh Penguins",
+          "outcome": "loss"
+        },
+        {
+          "event": "Vegas Golden Knights @ Pittsburgh Penguins",
+          "market": "h2h",
+          "selection": "Vegas Golden Knights",
+          "outcome": "win"
+        },
+        {
+          "event": "Dallas Stars @ Washington Capitals",
+          "market": "h2h",
+          "selection": "Washington Capitals",
+          "outcome": "loss"
+        },
+        {
+          "event": "Dallas Stars @ Washington Capitals",
+          "market": "h2h",
+          "selection": "Dallas Stars",
+          "outcome": "win"
+        },
+        {
+          "event": "Colorado Avalanche @ Columbus Blue Jackets",
+          "market": "h2h",
+          "selection": "Columbus Blue Jackets",
+          "outcome": "win"
+        },
+        {
+          "event": "Colorado Avalanche @ Columbus Blue Jackets",
+          "market": "h2h",
+          "selection": "Colorado Avalanche",
+          "outcome": "loss"
+        },
+        {
+          "event": "Edmonton Oilers @ New Jersey Devils",
+          "market": "h2h",
+          "selection": "New Jersey Devils",
+          "outcome": "win"
+        },
+        {
+          "event": "Edmonton Oilers @ New Jersey Devils",
+          "market": "h2h",
+          "selection": "Edmonton Oilers",
+          "outcome": "loss"
+        },
+        {
+          "event": "Carolina Hurricanes @ Nashville Predators",
+          "market": "h2h",
+          "selection": "Nashville Predators",
+          "outcome": "win"
+        },
+        {
+          "event": "Carolina Hurricanes @ Nashville Predators",
+          "market": "h2h",
+          "selection": "Carolina Hurricanes",
+          "outcome": "loss"
+        },
+        {
+          "event": "Anaheim Ducks @ Vancouver Canucks",
+          "market": "h2h",
+          "selection": "Vancouver Canucks",
+          "outcome": "loss"
+        },
+        {
+          "event": "Anaheim Ducks @ Vancouver Canucks",
+          "market": "h2h",
+          "selection": "Anaheim Ducks",
+          "outcome": "win"
+        }
+      ],
+      "pending": 92
     }
   },
   "summary": {
-    "verified_picks": 0,
-    "wins": 0,
-    "losses": 0,
+    "verified_picks": 22,
+    "wins": 11,
+    "losses": 11,
     "pushes": 0,
     "roi": null,
-    "hit_rate": null
+    "hit_rate": 0.5
   }
 }
