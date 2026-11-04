@@ -4,8 +4,8 @@ const {collect,convert,rowsFromPayload,season,urlForSeason}=require('../scripts/
 const now=Date.parse('2026-11-04T15:00:00Z');
 assert.equal(season(new Date(now)),'2026-27');
 assert.ok(urlForSeason('2025-26').includes('playergamelogs?'));
-const headers=['PLAYER_ID','PLAYER_NAME','GAME_ID','GAME_DATE','PTS','REB','AST','FG3M','STL','BLK','TOV'];
-const rows=Array.from({length:15},(_,i)=>[123,'Jane Example','00226'+String(i).padStart(5,'0'),'2026-10-'+String(i+1).padStart(2,'0'),20,8,6,3,1,1,2]);
+const headers=['PLAYER_ID','PLAYER_NAME','GAME_ID','GAME_DATE','PTS','REB','AST','FG3M','STL','BLK','TOV','FGM','FGA','FTM','FTA','FG3A','OREB','DREB'];
+const rows=Array.from({length:15},(_,i)=>[123,'Jane Example','00226'+String(i).padStart(5,'0'),'2026-10-'+String(i+1).padStart(2,'0'),20,8,6,3,1,1,2,7,15,3,4,8,2,6]);
 const payload={resultSets:[{name:'PlayerGameLogs',headers,rowSet:rows}]};
 assert.equal(rowsFromPayload(payload).length,15);
 assert.throws(()=>rowsFromPayload({}),/schema missing/);
