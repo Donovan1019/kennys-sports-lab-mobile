@@ -84,6 +84,7 @@ function marketReadiness(feed,history){
  }
  return byLeague;
 }
+function extractCrosswalk(payload){return Array.isArray(payload)?payload:Array.isArray(payload?.mappings)?payload.mappings:[]}
 function main(){
  const now=Date.now();
  const feed=readJson(process.env.PRIZEPICKS_FEED_PATH||'feed/prizepicks_lines.json');
@@ -94,7 +95,7 @@ function main(){
  const history=chooseVerifiedHistory(explicitHistory,archive,now);
  const historyInputDiagnostics=historyPaths.map((file,index)=>({file,status:explicitHistory[index]?'FOUND':'MISSING'}));
  const crosswalkPayload=readJson(process.env.PRIZEPICKS_CROSSWALK_PATH||'feed/prizepicks_verified_crosswalk.json');
- const crosswalk=Array.isArray(crosswalkPayload)?crosswalkPayload:Array.isArray(crosswalkPayload?.mappings)?crosswalkPayload.mappings:[];
+ const crosswalk=extractCrosswalk(crosswalkPayload);
  const result=runAudit(feed,history,crosswalk,now);
  const output={schema_version:1,generated_at:new Date(now).toISOString(),...result,identityReadiness:identityReadiness(feed,history,crosswalk),marketReadiness:marketReadiness(feed,history),historySourceDiagnostics:{...historySourceDiagnostics(explicitHistory,archive,now),historyInputDiagnostics,archiveAudit:{status:archiveAudit?.status||'MISSING',gameCount:archiveAudit?.game_count??null,playerCount:archiveAudit?.player_count??null}},inputs:{rawLines:feed?.status==='RAW_LINES_ONLY'?'PRESENT':'MISSING',historicalSource:history?.status==='VERIFIED_GAME_LOGS'?'PRESENT':'MISSING_OR_UNVERIFIED',verifiedCrosswalk:Array.isArray(crosswalk)&&crosswalk.length?'PRESENT':'MISSING',nflArchive:archive?.source==='nflverse-stats-player-week'?'FOUND':'MISSING_OR_UNRECOGNIZED'}};
  const dest=process.env.PRIZEPICKS_HISTORY_AUDIT_PATH||'feed/prizepicks_history_audit.json';
@@ -103,4 +104,4 @@ function main(){
  console.log('PrizePicks history audit: '+output.status+'; '+(output.reason||'research only'));
 }
 if(require.main===module)main();
-module.exports={readJson,runAudit,chooseVerifiedHistory,identityReadiness,historySourceDiagnostics,marketReadiness};
+module.exports={readJson,runAudit,chooseVerifiedHistory,identityReadiness,historySourceDiagnostics,marketReadiness,extractCrosswalk};
