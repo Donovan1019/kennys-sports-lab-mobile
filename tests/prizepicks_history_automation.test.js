@@ -126,7 +126,6 @@ assert.match(workflow,/PRIZEPICKS_CROSSWALK_PATH: feed\/prizepicks_verified_cros
 console.log('Automated PrizePicks history audit fail-closed tests passed');
 
 // PrizePicks provider market aliases must join independently verified canonical histories.
-const {canonicalMarket,joinHistory}=require('../scripts/prizepicks_history_join');
 for(const [league,input,expected] of [['NBA','Pts+Rebs+Asts','Points + Rebounds + Assists'],['NBA','Pts+Asts','Points + Assists'],['NBA','Rebs+Asts','Rebounds + Assists'],['NBA','Double-Double','Double Doubles'],['NBA','Blocked Shots','Blocks'],['NHL','SOG','Shots on Goal'],['NHL','Blocked shots','Blocked Shots']]) assert.equal(canonicalMarket(league,input),expected);
 const aliasFeed={...feed,lines:[{...feed.lines[0],market:'Pts+Rebs+Asts'}]};
 const aliasHistory={...history,records:history.records.map(r=>({...r,market:'Points + Rebounds + Assists'}))};
