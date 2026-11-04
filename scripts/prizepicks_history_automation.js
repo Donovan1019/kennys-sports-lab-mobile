@@ -14,13 +14,13 @@ function runAudit(feed,history,crosswalk,now=Date.now()){
  return {...audit,betEligible:false,modelValidated:false,sourceStatus:audit.status==='PARTIAL_HISTORY'?'VERIFIED_RESEARCH_ONLY':'UNAVAILABLE'};
 }
 function historySourceDiagnostics(explicitHistory,archive,now=Date.now()){
- const explicit=explicitHistory?verifySourcePayload(explicitHistory,now):null;
+ const explicit=Array.isArray(explicitHistory)?explicitHistory.map(item=>item?verifySourcePayload(item,now):{status:'NOT_CONFIGURED'}):explicitHistory?verifySourcePayload(explicitHistory,now):null;
  const bridged=bridgeNflverseArchive(archive,now);
- return {explicitHistory:explicit?{status:explicit.status,reason:explicit.reason||null}:{status:'NOT_CONFIGURED'},nflArchive:{status:bridged.status,reason:bridged.reason||null},selected:explicit?.status==='VERIFIED_HISTORY_INPUT'?'EXPLICIT':bridged.status==='VERIFIED_GAME_LOGS'?'NFL_ARCHIVE':'NONE'};
+ return {explicitHistory:Array.isArray(explicit)?explicit.map(item=>({status:item.status,reason:item.reason||null})):explicit?{status:explicit.status,reason:explicit.reason||null}:{status:'NOT_CONFIGURED'},nflArchive:{status:bridged.status,reason:bridged.reason||null},selected:(Array.isArray(explicit)?explicit.some(item=>item.status==='VERIFIED_HISTORY_INPUT'):explicit?.status==='VERIFIED_HISTORY_INPUT')?'EXPLICIT':bridged.status==='VERIFIED_GAME_LOGS'?'NFL_ARCHIVE':'NONE'};
 }
 function chooseVerifiedHistory(explicitHistory,archive,now=Date.now()){
  const explicitInputs=Array.isArray(explicitHistory)?explicitHistory:[explicitHistory];
- const explicit=explicitInputs.filter(item=>item&&verifySourcePayload(item,now).status==='VERIFIED_HISTORY_INPUT');
+ const explicit=explicitInputs.filter(item=>item&&verifySourcePayload(item,now).status==='VERIFIED_HISTORY_INPUT').map(item=>({...item,records:verifySourcePayload(item,now).records}));
  const bridged=bridgeNflverseArchive(archive,now);
  const nfl=bridged.status==='VERIFIED_GAME_LOGS'?bridged:null;
  const inputs=[...explicit,...(nfl?[nfl]:[])];
@@ -94,7 +94,7 @@ function main(){
  const history=chooseVerifiedHistory(explicitHistory,archive,now);
  const crosswalk=readJson(process.env.PRIZEPICKS_CROSSWALK_PATH||'feed/prizepicks_verified_crosswalk.json');
  const result=runAudit(feed,history,crosswalk,now);
- const output={schema_version:1,generated_at:new Date(now).toISOString(),...result,identityReadiness:identityReadiness(feed,history,crosswalk),marketReadiness:marketReadiness(feed,history),historySourceDiagnostics:{...historySourceDiagnostics(Array.isArray(explicitHistory)?explicitHistory[0]:explicitHistory,archive,now),archiveAudit:{status:archiveAudit?.status||'MISSING',gameCount:archiveAudit?.game_count??null,playerCount:archiveAudit?.player_count??null}},inputs:{rawLines:feed?.status==='RAW_LINES_ONLY'?'PRESENT':'MISSING',historicalSource:history?.status==='VERIFIED_GAME_LOGS'?'PRESENT':'MISSING_OR_UNVERIFIED',verifiedCrosswalk:Array.isArray(crosswalk)&&crosswalk.length?'PRESENT':'MISSING',nflArchive:archive?.source==='nflverse-stats-player-week'?'FOUND':'MISSING_OR_UNRECOGNIZED'}};
+ const output={schema_version:1,generated_at:new Date(now).toISOString(),...result,identityReadiness:identityReadiness(feed,history,crosswalk),marketReadiness:marketReadiness(feed,history),historySourceDiagnostics:{...historySourceDiagnostics(explicitHistory,archive,now),archiveAudit:{status:archiveAudit?.status||'MISSING',gameCount:archiveAudit?.game_count??null,playerCount:archiveAudit?.player_count??null}},inputs:{rawLines:feed?.status==='RAW_LINES_ONLY'?'PRESENT':'MISSING',historicalSource:history?.status==='VERIFIED_GAME_LOGS'?'PRESENT':'MISSING_OR_UNVERIFIED',verifiedCrosswalk:Array.isArray(crosswalk)&&crosswalk.length?'PRESENT':'MISSING',nflArchive:archive?.source==='nflverse-stats-player-week'?'FOUND':'MISSING_OR_UNRECOGNIZED'}};
  const dest=process.env.PRIZEPICKS_HISTORY_AUDIT_PATH||'feed/prizepicks_history_audit.json';
  fs.mkdirSync(path.dirname(dest),{recursive:true});
  fs.writeFileSync(dest,JSON.stringify(output,null,2)+'\n');
