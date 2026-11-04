@@ -91,4 +91,7 @@ assert.equal(rateRecords.find(r=>r.market==='Rush Yards Per Carry').games[0].val
 const noDenominator={...rateArchive,players:[{player_id:'nfl-123',games:rateArchive.players[0].games.map((g,i)=>i===0?{...g,values:{...g.values,'Pass Attempts':0,'Rush Attempts':0}}:g)}]};
 assert.equal(bridgeNflverseArchive(noDenominator,now).records.some(r=>r.market==='Completion Percentage'),false);
 assert.equal(bridgeNflverseArchive(noDenominator,now).records.some(r=>r.market==='Rush Yards Per Carry'),false);
+const workflow=fs.readFileSync(require('node:path').join(__dirname,'../.github/workflows/prizepicks-ingest.yml'),'utf8');
+assert.match(workflow,/PRIZEPICKS_HISTORY_PATH: feed\/prizepicks_verified_history\.json/);
+assert.match(workflow,/PRIZEPICKS_CROSSWALK_PATH: feed\/prizepicks_verified_crosswalk\.json/);
 console.log('Automated PrizePicks history audit fail-closed tests passed');
