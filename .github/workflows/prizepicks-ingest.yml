@@ -74,6 +74,22 @@ jobs:
           else
             echo 'run=false' >> "$GITHUB_OUTPUT"
           fi
+      - name: Probe NBA/NHL collectors on pull requests
+        if: github.event_name == 'pull_request'
+        continue-on-error: true
+        run: |
+          node scripts/prizepicks_nba_collector.js
+          node scripts/prizepicks_nhl_collector.js
+          node -e "for(const sport of ['nba','nhl']){const d=require('./feed/prizepicks_'+sport+'_verified_history.json');console.log(JSON.stringify({sport,status:d.status,records:d.records?.length,diagnostics:d.diagnostics}));}"
+      - name: Upload pull-request player-data diagnostics
+        if: always() && github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: prizepicks-player-collector-probe
+          if-no-files-found: warn
+          path: |
+            feed/prizepicks_nba_verified_history.json
+            feed/prizepicks_nhl_verified_history.json
       - name: Fetch authenticated source lines
         id: provider
         continue-on-error: true
