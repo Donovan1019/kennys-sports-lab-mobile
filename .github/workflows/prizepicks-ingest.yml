@@ -18,6 +18,7 @@ on:
       - 'scripts/prizepicks_nflverse_bridge.js'
       - 'scripts/prizepicks_nhl_collector.js'
       - 'scripts/prizepicks_nba_collector.js'
+      - 'scripts/prizepicks_existing_module_bridge.js'
       - 'tests/prizepicks_history_automation.test.js'
       - 'tests/prizepicks_nhl_collector.test.js'
       - 'tests/prizepicks_nba_collector.test.js'
@@ -28,6 +29,7 @@ on:
     paths:
       - 'scripts/prizepicks_nhl_collector.js'
       - 'scripts/prizepicks_nba_collector.js'
+      - 'scripts/prizepicks_existing_module_bridge.js'
       - 'tests/prizepicks_nhl_collector.test.js'
       - 'tests/prizepicks_nba_collector.test.js'
       - 'scripts/prizepicks_ingest.js'
@@ -39,6 +41,7 @@ on:
       - 'scripts/prizepicks_nflverse_bridge.js'
       - 'scripts/prizepicks_nhl_collector.js'
       - 'scripts/prizepicks_nba_collector.js'
+      - 'scripts/prizepicks_existing_module_bridge.js'
       - 'tests/prizepicks_nhl_collector.test.js'
       - 'tests/prizepicks_nba_collector.test.js'
       - 'tests/prizepicks_history_automation.test.js'
@@ -59,7 +62,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: node --check scripts/prizepicks_ingest.js && node tests/prizepicks_ingest.test.js && node tests/prizepicks_history_automation.test.js && node tests/prizepicks_nhl_collector.test.js && node tests/prizepicks_nba_collector.test.js && node tests/prizepicks_connectors_health.test.js
+      - run: node --check scripts/prizepicks_ingest.js && node tests/prizepicks_ingest.test.js && node tests/prizepicks_history_automation.test.js && node tests/prizepicks_nhl_collector.test.js && node tests/prizepicks_nba_collector.test.js && node tests/prizepicks_connectors_health.test.js && node tests/prizepicks_existing_module_bridge.test.js
       - name: Eastern schedule gate
         id: eastern
         run: |
@@ -90,6 +93,9 @@ jobs:
         if: github.event_name != 'pull_request' && (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success') && steps.eastern.outputs.run == 'true'
         run: |
           node -e "const fs=require('fs');const d=JSON.parse(fs.readFileSync('feed/prizepicks_nba_verified_history.json'));if(d.source!=='stats.nba.com/stats/playergamelogs'||!Array.isArray(d.records)||!d.diagnostics||!['VERIFIED_GAME_LOGS','UNAVAILABLE'].includes(d.status)||(d.status==='VERIFIED_GAME_LOGS'&&!d.records.length)||(d.status==='UNAVAILABLE'&&!d.diagnostics.reason))process.exit(1);console.log(JSON.stringify({status:d.status,records:d.records.length,diagnostics:d.diagnostics}));"
+      - name: Reuse existing NBA and official NHL module player archives
+        if: github.event_name != 'pull_request' && (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success') && steps.eastern.outputs.run == 'true'
+        run: node scripts/prizepicks_existing_module_bridge.js
       - name: Refresh latest audited NFL archive before research join
         if: github.event_name != 'pull_request' && (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success') && steps.eastern.outputs.run == 'true'
         run: |
@@ -104,6 +110,8 @@ jobs:
           PRIZEPICKS_HISTORY_PATH: feed/prizepicks_verified_history.json
           PRIZEPICKS_NBA_HISTORY_PATH: feed/prizepicks_nba_verified_history.json
           PRIZEPICKS_NHL_HISTORY_PATH: feed/prizepicks_nhl_verified_history.json
+          PRIZEPICKS_NBA_MODULE_HISTORY_PATH: feed/prizepicks_nba_module_history.json
+          PRIZEPICKS_NHL_MODULE_HISTORY_PATH: feed/prizepicks_nhl_module_history.json
           PRIZEPICKS_CROSSWALK_PATH: feed/prizepicks_verified_crosswalk.json
         run: node scripts/prizepicks_history_automation.js
       - name: Validate audit artifact and source provenance
@@ -121,6 +129,8 @@ jobs:
             feed/prizepicks_history_audit.json
             feed/prizepicks_nhl_verified_history.json
             feed/prizepicks_nba_verified_history.json
+            feed/prizepicks_nba_module_history.json
+            feed/prizepicks_nhl_module_history.json
       - name: Publish fresh feed
         if: github.event_name != 'pull_request' && (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success') && steps.eastern.outputs.run == 'true'
         run: |
