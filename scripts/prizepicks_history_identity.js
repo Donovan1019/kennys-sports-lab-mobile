@@ -19,7 +19,7 @@ function attachVerifiedIdentity(feed,payload,crosswalk){
  const feedIds=new Set(feed.lines.filter(x=>x.player_id).map(x=>[x.league,x.player_id].join('|')));
  const records=[];
  for(const r of payload.records){
-  if(!r||r.source!==payload.source||!r.playerId||!r.league||!r.market||!r.period)continue;
+  if(!r||!(payload.source==='MULTI_SOURCE_VERIFIED'&&Array.isArray(payload.sources)?payload.sources.includes(r.source):r.source===payload.source)||!r.playerId||!r.league||!r.market||!r.period)continue;
   for(const m of crosswalk){
    if(!m||m.verified!==true||m.league!==r.league||m.historySource!==r.source||m.historyPlayerId!==r.playerId)continue;
    const key=[m.league,m.prizepicksPlayerId,m.historySource].join('|');
