@@ -23,6 +23,7 @@ on:
       - 'tests/prizepicks_nba_collector.test.js'
       - 'tests/prizepicks_connectors_health.test.js'
       - '.github/workflows/prizepicks-ingest.yml'
+      - '.github/workflows/prizepicks-connectors-health.yml'
   pull_request:
     paths:
       - 'scripts/prizepicks_nhl_collector.js'
@@ -42,6 +43,7 @@ on:
       - 'tests/prizepicks_nba_collector.test.js'
       - 'tests/prizepicks_history_automation.test.js'
       - '.github/workflows/prizepicks-ingest.yml'
+      - '.github/workflows/prizepicks-connectors-health.yml'
 concurrency:
   group: prizepicks-raw-line-publish
   cancel-in-progress: false
