@@ -88,13 +88,14 @@ function main(){
  const now=Date.now();
  const feed=readJson(process.env.PRIZEPICKS_FEED_PATH||'feed/prizepicks_lines.json');
  const historyPaths=[process.env.PRIZEPICKS_HISTORY_PATH,process.env.PRIZEPICKS_NBA_HISTORY_PATH,process.env.PRIZEPICKS_NHL_HISTORY_PATH].filter(Boolean);
- const explicitHistory=historyPaths.length?historyPaths.map(readJson).filter(Boolean):null;
+ const explicitHistory=historyPaths.length?historyPaths.map(readJson):null;
  const archive=readJson(process.env.PRIZEPICKS_NFL_ARCHIVE_PATH||'feed/nfl_player_stats.json');
  const archiveAudit=readJson(process.env.PRIZEPICKS_NFL_ARCHIVE_AUDIT_PATH||'feed/nfl_player_stats_audit.json');
  const history=chooseVerifiedHistory(explicitHistory,archive,now);
+ const historyInputDiagnostics=historyPaths.map((file,index)=>({file,status:explicitHistory[index]?'FOUND':'MISSING'}));
  const crosswalk=readJson(process.env.PRIZEPICKS_CROSSWALK_PATH||'feed/prizepicks_verified_crosswalk.json');
  const result=runAudit(feed,history,crosswalk,now);
- const output={schema_version:1,generated_at:new Date(now).toISOString(),...result,identityReadiness:identityReadiness(feed,history,crosswalk),marketReadiness:marketReadiness(feed,history),historySourceDiagnostics:{...historySourceDiagnostics(explicitHistory,archive,now),archiveAudit:{status:archiveAudit?.status||'MISSING',gameCount:archiveAudit?.game_count??null,playerCount:archiveAudit?.player_count??null}},inputs:{rawLines:feed?.status==='RAW_LINES_ONLY'?'PRESENT':'MISSING',historicalSource:history?.status==='VERIFIED_GAME_LOGS'?'PRESENT':'MISSING_OR_UNVERIFIED',verifiedCrosswalk:Array.isArray(crosswalk)&&crosswalk.length?'PRESENT':'MISSING',nflArchive:archive?.source==='nflverse-stats-player-week'?'FOUND':'MISSING_OR_UNRECOGNIZED'}};
+ const output={schema_version:1,generated_at:new Date(now).toISOString(),...result,identityReadiness:identityReadiness(feed,history,crosswalk),marketReadiness:marketReadiness(feed,history),historySourceDiagnostics:{...historySourceDiagnostics(explicitHistory,archive,now),historyInputDiagnostics,archiveAudit:{status:archiveAudit?.status||'MISSING',gameCount:archiveAudit?.game_count??null,playerCount:archiveAudit?.player_count??null}},inputs:{rawLines:feed?.status==='RAW_LINES_ONLY'?'PRESENT':'MISSING',historicalSource:history?.status==='VERIFIED_GAME_LOGS'?'PRESENT':'MISSING_OR_UNVERIFIED',verifiedCrosswalk:Array.isArray(crosswalk)&&crosswalk.length?'PRESENT':'MISSING',nflArchive:archive?.source==='nflverse-stats-player-week'?'FOUND':'MISSING_OR_UNRECOGNIZED'}};
  const dest=process.env.PRIZEPICKS_HISTORY_AUDIT_PATH||'feed/prizepicks_history_audit.json';
  fs.mkdirSync(path.dirname(dest),{recursive:true});
  fs.writeFileSync(dest,JSON.stringify(output,null,2)+'\n');
