@@ -22,6 +22,8 @@ on:
       - '.github/workflows/prizepicks-ingest.yml'
   pull_request:
     paths:
+      - 'scripts/prizepicks_nhl_collector.js'
+      - 'tests/prizepicks_nhl_collector.test.js'
       - 'scripts/prizepicks_ingest.js'
       - 'tests/prizepicks_ingest.test.js'
       - 'scripts/prizepicks_history_identity.js'

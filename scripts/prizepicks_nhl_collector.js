@@ -6,7 +6,17 @@ const TEAMS='ANA BOS BUF CAR CBJ CGY CHI COL DAL DET EDM FLA LAK MIN MTL NJD NSH
 const SOURCE='api-web.nhle.com/v1';
 function seasonId(now=new Date()){const y=now.getUTCFullYear()-(now.getUTCMonth()<8?1:0);return String(y)+String(y+1)}
 function cleanName(v){return String(v||'').normalize('NFKD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]/g,'')}
-async function getJson(url,fetcher=fetch){const res=await fetcher(url,{headers:{accept:'application/json'},signal:AbortSignal.timeout(12000)});if(!res.ok)throw Error('NHL HTTP '+res.status);return res.json()}
+async function getJson(url,fetcher=fetch,wait=ms=>new Promise(resolve=>setTimeout(resolve,ms))){
+ for(let attempt=0;attempt<3;attempt++){
+  try{
+   const res=await fetcher(url,{headers:{accept:'application/json'},signal:AbortSignal.timeout(12000)});
+   if(res.ok)return await res.json();
+   if(![429,500,502,503,504].includes(res.status)||attempt===2)throw Error('NHL HTTP '+res.status);
+  }catch(e){if(attempt===2||/^NHL HTTP (?!429|50[0234])/.test(e.message))throw e}
+  await wait(250*Math.pow(2,attempt));
+ }
+ throw Error('NHL retry exhausted');
+}
 function convertLog(id,log,now=Date.now()){
  const fields={'Shots on Goal':'shots','Goals':'goals','Assists':'assists','Points':'points','Blocked Shots':'blockedShots'};
  const records=[];
@@ -82,4 +92,4 @@ async function main(){
  console.log(JSON.stringify({status:result.status,records:result.records.length,diagnostics:result.diagnostics}));
 }
 if(require.main===module)main().catch(e=>{console.error(e);process.exitCode=1});
-module.exports={collect,convertLog,seasonId,cleanName};
+module.exports={collect,convertLog,seasonId,cleanName,getJson};
