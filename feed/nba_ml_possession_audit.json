@@ -1,6 +1,6 @@
 {
   "status": "diagnostic_only",
-  "generated_at": "2026-11-03T22:55:17.319065+00:00",
+  "generated_at": "2026-11-04T01:16:13.443079+00:00",
   "source": "historical team box-score possessions, not Elo or bookmaker odds",
   "qualified_teams": 30,
   "games": [
@@ -113,6 +113,42 @@
       "betting_eligible": false
     },
     {
+      "event_id": "3469f522ffcacb13f88e6cd297adc110",
+      "status": "diagnostic_only",
+      "home": "Memphis Grizzlies",
+      "away": "Indiana Pacers",
+      "draws": 10000,
+      "estimated_possessions": 103.14,
+      "home_offense_ppp": 1.1409,
+      "away_offense_ppp": 1.1613,
+      "home_regulation_win_probability": 0.4486,
+      "regulation_tie_probability": 0.0229,
+      "home_full_game_win_probability": 0.4486,
+      "overtime_periods_simulated": 251,
+      "overtime_unmodeled": false,
+      "injuries_rest_unmodeled": true,
+      "historical_calibration_unverified": true,
+      "betting_eligible": false
+    },
+    {
+      "event_id": "0b5966b7b96eb844618eea8f215a0c71",
+      "status": "diagnostic_only",
+      "home": "New Orleans Pelicans",
+      "away": "Utah Jazz",
+      "draws": 10000,
+      "estimated_possessions": 104.42,
+      "home_offense_ppp": 1.1595,
+      "away_offense_ppp": 1.1257,
+      "home_regulation_win_probability": 0.5841,
+      "regulation_tie_probability": 0.022,
+      "home_full_game_win_probability": 0.5841,
+      "overtime_periods_simulated": 235,
+      "overtime_unmodeled": false,
+      "injuries_rest_unmodeled": true,
+      "historical_calibration_unverified": true,
+      "betting_eligible": false
+    },
+    {
       "event_id": "b2557f74f4d7675ed3b76a4a064e0bc9",
       "status": "diagnostic_only",
       "home": "Houston Rockets",
@@ -201,6 +237,11 @@
       "injuries_rest_unmodeled": true,
       "historical_calibration_unverified": true,
       "betting_eligible": false
+    },
+    {
+      "event_id": "72c786e70ad9360fdc41e4c2a50fa788",
+      "status": "unavailable",
+      "reason": "historical_box_score_possessions_missing"
     }
   ],
   "betting_eligible": false,
