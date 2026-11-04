@@ -42,11 +42,18 @@ async function collect(feed,now=Date.now(),fetcher=fetch){
  }
  output.diagnostics.matchedRosterIds=ids.size;
  const season=seasonId(new Date(now));
+ const previous=String(Number(season.slice(0,4))-1)+String(Number(season.slice(4))-1);
  for(const id of ids){
   try{
-   const data=await getJson('https://api-web.nhle.com/v1/player/'+id+'/game-log/'+season+'/2',fetcher);
-   if(!Array.isArray(data.gameLog))throw Error('gameLog array missing');
-   output.records.push(...convertLog(id,data.gameLog,now));
+   const logs=[];
+   for(const year of [season,previous]){
+    try{
+     const data=await getJson('https://api-web.nhle.com/v1/player/'+id+'/game-log/'+year+'/2',fetcher);
+     if(!Array.isArray(data.gameLog))throw Error('gameLog array missing');
+     logs.push(...data.gameLog);
+    }catch(e){output.diagnostics.gameLogFailures.push(String(id)+' '+year+': '+e.message)}
+   }
+   output.records.push(...convertLog(id,logs,now));
   }catch(e){output.diagnostics.gameLogFailures.push(String(id)+': '+e.message)}
  }
  if(output.records.length)output.status='VERIFIED_GAME_LOGS';
