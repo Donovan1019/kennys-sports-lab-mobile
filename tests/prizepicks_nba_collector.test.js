@@ -4,20 +4,24 @@ const {collect,convert,rowsFromPayload,season,urlForSeason}=require('../scripts/
 const now=Date.parse('2026-11-04T15:00:00Z');
 assert.equal(season(new Date(now)),'2026-27');
 assert.ok(urlForSeason('2025-26').includes('playergamelogs?'));
-const headers=['PLAYER_ID','PLAYER_NAME','GAME_ID','GAME_DATE','PTS','REB','AST','FG3M','STL','BLK','TOV'];
-const rows=Array.from({length:15},(_,i)=>[123,'Jane Example','00226'+String(i).padStart(5,'0'),'2026-10-'+String(i+1).padStart(2,'0'),20,8,6,3,1,1,2]);
+const headers=['PLAYER_ID','PLAYER_NAME','GAME_ID','GAME_DATE','PTS','REB','AST','FG3M','STL','BLK','TOV','FGM','FGA','FTM','FTA','FG3A','OREB','DREB'];
+const rows=Array.from({length:15},(_,i)=>[123,'Jane Example','00226'+String(i).padStart(5,'0'),'2026-10-'+String(i+1).padStart(2,'0'),20,12,6,3,1,1,2,7,15,3,4,8,2,10]);
 const payload={resultSets:[{name:'PlayerGameLogs',headers,rowSet:rows}]};
 assert.equal(rowsFromPayload(payload).length,15);
 assert.throws(()=>rowsFromPayload({}),/schema missing/);
 const feed={lines:[{league:'NBA',player:'Jane Example'}]};
-assert.equal(convert(rowsFromPayload(payload),feed,now).records.length,11);
+assert.equal(convert(rowsFromPayload(payload),feed,now).records.length,20);
 (async()=>{
  const fetcher=async url=>({ok:true,json:async()=>url.includes('2026-27')?payload:{resultSets:[{name:'PlayerGameLogs',headers,rowSet:[]}]}});
  const result=await collect(feed,now,fetcher);
  assert.equal(result.status,'VERIFIED_GAME_LOGS');
- assert.equal(result.records.length,11);
+ assert.equal(result.records.length,20);
  assert.equal(result.records[0].source,'stats.nba.com/stats/playergamelogs');
  assert.equal(result.records[0].games.length,15);
+ assert.equal(result.records.find(x=>x.market==='Double Doubles').games[0].value,1);
+ assert.equal(result.records.find(x=>x.market==='Triple Doubles').games[0].value,0);
+ const missing=rows.map(row=>[...row]);missing.forEach(row=>row[4]=null);
+ assert.equal(convert(rowsFromPayload({resultSets:[{name:'PlayerGameLogs',headers,rowSet:missing}]}),feed,now).records.some(x=>x.market==='Points'),false);
  const partial=await collect(feed,now,async url=>url.includes('2025-26')?{ok:false,status:403}:fetcher(url));
  assert.equal(partial.status,'UNAVAILABLE');
  assert.equal(partial.records.length,0);

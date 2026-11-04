@@ -17,8 +17,8 @@ async function getJson(url,fetcher=fetch,wait=ms=>new Promise(resolve=>setTimeou
  }
  throw Error('NHL retry exhausted');
 }
-function convertLog(id,log,now=Date.now()){
- const fields={'Shots on Goal':'shots','Goals':'goals','Assists':'assists','Points':'points','Blocked Shots':'blockedShots'};
+function convertLog(id,log,now=Date.now(),position='skater'){
+ const fields=position==='goalie'?{'Saves':'saves','Goals Against':'goalsAgainst'}:{'Shots on Goal':'shots','Goals':'goals','Assists':'assists','Points':'points','Blocked Shots':'blockedShots'};
  const records=[];
  for(const [market,field] of Object.entries(fields)){
   const games=[];
@@ -42,15 +42,17 @@ async function collect(feed,now=Date.now(),fetcher=fetch){
  const output={schema_version:1,status:'UNAVAILABLE',source:SOURCE,generated_at:new Date(now).toISOString(),records:[],diagnostics:{candidateNames:names.size,rosterFailures:[],gameLogFailures:[],matchedRosterIds:0,ambiguousRosterNames:[],verifiedMarketRecords:0,reason:null}};
  if(!names.size){output.diagnostics.reason='no NHL candidate names in source feed';return output}
  const idsByName=new Map();
+ const positionById=new Map();
  await batches(TEAMS,6,async team=>{
   try{
    const roster=await getJson('https://api-web.nhle.com/v1/roster/'+team+'/current',fetcher);
-   for(const p of [...(roster.forwards||[]),...(roster.defensemen||[])]){
+   for(const p of [...(roster.forwards||[]),...(roster.defensemen||[]),...(roster.goalies||[])]){
     const full=[p.firstName?.default,p.lastName?.default].filter(Boolean).join(' ');
     if(names.has(cleanName(full))&&Number.isInteger(p.id)){
      const key=cleanName(full);
      if(!idsByName.has(key))idsByName.set(key,new Set());
      idsByName.get(key).add(p.id);
+     positionById.set(p.id,(roster.goalies||[]).some(g=>g.id===p.id)?'goalie':'skater');
     }
    }
   }catch(e){output.diagnostics.rosterFailures.push(team+': '+e.message)}
@@ -77,7 +79,7 @@ async function collect(feed,now=Date.now(),fetcher=fetch){
      logs.push(...data.gameLog);
     }catch(e){output.diagnostics.gameLogFailures.push(String(id)+' '+year+': '+e.message)}
    }
-   output.records.push(...convertLog(id,logs,now));
+   output.records.push(...convertLog(id,logs,now,positionById.get(id)));
   }catch(e){output.diagnostics.gameLogFailures.push(String(id)+': '+e.message)}
  });
  output.diagnostics.verifiedMarketRecords=output.records.length;
