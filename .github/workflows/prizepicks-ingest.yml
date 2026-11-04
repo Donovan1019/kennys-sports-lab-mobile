@@ -228,3 +228,11 @@ jobs:
             git commit -m 'data: refresh PrizePicks source lines [skip ci]'
             git push origin HEAD:main
           fi
+
+      - name: Fail run when authenticated provider lines were unavailable
+        if: always() && github.event_name != 'pull_request' && steps.eastern.outputs.run == 'true' && steps.provider.outcome != 'success'
+        run: |
+          echo '### PrizePicks provider ingestion unavailable' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Live player IDs, crosswalk, history audit and feed publication were skipped. Independent league histories may still have refreshed.' >> "$GITHUB_STEP_SUMMARY"
+          echo '::error::Authenticated provider ingestion failed; research workflow must not report success.'
+          exit 1
