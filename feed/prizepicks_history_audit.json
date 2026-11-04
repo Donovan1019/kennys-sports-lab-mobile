@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-04T00:21:35.868Z",
+  "generated_at": "2026-11-04T00:26:16.893Z",
   "status": "UNAVAILABLE",
   "reason": "verified provider identity crosswalk missing",
   "coverage": {
-    "total": 598,
+    "total": 600,
     "matched": 0,
-    "unavailable": 598,
+    "unavailable": 600,
     "byLeague": {
       "NBA": 200,
       "NFL": 200,
-      "NHL": 198
+      "NHL": 200
     }
   },
   "rows": [],
@@ -18,9 +18,9 @@
   "modelValidated": false,
   "sourceStatus": "UNAVAILABLE",
   "identityReadiness": {
-    "providerPlayers": 220,
+    "providerPlayers": 178,
     "providerPlayersMissingId": 0,
-    "historicalPlayerMarketRecords": 8950,
+    "historicalPlayerMarketRecords": 9785,
     "verifiedMappingsProvided": 0,
     "verifiedMappingsWithBothIdsPresent": 0,
     "distinctProviderPlayersWithCandidateMappings": 0,
@@ -38,12 +38,12 @@
       "NFL": {
         "sourceLines": 200,
         "providerPlayers": 18,
-        "historicalPlayerMarketRecords": 8950,
+        "historicalPlayerMarketRecords": 9785,
         "verifiedPlayerMappings": 0
       },
       "NHL": {
-        "sourceLines": 198,
-        "providerPlayers": 162,
+        "sourceLines": 200,
+        "providerPlayers": 120,
         "historicalPlayerMarketRecords": 0,
         "verifiedPlayerMappings": 0
       }
@@ -168,7 +168,7 @@
         "Rush+Rec Yds": {
           "lines": 7,
           "historyMarket": "Rush+Rec Yds",
-          "historyMarketAvailable": false
+          "historyMarketAvailable": true
         },
         "Receptions": {
           "lines": 39,
@@ -196,19 +196,19 @@
           "historyMarketAvailable": false
         }
       },
-      "supportedLines": 155,
-      "unsupportedLines": 45
+      "supportedLines": 162,
+      "unsupportedLines": 38
     },
     "NHL": {
-      "sourceLines": 198,
+      "sourceLines": 200,
       "markets": {
         "Points": {
-          "lines": 137,
+          "lines": 102,
           "historyMarket": "Points",
           "historyMarketAvailable": false
         },
         "Goals": {
-          "lines": 57,
+          "lines": 78,
           "historyMarket": "Goals",
           "historyMarketAvailable": false
         },
@@ -216,10 +216,20 @@
           "lines": 4,
           "historyMarket": "Faceoffs Won",
           "historyMarketAvailable": false
+        },
+        "Assists": {
+          "lines": 1,
+          "historyMarket": "Assists",
+          "historyMarketAvailable": false
+        },
+        "Shots On Goal": {
+          "lines": 15,
+          "historyMarket": "Shots On Goal",
+          "historyMarketAvailable": false
         }
       },
       "supportedLines": 0,
-      "unsupportedLines": 198
+      "unsupportedLines": 200
     }
   },
   "historySourceDiagnostics": {
