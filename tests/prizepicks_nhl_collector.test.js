@@ -7,7 +7,7 @@ const log=Array.from({length:15},(_,i)=>({gameId:100+i,gameDate:'2026-10-'+Strin
 assert.equal(convertLog(123,log,now).length,5);
 assert.equal(convertLog(123,log.slice(0,14),now).length,0);
 assert.equal(convertLog(123,log.map(g=>({...g,shots:undefined})),now).some(r=>r.market==='Shots on Goal'),false);
-const mock=async url=>({ok:true,json:async()=>url.includes('/roster/BOS/')?{forwards:[{id:123,firstName:{default:'Jane'},lastName:{default:'Example'}}]}:url.includes('/roster/')?{forwards:[]}:url.includes('/player/123/20262027/')?{gameLog:log}:{gameLog:[]}});
+const mock=async url=>({ok:true,json:async()=>url.includes('/roster/BOS/')?{forwards:[{id:123,firstName:{default:'Jane'},lastName:{default:'Example'}}]}:url.includes('/roster/')?{forwards:[]}:url.includes('/player/123/game-log/20262027/')?{gameLog:log}:{gameLog:[]}});
 (async()=>{
  const feed={lines:[{league:'NHL',player:'Jane Example'}]};
  const result=await collect(feed,now,mock);
