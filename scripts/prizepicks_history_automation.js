@@ -87,7 +87,7 @@ function marketReadiness(feed,history){
 function main(){
  const now=Date.now();
  const feed=readJson(process.env.PRIZEPICKS_FEED_PATH||'feed/prizepicks_lines.json');
- const historyPaths=[process.env.PRIZEPICKS_HISTORY_PATH,process.env.PRIZEPICKS_NBA_HISTORY_PATH,process.env.PRIZEPICKS_NHL_HISTORY_PATH].filter(Boolean);
+ const historyPaths=[process.env.PRIZEPICKS_HISTORY_PATH,process.env.PRIZEPICKS_NBA_HISTORY_PATH,process.env.PRIZEPICKS_NHL_HISTORY_PATH,process.env.PRIZEPICKS_NBA_MODULE_HISTORY_PATH,process.env.PRIZEPICKS_NHL_MODULE_HISTORY_PATH].filter(Boolean);
  const explicitHistory=historyPaths.length?historyPaths.map(readJson):null;
  const archive=readJson(process.env.PRIZEPICKS_NFL_ARCHIVE_PATH||'feed/nfl_player_stats.json');
  const archiveAudit=readJson(process.env.PRIZEPICKS_NFL_ARCHIVE_AUDIT_PATH||'feed/nfl_player_stats_audit.json');
