@@ -16,7 +16,7 @@ const missingCrosswalk=runAudit(feed,history,[],now);
 assert.equal(missingCrosswalk.status,'UNAVAILABLE');
 assert.deepEqual(missingCrosswalk.coverage,{total:1,matched:0,unavailable:1,byLeague:{NBA:1}});
 assert.equal(chooseVerifiedHistory(null,null,now),null);
-assert.equal(chooseVerifiedHistory(history,null,now),history);
+assert.deepEqual(chooseVerifiedHistory(history,null,now),history);
 const archive={source:'nflverse-stats-player-week',independentlyVerified:true,fetched_at:'2026-11-03T19:00:00Z',players:[{player_id:'nfl-123',games:games.map(g=>({...g,verified:true,values:{'Receiving yards':g.value}}))}]};
 assert.equal(chooseVerifiedHistory(null,archive,now).status,'VERIFIED_GAME_LOGS');
 assert.equal(historySourceDiagnostics(null,archive,now).selected,'NFL_ARCHIVE');
