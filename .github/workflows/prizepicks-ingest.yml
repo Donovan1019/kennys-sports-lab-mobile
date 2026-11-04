@@ -17,13 +17,17 @@ on:
       - 'scripts/prizepicks_history_source.js'
       - 'scripts/prizepicks_nflverse_bridge.js'
       - 'scripts/prizepicks_nhl_collector.js'
+      - 'scripts/prizepicks_nba_collector.js'
       - 'tests/prizepicks_history_automation.test.js'
       - 'tests/prizepicks_nhl_collector.test.js'
+      - 'tests/prizepicks_nba_collector.test.js'
       - '.github/workflows/prizepicks-ingest.yml'
   pull_request:
     paths:
       - 'scripts/prizepicks_nhl_collector.js'
+      - 'scripts/prizepicks_nba_collector.js'
       - 'tests/prizepicks_nhl_collector.test.js'
+      - 'tests/prizepicks_nba_collector.test.js'
       - 'scripts/prizepicks_ingest.js'
       - 'tests/prizepicks_ingest.test.js'
       - 'scripts/prizepicks_history_identity.js'
@@ -32,7 +36,9 @@ on:
       - 'scripts/prizepicks_history_source.js'
       - 'scripts/prizepicks_nflverse_bridge.js'
       - 'scripts/prizepicks_nhl_collector.js'
+      - 'scripts/prizepicks_nba_collector.js'
       - 'tests/prizepicks_nhl_collector.test.js'
+      - 'tests/prizepicks_nba_collector.test.js'
       - 'tests/prizepicks_history_automation.test.js'
       - '.github/workflows/prizepicks-ingest.yml'
 concurrency:
@@ -50,7 +56,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: node --check scripts/prizepicks_ingest.js && node tests/prizepicks_ingest.test.js && node tests/prizepicks_history_automation.test.js && node tests/prizepicks_nhl_collector.test.js
+      - run: node --check scripts/prizepicks_ingest.js && node tests/prizepicks_ingest.test.js && node tests/prizepicks_history_automation.test.js && node tests/prizepicks_nhl_collector.test.js && node tests/prizepicks_nba_collector.test.js
       - name: Eastern schedule gate
         id: eastern
         run: |
@@ -70,10 +76,17 @@ jobs:
       - name: Collect official NHL player game logs
         if: github.event_name != 'pull_request' && (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success') && steps.eastern.outputs.run == 'true'
         run: node scripts/prizepicks_nhl_collector.js
+      - name: Collect NBA league player game logs
+        if: github.event_name != 'pull_request' && (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success') && steps.eastern.outputs.run == 'true'
+        run: node scripts/prizepicks_nba_collector.js
       - name: Validate NHL collector artifact and explain missing history
         if: github.event_name != 'pull_request' && (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success') && steps.eastern.outputs.run == 'true'
         run: |
           node -e "const fs=require('fs');const d=JSON.parse(fs.readFileSync('feed/prizepicks_nhl_verified_history.json'));if(d.source!=='api-web.nhle.com/v1'||!Array.isArray(d.records)||!d.diagnostics||!['VERIFIED_GAME_LOGS','UNAVAILABLE'].includes(d.status)||(d.status==='VERIFIED_GAME_LOGS'&&!d.records.length)||(d.status==='UNAVAILABLE'&&!d.diagnostics.reason))process.exit(1);console.log(JSON.stringify({source:d.source,status:d.status,records:d.records.length,reason:d.diagnostics.reason,rosterFailures:d.diagnostics.rosterFailures.length,gameLogFailures:d.diagnostics.gameLogFailures.length,matchedRosterIds:d.diagnostics.matchedRosterIds}));"
+      - name: Validate NBA collector artifact
+        if: github.event_name != 'pull_request' && (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success') && steps.eastern.outputs.run == 'true'
+        run: |
+          node -e "const fs=require('fs');const d=JSON.parse(fs.readFileSync('feed/prizepicks_nba_verified_history.json'));if(d.source!=='stats.nba.com/stats/playergamelogs'||!Array.isArray(d.records)||!d.diagnostics||!['VERIFIED_GAME_LOGS','UNAVAILABLE'].includes(d.status)||(d.status==='VERIFIED_GAME_LOGS'&&!d.records.length)||(d.status==='UNAVAILABLE'&&!d.diagnostics.reason))process.exit(1);console.log(JSON.stringify({status:d.status,records:d.records.length,diagnostics:d.diagnostics}));"
       - name: Refresh latest audited NFL archive before research join
         if: github.event_name != 'pull_request' && (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success') && steps.eastern.outputs.run == 'true'
         run: |
@@ -104,22 +117,26 @@ jobs:
             feed/prizepicks_lines.json
             feed/prizepicks_history_audit.json
             feed/prizepicks_nhl_verified_history.json
+            feed/prizepicks_nba_verified_history.json
       - name: Publish fresh feed
         if: github.event_name != 'pull_request' && (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success') && steps.eastern.outputs.run == 'true'
         run: |
           cp feed/prizepicks_lines.json /tmp/prizepicks-lines-publish.json
           cp feed/prizepicks_history_audit.json /tmp/prizepicks-history-audit-publish.json
           if [ -f feed/prizepicks_nhl_verified_history.json ]; then cp feed/prizepicks_nhl_verified_history.json /tmp/prizepicks-nhl-history-publish.json; fi
+          if [ -f feed/prizepicks_nba_verified_history.json ]; then cp feed/prizepicks_nba_verified_history.json /tmp/prizepicks-nba-history-publish.json; fi
           git fetch origin main
           git checkout -B main origin/main
           cp /tmp/prizepicks-lines-publish.json feed/prizepicks_lines.json
           cp /tmp/prizepicks-history-audit-publish.json feed/prizepicks_history_audit.json
           if [ -f /tmp/prizepicks-nhl-history-publish.json ]; then cp /tmp/prizepicks-nhl-history-publish.json feed/prizepicks_nhl_verified_history.json; fi
+          if [ -f /tmp/prizepicks-nba-history-publish.json ]; then cp /tmp/prizepicks-nba-history-publish.json feed/prizepicks_nba_verified_history.json; fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           node -e "const fs=require('fs');const f=JSON.parse(fs.readFileSync('feed/prizepicks_lines.json'));const a=JSON.parse(fs.readFileSync('feed/prizepicks_history_audit.json'));if(a.coverage.total!==f.lines.length||a.betEligible!==false||a.coverage.matched+a.coverage.unavailable!==a.coverage.total)process.exit(1)"
           git add feed/prizepicks_lines.json feed/prizepicks_history_audit.json
           if [ -f feed/prizepicks_nhl_verified_history.json ]; then git add feed/prizepicks_nhl_verified_history.json; fi
+          if [ -f feed/prizepicks_nba_verified_history.json ]; then git add feed/prizepicks_nba_verified_history.json; fi
           if ! git diff --cached --quiet; then
             git commit -m 'data: refresh PrizePicks source lines [skip ci]'
             git push origin HEAD:main
