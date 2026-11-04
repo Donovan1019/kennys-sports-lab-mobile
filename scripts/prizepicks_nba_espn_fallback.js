@@ -30,8 +30,11 @@ function records(rows,feed){
 async function collect(feed,now=Date.now(),fetcher=fetch){
  const diagnostics={days:0,events:0,boxscores:0,failures:[],reason:null},events=new Set(),rows=[];
  // Bounded 90-day backfill; scoreboard requests batched to limit concurrent traffic.
- for(let offset=1;offset<=90;offset+=4){
-  const dates=Array.from({length:Math.min(4,91-offset)},(_,i)=>new Date(now-(offset+i)*86400000).toISOString().slice(0,10).replace(/-/g,''));
+ const days=Array.from({length:35},(_,i)=>new Date(now-(i+1)*86400000));
+ const year=new Date(now).getUTCFullYear();
+ for(let i=0;i<35;i++)days.push(new Date(Date.UTC(year,3,15)-i*86400000));
+ for(let offset=0;offset<days.length;offset+=4){
+  const dates=days.slice(offset,offset+4).map(d=>d.toISOString().slice(0,10).replace(/-/g,''));
   const settled=await Promise.allSettled(dates.map(d=>json(BASE+'scoreboard?dates='+d+'&limit=30',fetcher)));
   settled.forEach((r,i)=>{if(r.status==='rejected'){diagnostics.failures.push('scoreboard '+dates[i]+': '+r.reason.message);return}diagnostics.days++;for(const e of r.value.events||[])if(e.status?.type?.state==='post'&&/^\d+$/.test(String(e.id)))events.add(String(e.id))});
  }
