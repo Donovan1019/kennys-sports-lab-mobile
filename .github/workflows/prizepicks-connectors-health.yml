@@ -24,10 +24,19 @@ jobs:
         with:
           node-version: '22'
       - name: Probe NBA official historical endpoint
+        id: nba
+        continue-on-error: true
         run: node scripts/prizepicks_nba_collector.js
       - name: Probe NHL official historical endpoint
+        id: nhl
+        if: always()
+        continue-on-error: true
         run: node scripts/prizepicks_nhl_collector.js
       - name: Publish source-health summary
+        if: always()
+        env:
+          NBA_PROBE_OUTCOME: ${{ steps.nba.outcome }}
+          NHL_PROBE_OUTCOME: ${{ steps.nhl.outcome }}
         run: |
           node - <<'NODE'
           const fs=require('fs');
@@ -35,8 +44,10 @@ jobs:
           const report={generated_at:new Date().toISOString(),connectors:{}};
           for(const league of leagues){
             const file='feed/prizepicks_'+league+'_verified_history.json';
-            const data=JSON.parse(fs.readFileSync(file,'utf8'));
-            report.connectors[league.toUpperCase()]={status:data.status,records:data.records?.length||0,reason:data.diagnostics?.reason||null,failures:data.diagnostics?.failures||data.diagnostics?.rosterFailures||[]};
+            let data=null,error=null;
+            try{data=JSON.parse(fs.readFileSync(file,'utf8'))}catch(e){error=e.message}
+            const outcome=process.env[league.toUpperCase()+'_PROBE_OUTCOME'];
+            report.connectors[league.toUpperCase()]={status:data?.status||'UNAVAILABLE',workflowOutcome:outcome,records:data?.records?.length||0,reason:data?.diagnostics?.reason||error||'no artifact',failures:data?.diagnostics?.failures||data?.diagnostics?.rosterFailures||[]};
           }
           fs.writeFileSync('feed/prizepicks_connectors_health.json',JSON.stringify(report,null,2)+'\n');
           console.log(JSON.stringify(report));
@@ -51,3 +62,15 @@ jobs:
             feed/prizepicks_nba_verified_history.json
             feed/prizepicks_nhl_verified_history.json
             feed/prizepicks_connectors_health.json
+      - name: Fail source-health job when either league is unavailable
+        if: always()
+        run: |
+          node - <<'NODE'
+          const r=require('./feed/prizepicks_connectors_health.json');
+          for(const [league,data] of Object.entries(r.connectors)){
+            if(data.workflowOutcome!=='success'||data.status!=='VERIFIED_GAME_LOGS'||!data.records){
+              console.error(league+' source unavailable: '+(data.reason||data.workflowOutcome));
+              process.exitCode=1;
+            }
+          }
+          NODE
