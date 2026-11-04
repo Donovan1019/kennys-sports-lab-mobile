@@ -1,0 +1,53 @@
+name: NBA NHL Source Connector Health
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '25 14,20 * * *'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/prizepicks_nba_collector.js'
+      - 'scripts/prizepicks_nhl_collector.js'
+      - '.github/workflows/prizepicks-connectors-health.yml'
+permissions:
+  contents: read
+concurrency:
+  group: prizepicks-source-connectors-health
+  cancel-in-progress: true
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Probe NBA official historical endpoint
+        run: node scripts/prizepicks_nba_collector.js
+      - name: Probe NHL official historical endpoint
+        run: node scripts/prizepicks_nhl_collector.js
+      - name: Publish source-health summary
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          const leagues=['nba','nhl'];
+          const report={generated_at:new Date().toISOString(),connectors:{}};
+          for(const league of leagues){
+            const file='feed/prizepicks_'+league+'_verified_history.json';
+            const data=JSON.parse(fs.readFileSync(file,'utf8'));
+            report.connectors[league.toUpperCase()]={status:data.status,records:data.records?.length||0,reason:data.diagnostics?.reason||null,failures:data.diagnostics?.failures||data.diagnostics?.rosterFailures||[]};
+          }
+          fs.writeFileSync('feed/prizepicks_connectors_health.json',JSON.stringify(report,null,2)+'\n');
+          console.log(JSON.stringify(report));
+          NODE
+      - name: Upload independent source health diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nba-nhl-source-connector-health
+          if-no-files-found: warn
+          path: |
+            feed/prizepicks_nba_verified_history.json
+            feed/prizepicks_nhl_verified_history.json
+            feed/prizepicks_connectors_health.json

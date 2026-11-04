@@ -87,7 +87,8 @@ async function collect(feed,now=Date.now(),fetcher=fetch){
 }
 async function main(){
  const feed=JSON.parse(fs.readFileSync(process.env.PRIZEPICKS_FEED_PATH||'feed/prizepicks_lines.json','utf8'));
- const result=await collect(feed);
+ let result;
+ try{result=await collect(feed)}catch(e){result={schema_version:1,status:'UNAVAILABLE',source:SOURCE,generated_at:new Date().toISOString(),records:[],diagnostics:{reason:'NHL collector failed',rosterFailures:[String(e.message)],gameLogFailures:[],matchedRosterIds:0}}}
  const dest=process.env.PRIZEPICKS_NHL_HISTORY_PATH||'feed/prizepicks_nhl_verified_history.json';
  fs.mkdirSync(path.dirname(dest),{recursive:true});
  fs.writeFileSync(dest,JSON.stringify(result,null,2)+'\n');

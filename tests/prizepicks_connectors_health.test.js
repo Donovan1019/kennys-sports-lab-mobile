@@ -1,0 +1,12 @@
+'use strict';
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const workflow=fs.readFileSync('.github/workflows/prizepicks-connectors-health.yml','utf8');
+assert.match(workflow,/workflow_dispatch:/);
+assert.match(workflow,/scripts\/prizepicks_nba_collector\.js/);
+assert.match(workflow,/scripts\/prizepicks_nhl_collector\.js/);
+assert.match(workflow,/nba-nhl-source-connector-health/);
+assert.match(workflow,/if: always\(\)/);
+assert.doesNotMatch(workflow,/secrets\./);
+assert.match(workflow,/permissions:\s*\n\s*contents: read/);
+console.log('NBA and NHL source-health workflow checks passed');
