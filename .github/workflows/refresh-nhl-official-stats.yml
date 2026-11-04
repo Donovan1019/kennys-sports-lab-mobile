@@ -44,9 +44,20 @@ jobs:
           LOOKBACK_DAYS: ${{ inputs.lookback_days || '45' }}
           START_DATE: ${{ inputs.start_date }}
         run: python scripts/fetch_nhl_official_stats.py
-      - name: Publish official NHL snapshot
+      - name: Publish official NHL snapshot with concurrent-push retry
         run: |
+          cp feed/nhl_official_player_stats.json /tmp/nhl-official-verified.json
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add feed/nhl_official_player_stats.json
-          git diff --cached --quiet || (git commit -m "Refresh NHL official player stats" && git push)
+          git reset --hard HEAD
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git checkout -B main origin/main
+            cp /tmp/nhl-official-verified.json feed/nhl_official_player_stats.json
+            git add feed/nhl_official_player_stats.json
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m "Refresh NHL official player stats [skip ci]"
+            if git push origin HEAD:main; then exit 0; fi
+            echo "Concurrent update; retrying NHL archive publish ($attempt)"
+          done
+          exit 1
