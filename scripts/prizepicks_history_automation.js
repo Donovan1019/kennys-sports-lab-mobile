@@ -2,7 +2,7 @@
 'use strict';
 const fs=require('node:fs');
 const path=require('node:path');
-const {buildCrossSourceHistoryAudit}=require('./prizepicks_history_identity');
+const {buildCrossSourceHistoryAudit,hasIdentityEvidence}=require('./prizepicks_history_identity');
 const {bridgeNflverseArchive}=require('./prizepicks_nflverse_bridge');
 const {verifySourcePayload}=require('./prizepicks_history_source');
 function readJson(file){try{return JSON.parse(fs.readFileSync(file,'utf8'))}catch{return null}}
@@ -42,7 +42,7 @@ function identityReadiness(feed,history,crosswalk){
  const providerIds=new Set(lines.filter(x=>x.player_id).map(x=>[x.league,x.player_id].join('|')));
  const historyIds=new Set((history?.records||[]).filter(x=>x.playerId).map(x=>[x.league,x.playerId,x.source].join('|')));
  const mappings=Array.isArray(crosswalk)?crosswalk:[];
- const verified=mappings.filter(m=>m?.verified===true);
+ const verified=mappings.filter(hasIdentityEvidence);
  const usable=verified.filter(m=>providerIds.has([m.league,m.prizepicksPlayerId].join('|'))&&historyIds.has([m.league,m.historyPlayerId,m.historySource].join('|')));
  const byProvider=new Map(),byHistory=new Map();
  for(const m of usable){
