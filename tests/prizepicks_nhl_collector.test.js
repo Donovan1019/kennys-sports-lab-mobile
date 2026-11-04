@@ -26,6 +26,11 @@ const mock=async url=>({ok:true,json:async()=>url.includes('/roster/BOS/')?{forw
  assert.equal(partial.status,'UNAVAILABLE');
  assert.equal(partial.records.length,0);
  assert.ok(partial.diagnostics.rosterFailures.some(x=>x.startsWith('TOR:')));
+ let active=0,maxActive=0;
+ const concurrentMock=async url=>{active++;maxActive=Math.max(maxActive,active);await new Promise(resolve=>setTimeout(resolve,2));const response=await mock(url);active--;return response};
+ const parallel=await collect(feed,now,concurrentMock);
+ assert.equal(parallel.status,'VERIFIED_GAME_LOGS');
+ assert.ok(maxActive>1&&maxActive<=6,'network concurrency must be bounded');
  const unavailable=await collect({lines:[{league:'NHL',player:'Unknown'}]},now,mock);
  assert.equal(unavailable.status,'UNAVAILABLE');
  console.log('Official NHL historical collector tests passed');
