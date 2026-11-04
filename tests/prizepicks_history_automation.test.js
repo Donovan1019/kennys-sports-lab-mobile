@@ -30,6 +30,13 @@ assert.match(historySourceDiagnostics(null,{...archive,independentlyVerified:fal
 assert.match(historySourceDiagnostics(null,{...archive,source:'unknown'},now).nflArchive.reason,/source identifier/);
 assert.match(historySourceDiagnostics(null,{...archive,players:null},now).nflArchive.reason,/players array/);
 assert.match(historySourceDiagnostics(null,{...archive,fetched_at:'2025-01-01T00:00:00Z'},now).nflArchive.reason,/stale/);
+const multi=chooseVerifiedHistory(history,archive,now);
+assert.equal(multi.source,'MULTI_SOURCE_VERIFIED');
+assert.equal(multi.sources.length,2);
+assert.ok(multi.records.some(r=>r.league==='NBA'));
+assert.ok(multi.records.some(r=>r.league==='NFL'));
+assert.equal(runAudit(feed,multi,crosswalk,now).coverage.matched,1);
+assert.equal(chooseVerifiedHistory({...history,source:'nflverse-stats-player-week',records:history.records.map(r=>({...r,source:'nflverse-stats-player-week'}))},archive,now),null);
 const fs=require('node:fs');
 const script=fs.readFileSync(require.resolve('../scripts/prizepicks_history_automation'),'utf8');
 assert.ok(script.includes("PRIZEPICKS_CROSSWALK_PATH||'feed/prizepicks_verified_crosswalk.json'"));

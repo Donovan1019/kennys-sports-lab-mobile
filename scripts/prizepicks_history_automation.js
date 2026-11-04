@@ -19,9 +19,21 @@ function historySourceDiagnostics(explicitHistory,archive,now=Date.now()){
  return {explicitHistory:explicit?{status:explicit.status,reason:explicit.reason||null}:{status:'NOT_CONFIGURED'},nflArchive:{status:bridged.status,reason:bridged.reason||null},selected:explicit?.status==='VERIFIED_HISTORY_INPUT'?'EXPLICIT':bridged.status==='VERIFIED_GAME_LOGS'?'NFL_ARCHIVE':'NONE'};
 }
 function chooseVerifiedHistory(explicitHistory,archive,now=Date.now()){
- if(explicitHistory&&verifySourcePayload(explicitHistory,now).status==='VERIFIED_HISTORY_INPUT')return explicitHistory;
+ const explicit=explicitHistory&&verifySourcePayload(explicitHistory,now).status==='VERIFIED_HISTORY_INPUT'?explicitHistory:null;
  const bridged=bridgeNflverseArchive(archive,now);
- return bridged.status==='VERIFIED_GAME_LOGS'?bridged:null;
+ const nfl=bridged.status==='VERIFIED_GAME_LOGS'?bridged:null;
+ if(!explicit)return nfl;
+ if(!nfl)return explicit;
+ const sources=[explicit.source,nfl.source];
+ if(new Set(sources).size!==sources.length)return null;
+ const keys=new Set();
+ const records=[];
+ for(const record of [...explicit.records,...nfl.records]){
+  const key=[record.league,record.playerId,record.market,record.period,record.source].join('|');
+  if(keys.has(key))return null;
+  keys.add(key);records.push(record);
+ }
+ return {schema_version:1,status:'VERIFIED_GAME_LOGS',source:'MULTI_SOURCE_VERIFIED',sources,generated_at:new Date(now).toISOString(),records};
 }
 function identityReadiness(feed,history,crosswalk){
  const lines=Array.isArray(feed?.lines)?feed.lines:[];
