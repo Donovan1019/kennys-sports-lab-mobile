@@ -7,7 +7,7 @@ const nba={source:'espn-public-boxscore',sport:'nba',fetched_at:'2026-11-04T14:0
 const nhl={source:'nhl-official-boxscore',sport:'nhl',fetched_at:'2026-11-04T14:00:00Z',players:[{id:'456',games}]};
 assert.equal(adapt(nba,'NBA',now).status,'VERIFIED_GAME_LOGS');
 assert.equal(adapt(nba,'NBA',now).records.length,4);
-assert.equal(adapt(nhl,'NHL',now).records.length,4);
+assert.equal(adapt(nhl,'NHL',now).records.length,5);
 assert.equal(adapt(nhl,'NHL',now).records.find(x=>x.market==='Shots on Goal').games.length,15);
 assert.equal(adapt({...nhl,source:'espn-public-boxscore'},'NHL',now).status,'UNAVAILABLE');
 assert.equal(adapt({...nba,fetched_at:'2026-10-01T00:00:00Z'},'NBA',now).status,'UNAVAILABLE');
