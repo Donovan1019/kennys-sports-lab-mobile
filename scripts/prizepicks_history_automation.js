@@ -19,16 +19,18 @@ function historySourceDiagnostics(explicitHistory,archive,now=Date.now()){
  return {explicitHistory:explicit?{status:explicit.status,reason:explicit.reason||null}:{status:'NOT_CONFIGURED'},nflArchive:{status:bridged.status,reason:bridged.reason||null},selected:explicit?.status==='VERIFIED_HISTORY_INPUT'?'EXPLICIT':bridged.status==='VERIFIED_GAME_LOGS'?'NFL_ARCHIVE':'NONE'};
 }
 function chooseVerifiedHistory(explicitHistory,archive,now=Date.now()){
- const explicit=explicitHistory&&verifySourcePayload(explicitHistory,now).status==='VERIFIED_HISTORY_INPUT'?explicitHistory:null;
+ const explicitInputs=Array.isArray(explicitHistory)?explicitHistory:[explicitHistory];
+ const explicit=explicitInputs.filter(item=>item&&verifySourcePayload(item,now).status==='VERIFIED_HISTORY_INPUT');
  const bridged=bridgeNflverseArchive(archive,now);
  const nfl=bridged.status==='VERIFIED_GAME_LOGS'?bridged:null;
- if(!explicit)return nfl;
- if(!nfl)return explicit;
- const sources=[explicit.source,nfl.source];
+ const inputs=[...explicit,...(nfl?[nfl]:[])];
+ if(!inputs.length)return null;
+ if(inputs.length===1)return inputs[0];
+ const sources=inputs.map(item=>item.source);
  if(new Set(sources).size!==sources.length)return null;
  const keys=new Set();
  const records=[];
- for(const record of [...explicit.records,...nfl.records]){
+ for(const record of inputs.flatMap(item=>item.records)){
   const key=[record.league,record.playerId,record.market,record.period,record.source].join('|');
   if(keys.has(key))return null;
   keys.add(key);records.push(record);
@@ -85,13 +87,14 @@ function marketReadiness(feed,history){
 function main(){
  const now=Date.now();
  const feed=readJson(process.env.PRIZEPICKS_FEED_PATH||'feed/prizepicks_lines.json');
- const explicitHistory=process.env.PRIZEPICKS_HISTORY_PATH?readJson(process.env.PRIZEPICKS_HISTORY_PATH):null;
+ const historyPaths=[process.env.PRIZEPICKS_HISTORY_PATH,process.env.PRIZEPICKS_NBA_HISTORY_PATH,process.env.PRIZEPICKS_NHL_HISTORY_PATH].filter(Boolean);
+ const explicitHistory=historyPaths.length?historyPaths.map(readJson).filter(Boolean):null;
  const archive=readJson(process.env.PRIZEPICKS_NFL_ARCHIVE_PATH||'feed/nfl_player_stats.json');
  const archiveAudit=readJson(process.env.PRIZEPICKS_NFL_ARCHIVE_AUDIT_PATH||'feed/nfl_player_stats_audit.json');
  const history=chooseVerifiedHistory(explicitHistory,archive,now);
  const crosswalk=readJson(process.env.PRIZEPICKS_CROSSWALK_PATH||'feed/prizepicks_verified_crosswalk.json');
  const result=runAudit(feed,history,crosswalk,now);
- const output={schema_version:1,generated_at:new Date(now).toISOString(),...result,identityReadiness:identityReadiness(feed,history,crosswalk),marketReadiness:marketReadiness(feed,history),historySourceDiagnostics:{...historySourceDiagnostics(explicitHistory,archive,now),archiveAudit:{status:archiveAudit?.status||'MISSING',gameCount:archiveAudit?.game_count??null,playerCount:archiveAudit?.player_count??null}},inputs:{rawLines:feed?.status==='RAW_LINES_ONLY'?'PRESENT':'MISSING',historicalSource:history?.status==='VERIFIED_GAME_LOGS'?'PRESENT':'MISSING_OR_UNVERIFIED',verifiedCrosswalk:Array.isArray(crosswalk)&&crosswalk.length?'PRESENT':'MISSING',nflArchive:archive?.source==='nflverse-stats-player-week'?'FOUND':'MISSING_OR_UNRECOGNIZED'}};
+ const output={schema_version:1,generated_at:new Date(now).toISOString(),...result,identityReadiness:identityReadiness(feed,history,crosswalk),marketReadiness:marketReadiness(feed,history),historySourceDiagnostics:{...historySourceDiagnostics(Array.isArray(explicitHistory)?explicitHistory[0]:explicitHistory,archive,now),archiveAudit:{status:archiveAudit?.status||'MISSING',gameCount:archiveAudit?.game_count??null,playerCount:archiveAudit?.player_count??null}},inputs:{rawLines:feed?.status==='RAW_LINES_ONLY'?'PRESENT':'MISSING',historicalSource:history?.status==='VERIFIED_GAME_LOGS'?'PRESENT':'MISSING_OR_UNVERIFIED',verifiedCrosswalk:Array.isArray(crosswalk)&&crosswalk.length?'PRESENT':'MISSING',nflArchive:archive?.source==='nflverse-stats-player-week'?'FOUND':'MISSING_OR_UNRECOGNIZED'}};
  const dest=process.env.PRIZEPICKS_HISTORY_AUDIT_PATH||'feed/prizepicks_history_audit.json';
  fs.mkdirSync(path.dirname(dest),{recursive:true});
  fs.writeFileSync(dest,JSON.stringify(output,null,2)+'\n');
