@@ -1,6 +1,6 @@
 'use strict';
 const assert=require('node:assert/strict');
-const {collect,convertLog,seasonId}=require('../scripts/prizepicks_nhl_collector');
+const {collect,convertLog,seasonId,getJson}=require('../scripts/prizepicks_nhl_collector');
 const now=Date.parse('2026-11-03T20:00:00Z');
 assert.equal(seasonId(new Date(now)),'20262027');
 const log=Array.from({length:15},(_,i)=>({gameId:100+i,gameDate:'2026-10-'+String(i+1).padStart(2,'0'),shots:3,goals:1,assists:1,points:2,blockedShots:0}));
@@ -31,6 +31,13 @@ const mock=async url=>({ok:true,json:async()=>url.includes('/roster/BOS/')?{forw
  const parallel=await collect(feed,now,concurrentMock);
  assert.equal(parallel.status,'VERIFIED_GAME_LOGS');
  assert.ok(maxActive>1&&maxActive<=6,'network concurrency must be bounded');
+ let attempts=0;
+ const retried=await getJson('https://api-web.nhle.com/test',async()=>{attempts++;return attempts<3?{ok:false,status:429}:{ok:true,json:async()=>({ready:true})}},async()=>{});
+ assert.equal(attempts,3);
+ assert.equal(retried.ready,true);
+ let notFoundAttempts=0;
+ await assert.rejects(()=>getJson('https://api-web.nhle.com/test',async()=>{notFoundAttempts++;return {ok:false,status:404}},async()=>{}),/NHL HTTP 404/);
+ assert.equal(notFoundAttempts,1);
  const unavailable=await collect({lines:[{league:'NHL',player:'Unknown'}]},now,mock);
  assert.equal(unavailable.status,'UNAVAILABLE');
  console.log('Official NHL historical collector tests passed');
