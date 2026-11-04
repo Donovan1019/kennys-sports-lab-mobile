@@ -21,6 +21,11 @@ const mock=async url=>({ok:true,json:async()=>url.includes('/roster/BOS/')?{forw
  assert.equal(collision.status,'UNAVAILABLE');
  assert.equal(collision.records.length,0);
  assert.deepEqual(collision.diagnostics.ambiguousRosterNames,['janeexample']);
+ const partialMock=async url=>url.includes('/roster/TOR/')?{ok:false,status:503,json:async()=>({})}:mock(url);
+ const partial=await collect(feed,now,partialMock);
+ assert.equal(partial.status,'UNAVAILABLE');
+ assert.equal(partial.records.length,0);
+ assert.ok(partial.diagnostics.rosterFailures.some(x=>x.startsWith('TOR:')));
  const unavailable=await collect({lines:[{league:'NHL',player:'Unknown'}]},now,mock);
  assert.equal(unavailable.status,'UNAVAILABLE');
  console.log('Official NHL historical collector tests passed');

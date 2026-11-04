@@ -44,6 +44,10 @@ async function collect(feed,now=Date.now(),fetcher=fetch){
    }
   }catch(e){output.diagnostics.rosterFailures.push(team+': '+e.message)}
  }
+ if(output.diagnostics.rosterFailures.length){
+  output.diagnostics.reason='incomplete league roster coverage prevents unique identity verification';
+  return output;
+ }
  const ids=new Set();
  for(const [name,matches] of idsByName){
   if(matches.size!==1){output.diagnostics.ambiguousRosterNames.push(name);continue}
