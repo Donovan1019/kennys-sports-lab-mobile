@@ -46,7 +46,7 @@ async function collect(feed,now=Date.now(),fetcher=fetch){
  if(!names.size){output.diagnostics.reason='no NHL candidate names in source feed';return output}
  const idsByName=new Map();
  const positionById=new Map();
- await batches(TEAMS,6,async team=>{
+ await batches(TEAMS,2,async team=>{
   try{
    const roster=await getJson('https://api-web.nhle.com/v1/roster/'+team+'/current',fetcher);
    for(const p of [...(roster.forwards||[]),...(roster.defensemen||[]),...(roster.goalies||[])]){
