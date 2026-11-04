@@ -75,6 +75,8 @@ jobs:
             echo 'run=false' >> "$GITHUB_OUTPUT"
           fi
       - name: Fetch authenticated source lines
+        id: provider
+        continue-on-error: true
         if: github.event_name != 'pull_request' && (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success') && steps.eastern.outputs.run == 'true'
         env:
           PRIZEPICKS_API_KEY: ${{ secrets.PRIZEPICKS_API_KEY }}
@@ -103,7 +105,7 @@ jobs:
           git show origin/main:feed/nfl_player_stats.json > /tmp/prizepicks-nfl-player-stats.json
           git show origin/main:feed/nfl_player_stats_audit.json > /tmp/prizepicks-nfl-player-stats-audit.json
       - name: Build fail-closed historical research audit
-        if: github.event_name != 'pull_request' && (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success') && steps.eastern.outputs.run == 'true'
+        if: steps.provider.outcome == 'success' && github.event_name != 'pull_request' && (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success') && steps.eastern.outputs.run == 'true'
         env:
           PRIZEPICKS_NFL_ARCHIVE_PATH: /tmp/prizepicks-nfl-player-stats.json
           PRIZEPICKS_NFL_ARCHIVE_AUDIT_PATH: /tmp/prizepicks-nfl-player-stats-audit.json
@@ -115,11 +117,11 @@ jobs:
           PRIZEPICKS_CROSSWALK_PATH: feed/prizepicks_verified_crosswalk.json
         run: node scripts/prizepicks_history_automation.js
       - name: Validate audit artifact and source provenance
-        if: github.event_name != 'pull_request' && (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success') && steps.eastern.outputs.run == 'true'
+        if: steps.provider.outcome == 'success' && github.event_name != 'pull_request' && (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success') && steps.eastern.outputs.run == 'true'
         run: |
           node -e "const fs=require('fs'); const a=JSON.parse(fs.readFileSync('feed/prizepicks_history_audit.json')); const f=JSON.parse(fs.readFileSync('feed/prizepicks_lines.json')); if(!a.inputs || a.inputs.nflArchive!=='FOUND' || f.status!=='RAW_LINES_ONLY' || a.betEligible!==false || !Array.isArray(a.rows) || a.coverage?.total!==f.lines.length || a.coverage?.matched+a.coverage?.unavailable!==a.coverage?.total)process.exit(1); console.log(JSON.stringify({audit:a.status,reason:a.reason,inputs:a.inputs,coverage:a.coverage}));"
       - name: Upload automated research diagnostics
-        if: github.event_name != 'pull_request' && (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success') && steps.eastern.outputs.run == 'true' && always()
+        if: always() && github.event_name != 'pull_request' && steps.eastern.outputs.run == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: prizepicks-research-diagnostics
@@ -131,8 +133,11 @@ jobs:
             feed/prizepicks_nba_verified_history.json
             feed/prizepicks_nba_module_history.json
             feed/prizepicks_nhl_module_history.json
+      - name: Explain provider outage without hiding player connector diagnostics
+        if: always() && github.event_name != 'pull_request' && steps.eastern.outputs.run == 'true' && steps.provider.outcome != 'success'
+        run: echo "::warning::PrizePicks live source returned no schema-verified lines; NBA/NHL collection and diagnostics were attempted independently. No stale betting feed published."
       - name: Publish fresh feed
-        if: github.event_name != 'pull_request' && (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success') && steps.eastern.outputs.run == 'true'
+        if: steps.provider.outcome == 'success' && github.event_name != 'pull_request' && (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success') && steps.eastern.outputs.run == 'true'
         run: |
           cp feed/prizepicks_lines.json /tmp/prizepicks-lines-publish.json
           cp feed/prizepicks_history_audit.json /tmp/prizepicks-history-audit-publish.json
