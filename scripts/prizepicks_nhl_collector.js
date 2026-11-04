@@ -28,17 +28,26 @@ function convertLog(id,log,now=Date.now()){
 }
 async function collect(feed,now=Date.now(),fetcher=fetch){
  const names=new Set((feed?.lines||[]).filter(x=>x.league==='NHL'&&x.player).map(x=>cleanName(x.player)));
- const output={schema_version:1,status:'UNAVAILABLE',source:SOURCE,generated_at:new Date(now).toISOString(),records:[],diagnostics:{candidateNames:names.size,rosterFailures:[],gameLogFailures:[],matchedRosterIds:0}};
+ const output={schema_version:1,status:'UNAVAILABLE',source:SOURCE,generated_at:new Date(now).toISOString(),records:[],diagnostics:{candidateNames:names.size,rosterFailures:[],gameLogFailures:[],matchedRosterIds:0,ambiguousRosterNames:[]}};
  if(!names.size)return output;
- const ids=new Set();
+ const idsByName=new Map();
  for(const team of TEAMS){
   try{
    const roster=await getJson('https://api-web.nhle.com/v1/roster/'+team+'/current',fetcher);
    for(const p of [...(roster.forwards||[]),...(roster.defensemen||[])]){
     const full=[p.firstName?.default,p.lastName?.default].filter(Boolean).join(' ');
-    if(names.has(cleanName(full))&&Number.isInteger(p.id))ids.add(p.id);
+    if(names.has(cleanName(full))&&Number.isInteger(p.id)){
+     const key=cleanName(full);
+     if(!idsByName.has(key))idsByName.set(key,new Set());
+     idsByName.get(key).add(p.id);
+    }
    }
   }catch(e){output.diagnostics.rosterFailures.push(team+': '+e.message)}
+ }
+ const ids=new Set();
+ for(const [name,matches] of idsByName){
+  if(matches.size!==1){output.diagnostics.ambiguousRosterNames.push(name);continue}
+  ids.add([...matches][0]);
  }
  output.diagnostics.matchedRosterIds=ids.size;
  const season=seasonId(new Date(now));
