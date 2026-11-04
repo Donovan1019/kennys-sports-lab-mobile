@@ -8,12 +8,15 @@ function seasonId(now=new Date()){const y=now.getUTCFullYear()-(now.getUTCMonth(
 function cleanName(v){return String(v||'').normalize('NFKD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]/g,'')}
 async function getJson(url,fetcher=fetch,wait=ms=>new Promise(resolve=>setTimeout(resolve,ms))){
  for(let attempt=0;attempt<3;attempt++){
+  let retryAfter=null;
   try{
    const res=await fetcher(url,{headers:{accept:'application/json'},signal:AbortSignal.timeout(12000)});
    if(res.ok)return await res.json();
+   retryAfter=res.headers?.get?.('retry-after')??null;
    if(![429,500,502,503,504].includes(res.status)||attempt===2)throw Error('NHL HTTP '+res.status);
   }catch(e){if(attempt===2||/^NHL HTTP (?!429|50[0234])/.test(e.message))throw e}
-  await wait(250*Math.pow(2,attempt));
+  const seconds=Number(retryAfter);
+  await wait(retryAfter!==null&&Number.isFinite(seconds)&&seconds>=0?Math.min(seconds*1000,15000):1000*Math.pow(2,attempt));
  }
  throw Error('NHL retry exhausted');
 }
@@ -74,7 +77,7 @@ async function collect(feed,now=Date.now(),fetcher=fetch){
  output.diagnostics.matchedRosterIds=ids.size;
  const season=seasonId(new Date(now));
  const previous=String(Number(season.slice(0,4))-1)+String(Number(season.slice(4))-1);
- await batches([...ids],6,async id=>{
+ await batches([...ids],2,async id=>{
   try{
    const logs=[];
    for(const year of [season,previous]){
