@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-03T23:32:55.080Z",
+  "generated_at": "2026-11-04T00:21:35.868Z",
   "status": "UNAVAILABLE",
   "reason": "verified provider identity crosswalk missing",
   "coverage": {
-    "total": 600,
+    "total": 598,
     "matched": 0,
-    "unavailable": 600,
+    "unavailable": 598,
     "byLeague": {
       "NBA": 200,
       "NFL": 200,
-      "NHL": 200
+      "NHL": 198
     }
   },
   "rows": [],
@@ -18,9 +18,9 @@
   "modelValidated": false,
   "sourceStatus": "UNAVAILABLE",
   "identityReadiness": {
-    "providerPlayers": 258,
+    "providerPlayers": 220,
     "providerPlayersMissingId": 0,
-    "historicalPlayerMarketRecords": 6265,
+    "historicalPlayerMarketRecords": 8950,
     "verifiedMappingsProvided": 0,
     "verifiedMappingsWithBothIdsPresent": 0,
     "distinctProviderPlayersWithCandidateMappings": 0,
@@ -38,12 +38,12 @@
       "NFL": {
         "sourceLines": 200,
         "providerPlayers": 18,
-        "historicalPlayerMarketRecords": 6265,
+        "historicalPlayerMarketRecords": 8950,
         "verifiedPlayerMappings": 0
       },
       "NHL": {
-        "sourceLines": 200,
-        "providerPlayers": 200,
+        "sourceLines": 198,
+        "providerPlayers": 162,
         "historicalPlayerMarketRecords": 0,
         "verifiedPlayerMappings": 0
       }
@@ -59,7 +59,7 @@
           "historyMarketAvailable": false
         },
         "Pts+Rebs+Asts": {
-          "lines": 38,
+          "lines": 37,
           "historyMarket": "Pts+Rebs+Asts",
           "historyMarketAvailable": false
         },
@@ -74,7 +74,7 @@
           "historyMarketAvailable": false
         },
         "Rebs+Asts": {
-          "lines": 15,
+          "lines": 17,
           "historyMarket": "Rebs+Asts",
           "historyMarketAvailable": false
         },
@@ -84,7 +84,7 @@
           "historyMarketAvailable": false
         },
         "Rebounds": {
-          "lines": 9,
+          "lines": 10,
           "historyMarket": "Rebounds",
           "historyMarketAvailable": false
         },
@@ -104,7 +104,7 @@
           "historyMarketAvailable": false
         },
         "Pts+Rebs": {
-          "lines": 14,
+          "lines": 12,
           "historyMarket": "Pts+Rebs",
           "historyMarketAvailable": false
         },
@@ -143,7 +143,7 @@
         "Pass Completions": {
           "lines": 8,
           "historyMarket": "Pass Completions",
-          "historyMarketAvailable": false
+          "historyMarketAvailable": true
         },
         "INT": {
           "lines": 1,
@@ -153,7 +153,7 @@
         "Pass Attempts": {
           "lines": 11,
           "historyMarket": "Pass Attempts",
-          "historyMarketAvailable": false
+          "historyMarketAvailable": true
         },
         "Completion Percentage": {
           "lines": 1,
@@ -188,7 +188,7 @@
         "Rush Attempts": {
           "lines": 5,
           "historyMarket": "Rush Attempts",
-          "historyMarketAvailable": false
+          "historyMarketAvailable": true
         },
         "Rush Yards Per Carry": {
           "lines": 1,
@@ -196,20 +196,30 @@
           "historyMarketAvailable": false
         }
       },
-      "supportedLines": 131,
-      "unsupportedLines": 69
+      "supportedLines": 155,
+      "unsupportedLines": 45
     },
     "NHL": {
-      "sourceLines": 200,
+      "sourceLines": 198,
       "markets": {
         "Points": {
-          "lines": 200,
+          "lines": 137,
           "historyMarket": "Points",
+          "historyMarketAvailable": false
+        },
+        "Goals": {
+          "lines": 57,
+          "historyMarket": "Goals",
+          "historyMarketAvailable": false
+        },
+        "Faceoffs Won": {
+          "lines": 4,
+          "historyMarket": "Faceoffs Won",
           "historyMarketAvailable": false
         }
       },
       "supportedLines": 0,
-      "unsupportedLines": 200
+      "unsupportedLines": 198
     }
   },
   "historySourceDiagnostics": {
