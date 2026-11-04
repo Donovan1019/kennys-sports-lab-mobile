@@ -1,21 +1,43 @@
 'use strict';
-// Candidate IDs are never an authorization to join PrizePicks props to history.
+// Names select possible records only. They never verify provider identities.
 const fs=require('node:fs');
-const {attachVerifiedIdentity}=require('./prizepicks_history_identity');
-function build(feed,history){
- const lines=(feed?.lines||[]).filter(x=>x.league==='NBA'&&x.player_id);
- const candidates=history?.diagnostics?.identityCandidates||[];
- const ids=new Set((history?.records||[]).filter(r=>r.league==='NBA').map(r=>String(r.playerId)));
- const byProvider=new Map();
- for(const c of candidates){
-  const key=String(c.prizepicksPlayerId);
-  const line=lines.find(x=>String(x.player_id)===key);
-  if(!line||byProvider.has(key))continue;
-  const options=[...new Set((c.espnCandidateIds||[]).map(String))].filter(id=>ids.has(id));
-  byProvider.set(key,{league:'NBA',prizepicksPlayerId:key,player:line.player,historySource:'espn-public-boxscore',historyCandidateIds:options,verified:false,status:options.length===1?'REQUIRES_INDEPENDENT_ID_EVIDENCE':options.length?'AMBIGUOUS':'NO_HISTORY_MATCH'});
+function cleanName(v){return String(v||'').normalize('NFKD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]/g,'')}
+function build(feed,nbaHistory,nhlHistory){
+ const rows=[];
+ for(const league of ['NBA','NHL']){
+  const history=league==='NBA'?nbaHistory:nhlHistory;
+  const historyIds=new Set((history?.records||[]).filter(r=>r.league===league).map(r=>String(r.playerId)));
+  const byProvider=new Map();
+  if(league==='NBA'){
+   for(const c of history?.diagnostics?.identityCandidates||[]){
+    const key=String(c.prizepicksPlayerId);
+    if(!byProvider.has(key))byProvider.set(key,new Set());
+    for(const id of c.espnCandidateIds||[])if(historyIds.has(String(id)))byProvider.get(key).add(String(id));
+   }
+  }else{
+   // NHL game-log payload has official IDs, but no trustworthy player names.
+   // Never equate a PrizePicks ID with an NHL ID or fabricate a name join.
+  }
+  const seen=new Set();
+  for(const line of feed?.lines||[]){
+   if(line.league!==league||!line.player_id)continue;
+   const key=String(line.player_id);
+   if(seen.has(key))continue;seen.add(key);
+   const options=[...(byProvider.get(key)||[])];
+   const names=(feed.lines||[]).filter(x=>x.league===league&&String(x.player_id)===key).map(x=>cleanName(x.player));
+   const nameConflict=new Set(names).size>1;
+   rows.push({league,prizepicksPlayerId:key,player:line.player,historySource:league==='NBA'?'espn-public-boxscore':'api-web.nhle.com/v1',historyCandidateIds:nameConflict?[]:options,verified:false,status:nameConflict?'CONFLICTING_PROVIDER_NAMES':options.length===1?'REQUIRES_INDEPENDENT_ID_EVIDENCE':options.length>1?'AMBIGUOUS':'NO_HISTORY_MATCH'});
+  }
  }
- const rows=[...byProvider.values()];
  return {schema_version:1,generated_at:new Date().toISOString(),status:'UNVERIFIED_CANDIDATES_ONLY',verifiedMappings:0,rows};
 }
-if(require.main===module){const feed=JSON.parse(fs.readFileSync(process.env.PRIZEPICKS_FEED_PATH||'feed/prizepicks_lines.json'));const history=JSON.parse(fs.readFileSync(process.env.PRIZEPICKS_NBA_HISTORY_PATH||'feed/prizepicks_nba_verified_history.json'));const output=build(feed,history);const dest=process.env.PRIZEPICKS_IDENTITY_CANDIDATES_PATH||'feed/prizepicks_identity_candidates.json';fs.writeFileSync(dest,JSON.stringify(output,null,2)+'\n');console.log(JSON.stringify({status:output.status,candidates:output.rows.length,verifiedMappings:0}));}
+if(require.main===module){
+ const read=p=>{try{return JSON.parse(fs.readFileSync(p,'utf8'))}catch{return null}};
+ const feed=read(process.env.PRIZEPICKS_FEED_PATH||'feed/prizepicks_lines.json');
+ const nba=read(process.env.PRIZEPICKS_NBA_HISTORY_PATH||'feed/prizepicks_nba_verified_history.json');
+ const nhl=read(process.env.PRIZEPICKS_NHL_HISTORY_PATH||'feed/prizepicks_nhl_verified_history.json');
+ const output=build(feed,nba,nhl);const dest=process.env.PRIZEPICKS_IDENTITY_CANDIDATES_PATH||'feed/prizepicks_identity_candidates.json';
+ fs.writeFileSync(dest,JSON.stringify(output,null,2)+'\n');
+ console.log(JSON.stringify({status:output.status,candidates:output.rows.length,byLeague:Object.fromEntries(['NBA','NHL'].map(l=>[l,output.rows.filter(r=>r.league===l).length])),verifiedMappings:0}));
+}
 module.exports={build};
