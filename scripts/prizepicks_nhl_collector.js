@@ -26,12 +26,13 @@ function convertLog(id,log,now=Date.now()){
  }
  return records;
 }
+async function batches(items,limit,fn){for(let i=0;i<items.length;i+=limit)await Promise.all(items.slice(i,i+limit).map(fn))}
 async function collect(feed,now=Date.now(),fetcher=fetch){
  const names=new Set((feed?.lines||[]).filter(x=>x.league==='NHL'&&x.player).map(x=>cleanName(x.player)));
  const output={schema_version:1,status:'UNAVAILABLE',source:SOURCE,generated_at:new Date(now).toISOString(),records:[],diagnostics:{candidateNames:names.size,rosterFailures:[],gameLogFailures:[],matchedRosterIds:0,ambiguousRosterNames:[]}};
  if(!names.size)return output;
  const idsByName=new Map();
- for(const team of TEAMS){
+ await batches(TEAMS,6,async team=>{
   try{
    const roster=await getJson('https://api-web.nhle.com/v1/roster/'+team+'/current',fetcher);
    for(const p of [...(roster.forwards||[]),...(roster.defensemen||[])]){
@@ -43,7 +44,7 @@ async function collect(feed,now=Date.now(),fetcher=fetch){
     }
    }
   }catch(e){output.diagnostics.rosterFailures.push(team+': '+e.message)}
- }
+ });
  if(output.diagnostics.rosterFailures.length){
   output.diagnostics.reason='incomplete league roster coverage prevents unique identity verification';
   return output;
@@ -56,7 +57,7 @@ async function collect(feed,now=Date.now(),fetcher=fetch){
  output.diagnostics.matchedRosterIds=ids.size;
  const season=seasonId(new Date(now));
  const previous=String(Number(season.slice(0,4))-1)+String(Number(season.slice(4))-1);
- for(const id of ids){
+ await batches([...ids],6,async id=>{
   try{
    const logs=[];
    for(const year of [season,previous]){
@@ -68,7 +69,7 @@ async function collect(feed,now=Date.now(),fetcher=fetch){
    }
    output.records.push(...convertLog(id,logs,now));
   }catch(e){output.diagnostics.gameLogFailures.push(String(id)+': '+e.message)}
- }
+ });
  if(output.records.length)output.status='VERIFIED_GAME_LOGS';
  return output;
 }
