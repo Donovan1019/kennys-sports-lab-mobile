@@ -16,6 +16,11 @@ const mock=async url=>({ok:true,json:async()=>url.includes('/roster/BOS/')?{forw
  assert.equal(result.records[0].source,'api-web.nhle.com/v1');
  assert.equal(result.diagnostics.matchedRosterIds,1);
  assert.equal(result.diagnostics.gameLogFailures.length,0);
+ const collisionMock=async url=>({ok:true,json:async()=>url.includes('/roster/BOS/')?{forwards:[{id:123,firstName:{default:'Jane'},lastName:{default:'Example'}}]}:url.includes('/roster/TOR/')?{forwards:[{id:999,firstName:{default:'Jane'},lastName:{default:'Example'}}]}:url.includes('/roster/')?{forwards:[]}:{gameLog:log}});
+ const collision=await collect(feed,now,collisionMock);
+ assert.equal(collision.status,'UNAVAILABLE');
+ assert.equal(collision.records.length,0);
+ assert.deepEqual(collision.diagnostics.ambiguousRosterNames,['janeexample']);
  const unavailable=await collect({lines:[{league:'NHL',player:'Unknown'}]},now,mock);
  assert.equal(unavailable.status,'UNAVAILABLE');
  console.log('Official NHL historical collector tests passed');
