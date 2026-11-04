@@ -92,4 +92,4 @@ async function main(){
  console.log(JSON.stringify({status:result.status,records:result.records.length,diagnostics:result.diagnostics}));
 }
 if(require.main===module)main().catch(e=>{console.error(e);process.exitCode=1});
-module.exports={collect,convertLog,seasonId,cleanName};
+module.exports={collect,convertLog,seasonId,cleanName,getJson};
