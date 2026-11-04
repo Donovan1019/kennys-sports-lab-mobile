@@ -143,18 +143,24 @@ jobs:
           cp feed/prizepicks_history_audit.json /tmp/prizepicks-history-audit-publish.json
           if [ -f feed/prizepicks_nhl_verified_history.json ]; then cp feed/prizepicks_nhl_verified_history.json /tmp/prizepicks-nhl-history-publish.json; fi
           if [ -f feed/prizepicks_nba_verified_history.json ]; then cp feed/prizepicks_nba_verified_history.json /tmp/prizepicks-nba-history-publish.json; fi
+          if [ -f feed/prizepicks_nba_module_history.json ]; then cp feed/prizepicks_nba_module_history.json /tmp/prizepicks-nba-module-publish.json; fi
+          if [ -f feed/prizepicks_nhl_module_history.json ]; then cp feed/prizepicks_nhl_module_history.json /tmp/prizepicks-nhl-module-publish.json; fi
           git fetch origin main
           git checkout -B main origin/main
           cp /tmp/prizepicks-lines-publish.json feed/prizepicks_lines.json
           cp /tmp/prizepicks-history-audit-publish.json feed/prizepicks_history_audit.json
           if [ -f /tmp/prizepicks-nhl-history-publish.json ]; then cp /tmp/prizepicks-nhl-history-publish.json feed/prizepicks_nhl_verified_history.json; fi
           if [ -f /tmp/prizepicks-nba-history-publish.json ]; then cp /tmp/prizepicks-nba-history-publish.json feed/prizepicks_nba_verified_history.json; fi
+          if [ -f /tmp/prizepicks-nba-module-publish.json ]; then cp /tmp/prizepicks-nba-module-publish.json feed/prizepicks_nba_module_history.json; fi
+          if [ -f /tmp/prizepicks-nhl-module-publish.json ]; then cp /tmp/prizepicks-nhl-module-publish.json feed/prizepicks_nhl_module_history.json; fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           node -e "const fs=require('fs');const f=JSON.parse(fs.readFileSync('feed/prizepicks_lines.json'));const a=JSON.parse(fs.readFileSync('feed/prizepicks_history_audit.json'));if(a.coverage.total!==f.lines.length||a.betEligible!==false||a.coverage.matched+a.coverage.unavailable!==a.coverage.total)process.exit(1)"
           git add feed/prizepicks_lines.json feed/prizepicks_history_audit.json
           if [ -f feed/prizepicks_nhl_verified_history.json ]; then git add feed/prizepicks_nhl_verified_history.json; fi
           if [ -f feed/prizepicks_nba_verified_history.json ]; then git add feed/prizepicks_nba_verified_history.json; fi
+          if [ -f feed/prizepicks_nba_module_history.json ]; then git add feed/prizepicks_nba_module_history.json; fi
+          if [ -f feed/prizepicks_nhl_module_history.json ]; then git add feed/prizepicks_nhl_module_history.json; fi
           if ! git diff --cached --quiet; then
             git commit -m 'data: refresh PrizePicks source lines [skip ci]'
             git push origin HEAD:main
