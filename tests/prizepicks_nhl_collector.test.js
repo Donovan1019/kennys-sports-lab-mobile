@@ -20,7 +20,7 @@ const mock=async url=>({ok:true,json:async()=>url.includes('/roster/BOS/')?{forw
  assert.equal(result.diagnostics.matchedRosterIds,1);
  assert.equal(result.diagnostics.gameLogFailures.length,0);
  const goalieFeed={lines:[{league:'NHL',player:'Sam Goalie'}]};
- const goalieMock=async url=>({ok:true,json:async()=>url.includes('/roster/BOS/')?{goalies:[{id:456,firstName:{default:'Sam'},lastName:{default:'Goalie'}}]}:url.includes('/roster/')?{goalies:[]}:url.includes('/player/456/')?{gameLog:goalieLog}:{gameLog:[]}});
+ const goalieMock=async url=>({ok:true,json:async()=>url.includes('/roster/BOS/')?{goalies:[{id:456,firstName:{default:'Sam'},lastName:{default:'Goalie'}}]}:url.includes('/roster/')?{goalies:[]}:url.includes('/player/456/game-log/20262027/')?{gameLog:goalieLog}:{gameLog:[]}});
  const goalieResult=await collect(goalieFeed,now,goalieMock);
  assert.equal(goalieResult.records.length,2);
  assert.equal(goalieResult.records.find(x=>x.market==='Saves').games.length,15);
