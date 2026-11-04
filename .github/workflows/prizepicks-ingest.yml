@@ -16,6 +16,7 @@ on:
       - 'scripts/prizepicks_history_automation.js'
       - 'scripts/prizepicks_history_source.js'
       - 'scripts/prizepicks_nflverse_bridge.js'
+      - 'scripts/prizepicks_nhl_collector.js'
       - 'tests/prizepicks_history_automation.test.js'
       - '.github/workflows/prizepicks-ingest.yml'
   pull_request:
@@ -61,6 +62,9 @@ jobs:
         env:
           PRIZEPICKS_API_KEY: ${{ secrets.PRIZEPICKS_API_KEY }}
         run: node scripts/prizepicks_ingest.js
+      - name: Collect official NHL player game logs
+        if: github.event_name != 'pull_request' && steps.eastern.outputs.run == 'true'
+        run: node scripts/prizepicks_nhl_collector.js
       - name: Refresh latest audited NFL archive before research join
         if: github.event_name != 'pull_request' && steps.eastern.outputs.run == 'true'
         run: |
@@ -95,10 +99,12 @@ jobs:
         run: |
           cp feed/prizepicks_lines.json /tmp/prizepicks-lines-publish.json
           cp feed/prizepicks_history_audit.json /tmp/prizepicks-history-audit-publish.json
+          if [ -f feed/prizepicks_nhl_verified_history.json ]; then cp feed/prizepicks_nhl_verified_history.json /tmp/prizepicks-nhl-history-publish.json; fi
           git fetch origin main
           git checkout -B main origin/main
           cp /tmp/prizepicks-lines-publish.json feed/prizepicks_lines.json
           cp /tmp/prizepicks-history-audit-publish.json feed/prizepicks_history_audit.json
+          if [ -f /tmp/prizepicks-nhl-history-publish.json ]; then cp /tmp/prizepicks-nhl-history-publish.json feed/prizepicks_nhl_verified_history.json; fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           node -e "const fs=require('fs');const f=JSON.parse(fs.readFileSync('feed/prizepicks_lines.json'));const a=JSON.parse(fs.readFileSync('feed/prizepicks_history_audit.json'));if(a.coverage.total!==f.lines.length||a.betEligible!==false||a.coverage.matched+a.coverage.unavailable!==a.coverage.total)process.exit(1)"
