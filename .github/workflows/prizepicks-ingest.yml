@@ -180,8 +180,15 @@ jobs:
           cp feed/prizepicks_nba_verified_history.json /tmp/prizepicks-nba-history-independent.json
           git fetch origin main
           git checkout -B main origin/main
-          cp /tmp/prizepicks-nhl-history-independent.json feed/prizepicks_nhl_verified_history.json
-          cp /tmp/prizepicks-nba-history-independent.json feed/prizepicks_nba_verified_history.json
+          for sport in nba nhl; do
+            candidate="/tmp/prizepicks-${sport}-history-independent.json"
+            if ! node -e "const d=require(process.argv[1]);process.exit(d.status==='VERIFIED_GAME_LOGS'&&Array.isArray(d.records)&&d.records.length?0:1)" "$candidate"; then
+              echo "::warning::Preserving last published $sport history after unavailable refresh"
+              rm -f "$candidate"
+            fi
+          done
+          if [ -f /tmp/prizepicks-nhl-history-independent.json ]; then cp /tmp/prizepicks-nhl-history-independent.json feed/prizepicks_nhl_verified_history.json; fi
+          if [ -f /tmp/prizepicks-nba-history-independent.json ]; then cp /tmp/prizepicks-nba-history-independent.json feed/prizepicks_nba_verified_history.json; fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add feed/prizepicks_nhl_verified_history.json feed/prizepicks_nba_verified_history.json
@@ -204,8 +211,8 @@ jobs:
           cp /tmp/prizepicks-lines-publish.json feed/prizepicks_lines.json
           cp /tmp/prizepicks-history-audit-publish.json feed/prizepicks_history_audit.json
           if [ -f /tmp/prizepicks-crosswalk-publish.json ]; then cp /tmp/prizepicks-crosswalk-publish.json feed/prizepicks_verified_crosswalk.json; fi
-          if [ -f /tmp/prizepicks-nhl-history-publish.json ]; then cp /tmp/prizepicks-nhl-history-publish.json feed/prizepicks_nhl_verified_history.json; fi
-          if [ -f /tmp/prizepicks-nba-history-publish.json ]; then cp /tmp/prizepicks-nba-history-publish.json feed/prizepicks_nba_verified_history.json; fi
+          if [ -f /tmp/prizepicks-nhl-history-publish.json ] && node -e "const d=require(process.argv[1]);process.exit(d.status==='VERIFIED_GAME_LOGS'&&d.records?.length?0:1)" /tmp/prizepicks-nhl-history-publish.json; then cp /tmp/prizepicks-nhl-history-publish.json feed/prizepicks_nhl_verified_history.json; else echo "::warning::Keeping previous NHL history"; fi
+          if [ -f /tmp/prizepicks-nba-history-publish.json ] && node -e "const d=require(process.argv[1]);process.exit(d.status==='VERIFIED_GAME_LOGS'&&d.records?.length?0:1)" /tmp/prizepicks-nba-history-publish.json; then cp /tmp/prizepicks-nba-history-publish.json feed/prizepicks_nba_verified_history.json; else echo "::warning::Keeping previous NBA history"; fi
           if [ -f /tmp/prizepicks-nba-module-publish.json ]; then cp /tmp/prizepicks-nba-module-publish.json feed/prizepicks_nba_module_history.json; fi
           if [ -f /tmp/prizepicks-nhl-module-publish.json ]; then cp /tmp/prizepicks-nhl-module-publish.json feed/prizepicks_nhl_module_history.json; fi
           git config user.name 'github-actions[bot]'
