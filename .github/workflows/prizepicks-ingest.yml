@@ -29,6 +29,8 @@ on:
       - 'scripts/prizepicks_history_automation.js'
       - 'scripts/prizepicks_history_source.js'
       - 'scripts/prizepicks_nflverse_bridge.js'
+      - 'scripts/prizepicks_nhl_collector.js'
+      - 'tests/prizepicks_nhl_collector.test.js'
       - 'tests/prizepicks_history_automation.test.js'
       - '.github/workflows/prizepicks-ingest.yml'
 concurrency:
@@ -64,16 +66,16 @@ jobs:
           PRIZEPICKS_API_KEY: ${{ secrets.PRIZEPICKS_API_KEY }}
         run: node scripts/prizepicks_ingest.js
       - name: Collect official NHL player game logs
-        if: github.event_name != 'pull_request' && steps.eastern.outputs.run == 'true'
+        if: github.event_name != 'pull_request' && (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success') && steps.eastern.outputs.run == 'true'
         run: node scripts/prizepicks_nhl_collector.js
       - name: Refresh latest audited NFL archive before research join
-        if: github.event_name != 'pull_request' && steps.eastern.outputs.run == 'true'
+        if: github.event_name != 'pull_request' && (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success') && steps.eastern.outputs.run == 'true'
         run: |
           git fetch origin main
           git show origin/main:feed/nfl_player_stats.json > /tmp/prizepicks-nfl-player-stats.json
           git show origin/main:feed/nfl_player_stats_audit.json > /tmp/prizepicks-nfl-player-stats-audit.json
       - name: Build fail-closed historical research audit
-        if: github.event_name != 'pull_request' && steps.eastern.outputs.run == 'true'
+        if: github.event_name != 'pull_request' && (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success') && steps.eastern.outputs.run == 'true'
         env:
           PRIZEPICKS_NFL_ARCHIVE_PATH: /tmp/prizepicks-nfl-player-stats.json
           PRIZEPICKS_NFL_ARCHIVE_AUDIT_PATH: /tmp/prizepicks-nfl-player-stats-audit.json
@@ -83,11 +85,11 @@ jobs:
           PRIZEPICKS_CROSSWALK_PATH: feed/prizepicks_verified_crosswalk.json
         run: node scripts/prizepicks_history_automation.js
       - name: Validate audit artifact and source provenance
-        if: github.event_name != 'pull_request' && steps.eastern.outputs.run == 'true'
+        if: github.event_name != 'pull_request' && (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success') && steps.eastern.outputs.run == 'true'
         run: |
           node -e "const fs=require('fs'); const a=JSON.parse(fs.readFileSync('feed/prizepicks_history_audit.json')); const f=JSON.parse(fs.readFileSync('feed/prizepicks_lines.json')); if(!a.inputs || a.inputs.nflArchive!=='FOUND' || f.status!=='RAW_LINES_ONLY' || a.betEligible!==false || !Array.isArray(a.rows) || a.coverage?.total!==f.lines.length || a.coverage?.matched+a.coverage?.unavailable!==a.coverage?.total)process.exit(1); console.log(JSON.stringify({audit:a.status,reason:a.reason,inputs:a.inputs,coverage:a.coverage}));"
       - name: Upload automated research diagnostics
-        if: github.event_name != 'pull_request' && steps.eastern.outputs.run == 'true' && always()
+        if: github.event_name != 'pull_request' && (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success') && steps.eastern.outputs.run == 'true' && always()
         uses: actions/upload-artifact@v4
         with:
           name: prizepicks-research-diagnostics
@@ -97,7 +99,7 @@ jobs:
             feed/prizepicks_history_audit.json
             feed/prizepicks_nhl_verified_history.json
       - name: Publish fresh feed
-        if: github.event_name != 'pull_request' && steps.eastern.outputs.run == 'true'
+        if: github.event_name != 'pull_request' && (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success') && steps.eastern.outputs.run == 'true'
         run: |
           cp feed/prizepicks_lines.json /tmp/prizepicks-lines-publish.json
           cp feed/prizepicks_history_audit.json /tmp/prizepicks-history-audit-publish.json
