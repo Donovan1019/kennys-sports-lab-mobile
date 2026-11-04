@@ -1,0 +1,3406 @@
+{
+  "schema": 1,
+  "sport": "NHL",
+  "capture_at": "2026-11-04T22:56:18.467346+00:00",
+  "source_file": "feed/nhl_props.json",
+  "source_fetched_at": "2026-10-22T11:57:00.264168+00:00",
+  "quotes": [],
+  "rejected_quotes": [
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Jack Hughes",
+      "selection": "Over",
+      "point": 0.5,
+      "price": -135,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Jack Hughes",
+      "selection": "Under",
+      "point": 0.5,
+      "price": 100,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Luke Hughes",
+      "selection": "Over",
+      "point": 0.5,
+      "price": -115,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Luke Hughes",
+      "selection": "Under",
+      "point": 0.5,
+      "price": -120,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Jesper Bratt",
+      "selection": "Over",
+      "point": 0.5,
+      "price": -110,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Jesper Bratt",
+      "selection": "Under",
+      "point": 0.5,
+      "price": -125,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Jackson LaCombe",
+      "selection": "Over",
+      "point": 0.5,
+      "price": 110,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Jackson LaCombe",
+      "selection": "Under",
+      "point": 0.5,
+      "price": -150,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Nico Hischier",
+      "selection": "Over",
+      "point": 0.5,
+      "price": 115,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Nico Hischier",
+      "selection": "Under",
+      "point": 0.5,
+      "price": -155,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Leo Carlsson",
+      "selection": "Over",
+      "point": 0.5,
+      "price": 135,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Leo Carlsson",
+      "selection": "Under",
+      "point": 0.5,
+      "price": -185,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Luke Evangelista",
+      "selection": "Over",
+      "point": 0.5,
+      "price": 135,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Luke Evangelista",
+      "selection": "Under",
+      "point": 0.5,
+      "price": -180,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Beckett Sennecke",
+      "selection": "Over",
+      "point": 0.5,
+      "price": 150,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Beckett Sennecke",
+      "selection": "Under",
+      "point": 0.5,
+      "price": -205,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Mikael Granlund",
+      "selection": "Over",
+      "point": 0.5,
+      "price": 155,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Mikael Granlund",
+      "selection": "Under",
+      "point": 0.5,
+      "price": -210,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Dougie Hamilton",
+      "selection": "Over",
+      "point": 0.5,
+      "price": 165,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Dougie Hamilton",
+      "selection": "Under",
+      "point": 0.5,
+      "price": -220,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Cutter Gauthier",
+      "selection": "Over",
+      "point": 0.5,
+      "price": 175,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Cutter Gauthier",
+      "selection": "Under",
+      "point": 0.5,
+      "price": -235,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Timo Meier",
+      "selection": "Over",
+      "point": 0.5,
+      "price": 200,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Timo Meier",
+      "selection": "Under",
+      "point": 0.5,
+      "price": -275,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Evan Rodrigues",
+      "selection": "Over",
+      "point": 0.5,
+      "price": 215,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Evan Rodrigues",
+      "selection": "Under",
+      "point": 0.5,
+      "price": -300,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Arseny Gritsyuk",
+      "selection": "Over",
+      "point": 0.5,
+      "price": 235,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Arseny Gritsyuk",
+      "selection": "Under",
+      "point": 0.5,
+      "price": -330,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Anthony Mantha",
+      "selection": "Over",
+      "point": 0.5,
+      "price": 240,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Anthony Mantha",
+      "selection": "Under",
+      "point": 0.5,
+      "price": -340,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Dawson Mercer",
+      "selection": "Over",
+      "point": 0.5,
+      "price": 295,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Dawson Mercer",
+      "selection": "Under",
+      "point": 0.5,
+      "price": -425,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Alex Killorn",
+      "selection": "Over",
+      "point": 0.5,
+      "price": 320,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_assists",
+      "player": "Alex Killorn",
+      "selection": "Under",
+      "point": 0.5,
+      "price": -475,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Jack Hughes",
+      "selection": "Over",
+      "point": 1.5,
+      "price": 155,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Jack Hughes",
+      "selection": "Under",
+      "point": 1.5,
+      "price": -210,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Jesper Bratt",
+      "selection": "Over",
+      "point": 0.5,
+      "price": -200,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Jesper Bratt",
+      "selection": "Under",
+      "point": 0.5,
+      "price": 145,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Nico Hischier",
+      "selection": "Over",
+      "point": 0.5,
+      "price": -185,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Nico Hischier",
+      "selection": "Under",
+      "point": 0.5,
+      "price": 140,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Luke Hughes",
+      "selection": "Over",
+      "point": 0.5,
+      "price": -165,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Luke Hughes",
+      "selection": "Under",
+      "point": 0.5,
+      "price": 120,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Beckett Sennecke",
+      "selection": "Over",
+      "point": 0.5,
+      "price": -145,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Beckett Sennecke",
+      "selection": "Under",
+      "point": 0.5,
+      "price": 105,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Cutter Gauthier",
+      "selection": "Over",
+      "point": 0.5,
+      "price": -140,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Cutter Gauthier",
+      "selection": "Under",
+      "point": 0.5,
+      "price": 100,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Leo Carlsson",
+      "selection": "Over",
+      "point": 0.5,
+      "price": -135,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Leo Carlsson",
+      "selection": "Under",
+      "point": 0.5,
+      "price": 100,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Luke Evangelista",
+      "selection": "Over",
+      "point": 0.5,
+      "price": -130,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Luke Evangelista",
+      "selection": "Under",
+      "point": 0.5,
+      "price": -105,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Jackson LaCombe",
+      "selection": "Over",
+      "point": 0.5,
+      "price": -115,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Jackson LaCombe",
+      "selection": "Under",
+      "point": 0.5,
+      "price": -120,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Mikael Granlund",
+      "selection": "Over",
+      "point": 0.5,
+      "price": -115,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Mikael Granlund",
+      "selection": "Under",
+      "point": 0.5,
+      "price": -115,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Timo Meier",
+      "selection": "Over",
+      "point": 0.5,
+      "price": -105,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Timo Meier",
+      "selection": "Under",
+      "point": 0.5,
+      "price": -130,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Arseny Gritsyuk",
+      "selection": "Over",
+      "point": 0.5,
+      "price": 115,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Arseny Gritsyuk",
+      "selection": "Under",
+      "point": 0.5,
+      "price": -160,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Dougie Hamilton",
+      "selection": "Over",
+      "point": 0.5,
+      "price": 115,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Dougie Hamilton",
+      "selection": "Under",
+      "point": 0.5,
+      "price": -155,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Anthony Mantha",
+      "selection": "Over",
+      "point": 0.5,
+      "price": 120,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Anthony Mantha",
+      "selection": "Under",
+      "point": 0.5,
+      "price": -165,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Evan Rodrigues",
+      "selection": "Over",
+      "point": 0.5,
+      "price": 130,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Evan Rodrigues",
+      "selection": "Under",
+      "point": 0.5,
+      "price": -175,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Dawson Mercer",
+      "selection": "Over",
+      "point": 0.5,
+      "price": 135,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Dawson Mercer",
+      "selection": "Under",
+      "point": 0.5,
+      "price": -185,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Alex Killorn",
+      "selection": "Over",
+      "point": 0.5,
+      "price": 165,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_points",
+      "player": "Alex Killorn",
+      "selection": "Under",
+      "point": 0.5,
+      "price": -220,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Jack Hughes",
+      "selection": "Over",
+      "point": 3.5,
+      "price": -110,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Jack Hughes",
+      "selection": "Under",
+      "point": 3.5,
+      "price": -125,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Cutter Gauthier",
+      "selection": "Over",
+      "point": 3.5,
+      "price": -105,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Cutter Gauthier",
+      "selection": "Under",
+      "point": 3.5,
+      "price": -130,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Timo Meier",
+      "selection": "Over",
+      "point": 2.5,
+      "price": -150,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Timo Meier",
+      "selection": "Under",
+      "point": 2.5,
+      "price": 110,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Beckett Sennecke",
+      "selection": "Over",
+      "point": 2.5,
+      "price": -115,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Beckett Sennecke",
+      "selection": "Under",
+      "point": 2.5,
+      "price": -115,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Dougie Hamilton",
+      "selection": "Over",
+      "point": 2.5,
+      "price": 110,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Dougie Hamilton",
+      "selection": "Under",
+      "point": 2.5,
+      "price": -150,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Luke Hughes",
+      "selection": "Over",
+      "point": 2.5,
+      "price": 110,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Luke Hughes",
+      "selection": "Under",
+      "point": 2.5,
+      "price": -145,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Nico Hischier",
+      "selection": "Over",
+      "point": 2.5,
+      "price": 115,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Nico Hischier",
+      "selection": "Under",
+      "point": 2.5,
+      "price": -155,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Leo Carlsson",
+      "selection": "Over",
+      "point": 2.5,
+      "price": 130,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Leo Carlsson",
+      "selection": "Under",
+      "point": 2.5,
+      "price": -180,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Luke Evangelista",
+      "selection": "Over",
+      "point": 2.5,
+      "price": 135,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Luke Evangelista",
+      "selection": "Under",
+      "point": 2.5,
+      "price": -185,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Arseny Gritsyuk",
+      "selection": "Over",
+      "point": 2.5,
+      "price": 140,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Arseny Gritsyuk",
+      "selection": "Under",
+      "point": 2.5,
+      "price": -190,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Evan Rodrigues",
+      "selection": "Over",
+      "point": 1.5,
+      "price": -180,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Evan Rodrigues",
+      "selection": "Under",
+      "point": 1.5,
+      "price": 130,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Jesper Bratt",
+      "selection": "Over",
+      "point": 1.5,
+      "price": -180,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Jesper Bratt",
+      "selection": "Under",
+      "point": 1.5,
+      "price": 130,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Mikael Granlund",
+      "selection": "Over",
+      "point": 1.5,
+      "price": -145,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Mikael Granlund",
+      "selection": "Under",
+      "point": 1.5,
+      "price": 110,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Dawson Mercer",
+      "selection": "Over",
+      "point": 1.5,
+      "price": -140,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Dawson Mercer",
+      "selection": "Under",
+      "point": 1.5,
+      "price": 105,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Roger McQueen",
+      "selection": "Over",
+      "point": 1.5,
+      "price": -115,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Roger McQueen",
+      "selection": "Under",
+      "point": 1.5,
+      "price": -115,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Alex Killorn",
+      "selection": "Over",
+      "point": 1.5,
+      "price": -105,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Alex Killorn",
+      "selection": "Under",
+      "point": 1.5,
+      "price": -130,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Jackson LaCombe",
+      "selection": "Over",
+      "point": 1.5,
+      "price": 110,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Jackson LaCombe",
+      "selection": "Under",
+      "point": 1.5,
+      "price": -145,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-10-22T11:56:46Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_goals",
+      "player": "Cutter Gauthier",
+      "selection": "Over",
+      "point": 0.5,
+      "price": 195,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:55:50Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_goals",
+      "player": "Cutter Gauthier",
+      "selection": "Under",
+      "point": 0.5,
+      "price": -270,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:55:50Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_goals",
+      "player": "Jesper Bratt",
+      "selection": "Over",
+      "point": 0.5,
+      "price": 240,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:55:50Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_goals",
+      "player": "Jesper Bratt",
+      "selection": "Under",
+      "point": 0.5,
+      "price": -350,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:55:50Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_goals",
+      "player": "Timo Meier",
+      "selection": "Over",
+      "point": 0.5,
+      "price": 230,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:55:50Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_goals",
+      "player": "Timo Meier",
+      "selection": "Under",
+      "point": 0.5,
+      "price": -330,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:55:50Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_goals",
+      "player": "Leo Carlsson",
+      "selection": "Over",
+      "point": 0.5,
+      "price": 260,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:55:50Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_goals",
+      "player": "Leo Carlsson",
+      "selection": "Under",
+      "point": 0.5,
+      "price": -390,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:55:50Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_goals",
+      "player": "Jack Hughes",
+      "selection": "Over",
+      "point": 0.5,
+      "price": 145,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:55:50Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_goals",
+      "player": "Jack Hughes",
+      "selection": "Under",
+      "point": 0.5,
+      "price": -200,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:55:50Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_goals",
+      "player": "Nico Hischier",
+      "selection": "Over",
+      "point": 0.5,
+      "price": 170,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:55:50Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_goals",
+      "player": "Nico Hischier",
+      "selection": "Under",
+      "point": 0.5,
+      "price": -240,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:55:50Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_goals",
+      "player": "Beckett Sennecke",
+      "selection": "Over",
+      "point": 0.5,
+      "price": 210,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:55:50Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_goals",
+      "player": "Beckett Sennecke",
+      "selection": "Under",
+      "point": 0.5,
+      "price": -300,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:55:50Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Beckett Sennecke",
+      "selection": "Over",
+      "point": 2.5,
+      "price": -120,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:55:50Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Beckett Sennecke",
+      "selection": "Under",
+      "point": 2.5,
+      "price": -108,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:55:50Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Cutter Gauthier",
+      "selection": "Over",
+      "point": 3.5,
+      "price": 100,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:55:50Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Cutter Gauthier",
+      "selection": "Under",
+      "point": 3.5,
+      "price": -130,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:55:50Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Timo Meier",
+      "selection": "Over",
+      "point": 2.5,
+      "price": -160,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:55:50Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Timo Meier",
+      "selection": "Under",
+      "point": 2.5,
+      "price": 122,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:55:50Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Jack Hughes",
+      "selection": "Over",
+      "point": 3.5,
+      "price": -108,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:55:50Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Jack Hughes",
+      "selection": "Under",
+      "point": 3.5,
+      "price": -120,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:55:50Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Nico Hischier",
+      "selection": "Over",
+      "point": 2.5,
+      "price": 116,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:55:50Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Nico Hischier",
+      "selection": "Under",
+      "point": 2.5,
+      "price": -152,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:55:50Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Luke Evangelista",
+      "selection": "Over",
+      "point": 2.5,
+      "price": 130,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:55:50Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Luke Evangelista",
+      "selection": "Under",
+      "point": 2.5,
+      "price": -170,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:55:50Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Dougie Hamilton",
+      "selection": "Over",
+      "point": 2.5,
+      "price": 114,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:55:50Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Dougie Hamilton",
+      "selection": "Under",
+      "point": 2.5,
+      "price": -148,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:55:50Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Luke Hughes",
+      "selection": "Over",
+      "point": 2.5,
+      "price": 112,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:55:50Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Luke Hughes",
+      "selection": "Under",
+      "point": 2.5,
+      "price": -146,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:55:50Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Arseny Gritsyuk",
+      "selection": "Over",
+      "point": 2.5,
+      "price": 142,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:55:50Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Arseny Gritsyuk",
+      "selection": "Under",
+      "point": 2.5,
+      "price": -188,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:55:50Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Leo Carlsson",
+      "selection": "Over",
+      "point": 2.5,
+      "price": 114,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:55:50Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    },
+    {
+      "event_id": "921ae4814ca448a3040aa6de5b0fb9e9",
+      "event": "Anaheim Ducks @ New Jersey Devils",
+      "commence_time": "2026-10-22T23:10:00Z",
+      "market": "player_shots_on_goal",
+      "player": "Leo Carlsson",
+      "selection": "Under",
+      "point": 2.5,
+      "price": -148,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-10-22T11:55:50Z",
+      "audit_flags": [
+        "stale_feed_over_24h"
+      ]
+    }
+  ],
+  "model_predictions": [
+    {
+      "event": "Ottawa Senators @ Buffalo Sabres",
+      "event_id": "espn-401892644",
+      "commence_time": "2026-11-05T00:30Z",
+      "market": "h2h",
+      "selection": "Buffalo Sabres",
+      "model_probability": 0.542843,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Ottawa Senators @ Buffalo Sabres",
+      "event_id": "espn-401892644",
+      "commence_time": "2026-11-05T00:30Z",
+      "market": "h2h",
+      "selection": "Ottawa Senators",
+      "model_probability": 0.457157,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Chicago Blackhawks @ Florida Panthers",
+      "event_id": "espn-401892645",
+      "commence_time": "2026-11-05T00:30Z",
+      "market": "h2h",
+      "selection": "Florida Panthers",
+      "model_probability": 0.653997,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Chicago Blackhawks @ Florida Panthers",
+      "event_id": "espn-401892645",
+      "commence_time": "2026-11-05T00:30Z",
+      "market": "h2h",
+      "selection": "Chicago Blackhawks",
+      "model_probability": 0.346003,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "San Jose Sharks @ Los Angeles Kings",
+      "event_id": "espn-401892646",
+      "commence_time": "2026-11-05T03:00Z",
+      "market": "h2h",
+      "selection": "Los Angeles Kings",
+      "model_probability": 0.543713,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "San Jose Sharks @ Los Angeles Kings",
+      "event_id": "espn-401892646",
+      "commence_time": "2026-11-05T03:00Z",
+      "market": "h2h",
+      "selection": "San Jose Sharks",
+      "model_probability": 0.456287,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Calgary Flames @ Seattle Kraken",
+      "event_id": "espn-401892647",
+      "commence_time": "2026-11-05T03:00Z",
+      "market": "h2h",
+      "selection": "Seattle Kraken",
+      "model_probability": 0.39896,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Calgary Flames @ Seattle Kraken",
+      "event_id": "espn-401892647",
+      "commence_time": "2026-11-05T03:00Z",
+      "market": "h2h",
+      "selection": "Calgary Flames",
+      "model_probability": 0.60104,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Utah Mammoth @ Montreal Canadiens",
+      "event_id": "espn-401892648",
+      "commence_time": "2026-11-06T00:00Z",
+      "market": "h2h",
+      "selection": "Montreal Canadiens",
+      "model_probability": 0.611262,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Utah Mammoth @ Montreal Canadiens",
+      "event_id": "espn-401892648",
+      "commence_time": "2026-11-06T00:00Z",
+      "market": "h2h",
+      "selection": "Utah Mammoth",
+      "model_probability": 0.388738,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Vegas Golden Knights @ Detroit Red Wings",
+      "event_id": "espn-401892649",
+      "commence_time": "2026-11-06T00:00Z",
+      "market": "h2h",
+      "selection": "Detroit Red Wings",
+      "model_probability": 0.523639,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Vegas Golden Knights @ Detroit Red Wings",
+      "event_id": "espn-401892649",
+      "commence_time": "2026-11-06T00:00Z",
+      "market": "h2h",
+      "selection": "Vegas Golden Knights",
+      "model_probability": 0.476361,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Chicago Blackhawks @ Tampa Bay Lightning",
+      "event_id": "espn-401892650",
+      "commence_time": "2026-11-06T00:00Z",
+      "market": "h2h",
+      "selection": "Tampa Bay Lightning",
+      "model_probability": 0.63238,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Chicago Blackhawks @ Tampa Bay Lightning",
+      "event_id": "espn-401892650",
+      "commence_time": "2026-11-06T00:00Z",
+      "market": "h2h",
+      "selection": "Chicago Blackhawks",
+      "model_probability": 0.36762,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "St. Louis Blues @ New Jersey Devils",
+      "event_id": "espn-401892651",
+      "commence_time": "2026-11-06T00:00Z",
+      "market": "h2h",
+      "selection": "New Jersey Devils",
+      "model_probability": 0.584508,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "St. Louis Blues @ New Jersey Devils",
+      "event_id": "espn-401892651",
+      "commence_time": "2026-11-06T00:00Z",
+      "market": "h2h",
+      "selection": "St. Louis Blues",
+      "model_probability": 0.415492,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Carolina Hurricanes @ New York Islanders",
+      "event_id": "espn-401892652",
+      "commence_time": "2026-11-06T00:00Z",
+      "market": "h2h",
+      "selection": "New York Islanders",
+      "model_probability": 0.350386,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Carolina Hurricanes @ New York Islanders",
+      "event_id": "espn-401892652",
+      "commence_time": "2026-11-06T00:00Z",
+      "market": "h2h",
+      "selection": "Carolina Hurricanes",
+      "model_probability": 0.649614,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Philadelphia Flyers @ New York Rangers",
+      "event_id": "espn-401892653",
+      "commence_time": "2026-11-06T00:00Z",
+      "market": "h2h",
+      "selection": "New York Rangers",
+      "model_probability": 0.488175,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Philadelphia Flyers @ New York Rangers",
+      "event_id": "espn-401892653",
+      "commence_time": "2026-11-06T00:00Z",
+      "market": "h2h",
+      "selection": "Philadelphia Flyers",
+      "model_probability": 0.511825,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Boston Bruins @ Pittsburgh Penguins",
+      "event_id": "espn-401892654",
+      "commence_time": "2026-11-06T00:00Z",
+      "market": "h2h",
+      "selection": "Pittsburgh Penguins",
+      "model_probability": 0.317092,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Boston Bruins @ Pittsburgh Penguins",
+      "event_id": "espn-401892654",
+      "commence_time": "2026-11-06T00:00Z",
+      "market": "h2h",
+      "selection": "Boston Bruins",
+      "model_probability": 0.682908,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Dallas Stars @ Columbus Blue Jackets",
+      "event_id": "espn-401892655",
+      "commence_time": "2026-11-06T00:00Z",
+      "market": "h2h",
+      "selection": "Columbus Blue Jackets",
+      "model_probability": 0.418663,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Dallas Stars @ Columbus Blue Jackets",
+      "event_id": "espn-401892655",
+      "commence_time": "2026-11-06T00:00Z",
+      "market": "h2h",
+      "selection": "Dallas Stars",
+      "model_probability": 0.581337,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Vancouver Canucks @ Winnipeg Jets",
+      "event_id": "espn-401892656",
+      "commence_time": "2026-11-06T01:00Z",
+      "market": "h2h",
+      "selection": "Winnipeg Jets",
+      "model_probability": 0.515764,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Vancouver Canucks @ Winnipeg Jets",
+      "event_id": "espn-401892656",
+      "commence_time": "2026-11-06T01:00Z",
+      "market": "h2h",
+      "selection": "Vancouver Canucks",
+      "model_probability": 0.484236,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Anaheim Ducks @ Edmonton Oilers",
+      "event_id": "espn-401892657",
+      "commence_time": "2026-11-06T01:00Z",
+      "market": "h2h",
+      "selection": "Edmonton Oilers",
+      "model_probability": 0.652214,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Anaheim Ducks @ Edmonton Oilers",
+      "event_id": "espn-401892657",
+      "commence_time": "2026-11-06T01:00Z",
+      "market": "h2h",
+      "selection": "Anaheim Ducks",
+      "model_probability": 0.347786,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Nashville Predators @ Colorado Avalanche",
+      "event_id": "espn-401892658",
+      "commence_time": "2026-11-06T02:30Z",
+      "market": "h2h",
+      "selection": "Colorado Avalanche",
+      "model_probability": 0.54876,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Nashville Predators @ Colorado Avalanche",
+      "event_id": "espn-401892658",
+      "commence_time": "2026-11-06T02:30Z",
+      "market": "h2h",
+      "selection": "Nashville Predators",
+      "model_probability": 0.45124,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Columbus Blue Jackets @ Buffalo Sabres",
+      "event_id": "espn-401892659",
+      "commence_time": "2026-11-07T00:00Z",
+      "market": "h2h",
+      "selection": "Buffalo Sabres",
+      "model_probability": 0.557616,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Columbus Blue Jackets @ Buffalo Sabres",
+      "event_id": "espn-401892659",
+      "commence_time": "2026-11-07T00:00Z",
+      "market": "h2h",
+      "selection": "Columbus Blue Jackets",
+      "model_probability": 0.442384,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "San Jose Sharks @ Minnesota Wild",
+      "event_id": "espn-401892660",
+      "commence_time": "2026-11-07T01:00Z",
+      "market": "h2h",
+      "selection": "Minnesota Wild",
+      "model_probability": 0.646353,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "San Jose Sharks @ Minnesota Wild",
+      "event_id": "espn-401892660",
+      "commence_time": "2026-11-07T01:00Z",
+      "market": "h2h",
+      "selection": "San Jose Sharks",
+      "model_probability": 0.353647,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Anaheim Ducks @ Calgary Flames",
+      "event_id": "espn-401892661",
+      "commence_time": "2026-11-07T01:00Z",
+      "market": "h2h",
+      "selection": "Calgary Flames",
+      "model_probability": 0.602903,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Anaheim Ducks @ Calgary Flames",
+      "event_id": "espn-401892661",
+      "commence_time": "2026-11-07T01:00Z",
+      "market": "h2h",
+      "selection": "Anaheim Ducks",
+      "model_probability": 0.397097,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Florida Panthers @ Washington Capitals",
+      "event_id": "espn-401892662",
+      "commence_time": "2026-11-07T17:30Z",
+      "market": "h2h",
+      "selection": "Washington Capitals",
+      "model_probability": 0.413952,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Florida Panthers @ Washington Capitals",
+      "event_id": "espn-401892662",
+      "commence_time": "2026-11-07T17:30Z",
+      "market": "h2h",
+      "selection": "Florida Panthers",
+      "model_probability": 0.586048,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "St. Louis Blues @ Nashville Predators",
+      "event_id": "espn-401892663",
+      "commence_time": "2026-11-07T18:00Z",
+      "market": "h2h",
+      "selection": "Nashville Predators",
+      "model_probability": 0.465353,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "St. Louis Blues @ Nashville Predators",
+      "event_id": "espn-401892663",
+      "commence_time": "2026-11-07T18:00Z",
+      "market": "h2h",
+      "selection": "St. Louis Blues",
+      "model_probability": 0.534647,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "New York Rangers @ Seattle Kraken",
+      "event_id": "espn-401892664",
+      "commence_time": "2026-11-07T22:00Z",
+      "market": "h2h",
+      "selection": "Seattle Kraken",
+      "model_probability": 0.475924,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "New York Rangers @ Seattle Kraken",
+      "event_id": "espn-401892664",
+      "commence_time": "2026-11-07T22:00Z",
+      "market": "h2h",
+      "selection": "New York Rangers",
+      "model_probability": 0.524076,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Montreal Canadiens @ Toronto Maple Leafs",
+      "event_id": "espn-401892665",
+      "commence_time": "2026-11-08T00:00Z",
+      "market": "h2h",
+      "selection": "Toronto Maple Leafs",
+      "model_probability": 0.453588,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Montreal Canadiens @ Toronto Maple Leafs",
+      "event_id": "espn-401892665",
+      "commence_time": "2026-11-08T00:00Z",
+      "market": "h2h",
+      "selection": "Montreal Canadiens",
+      "model_probability": 0.546412,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Utah Mammoth @ Ottawa Senators",
+      "event_id": "espn-401892666",
+      "commence_time": "2026-11-08T00:00Z",
+      "market": "h2h",
+      "selection": "Ottawa Senators",
+      "model_probability": 0.511037,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Utah Mammoth @ Ottawa Senators",
+      "event_id": "espn-401892666",
+      "commence_time": "2026-11-08T00:00Z",
+      "market": "h2h",
+      "selection": "Utah Mammoth",
+      "model_probability": 0.488963,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "New Jersey Devils @ New York Islanders",
+      "event_id": "espn-401892667",
+      "commence_time": "2026-11-08T00:00Z",
+      "market": "h2h",
+      "selection": "New York Islanders",
+      "model_probability": 0.380097,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "New Jersey Devils @ New York Islanders",
+      "event_id": "espn-401892667",
+      "commence_time": "2026-11-08T00:00Z",
+      "market": "h2h",
+      "selection": "New Jersey Devils",
+      "model_probability": 0.619903,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Chicago Blackhawks @ Carolina Hurricanes",
+      "event_id": "espn-401892668",
+      "commence_time": "2026-11-08T01:00Z",
+      "market": "h2h",
+      "selection": "Carolina Hurricanes",
+      "model_probability": 0.726303,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Chicago Blackhawks @ Carolina Hurricanes",
+      "event_id": "espn-401892668",
+      "commence_time": "2026-11-08T01:00Z",
+      "market": "h2h",
+      "selection": "Chicago Blackhawks",
+      "model_probability": 0.273697,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "San Jose Sharks @ Dallas Stars",
+      "event_id": "espn-401892669",
+      "commence_time": "2026-11-08T01:00Z",
+      "market": "h2h",
+      "selection": "Dallas Stars",
+      "model_probability": 0.605188,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "San Jose Sharks @ Dallas Stars",
+      "event_id": "espn-401892669",
+      "commence_time": "2026-11-08T01:00Z",
+      "market": "h2h",
+      "selection": "San Jose Sharks",
+      "model_probability": 0.394812,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Tampa Bay Lightning @ Minnesota Wild",
+      "event_id": "espn-401892670",
+      "commence_time": "2026-11-08T01:00Z",
+      "market": "h2h",
+      "selection": "Minnesota Wild",
+      "model_probability": 0.557616,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Tampa Bay Lightning @ Minnesota Wild",
+      "event_id": "espn-401892670",
+      "commence_time": "2026-11-08T01:00Z",
+      "market": "h2h",
+      "selection": "Tampa Bay Lightning",
+      "model_probability": 0.442384,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Detroit Red Wings @ Colorado Avalanche",
+      "event_id": "espn-401892671",
+      "commence_time": "2026-11-08T02:00Z",
+      "market": "h2h",
+      "selection": "Colorado Avalanche",
+      "model_probability": 0.507884,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Detroit Red Wings @ Colorado Avalanche",
+      "event_id": "espn-401892671",
+      "commence_time": "2026-11-08T02:00Z",
+      "market": "h2h",
+      "selection": "Detroit Red Wings",
+      "model_probability": 0.492116,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Pittsburgh Penguins @ Los Angeles Kings",
+      "event_id": "espn-401892672",
+      "commence_time": "2026-11-08T02:00Z",
+      "market": "h2h",
+      "selection": "Los Angeles Kings",
+      "model_probability": 0.557616,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Pittsburgh Penguins @ Los Angeles Kings",
+      "event_id": "espn-401892672",
+      "commence_time": "2026-11-08T02:00Z",
+      "market": "h2h",
+      "selection": "Pittsburgh Penguins",
+      "model_probability": 0.442384,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Vancouver Canucks @ Edmonton Oilers",
+      "event_id": "espn-401892673",
+      "commence_time": "2026-11-08T03:00Z",
+      "market": "h2h",
+      "selection": "Edmonton Oilers",
+      "model_probability": 0.723371,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Vancouver Canucks @ Edmonton Oilers",
+      "event_id": "espn-401892673",
+      "commence_time": "2026-11-08T03:00Z",
+      "market": "h2h",
+      "selection": "Vancouver Canucks",
+      "model_probability": 0.276629,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Florida Panthers @ Boston Bruins",
+      "event_id": "espn-401892674",
+      "commence_time": "2026-11-08T18:00Z",
+      "market": "h2h",
+      "selection": "Boston Bruins",
+      "model_probability": 0.560475,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Florida Panthers @ Boston Bruins",
+      "event_id": "espn-401892674",
+      "commence_time": "2026-11-08T18:00Z",
+      "market": "h2h",
+      "selection": "Florida Panthers",
+      "model_probability": 0.439525,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Vegas Golden Knights @ Buffalo Sabres",
+      "event_id": "espn-401892675",
+      "commence_time": "2026-11-08T20:30Z",
+      "market": "h2h",
+      "selection": "Buffalo Sabres",
+      "model_probability": 0.519265,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Vegas Golden Knights @ Buffalo Sabres",
+      "event_id": "espn-401892675",
+      "commence_time": "2026-11-08T20:30Z",
+      "market": "h2h",
+      "selection": "Vegas Golden Knights",
+      "model_probability": 0.480735,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "New Jersey Devils @ Toronto Maple Leafs",
+      "event_id": "espn-401892676",
+      "commence_time": "2026-11-09T00:00Z",
+      "market": "h2h",
+      "selection": "Toronto Maple Leafs",
+      "model_probability": 0.429414,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "New Jersey Devils @ Toronto Maple Leafs",
+      "event_id": "espn-401892676",
+      "commence_time": "2026-11-09T00:00Z",
+      "market": "h2h",
+      "selection": "New Jersey Devils",
+      "model_probability": 0.570586,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Tampa Bay Lightning @ Winnipeg Jets",
+      "event_id": "espn-401892677",
+      "commence_time": "2026-11-09T00:00Z",
+      "market": "h2h",
+      "selection": "Winnipeg Jets",
+      "model_probability": 0.341478,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Tampa Bay Lightning @ Winnipeg Jets",
+      "event_id": "espn-401892677",
+      "commence_time": "2026-11-09T00:00Z",
+      "market": "h2h",
+      "selection": "Tampa Bay Lightning",
+      "model_probability": 0.658522,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Philadelphia Flyers @ Calgary Flames",
+      "event_id": "espn-401892678",
+      "commence_time": "2026-11-09T00:00Z",
+      "market": "h2h",
+      "selection": "Calgary Flames",
+      "model_probability": 0.565925,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Philadelphia Flyers @ Calgary Flames",
+      "event_id": "espn-401892678",
+      "commence_time": "2026-11-09T00:00Z",
+      "market": "h2h",
+      "selection": "Philadelphia Flyers",
+      "model_probability": 0.434075,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Pittsburgh Penguins @ Anaheim Ducks",
+      "event_id": "espn-401892679",
+      "commence_time": "2026-11-09T01:00Z",
+      "market": "h2h",
+      "selection": "Anaheim Ducks",
+      "model_probability": 0.507709,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Pittsburgh Penguins @ Anaheim Ducks",
+      "event_id": "espn-401892679",
+      "commence_time": "2026-11-09T01:00Z",
+      "market": "h2h",
+      "selection": "Pittsburgh Penguins",
+      "model_probability": 0.492291,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "New York Rangers @ Edmonton Oilers",
+      "event_id": "espn-401892680",
+      "commence_time": "2026-11-10T01:00Z",
+      "market": "h2h",
+      "selection": "Edmonton Oilers",
+      "model_probability": 0.627821,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "New York Rangers @ Edmonton Oilers",
+      "event_id": "espn-401892680",
+      "commence_time": "2026-11-10T01:00Z",
+      "market": "h2h",
+      "selection": "New York Rangers",
+      "model_probability": 0.372179,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Philadelphia Flyers @ Vancouver Canucks",
+      "event_id": "espn-401892681",
+      "commence_time": "2026-11-10T02:30Z",
+      "market": "h2h",
+      "selection": "Vancouver Canucks",
+      "model_probability": 0.383446,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Philadelphia Flyers @ Vancouver Canucks",
+      "event_id": "espn-401892681",
+      "commence_time": "2026-11-10T02:30Z",
+      "market": "h2h",
+      "selection": "Philadelphia Flyers",
+      "model_probability": 0.616554,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "New York Islanders @ San Jose Sharks",
+      "event_id": "espn-401892682",
+      "commence_time": "2026-11-10T03:00Z",
+      "market": "h2h",
+      "selection": "San Jose Sharks",
+      "model_probability": 0.456287,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "New York Islanders @ San Jose Sharks",
+      "event_id": "espn-401892682",
+      "commence_time": "2026-11-10T03:00Z",
+      "market": "h2h",
+      "selection": "New York Islanders",
+      "model_probability": 0.543713,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Colorado Avalanche @ Toronto Maple Leafs",
+      "event_id": "espn-401892683",
+      "commence_time": "2026-11-11T00:00Z",
+      "market": "h2h",
+      "selection": "Toronto Maple Leafs",
+      "model_probability": 0.5,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Colorado Avalanche @ Toronto Maple Leafs",
+      "event_id": "espn-401892683",
+      "commence_time": "2026-11-11T00:00Z",
+      "market": "h2h",
+      "selection": "Colorado Avalanche",
+      "model_probability": 0.5,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Minnesota Wild @ Montreal Canadiens",
+      "event_id": "espn-401892684",
+      "commence_time": "2026-11-11T00:00Z",
+      "market": "h2h",
+      "selection": "Montreal Canadiens",
+      "model_probability": 0.491328,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Minnesota Wild @ Montreal Canadiens",
+      "event_id": "espn-401892684",
+      "commence_time": "2026-11-11T00:00Z",
+      "market": "h2h",
+      "selection": "Minnesota Wild",
+      "model_probability": 0.508672,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Washington Capitals @ Ottawa Senators",
+      "event_id": "espn-401892685",
+      "commence_time": "2026-11-11T00:00Z",
+      "market": "h2h",
+      "selection": "Ottawa Senators",
+      "model_probability": 0.511037,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Washington Capitals @ Ottawa Senators",
+      "event_id": "espn-401892685",
+      "commence_time": "2026-11-11T00:00Z",
+      "market": "h2h",
+      "selection": "Washington Capitals",
+      "model_probability": 0.488963,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Florida Panthers @ Columbus Blue Jackets",
+      "event_id": "espn-401892686",
+      "commence_time": "2026-11-11T00:30Z",
+      "market": "h2h",
+      "selection": "Columbus Blue Jackets",
+      "model_probability": 0.410191,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Florida Panthers @ Columbus Blue Jackets",
+      "event_id": "espn-401892686",
+      "commence_time": "2026-11-11T00:30Z",
+      "market": "h2h",
+      "selection": "Florida Panthers",
+      "model_probability": 0.589809,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Detroit Red Wings @ St. Louis Blues",
+      "event_id": "espn-401892687",
+      "commence_time": "2026-11-11T01:00Z",
+      "market": "h2h",
+      "selection": "St. Louis Blues",
+      "model_probability": 0.493693,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Detroit Red Wings @ St. Louis Blues",
+      "event_id": "espn-401892687",
+      "commence_time": "2026-11-11T01:00Z",
+      "market": "h2h",
+      "selection": "Detroit Red Wings",
+      "model_probability": 0.506307,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "New Jersey Devils @ Winnipeg Jets",
+      "event_id": "espn-401892688",
+      "commence_time": "2026-11-11T01:00Z",
+      "market": "h2h",
+      "selection": "Winnipeg Jets",
+      "model_probability": 0.276629,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "New Jersey Devils @ Winnipeg Jets",
+      "event_id": "espn-401892688",
+      "commence_time": "2026-11-11T01:00Z",
+      "market": "h2h",
+      "selection": "New Jersey Devils",
+      "model_probability": 0.723371,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Nashville Predators @ Los Angeles Kings",
+      "event_id": "espn-401892689",
+      "commence_time": "2026-11-11T03:00Z",
+      "market": "h2h",
+      "selection": "Los Angeles Kings",
+      "model_probability": 0.498073,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Nashville Predators @ Los Angeles Kings",
+      "event_id": "espn-401892689",
+      "commence_time": "2026-11-11T03:00Z",
+      "market": "h2h",
+      "selection": "Nashville Predators",
+      "model_probability": 0.501927,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Tampa Bay Lightning @ Buffalo Sabres",
+      "event_id": "espn-401892690",
+      "commence_time": "2026-11-12T00:00Z",
+      "market": "h2h",
+      "selection": "Buffalo Sabres",
+      "model_probability": 0.490365,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Tampa Bay Lightning @ Buffalo Sabres",
+      "event_id": "espn-401892690",
+      "commence_time": "2026-11-12T00:00Z",
+      "market": "h2h",
+      "selection": "Tampa Bay Lightning",
+      "model_probability": 0.509635,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "New York Rangers @ Calgary Flames",
+      "event_id": "espn-401892691",
+      "commence_time": "2026-11-12T00:30Z",
+      "market": "h2h",
+      "selection": "Calgary Flames",
+      "model_probability": 0.577559,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "New York Rangers @ Calgary Flames",
+      "event_id": "espn-401892691",
+      "commence_time": "2026-11-12T00:30Z",
+      "market": "h2h",
+      "selection": "New York Rangers",
+      "model_probability": 0.422441,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Philadelphia Flyers @ Edmonton Oilers",
+      "event_id": "espn-401892692",
+      "commence_time": "2026-11-12T02:00Z",
+      "market": "h2h",
+      "selection": "Edmonton Oilers",
+      "model_probability": 0.616554,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Philadelphia Flyers @ Edmonton Oilers",
+      "event_id": "espn-401892692",
+      "commence_time": "2026-11-12T02:00Z",
+      "market": "h2h",
+      "selection": "Philadelphia Flyers",
+      "model_probability": 0.383446,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Utah Mammoth @ Vegas Golden Knights",
+      "event_id": "espn-401892693",
+      "commence_time": "2026-11-12T02:30Z",
+      "market": "h2h",
+      "selection": "Vegas Golden Knights",
+      "model_probability": 0.534647,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Utah Mammoth @ Vegas Golden Knights",
+      "event_id": "espn-401892693",
+      "commence_time": "2026-11-12T02:30Z",
+      "market": "h2h",
+      "selection": "Utah Mammoth",
+      "model_probability": 0.465353,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Nashville Predators @ Anaheim Ducks",
+      "event_id": "espn-401892694",
+      "commence_time": "2026-11-12T03:00Z",
+      "market": "h2h",
+      "selection": "Anaheim Ducks",
+      "model_probability": 0.448111,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Nashville Predators @ Anaheim Ducks",
+      "event_id": "espn-401892694",
+      "commence_time": "2026-11-12T03:00Z",
+      "market": "h2h",
+      "selection": "Nashville Predators",
+      "model_probability": 0.551889,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Pittsburgh Penguins @ San Jose Sharks",
+      "event_id": "espn-401892695",
+      "commence_time": "2026-11-12T03:00Z",
+      "market": "h2h",
+      "selection": "San Jose Sharks",
+      "model_probability": 0.514014,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Pittsburgh Penguins @ San Jose Sharks",
+      "event_id": "espn-401892695",
+      "commence_time": "2026-11-12T03:00Z",
+      "market": "h2h",
+      "selection": "Pittsburgh Penguins",
+      "model_probability": 0.485986,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-04T22:56:18.408002+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    }
+  ],
+  "note": "Saved sportsbook quotes are not model predictions. Independently timestamped model predictions are required before kickoff.",
+  "sha256": "6263ec5cbcc22019617281a99f6afd5d016ca9f9b13edb622a1d3cfaed84022b"
+}
