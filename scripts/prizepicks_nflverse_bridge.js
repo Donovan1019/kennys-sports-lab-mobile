@@ -11,12 +11,16 @@ function bridgeNflverseArchive(archive,now=Date.now()){
  const fetched=Date.parse(archive.fetched_at);
  if(!Number.isFinite(fetched)||fetched>now+60000||now-fetched>7*86400000)return fail('nflverse archive timestamp missing or stale');
  const records=[];
+ const combinedGames=player=>player.games.map(g=>{
+  const a=g?.values?.['Rushing yards'],b=g?.values?.['Receiving yards'];
+  return typeof a==='number'&&Number.isFinite(a)&&typeof b==='number'&&Number.isFinite(b)?{...g,values:{...g.values,'Rush+Rec Yds':a+b}}:g;
+ });
  for(const player of archive.players){
   const id=player?.player_id||player?.playerId;
   if(!id||!Array.isArray(player.games))continue;
-  for(const [market,key] of Object.entries(MARKET_VALUES)){
+  for(const [market,key] of Object.entries({...MARKET_VALUES,'Rush+Rec Yds':'Rush+Rec Yds'})){
    const games=[];let valid=true;
-   for(const game of player.games){
+   for(const game of combinedGames(player)){
     const eventId=game?.eventId||game?.game_id;
     const playedAt=game?.playedAt||game?.game_date;
     const value=game?.values?.[key];
