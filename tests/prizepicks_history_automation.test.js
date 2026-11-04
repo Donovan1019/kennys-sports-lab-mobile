@@ -54,6 +54,11 @@ const sourceChecks=historySourceDiagnostics([history,{status:'UNAVAILABLE'}],arc
 assert.equal(sourceChecks.explicitHistory.length,2);
 assert.equal(sourceChecks.explicitHistory[0].status,'VERIFIED_HISTORY_INPUT');
 assert.equal(sourceChecks.explicitHistory[1].status,'UNAVAILABLE');
+const absentSources=historySourceDiagnostics([null,null],archive,now);
+assert.equal(absentSources.explicitHistory.length,2);
+assert.equal(absentSources.explicitHistory[0].status,'NOT_CONFIGURED');
+assert.equal(absentSources.explicitHistory[1].status,'NOT_CONFIGURED');
+assert.equal(absentSources.selected,'NFL_ARCHIVE');
 const fs=require('node:fs');
 const script=fs.readFileSync(require.resolve('../scripts/prizepicks_history_automation'),'utf8');
 assert.ok(script.includes("PRIZEPICKS_CROSSWALK_PATH||'feed/prizepicks_verified_crosswalk.json'"));
