@@ -5,7 +5,7 @@ const now=Date.parse('2026-11-03T20:00:00Z');
 const feed={status:'RAW_LINES_ONLY',generated_at:'2026-11-03T19:50:00Z',lines:[{id:'x',league:'NBA',player:'Example',player_id:'pp-1',market:'Points',period:'Full game',line:15.5}]};
 const games=Array.from({length:15},(_,i)=>({eventId:'e'+i,playedAt:'2026-10-'+String(i+1).padStart(2,'0')+'T00:00:00Z',verified:true,value:i+10}));
 const history={schema_version:1,status:'VERIFIED_GAME_LOGS',source:'independent',generated_at:'2026-11-03T19:00:00Z',records:[{playerId:'hist-1',providerPlayerId:'hist-1',league:'NBA',market:'Points',period:'Full game',source:'independent',independentlyVerified:true,games}]};
-const crosswalk=[{verified:true,league:'NBA',prizepicksPlayerId:'pp-1',historyPlayerId:'hist-1',historySource:'independent'}];
+const crosswalk=[{verified:true,league:'NBA',prizepicksPlayerId:'pp-1',historyPlayerId:'hist-1',historySource:'independent',evidence:{provider:'PrizePicksAPI.com',historySource:'independent',prizepicksPlayerId:'pp-1',historyPlayerId:'hist-1',providerReference:'provider-identity-record',historyReference:'independent-player-profile',checkedAt:'2026-11-03T19:00:00Z'}}];
 const good=runAudit(feed,history,crosswalk,now);
 assert.equal(good.coverage.matched,1);assert.equal(good.rows[0].last5.sample,5);
 assert.equal(good.betEligible,false);assert.equal(good.rows[0].betEligible,false);
