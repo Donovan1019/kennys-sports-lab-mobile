@@ -130,3 +130,9 @@ for(const [league,input,expected] of [['NBA','Pts+Rebs+Asts','Points + Rebounds 
 const aliasFeed={...feed,lines:[{...feed.lines[0],market:'Pts+Rebs+Asts'}]};
 const aliasHistory={...history,records:history.records.map(r=>({...r,market:'Points + Rebounds + Assists'}))};
 assert.equal(runAudit(aliasFeed,aliasHistory,crosswalk,now).coverage.matched,1);
+
+const {extractCrosswalk}=require('../scripts/prizepicks_history_automation');
+const example={league:'NBA',prizepicksPlayerId:'p1',historyPlayerId:'e1'};
+require('node:assert/strict').deepEqual(extractCrosswalk({schema_version:1,mappings:[example]}),[example]);
+require('node:assert/strict').deepEqual(extractCrosswalk([example]),[example]);
+require('node:assert/strict').deepEqual(extractCrosswalk({status:'UNAVAILABLE'}),[]);
