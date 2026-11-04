@@ -40,5 +40,7 @@ const mock=async url=>({ok:true,json:async()=>url.includes('/roster/BOS/')?{forw
  assert.equal(notFoundAttempts,1);
  const unavailable=await collect({lines:[{league:'NHL',player:'Unknown'}]},now,mock);
  assert.equal(unavailable.status,'UNAVAILABLE');
+ assert.equal(unavailable.diagnostics.reason,'no unambiguous NHL roster matches');
+ assert.equal(result.diagnostics.verifiedMarketRecords,5);
  console.log('Official NHL historical collector tests passed');
 })().catch(e=>{console.error(e);process.exitCode=1});
