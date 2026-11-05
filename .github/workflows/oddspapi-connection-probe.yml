@@ -23,7 +23,7 @@ jobs:
         with:
           node-version: '22'
       - run: node tests/oddspapi_connection_probe.test.js && node tests/oddspapi_market_catalog.test.js
-      - name: Verify OddsPapi secret using quota-free account endpoint
+      - name: Verify OddsPapi secret using account endpoint
         if: github.event_name != 'pull_request'
         env:
           ODDSPAPI_API_KEY: ${{ secrets.ODDSPAPI_API_KEY }}
