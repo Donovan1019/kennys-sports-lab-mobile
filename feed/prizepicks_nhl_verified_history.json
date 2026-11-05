@@ -2,19 +2,21 @@
   "schema_version": 1,
   "status": "UNAVAILABLE",
   "source": "api-web.nhle.com/v1",
-  "generated_at": "2026-11-05T15:50:40.013Z",
+  "generated_at": "2026-11-05T21:38:29.372Z",
   "records": [],
   "diagnostics": {
     "candidateNames": 120,
     "rosterFailures": [
-      "STL: NHL HTTP 429",
-      "TBL: NHL HTTP 429"
+      "UTA: NHL HTTP 429",
+      "TOR: NHL HTTP 429",
+      "VAN: NHL HTTP 429",
+      "WSH: NHL HTTP 429"
     ],
     "gameLogFailures": [],
     "matchedRosterIds": 0,
     "ambiguousRosterNames": [],
     "identityCandidates": [],
     "verifiedMarketRecords": 0,
-    "reason": "incomplete league roster coverage; NHL Stats REST fallback: NHL Stats REST bios missing 3 player candidates"
+    "reason": "incomplete league roster coverage; NHL Stats REST fallback: NHL Stats REST bios missing 13 player candidates"
   }
 }
