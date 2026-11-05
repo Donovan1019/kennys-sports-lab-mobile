@@ -10,7 +10,7 @@ for(const market of ['Points','Rebounds','Assists','Threes','Pts+Reb','Pts+Ast',
 for(const tab of ['Graph','Shooting','Similar','Types'])assert.ok(js.includes("'"+tab+"'"));
 assert.match(js,/feed\/nba_player_stats\.json/);
 assert.match(js,/Number\(x\.g\.values&&x\.g\.values\.Minutes\)>0/);
-assert.match(js,/No synthetic player data/);assert.match(js,/nba_player_walkforward_research.json/);assert.match(js,/LEAGUE-WIDE MODEL MAE/);assert.match(js,/research only/);assert.match(js,/active==='Similar'/);assert.match(js,/Math.abs\(x.avg-r.avg\)/);assert.match(js,/descriptive comparison only/);
+assert.match(js,/No synthetic player data/);assert.match(js,/nba_player_walkforward_research.json/);assert.match(js,/LEAGUE-WIDE MODEL MAE/);assert.match(js,/research only/);assert.match(js,/active==='Similar'/);assert.match(js,/Math.abs\(x.avg-r.avg\)/);assert.match(js,/descriptive comparison only/);assert.match(js,/active==='Types'/);assert.match(js,/Recorded stat-type breakdown/);assert.match(js,/not shot locations, play-type tracking/);
 assert.match(js,/requires verified tracking/);
 assert.doesNotMatch(js,/Math\.random\(/);
 console.log('NBA prop research static checks passed');
