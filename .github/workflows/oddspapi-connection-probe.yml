@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - 'scripts/oddspapi_connection_probe.js'
+      - 'scripts/oddspapi_market_catalog.js'
+      - 'tests/oddspapi_market_catalog.test.js'
       - 'tests/oddspapi_connection_probe.test.js'
       - '.github/workflows/oddspapi-connection-probe.yml'
   pull_request:
@@ -20,8 +22,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: node tests/oddspapi_connection_probe.test.js
-      - name: Verify OddsPapi secret using zero-quota account endpoint
+      - run: node tests/oddspapi_connection_probe.test.js && node tests/oddspapi_market_catalog.test.js
+      - name: Verify OddsPapi secret using quota-free account endpoint
         if: github.event_name != 'pull_request'
         env:
           ODDSPAPI_API_KEY: ${{ secrets.ODDSPAPI_API_KEY }}
