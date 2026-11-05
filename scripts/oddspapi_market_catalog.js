@@ -4,7 +4,7 @@ function indexMarkets(markets){
  if(!Array.isArray(markets))throw Error('MARKET_CATALOG_INVALID');
  const byId=new Map();
  for(const m of markets){
-  if(!Number.isInteger(m?.marketId)||typeof m.marketName!=='string'||!Number.isFinite(Number(m.handicap))||!Array.isArray(m.outcomes))continue;
+  if(!Number.isInteger(m?.marketId)||m.playerProp!==true||typeof m.marketName!=='string'||!Number.isFinite(Number(m.handicap))||!Array.isArray(m.outcomes))continue;
   byId.set(String(m.marketId),{name:m.marketName,line:Number(m.handicap),outcomes:new Map(m.outcomes.filter(o=>o?.outcomeId!=null&&typeof o.outcomeName==='string').map(o=>[String(o.outcomeId),o.outcomeName]))});
  }
  return byId;
@@ -12,10 +12,10 @@ function indexMarkets(markets){
 function parsePrizePicks(odds,marketCatalog,{now=Date.now(),maxAgeMs=30*60*1000}={}){
  if(!odds||typeof odds!=='object'||!marketCatalog?.get)throw Error('ODDS_SCHEMA_INVALID');
  const book=odds.bookmakerOdds?.prizepicks;
- if(!book||typeof book.markets!=='object'||book.markets===null)return {status:'NO_PRIZEPICKS_MARKETS',lines:[]};
+ if(!book||book.suspended===true||book.bookmakerIsActive===false||typeof book.markets!=='object'||book.markets===null)return {status:'NO_PRIZEPICKS_MARKETS',lines:[]};
  const lines=[],seen=new Set();
  for(const [marketId,market] of Object.entries(book.markets)){
-  const meta=marketCatalog.get(marketId);if(!meta||!market?.outcomes)continue;
+  const meta=marketCatalog.get(marketId);if(!meta||market.marketActive===false||!market?.outcomes)continue;
   for(const [outcomeId,outcome] of Object.entries(market.outcomes)){
    const side=meta.outcomes.get(outcomeId);
    if(!['Over','Under','More','Less'].includes(side)||!outcome?.players)continue;
