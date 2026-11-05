@@ -68,15 +68,23 @@ jobs:
       - name: Publish audited NFL historical archive
         if: github.event_name != 'pull_request' && steps.eastern.outputs.run == 'true'
         run: |
-          git fetch origin main
-          git checkout -B main origin/main
-          mkdir -p feed
-          cp /tmp/nfl_player_stats.json feed/nfl_player_stats.json
-          cp /tmp/nfl_player_stats_audit.json feed/nfl_player_stats_audit.json
+          set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add feed/nfl_player_stats.json feed/nfl_player_stats_audit.json
-          if ! git diff --cached --quiet; then
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git checkout -B main origin/main
+            mkdir -p feed
+            cp /tmp/nfl_player_stats.json feed/nfl_player_stats.json
+            cp /tmp/nfl_player_stats_audit.json feed/nfl_player_stats_audit.json
+            git add feed/nfl_player_stats.json feed/nfl_player_stats_audit.json
+            if git diff --cached --quiet; then
+              echo 'Audited NFL player history already up to date'
+              exit 0
+            fi
             git commit -m 'data: refresh audited NFL player history [skip ci]'
-            git push origin HEAD:main
-          fi
+            if git push origin HEAD:main; then exit 0; fi
+            echo "Concurrent main update; retrying NFL publish ($attempt)"
+          done
+          echo 'NFL audited publish failed after five attempts' >&2
+          exit 1
