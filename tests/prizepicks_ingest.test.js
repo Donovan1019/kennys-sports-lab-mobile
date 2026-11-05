@@ -3,4 +3,4 @@ assert.equal(externalId({espn_id:3908809},'NBA'),'3908809');
 assert.equal(externalId({externalIds:{nhl:'8478402'}},'NHL'),'8478402');
 assert.equal(externalId({external_ids:{espn:'3908809'},espnId:'999'},'NBA'),null);
 assert.equal(externalId({name:'A'},'NBA'),null);
-console.log('PrizePicks documented schema, freshness and fail-closed tests passed');
+const {retryAfterMs,isQuotaError}=require('../scripts/prizepicks_ingest');assert.equal(retryAfterMs('3'),3000);assert.equal(retryAfterMs('bad'),0);assert.equal(isQuotaError({providerCode:'monthly_quota_exceeded'}),true);assert.equal(isQuotaError({providerCode:'rate_limit_exceeded'}),false);console.log('PrizePicks documented schema, freshness and fail-closed tests passed');
