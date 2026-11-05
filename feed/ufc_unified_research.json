@@ -8,10 +8,10 @@
     "scheduled_rounds_verified": 0,
     "fighter_status_verified": 0,
     "odds_verified": 0,
-    "paired_historical_round_rows": 10,
-    "paired_elo_available": 8,
+    "paired_historical_round_rows": 9,
+    "paired_elo_available": 7,
     "count_simulations_available": 0,
-    "historical_per_round_available": 24,
+    "historical_per_round_available": 23,
     "point_in_time_calibration_certified": false,
     "model_ev_verified": 0,
     "bet_eligible": false
@@ -155,159 +155,6 @@
         "fighter_status_verified": false,
         "odds_verified": false,
         "paired_historical_round_rows": 1,
-        "opponent_quality_verified": false
-      },
-      "calibration": {
-        "status": "UNVERIFIED",
-        "point_in_time_validated": false,
-        "evaluated_fights": 0,
-        "brier": null,
-        "log_loss": null
-      },
-      "betting": {
-        "status": "NOT_ELIGIBLE",
-        "model_ev": null,
-        "reason": "No calibrated independent live probability and verified executable price"
-      }
-    },
-    {
-      "fight_id": "401928114",
-      "red": "Lucas Brennan",
-      "blue": "Austin Bashi",
-      "opponent_adjustment": {
-        "elo_available": true,
-        "verified_strength_of_schedule": false
-      },
-      "sparse_data_probability": {
-        "red": 0.4585,
-        "blue": 0.5415,
-        "red_uncertainty_interval": [
-          0.0868,
-          0.8303
-        ],
-        "status": "UNCALIBRATED_RESEARCH"
-      },
-      "count_simulation": {
-        "Lucas Brennan": {
-          "status": "UNAVAILABLE",
-          "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
-          "historical_per_round": {
-            "sig_landed": 3.0,
-            "sig_attempted": 12.0,
-            "td_landed": 0.0,
-            "td_attempted": 2.0
-          },
-          "duration_scenarios": {
-            "3": {
-              "status": "HYPOTHETICAL_RESEARCH_ONLY",
-              "count_means": {
-                "sig_landed": 7.5,
-                "sig_attempted": 30.1,
-                "takedowns_landed": 0.0,
-                "takedowns_attempted": 4.99
-              },
-              "hazard_sensitivity": {
-                "low_finish_hazard": 0.08,
-                "high_finish_hazard": 0.3,
-                "sig_landed_mean_range": [
-                  6.53,
-                  8.27
-                ],
-                "takedowns_landed_mean_range": [
-                  0.0,
-                  0.0
-                ]
-              },
-              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
-            },
-            "5": {
-              "status": "HYPOTHETICAL_RESEARCH_ONLY",
-              "count_means": {
-                "sig_landed": 10.46,
-                "sig_attempted": 41.51,
-                "takedowns_landed": 0.0,
-                "takedowns_attempted": 6.87
-              },
-              "hazard_sensitivity": {
-                "low_finish_hazard": 0.08,
-                "high_finish_hazard": 0.3,
-                "sig_landed_mean_range": [
-                  8.07,
-                  12.99
-                ],
-                "takedowns_landed_mean_range": [
-                  0.0,
-                  0.0
-                ]
-              },
-              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
-            }
-          },
-          "scenario_warning": "Unverified fight length; hypothetical 3/5-round counts are not predictions or bet-eligible"
-        },
-        "Austin Bashi": {
-          "status": "UNAVAILABLE",
-          "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
-          "historical_per_round": {
-            "sig_landed": 8.14,
-            "sig_attempted": 20.57,
-            "td_landed": 1.0,
-            "td_attempted": 4.71
-          },
-          "duration_scenarios": {
-            "3": {
-              "status": "HYPOTHETICAL_RESEARCH_ONLY",
-              "count_means": {
-                "sig_landed": 19.99,
-                "sig_attempted": 50.22,
-                "takedowns_landed": 2.46,
-                "takedowns_attempted": 11.37
-              },
-              "hazard_sensitivity": {
-                "low_finish_hazard": 0.08,
-                "high_finish_hazard": 0.3,
-                "sig_landed_mean_range": [
-                  18.15,
-                  22.25
-                ],
-                "takedowns_landed_mean_range": [
-                  2.19,
-                  2.7
-                ]
-              },
-              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
-            },
-            "5": {
-              "status": "HYPOTHETICAL_RESEARCH_ONLY",
-              "count_means": {
-                "sig_landed": 28.06,
-                "sig_attempted": 70.56,
-                "takedowns_landed": 3.49,
-                "takedowns_attempted": 16.1
-              },
-              "hazard_sensitivity": {
-                "low_finish_hazard": 0.08,
-                "high_finish_hazard": 0.3,
-                "sig_landed_mean_range": [
-                  23.17,
-                  35.05
-                ],
-                "takedowns_landed_mean_range": [
-                  2.9,
-                  4.26
-                ]
-              },
-              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
-            }
-          },
-          "scenario_warning": "Unverified fight length; hypothetical 3/5-round counts are not predictions or bet-eligible"
-        }
-      },
-      "input_evidence": {
-        "scheduled_rounds_verified": false,
-        "fighter_status_verified": false,
-        "odds_verified": false,
-        "paired_historical_round_rows": 3,
         "opponent_quality_verified": false
       },
       "calibration": {
@@ -1111,6 +958,106 @@
           "scenario_warning": "Unverified fight length; hypothetical 3/5-round counts are not predictions or bet-eligible"
         },
         "Gabriel Loren\u00e7o": {
+          "status": "UNAVAILABLE",
+          "reason": "Verified scheduled rounds or historical count rates missing"
+        }
+      },
+      "input_evidence": {
+        "scheduled_rounds_verified": false,
+        "fighter_status_verified": false,
+        "odds_verified": false,
+        "paired_historical_round_rows": 0,
+        "opponent_quality_verified": false
+      },
+      "calibration": {
+        "status": "UNVERIFIED",
+        "point_in_time_validated": false,
+        "evaluated_fights": 0,
+        "brier": null,
+        "log_loss": null
+      },
+      "betting": {
+        "status": "NOT_ELIGIBLE",
+        "model_ev": null,
+        "reason": "No calibrated independent live probability and verified executable price"
+      }
+    },
+    {
+      "fight_id": "401933235",
+      "red": "Austin Bashi",
+      "blue": "Carlos Calderon",
+      "opponent_adjustment": {
+        "elo_available": false,
+        "verified_strength_of_schedule": false
+      },
+      "sparse_data_probability": {
+        "red": 0.5,
+        "blue": 0.5,
+        "red_uncertainty_interval": [
+          0.01,
+          0.99
+        ],
+        "status": "NEUTRAL_PRIOR"
+      },
+      "count_simulation": {
+        "Austin Bashi": {
+          "status": "UNAVAILABLE",
+          "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
+          "historical_per_round": {
+            "sig_landed": 8.14,
+            "sig_attempted": 20.57,
+            "td_landed": 1.0,
+            "td_attempted": 4.71
+          },
+          "duration_scenarios": {
+            "3": {
+              "status": "HYPOTHETICAL_RESEARCH_ONLY",
+              "count_means": {
+                "sig_landed": 19.99,
+                "sig_attempted": 50.22,
+                "takedowns_landed": 2.46,
+                "takedowns_attempted": 11.37
+              },
+              "hazard_sensitivity": {
+                "low_finish_hazard": 0.08,
+                "high_finish_hazard": 0.3,
+                "sig_landed_mean_range": [
+                  18.15,
+                  22.25
+                ],
+                "takedowns_landed_mean_range": [
+                  2.19,
+                  2.7
+                ]
+              },
+              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
+            },
+            "5": {
+              "status": "HYPOTHETICAL_RESEARCH_ONLY",
+              "count_means": {
+                "sig_landed": 28.06,
+                "sig_attempted": 70.56,
+                "takedowns_landed": 3.49,
+                "takedowns_attempted": 16.1
+              },
+              "hazard_sensitivity": {
+                "low_finish_hazard": 0.08,
+                "high_finish_hazard": 0.3,
+                "sig_landed_mean_range": [
+                  23.17,
+                  35.05
+                ],
+                "takedowns_landed_mean_range": [
+                  2.9,
+                  4.26
+                ]
+              },
+              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
+            }
+          },
+          "scenario_warning": "Unverified fight length; hypothetical 3/5-round counts are not predictions or bet-eligible"
+        },
+        "Carlos Calderon": {
           "status": "UNAVAILABLE",
           "reason": "Verified scheduled rounds or historical count rates missing"
         }
