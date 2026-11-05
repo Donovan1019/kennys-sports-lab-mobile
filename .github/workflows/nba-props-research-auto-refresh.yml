@@ -2,8 +2,7 @@ name: NBA Props Research Auto Refresh
 on:
   workflow_dispatch:
   schedule:
-    - cron: '20 15 * * *'
-    - cron: '20 21 * * *'
+    - cron: '20 14,15,20,21 * * *'
 permissions:
   contents: write
 concurrency:
@@ -20,12 +19,23 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Gate scheduled runs to 10 AM and 4 PM Eastern
+        id: eastern
+        run: |
+          hour=$(TZ=America/New_York date +%H)
+          if [ "${{ github.event_name }}" != 'schedule' ] || [ "$hour" = '10' ] || [ "$hour" = '16' ]; then
+            echo 'run=true' >> "$GITHUB_OUTPUT"
+          else
+            echo 'run=false' >> "$GITHUB_OUTPUT"
+          fi
       - name: Refresh recorded NBA player game logs from existing free collector
+        if: steps.eastern.outputs.run == 'true'
         env:
           PLAYER_SPORT: nba
           LOOKBACK_DAYS: '7'
         run: python scripts/fetch_nba_nhl_stats.py
       - name: Validate source, player records and timestamps
+        if: steps.eastern.outputs.run == 'true'
         run: |
           python - <<'PY'
           import json
@@ -37,10 +47,13 @@ jobs:
           print('Verified NBA player archive:',len(data['players']),'players')
           PY
       - name: Recalculate existing NBA walk-forward validation
+        if: steps.eastern.outputs.run == 'true'
         run: python scripts/nba_player_walkforward_research.py
       - name: Recalculate existing NBA historical pair research
+        if: steps.eastern.outputs.run == 'true'
         run: python scripts/nba_sgp_pair_research.py
       - name: Publish three verified research files with concurrent-push retry
+        if: steps.eastern.outputs.run == 'true'
         run: |
           set -euo pipefail
           mkdir -p /tmp/nba-research-refresh
