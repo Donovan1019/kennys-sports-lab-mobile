@@ -1,7 +1,7 @@
 {
   "status": "validated",
   "sport": "basketball_nba",
-  "generated_at": "2026-11-05T05:09:09.859768+00:00",
+  "generated_at": "2026-11-05T07:29:45.031003+00:00",
   "calibration_passed": true,
   "model_version": "elo-walkforward-v1-holdout-audit",
   "validation_report": {
@@ -35,6 +35,18 @@
       "team": "Orlando Magic",
       "date_et": "2026-11-05",
       "win_probability": 0.501294
+    },
+    {
+      "event_id": "ac38449dd3dfbe1c9b48164b6a41aa83",
+      "team": "Golden State Warriors",
+      "date_et": "2026-11-05",
+      "win_probability": 0.556075
+    },
+    {
+      "event_id": "ac38449dd3dfbe1c9b48164b6a41aa83",
+      "team": "Miami Heat",
+      "date_et": "2026-11-05",
+      "win_probability": 0.443925
     }
   ]
 }
