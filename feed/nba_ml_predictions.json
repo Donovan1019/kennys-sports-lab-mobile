@@ -1,40 +1,40 @@
 {
   "status": "validated",
   "sport": "basketball_nba",
-  "generated_at": "2026-11-05T02:59:33.355884+00:00",
+  "generated_at": "2026-11-05T05:09:09.859768+00:00",
   "calibration_passed": true,
   "model_version": "elo-walkforward-v1-holdout-audit",
   "validation_report": {
-    "walk_forward_games": 1182,
-    "brier": 0.21104,
-    "ece": 0.03966,
+    "walk_forward_games": 1193,
+    "brier": 0.21114,
+    "ece": 0.0409,
     "method": "chronological Elo, 200-game burn-in, no odds inputs",
     "holdout": {
-      "games": 277,
-      "start": "2026-03-28T19:00Z",
-      "end": "2026-11-03T02:00Z",
-      "brier": 0.195329,
-      "ece": 0.049156,
-      "constant_baseline_brier": 0.244523,
+      "games": 279,
+      "start": "2026-03-29T22:00Z",
+      "end": "2026-11-05T02:00Z",
+      "brier": 0.195695,
+      "ece": 0.046004,
+      "constant_baseline_brier": 0.244601,
       "beats_constant_baseline": true,
       "method": "untouched chronological final 20%; pregame Elo; descriptive only"
     },
     "holdout_promotion_approved": false,
     "holdout_review_reason": "Holdout metrics are descriptive; independent sportsbook price validation and injury availability remain unverified"
   },
-  "training_cutoff": "2026-11-03T02:00Z",
+  "training_cutoff": "2026-11-05T02:00Z",
   "predictions": [
     {
-      "event_id": "29988f1011d7738962e13e0a0beb693f",
-      "team": "Sacramento Kings",
-      "date_et": "2026-11-04",
-      "win_probability": 0.225794
+      "event_id": "2a76b31e02d1416de069a995589515fc",
+      "team": "Phoenix Suns",
+      "date_et": "2026-11-05",
+      "win_probability": 0.498706
     },
     {
-      "event_id": "29988f1011d7738962e13e0a0beb693f",
-      "team": "Los Angeles Lakers",
-      "date_et": "2026-11-04",
-      "win_probability": 0.774206
+      "event_id": "2a76b31e02d1416de069a995589515fc",
+      "team": "Orlando Magic",
+      "date_et": "2026-11-05",
+      "win_probability": 0.501294
     }
   ]
 }
