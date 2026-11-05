@@ -1,0 +1,76 @@
+name: NBA Props Research Auto Refresh
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '20 14,15,20,21 * * *'
+permissions:
+  contents: write
+concurrency:
+  group: nba-props-research-auto-refresh
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Gate scheduled runs to 10 AM and 4 PM Eastern
+        id: eastern
+        run: |
+          hour=$(TZ=America/New_York date +%H)
+          if [ "${{ github.event_name }}" != 'schedule' ] || [ "$hour" = '10' ] || [ "$hour" = '16' ]; then
+            echo 'run=true' >> "$GITHUB_OUTPUT"
+          else
+            echo 'run=false' >> "$GITHUB_OUTPUT"
+          fi
+      - name: Refresh recorded NBA player game logs from existing free collector
+        if: steps.eastern.outputs.run == 'true'
+        env:
+          PLAYER_SPORT: nba
+          LOOKBACK_DAYS: '7'
+        run: python scripts/fetch_nba_nhl_stats.py
+      - name: Validate source, player records and timestamps
+        if: steps.eastern.outputs.run == 'true'
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          data=json.loads(Path('feed/nba_player_stats.json').read_text())
+          assert data.get('source')=='espn-public-boxscore' and data.get('sport')=='nba'
+          assert data.get('fetched_at') and isinstance(data.get('players'),list) and len(data['players'])>0
+          assert any(p.get('games') for p in data['players'])
+          print('Verified NBA player archive:',len(data['players']),'players')
+          PY
+      - name: Recalculate existing NBA walk-forward validation
+        if: steps.eastern.outputs.run == 'true'
+        run: python scripts/nba_player_walkforward_research.py
+      - name: Recalculate existing NBA historical pair research
+        if: steps.eastern.outputs.run == 'true'
+        run: python scripts/nba_sgp_pair_research.py
+      - name: Publish three verified research files with concurrent-push retry
+        if: steps.eastern.outputs.run == 'true'
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/nba-research-refresh
+          cp feed/nba_player_stats.json feed/nba_player_walkforward_research.json feed/nba_sgp_same_game_pair_research.json /tmp/nba-research-refresh/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git checkout -B main origin/main
+            cp /tmp/nba-research-refresh/*.json feed/
+            git add feed/nba_player_stats.json feed/nba_player_walkforward_research.json feed/nba_sgp_same_game_pair_research.json
+            if git diff --cached --quiet; then
+              echo "Research files already up to date"
+              exit 0
+            fi
+            git commit -m "Refresh NBA props research snapshots [skip ci]"
+            if git push origin HEAD:main; then exit 0; fi
+            echo "Concurrent update detected; retrying ($attempt)"
+          done
+          exit 1
