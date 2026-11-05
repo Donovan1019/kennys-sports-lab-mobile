@@ -1,9 +1,9 @@
-/* Zero-quota-cost OddsPapi account connectivity probe; never print secrets or raw payloads. */
+/* Secret-safe OddsPapi account connectivity probe; request usage is provider-defined. */
 'use strict';
 const https=require('node:https');
 function summarize(status,payload){
  const error=payload?.error||{};
- const code=typeof error.code==='string'?error.code.slice(0,64):null;
+ const code=typeof error.code==='string'?error.code.replace(/[^A-Za-z0-9_-]/g,'').slice(0,64):null;
  return {httpStatus:status,connected:status===200,providerErrorCode:code,hasResponseObject:!!payload&&typeof payload==='object'&&!Array.isArray(payload)};
 }
 function check(key){return new Promise((resolve,reject)=>{
