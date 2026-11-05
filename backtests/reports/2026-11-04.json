@@ -1,6 +1,6 @@
 {
   "date": "2026-11-04",
-  "generated_at": "2026-11-04T22:56:19.190557+00:00",
+  "generated_at": "2026-11-05T17:24:01.751515+00:00",
   "sports": {
     "NFL": {
       "status": "NO_VERIFIED_PREGAME_PREDICTIONS",
@@ -25,23 +25,72 @@
       "pending": 36
     },
     "NHL": {
-      "status": "OUTCOMES_UNVERIFIED",
+      "status": "PARTIALLY_SETTLED_MONEYLINES",
       "saved_quotes": 0,
       "eligible_predictions": 104,
       "research_only_predictions": 104,
       "bet_eligible_predictions": 0,
       "blocked_predictions": [],
-      "graded": 0,
-      "settled": [],
-      "pending": 104
+      "graded": 8,
+      "settled": [
+        {
+          "event": "Ottawa Senators @ Buffalo Sabres",
+          "market": "h2h",
+          "selection": "Buffalo Sabres",
+          "outcome": "loss"
+        },
+        {
+          "event": "Ottawa Senators @ Buffalo Sabres",
+          "market": "h2h",
+          "selection": "Ottawa Senators",
+          "outcome": "win"
+        },
+        {
+          "event": "Chicago Blackhawks @ Florida Panthers",
+          "market": "h2h",
+          "selection": "Florida Panthers",
+          "outcome": "win"
+        },
+        {
+          "event": "Chicago Blackhawks @ Florida Panthers",
+          "market": "h2h",
+          "selection": "Chicago Blackhawks",
+          "outcome": "loss"
+        },
+        {
+          "event": "San Jose Sharks @ Los Angeles Kings",
+          "market": "h2h",
+          "selection": "Los Angeles Kings",
+          "outcome": "win"
+        },
+        {
+          "event": "San Jose Sharks @ Los Angeles Kings",
+          "market": "h2h",
+          "selection": "San Jose Sharks",
+          "outcome": "loss"
+        },
+        {
+          "event": "Calgary Flames @ Seattle Kraken",
+          "market": "h2h",
+          "selection": "Seattle Kraken",
+          "outcome": "win"
+        },
+        {
+          "event": "Calgary Flames @ Seattle Kraken",
+          "market": "h2h",
+          "selection": "Calgary Flames",
+          "outcome": "loss"
+        }
+      ],
+      "pending": 96
     }
   },
   "summary": {
-    "verified_picks": 0,
-    "wins": 0,
-    "losses": 0,
+    "verified_picks": 8,
+    "wins": 4,
+    "losses": 4,
     "pushes": 0,
     "roi": null,
-    "hit_rate": null
+    "hit_rate": 0.5
   }
 }
