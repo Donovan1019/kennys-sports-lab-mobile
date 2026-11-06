@@ -49,3 +49,8 @@ Reference hierarchy: NBA breakdown Graph/Shooting/Similar/Types and NFL player b
 - Compared design against NBA/NFL breakdown architecture recorded above. Added player selector to shared historical stats chart so it no longer always displays the highest-average player.
 - Deployment of previous batch #720 verified successful (Pages run 42310830810).
 - Existing Market Math Tests failed independently of this UI batch: NBA minutes-adjusted MAE expected 5.125 but actual 5.25; NFL stats fixture expected DATA_PRESENT_UNVERIFIED but returned BLOCKED. Do not alter safety gates merely to turn CI green. Investigate separately.
+
+## NBA PRA combination batch 2026-11-06
+- Follow PropsMadness NBA combo-market sitemap: PRA = Points + Rebounds + Assists, Pts+Reb, Pts+Ast, Reb+Ast.
+- When a direct per-game combo is absent, sum only complete finite components from the same game. Never treat missing component as zero. Stocks = Steals + Blocks under the same rule.
+- Existing research-only historical sample and missing odds disclaimers remain intact. No new model prediction or synthetic sportsbook line.
