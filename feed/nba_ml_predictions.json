@@ -1,7 +1,7 @@
 {
   "status": "validated",
   "sport": "basketball_nba",
-  "generated_at": "2026-11-06T05:08:16.049398+00:00",
+  "generated_at": "2026-11-06T07:27:11.449581+00:00",
   "calibration_passed": true,
   "model_version": "elo-walkforward-v1-holdout-audit",
   "validation_report": {
@@ -24,6 +24,18 @@
   },
   "training_cutoff": "2026-11-06T02:00Z",
   "predictions": [
+    {
+      "event_id": "9246c91f746732472c13e94bd8e7be85",
+      "team": "Atlanta Hawks",
+      "date_et": "2026-11-06",
+      "win_probability": 0.8524
+    },
+    {
+      "event_id": "9246c91f746732472c13e94bd8e7be85",
+      "team": "Washington Wizards",
+      "date_et": "2026-11-06",
+      "win_probability": 0.1476
+    },
     {
       "event_id": "49daf3d42e20ce4bc70f8a68cf70ce4c",
       "team": "Charlotte Hornets",
