@@ -16,3 +16,5 @@ assert.doesNotMatch(js,/Math\.random\(/);
 console.log('NBA prop research static checks passed');
 
 assert.match(js,/quote-placeholder/);assert.match(js,/player-research/);assert.match(js,/SEASON AVG/);assert.match(js,/reference-subtabs/);assert.match(html,/Screenshot-reference layout/);
+
+assert.match(html,/Explore all players/);assert.match(html,/Player breakdown/);assert.match(html,/selected-player/);assert.match(js,/switchView/);assert.match(js,/viewMode==='breakdown'/);
