@@ -1,15 +1,15 @@
 {
   "status": "descriptive_only",
-  "evaluated_games": 1160,
+  "evaluated_games": 1161,
   "minimum_holdout_games": 100,
   "betting_eligible": false,
   "blockers": [
     "overtime_approximation_unvalidated",
     "historical_validation_unverified"
   ],
-  "brier": 0.222981,
-  "log_loss": 0.637467,
-  "accuracy": 0.648276,
+  "brier": 0.222988,
+  "log_loss": 0.637481,
+  "accuracy": 0.648579,
   "calibration_bins": [
     {
       "range": [
@@ -55,12 +55,12 @@
         0.5,
         0.6
       ],
-      "count": 364,
-      "mean_predicted": 0.546692,
-      "observed_win_rate": 0.662088,
+      "count": 365,
+      "mean_predicted": 0.546619,
+      "observed_win_rate": 0.663014,
       "observed_wilson_95": [
-        0.612028,
-        0.708762
+        0.613046,
+        0.709585
       ]
     },
     {
@@ -91,13 +91,13 @@
     }
   ],
   "baseline": {
-    "constant_home_win_rate": 0.551724,
-    "constant_brier": 0.247325,
+    "constant_home_win_rate": 0.55211,
+    "constant_brier": 0.247285,
     "warning": "In-sample constant-rate comparator, not a point-in-time bookmaker or independent out-of-sample baseline."
   },
   "calibration_coverage": {
-    "total_evaluated": 1160,
-    "binned_games": 1160,
+    "total_evaluated": 1161,
+    "binned_games": 1161,
     "excluded_games": 0,
     "small_sample_bins": [
       [
@@ -114,11 +114,11 @@
   "forward_baseline": {
     "status": "descriptive_only",
     "warmup_games": 100,
-    "evaluated_games": 1060,
-    "model_brier": 0.223311,
-    "baseline_brier": 0.247883,
-    "model_log_loss": 0.638061,
-    "baseline_log_loss": 0.688912,
+    "evaluated_games": 1061,
+    "model_brier": 0.223317,
+    "baseline_brier": 0.247839,
+    "model_log_loss": 0.638076,
+    "baseline_log_loss": 0.688823,
     "warning": "Sequential past-only constant-rate baseline; neither independently frozen model validation nor bookmaker comparison."
   },
   "calibration_warning": "Chronological diagnostic only; Wilson intervals reflect binomial sampling uncertainty, not time dependence or model uncertainty. No independent market baseline, executed odds, or validated forward performance."

@@ -1,40 +1,40 @@
 {
   "status": "validated",
   "sport": "basketball_nba",
-  "generated_at": "2026-11-06T02:58:53.574003+00:00",
+  "generated_at": "2026-11-06T05:08:16.049398+00:00",
   "calibration_passed": true,
   "model_version": "elo-walkforward-v1-holdout-audit",
   "validation_report": {
-    "walk_forward_games": 1193,
-    "brier": 0.21114,
-    "ece": 0.0409,
+    "walk_forward_games": 1194,
+    "brier": 0.21118,
+    "ece": 0.04044,
     "method": "chronological Elo, 200-game burn-in, no odds inputs",
     "holdout": {
       "games": 279,
       "start": "2026-03-29T22:00Z",
-      "end": "2026-11-05T02:00Z",
-      "brier": 0.195695,
-      "ece": 0.046004,
-      "constant_baseline_brier": 0.244601,
+      "end": "2026-11-06T02:00Z",
+      "brier": 0.195702,
+      "ece": 0.042417,
+      "constant_baseline_brier": 0.244062,
       "beats_constant_baseline": true,
       "method": "untouched chronological final 20%; pregame Elo; descriptive only"
     },
     "holdout_promotion_approved": false,
     "holdout_review_reason": "Holdout metrics are descriptive; independent sportsbook price validation and injury availability remain unverified"
   },
-  "training_cutoff": "2026-11-05T02:00Z",
+  "training_cutoff": "2026-11-06T02:00Z",
   "predictions": [
     {
-      "event_id": "ac38449dd3dfbe1c9b48164b6a41aa83",
-      "team": "Golden State Warriors",
-      "date_et": "2026-11-05",
-      "win_probability": 0.556075
+      "event_id": "49daf3d42e20ce4bc70f8a68cf70ce4c",
+      "team": "Charlotte Hornets",
+      "date_et": "2026-11-06",
+      "win_probability": 0.412048
     },
     {
-      "event_id": "ac38449dd3dfbe1c9b48164b6a41aa83",
-      "team": "Miami Heat",
-      "date_et": "2026-11-05",
-      "win_probability": 0.443925
+      "event_id": "49daf3d42e20ce4bc70f8a68cf70ce4c",
+      "team": "Boston Celtics",
+      "date_et": "2026-11-06",
+      "win_probability": 0.587952
     },
     {
       "event_id": "85869b2fdc16ef10d3e2582bf05ead95",
