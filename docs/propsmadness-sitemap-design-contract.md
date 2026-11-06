@@ -44,3 +44,8 @@ Reference hierarchy: NBA breakdown Graph/Shooting/Similar/Types and NFL player b
 - NHL SOG remains explicitly unavailable in the current published player game-log feed (source flags SOG unverified); do not show fabricated shots.
 - No betting hit-rate coloring without a verified sportsbook line.
 - Still pending: actual mobile screenshot comparison, NFL position-specific detailed breakdown, NHL verified SOG feed, historical odds line overlays.
+
+## Batch 2026-11-06: player-selectable charts
+- Compared design against NBA/NFL breakdown architecture recorded above. Added player selector to shared historical stats chart so it no longer always displays the highest-average player.
+- Deployment of previous batch #720 verified successful (Pages run 42310830810).
+- Existing Market Math Tests failed independently of this UI batch: NBA minutes-adjusted MAE expected 5.125 but actual 5.25; NFL stats fixture expected DATA_PRESENT_UNVERIFIED but returned BLOCKED. Do not alter safety gates merely to turn CI green. Investigate separately.
