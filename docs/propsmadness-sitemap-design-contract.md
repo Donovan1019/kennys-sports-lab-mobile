@@ -1,0 +1,30 @@
+# PropsMadness sitemap → Kenny's Sports Lab design contract
+
+Reference: https://propsmadness.com/sitemap
+Checked: 2026-11-06. Recheck this URL and each affected reference page before **every** UI change. Do not substitute palette-only changes for structural fidelity.
+
+## Reference hierarchy
+- NBA Player breakdown: https://propsmadness.com/nba — player selection, market selection, suggested/all filters, season, Graph / Shooting / Similar / Types, shooting zones, play type, shot type and comparable players.
+- NBA Explore: https://propsmadness.com/nba/props/points — market rail, search players/teams, game filter, market filter, L5/L10/L15/Season windows, offers-only, sortable multi-column results.
+- NBA market groups: Scoring (Points, Assists, Rebounds, Threes), Combos (Pts+Ast, Pts+Reb, Reb+Ast, PRA, double/triple double), Fantasy (PrizePicks/Underdog), 1Q, 1H, Defense, Other.
+- NFL Player breakdown: https://propsmadness.com/nfl — passing/receiving/rushing/scoring/defense/fantasy/quarter/half, injuries, player-vs-defense and similar players; NFL Explore + cheat sheet.
+- WNBA: player breakdown and analogous grouped market pages; MLB: pitcher and batter breakdown and market pages.
+- Resources: parlay calculator and league-specific glossaries. Kenny's extra NHL/UFC/PrizePicks, Diamond Plays, simulations and parlays remain first-class native modules.
+
+## Implementation rules
+1. Inspect reference sitemap, actual destination page, and original screenshots before modifying the corresponding Kenny page.
+2. Match information architecture, navigation placement, tab hierarchy, card structure, filters, chart geometry, typography, spacing and mobile behavior. Do not copy proprietary code, imagery or brand assets.
+3. Preserve all existing working sports model, parlay, and feed logic; make styling and routing changes separately from predictive changes.
+4. Display missing stats/odds as unavailable. Do not invent sportsbook lines, injury reports, shot locations, opponent defense rankings or historical hit rates.
+5. Verify navigation targets, responsive behavior, visible states, tests and Pages deployment; record which screenshot/reference pages were inspected in each PR.
+6. Reference-only modules not supported by Kenny's data must be labeled **Data unavailable**, not filled with fake examples.
+
+## Current gap register
+- NBA Explore: grouped sitemap rail and explicit availability state — in progress.
+- NBA breakdown: four existing tabs; shooting zones, opponent defense, true play types and line-based hit-rate chart need verified inputs.
+- NFL Explore: full grouped market navigation and injury panel parity pending.
+- WNBA: grouped market navigation parity pending.
+- MLB: not yet implemented; NHL/UFC require their own reference-adapted structures.
+- Parlay calculator/glossary: sitemap resource parity pending.
+
+Keep this file as a change-control checklist and update it with every design PR.
