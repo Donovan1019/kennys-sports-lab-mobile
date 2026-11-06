@@ -38,3 +38,11 @@ th:first-child,td:first-child{background:#18191b!important}
 #ksl-nba-ml-root section,#ksl-nba-sgp-root section{background:#18191b!important;border:1px solid #303234!important;border-radius:16px!important}
 #ksl-nba-ml-root h3,#ksl-nba-sgp-root h3{color:#f3c621}
 @media(max-width:650px){.ksl-research-destinations{margin-right:-12px;padding-right:12px}.ksl-shell{max-width:100%;overflow-x:clip}}
+
+/* Three-sport sitemap market hierarchy; no invented data or odds. */
+.ksl-market-catalog{background:#141516;border:1px solid #303234;border-radius:18px;padding:16px;margin:18px 0}
+.ksl-market-catalog h2{color:#f3c621;margin:0 0 8px}
+.ksl-market-group{padding:12px 0;border-top:1px solid #2c2e30}
+.ksl-market-group>strong{font-size:12px;color:#e4e4e4;letter-spacing:.03em}
+.ksl-market-pills{display:flex;overflow-x:auto;gap:8px;padding:9px 0 3px}
+.ksl-market-pills span{flex:0 0 auto;background:#242527;border:1px solid #353638;border-radius:10px;color:#b9bbbd;padding:10px 12px;font-size:12px;min-height:40px}

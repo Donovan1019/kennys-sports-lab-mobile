@@ -28,3 +28,11 @@ Checked: 2026-11-06. Recheck this URL and each affected reference page before **
 - Parlay calculator/glossary: sitemap resource parity pending.
 
 Keep this file as a change-control checklist and update it with every design PR.
+
+## Batch 2026-11-06: NBA/NFL/NHL only
+Source checked again: https://propsmadness.com/sitemap (NBA combo PRA is listed as Pts+Reb+Ast; NFL categories Passing/Receiving/Rushing/Scoring/Defense/1Q/1H).
+- NBA: prominent PRA shortcut wired to existing verified PRA historical game-log selector; no synthetic lines.
+- NFL: display reference-aligned market groups; no unsupported selection buttons.
+- NHL: **not present in PropsMadness sitemap**. Adapt its hierarchy and card system to hockey-specific skater/goalie/game markets, without pretending these are PropsMadness pages.
+- Keep UFC/WNBA untouched this batch.
+- Next: visually verify iPhone widths and reference screenshot parity, then connect verified NFL/NHL market-specific data.
