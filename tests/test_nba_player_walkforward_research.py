@@ -49,7 +49,7 @@ class WalkForwardTests(unittest.TestCase):
         result=evaluate({"source":"espn-public-boxscore","sport":"nba","players":[{"id":"1","games":games}]})
         audit=result["window_comparison_by_season"]["Points"]["2025-26"]["minutes_adjusted"]
         self.assertEqual(audit["samples"],4)
-        self.assertEqual(audit["mae"],5.125)
+        self.assertEqual(audit["mae"],5.25)  # Independent minutes-adjusted forecast; not the recent-rate baseline.
         recent=result["recent_minutes_rate_matched_sample_audit"]["Points"]["2025-26"]
         self.assertEqual(recent["samples"],4)
         self.assertEqual(recent["recent_rate_mae"],5.125)
