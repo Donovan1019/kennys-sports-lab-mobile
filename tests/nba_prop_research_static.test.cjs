@@ -14,3 +14,5 @@ assert.match(js,/No synthetic player data/);assert.match(js,/nba_player_walkforw
 assert.match(js,/requires verified tracking/);
 assert.doesNotMatch(js,/Math\.random\(/);
 console.log('NBA prop research static checks passed');
+
+assert.match(js,/quote-placeholder/);assert.match(js,/player-research/);assert.match(js,/SEASON AVG/);assert.match(js,/reference-subtabs/);assert.match(html,/Screenshot-reference layout/);
