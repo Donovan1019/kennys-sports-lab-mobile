@@ -46,7 +46,7 @@ async function refresh(){
     // Surface the already-published parlay simulations before single-game diagnostics.
     // This is research-only; never promote an unverified scenario to a bet.
     const scenarios=Array.isArray(audit.parlays)?audit.parlays:[];
-    out.append(node('h3','NBA ML parlay scenarios · research only'));
+    out.append(node('h3','Conservative NBA ML scenarios · research only'));out.append(node('p','Only model-favored sides (at least 60% projected win probability), negative American odds, and a positive 3pp-stressed single-leg EV may appear here. Unverified selections are never betting recommendations.'));
     if(!scenarios.length)out.append(node('p','No simulated parlays published. No bet-certified parlays available.'));
     else{
       const shown=new Set();
@@ -57,6 +57,10 @@ async function refresh(){
         if(shown.has(key))continue;
         const valid=p.legs.every(l=>l&&l.event_id&&l.team)&&new Set(p.legs.map(l=>String(l.event_id))).size===p.legs.length;
         if(!valid)continue;
+        // A high-EV longshot is not a conservative parlay. Match every leg to
+        // its own same-book game-side diagnostic before showing a scenario.
+        const matches=p.legs.map(l=>(audit.games||[]).find(g=>String(g.event_id)===String(l.event_id)&&g.team===l.team&&g.bookmaker===p.bookmaker));
+        if(matches.some(g=>!g||!Number.isFinite(g.model_probability)||g.model_probability<0.60||!Number.isFinite(g.price)||g.price>=0||!Number.isFinite(g.stress_ev_minus_3pp)||g.stress_ev_minus_3pp<=0))continue;
         shown.add(key);
         const card=node('section','');
         card.style.cssText='border:1px solid #42677b;border-radius:12px;padding:14px;margin:12px 0;background:#10283a';
@@ -72,7 +76,7 @@ async function refresh(){
         card.append(node('p','Combined executable sportsbook odds: UNAVAILABLE · correlation: UNVERIFIED · NOT BET ELIGIBLE'));
         out.append(card);
       }
-      if(!shown.size)out.append(node('p','No valid independent-game parlay scenarios available.'));
+      if(!shown.size)out.append(node('p','No conservative parlay scenarios passed the model-probability, favorite-price, and stressed-EV screens. Longshot combinations are intentionally suppressed; no bet-certified parlay is available.'));
     }
     const researchGames=new Map();
     for(const g of audit.games||[]){
