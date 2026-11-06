@@ -138,9 +138,9 @@ async function refresh(){
      ul.append(node('li',g.team+' · '+g.bookmaker+' '+(g.price>0?'+':'')+g.price+' · model '+(100*g.model_probability).toFixed(1)+'% · MC '+(100*g.mc_probability).toFixed(1)+'% · indicative single-leg EV '+(100*g.single_leg_ev).toFixed(1)+'% · 3pp stress EV '+(100*g.stress_ev_minus_3pp).toFixed(1)+'% · UNVERIFIED'));
     if(ul.children.length){out.append(node('h3','NBA ML research · model simulations (not picks)'));out.append(ul)}
     else out.append(node('p','No positive-EV simulation research rows available.'));
-   }else out.append(node('p','Simulation audit missing, stale or unavailable. No selections issued.'));
+   }else{out.append(node('p','Current simulation audit missing or stale. Showing archived paper-test data only.'));await showPaperSandbox();}
   }
- }catch(_){out.append(node('p','Simulation audit unavailable. No selections issued.'))}
+ }catch(_){out.append(node('p','Current simulation audit unavailable. Showing archived paper-test data if present.'));await showPaperSandbox()}
  return;
 }
  const now=Date.now();const games=new Map();
@@ -178,7 +178,7 @@ async function refresh(){
  card.append(node('p','RESEARCH ONLY · positive estimated single-leg EV is not verified profit; no confirmed injury/lineup feed, closing-line backtest, correlated outcomes or executable sportsbook parlay quote.'));out.append(card);
  }
  if(!choices.length)out.append(node('p','No eligible same-day moneylines. Fresh paired bookmaker odds are required; no fabricated picks.'));
- }catch(err){status.textContent='UNAVAILABLE — '+err.message;out.append(node('p','No parlay recommendations without a valid odds feed.'))}
+ }catch(err){status.textContent='LIVE NBA PARLAYS UNAVAILABLE — '+err.message;out.append(node('p','No live parlay recommendations without a valid odds feed. Archived paper-test scenarios follow, if available.'));await showPaperSandbox()}
 }
 document.getElementById('nba-ml-refresh')?.addEventListener('click',refresh);refresh();
 })();
