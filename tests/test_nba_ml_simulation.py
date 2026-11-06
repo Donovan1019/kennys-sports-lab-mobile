@@ -20,6 +20,23 @@ class TestSimulation(unittest.TestCase):
         self.assertTrue(all(not p["betting_eligible"] for p in a["parlays"]))
         self.assertTrue(all(len(set(x["event_id"] for x in p["legs"]))==len(p["legs"]) for p in a["parlays"]))
         self.assertTrue(all(p["bookmaker"]=="draftkings" for p in a["parlays"]))
+    def test_conservative_scenarios_exclude_longshots(self):
+        odds, model = fixture()
+        # Simulate an apparently attractive +312 underdog with inflated model EV.
+        model["predictions"][0]["win_probability"] = .41
+        model["predictions"][1]["win_probability"] = .59
+        for row in odds["odds"]:
+            if row["event_id"] == "game0":
+                row["price"] = 312 if row["selection"] == "Home0" else -396
+        result = build(odds, model, {"checks": {}}, NOW, 100)
+        for parlay in result["parlays"]:
+            self.assertNotIn("Home0", [leg["team"] for leg in parlay["legs"]])
+            self.assertNotIn("Away0", [leg["team"] for leg in parlay["legs"]])
+            self.assertTrue(all(next(g for g in result["games"]
+                if g["event_id"] == leg["event_id"] and g["team"] == leg["team"]
+                and g["bookmaker"] == parlay["bookmaker"])["model_probability"] >= .60
+                for leg in parlay["legs"]))
+
     def test_stale_fails_closed(self):
         odds,model=fixture();odds["fetched_at"]="2026-10-01T00:00:00+00:00"
         self.assertEqual(build(odds,model,{},NOW)["status"],"unavailable")
