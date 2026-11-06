@@ -1,0 +1,33 @@
+{
+  "sport": "NBA",
+  "date": "2026-11-05",
+  "games": [
+    {
+      "event_id": "401909936",
+      "event": "Orlando Magic at Phoenix Suns",
+      "commence_time": "2026-11-06T02:00Z",
+      "home": "Phoenix Suns",
+      "away": "Orlando Magic",
+      "home_score": 117,
+      "away_score": 104,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261105&limit=100"
+    },
+    {
+      "event_id": "401909937",
+      "event": "Miami Heat at Golden State Warriors",
+      "commence_time": "2026-11-06T03:00Z",
+      "home": "Golden State Warriors",
+      "away": "Miami Heat",
+      "home_score": 120,
+      "away_score": 100,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261105&limit=100"
+    }
+  ],
+  "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261105&limit=100"
+}
