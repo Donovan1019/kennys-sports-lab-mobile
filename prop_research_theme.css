@@ -25,3 +25,8 @@ th:first-child,td:first-child{background:#18191b!important}
 #ksl-player-page .ks-pro-price-table th,#ksl-player-page .ks-pro-price-table td{border-color:#292b2d}
 #ksl-player-page .ks-pro-price-table td:nth-child(3){color:#16a34a}
 @media(max-width:650px){#ksl-global-nav{scrollbar-width:none}#ksl-global-nav::-webkit-scrollbar{display:none}main{padding:12px!important}}
+
+/* Site-map research destinations shared by sport hubs */
+.ksl-research-links{display:flex;gap:9px;overflow-x:auto;white-space:nowrap;padding:12px 0 16px;scrollbar-width:thin}
+.ksl-research-links a{display:inline-flex;align-items:center;flex:0 0 auto;padding:11px 14px;border-radius:12px;background:#202326;border:1px solid #394047;color:#f4f5f6!important;text-decoration:none;font-weight:650;font-size:13px}
+.ksl-research-links a:hover,.ksl-research-links a:focus-visible{border-color:#718997;background:#29343b;outline-offset:2px}
