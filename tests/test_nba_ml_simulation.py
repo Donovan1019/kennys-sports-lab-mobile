@@ -29,6 +29,8 @@ class TestSimulation(unittest.TestCase):
             if row["event_id"] == "game0":
                 row["price"] = 312 if row["selection"] == "Home0" else -396
         result = build(odds, model, {"checks": {}}, NOW, 100)
+        self.assertGreater(result["market_divergence_flags"], 0)
+        self.assertIn("large_model_market_probability_disagreement", result["blockers"])
         for parlay in result["parlays"]:
             self.assertNotIn("Home0", [leg["team"] for leg in parlay["legs"]])
             self.assertNotIn("Away0", [leg["team"] for leg in parlay["legs"]])
