@@ -1,7 +1,7 @@
 {
   "status": "validated",
   "sport": "basketball_nba",
-  "generated_at": "2026-11-06T01:22:02.135939+00:00",
+  "generated_at": "2026-11-06T02:58:53.574003+00:00",
   "calibration_passed": true,
   "model_version": "elo-walkforward-v1-holdout-audit",
   "validation_report": {
@@ -24,18 +24,6 @@
   },
   "training_cutoff": "2026-11-05T02:00Z",
   "predictions": [
-    {
-      "event_id": "2a76b31e02d1416de069a995589515fc",
-      "team": "Phoenix Suns",
-      "date_et": "2026-11-05",
-      "win_probability": 0.498706
-    },
-    {
-      "event_id": "2a76b31e02d1416de069a995589515fc",
-      "team": "Orlando Magic",
-      "date_et": "2026-11-05",
-      "win_probability": 0.501294
-    },
     {
       "event_id": "ac38449dd3dfbe1c9b48164b6a41aa83",
       "team": "Golden State Warriors",

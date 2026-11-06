@@ -1,64 +1,8 @@
 {
   "status": "simulated_not_bet_eligible",
-  "generated_at": "2026-11-06T01:22:02.760638+00:00",
+  "generated_at": "2026-11-06T02:58:54.098272+00:00",
   "draws": 10000,
   "games": [
-    {
-      "event_id": "2a76b31e02d1416de069a995589515fc",
-      "team": "Orlando Magic",
-      "bookmaker": "fanduel",
-      "price": -102,
-      "model_probability": 0.501294,
-      "mc_probability": 0.4901,
-      "mc_standard_error": 0.004999,
-      "fair_decimal": 1.9948,
-      "single_leg_ev": -0.00724,
-      "stress_ev_minus_3pp": -0.06665,
-      "stress_ev_minus_5pp": -0.10626,
-      "betting_eligible": false
-    },
-    {
-      "event_id": "2a76b31e02d1416de069a995589515fc",
-      "team": "Phoenix Suns",
-      "bookmaker": "fanduel",
-      "price": -116,
-      "model_probability": 0.498706,
-      "mc_probability": 0.4915,
-      "mc_standard_error": 0.004999,
-      "fair_decimal": 2.0052,
-      "single_leg_ev": -0.07138,
-      "stress_ev_minus_3pp": -0.12724,
-      "stress_ev_minus_5pp": -0.16448,
-      "betting_eligible": false
-    },
-    {
-      "event_id": "2a76b31e02d1416de069a995589515fc",
-      "team": "Orlando Magic",
-      "bookmaker": "draftkings",
-      "price": 102,
-      "model_probability": 0.501294,
-      "mc_probability": 0.4992,
-      "mc_standard_error": 0.005,
-      "fair_decimal": 1.9948,
-      "single_leg_ev": 0.01261,
-      "stress_ev_minus_3pp": -0.04799,
-      "stress_ev_minus_5pp": -0.08839,
-      "betting_eligible": false
-    },
-    {
-      "event_id": "2a76b31e02d1416de069a995589515fc",
-      "team": "Phoenix Suns",
-      "bookmaker": "draftkings",
-      "price": -121,
-      "model_probability": 0.498706,
-      "mc_probability": 0.4897,
-      "mc_standard_error": 0.004999,
-      "fair_decimal": 2.0052,
-      "single_leg_ev": -0.08914,
-      "stress_ev_minus_3pp": -0.14393,
-      "stress_ev_minus_5pp": -0.18046,
-      "betting_eligible": false
-    },
     {
       "event_id": "ac38449dd3dfbe1c9b48164b6a41aa83",
       "team": "Golden State Warriors",
@@ -119,28 +63,28 @@
       "event_id": "85869b2fdc16ef10d3e2582bf05ead95",
       "team": "Cleveland Cavaliers",
       "bookmaker": "draftkings",
-      "price": 108,
+      "price": 111,
       "model_probability": 0.546682,
       "mc_probability": 0.5438,
       "mc_standard_error": 0.004981,
       "fair_decimal": 1.8292,
-      "single_leg_ev": 0.1371,
-      "stress_ev_minus_3pp": 0.0747,
-      "stress_ev_minus_5pp": 0.0331,
+      "single_leg_ev": 0.1535,
+      "stress_ev_minus_3pp": 0.0902,
+      "stress_ev_minus_5pp": 0.048,
       "betting_eligible": false
     },
     {
       "event_id": "85869b2fdc16ef10d3e2582bf05ead95",
       "team": "Philadelphia 76ers",
       "bookmaker": "draftkings",
-      "price": -128,
+      "price": -132,
       "model_probability": 0.453318,
       "mc_probability": 0.4511,
       "mc_standard_error": 0.004976,
       "fair_decimal": 2.206,
-      "single_leg_ev": -0.19253,
-      "stress_ev_minus_3pp": -0.24596,
-      "stress_ev_minus_5pp": -0.28159,
+      "single_leg_ev": -0.20326,
+      "stress_ev_minus_3pp": -0.25599,
+      "stress_ev_minus_5pp": -0.29114,
       "betting_eligible": false
     },
     {
@@ -287,28 +231,28 @@
       "event_id": "1c60a090180de530cfe273a5d6a381e6",
       "team": "Milwaukee Bucks",
       "bookmaker": "draftkings",
-      "price": 250,
+      "price": 216,
       "model_probability": 0.365211,
       "mc_probability": 0.3614,
       "mc_standard_error": 0.004804,
       "fair_decimal": 2.7381,
-      "single_leg_ev": 0.27824,
-      "stress_ev_minus_3pp": 0.17324,
-      "stress_ev_minus_5pp": 0.10324,
+      "single_leg_ev": 0.15407,
+      "stress_ev_minus_3pp": 0.05927,
+      "stress_ev_minus_5pp": -0.00393,
       "betting_eligible": false
     },
     {
       "event_id": "1c60a090180de530cfe273a5d6a381e6",
       "team": "Toronto Raptors",
       "bookmaker": "draftkings",
-      "price": -309,
+      "price": -263,
       "model_probability": 0.634789,
       "mc_probability": 0.642,
       "mc_standard_error": 0.004794,
       "fair_decimal": 1.5753,
-      "single_leg_ev": -0.15978,
-      "stress_ev_minus_3pp": -0.19949,
-      "stress_ev_minus_5pp": -0.22596,
+      "single_leg_ev": -0.12385,
+      "stress_ev_minus_3pp": -0.16525,
+      "stress_ev_minus_5pp": -0.19286,
       "betting_eligible": false
     },
     {
@@ -399,28 +343,28 @@
       "event_id": "83d77fe350d56a036fd7a3404e78249a",
       "team": "Los Angeles Lakers",
       "bookmaker": "draftkings",
-      "price": -130,
+      "price": -136,
       "model_probability": 0.635817,
       "mc_probability": 0.6379,
       "mc_standard_error": 0.004806,
       "fair_decimal": 1.5728,
-      "single_leg_ev": 0.12491,
-      "stress_ev_minus_3pp": 0.07183,
-      "stress_ev_minus_5pp": 0.03645,
+      "single_leg_ev": 0.10333,
+      "stress_ev_minus_3pp": 0.05127,
+      "stress_ev_minus_5pp": 0.01656,
       "betting_eligible": false
     },
     {
       "event_id": "83d77fe350d56a036fd7a3404e78249a",
       "team": "Portland Trail Blazers",
       "bookmaker": "draftkings",
-      "price": 110,
+      "price": 115,
       "model_probability": 0.364183,
       "mc_probability": 0.3721,
       "mc_standard_error": 0.004834,
       "fair_decimal": 2.7459,
-      "single_leg_ev": -0.23522,
-      "stress_ev_minus_3pp": -0.29822,
-      "stress_ev_minus_5pp": -0.34022,
+      "single_leg_ev": -0.21701,
+      "stress_ev_minus_3pp": -0.28151,
+      "stress_ev_minus_5pp": -0.32451,
       "betting_eligible": false
     },
     {
@@ -567,13 +511,13 @@
           "team": "Cleveland Cavaliers"
         },
         {
-          "event_id": "83d77fe350d56a036fd7a3404e78249a",
-          "team": "Los Angeles Lakers"
+          "event_id": "5e4708fadda49a3c06fd7ac50414020e",
+          "team": "Minnesota Timberwolves"
         }
       ],
-      "independent_mc_probability": 0.1106,
-      "independent_model_product": 0.10879,
-      "stress_probability_minus_3pp": 0.08677,
+      "independent_mc_probability": 0.1205,
+      "independent_model_product": 0.11889,
+      "stress_probability_minus_3pp": 0.09523,
       "correlation_verified": false,
       "executable_parlay_quote_verified": false,
       "betting_eligible": false
@@ -594,15 +538,15 @@
           "team": "Cleveland Cavaliers"
         },
         {
-          "event_id": "83d77fe350d56a036fd7a3404e78249a",
-          "team": "Los Angeles Lakers"
-        },
-        {
           "event_id": "5e4708fadda49a3c06fd7ac50414020e",
           "team": "Minnesota Timberwolves"
+        },
+        {
+          "event_id": "83d77fe350d56a036fd7a3404e78249a",
+          "team": "Los Angeles Lakers"
         }
       ],
-      "independent_mc_probability": 0.0763,
+      "independent_mc_probability": 0.0762,
       "independent_model_product": 0.07559,
       "stress_probability_minus_3pp": 0.05769,
       "correlation_verified": false,
