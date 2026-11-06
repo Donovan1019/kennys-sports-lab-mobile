@@ -7,11 +7,44 @@ const american=p=>p>=.5?'-'+Math.round(100*p/(1-p)):'+'+Math.round(100*(1-p)/p);
 const dateET=d=>(()=>{const parts=new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date(d));const get=k=>parts.find(x=>x.type===k).value;return get('year')+'-'+get('month')+'-'+get('day')})();
 
 const node=(tag,value)=>{const n=document.createElement(tag);n.textContent=value;return n};
+async function showPaperSandbox(){
+ try{
+  const response=await fetch('./feed/nba_ml_simulation_audit.json?paper='+Date.now(),{cache:'no-store'});
+  if(!response.ok)return;
+  const audit=await response.json();
+  if(!Array.isArray(audit.games)||!audit.games.length)return;
+  const published=Date.parse(audit.generated_at);
+  out.append(node('h3','Archived NBA ML parlay sandbox · PAPER TEST ONLY'));
+  out.append(node('p','Historical snapshot: '+(Number.isFinite(published)?new Date(published).toLocaleString('en-US',{timeZone:'America/New_York',dateStyle:'medium',timeStyle:'short'}):'unknown')+'. These are NOT current odds, active games, executable bets, or recommended picks.'));
+  const byBook=new Map();
+  for(const g of audit.games){
+   if(!g.event_id||!g.bookmaker||!g.team||!Number.isFinite(g.model_probability)||g.model_probability<.60||!Number.isFinite(g.price)||g.price>=0||g.market_divergence_flag===true)continue;
+   const k=g.bookmaker;const group=byBook.get(k)||new Map();
+   const previous=group.get(String(g.event_id));
+   if(!previous||g.model_probability>previous.model_probability)group.set(String(g.event_id),g);
+   byBook.set(k,group);
+  }
+  let rendered=0;
+  for(const n of [2,3,4,5]){
+   const options=[...byBook].map(([book,group])=>({book,legs:[...group.values()].sort((a,b)=>b.model_probability-a.model_probability).slice(0,n)})).filter(x=>x.legs.length===n);
+   options.sort((a,b)=>b.legs.reduce((v,g)=>v*g.model_probability,1)-a.legs.reduce((v,g)=>v*g.model_probability,1));
+   if(!options.length)continue;
+   const {book,legs}=options[0];const card=node('section','');card.style.cssText='border:1px solid #42677b;border-radius:12px;padding:14px;margin:12px 0;background:#10283a';
+   card.append(node('h4',n+'-leg · '+book+' · ARCHIVED PAPER SCENARIO'));
+   const ul=node('ul','');for(const g of legs)ul.append(node('li',g.team+' ML · historical '+(g.price>0?'+':'')+g.price+' · model '+(100*g.model_probability).toFixed(1)+'%'));
+   card.append(ul);const joint=legs.reduce((v,g)=>v*g.model_probability,1);
+   card.append(node('p','Independent-model joint probability: '+(joint*100).toFixed(1)+'% · illustrative only; correlation unverified.'));
+   card.append(node('p','NOT BET ELIGIBLE · archived prices · injury/lineup verification unavailable · executable combined odds unavailable.'));
+   out.append(card);rendered++;
+  }
+  if(!rendered)out.append(node('p','No archived favorite-only paper parlay meets the model probability and market-divergence safeguards. No combination is fabricated.'));
+ }catch(_){out.append(node('p','Archived paper scenarios unavailable.'))}
+}
 async function refresh(){
  out.replaceChildren();status.textContent='Loading NBA moneyline research…';const today=dateET(Date.now());
  try{
  const resp=await fetch('./feed/basketball_nba.json?ml='+Date.now(),{cache:'no-store'});if(!resp.ok)throw Error('NBA odds feed HTTP '+resp.status);
- const data=await resp.json();if(data.sport!=='basketball_nba'||!Array.isArray(data.odds))throw Error('NBA odds feed schema mismatch: sport='+String(data.sport)+'; odds array='+String(Array.isArray(data.odds)));if(data.status!==undefined&&data.status!=='ok')throw Error('NBA odds publisher status: '+String(data.status));const rows=Array.isArray(data.odds)?data.odds:[];const feedAge=data.fetched_at?Date.parse(data.fetched_at):Math.max(...rows.map(r=>Date.parse(r.updated_at)).filter(Number.isFinite),-Infinity);if(!Number.isFinite(feedAge)||feedAge>Date.now()||Date.now()-feedAge>150*60000){const age=Number.isFinite(feedAge)?Math.round((Date.now()-feedAge)/60000):null;status.textContent='NBA ML PARLAYS · ODDS FEED STALE · NOT BET ELIGIBLE';out.append(node('p','Last published sportsbook snapshot: '+(Number.isFinite(feedAge)?new Date(feedAge).toLocaleString('en-US',{timeZone:'America/New_York',year:'numeric',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'}):'timestamp missing')+(age===null?'':' · '+age+' minutes old')+'.'));const scheduled=new Map();for(const r of rows){if(r.market!=='h2h'||!r.event_id||!r.commence_time||Date.parse(r.commence_time)<=Date.now())continue;const key=String(r.event_id);if(!scheduled.has(key))scheduled.set(key,r)}if(scheduled.size){out.append(node('p','Previously captured upcoming games (schedule reference only; prices are stale):'));const ul=node('ul','');for(const r of [...scheduled.values()].sort((a,b)=>Date.parse(a.commence_time)-Date.parse(b.commence_time)).slice(0,20))ul.append(node('li',String(r.event||r.event_id)+' · '+new Date(r.commence_time).toLocaleString('en-US',{timeZone:'America/New_York',weekday:'short',hour:'numeric',minute:'2-digit',timeZoneName:'short'})));out.append(ul)}else out.append(node('p','No upcoming games in the last published snapshot.'));out.append(node('p','No picks or parlays are issued from stale odds. Reloading this page cannot refresh the upstream sportsbook feed.'));return;}
+ const data=await resp.json();if(data.sport!=='basketball_nba'||!Array.isArray(data.odds))throw Error('NBA odds feed schema mismatch: sport='+String(data.sport)+'; odds array='+String(Array.isArray(data.odds)));if(data.status!==undefined&&data.status!=='ok')throw Error('NBA odds publisher status: '+String(data.status));const rows=Array.isArray(data.odds)?data.odds:[];const feedAge=data.fetched_at?Date.parse(data.fetched_at):Math.max(...rows.map(r=>Date.parse(r.updated_at)).filter(Number.isFinite),-Infinity);if(!Number.isFinite(feedAge)||feedAge>Date.now()||Date.now()-feedAge>150*60000){const age=Number.isFinite(feedAge)?Math.round((Date.now()-feedAge)/60000):null;status.textContent='NBA ML PARLAYS · ODDS FEED STALE · NOT BET ELIGIBLE';out.append(node('p','Last published sportsbook snapshot: '+(Number.isFinite(feedAge)?new Date(feedAge).toLocaleString('en-US',{timeZone:'America/New_York',year:'numeric',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'}):'timestamp missing')+(age===null?'':' · '+age+' minutes old')+'.'));const scheduled=new Map();for(const r of rows){if(r.market!=='h2h'||!r.event_id||!r.commence_time||Date.parse(r.commence_time)<=Date.now())continue;const key=String(r.event_id);if(!scheduled.has(key))scheduled.set(key,r)}if(scheduled.size){out.append(node('p','Previously captured upcoming games (schedule reference only; prices are stale):'));const ul=node('ul','');for(const r of [...scheduled.values()].sort((a,b)=>Date.parse(a.commence_time)-Date.parse(b.commence_time)).slice(0,20))ul.append(node('li',String(r.event||r.event_id)+' · '+new Date(r.commence_time).toLocaleString('en-US',{timeZone:'America/New_York',weekday:'short',hour:'numeric',minute:'2-digit',timeZoneName:'short'})));out.append(ul)}else out.append(node('p','No upcoming games in the last published snapshot.'));out.append(node('p','No live picks or parlays are issued from stale odds. Reloading this page cannot refresh the upstream sportsbook feed.'));await showPaperSandbox();return;}
  const readinessResponse=await fetch('./feed/nba_ml_betting_readiness.json?ml='+Date.now(),{cache:'no-store'});
  if(!readinessResponse.ok)throw Error('NBA moneyline readiness report unavailable; fail closed');
  const readiness=await readinessResponse.json();
@@ -76,7 +109,7 @@ async function refresh(){
         card.append(node('p','Combined executable sportsbook odds: UNAVAILABLE · correlation: UNVERIFIED · NOT BET ELIGIBLE'));
         out.append(card);
       }
-      if(!shown.size)out.append(node('p','No conservative parlay scenarios passed the model-probability, favorite-price, and stressed-EV screens. Longshot combinations are intentionally suppressed; no bet-certified parlay is available.'));
+      if(!shown.size){out.append(node('p','No conservative parlay scenarios passed all probability, favorite-price, and stressed-EV screens. Showing separate paper-testing examples, if available; these are not recommended bets.'));await showPaperSandbox();}
     }
     const researchGames=new Map();
     for(const g of audit.games||[]){
