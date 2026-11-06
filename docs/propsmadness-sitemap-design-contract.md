@@ -36,3 +36,11 @@ Source checked again: https://propsmadness.com/sitemap (NBA combo PRA is listed 
 - NHL: **not present in PropsMadness sitemap**. Adapt its hierarchy and card system to hockey-specific skater/goalie/game markets, without pretending these are PropsMadness pages.
 - Keep UFC/WNBA untouched this batch.
 - Next: visually verify iPhone widths and reference screenshot parity, then connect verified NFL/NHL market-specific data.
+
+## Batch 2026-11-06: shared player breakdown graphs
+Reference hierarchy: NBA breakdown Graph/Shooting/Similar/Types and NFL player breakdown from the sitemap; NHL follows analogous presentation because reference site has no NHL page.
+- Shared NBA/NFL/NHL Player Stats now include L5/L10/L15/L30 selection, top-ranked player historical chart, descriptive average and recorded sample size.
+- NHL Points is calculated only when both Goals and Assists are present in the same recorded game.
+- NHL SOG remains explicitly unavailable in the current published player game-log feed (source flags SOG unverified); do not show fabricated shots.
+- No betting hit-rate coloring without a verified sportsbook line.
+- Still pending: actual mobile screenshot comparison, NFL position-specific detailed breakdown, NHL verified SOG feed, historical odds line overlays.
