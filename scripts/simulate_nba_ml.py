@@ -2,6 +2,7 @@
 """Deterministic NBA ML Monte Carlo audit. Diagnostics only; no betting certification."""
 import datetime as dt
 import hashlib
+import itertools
 import json
 import math
 import pathlib
@@ -55,15 +56,25 @@ def build(odds, model, readiness, now, draws=10000, historical=None):
             rng=random.Random(seed)
             mc=sum(rng.random()<p for _ in range(draws))/draws
             report["games"].append({"event_id":event,"team":r["selection"],"bookmaker":book,"price":price,"model_probability":p,"mc_probability":round(mc,5),"mc_standard_error":round(math.sqrt(mc*(1-mc)/draws),6),"fair_decimal":round(1/p,4),"single_leg_ev":round(p*decimal(price)-1,5),"stress_ev_minus_3pp":round(max(.001,p-.03)*decimal(price)-1,5),"stress_ev_minus_5pp":round(max(.001,p-.05)*decimal(price)-1,5),"betting_eligible":False})
+    # Generate each length independently: avoid using a longshot as the anchor
+    # for every longer parlay. Conservative research is not betting certification.
     for book in sorted({g["bookmaker"] for g in report["games"]}):
-        eligible=sorted((g for g in report["games"] if g["bookmaker"]==book and g["single_leg_ev"]>0 and g["stress_ev_minus_3pp"]>0),key=lambda g:-g["single_leg_ev"])
-        distinct=[];seen=set()
-        for g in eligible:
-            if g["event_id"] not in seen:distinct.append(g);seen.add(g["event_id"])
-        for count in range(2,min(5,len(distinct))+1):
-            legs=distinct[:count];rng=random.Random(1984+count+sum(map(ord,book)))
+        candidates=[g for g in report["games"] if g["bookmaker"]==book
+                    and g["price"]<0 and g["model_probability"]>=0.60
+                    and g["stress_ev_minus_3pp"]>0]
+        for count in range(2,6):
+            combinations=(combo for combo in itertools.combinations(candidates,count)
+                          if len({g["event_id"] for g in combo})==count)
+            # Rank by joint model hit probability, not largest payout or single-leg EV.
+            legs=max(combinations,key=lambda combo:math.prod(g["model_probability"] for g in combo),default=None)
+            if legs is None:continue
+            rng=random.Random(1984+count+sum(map(ord,book)))
             mc=sum(all(rng.random()<leg["model_probability"] for leg in legs) for _ in range(draws))/draws
-            report["parlays"].append({"bookmaker":book,"legs":[{"event_id":g["event_id"],"team":g["team"]} for g in legs],"independent_mc_probability":round(mc,5),"independent_model_product":round(math.prod(g["model_probability"] for g in legs),5),"stress_probability_minus_3pp":round(math.prod(max(.001,g["model_probability"]-.03) for g in legs),5),"correlation_verified":False,"executable_parlay_quote_verified":False,"betting_eligible":False})
+            report["parlays"].append({"bookmaker":book,"legs":[{"event_id":g["event_id"],"team":g["team"]} for g in legs],
+                "independent_mc_probability":round(mc,5),
+                "independent_model_product":round(math.prod(g["model_probability"] for g in legs),5),
+                "stress_probability_minus_3pp":round(math.prod(g["model_probability"]-.03 for g in legs),5),
+                "correlation_verified":False,"executable_parlay_quote_verified":False,"betting_eligible":False})
     report["status"]="simulated_not_bet_eligible"
     report["blockers"]=sorted(set(report["blockers"]+["correlation_model_unverified","executable_parlay_quote_unavailable"]))
     return report
