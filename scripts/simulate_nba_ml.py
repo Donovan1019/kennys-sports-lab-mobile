@@ -58,9 +58,27 @@ def build(odds, model, readiness, now, draws=10000, historical=None):
             report["games"].append({"event_id":event,"team":r["selection"],"bookmaker":book,"price":price,"model_probability":p,"mc_probability":round(mc,5),"mc_standard_error":round(math.sqrt(mc*(1-mc)/draws),6),"fair_decimal":round(1/p,4),"single_leg_ev":round(p*decimal(price)-1,5),"stress_ev_minus_3pp":round(max(.001,p-.03)*decimal(price)-1,5),"stress_ev_minus_5pp":round(max(.001,p-.05)*decimal(price)-1,5),"betting_eligible":False})
     # Generate each length independently: avoid using a longshot as the anchor
     # for every longer parlay. Conservative research is not betting certification.
+    # Independent Elo remains the prediction source. Market prices are used only
+    # as an anomaly screen, never to fit or overwrite model probabilities.
+    # Compare two-way no-vig implied probabilities within the same book/event.
+    by_market={}
+    for g in report["games"]:
+        by_market.setdefault((g["event_id"],g["bookmaker"]),[]).append(g)
+    for sides in by_market.values():
+        if len(sides)!=2:continue
+        implied=[1/decimal(g["price"]) for g in sides]
+        total=sum(implied)
+        if total<=0:continue
+        for g,ip in zip(sides,implied):
+            g["market_no_vig_probability"]=round(ip/total,6)
+            g["model_market_gap_pp"]=round(100*(g["model_probability"]-ip/total),2)
+            g["market_divergence_flag"]=abs(g["model_probability"]-ip/total)>0.15
+    report["market_divergence_flags"]=sum(bool(g.get("market_divergence_flag")) for g in report["games"])
+    if report["market_divergence_flags"]:
+        report["blockers"].append("large_model_market_probability_disagreement")
     for book in sorted({g["bookmaker"] for g in report["games"]}):
         candidates=[g for g in report["games"] if g["bookmaker"]==book
-                    and g["price"]<0 and g["model_probability"]>=0.60
+                    and g["price"]<0 and not g.get("market_divergence_flag",True) and g["model_probability"]>=0.60
                     and g["stress_ev_minus_3pp"]>0]
         for count in range(2,6):
             combinations=(combo for combo in itertools.combinations(candidates,count)
