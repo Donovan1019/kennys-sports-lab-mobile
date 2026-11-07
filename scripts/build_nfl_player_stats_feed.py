@@ -23,7 +23,24 @@ def schedule_index(rows):
             index[key]=event
     return index
 
-def build(rows, schedule=None, schedule_dates=None):
+def schedule_opponent_index(rows):
+    """Derive the opposing team only from an unambiguous verified schedule."""
+    index={}
+    for row in rows:
+        season=str(row.get("season") or "").strip()
+        week=str(row.get("week") or "").strip()
+        home=str(row.get("home_team") or "").strip().upper()
+        away=str(row.get("away_team") or "").strip().upper()
+        if season not in ("2025","2026") or not week.isdigit() or not home or not away or home==away:
+            continue
+        for team,opponent in ((home,away),(away,home)):
+            key=(season,week,team)
+            if key in index and index[key]!=opponent:
+                raise ValueError(f"ambiguous opponent schedule: {key}")
+            index[key]=opponent
+    return index
+
+def build(rows, schedule=None, schedule_dates=None, schedule_opponents=None):
     players=defaultdict(lambda:{"games":[]})
     seen=set()
     quarantined=[]
@@ -71,6 +88,10 @@ def build(rows, schedule=None, schedule_dates=None):
             player["name"]=name
         player["player_id"]=player_id
         game={"game_id":game_id,"season":int(season),"week":int(week),"season_type":"REG","values":values}
+        team=str(r.get("recent_team") or r.get("team") or "").strip().upper()
+        opponent=(schedule_opponents or {}).get((season,week,team))
+        if opponent and opponent!=team:
+            game["opponent_abbr"]=opponent
         if schedule_dates and game_id in schedule_dates:
             game["game_date"]=schedule_dates[game_id]
             game["verified"]=True
@@ -87,10 +108,12 @@ def main():
     args=ap.parse_args()
     schedule=None
     schedule_dates={}
+    schedule_opponents={}
     if args.schedule:
         with args.schedule.open(newline="",encoding="utf-8-sig") as sf:
             schedule_rows=list(csv.DictReader(sf))
             schedule=schedule_index(schedule_rows)
+            schedule_opponents=schedule_opponent_index(schedule_rows)
             for row in schedule_rows:
                 game_id=str(row.get('game_id') or '').strip()
                 date=str(row.get('gameday') or '').strip()
@@ -111,7 +134,7 @@ def main():
             if schedule is None and "game_id" not in reader.fieldnames:
                 raise SystemExit(f"{path}: No game_id or verified schedule")
             all_rows.extend(reader)
-    result=build(all_rows,schedule,schedule_dates)
+    result=build(all_rows,schedule,schedule_dates,schedule_opponents)
     args.output.parent.mkdir(parents=True,exist_ok=True)
     tmp=args.output.with_suffix(".tmp")
     tmp.write_text(json.dumps(result,separators=(",",":")),encoding="utf-8")
