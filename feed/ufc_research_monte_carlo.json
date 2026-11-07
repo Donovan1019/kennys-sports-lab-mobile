@@ -1,0 +1,319 @@
+{
+  "schema": "ufc-hypothetical-monte-carlo-v1",
+  "sport": "UFC",
+  "research_only": true,
+  "bet_eligible": false,
+  "trials_per_fight": 10000,
+  "scenario_count": 14,
+  "validated_full_fight_simulations": 0,
+  "fights": [
+    {
+      "fight_id": "401911642",
+      "red": "Keiichiro Nakamura",
+      "blue": "Ollie Schmid",
+      "status": "HYPOTHETICAL_RESEARCH_ONLY",
+      "trials": 10000,
+      "red_scenario_win_fraction": 0.5129,
+      "blue_scenario_win_fraction": 0.4871,
+      "red_input_probability": 0.5165,
+      "red_input_uncertainty_interval": [
+        0.1177,
+        0.9153
+      ],
+      "scenario_distribution": "triangular around uncalibrated sparse-data probability",
+      "bet_eligible": false,
+      "model_ev": null,
+      "limitations": [
+        "Not calibrated or backtested; results are NOT predictive win probabilities",
+        "Fighter identity, injury, lineup and scheduled rounds not verified",
+        "This is an uncertainty scenario, not a round-by-round fight simulator"
+      ]
+    },
+    {
+      "fight_id": "401928115",
+      "red": "Karine Silva",
+      "blue": "Gabriella Fernandes",
+      "status": "HYPOTHETICAL_RESEARCH_ONLY",
+      "trials": 10000,
+      "red_scenario_win_fraction": 0.5067,
+      "blue_scenario_win_fraction": 0.4933,
+      "red_input_probability": 0.5047,
+      "red_input_uncertainty_interval": [
+        0.2369,
+        0.7726
+      ],
+      "scenario_distribution": "triangular around uncalibrated sparse-data probability",
+      "bet_eligible": false,
+      "model_ev": null,
+      "limitations": [
+        "Not calibrated or backtested; results are NOT predictive win probabilities",
+        "Fighter identity, injury, lineup and scheduled rounds not verified",
+        "This is an uncertainty scenario, not a round-by-round fight simulator"
+      ]
+    },
+    {
+      "fight_id": "401928117",
+      "red": "Wellington Turman",
+      "blue": "Seokhyeon Ko",
+      "status": "HYPOTHETICAL_RESEARCH_ONLY",
+      "trials": 10000,
+      "red_scenario_win_fraction": 0.4652,
+      "blue_scenario_win_fraction": 0.5348,
+      "red_input_probability": 0.464,
+      "red_input_uncertainty_interval": [
+        0.1537,
+        0.7744
+      ],
+      "scenario_distribution": "triangular around uncalibrated sparse-data probability",
+      "bet_eligible": false,
+      "model_ev": null,
+      "limitations": [
+        "Not calibrated or backtested; results are NOT predictive win probabilities",
+        "Fighter identity, injury, lineup and scheduled rounds not verified",
+        "This is an uncertainty scenario, not a round-by-round fight simulator"
+      ]
+    },
+    {
+      "fight_id": "401928118",
+      "red": "Jonny Parsons",
+      "blue": "Jos\u00e9 Souza",
+      "status": "HYPOTHETICAL_RESEARCH_ONLY",
+      "trials": 10000,
+      "red_scenario_win_fraction": 0.4961,
+      "blue_scenario_win_fraction": 0.5039,
+      "red_input_probability": 0.5,
+      "red_input_uncertainty_interval": [
+        0.01,
+        0.99
+      ],
+      "scenario_distribution": "triangular around uncalibrated sparse-data probability",
+      "bet_eligible": false,
+      "model_ev": null,
+      "limitations": [
+        "Not calibrated or backtested; results are NOT predictive win probabilities",
+        "Fighter identity, injury, lineup and scheduled rounds not verified",
+        "This is an uncertainty scenario, not a round-by-round fight simulator"
+      ]
+    },
+    {
+      "fight_id": "401928120",
+      "red": "Jose Delano",
+      "blue": "Murtazali Magomedov",
+      "status": "HYPOTHETICAL_RESEARCH_ONLY",
+      "trials": 10000,
+      "red_scenario_win_fraction": 0.5134,
+      "blue_scenario_win_fraction": 0.4866,
+      "red_input_probability": 0.5178,
+      "red_input_uncertainty_interval": [
+        0.119,
+        0.9166
+      ],
+      "scenario_distribution": "triangular around uncalibrated sparse-data probability",
+      "bet_eligible": false,
+      "model_ev": null,
+      "limitations": [
+        "Not calibrated or backtested; results are NOT predictive win probabilities",
+        "Fighter identity, injury, lineup and scheduled rounds not verified",
+        "This is an uncertainty scenario, not a round-by-round fight simulator"
+      ]
+    },
+    {
+      "fight_id": "401932011",
+      "red": "Andre Petroski",
+      "blue": "Mantas Kondratavi\u010dius",
+      "status": "HYPOTHETICAL_RESEARCH_ONLY",
+      "trials": 10000,
+      "red_scenario_win_fraction": 0.4889,
+      "blue_scenario_win_fraction": 0.5111,
+      "red_input_probability": 0.4931,
+      "red_input_uncertainty_interval": [
+        0.0453,
+        0.9408
+      ],
+      "scenario_distribution": "triangular around uncalibrated sparse-data probability",
+      "bet_eligible": false,
+      "model_ev": null,
+      "limitations": [
+        "Not calibrated or backtested; results are NOT predictive win probabilities",
+        "Fighter identity, injury, lineup and scheduled rounds not verified",
+        "This is an uncertainty scenario, not a round-by-round fight simulator"
+      ]
+    },
+    {
+      "fight_id": "401932716",
+      "red": "Thomas Petersen",
+      "blue": "Gabriel Loren\u00e7o",
+      "status": "HYPOTHETICAL_RESEARCH_ONLY",
+      "trials": 10000,
+      "red_scenario_win_fraction": 0.4959,
+      "blue_scenario_win_fraction": 0.5041,
+      "red_input_probability": 0.5,
+      "red_input_uncertainty_interval": [
+        0.01,
+        0.99
+      ],
+      "scenario_distribution": "triangular around uncalibrated sparse-data probability",
+      "bet_eligible": false,
+      "model_ev": null,
+      "limitations": [
+        "Not calibrated or backtested; results are NOT predictive win probabilities",
+        "Fighter identity, injury, lineup and scheduled rounds not verified",
+        "This is an uncertainty scenario, not a round-by-round fight simulator"
+      ]
+    },
+    {
+      "fight_id": "401933235",
+      "red": "Austin Bashi",
+      "blue": "Carlos Calderon",
+      "status": "HYPOTHETICAL_RESEARCH_ONLY",
+      "trials": 10000,
+      "red_scenario_win_fraction": 0.495,
+      "blue_scenario_win_fraction": 0.505,
+      "red_input_probability": 0.5,
+      "red_input_uncertainty_interval": [
+        0.01,
+        0.99
+      ],
+      "scenario_distribution": "triangular around uncalibrated sparse-data probability",
+      "bet_eligible": false,
+      "model_ev": null,
+      "limitations": [
+        "Not calibrated or backtested; results are NOT predictive win probabilities",
+        "Fighter identity, injury, lineup and scheduled rounds not verified",
+        "This is an uncertainty scenario, not a round-by-round fight simulator"
+      ]
+    },
+    {
+      "fight_id": "401928111",
+      "red": "Tatiana Suarez",
+      "blue": "Virna Jandiroba",
+      "status": "HYPOTHETICAL_RESEARCH_ONLY",
+      "trials": 10000,
+      "red_scenario_win_fraction": 0.5339,
+      "blue_scenario_win_fraction": 0.4661,
+      "red_input_probability": 0.5294,
+      "red_input_uncertainty_interval": [
+        0.32,
+        0.7388
+      ],
+      "scenario_distribution": "triangular around uncalibrated sparse-data probability",
+      "bet_eligible": false,
+      "model_ev": null,
+      "limitations": [
+        "Not calibrated or backtested; results are NOT predictive win probabilities",
+        "Fighter identity, injury, lineup and scheduled rounds not verified",
+        "This is an uncertainty scenario, not a round-by-round fight simulator"
+      ]
+    },
+    {
+      "fight_id": "401928113",
+      "red": "Billy Elekana",
+      "blue": "Lucas Fernando",
+      "status": "HYPOTHETICAL_RESEARCH_ONLY",
+      "trials": 10000,
+      "red_scenario_win_fraction": 0.4954,
+      "blue_scenario_win_fraction": 0.5046,
+      "red_input_probability": 0.4952,
+      "red_input_uncertainty_interval": [
+        0.0474,
+        0.9429
+      ],
+      "scenario_distribution": "triangular around uncalibrated sparse-data probability",
+      "bet_eligible": false,
+      "model_ev": null,
+      "limitations": [
+        "Not calibrated or backtested; results are NOT predictive win probabilities",
+        "Fighter identity, injury, lineup and scheduled rounds not verified",
+        "This is an uncertainty scenario, not a round-by-round fight simulator"
+      ]
+    },
+    {
+      "fight_id": "401928116",
+      "red": "Priscila Cachoeira",
+      "blue": "Nina Milo\u0161evi\u0107",
+      "status": "HYPOTHETICAL_RESEARCH_ONLY",
+      "trials": 10000,
+      "red_scenario_win_fraction": 0.5035,
+      "blue_scenario_win_fraction": 0.4965,
+      "red_input_probability": 0.4999,
+      "red_input_uncertainty_interval": [
+        0.0251,
+        0.9747
+      ],
+      "scenario_distribution": "triangular around uncalibrated sparse-data probability",
+      "bet_eligible": false,
+      "model_ev": null,
+      "limitations": [
+        "Not calibrated or backtested; results are NOT predictive win probabilities",
+        "Fighter identity, injury, lineup and scheduled rounds not verified",
+        "This is an uncertainty scenario, not a round-by-round fight simulator"
+      ]
+    },
+    {
+      "fight_id": "401928119",
+      "red": "Davey Grant",
+      "blue": "Elijah Smith",
+      "status": "HYPOTHETICAL_RESEARCH_ONLY",
+      "trials": 10000,
+      "red_scenario_win_fraction": 0.5135,
+      "blue_scenario_win_fraction": 0.4865,
+      "red_input_probability": 0.514,
+      "red_input_uncertainty_interval": [
+        0.176,
+        0.852
+      ],
+      "scenario_distribution": "triangular around uncalibrated sparse-data probability",
+      "bet_eligible": false,
+      "model_ev": null,
+      "limitations": [
+        "Not calibrated or backtested; results are NOT predictive win probabilities",
+        "Fighter identity, injury, lineup and scheduled rounds not verified",
+        "This is an uncertainty scenario, not a round-by-round fight simulator"
+      ]
+    },
+    {
+      "fight_id": "401932012",
+      "red": "Mitch Raposo",
+      "blue": "Marcos Degli",
+      "status": "HYPOTHETICAL_RESEARCH_ONLY",
+      "trials": 10000,
+      "red_scenario_win_fraction": 0.5005,
+      "blue_scenario_win_fraction": 0.4995,
+      "red_input_probability": 0.5,
+      "red_input_uncertainty_interval": [
+        0.01,
+        0.99
+      ],
+      "scenario_distribution": "triangular around uncalibrated sparse-data probability",
+      "bet_eligible": false,
+      "model_ev": null,
+      "limitations": [
+        "Not calibrated or backtested; results are NOT predictive win probabilities",
+        "Fighter identity, injury, lineup and scheduled rounds not verified",
+        "This is an uncertainty scenario, not a round-by-round fight simulator"
+      ]
+    },
+    {
+      "fight_id": "401932715",
+      "red": "Johnny Walker",
+      "blue": "Waldo Cortes Acosta",
+      "status": "HYPOTHETICAL_RESEARCH_ONLY",
+      "trials": 10000,
+      "red_scenario_win_fraction": 0.4933,
+      "blue_scenario_win_fraction": 0.5067,
+      "red_input_probability": 0.491,
+      "red_input_uncertainty_interval": [
+        0.077,
+        0.905
+      ],
+      "scenario_distribution": "triangular around uncalibrated sparse-data probability",
+      "bet_eligible": false,
+      "model_ev": null,
+      "limitations": [
+        "Not calibrated or backtested; results are NOT predictive win probabilities",
+        "Fighter identity, injury, lineup and scheduled rounds not verified",
+        "This is an uncertainty scenario, not a round-by-round fight simulator"
+      ]
+    }
+  ]
+}
