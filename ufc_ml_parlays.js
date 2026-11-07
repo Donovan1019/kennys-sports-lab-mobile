@@ -8,7 +8,7 @@ const text=(tag,value)=>{const n=document.createElement(tag);n.textContent=value
 async function json(path){const r=await fetch(path+'?v='+Date.now(),{cache:'no-store'});if(!r.ok)throw Error(path+' HTTP '+r.status);return r.json()}
 let saved=[];
 function draw(){root.replaceChildren();const n=Number(legs.value);const books=['draftkings','fanduel'];let total=0;
-for(const book of books){const picks=saved.filter(x=>x.book===book).sort((a,b)=>b.novig-a.novig).slice(0,n);if(picks.length<n)continue;
+for(const book of books){const unique=new Map();for(const pick of saved.filter(x=>x.book===book).sort((a,b)=>b.novig-a.novig)){if(!unique.has(pick.eventId))unique.set(pick.eventId,pick)}const picks=[...unique.values()].slice(0,n);if(picks.length<n)continue;
 const card=text('article','');card.style.cssText='border:1px solid #42677b;border-radius:12px;padding:16px;margin:12px 0;background:#10283a';card.append(text('h3',n+'-fighter · '+book.toUpperCase()+' · RESEARCH ONLY'));const ul=document.createElement('ul');picks.forEach(p=>ul.append(text('li',p.name+' ML · '+(p.price>0?'+':'')+p.price+' · market no-vig '+(p.novig*100).toFixed(1)+'%')));card.append(ul);
 const decimal=picks.reduce((v,p)=>v*(p.price>0?1+p.price/100:1+100/-p.price),1);card.append(text('p','Illustrative combined quoted odds: '+american(decimal)+' (saved snapshot only; NOT executable)'));
 card.append(text('p','Independent fighter model: UNAVAILABLE · Monte Carlo: UNAVAILABLE · correlation: UNVERIFIED · parlay EV: UNAVAILABLE · NOT BET ELIGIBLE'));root.append(card);total++}
