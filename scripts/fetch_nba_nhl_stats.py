@@ -84,6 +84,9 @@ def main():
             for p in old.get("players",[]):
                 for g in p.get("games",[]):
                     prior[(str(p["id"]),str(g["game_id"]))]={"id":str(p["id"]),"name":p["name"],"team":p.get("team",""),**g}
+    by_game={}
+    for row in prior.values():
+        by_game.setdefault(str(row["game_id"]),[]).append(row)
     sport,code=LEAGUES[league]
     errors=[];scanned=0;parsed=0;skipped_existing=0
     for offset in range(days):
@@ -107,9 +110,16 @@ def main():
             # ESPN NBA season type 2 = regular season, 3 = postseason; exclude preseason.
             if league=="nba" and str(season_type) not in ("2","3"):continue
             scanned+=1
+            competitors=((event.get("competitions") or [{}])[0].get("competitors") or [])
+            codes=[str((c.get("team") or {}).get("abbreviation") or "").strip().upper() for c in competitors]
+            if len(codes)==2 and all(codes) and codes[0]!=codes[1]:
+                for cached in by_game.get(gid,[]):
+                    team=str(cached.get("team") or "").strip().upper()
+                    if team in codes:
+                        cached["opponent_abbr"]=codes[1] if team==codes[0] else codes[0]
             # Resume safely: existing verified game logs are retained between runs.
             # Avoid refetching a game already present in the saved dataset.
-            if any(key[1]==gid and (league=="nhl" or value.get("season_type") in ("regular","postseason")) for key,value in prior.items()):
+            if any(league=="nhl" or value.get("season_type") in ("regular","postseason") for value in by_game.get(gid,[])):
                 skipped_existing+=1
                 continue
             try:
@@ -121,6 +131,7 @@ def main():
                         row["season"]="2025-26" if day<date(2026,7,1) else "2026-27"
                         row["season_type"]="postseason" if str(season_type)=="3" else "regular"
                     prior[(row["id"],gid)]=row
+                    by_game.setdefault(gid,[]).append(row)
                 parsed+=1
             except Exception as exc:
                 errors.append({"event":gid,"error":type(exc).__name__})
