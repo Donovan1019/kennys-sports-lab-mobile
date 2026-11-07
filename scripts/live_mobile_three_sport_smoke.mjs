@@ -10,6 +10,13 @@ try {
   for (const sport of ['nba', 'nfl', 'nhl']) {
     const page = await browser.newPage({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true });
     const errors = [];
+    const cdp = await page.context().newCDPSession(page);
+    await cdp.send('Runtime.enable');
+    cdp.on('Runtime.exceptionThrown', ({ exceptionDetails: d }) => {
+      const frame = d.stackTrace?.callFrames?.[0];
+      errors.push('exception at ' + (d.url || frame?.url || 'unknown-script') + ':' + (d.lineNumber ?? frame?.lineNumber ?? '?') + ':' + (d.columnNumber ?? frame?.columnNumber ?? '?') + ' ' + d.text + ' ' + (d.exception?.description || ''));
+    });
+    page.on('response', response => { if (response.status() >= 400) errors.push('HTTP ' + response.status() + ' ' + response.url()); });
     page.on('console', message => { if (message.type() === 'error') errors.push('console: ' + message.text()); });
     page.on('pageerror', error => errors.push((error.stack || error.message)));
     const url = base + sport + '.html?v=mobile-smoke-20261107';
