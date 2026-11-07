@@ -27,12 +27,22 @@ try {
       const tabs = page.locator('nav.ksl-unified-sections a');
       const count = await tabs.count();
       if (!count) failures.push(sport + ': missing unified section navigation');
+      const requiredLabels = ['Player Stats', 'Game Research', 'Player Breakdown', 'Simulator'];
+      const foundLabels = await tabs.allInnerTexts();
+      for (const label of requiredLabels) {
+        if (!foundLabels.some(text => text.trim() === label)) failures.push(sport + ': missing required section ' + label);
+      }
+      if (new Set(foundLabels.map(text => text.trim())).size !== foundLabels.length) failures.push(sport + ': duplicate section labels');
+      const seenDestinations = new Map();
       const tabResults = [];
       for (let i = 0; i < count; i++) {
         const tab = tabs.nth(i);
         const href = await tab.getAttribute('href');
         const label = (await tab.innerText()).trim();
         if (!href) { failures.push(sport + ': blank tab link ' + label); continue; }
+        const canonicalDestination = new URL(href, url).href;
+        if (seenDestinations.has(canonicalDestination)) failures.push(sport + ': duplicate destination ' + label + ' and ' + seenDestinations.get(canonicalDestination));
+        seenDestinations.set(canonicalDestination, label);
         if (href.startsWith('#')) {
           await tab.click({ timeout: 10000 });
           await page.waitForTimeout(250);
