@@ -77,6 +77,9 @@ def main():
                     prior[(p["id"],g["game_id"])]={"id":p["id"],"name":p["name"],"team":p["team"],**g}
     parsed=0;checked=0;skipped=0;errors=[]
     existing_games={gid for _,gid in prior}
+    by_game={}
+    for row in prior.values():
+        by_game.setdefault(str(row["game_id"]),[]).append(row)
     for offset in range(days):
         day=start_day-timedelta(days=offset)
         try:
@@ -89,6 +92,17 @@ def main():
             state=game.get("gameState")
             if not gid or state not in ("FINAL","OFF"):continue
             checked+=1
+            home=(game.get("homeTeam") or {}).get("abbrev") or ""
+            away=(game.get("awayTeam") or {}).get("abbrev") or ""
+            if isinstance(home,dict):home=home.get("default","")
+            if isinstance(away,dict):away=away.get("default","")
+            if isinstance(home,str) and isinstance(away,str):
+                home,away=home.strip().upper(),away.strip().upper()
+                if home and away and home!=away:
+                    for cached in by_game.get(str(gid),[]):
+                        team=str(cached.get("team") or "").strip().upper()
+                        if team==home:cached["opponent_abbr"]=away
+                        elif team==away:cached["opponent_abbr"]=home
             if str(gid) in existing_games:
                 skipped+=1
                 continue
