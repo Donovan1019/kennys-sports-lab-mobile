@@ -1,0 +1,21 @@
+name: Three Sport Navigation Integrity
+on:
+  pull_request:
+    paths:
+      - 'nba.html'
+      - 'nfl.html'
+      - 'nhl.html'
+      - 'nba-props.html'
+      - 'nfl-matchup-lab.html'
+      - 'scripts/check_three_sport_navigation.py'
+      - '.github/workflows/three-sport-navigation-integrity.yml'
+  workflow_dispatch:
+jobs:
+  check-navigation:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check navigation destinations, anchors, and duplicated rows
+        run: python3 scripts/check_three_sport_navigation.py
