@@ -1,0 +1,27 @@
+name: Historical Opponent Identity Validation
+on:
+  pull_request:
+    paths:
+      - 'three_sport_stats.js'
+      - 'scripts/fetch_nba_nhl_stats.py'
+      - 'scripts/fetch_nhl_official_stats.py'
+      - 'scripts/fetch_nfl_stats.py'
+      - 'tests/test_historical_opponent_identity.py'
+      - '.github/workflows/historical-opponent-identity.yml'
+  workflow_dispatch:
+jobs:
+  opponent-identity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check chart JavaScript syntax
+        run: node --check three_sport_stats.js
+      - name: Verify NBA NFL NHL opponent extraction
+        run: python -m unittest discover -s tests -p 'test_historical_opponent_identity.py' -v
