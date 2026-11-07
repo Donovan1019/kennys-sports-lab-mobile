@@ -6,6 +6,7 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/refresh-nhl-official-stats.yml'
+      - 'scripts/fetch_nhl_official_stats.py'
   workflow_dispatch:
     inputs:
       lookback_days:
@@ -41,7 +42,7 @@ jobs:
           python-version: '3.12'
       - name: Import and validate NHL official boxscores
         env:
-          LOOKBACK_DAYS: ${{ inputs.lookback_days || '45' }}
+          LOOKBACK_DAYS: ${{ inputs.lookback_days || '31' }}
           START_DATE: ${{ inputs.start_date }}
         run: python scripts/fetch_nhl_official_stats.py
       - name: Publish official NHL snapshot with concurrent-push retry
