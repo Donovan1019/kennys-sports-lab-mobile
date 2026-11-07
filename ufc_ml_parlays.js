@@ -20,8 +20,8 @@ const valid=card.fights.filter(f=>f.red&&f.blue&&Date.parse(f.start_time)>now);c
 for(const q of feed.odds){if(q.market!=='h2h'||!['draftkings','fanduel'].includes(q.bookmaker)||!q.event_id||!q.selection||!Number.isFinite(q.price)||(q.price>-100&&q.price<100)||Date.parse(q.commence_time)<=now||now-Date.parse(q.updated_at)>15*60000||Date.parse(q.updated_at)>now||Date.parse(q.updated_at)>snapshot||Date.parse(q.commence_time)<=snapshot)continue;const key=q.bookmaker+'|'+q.event_id;if(!groups.has(key))groups.set(key,[]);groups.get(key).push(q)}
 for(const [key,rows] of groups){const names=new Set(rows.map(q=>norm(q.selection)));if(names.size!==2)continue;const fight=valid.find(f=>names.has(norm(f.red))&&names.has(norm(f.blue))&&Math.abs(Date.parse(f.start_time)-Date.parse(rows[0].commence_time))<=90*60000);if(!fight)continue;
 const pair=rows.filter(q=>q.commence_time===rows[0].commence_time);if(pair.length!==2||new Set(pair.map(q=>norm(q.selection))).size!==2||Math.abs(Date.parse(pair[0].updated_at)-Date.parse(pair[1].updated_at))>15*60000)continue;const sum=pair.reduce((v,q)=>v+implied(q.price),0);if(sum<1||sum>1.35)continue;
-const fav=pair.sort((a,b)=>implied(b.price)-implied(a.price))[0];saved.push({book:fav.bookmaker,name:fav.selection,price:fav.price,novig:implied(fav.price)/sum,eventId:fav.event_id})}
-status.textContent='Snapshot '+stamp(feed.fetched_at)+' · '+saved.length+' validated-format favorite quotes · research only. Fighter status and model calibration NOT VERIFIED.';draw();
+for(const side of pair){saved.push({book:side.bookmaker,name:side.selection,price:side.price,novig:implied(side.price)/sum,eventId:side.event_id})}}
+status.textContent='Snapshot '+stamp(feed.fetched_at)+' · '+saved.length+' validated-format fighter-side quotes · research only. Fighter status and model calibration NOT VERIFIED.';draw();
 }catch(e){status.textContent='UNAVAILABLE — '+e.message+' · no parlay recommendations';draw()}finally{btn.disabled=false}}
 btn.addEventListener('click',load);legs.addEventListener('change',draw);load();
 })();
