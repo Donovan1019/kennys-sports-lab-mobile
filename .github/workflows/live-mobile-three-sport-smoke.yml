@@ -1,0 +1,27 @@
+name: Live Mobile Three-Sport Smoke
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/live-mobile-three-sport-smoke.yml'
+      - 'scripts/live_mobile_three_sport_smoke.mjs'
+  workflow_dispatch:
+jobs:
+  live-mobile-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save playwright
+      - run: npx playwright install --with-deps chromium
+      - name: Check deployed mobile pages and tabs
+        run: node scripts/live_mobile_three_sport_smoke.mjs
+      - name: Upload screenshots and results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: live-mobile-three-sport-smoke
+          path: artifacts/mobile-smoke/
+          if-no-files-found: ignore
