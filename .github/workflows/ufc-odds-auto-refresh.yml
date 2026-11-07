@@ -18,6 +18,12 @@ jobs:
           python-version: '3.11'
       - name: Validate odds feed adapter
         run: python -m unittest discover -s tests -p test_ufc_refresh_odds.py -v
+      - name: Diagnose existing secret wiring
+        env:
+          PRIMARY_KEY: ${{ secrets.THE_ODDS_API_KEY }}
+          FALLBACK_KEY: ${{ secrets.ODDS_API_KEY }}
+        run: |
+          if [ -n "$PRIMARY_KEY" ]; then echo 'Existing THE_ODDS_API_KEY is configured'; elif [ -n "$FALLBACK_KEY" ]; then echo 'Fallback ODDS_API_KEY is configured'; else echo 'No supported odds API secret is configured'; exit 1; fi
       - name: Refresh from configured provider
         env:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
