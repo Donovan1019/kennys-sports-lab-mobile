@@ -1,7 +1,7 @@
 import sys,unittest,json,tempfile
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/"scripts"))
-from build_nfl_player_stats_feed import build,schedule_index
+from build_nfl_player_stats_feed import build,schedule_index,schedule_opponent_index
 from audit_nfl_player_stats_feed import inspect
 BASE={"season":"2026","season_type":"REG","week":"3","player_id":"p1","player_display_name":"Player One","game_id":"2026_03_A_B","passing_yards":"203","rushing_yards":"0"}
 class Ingestion(unittest.TestCase):
@@ -32,6 +32,19 @@ class Ingestion(unittest.TestCase):
   row=dict(BASE,game_id="",recent_team="NYJ")
   schedule=schedule_index([{"season":"2026","week":"3","game_id":"2026_03_NYJ_BUF","home_team":"NYJ","away_team":"BUF"}])
   self.assertEqual(build([row],schedule)["players"][0]["games"][0]["game_id"],"2026_03_NYJ_BUF")
+ def test_verified_schedule_opponent_join(self):
+  schedule_rows=[{"season":"2026","week":"3","game_id":"2026_03_NYJ_BUF","home_team":"NYJ","away_team":"BUF"}]
+  opponents=schedule_opponent_index(schedule_rows)
+  result=build([dict(BASE,recent_team="NYJ")],schedule_opponents=opponents)
+  self.assertEqual(result["players"][0]["games"][0]["opponent_abbr"],"BUF")
+  self.assertEqual(opponents[("2026","3","BUF")],"NYJ")
+ def test_unknown_schedule_opponent_not_guessed(self):
+  result=build([dict(BASE,recent_team="NYJ")],schedule_opponents={})
+  self.assertNotIn("opponent_abbr",result["players"][0]["games"][0])
+ def test_conflicting_schedule_opponents_rejected(self):
+  rows=[{"season":"2026","week":"3","game_id":"a","home_team":"NYJ","away_team":"BUF"},{"season":"2026","week":"3","game_id":"b","home_team":"NYJ","away_team":"MIA"}]
+  with self.assertRaisesRegex(ValueError,"ambiguous opponent"):
+   schedule_opponent_index(rows)
  def test_missing_schedule_match_rejected(self):
   with self.assertRaises(ValueError):build([dict(BASE,game_id="",recent_team="NYJ")],{})
  def test_negative_rushing_yards_allowed(self):
