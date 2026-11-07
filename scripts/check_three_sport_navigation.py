@@ -62,6 +62,9 @@ def inspect(name):
     if name == "nba.html":
         if 'class="nba-tabs" aria-label="Legacy NBA section controls" hidden style="display:none"' not in doc:
             errors.append("nba.html: legacy NBA tabs must not be visible")
+        for tab in ("projections", "stats", "ml", "research"):
+            if 'href="#' + tab + '"' not in doc:
+                errors.append(f"nba.html: unified navigation missing #{tab}")
         if "window.addEventListener('hashchange'" not in doc:
             errors.append("nba.html: missing hash navigation handler")
 
