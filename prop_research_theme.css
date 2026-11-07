@@ -109,3 +109,30 @@ th:first-child,td:first-child{background:#18191b!important}
 @media(prefers-reduced-motion:reduce){
   .ksl-unified-sections,.ksl-market-pills{scroll-behavior:auto}
 }
+
+
+/* Three-sport header parity: actual markup uses .ksl-nav (not #ksl-global-nav).
+   This deliberately overrides the legacy blue uniform stylesheet. */
+body>.ksl-nav,body>nav.ksl-nav{
+  background:var(--ksl-bg)!important;border-bottom:1px solid var(--ksl-border)!important;
+  display:flex;flex-wrap:nowrap;gap:7px;overflow-x:auto;
+  overscroll-behavior-x:contain;scrollbar-width:thin;padding:10px 12px!important;
+}
+body>.ksl-nav a,body>nav.ksl-nav a{
+  flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;
+  min-height:44px;padding:10px 13px!important;background:var(--ksl-card)!important;
+  border:1px solid var(--ksl-border)!important;border-radius:12px!important;
+  color:var(--ksl-text)!important;font-size:13px;text-decoration:none;
+}
+body>.ksl-nav a[aria-current="page"],body>nav.ksl-nav a[aria-current="page"]{
+  color:var(--ksl-accent)!important;border-color:var(--ksl-accent)!important;
+  background:#302a14!important;
+}
+.ksl-shell>h1{color:var(--ksl-text)!important;font-size:clamp(23px,4vw,34px)}
+.ksl-shell>.ksl-market-catalog{margin-top:14px}
+.ksl-shell>.ksl-unified-sections{margin-top:8px}
+.ksl-shell>.ksl-research-destinations{margin-bottom:10px}
+@media(max-width:430px){
+  body>.ksl-nav,body>nav.ksl-nav{gap:6px;padding:8px 10px!important}
+  body>.ksl-nav a,body>nav.ksl-nav a{padding:9px 11px!important;font-size:12px}
+}
