@@ -1,9 +1,24 @@
 name: Live Mobile Three-Sport Smoke
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'nba.html'
+      - 'nfl.html'
+      - 'nhl.html'
+      - 'betting-ready-simulator.html'
+      - 'nfl_injury_report.js'
+      - 'feed/nfl_injury_reports.json'
+      - 'three_sport_*.js'
+      - 'prop_research_theme.css'
+      - 'scripts/live_mobile_three_sport_smoke.mjs'
+      - '.github/workflows/live-mobile-three-sport-smoke.yml'
   pull_request:
     paths:
       - '.github/workflows/live-mobile-three-sport-smoke.yml'
       - 'scripts/live_mobile_three_sport_smoke.mjs'
+  schedule:
+    - cron: '20 14 * * *'
   workflow_dispatch:
 jobs:
   live-mobile-smoke:
