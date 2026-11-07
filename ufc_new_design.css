@@ -1,0 +1,18 @@
+/* UFC parity with the NBA/NFL/NHL dark research sitemap; one global nav. */
+.ksl-nav{display:flex;flex-wrap:nowrap;overflow-x:auto;white-space:nowrap;scrollbar-width:thin;background:#090909!important;border-bottom:1px solid #292b2d!important;gap:7px;padding:10px 12px}
+.ksl-nav a{flex:0 0 auto;background:#1b1d1f!important;border:1px solid #2c2e30!important;border-radius:12px!important;color:#f5f5f5!important;font-weight:600}
+.ksl-nav a[aria-current="page"]{background:#303235!important;border-color:#f3c621!important;color:#f3c621!important}
+.ksl-unified-sections{position:sticky;top:0;z-index:10;background:#090909;scroll-margin-top:0}
+.ksl-unified-sections a{background:#1c1e20;border-color:#353638;color:#f5f5f5}
+.ksl-unified-sections a:hover,.ksl-unified-sections a:focus-visible{border-color:#f3c621;color:#f3c621}
+.ksl-ufc-card,.ksl-ufc-projection-card{background:#18191b!important;border:1px solid #303234!important;border-radius:16px!important;color:#f5f5f5}
+.ksl-ufc-card h2{color:#f3c621!important}
+.ksl-ufc-fight{border-color:#303234}
+.ksl-ufc-fight small{color:#a1a1a5}
+.ksl-ufc-status{border-color:#8e752a;color:#f3c621}
+#ufc-ml-parlays article{background:#202123!important;border:1px solid #353638!important;border-radius:14px!important}
+#ufc-ml-parlays article h3{color:#f3c621}
+#ufc-ml-parlays button,#ufc-top-reload-odds{min-height:44px;background:#242527!important;border:1px solid #f3c621!important;color:#f3c621!important;font-weight:700}
+#ufc-ml-parlays select{width:auto;min-height:44px}
+#ksl-ufc-projection,#ufc-mirror-stats,#ufc-fights,#ufc-ml-parlays,#ksl-shared-odds,#ufc-data-lab{scroll-margin-top:85px}
+@media(max-width:650px){.ksl-nav{flex-wrap:nowrap}.ksl-shell{overflow-x:clip}.ksl-ufc-grid{grid-template-columns:minmax(0,1fr)}.ksl-ufc-card{padding:14px}.ksl-unified-sections{margin-inline:-4px;padding-inline:4px}}
