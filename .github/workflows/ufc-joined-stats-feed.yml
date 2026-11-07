@@ -1,0 +1,46 @@
+name: UFC Joined Stats Feed
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'feed/ufc_research.json'
+      - 'feed/ufc_fighter_stats_mirror.json'
+      - 'feed/ufc_elo_projections.json'
+      - 'feed/ufc_unified_research.json'
+      - 'feed/ufc_simulations.json'
+      - 'scripts/ufc_join_all_stats.py'
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  join:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m unittest discover -s tests -p test_ufc_join_all_stats.py -v
+      - run: python -m scripts.ufc_join_all_stats
+      - name: Check output integrity
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('feed/ufc_joined_stats.json'))
+          assert d['coverage']['fights']==len(d['fights'])
+          assert d['bet_eligible'] is False
+          assert all(not f['bet_eligible'] and f['model_ev'] is None for f in d['fights'])
+          print(d['coverage'])
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ufc-joined-stats
+          path: feed/ufc_joined_stats.json
+      - name: Commit joined stats to main
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add feed/ufc_joined_stats.json
+          git diff --cached --quiet || (git commit -m 'Refresh UFC joined stats feed' && git push)
