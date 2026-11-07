@@ -1,0 +1,33 @@
+{
+  "sport": "NHL",
+  "date": "2026-11-07",
+  "games": [
+    {
+      "event_id": "401892662",
+      "event": "Florida Panthers at Washington Capitals",
+      "commence_time": "2026-11-07T17:30Z",
+      "home": "Washington Capitals",
+      "away": "Florida Panthers",
+      "home_score": 4,
+      "away_score": 3,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261107&limit=100"
+    },
+    {
+      "event_id": "401892663",
+      "event": "St. Louis Blues at Nashville Predators",
+      "commence_time": "2026-11-07T18:00Z",
+      "home": "Nashville Predators",
+      "away": "St. Louis Blues",
+      "home_score": 3,
+      "away_score": 1,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261107&limit=100"
+    }
+  ],
+  "source_url": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261107&limit=100"
+}

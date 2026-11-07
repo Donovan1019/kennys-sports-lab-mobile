@@ -1,6 +1,6 @@
 {
   "date": "2026-11-07",
-  "generated_at": "2026-11-07T16:49:39.962401+00:00",
+  "generated_at": "2026-11-07T22:47:10.473934+00:00",
   "sports": {
     "NFL": {
       "status": "NO_VERIFIED_PREGAME_PREDICTIONS",
@@ -25,23 +25,48 @@
       "pending": 32
     },
     "NHL": {
-      "status": "OUTCOMES_UNVERIFIED",
+      "status": "PARTIALLY_SETTLED_MONEYLINES",
       "saved_quotes": 0,
       "eligible_predictions": 122,
       "research_only_predictions": 122,
       "bet_eligible_predictions": 0,
       "blocked_predictions": [],
-      "graded": 0,
-      "settled": [],
-      "pending": 122
+      "graded": 4,
+      "settled": [
+        {
+          "event": "Florida Panthers @ Washington Capitals",
+          "market": "h2h",
+          "selection": "Washington Capitals",
+          "outcome": "win"
+        },
+        {
+          "event": "Florida Panthers @ Washington Capitals",
+          "market": "h2h",
+          "selection": "Florida Panthers",
+          "outcome": "loss"
+        },
+        {
+          "event": "St. Louis Blues @ Nashville Predators",
+          "market": "h2h",
+          "selection": "Nashville Predators",
+          "outcome": "win"
+        },
+        {
+          "event": "St. Louis Blues @ Nashville Predators",
+          "market": "h2h",
+          "selection": "St. Louis Blues",
+          "outcome": "loss"
+        }
+      ],
+      "pending": 118
     }
   },
   "summary": {
-    "verified_picks": 0,
-    "wins": 0,
-    "losses": 0,
+    "verified_picks": 4,
+    "wins": 2,
+    "losses": 2,
     "pushes": 0,
     "roi": null,
-    "hit_rate": null
+    "hit_rate": 0.5
   }
 }
