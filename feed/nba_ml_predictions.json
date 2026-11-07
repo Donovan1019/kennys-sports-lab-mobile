@@ -1,7 +1,7 @@
 {
   "status": "validated",
   "sport": "basketball_nba",
-  "generated_at": "2026-11-07T18:55:24.940403+00:00",
+  "generated_at": "2026-11-07T20:48:02.402395+00:00",
   "calibration_passed": true,
   "model_version": "elo-walkforward-v1-holdout-audit",
   "validation_report": {
@@ -107,6 +107,18 @@
       "team": "San Antonio Spurs",
       "date_et": "2026-11-07",
       "win_probability": 0.616643
+    },
+    {
+      "event_id": "182e2b5349fa0ff4ad3c0e8359c1a9a0",
+      "team": "Detroit Pistons",
+      "date_et": "2026-11-08",
+      "win_probability": 0.643164
+    },
+    {
+      "event_id": "182e2b5349fa0ff4ad3c0e8359c1a9a0",
+      "team": "Los Angeles Lakers",
+      "date_et": "2026-11-08",
+      "win_probability": 0.356836
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "status": "diagnostic_only",
-  "generated_at": "2026-11-07T18:55:25.849996+00:00",
+  "generated_at": "2026-11-07T20:48:03.468589+00:00",
   "source": "historical team box-score possessions, not Elo or bookmaker odds",
   "qualified_teams": 30,
   "games": [
@@ -125,6 +125,24 @@
       "regulation_tie_probability": 0.0255,
       "home_full_game_win_probability": 0.4153,
       "overtime_periods_simulated": 278,
+      "overtime_unmodeled": false,
+      "injuries_rest_unmodeled": true,
+      "historical_calibration_unverified": true,
+      "betting_eligible": false
+    },
+    {
+      "event_id": "182e2b5349fa0ff4ad3c0e8359c1a9a0",
+      "status": "diagnostic_only",
+      "home": "Detroit Pistons",
+      "away": "Los Angeles Lakers",
+      "draws": 10000,
+      "estimated_possessions": 99.65,
+      "home_offense_ppp": 1.1312,
+      "away_offense_ppp": 1.1116,
+      "home_regulation_win_probability": 0.5504,
+      "regulation_tie_probability": 0.0243,
+      "home_full_game_win_probability": 0.5504,
+      "overtime_periods_simulated": 264,
       "overtime_unmodeled": false,
       "injuries_rest_unmodeled": true,
       "historical_calibration_unverified": true,
