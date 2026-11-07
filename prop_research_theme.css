@@ -57,3 +57,12 @@ th:first-child,td:first-child{background:#18191b!important}
 .ksl-game-log-bar{background:#4f9a76;width:85%;border-radius:5px 5px 0 0;min-height:3px}
 .ksl-game-log-column small{font-size:9px;color:#aeb1b5;white-space:nowrap}
 @media(max-width:450px){.ksl-game-log-chart{height:200px}.ksl-featured-player{padding:12px}}
+
+/* Verified opponent logos underneath historical game dates. */
+.ksl-opponent-date{display:flex;flex-direction:column;align-items:center;gap:5px;min-width:0}
+.ksl-opponent-logo{display:flex;align-items:center;justify-content:center;width:26px;height:26px;margin:3px auto 0;color:#aeb1b5;font-size:10px;font-weight:700}
+.ksl-opponent-logo img{display:block;width:22px;height:22px;object-fit:contain}
+.ksl-game-log-chart{height:255px;padding-bottom:2px}
+.ksl-game-log-column{min-width:24px;flex-basis:24px}
+.ksl-game-log-column .ksl-opponent-logo{flex:0 0 26px;margin-top:0}
+@media(max-width:450px){.ksl-game-log-chart{height:230px}}
