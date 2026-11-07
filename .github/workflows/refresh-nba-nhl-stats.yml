@@ -4,6 +4,7 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/refresh-nba-nhl-stats.yml'
+      - 'scripts/fetch_nba_nhl_stats.py'
   schedule:
     - cron: '17 11 * * *'
   workflow_dispatch:
@@ -52,7 +53,7 @@ jobs:
       - name: Fetch verified NBA or NHL boxscores
         env:
           PLAYER_SPORT: ${{ inputs.sport || 'nba' }}
-          LOOKBACK_DAYS: ${{ inputs.lookback_days || '45' }}
+          LOOKBACK_DAYS: ${{ inputs.lookback_days || '31' }}
           START_DATE: ${{ inputs.start_date || '' }}
         run: python scripts/fetch_nba_nhl_stats.py
       - name: Backtest NBA player stats against strictly later games (research only)
