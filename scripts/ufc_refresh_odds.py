@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Refresh UFC moneyline quotes from The Odds API. Never invent or reuse stale odds."""
 import json, os, urllib.request
+from urllib.parse import urlencode
 from datetime import datetime, timezone
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
@@ -21,11 +22,16 @@ def convert(events, now):
 def main():
     key=os.getenv("ODDS_API_KEY") or os.getenv("THE_ODDS_API_KEY")
     if not key: raise SystemExit("Missing ODDS_API_KEY/THE_ODDS_API_KEY secret; existing feed unchanged")
-    url="https://api.the-odds-api.com/v4/sports/mma_mixed_martial_arts/odds?regions=us&markets=h2h&oddsFormat=american&apiKey="+key
+    url="https://api.the-odds-api.com/v4/sports/mma_mixed_martial_arts/odds?"+urlencode({"regions":"us","markets":"h2h","oddsFormat":"american","apiKey":key})
     with urllib.request.urlopen(urllib.request.Request(url,headers={"User-Agent":"KSL-UFC-Odds-Refresh/1.0"}),timeout=25) as response:
         events=json.load(response)
     if not isinstance(events,list):raise ValueError("Unexpected odds API response; existing feed unchanged")
     data=convert(events,datetime.now(timezone.utc))
+    # Only publish the complete two-sided market; never make an incomplete quote appear current.
+    groups={}
+    for row in data["odds"]:
+        groups.setdefault((row["bookmaker"],row["event_id"]),[]).append(row)
+    data["odds"]=[row for row in data["odds"] if len(groups[(row["bookmaker"],row["event_id"])])==2 and len({x["selection"] for x in groups[(row["bookmaker"],row["event_id"])]})==2]
     # Empty legitimate API response is explicit, not old prices disguised as current.
     DEST.write_text(json.dumps(data,indent=2,ensure_ascii=False)+"\n")
     print("UFC odds: %d quotes across %d events"%(len(data["odds"]),len(events)))
