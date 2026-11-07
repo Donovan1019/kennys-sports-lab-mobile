@@ -1,6 +1,6 @@
 {
   "status": "simulated_not_bet_eligible",
-  "generated_at": "2026-11-07T10:52:24.808544+00:00",
+  "generated_at": "2026-11-07T13:01:38.233044+00:00",
   "draws": 10000,
   "games": [
     {
@@ -245,35 +245,35 @@
       "event_id": "6faeaee3bdf2a167eb67f93c44d3ef37",
       "team": "Oklahoma City Thunder",
       "bookmaker": "draftkings",
-      "price": -449,
+      "price": -497,
       "model_probability": 0.940806,
       "mc_probability": 0.942,
       "mc_standard_error": 0.002337,
       "fair_decimal": 1.0629,
-      "single_leg_ev": 0.15034,
-      "stress_ev_minus_3pp": 0.11366,
-      "stress_ev_minus_5pp": 0.0892,
+      "single_leg_ev": 0.1301,
+      "stress_ev_minus_3pp": 0.09407,
+      "stress_ev_minus_5pp": 0.07004,
       "betting_eligible": false,
-      "market_no_vig_probability": 0.785966,
-      "model_market_gap_pp": 15.48,
-      "market_divergence_flag": true
+      "market_no_vig_probability": 0.799839,
+      "model_market_gap_pp": 14.1,
+      "market_divergence_flag": false
     },
     {
       "event_id": "6faeaee3bdf2a167eb67f93c44d3ef37",
       "team": "Washington Wizards",
       "bookmaker": "draftkings",
-      "price": 349,
+      "price": 380,
       "model_probability": 0.059194,
       "mc_probability": 0.058,
       "mc_standard_error": 0.002337,
       "fair_decimal": 16.8936,
-      "single_leg_ev": -0.73422,
-      "stress_ev_minus_3pp": -0.86892,
-      "stress_ev_minus_5pp": -0.95872,
+      "single_leg_ev": -0.71587,
+      "stress_ev_minus_3pp": -0.85987,
+      "stress_ev_minus_5pp": -0.95587,
       "betting_eligible": false,
-      "market_no_vig_probability": 0.214034,
-      "model_market_gap_pp": -15.48,
-      "market_divergence_flag": true
+      "market_no_vig_probability": 0.200161,
+      "model_market_gap_pp": -14.1,
+      "market_divergence_flag": false
     },
     {
       "event_id": "39099dc03208d0771daaab5f7993478a",
@@ -415,34 +415,34 @@
       "event_id": "08d47dd5e50e83839e395e49870d6a0d",
       "team": "Portland Trail Blazers",
       "bookmaker": "fanduel",
-      "price": 164,
+      "price": 162,
       "model_probability": 0.383357,
       "mc_probability": 0.378,
       "mc_standard_error": 0.004849,
       "fair_decimal": 2.6085,
-      "single_leg_ev": 0.01206,
-      "stress_ev_minus_3pp": -0.06714,
-      "stress_ev_minus_5pp": -0.11994,
+      "single_leg_ev": 0.0044,
+      "stress_ev_minus_3pp": -0.0742,
+      "stress_ev_minus_5pp": -0.1266,
       "betting_eligible": false,
-      "market_no_vig_probability": 0.363887,
-      "model_market_gap_pp": 1.95,
+      "market_no_vig_probability": 0.366456,
+      "model_market_gap_pp": 1.69,
       "market_divergence_flag": false
     },
     {
       "event_id": "08d47dd5e50e83839e395e49870d6a0d",
       "team": "San Antonio Spurs",
       "bookmaker": "fanduel",
-      "price": -196,
+      "price": -194,
       "model_probability": 0.616643,
       "mc_probability": 0.6188,
       "mc_standard_error": 0.004857,
       "fair_decimal": 1.6217,
-      "single_leg_ev": -0.06874,
-      "stress_ev_minus_3pp": -0.11405,
-      "stress_ev_minus_5pp": -0.14425,
+      "single_leg_ev": -0.0655,
+      "stress_ev_minus_3pp": -0.11096,
+      "stress_ev_minus_5pp": -0.14127,
       "betting_eligible": false,
-      "market_no_vig_probability": 0.636113,
-      "model_market_gap_pp": -1.95,
+      "market_no_vig_probability": 0.633544,
+      "model_market_gap_pp": -1.69,
       "market_divergence_flag": false
     },
     {
@@ -480,7 +480,27 @@
       "market_divergence_flag": false
     }
   ],
-  "parlays": [],
+  "parlays": [
+    {
+      "bookmaker": "draftkings",
+      "legs": [
+        {
+          "event_id": "e76682ca6c25a37b0a53cec226b91aab",
+          "team": "Denver Nuggets"
+        },
+        {
+          "event_id": "6faeaee3bdf2a167eb67f93c44d3ef37",
+          "team": "Oklahoma City Thunder"
+        }
+      ],
+      "independent_mc_probability": 0.7389,
+      "independent_model_product": 0.73346,
+      "stress_probability_minus_3pp": 0.68275,
+      "correlation_verified": false,
+      "executable_parlay_quote_verified": false,
+      "betting_eligible": false
+    }
+  ],
   "betting_eligible": false,
   "blockers": [
     "closing_line_value_verified",
@@ -498,5 +518,5 @@
     "paper_roi": -0.045918,
     "paper_selected_events": 61
   },
-  "market_divergence_flags": 16
+  "market_divergence_flags": 14
 }
