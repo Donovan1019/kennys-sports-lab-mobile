@@ -49,3 +49,10 @@ Reference hierarchy: NBA breakdown Graph/Shooting/Similar/Types and NFL player b
 - Compared design against NBA/NFL breakdown architecture recorded above. Added player selector to shared historical stats chart so it no longer always displays the highest-average player.
 - Deployment of previous batch #720 verified successful (Pages run 42310830810).
 - Existing Market Math Tests failed independently of this UI batch: NBA minutes-adjusted MAE expected 5.125 but actual 5.25; NFL stats fixture expected DATA_PRESENT_UNVERIFIED but returned BLOCKED. Do not alter safety gates merely to turn CI green. Investigate separately.
+
+## Batch 2026-11-07: historical opponent identity beneath chart dates
+- Preserve the original mobile game-log bars, stat numbers, and date labels; append a compact opponent logo slot below each date.
+- Only use verified per-game opponent abbreviations. NBA and NHL ESPN boxscore imports and official NHL imports now preserve opponent identity for newly parsed games; NFL importer accepts an opponent field only if the nflverse source provides one.
+- Existing cached historical records do not automatically gain missing opponent fields. Backfill must use verified event metadata, not player current team or guessed schedules.
+- Broken image URLs fall back to opponent abbreviations; absent verified opponent is marked unavailable.
+- Focused workflow checks chart JavaScript syntax and NBA/NFL/NHL opponent extraction. Verify mobile iPhone rendering and CI before merge.

@@ -24,6 +24,10 @@ def parse_boxscore(payload,game_id,game_date):
         team_code=team.get("abbrev") or ""
         if isinstance(team_code,dict):team_code=team_code.get("default","")
         if not isinstance(team_code,str):team_code=""
+        other=payload.get("homeTeam" if side=="awayTeam" else "awayTeam") or {}
+        opponent_abbr=other.get("abbrev") or ""
+        if isinstance(opponent_abbr,dict):opponent_abbr=opponent_abbr.get("default","")
+        if not isinstance(opponent_abbr,str):opponent_abbr=""
         grouped=(payload.get("playerByGameStats") or {}).get("awayTeam" if side=="awayTeam" else "homeTeam") or {}
         for position in ("forwards","defense","goalies"):
             for player in grouped.get(position) or []:
@@ -46,7 +50,7 @@ def parse_boxscore(payload,game_id,game_date):
                     quality_flags.append("sog_below_goals")
                     vals.pop("Shots on goal")
                 if not vals:continue
-                rows.append({"id":str(pid),"name":name,"team":team_code,"game_id":str(game_id),"date":game_date,"values":vals,"home_away":"home" if side=="homeTeam" else "away","position_group":position,"quality_flags":quality_flags})
+                rows.append({"id":str(pid),"name":name,"team":team_code,"game_id":str(game_id),"date":game_date,"values":vals,"home_away":"home" if side=="homeTeam" else "away","position_group":position,"quality_flags":quality_flags,**({"opponent_abbr":opponent_abbr} if opponent_abbr else {})})
     return rows
 def main():
     days=int(os.environ.get("LOOKBACK_DAYS","14"))
@@ -101,7 +105,7 @@ def main():
         pid=row["id"]
         p=players.setdefault(pid,{"id":pid,"name":row["name"],"team":row["team"],"games":[]})
         p["name"]=row["name"];p["team"]=row["team"]
-        p["games"].append({k:row[k] for k in ("game_id","date","values","home_away","position_group","quality_flags") if k in row})
+        p["games"].append({k:row[k] for k in ("game_id","date","values","home_away","position_group","quality_flags","opponent_abbr") if k in row})
     for p in players.values():p["games"].sort(key=lambda g:(g["date"],g["game_id"]))
     flags=[{"player":p["name"],"game_id":g["game_id"],"date":g["date"],"flags":g["quality_flags"]} for p in players.values() for g in p["games"] if g.get("quality_flags")]
     sog=[g["values"]["Shots on goal"] for p in players.values() for g in p["games"] if "Shots on goal" in g["values"]]
