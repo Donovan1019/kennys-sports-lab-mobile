@@ -31,8 +31,11 @@ def parse_summary(data,league,game_id,game_date):
     players=box.get("players") or []
     if not isinstance(players,list):raise ValueError("Invalid players")
     output=[]
+    team_codes=[str((t.get("team") or {}).get("abbreviation") or "").upper() for t in players]
     for team in players:
         team_code=(team.get("team") or {}).get("abbreviation","")
+        opponents=[code for code in team_codes if code and code!=str(team_code).upper()]
+        opponent_abbr=opponents[0] if len(opponents)==1 and len(set(opponents))==1 else None
         for group in team.get("statistics") or []:
             labels=group.get("labels") or []
             keys=group.get("keys") or []
@@ -62,7 +65,7 @@ def parse_summary(data,league,game_id,game_date):
                         stats["Double-double (PTS/REB/AST)"]=int(double_digits>=2)
                         stats["Triple-double (PTS/REB/AST)"]=int(double_digits>=3)
                     if "Steals" in stats and "Blocks" in stats:stats["Stocks"]=stats["Steals"]+stats["Blocks"]
-                if stats:output.append({"id":ident,"name":name,"team":team_code,"game_id":game_id,"date":game_date,"values":stats})
+                if stats:output.append({"id":ident,"name":name,"team":team_code,"game_id":game_id,"date":game_date,"values":stats,**({"opponent_abbr":opponent_abbr} if opponent_abbr else {})})
     return output
 def main():
     league=os.getenv("PLAYER_SPORT","nba").lower()
@@ -135,7 +138,7 @@ def main():
         if league=="nba" and not (row.get("season") in ("2025-26","2026-27") and row.get("season_type") in ("regular","postseason")):continue
         pid=row["id"];p=grouped.setdefault(pid,{"id":pid,"name":row["name"],"team":row["team"],"games":[]})
         p["name"]=row["name"];p["team"]=row["team"]
-        p["games"].append({"game_id":row["game_id"],"date":row["date"],"season":row.get("season"),"season_type":row.get("season_type"),"values":row["values"]})
+        p["games"].append({"game_id":row["game_id"],"date":row["date"],"season":row.get("season"),"season_type":row.get("season_type"),"values":row["values"],**({"opponent_abbr":row["opponent_abbr"]} if row.get("opponent_abbr") else {})})
     if not grouped:raise SystemExit("No season-tagged regular/postseason player logs; preserving existing snapshot")
     for p in grouped.values():
         p["games"].sort(key=lambda g:(g["date"],g["game_id"]))
