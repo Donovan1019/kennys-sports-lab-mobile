@@ -1,6 +1,6 @@
 {
   "date": "2026-11-06",
-  "generated_at": "2026-11-06T22:51:30.718295+00:00",
+  "generated_at": "2026-11-07T16:49:39.827914+00:00",
   "sports": {
     "NFL": {
       "status": "NO_VERIFIED_PREGAME_PREDICTIONS",
@@ -14,34 +14,96 @@
       "pending": 0
     },
     "NBA": {
-      "status": "OUTCOMES_UNVERIFIED",
+      "status": "PARTIALLY_SETTLED_MONEYLINES",
       "saved_quotes": 0,
       "eligible_predictions": 36,
       "research_only_predictions": 36,
       "bet_eligible_predictions": 0,
       "blocked_predictions": [],
-      "graded": 0,
-      "settled": [],
-      "pending": 36
+      "graded": 4,
+      "settled": [
+        {
+          "event": "Philadelphia 76ers @ Cleveland Cavaliers",
+          "market": "h2h",
+          "selection": "Cleveland Cavaliers",
+          "outcome": "win"
+        },
+        {
+          "event": "Philadelphia 76ers @ Cleveland Cavaliers",
+          "market": "h2h",
+          "selection": "Philadelphia 76ers",
+          "outcome": "loss"
+        },
+        {
+          "event": "Portland Trail Blazers @ Los Angeles Lakers",
+          "market": "h2h",
+          "selection": "Los Angeles Lakers",
+          "outcome": "win"
+        },
+        {
+          "event": "Portland Trail Blazers @ Los Angeles Lakers",
+          "market": "h2h",
+          "selection": "Portland Trail Blazers",
+          "outcome": "loss"
+        }
+      ],
+      "pending": 32
     },
     "NHL": {
-      "status": "OUTCOMES_UNVERIFIED",
+      "status": "PARTIALLY_SETTLED_MONEYLINES",
       "saved_quotes": 0,
       "eligible_predictions": 100,
       "research_only_predictions": 100,
       "bet_eligible_predictions": 0,
       "blocked_predictions": [],
-      "graded": 0,
-      "settled": [],
-      "pending": 100
+      "graded": 6,
+      "settled": [
+        {
+          "event": "Columbus Blue Jackets @ Buffalo Sabres",
+          "market": "h2h",
+          "selection": "Buffalo Sabres",
+          "outcome": "win"
+        },
+        {
+          "event": "Columbus Blue Jackets @ Buffalo Sabres",
+          "market": "h2h",
+          "selection": "Columbus Blue Jackets",
+          "outcome": "loss"
+        },
+        {
+          "event": "San Jose Sharks @ Minnesota Wild",
+          "market": "h2h",
+          "selection": "Minnesota Wild",
+          "outcome": "win"
+        },
+        {
+          "event": "San Jose Sharks @ Minnesota Wild",
+          "market": "h2h",
+          "selection": "San Jose Sharks",
+          "outcome": "loss"
+        },
+        {
+          "event": "Anaheim Ducks @ Calgary Flames",
+          "market": "h2h",
+          "selection": "Calgary Flames",
+          "outcome": "loss"
+        },
+        {
+          "event": "Anaheim Ducks @ Calgary Flames",
+          "market": "h2h",
+          "selection": "Anaheim Ducks",
+          "outcome": "win"
+        }
+      ],
+      "pending": 94
     }
   },
   "summary": {
-    "verified_picks": 0,
-    "wins": 0,
-    "losses": 0,
+    "verified_picks": 10,
+    "wins": 5,
+    "losses": 5,
     "pushes": 0,
     "roi": null,
-    "hit_rate": null
+    "hit_rate": 0.5
   }
 }
