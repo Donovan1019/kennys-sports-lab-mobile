@@ -57,3 +57,19 @@ th:first-child,td:first-child{background:#18191b!important}
 .ksl-game-log-bar{background:#4f9a76;width:85%;border-radius:5px 5px 0 0;min-height:3px}
 .ksl-game-log-column small{font-size:9px;color:#aeb1b5;white-space:nowrap}
 @media(max-width:450px){.ksl-game-log-chart{height:200px}.ksl-featured-player{padding:12px}}
+
+/* Shared NBA/NFL/NHL player research cards and filters.
+   Presentation-only; each sport retains its verified markets and game logs. */
+.ksl-unified-sections{border-bottom:1px solid #292b2d;margin-bottom:16px}
+.ksl-unified-sections a{background:#18191b!important;border:1px solid #353638!important;color:#f5f5f5!important;border-radius:12px!important;font-weight:700}
+.ksl-unified-sections a:hover,.ksl-unified-sections a:focus-visible{border-color:#f3c621!important;color:#f3c621!important}
+#ksl-stat-root{background:#121314;border:1px solid #292b2d;border-radius:18px;padding:18px;margin:18px 0 22px}
+#ksl-stat-root h2{margin:0 0 12px;font-size:clamp(18px,3vw,23px);letter-spacing:-.02em}
+#ksl-stat-panel .ksl-stats-controls{display:grid!important;grid-template-columns:minmax(0,2fr) minmax(0,1fr) 92px;gap:10px!important;align-items:center}
+#ksl-stat-panel .ksl-stats-controls input,#ksl-stat-panel .ksl-stats-controls select,#ksl-stat-panel .ksl-stats-player{width:100%;min-width:0!important;min-height:44px;padding:10px!important;background:#1c1e20!important;border:1px solid #353638!important;color:#f5f5f5!important;border-radius:12px!important}
+#ksl-stat-panel .ksl-featured-player{background:#18191b!important;border:1px solid #303234!important;border-radius:16px!important;padding:16px!important;margin:14px 0}
+#ksl-stat-panel .ksl-featured-player h3{margin-top:0;color:#f5f5f5;font-size:18px}
+#ksl-stat-panel .ksl-game-log-chart{min-height:190px;overflow-x:auto}
+#ksl-stat-panel .ksl-game-log-opponent{min-height:28px}
+#ksl-stat-panel .ksl-game-log-opponent img{width:23px;height:23px;object-fit:contain}
+@media(max-width:620px){#ksl-stat-root{padding:12px;border-radius:14px}#ksl-stat-panel .ksl-stats-controls{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px!important}#ksl-stat-panel .ksl-stats-search{grid-column:1/-1}#ksl-stat-panel .ksl-stats-window{grid-column:2}#ksl-stat-panel .ksl-featured-player{padding:12px!important}}
