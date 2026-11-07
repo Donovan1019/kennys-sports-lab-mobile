@@ -10,7 +10,8 @@ try {
   for (const sport of ['nba', 'nfl', 'nhl']) {
     const page = await browser.newPage({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true });
     const errors = [];
-    page.on('pageerror', error => errors.push(error.message));
+    page.on('console', message => { if (message.type() === 'error') errors.push('console: ' + message.text()); });
+    page.on('pageerror', error => errors.push((error.stack || error.message)));
     const url = base + sport + '.html?v=mobile-smoke-20261107';
     try {
       const response = await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 45000 });
