@@ -2,13 +2,13 @@
   "schema": 1,
   "sport": "UFC",
   "model_version": "ufc-elo-baseline-v1",
-  "historical_bouts_used": 1001,
+  "historical_bouts_used": 1009,
   "excluded_ambiguous_date_events": 0,
   "pre_update_evaluated_fights": 0,
-  "all_pre_update_evaluated_fights": 1001,
-  "all_pre_update_brier": 0.24804421935960852,
-  "all_pre_update_log_loss": 0.6892303794966264,
-  "all_pre_update_brier_skill_vs_50pct": 0.00782312256156592,
+  "all_pre_update_evaluated_fights": 1009,
+  "all_pre_update_brier": 0.24814226227527755,
+  "all_pre_update_log_loss": 0.6894268131288087,
+  "all_pre_update_brier_skill_vs_50pct": 0.007430950898889788,
   "brier": null,
   "log_loss": null,
   "baseline_brier": null,
@@ -10106,6 +10106,86 @@
       "loser_prior_bouts": 2,
       "winner_days_since_last_fight": 112,
       "loser_days_since_last_fight": 713
+    },
+    {
+      "fight_id": "401911642",
+      "event_id": "600061268",
+      "start_time": "2026-11-07T22:00:00+00:00",
+      "winner_probability": 0.46551605527316847,
+      "winner_prior_bouts": 1,
+      "loser_prior_bouts": 1,
+      "winner_days_since_last_fight": 189,
+      "loser_days_since_last_fight": 280
+    },
+    {
+      "fight_id": "401928115",
+      "event_id": "600061268",
+      "start_time": "2026-11-07T22:00:00+00:00",
+      "winner_probability": 0.503484430147407,
+      "winner_prior_bouts": 2,
+      "loser_prior_bouts": 4,
+      "winner_days_since_last_fight": 447,
+      "loser_days_since_last_fight": 224
+    },
+    {
+      "fight_id": "401928117",
+      "event_id": "600061268",
+      "start_time": "2026-11-07T22:00:00+00:00",
+      "winner_probability": 0.5183081051155893,
+      "winner_prior_bouts": 3,
+      "loser_prior_bouts": 0,
+      "winner_days_since_last_fight": 112,
+      "loser_days_since_last_fight": null
+    },
+    {
+      "fight_id": "401928118",
+      "event_id": "600061268",
+      "start_time": "2026-11-07T22:00:00+00:00",
+      "winner_probability": 0.5,
+      "winner_prior_bouts": 0,
+      "loser_prior_bouts": 0,
+      "winner_days_since_last_fight": null,
+      "loser_days_since_last_fight": null
+    },
+    {
+      "fight_id": "401928120",
+      "event_id": "600061268",
+      "start_time": "2026-11-07T22:00:00+00:00",
+      "winner_probability": 0.5,
+      "winner_prior_bouts": 0,
+      "loser_prior_bouts": 0,
+      "winner_days_since_last_fight": null,
+      "loser_days_since_last_fight": null
+    },
+    {
+      "fight_id": "401932011",
+      "event_id": "600061268",
+      "start_time": "2026-11-07T22:00:00+00:00",
+      "winner_probability": 0.4654128768685404,
+      "winner_prior_bouts": 5,
+      "loser_prior_bouts": 1,
+      "winner_days_since_last_fight": 175,
+      "loser_days_since_last_fight": 231
+    },
+    {
+      "fight_id": "401932716",
+      "event_id": "600061268",
+      "start_time": "2026-11-07T22:00:00+00:00",
+      "winner_probability": 0.4678275699377898,
+      "winner_prior_bouts": 7,
+      "loser_prior_bouts": 1,
+      "winner_days_since_last_fight": 105,
+      "loser_days_since_last_fight": 66
+    },
+    {
+      "fight_id": "401933235",
+      "event_id": "600061268",
+      "start_time": "2026-11-07T22:00:00+00:00",
+      "winner_probability": 0.499939714257868,
+      "winner_prior_bouts": 2,
+      "loser_prior_bouts": 0,
+      "winner_days_since_last_fight": 112,
+      "loser_days_since_last_fight": null
     }
   ],
   "ratings": {
@@ -10326,8 +10406,8 @@
       "historical_bouts": 6
     },
     "Andre Petroski": {
-      "elo": 1486.76,
-      "historical_bouts": 5
+      "elo": 1499.59,
+      "historical_bouts": 6
     },
     "Andrea Lee": {
       "elo": 1464.81,
@@ -10442,8 +10522,8 @@
       "historical_bouts": 4
     },
     "Austin Bashi": {
-      "elo": 1499.96,
-      "historical_bouts": 2
+      "elo": 1511.96,
+      "historical_bouts": 3
     },
     "Austin Hubbard": {
       "elo": 1488.03,
@@ -10680,6 +10760,10 @@
     "Carli Judice": {
       "elo": 1523.97,
       "historical_bouts": 4
+    },
+    "Carlos Calderon": {
+      "elo": 1488.0,
+      "historical_bouts": 1
     },
     "Carlos Hernandez": {
       "elo": 1488.4,
@@ -11302,8 +11386,8 @@
       "historical_bouts": 1
     },
     "Gabriel Loren\u00e7o": {
-      "elo": 1512.0,
-      "historical_bouts": 1
+      "elo": 1499.23,
+      "historical_bouts": 2
     },
     "Gabriel Miranda": {
       "elo": 1475.6,
@@ -11314,8 +11398,8 @@
       "historical_bouts": 1
     },
     "Gabriella Fernandes": {
-      "elo": 1521.56,
-      "historical_bouts": 4
+      "elo": 1509.65,
+      "historical_bouts": 5
     },
     "Garrett Armfield": {
       "elo": 1488.0,
@@ -11829,6 +11913,10 @@
       "elo": 1476.41,
       "historical_bouts": 2
     },
+    "Jonny Parsons": {
+      "elo": 1488.0,
+      "historical_bouts": 1
+    },
     "JooSang Yoo": {
       "elo": 1498.35,
       "historical_bouts": 2
@@ -11844,6 +11932,10 @@
     "Jose Daniel Medina": {
       "elo": 1454.42,
       "historical_bouts": 4
+    },
+    "Jose Delano": {
+      "elo": 1488.0,
+      "historical_bouts": 1
     },
     "Jose Henrique": {
       "elo": 1511.59,
@@ -11913,6 +12005,10 @@
       "elo": 1511.64,
       "historical_bouts": 1
     },
+    "Jos\u00e9 Souza": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
     "Jovan Leka": {
       "elo": 1512.0,
       "historical_bouts": 1
@@ -11974,8 +12070,8 @@
       "historical_bouts": 1
     },
     "Karine Silva": {
-      "elo": 1523.99,
-      "historical_bouts": 2
+      "elo": 1535.9,
+      "historical_bouts": 3
     },
     "Karl Williams": {
       "elo": 1488.41,
@@ -11998,8 +12094,8 @@
       "historical_bouts": 3
     },
     "Keiichiro Nakamura": {
-      "elo": 1512.0,
-      "historical_bouts": 1
+      "elo": 1499.17,
+      "historical_bouts": 2
     },
     "Kelvin Gastelum": {
       "elo": 1509.98,
@@ -12346,8 +12442,8 @@
       "historical_bouts": 3
     },
     "Mantas Kondratavi\u010dius": {
-      "elo": 1510.83,
-      "historical_bouts": 1
+      "elo": 1498.0,
+      "historical_bouts": 2
     },
     "Manuel Torres": {
       "elo": 1500.01,
@@ -12709,6 +12805,10 @@
       "elo": 1488.0,
       "historical_bouts": 1
     },
+    "Murtazali Magomedov": {
+      "elo": 1512.0,
+      "historical_bouts": 1
+    },
     "Muslim Salikhov": {
       "elo": 1510.33,
       "historical_bouts": 3
@@ -12854,8 +12954,8 @@
       "historical_bouts": 2
     },
     "Ollie Schmid": {
-      "elo": 1488.0,
-      "historical_bouts": 1
+      "elo": 1500.83,
+      "historical_bouts": 2
     },
     "Oscar Ravello": {
       "elo": 1488.0,
@@ -13278,8 +13378,8 @@
       "historical_bouts": 4
     },
     "Seokhyeon Ko": {
-      "elo": 1512.73,
-      "historical_bouts": 3
+      "elo": 1524.29,
+      "historical_bouts": 4
     },
     "Sergei Pavlovich": {
       "elo": 1525.16,
@@ -13482,8 +13582,8 @@
       "historical_bouts": 4
     },
     "Thomas Petersen": {
-      "elo": 1489.61,
-      "historical_bouts": 7
+      "elo": 1502.39,
+      "historical_bouts": 8
     },
     "Tim Elliott": {
       "elo": 1501.56,
@@ -13685,6 +13785,10 @@
       "elo": 1488.0,
       "historical_bouts": 1
     },
+    "Wellington Turman": {
+      "elo": 1488.44,
+      "historical_bouts": 1
+    },
     "Wes Schultz": {
       "elo": 1477.21,
       "historical_bouts": 4
@@ -13802,9 +13906,9 @@
     "Inactivity adjustment evaluated as research only; no age, weight class, injuries, or style adjustments in live predictions",
     "Chronological holdout is descriptive only; no independent external validation or archived odds"
   ],
-  "input_sha256": "9c290298ae0ce9e213beeacb2ad71f7c9c5ce99b41c9154a1aef10d50a9e6284",
+  "input_sha256": "09574a85c77a24c9ab3ebc473644aa6455658fb229778dd772ff9e11dd09792e",
   "input_path": "feed/ufc_historical_backfill.json",
-  "input_record_count": 1001,
-  "input_verified_winner_count": 1001,
+  "input_record_count": 1009,
+  "input_verified_winner_count": 1009,
   "input_rejected_count": 0
 }
