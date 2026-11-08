@@ -7,7 +7,13 @@ FIXTURE = {"fixtureId": "id123", "startTime": "2026-11-08T21:00:00Z", "participa
 def selection(side, price, updated="2026-11-08T15:59:00Z"):
     return {"players": {"0": {"active": True, "bookmakerOutcomeId": side, "priceAmerican": price, "changedAt": updated}}}
 def board(home="home", away="away", updated="2026-11-08T15:59:00Z"):
-    return {"bookmakerOdds": {"draftkings": {"bookmakerIsActive": True, "markets": {"141": {"marketActive": True, "outcomes": {"a": selection(home, "-110", updated), "b": selection(away, "+100", updated)}}}}}}}
+    outcomes = {
+        "a": selection(home, "-110", updated),
+        "b": selection(away, "+100", updated),
+    }
+    market = {"marketActive": True, "outcomes": outcomes}
+    bookmaker = {"bookmakerIsActive": True, "markets": {"141": market}}
+    return {"bookmakerOdds": {"draftkings": bookmaker}}
 class OddsPapiNormalizationTests(unittest.TestCase):
     def test_explicit_sides(self):
         rows = normalize(FIXTURE, board(), NOW)
