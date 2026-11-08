@@ -141,3 +141,12 @@ body>.ksl-nav a[aria-current="page"],body>nav.ksl-nav a[aria-current="page"]{
 .ksl-market-pills a{color:#b9bbbd!important;text-decoration:none!important;cursor:pointer;white-space:nowrap}
 .ksl-market-pills a:hover,.ksl-market-pills a:focus-visible,.ksl-market-pills a[aria-current="true"]{color:#f3c621!important;border-color:#f3c621;outline-offset:2px}
 .ksl-market-pills a:focus-visible{outline:2px solid #f3c621}
+
+/* QB Unders matches existing dark market-panel design. */
+.ksl-qb-controls{display:flex;flex-wrap:wrap;gap:12px;align-items:end;margin:16px 0}
+.ksl-qb-controls label{display:flex;flex-direction:column;gap:6px;font-weight:600;color:#f3c621}
+.ksl-qb-controls select,.ksl-qb-controls button{background:#242527;color:#f5f5f5;border:1px solid #414346;border-radius:10px;padding:11px;font:inherit}
+.ksl-qb-controls button{cursor:pointer}
+.ksl-qb-under-card{background:#172b3a;border:1px solid #416a89;border-radius:14px;padding:14px;margin:12px 0}
+.ksl-qb-under-card h3{color:#f3c621;margin:0 0 10px}
+.ksl-qb-under-card p{margin:7px 0}
