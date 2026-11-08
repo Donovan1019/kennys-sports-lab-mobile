@@ -46,7 +46,7 @@ jobs:
         if: ${{ (inputs.sport || 'americanfootball_nfl') == 'americanfootball_nfl' }}
         run: python scripts/archive_nfl_moneyline_snapshots.py odds
       - name: Verify NFL moneyline archive before publishing
-        if: \${{ (inputs.sport || 'americanfootball_nfl') == 'americanfootball_nfl' }}
+        if: ${{ (inputs.sport || 'americanfootball_nfl') == 'americanfootball_nfl' }}
         run: python scripts/verify_nfl_archive_write.py odds
       - name: Publish snapshot
         run: |
