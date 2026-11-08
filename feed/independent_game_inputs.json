@@ -2,111 +2,11 @@
   "source": "ESPN public scoreboard",
   "source_detail": "Scheduled games and completed scoring history only; no verified injuries, starters or sportsbook prices.",
   "generated_from_saved_feeds": false,
-  "source_games_fetched_at": "2026-11-08T11:48:51.773258+00:00",
+  "source_games_fetched_at": "2026-11-08T16:32:35.314394+00:00",
   "market_schedule_source": "espn-scoreboard",
+  "history_season_filter": "espn-season-type-2-only",
   "market_prices_not_verified_live": true,
   "games": [
-    {
-      "event_id": "401873038",
-      "event": "Cincinnati Bengals @ Atlanta Falcons",
-      "commence_time": "2026-11-08T14:30Z",
-      "away": "Cincinnati Bengals",
-      "home": "Atlanta Falcons",
-      "teams": [
-        {
-          "team": "Cincinnati Bengals",
-          "sample_size": 8,
-          "score_history": [
-            {
-              "date": "2026-11-01T18:00Z",
-              "scored": 43,
-              "allowed": 36
-            },
-            {
-              "date": "2026-10-25T17:00Z",
-              "scored": 35,
-              "allowed": 13
-            },
-            {
-              "date": "2026-10-11T17:00Z",
-              "scored": 31,
-              "allowed": 24
-            },
-            {
-              "date": "2026-10-04T17:00Z",
-              "scored": 17,
-              "allowed": 22
-            },
-            {
-              "date": "2026-09-27T17:00Z",
-              "scored": 27,
-              "allowed": 30
-            },
-            {
-              "date": "2026-09-20T17:00Z",
-              "scored": 20,
-              "allowed": 6
-            },
-            {
-              "date": "2026-09-13T17:00Z",
-              "scored": 33,
-              "allowed": 27
-            },
-            {
-              "date": "2026-08-13T23:00Z",
-              "scored": 16,
-              "allowed": 14
-            }
-          ]
-        },
-        {
-          "team": "Atlanta Falcons",
-          "sample_size": 8,
-          "score_history": [
-            {
-              "date": "2026-11-01T18:00Z",
-              "scored": 0,
-              "allowed": 16
-            },
-            {
-              "date": "2026-10-25T17:00Z",
-              "scored": 29,
-              "allowed": 20
-            },
-            {
-              "date": "2026-10-18T17:00Z",
-              "scored": 23,
-              "allowed": 31
-            },
-            {
-              "date": "2026-10-12T00:20Z",
-              "scored": 23,
-              "allowed": 30
-            },
-            {
-              "date": "2026-10-06T00:15Z",
-              "scored": 45,
-              "allowed": 24
-            },
-            {
-              "date": "2026-09-25T00:15Z",
-              "scored": 35,
-              "allowed": 14
-            },
-            {
-              "date": "2026-09-20T17:00Z",
-              "scored": 3,
-              "allowed": 34
-            },
-            {
-              "date": "2026-09-13T17:00Z",
-              "scored": 13,
-              "allowed": 20
-            }
-          ]
-        }
-      ]
-    },
     {
       "event_id": "401873039",
       "event": "Cleveland Browns @ New Orleans Saints",
@@ -116,52 +16,55 @@
       "teams": [
         {
           "team": "Cleveland Browns",
-          "sample_size": 9,
+          "sample_size": 8,
           "score_history": [
             {
               "date": "2026-11-01T18:00Z",
+              "season_type": 2,
               "scored": 6,
               "allowed": 27
             },
             {
               "date": "2026-10-25T17:00Z",
+              "season_type": 2,
               "scored": 27,
               "allowed": 24
             },
             {
               "date": "2026-10-18T17:00Z",
+              "season_type": 2,
               "scored": 13,
               "allowed": 10
             },
             {
               "date": "2026-10-11T17:00Z",
+              "season_type": 2,
               "scored": 12,
               "allowed": 17
             },
             {
               "date": "2026-10-02T00:15Z",
+              "season_type": 2,
               "scored": 27,
               "allowed": 24
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 21,
               "allowed": 18
             },
             {
               "date": "2026-09-20T17:00Z",
+              "season_type": 2,
               "scored": 23,
               "allowed": 19
             },
             {
               "date": "2026-09-13T17:00Z",
+              "season_type": 2,
               "scored": 10,
               "allowed": 34
-            },
-            {
-              "date": "2026-08-28T00:00Z",
-              "scored": 37,
-              "allowed": 13
             }
           ]
         },
@@ -171,36 +74,43 @@
           "score_history": [
             {
               "date": "2026-10-25T13:30Z",
+              "season_type": 2,
               "scored": 10,
               "allowed": 16
             },
             {
               "date": "2026-10-18T17:00Z",
+              "season_type": 2,
               "scored": 34,
               "allowed": 27
             },
             {
               "date": "2026-10-11T17:00Z",
+              "season_type": 2,
               "scored": 13,
               "allowed": 23
             },
             {
               "date": "2026-10-06T00:15Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 45
             },
             {
               "date": "2026-09-27T20:25Z",
+              "season_type": 2,
               "scored": 27,
               "allowed": 35
             },
             {
               "date": "2026-09-20T17:00Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 17
             },
             {
               "date": "2026-09-13T17:00Z",
+              "season_type": 2,
               "scored": 30,
               "allowed": 31
             }
@@ -221,41 +131,49 @@
           "score_history": [
             {
               "date": "2026-11-01T18:00Z",
+              "season_type": 2,
               "scored": 30,
               "allowed": 33
             },
             {
               "date": "2026-10-27T00:15Z",
+              "season_type": 2,
               "scored": 38,
               "allowed": 21
             },
             {
               "date": "2026-10-19T00:20Z",
+              "season_type": 2,
               "scored": 13,
               "allowed": 23
             },
             {
               "date": "2026-10-09T00:15Z",
+              "season_type": 2,
               "scored": 16,
               "allowed": 24
             },
             {
               "date": "2026-10-04T17:00Z",
+              "season_type": 2,
               "scored": 34,
               "allowed": 30
             },
             {
               "date": "2026-09-27T20:25Z",
+              "season_type": 2,
               "scored": 31,
               "allowed": 34
             },
             {
               "date": "2026-09-20T20:25Z",
+              "season_type": 2,
               "scored": 37,
               "allowed": 20
             },
             {
               "date": "2026-09-14T00:20Z",
+              "season_type": 2,
               "scored": 20,
               "allowed": 28
             }
@@ -263,52 +181,55 @@
         },
         {
           "team": "Indianapolis Colts",
-          "sample_size": 9,
+          "sample_size": 8,
           "score_history": [
             {
               "date": "2026-11-01T18:00Z",
+              "season_type": 2,
               "scored": 7,
               "allowed": 42
             },
             {
               "date": "2026-10-25T17:00Z",
+              "season_type": 2,
               "scored": 10,
               "allowed": 16
             },
             {
               "date": "2026-10-18T17:00Z",
+              "season_type": 2,
               "scored": 20,
               "allowed": 26
             },
             {
               "date": "2026-10-11T17:00Z",
+              "season_type": 2,
               "scored": 22,
               "allowed": 34
             },
             {
               "date": "2026-10-04T13:30Z",
+              "season_type": 2,
               "scored": 30,
               "allowed": 13
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 19,
               "allowed": 17
             },
             {
               "date": "2026-09-21T00:20Z",
+              "season_type": 2,
               "scored": 30,
               "allowed": 33
             },
             {
               "date": "2026-09-13T17:00Z",
+              "season_type": 2,
               "scored": 23,
               "allowed": 41
-            },
-            {
-              "date": "2026-08-13T23:30Z",
-              "scored": 13,
-              "allowed": 13
             }
           ]
         }
@@ -327,41 +248,49 @@
           "score_history": [
             {
               "date": "2026-11-01T21:25Z",
+              "season_type": 2,
               "scored": 28,
               "allowed": 24
             },
             {
               "date": "2026-10-25T20:05Z",
+              "season_type": 2,
               "scored": 30,
               "allowed": 16
             },
             {
               "date": "2026-10-16T00:15Z",
+              "season_type": 2,
               "scored": 17,
               "allowed": 14
             },
             {
               "date": "2026-10-11T20:05Z",
+              "season_type": 2,
               "scored": 23,
               "allowed": 17
             },
             {
               "date": "2026-10-04T20:25Z",
+              "season_type": 2,
               "scored": 14,
               "allowed": 24
             },
             {
               "date": "2026-09-28T00:20Z",
+              "season_type": 2,
               "scored": 30,
               "allowed": 26
             },
             {
               "date": "2026-09-20T20:05Z",
+              "season_type": 2,
               "scored": 20,
               "allowed": 13
             },
             {
               "date": "2026-09-15T00:15Z",
+              "season_type": 2,
               "scored": 10,
               "allowed": 31
             }
@@ -369,47 +298,49 @@
         },
         {
           "team": "Carolina Panthers",
-          "sample_size": 8,
+          "sample_size": 7,
           "score_history": [
             {
               "date": "2026-10-30T00:15Z",
+              "season_type": 2,
               "scored": 19,
               "allowed": 27
             },
             {
               "date": "2026-10-25T17:00Z",
+              "season_type": 2,
               "scored": 13,
               "allowed": 43
             },
             {
               "date": "2026-10-18T17:00Z",
+              "season_type": 2,
               "scored": 25,
               "allowed": 14
             },
             {
               "date": "2026-10-05T00:20Z",
+              "season_type": 2,
               "scored": 32,
               "allowed": 26
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 18,
               "allowed": 21
             },
             {
               "date": "2026-09-20T17:00Z",
+              "season_type": 2,
               "scored": 34,
               "allowed": 3
             },
             {
               "date": "2026-09-13T17:00Z",
+              "season_type": 2,
               "scored": 37,
               "allowed": 59
-            },
-            {
-              "date": "2026-08-07T00:00Z",
-              "scored": 33,
-              "allowed": 30
             }
           ]
         }
@@ -424,47 +355,49 @@
       "teams": [
         {
           "team": "Detroit Lions",
-          "sample_size": 8,
+          "sample_size": 7,
           "score_history": [
             {
               "date": "2026-11-01T18:00Z",
+              "season_type": 2,
               "scored": 19,
               "allowed": 15
             },
             {
               "date": "2026-10-25T20:25Z",
+              "season_type": 2,
               "scored": 20,
               "allowed": 17
             },
             {
               "date": "2026-10-11T20:25Z",
+              "season_type": 2,
               "scored": 45,
               "allowed": 21
             },
             {
               "date": "2026-10-05T00:20Z",
+              "season_type": 2,
               "scored": 26,
               "allowed": 32
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 31,
               "allowed": 24
             },
             {
               "date": "2026-09-18T00:15Z",
+              "season_type": 2,
               "scored": 31,
               "allowed": 41
             },
             {
               "date": "2026-09-13T17:00Z",
+              "season_type": 2,
               "scored": 31,
               "allowed": 30
-            },
-            {
-              "date": "2026-08-13T23:00Z",
-              "scored": 14,
-              "allowed": 16
             }
           ]
         },
@@ -474,36 +407,43 @@
           "score_history": [
             {
               "date": "2026-11-01T21:25Z",
+              "season_type": 2,
               "scored": 19,
               "allowed": 24
             },
             {
               "date": "2026-10-25T17:00Z",
+              "season_type": 2,
               "scored": 28,
               "allowed": 25
             },
             {
               "date": "2026-10-11T17:00Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 31
             },
             {
               "date": "2026-10-04T20:05Z",
+              "season_type": 2,
               "scored": 10,
               "allowed": 15
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 10,
               "allowed": 24
             },
             {
               "date": "2026-09-20T20:25Z",
+              "season_type": 2,
               "scored": 13,
               "allowed": 35
             },
             {
               "date": "2026-09-13T20:25Z",
+              "season_type": 2,
               "scored": 13,
               "allowed": 27
             }
@@ -520,52 +460,55 @@
       "teams": [
         {
           "team": "Los Angeles Rams",
-          "sample_size": 9,
+          "sample_size": 8,
           "score_history": [
             {
               "date": "2026-11-01T21:05Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 9
             },
             {
               "date": "2026-10-25T20:25Z",
+              "season_type": 2,
               "scored": 35,
               "allowed": 21
             },
             {
               "date": "2026-10-18T20:05Z",
+              "season_type": 2,
               "scored": 16,
               "allowed": 18
             },
             {
               "date": "2026-10-13T00:15Z",
+              "season_type": 2,
               "scored": 34,
               "allowed": 37
             },
             {
               "date": "2026-10-04T17:00Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 20
             },
             {
               "date": "2026-09-28T00:20Z",
+              "season_type": 2,
               "scored": 26,
               "allowed": 30
             },
             {
               "date": "2026-09-22T00:15Z",
+              "season_type": 2,
               "scored": 28,
               "allowed": 6
             },
             {
               "date": "2026-09-11T00:35Z",
+              "season_type": 2,
               "scored": 7,
               "allowed": 27
-            },
-            {
-              "date": "2026-08-28T02:00Z",
-              "scored": 20,
-              "allowed": 18
             }
           ]
         },
@@ -575,36 +518,43 @@
           "score_history": [
             {
               "date": "2026-11-02T01:20Z",
+              "season_type": 2,
               "scored": 27,
               "allowed": 10
             },
             {
               "date": "2026-10-20T00:15Z",
+              "season_type": 2,
               "scored": 17,
               "allowed": 23
             },
             {
               "date": "2026-10-11T17:00Z",
+              "season_type": 2,
               "scored": 27,
               "allowed": 27
             },
             {
               "date": "2026-10-04T13:30Z",
+              "season_type": 2,
               "scored": 13,
               "allowed": 30
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 33,
               "allowed": 31
             },
             {
               "date": "2026-09-20T20:25Z",
+              "season_type": 2,
               "scored": 20,
               "allowed": 37
             },
             {
               "date": "2026-09-13T20:25Z",
+              "season_type": 2,
               "scored": 22,
               "allowed": 24
             }
@@ -625,36 +575,43 @@
           "score_history": [
             {
               "date": "2026-10-25T17:00Z",
+              "season_type": 2,
               "scored": 27,
               "allowed": 21
             },
             {
               "date": "2026-10-18T17:00Z",
+              "season_type": 2,
               "scored": 27,
               "allowed": 34
             },
             {
               "date": "2026-10-11T17:00Z",
+              "season_type": 2,
               "scored": 27,
               "allowed": 27
             },
             {
               "date": "2026-10-04T17:00Z",
+              "season_type": 2,
               "scored": 36,
               "allowed": 24
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 12,
               "allowed": 7
             },
             {
               "date": "2026-09-22T00:15Z",
+              "season_type": 2,
               "scored": 6,
               "allowed": 28
             },
             {
               "date": "2026-09-14T00:20Z",
+              "season_type": 2,
               "scored": 28,
               "allowed": 20
             }
@@ -666,41 +623,49 @@
           "score_history": [
             {
               "date": "2026-11-02T01:20Z",
+              "season_type": 2,
               "scored": 10,
               "allowed": 27
             },
             {
               "date": "2026-10-27T00:15Z",
+              "season_type": 2,
               "scored": 21,
               "allowed": 38
             },
             {
               "date": "2026-10-18T17:00Z",
+              "season_type": 2,
               "scored": 14,
               "allowed": 25
             },
             {
               "date": "2026-10-11T13:30Z",
+              "season_type": 2,
               "scored": 17,
               "allowed": 19
             },
             {
               "date": "2026-10-04T17:00Z",
+              "season_type": 2,
               "scored": 20,
               "allowed": 24
             },
             {
               "date": "2026-09-29T00:15Z",
+              "season_type": 2,
               "scored": 7,
               "allowed": 27
             },
             {
               "date": "2026-09-20T17:00Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 20
             },
             {
               "date": "2026-09-13T20:25Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 22
             }
@@ -721,41 +686,49 @@
           "score_history": [
             {
               "date": "2026-11-01T18:00Z",
+              "season_type": 2,
               "scored": 33,
               "allowed": 38
             },
             {
               "date": "2026-10-25T17:00Z",
+              "season_type": 2,
               "scored": 25,
               "allowed": 28
             },
             {
               "date": "2026-10-18T17:00Z",
+              "season_type": 2,
               "scored": 19,
               "allowed": 26
             },
             {
               "date": "2026-10-11T17:00Z",
+              "season_type": 2,
               "scored": 17,
               "allowed": 12
             },
             {
               "date": "2026-10-04T17:00Z",
+              "season_type": 2,
               "scored": 12,
               "allowed": 23
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 31
             },
             {
               "date": "2026-09-20T17:00Z",
+              "season_type": 2,
               "scored": 17,
               "allowed": 20
             },
             {
               "date": "2026-09-13T17:00Z",
+              "season_type": 2,
               "scored": 23,
               "allowed": 10
             }
@@ -767,36 +740,43 @@
           "score_history": [
             {
               "date": "2026-11-01T21:25Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 28
             },
             {
               "date": "2026-10-26T00:20Z",
+              "season_type": 2,
               "scored": 3,
               "allowed": 20
             },
             {
               "date": "2026-10-18T20:25Z",
+              "season_type": 2,
               "scored": 22,
               "allowed": 6
             },
             {
               "date": "2026-10-04T20:25Z",
+              "season_type": 2,
               "scored": 30,
               "allowed": 27
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 10
             },
             {
               "date": "2026-09-21T00:20Z",
+              "season_type": 2,
               "scored": 33,
               "allowed": 30
             },
             {
               "date": "2026-09-15T00:15Z",
+              "season_type": 2,
               "scored": 31,
               "allowed": 10
             }
@@ -813,108 +793,97 @@
       "teams": [
         {
           "team": "Houston Texans",
-          "sample_size": 9,
+          "sample_size": 7,
           "score_history": [
             {
               "date": "2026-10-25T17:00Z",
+              "season_type": 2,
               "scored": 21,
               "allowed": 27
             },
             {
               "date": "2026-10-18T13:30Z",
+              "season_type": 2,
               "scored": 34,
               "allowed": 31
             },
             {
               "date": "2026-10-11T17:00Z",
+              "season_type": 2,
               "scored": 26,
               "allowed": 3
             },
             {
               "date": "2026-10-04T17:00Z",
+              "season_type": 2,
               "scored": 30,
               "allowed": 34
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 17,
               "allowed": 19
             },
             {
               "date": "2026-09-20T17:00Z",
+              "season_type": 2,
               "scored": 6,
               "allowed": 20
             },
             {
               "date": "2026-09-13T17:00Z",
+              "season_type": 2,
               "scored": 31,
               "allowed": 36
-            },
-            {
-              "date": "2026-08-21T00:00Z",
-              "scored": 20,
-              "allowed": 22
-            },
-            {
-              "date": "2026-08-14T00:00Z",
-              "scored": 7,
-              "allowed": 27
             }
           ]
         },
         {
           "team": "Los Angeles Chargers",
-          "sample_size": 10,
+          "sample_size": 7,
           "score_history": [
             {
               "date": "2026-11-01T21:05Z",
+              "season_type": 2,
               "scored": 9,
               "allowed": 24
             },
             {
               "date": "2026-10-18T20:25Z",
+              "season_type": 2,
               "scored": 6,
               "allowed": 22
             },
             {
               "date": "2026-10-11T20:05Z",
+              "season_type": 2,
               "scored": 17,
               "allowed": 23
             },
             {
               "date": "2026-10-04T20:25Z",
+              "season_type": 2,
               "scored": 23,
               "allowed": 30
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 16,
               "allowed": 24
             },
             {
               "date": "2026-09-20T20:05Z",
+              "season_type": 2,
               "scored": 14,
               "allowed": 26
             },
             {
               "date": "2026-09-13T20:25Z",
+              "season_type": 2,
               "scored": 14,
               "allowed": 26
-            },
-            {
-              "date": "2026-08-28T02:00Z",
-              "scored": 18,
-              "allowed": 20
-            },
-            {
-              "date": "2026-08-21T02:00Z",
-              "scored": 17,
-              "allowed": 41
-            },
-            {
-              "date": "2026-08-14T00:00Z",
-              "scored": 27,
-              "allowed": 7
             }
           ]
         }
@@ -929,118 +898,103 @@
       "teams": [
         {
           "team": "Las Vegas Raiders",
-          "sample_size": 11,
+          "sample_size": 8,
           "score_history": [
             {
               "date": "2026-11-01T18:00Z",
+              "season_type": 2,
               "scored": 38,
               "allowed": 33
             },
             {
               "date": "2026-10-25T20:25Z",
+              "season_type": 2,
               "scored": 21,
               "allowed": 35
             },
             {
               "date": "2026-10-18T20:25Z",
+              "season_type": 2,
               "scored": 30,
               "allowed": 33
             },
             {
               "date": "2026-10-11T17:00Z",
+              "season_type": 2,
               "scored": 17,
               "allowed": 45
             },
             {
               "date": "2026-10-04T20:25Z",
+              "season_type": 2,
               "scored": 27,
               "allowed": 30
             },
             {
               "date": "2026-09-27T20:25Z",
+              "season_type": 2,
               "scored": 35,
               "allowed": 27
             },
             {
               "date": "2026-09-20T20:05Z",
+              "season_type": 2,
               "scored": 26,
               "allowed": 14
             },
             {
               "date": "2026-09-13T20:25Z",
+              "season_type": 2,
               "scored": 27,
               "allowed": 13
-            },
-            {
-              "date": "2026-08-28T00:00Z",
-              "scored": 12,
-              "allowed": 18
-            },
-            {
-              "date": "2026-08-21T00:00Z",
-              "scored": 22,
-              "allowed": 20
-            },
-            {
-              "date": "2026-08-14T00:00Z",
-              "scored": 14,
-              "allowed": 27
             }
           ]
         },
         {
           "team": "San Francisco 49ers",
-          "sample_size": 10,
+          "sample_size": 7,
           "score_history": [
             {
               "date": "2026-10-25T17:00Z",
+              "season_type": 2,
               "scored": 20,
               "allowed": 29
             },
             {
               "date": "2026-10-20T00:15Z",
+              "season_type": 2,
               "scored": 23,
               "allowed": 17
             },
             {
               "date": "2026-10-11T20:25Z",
+              "season_type": 2,
               "scored": 32,
               "allowed": 29
             },
             {
               "date": "2026-10-04T20:25Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 14
             },
             {
               "date": "2026-09-27T20:05Z",
+              "season_type": 2,
               "scored": 36,
               "allowed": 30
             },
             {
               "date": "2026-09-20T20:25Z",
+              "season_type": 2,
               "scored": 35,
               "allowed": 13
             },
             {
               "date": "2026-09-11T00:35Z",
+              "season_type": 2,
               "scored": 27,
               "allowed": 7
-            },
-            {
-              "date": "2026-08-28T00:00Z",
-              "scored": 18,
-              "allowed": 12
-            },
-            {
-              "date": "2026-08-21T02:00Z",
-              "scored": 41,
-              "allowed": 17
-            },
-            {
-              "date": "2026-08-14T01:00Z",
-              "scored": 13,
-              "allowed": 19
             }
           ]
         }
@@ -1055,103 +1009,103 @@
       "teams": [
         {
           "team": "Arizona Cardinals",
-          "sample_size": 10,
+          "sample_size": 8,
           "score_history": [
             {
               "date": "2026-11-01T18:00Z",
+              "season_type": 2,
               "scored": 33,
               "allowed": 30
             },
             {
               "date": "2026-10-25T20:05Z",
+              "season_type": 2,
               "scored": 16,
               "allowed": 30
             },
             {
               "date": "2026-10-18T20:05Z",
+              "season_type": 2,
               "scored": 18,
               "allowed": 16
             },
             {
               "date": "2026-10-11T20:25Z",
+              "season_type": 2,
               "scored": 21,
               "allowed": 45
             },
             {
               "date": "2026-10-04T17:00Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 36
             },
             {
               "date": "2026-09-27T20:05Z",
+              "season_type": 2,
               "scored": 30,
               "allowed": 36
             },
             {
               "date": "2026-09-20T20:25Z",
+              "season_type": 2,
               "scored": 7,
               "allowed": 31
             },
             {
               "date": "2026-09-13T20:25Z",
+              "season_type": 2,
               "scored": 26,
               "allowed": 14
-            },
-            {
-              "date": "2026-08-14T00:00Z",
-              "scored": 27,
-              "allowed": 14
-            },
-            {
-              "date": "2026-08-07T00:00Z",
-              "scored": 30,
-              "allowed": 33
             }
           ]
         },
         {
           "team": "Seattle Seahawks",
-          "sample_size": 8,
+          "sample_size": 7,
           "score_history": [
             {
               "date": "2026-11-03T01:15Z",
+              "season_type": 2,
               "scored": 17,
               "allowed": 34
             },
             {
               "date": "2026-10-26T00:20Z",
+              "season_type": 2,
               "scored": 20,
               "allowed": 3
             },
             {
               "date": "2026-10-16T00:15Z",
+              "season_type": 2,
               "scored": 14,
               "allowed": 17
             },
             {
               "date": "2026-10-11T20:25Z",
+              "season_type": 2,
               "scored": 29,
               "allowed": 32
             },
             {
               "date": "2026-10-04T20:25Z",
+              "season_type": 2,
               "scored": 30,
               "allowed": 23
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 31,
               "allowed": 33
             },
             {
               "date": "2026-09-20T20:25Z",
+              "season_type": 2,
               "scored": 31,
               "allowed": 7
-            },
-            {
-              "date": "2026-08-24T00:00Z",
-              "scored": 16,
-              "allowed": 19
             }
           ]
         }
@@ -1166,103 +1120,103 @@
       "teams": [
         {
           "team": "Green Bay Packers",
-          "sample_size": 9,
+          "sample_size": 8,
           "score_history": [
             {
               "date": "2026-10-30T00:15Z",
+              "season_type": 2,
               "scored": 27,
               "allowed": 19
             },
             {
               "date": "2026-10-25T20:25Z",
+              "season_type": 2,
               "scored": 17,
               "allowed": 20
             },
             {
               "date": "2026-10-19T00:20Z",
+              "season_type": 2,
               "scored": 23,
               "allowed": 13
             },
             {
               "date": "2026-10-11T17:00Z",
+              "season_type": 2,
               "scored": 31,
               "allowed": 7
             },
             {
               "date": "2026-10-04T17:00Z",
+              "season_type": 2,
               "scored": 17,
               "allowed": 14
             },
             {
               "date": "2026-09-25T00:15Z",
+              "season_type": 2,
               "scored": 14,
               "allowed": 35
             },
             {
               "date": "2026-09-20T17:00Z",
+              "season_type": 2,
               "scored": 20,
               "allowed": 17
             },
             {
               "date": "2026-09-13T20:25Z",
+              "season_type": 2,
               "scored": 22,
               "allowed": 39
-            },
-            {
-              "date": "2026-08-13T23:00Z",
-              "scored": 9,
-              "allowed": 28
             }
           ]
         },
         {
           "team": "New England Patriots",
-          "sample_size": 9,
+          "sample_size": 7,
           "score_history": [
             {
               "date": "2026-11-01T21:25Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 19
             },
             {
               "date": "2026-10-23T00:15Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 30
             },
             {
               "date": "2026-10-18T17:00Z",
+              "season_type": 2,
               "scored": 26,
               "allowed": 19
             },
             {
               "date": "2026-10-11T17:00Z",
+              "season_type": 2,
               "scored": 45,
               "allowed": 17
             },
             {
               "date": "2026-10-04T17:00Z",
+              "season_type": 2,
               "scored": 29,
               "allowed": 26
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 6,
               "allowed": 35
             },
             {
               "date": "2026-09-20T17:00Z",
+              "season_type": 2,
               "scored": 20,
               "allowed": 3
-            },
-            {
-              "date": "2026-08-28T00:00Z",
-              "scored": 13,
-              "allowed": 37
-            },
-            {
-              "date": "2026-08-13T23:30Z",
-              "scored": 13,
-              "allowed": 13
             }
           ]
         }
@@ -1281,41 +1235,49 @@
           "score_history": [
             {
               "date": "2026-11-01T18:00Z",
+              "season_type": 2,
               "scored": 16,
               "allowed": 0
             },
             {
               "date": "2026-10-25T17:00Z",
+              "season_type": 2,
               "scored": 43,
               "allowed": 13
             },
             {
               "date": "2026-10-18T17:00Z",
+              "season_type": 2,
               "scored": 19,
               "allowed": 26
             },
             {
               "date": "2026-10-09T00:15Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 16
             },
             {
               "date": "2026-10-04T17:00Z",
+              "season_type": 2,
               "scored": 14,
               "allowed": 17
             },
             {
               "date": "2026-09-27T20:05Z",
+              "season_type": 2,
               "scored": 16,
               "allowed": 23
             },
             {
               "date": "2026-09-20T17:00Z",
+              "season_type": 2,
               "scored": 19,
               "allowed": 23
             },
             {
               "date": "2026-09-13T17:00Z",
+              "season_type": 2,
               "scored": 27,
               "allowed": 33
             }
@@ -1327,41 +1289,49 @@
           "score_history": [
             {
               "date": "2026-11-03T01:15Z",
+              "season_type": 2,
               "scored": 34,
               "allowed": 17
             },
             {
               "date": "2026-10-23T00:15Z",
+              "season_type": 2,
               "scored": 30,
               "allowed": 24
             },
             {
               "date": "2026-10-18T17:00Z",
+              "season_type": 2,
               "scored": 31,
               "allowed": 23
             },
             {
               "date": "2026-10-11T17:00Z",
+              "season_type": 2,
               "scored": 7,
               "allowed": 31
             },
             {
               "date": "2026-10-04T17:00Z",
+              "season_type": 2,
               "scored": 23,
               "allowed": 12
             },
             {
               "date": "2026-09-29T00:15Z",
+              "season_type": 2,
               "scored": 27,
               "allowed": 7
             },
             {
               "date": "2026-09-20T17:00Z",
+              "season_type": 2,
               "scored": 3,
               "allowed": 9
             },
             {
               "date": "2026-09-13T17:00Z",
+              "season_type": 2,
               "scored": 59,
               "allowed": 37
             }
@@ -1378,47 +1348,49 @@
       "teams": [
         {
           "team": "Buffalo Bills",
-          "sample_size": 8,
+          "sample_size": 7,
           "score_history": [
             {
               "date": "2026-11-01T18:00Z",
+              "season_type": 2,
               "scored": 36,
               "allowed": 10
             },
             {
               "date": "2026-10-18T20:25Z",
+              "season_type": 2,
               "scored": 33,
               "allowed": 30
             },
             {
               "date": "2026-10-13T00:15Z",
+              "season_type": 2,
               "scored": 37,
               "allowed": 34
             },
             {
               "date": "2026-10-04T17:00Z",
+              "season_type": 2,
               "scored": 26,
               "allowed": 29
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 16
             },
             {
               "date": "2026-09-18T00:15Z",
+              "season_type": 2,
               "scored": 41,
               "allowed": 31
             },
             {
               "date": "2026-09-13T17:00Z",
+              "season_type": 2,
               "scored": 36,
               "allowed": 31
-            },
-            {
-              "date": "2026-08-27T23:00Z",
-              "scored": 28,
-              "allowed": 27
             }
           ]
         },
@@ -1428,36 +1400,43 @@
           "score_history": [
             {
               "date": "2026-11-01T18:00Z",
+              "season_type": 2,
               "scored": 15,
               "allowed": 19
             },
             {
               "date": "2026-10-25T17:00Z",
+              "season_type": 2,
               "scored": 16,
               "allowed": 10
             },
             {
               "date": "2026-10-11T17:00Z",
+              "season_type": 2,
               "scored": 23,
               "allowed": 13
             },
             {
               "date": "2026-10-04T20:05Z",
+              "season_type": 2,
               "scored": 15,
               "allowed": 10
             },
             {
               "date": "2026-09-27T20:05Z",
+              "season_type": 2,
               "scored": 23,
               "allowed": 16
             },
             {
               "date": "2026-09-20T17:00Z",
+              "season_type": 2,
               "scored": 9,
               "allowed": 3
             },
             {
               "date": "2026-09-13T20:25Z",
+              "season_type": 2,
               "scored": 39,
               "allowed": 22
             }
@@ -1478,36 +1457,43 @@
           "score_history": [
             {
               "date": "2026-11-02T01:20Z",
+              "season_type": 2,
               "scored": 27,
               "allowed": 10
             },
             {
               "date": "2026-10-20T00:15Z",
+              "season_type": 2,
               "scored": 17,
               "allowed": 23
             },
             {
               "date": "2026-10-11T17:00Z",
+              "season_type": 2,
               "scored": 27,
               "allowed": 27
             },
             {
               "date": "2026-10-04T13:30Z",
+              "season_type": 2,
               "scored": 13,
               "allowed": 30
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 33,
               "allowed": 31
             },
             {
               "date": "2026-09-20T20:25Z",
+              "season_type": 2,
               "scored": 20,
               "allowed": 37
             },
             {
               "date": "2026-09-13T20:25Z",
+              "season_type": 2,
               "scored": 22,
               "allowed": 24
             }
@@ -1519,36 +1505,43 @@
           "score_history": [
             {
               "date": "2026-10-25T17:00Z",
+              "season_type": 2,
               "scored": 27,
               "allowed": 21
             },
             {
               "date": "2026-10-18T17:00Z",
+              "season_type": 2,
               "scored": 27,
               "allowed": 34
             },
             {
               "date": "2026-10-11T17:00Z",
+              "season_type": 2,
               "scored": 27,
               "allowed": 27
             },
             {
               "date": "2026-10-04T17:00Z",
+              "season_type": 2,
               "scored": 36,
               "allowed": 24
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 12,
               "allowed": 7
             },
             {
               "date": "2026-09-22T00:15Z",
+              "season_type": 2,
               "scored": 6,
               "allowed": 28
             },
             {
               "date": "2026-09-14T00:20Z",
+              "season_type": 2,
               "scored": 28,
               "allowed": 20
             }
@@ -1565,98 +1558,97 @@
       "teams": [
         {
           "team": "New England Patriots",
-          "sample_size": 9,
+          "sample_size": 7,
           "score_history": [
             {
               "date": "2026-11-01T21:25Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 19
             },
             {
               "date": "2026-10-23T00:15Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 30
             },
             {
               "date": "2026-10-18T17:00Z",
+              "season_type": 2,
               "scored": 26,
               "allowed": 19
             },
             {
               "date": "2026-10-11T17:00Z",
+              "season_type": 2,
               "scored": 45,
               "allowed": 17
             },
             {
               "date": "2026-10-04T17:00Z",
+              "season_type": 2,
               "scored": 29,
               "allowed": 26
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 6,
               "allowed": 35
             },
             {
               "date": "2026-09-20T17:00Z",
+              "season_type": 2,
               "scored": 20,
               "allowed": 3
-            },
-            {
-              "date": "2026-08-28T00:00Z",
-              "scored": 13,
-              "allowed": 37
-            },
-            {
-              "date": "2026-08-13T23:30Z",
-              "scored": 13,
-              "allowed": 13
             }
           ]
         },
         {
           "team": "Detroit Lions",
-          "sample_size": 8,
+          "sample_size": 7,
           "score_history": [
             {
               "date": "2026-11-01T18:00Z",
+              "season_type": 2,
               "scored": 19,
               "allowed": 15
             },
             {
               "date": "2026-10-25T20:25Z",
+              "season_type": 2,
               "scored": 20,
               "allowed": 17
             },
             {
               "date": "2026-10-11T20:25Z",
+              "season_type": 2,
               "scored": 45,
               "allowed": 21
             },
             {
               "date": "2026-10-05T00:20Z",
+              "season_type": 2,
               "scored": 26,
               "allowed": 32
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 31,
               "allowed": 24
             },
             {
               "date": "2026-09-18T00:15Z",
+              "season_type": 2,
               "scored": 31,
               "allowed": 41
             },
             {
               "date": "2026-09-13T17:00Z",
+              "season_type": 2,
               "scored": 31,
               "allowed": 30
-            },
-            {
-              "date": "2026-08-13T23:00Z",
-              "scored": 14,
-              "allowed": 16
             }
           ]
         }
@@ -1671,47 +1663,49 @@
       "teams": [
         {
           "team": "Buffalo Bills",
-          "sample_size": 8,
+          "sample_size": 7,
           "score_history": [
             {
               "date": "2026-11-01T18:00Z",
+              "season_type": 2,
               "scored": 36,
               "allowed": 10
             },
             {
               "date": "2026-10-18T20:25Z",
+              "season_type": 2,
               "scored": 33,
               "allowed": 30
             },
             {
               "date": "2026-10-13T00:15Z",
+              "season_type": 2,
               "scored": 37,
               "allowed": 34
             },
             {
               "date": "2026-10-04T17:00Z",
+              "season_type": 2,
               "scored": 26,
               "allowed": 29
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 16
             },
             {
               "date": "2026-09-18T00:15Z",
+              "season_type": 2,
               "scored": 41,
               "allowed": 31
             },
             {
               "date": "2026-09-13T17:00Z",
+              "season_type": 2,
               "scored": 36,
               "allowed": 31
-            },
-            {
-              "date": "2026-08-27T23:00Z",
-              "scored": 28,
-              "allowed": 27
             }
           ]
         },
@@ -1721,41 +1715,49 @@
           "score_history": [
             {
               "date": "2026-11-01T18:00Z",
+              "season_type": 2,
               "scored": 33,
               "allowed": 38
             },
             {
               "date": "2026-10-25T17:00Z",
+              "season_type": 2,
               "scored": 25,
               "allowed": 28
             },
             {
               "date": "2026-10-18T17:00Z",
+              "season_type": 2,
               "scored": 19,
               "allowed": 26
             },
             {
               "date": "2026-10-11T17:00Z",
+              "season_type": 2,
               "scored": 17,
               "allowed": 12
             },
             {
               "date": "2026-10-04T17:00Z",
+              "season_type": 2,
               "scored": 12,
               "allowed": 23
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 31
             },
             {
               "date": "2026-09-20T17:00Z",
+              "season_type": 2,
               "scored": 17,
               "allowed": 20
             },
             {
               "date": "2026-09-13T17:00Z",
+              "season_type": 2,
               "scored": 23,
               "allowed": 10
             }
@@ -1772,47 +1774,49 @@
       "teams": [
         {
           "team": "Carolina Panthers",
-          "sample_size": 8,
+          "sample_size": 7,
           "score_history": [
             {
               "date": "2026-10-30T00:15Z",
+              "season_type": 2,
               "scored": 19,
               "allowed": 27
             },
             {
               "date": "2026-10-25T17:00Z",
+              "season_type": 2,
               "scored": 13,
               "allowed": 43
             },
             {
               "date": "2026-10-18T17:00Z",
+              "season_type": 2,
               "scored": 25,
               "allowed": 14
             },
             {
               "date": "2026-10-05T00:20Z",
+              "season_type": 2,
               "scored": 32,
               "allowed": 26
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 18,
               "allowed": 21
             },
             {
               "date": "2026-09-20T17:00Z",
+              "season_type": 2,
               "scored": 34,
               "allowed": 3
             },
             {
               "date": "2026-09-13T17:00Z",
+              "season_type": 2,
               "scored": 37,
               "allowed": 59
-            },
-            {
-              "date": "2026-08-07T00:00Z",
-              "scored": 33,
-              "allowed": 30
             }
           ]
         },
@@ -1822,36 +1826,43 @@
           "score_history": [
             {
               "date": "2026-10-25T13:30Z",
+              "season_type": 2,
               "scored": 10,
               "allowed": 16
             },
             {
               "date": "2026-10-18T17:00Z",
+              "season_type": 2,
               "scored": 34,
               "allowed": 27
             },
             {
               "date": "2026-10-11T17:00Z",
+              "season_type": 2,
               "scored": 13,
               "allowed": 23
             },
             {
               "date": "2026-10-06T00:15Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 45
             },
             {
               "date": "2026-09-27T20:25Z",
+              "season_type": 2,
               "scored": 27,
               "allowed": 35
             },
             {
               "date": "2026-09-20T17:00Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 17
             },
             {
               "date": "2026-09-13T17:00Z",
+              "season_type": 2,
               "scored": 30,
               "allowed": 31
             }
@@ -1868,103 +1879,103 @@
       "teams": [
         {
           "team": "Houston Texans",
-          "sample_size": 9,
+          "sample_size": 7,
           "score_history": [
             {
               "date": "2026-10-25T17:00Z",
+              "season_type": 2,
               "scored": 21,
               "allowed": 27
             },
             {
               "date": "2026-10-18T13:30Z",
+              "season_type": 2,
               "scored": 34,
               "allowed": 31
             },
             {
               "date": "2026-10-11T17:00Z",
+              "season_type": 2,
               "scored": 26,
               "allowed": 3
             },
             {
               "date": "2026-10-04T17:00Z",
+              "season_type": 2,
               "scored": 30,
               "allowed": 34
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 17,
               "allowed": 19
             },
             {
               "date": "2026-09-20T17:00Z",
+              "season_type": 2,
               "scored": 6,
               "allowed": 20
             },
             {
               "date": "2026-09-13T17:00Z",
+              "season_type": 2,
               "scored": 31,
               "allowed": 36
-            },
-            {
-              "date": "2026-08-21T00:00Z",
-              "scored": 20,
-              "allowed": 22
-            },
-            {
-              "date": "2026-08-14T00:00Z",
-              "scored": 7,
-              "allowed": 27
             }
           ]
         },
         {
           "team": "Cleveland Browns",
-          "sample_size": 9,
+          "sample_size": 8,
           "score_history": [
             {
               "date": "2026-11-01T18:00Z",
+              "season_type": 2,
               "scored": 6,
               "allowed": 27
             },
             {
               "date": "2026-10-25T17:00Z",
+              "season_type": 2,
               "scored": 27,
               "allowed": 24
             },
             {
               "date": "2026-10-18T17:00Z",
+              "season_type": 2,
               "scored": 13,
               "allowed": 10
             },
             {
               "date": "2026-10-11T17:00Z",
+              "season_type": 2,
               "scored": 12,
               "allowed": 17
             },
             {
               "date": "2026-10-02T00:15Z",
+              "season_type": 2,
               "scored": 27,
               "allowed": 24
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 21,
               "allowed": 18
             },
             {
               "date": "2026-09-20T17:00Z",
+              "season_type": 2,
               "scored": 23,
               "allowed": 19
             },
             {
               "date": "2026-09-13T17:00Z",
+              "season_type": 2,
               "scored": 10,
               "allowed": 34
-            },
-            {
-              "date": "2026-08-28T00:00Z",
-              "scored": 37,
-              "allowed": 13
             }
           ]
         }
@@ -1983,41 +1994,49 @@
           "score_history": [
             {
               "date": "2026-11-06T01:15Z",
+              "season_type": 2,
               "scored": 33,
               "allowed": 10
             },
             {
               "date": "2026-11-01T18:00Z",
+              "season_type": 2,
               "scored": 42,
               "allowed": 7
             },
             {
               "date": "2026-10-18T13:30Z",
+              "season_type": 2,
               "scored": 31,
               "allowed": 34
             },
             {
               "date": "2026-10-11T13:30Z",
+              "season_type": 2,
               "scored": 19,
               "allowed": 17
             },
             {
               "date": "2026-10-04T17:00Z",
+              "season_type": 2,
               "scored": 22,
               "allowed": 17
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 35,
               "allowed": 6
             },
             {
               "date": "2026-09-20T20:05Z",
+              "season_type": 2,
               "scored": 13,
               "allowed": 20
             },
             {
               "date": "2026-09-13T17:00Z",
+              "season_type": 2,
               "scored": 34,
               "allowed": 10
             }
@@ -2025,57 +2044,55 @@
         },
         {
           "team": "Tennessee Titans",
-          "sample_size": 10,
+          "sample_size": 8,
           "score_history": [
             {
               "date": "2026-11-01T18:00Z",
+              "season_type": 2,
               "scored": 36,
               "allowed": 43
             },
             {
               "date": "2026-10-25T17:00Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 27
             },
             {
               "date": "2026-10-18T17:00Z",
+              "season_type": 2,
               "scored": 26,
               "allowed": 20
             },
             {
               "date": "2026-10-11T17:00Z",
+              "season_type": 2,
               "scored": 3,
               "allowed": 26
             },
             {
               "date": "2026-10-04T17:00Z",
+              "season_type": 2,
               "scored": 18,
               "allowed": 24
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 7,
               "allowed": 12
             },
             {
               "date": "2026-09-20T17:00Z",
+              "season_type": 2,
               "scored": 20,
               "allowed": 24
             },
             {
               "date": "2026-09-13T17:00Z",
+              "season_type": 2,
               "scored": 10,
               "allowed": 23
-            },
-            {
-              "date": "2026-08-24T00:00Z",
-              "scored": 19,
-              "allowed": 16
-            },
-            {
-              "date": "2026-08-14T01:00Z",
-              "scored": 19,
-              "allowed": 13
             }
           ]
         }
@@ -2094,36 +2111,43 @@
           "score_history": [
             {
               "date": "2026-11-01T21:25Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 28
             },
             {
               "date": "2026-10-26T00:20Z",
+              "season_type": 2,
               "scored": 3,
               "allowed": 20
             },
             {
               "date": "2026-10-18T20:25Z",
+              "season_type": 2,
               "scored": 22,
               "allowed": 6
             },
             {
               "date": "2026-10-04T20:25Z",
+              "season_type": 2,
               "scored": 30,
               "allowed": 27
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 10
             },
             {
               "date": "2026-09-21T00:20Z",
+              "season_type": 2,
               "scored": 33,
               "allowed": 30
             },
             {
               "date": "2026-09-15T00:15Z",
+              "season_type": 2,
               "scored": 31,
               "allowed": 10
             }
@@ -2135,41 +2159,49 @@
           "score_history": [
             {
               "date": "2026-11-01T18:00Z",
+              "season_type": 2,
               "scored": 0,
               "allowed": 16
             },
             {
               "date": "2026-10-25T17:00Z",
+              "season_type": 2,
               "scored": 29,
               "allowed": 20
             },
             {
               "date": "2026-10-18T17:00Z",
+              "season_type": 2,
               "scored": 23,
               "allowed": 31
             },
             {
               "date": "2026-10-12T00:20Z",
+              "season_type": 2,
               "scored": 23,
               "allowed": 30
             },
             {
               "date": "2026-10-06T00:15Z",
+              "season_type": 2,
               "scored": 45,
               "allowed": 24
             },
             {
               "date": "2026-09-25T00:15Z",
+              "season_type": 2,
               "scored": 35,
               "allowed": 14
             },
             {
               "date": "2026-09-20T17:00Z",
+              "season_type": 2,
               "scored": 3,
               "allowed": 34
             },
             {
               "date": "2026-09-13T17:00Z",
+              "season_type": 2,
               "scored": 13,
               "allowed": 20
             }
@@ -2190,36 +2222,43 @@
           "score_history": [
             {
               "date": "2026-11-01T21:25Z",
+              "season_type": 2,
               "scored": 19,
               "allowed": 24
             },
             {
               "date": "2026-10-25T17:00Z",
+              "season_type": 2,
               "scored": 28,
               "allowed": 25
             },
             {
               "date": "2026-10-11T17:00Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 31
             },
             {
               "date": "2026-10-04T20:05Z",
+              "season_type": 2,
               "scored": 10,
               "allowed": 15
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 10,
               "allowed": 24
             },
             {
               "date": "2026-09-20T20:25Z",
+              "season_type": 2,
               "scored": 13,
               "allowed": 35
             },
             {
               "date": "2026-09-13T20:25Z",
+              "season_type": 2,
               "scored": 13,
               "allowed": 27
             }
@@ -2227,52 +2266,55 @@
         },
         {
           "team": "Indianapolis Colts",
-          "sample_size": 9,
+          "sample_size": 8,
           "score_history": [
             {
               "date": "2026-11-01T18:00Z",
+              "season_type": 2,
               "scored": 7,
               "allowed": 42
             },
             {
               "date": "2026-10-25T17:00Z",
+              "season_type": 2,
               "scored": 10,
               "allowed": 16
             },
             {
               "date": "2026-10-18T17:00Z",
+              "season_type": 2,
               "scored": 20,
               "allowed": 26
             },
             {
               "date": "2026-10-11T17:00Z",
+              "season_type": 2,
               "scored": 22,
               "allowed": 34
             },
             {
               "date": "2026-10-04T13:30Z",
+              "season_type": 2,
               "scored": 30,
               "allowed": 13
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 19,
               "allowed": 17
             },
             {
               "date": "2026-09-21T00:20Z",
+              "season_type": 2,
               "scored": 30,
               "allowed": 33
             },
             {
               "date": "2026-09-13T17:00Z",
+              "season_type": 2,
               "scored": 23,
               "allowed": 41
-            },
-            {
-              "date": "2026-08-13T23:30Z",
-              "scored": 13,
-              "allowed": 13
             }
           ]
         }
@@ -2291,36 +2333,43 @@
           "score_history": [
             {
               "date": "2026-11-01T18:00Z",
+              "season_type": 2,
               "scored": 15,
               "allowed": 19
             },
             {
               "date": "2026-10-25T17:00Z",
+              "season_type": 2,
               "scored": 16,
               "allowed": 10
             },
             {
               "date": "2026-10-11T17:00Z",
+              "season_type": 2,
               "scored": 23,
               "allowed": 13
             },
             {
               "date": "2026-10-04T20:05Z",
+              "season_type": 2,
               "scored": 15,
               "allowed": 10
             },
             {
               "date": "2026-09-27T20:05Z",
+              "season_type": 2,
               "scored": 23,
               "allowed": 16
             },
             {
               "date": "2026-09-20T17:00Z",
+              "season_type": 2,
               "scored": 9,
               "allowed": 3
             },
             {
               "date": "2026-09-13T20:25Z",
+              "season_type": 2,
               "scored": 39,
               "allowed": 22
             }
@@ -2328,52 +2377,55 @@
         },
         {
           "team": "Green Bay Packers",
-          "sample_size": 9,
+          "sample_size": 8,
           "score_history": [
             {
               "date": "2026-10-30T00:15Z",
+              "season_type": 2,
               "scored": 27,
               "allowed": 19
             },
             {
               "date": "2026-10-25T20:25Z",
+              "season_type": 2,
               "scored": 17,
               "allowed": 20
             },
             {
               "date": "2026-10-19T00:20Z",
+              "season_type": 2,
               "scored": 23,
               "allowed": 13
             },
             {
               "date": "2026-10-11T17:00Z",
+              "season_type": 2,
               "scored": 31,
               "allowed": 7
             },
             {
               "date": "2026-10-04T17:00Z",
+              "season_type": 2,
               "scored": 17,
               "allowed": 14
             },
             {
               "date": "2026-09-25T00:15Z",
+              "season_type": 2,
               "scored": 14,
               "allowed": 35
             },
             {
               "date": "2026-09-20T17:00Z",
+              "season_type": 2,
               "scored": 20,
               "allowed": 17
             },
             {
               "date": "2026-09-13T20:25Z",
+              "season_type": 2,
               "scored": 22,
               "allowed": 39
-            },
-            {
-              "date": "2026-08-13T23:00Z",
-              "scored": 9,
-              "allowed": 28
             }
           ]
         }
@@ -2388,108 +2440,109 @@
       "teams": [
         {
           "team": "Los Angeles Rams",
-          "sample_size": 9,
+          "sample_size": 8,
           "score_history": [
             {
               "date": "2026-11-01T21:05Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 9
             },
             {
               "date": "2026-10-25T20:25Z",
+              "season_type": 2,
               "scored": 35,
               "allowed": 21
             },
             {
               "date": "2026-10-18T20:05Z",
+              "season_type": 2,
               "scored": 16,
               "allowed": 18
             },
             {
               "date": "2026-10-13T00:15Z",
+              "season_type": 2,
               "scored": 34,
               "allowed": 37
             },
             {
               "date": "2026-10-04T17:00Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 20
             },
             {
               "date": "2026-09-28T00:20Z",
+              "season_type": 2,
               "scored": 26,
               "allowed": 30
             },
             {
               "date": "2026-09-22T00:15Z",
+              "season_type": 2,
               "scored": 28,
               "allowed": 6
             },
             {
               "date": "2026-09-11T00:35Z",
+              "season_type": 2,
               "scored": 7,
               "allowed": 27
-            },
-            {
-              "date": "2026-08-28T02:00Z",
-              "scored": 20,
-              "allowed": 18
             }
           ]
         },
         {
           "team": "Arizona Cardinals",
-          "sample_size": 10,
+          "sample_size": 8,
           "score_history": [
             {
               "date": "2026-11-01T18:00Z",
+              "season_type": 2,
               "scored": 33,
               "allowed": 30
             },
             {
               "date": "2026-10-25T20:05Z",
+              "season_type": 2,
               "scored": 16,
               "allowed": 30
             },
             {
               "date": "2026-10-18T20:05Z",
+              "season_type": 2,
               "scored": 18,
               "allowed": 16
             },
             {
               "date": "2026-10-11T20:25Z",
+              "season_type": 2,
               "scored": 21,
               "allowed": 45
             },
             {
               "date": "2026-10-04T17:00Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 36
             },
             {
               "date": "2026-09-27T20:05Z",
+              "season_type": 2,
               "scored": 30,
               "allowed": 36
             },
             {
               "date": "2026-09-20T20:25Z",
+              "season_type": 2,
               "scored": 7,
               "allowed": 31
             },
             {
               "date": "2026-09-13T20:25Z",
+              "season_type": 2,
               "scored": 26,
               "allowed": 14
-            },
-            {
-              "date": "2026-08-14T00:00Z",
-              "scored": 27,
-              "allowed": 14
-            },
-            {
-              "date": "2026-08-07T00:00Z",
-              "scored": 30,
-              "allowed": 33
             }
           ]
         }
@@ -2504,108 +2557,103 @@
       "teams": [
         {
           "team": "Seattle Seahawks",
-          "sample_size": 8,
+          "sample_size": 7,
           "score_history": [
             {
               "date": "2026-11-03T01:15Z",
+              "season_type": 2,
               "scored": 17,
               "allowed": 34
             },
             {
               "date": "2026-10-26T00:20Z",
+              "season_type": 2,
               "scored": 20,
               "allowed": 3
             },
             {
               "date": "2026-10-16T00:15Z",
+              "season_type": 2,
               "scored": 14,
               "allowed": 17
             },
             {
               "date": "2026-10-11T20:25Z",
+              "season_type": 2,
               "scored": 29,
               "allowed": 32
             },
             {
               "date": "2026-10-04T20:25Z",
+              "season_type": 2,
               "scored": 30,
               "allowed": 23
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 31,
               "allowed": 33
             },
             {
               "date": "2026-09-20T20:25Z",
+              "season_type": 2,
               "scored": 31,
               "allowed": 7
-            },
-            {
-              "date": "2026-08-24T00:00Z",
-              "scored": 16,
-              "allowed": 19
             }
           ]
         },
         {
           "team": "Las Vegas Raiders",
-          "sample_size": 11,
+          "sample_size": 8,
           "score_history": [
             {
               "date": "2026-11-01T18:00Z",
+              "season_type": 2,
               "scored": 38,
               "allowed": 33
             },
             {
               "date": "2026-10-25T20:25Z",
+              "season_type": 2,
               "scored": 21,
               "allowed": 35
             },
             {
               "date": "2026-10-18T20:25Z",
+              "season_type": 2,
               "scored": 30,
               "allowed": 33
             },
             {
               "date": "2026-10-11T17:00Z",
+              "season_type": 2,
               "scored": 17,
               "allowed": 45
             },
             {
               "date": "2026-10-04T20:25Z",
+              "season_type": 2,
               "scored": 27,
               "allowed": 30
             },
             {
               "date": "2026-09-27T20:25Z",
+              "season_type": 2,
               "scored": 35,
               "allowed": 27
             },
             {
               "date": "2026-09-20T20:05Z",
+              "season_type": 2,
               "scored": 26,
               "allowed": 14
             },
             {
               "date": "2026-09-13T20:25Z",
+              "season_type": 2,
               "scored": 27,
               "allowed": 13
-            },
-            {
-              "date": "2026-08-28T00:00Z",
-              "scored": 12,
-              "allowed": 18
-            },
-            {
-              "date": "2026-08-21T00:00Z",
-              "scored": 22,
-              "allowed": 20
-            },
-            {
-              "date": "2026-08-14T00:00Z",
-              "scored": 14,
-              "allowed": 27
             }
           ]
         }
@@ -2620,57 +2668,49 @@
       "teams": [
         {
           "team": "San Francisco 49ers",
-          "sample_size": 10,
+          "sample_size": 7,
           "score_history": [
             {
               "date": "2026-10-25T17:00Z",
+              "season_type": 2,
               "scored": 20,
               "allowed": 29
             },
             {
               "date": "2026-10-20T00:15Z",
+              "season_type": 2,
               "scored": 23,
               "allowed": 17
             },
             {
               "date": "2026-10-11T20:25Z",
+              "season_type": 2,
               "scored": 32,
               "allowed": 29
             },
             {
               "date": "2026-10-04T20:25Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 14
             },
             {
               "date": "2026-09-27T20:05Z",
+              "season_type": 2,
               "scored": 36,
               "allowed": 30
             },
             {
               "date": "2026-09-20T20:25Z",
+              "season_type": 2,
               "scored": 35,
               "allowed": 13
             },
             {
               "date": "2026-09-11T00:35Z",
+              "season_type": 2,
               "scored": 27,
               "allowed": 7
-            },
-            {
-              "date": "2026-08-28T00:00Z",
-              "scored": 18,
-              "allowed": 12
-            },
-            {
-              "date": "2026-08-21T02:00Z",
-              "scored": 41,
-              "allowed": 17
-            },
-            {
-              "date": "2026-08-14T01:00Z",
-              "scored": 13,
-              "allowed": 19
             }
           ]
         },
@@ -2680,41 +2720,49 @@
           "score_history": [
             {
               "date": "2026-11-01T18:00Z",
+              "season_type": 2,
               "scored": 30,
               "allowed": 33
             },
             {
               "date": "2026-10-27T00:15Z",
+              "season_type": 2,
               "scored": 38,
               "allowed": 21
             },
             {
               "date": "2026-10-19T00:20Z",
+              "season_type": 2,
               "scored": 13,
               "allowed": 23
             },
             {
               "date": "2026-10-09T00:15Z",
+              "season_type": 2,
               "scored": 16,
               "allowed": 24
             },
             {
               "date": "2026-10-04T17:00Z",
+              "season_type": 2,
               "scored": 34,
               "allowed": 30
             },
             {
               "date": "2026-09-27T20:25Z",
+              "season_type": 2,
               "scored": 31,
               "allowed": 34
             },
             {
               "date": "2026-09-20T20:25Z",
+              "season_type": 2,
               "scored": 37,
               "allowed": 20
             },
             {
               "date": "2026-09-14T00:20Z",
+              "season_type": 2,
               "scored": 20,
               "allowed": 28
             }
@@ -2731,103 +2779,103 @@
       "teams": [
         {
           "team": "Pittsburgh Steelers",
-          "sample_size": 10,
+          "sample_size": 8,
           "score_history": [
             {
               "date": "2026-11-01T18:00Z",
+              "season_type": 2,
               "scored": 27,
               "allowed": 6
             },
             {
               "date": "2026-10-25T13:30Z",
+              "season_type": 2,
               "scored": 16,
               "allowed": 10
             },
             {
               "date": "2026-10-18T17:00Z",
+              "season_type": 2,
               "scored": 26,
               "allowed": 19
             },
             {
               "date": "2026-10-11T17:00Z",
+              "season_type": 2,
               "scored": 34,
               "allowed": 22
             },
             {
               "date": "2026-10-02T00:15Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 27
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 30,
               "allowed": 27
             },
             {
               "date": "2026-09-20T17:00Z",
+              "season_type": 2,
               "scored": 3,
               "allowed": 20
             },
             {
               "date": "2026-09-13T17:00Z",
+              "season_type": 2,
               "scored": 20,
               "allowed": 13
-            },
-            {
-              "date": "2026-08-27T23:00Z",
-              "scored": 27,
-              "allowed": 28
-            },
-            {
-              "date": "2026-08-13T23:00Z",
-              "scored": 28,
-              "allowed": 9
             }
           ]
         },
         {
           "team": "Cincinnati Bengals",
-          "sample_size": 8,
+          "sample_size": 7,
           "score_history": [
             {
               "date": "2026-11-01T18:00Z",
+              "season_type": 2,
               "scored": 43,
               "allowed": 36
             },
             {
               "date": "2026-10-25T17:00Z",
+              "season_type": 2,
               "scored": 35,
               "allowed": 13
             },
             {
               "date": "2026-10-11T17:00Z",
+              "season_type": 2,
               "scored": 31,
               "allowed": 24
             },
             {
               "date": "2026-10-04T17:00Z",
+              "season_type": 2,
               "scored": 17,
               "allowed": 22
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 27,
               "allowed": 30
             },
             {
               "date": "2026-09-20T17:00Z",
+              "season_type": 2,
               "scored": 20,
               "allowed": 6
             },
             {
               "date": "2026-09-13T17:00Z",
+              "season_type": 2,
               "scored": 33,
               "allowed": 27
-            },
-            {
-              "date": "2026-08-13T23:00Z",
-              "scored": 16,
-              "allowed": 14
             }
           ]
         }
@@ -2842,57 +2890,49 @@
       "teams": [
         {
           "team": "Los Angeles Chargers",
-          "sample_size": 10,
+          "sample_size": 7,
           "score_history": [
             {
               "date": "2026-11-01T21:05Z",
+              "season_type": 2,
               "scored": 9,
               "allowed": 24
             },
             {
               "date": "2026-10-18T20:25Z",
+              "season_type": 2,
               "scored": 6,
               "allowed": 22
             },
             {
               "date": "2026-10-11T20:05Z",
+              "season_type": 2,
               "scored": 17,
               "allowed": 23
             },
             {
               "date": "2026-10-04T20:25Z",
+              "season_type": 2,
               "scored": 23,
               "allowed": 30
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 16,
               "allowed": 24
             },
             {
               "date": "2026-09-20T20:05Z",
+              "season_type": 2,
               "scored": 14,
               "allowed": 26
             },
             {
               "date": "2026-09-13T20:25Z",
+              "season_type": 2,
               "scored": 14,
               "allowed": 26
-            },
-            {
-              "date": "2026-08-28T02:00Z",
-              "scored": 18,
-              "allowed": 20
-            },
-            {
-              "date": "2026-08-21T02:00Z",
-              "scored": 17,
-              "allowed": 41
-            },
-            {
-              "date": "2026-08-14T00:00Z",
-              "scored": 27,
-              "allowed": 7
             }
           ]
         },
@@ -2902,46 +2942,55 @@
           "score_history": [
             {
               "date": "2026-11-06T01:15Z",
+              "season_type": 2,
               "scored": 10,
               "allowed": 33
             },
             {
               "date": "2026-11-01T18:00Z",
+              "season_type": 2,
               "scored": 10,
               "allowed": 36
             },
             {
               "date": "2026-10-25T17:00Z",
+              "season_type": 2,
               "scored": 13,
               "allowed": 35
             },
             {
               "date": "2026-10-18T17:00Z",
+              "season_type": 2,
               "scored": 10,
               "allowed": 13
             },
             {
               "date": "2026-10-12T00:20Z",
+              "season_type": 2,
               "scored": 30,
               "allowed": 23
             },
             {
               "date": "2026-10-04T17:00Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 18
             },
             {
               "date": "2026-09-27T20:25Z",
+              "season_type": 2,
               "scored": 34,
               "allowed": 31
             },
             {
               "date": "2026-09-20T17:00Z",
+              "season_type": 2,
               "scored": 17,
               "allowed": 24
             },
             {
               "date": "2026-09-13T17:00Z",
+              "season_type": 2,
               "scored": 41,
               "allowed": 23
             }
@@ -2958,103 +3007,103 @@
       "teams": [
         {
           "team": "Indianapolis Colts",
-          "sample_size": 9,
+          "sample_size": 8,
           "score_history": [
             {
               "date": "2026-11-01T18:00Z",
+              "season_type": 2,
               "scored": 7,
               "allowed": 42
             },
             {
               "date": "2026-10-25T17:00Z",
+              "season_type": 2,
               "scored": 10,
               "allowed": 16
             },
             {
               "date": "2026-10-18T17:00Z",
+              "season_type": 2,
               "scored": 20,
               "allowed": 26
             },
             {
               "date": "2026-10-11T17:00Z",
+              "season_type": 2,
               "scored": 22,
               "allowed": 34
             },
             {
               "date": "2026-10-04T13:30Z",
+              "season_type": 2,
               "scored": 30,
               "allowed": 13
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 19,
               "allowed": 17
             },
             {
               "date": "2026-09-21T00:20Z",
+              "season_type": 2,
               "scored": 30,
               "allowed": 33
             },
             {
               "date": "2026-09-13T17:00Z",
+              "season_type": 2,
               "scored": 23,
               "allowed": 41
-            },
-            {
-              "date": "2026-08-13T23:30Z",
-              "scored": 13,
-              "allowed": 13
             }
           ]
         },
         {
           "team": "Houston Texans",
-          "sample_size": 9,
+          "sample_size": 7,
           "score_history": [
             {
               "date": "2026-10-25T17:00Z",
+              "season_type": 2,
               "scored": 21,
               "allowed": 27
             },
             {
               "date": "2026-10-18T13:30Z",
+              "season_type": 2,
               "scored": 34,
               "allowed": 31
             },
             {
               "date": "2026-10-11T17:00Z",
+              "season_type": 2,
               "scored": 26,
               "allowed": 3
             },
             {
               "date": "2026-10-04T17:00Z",
+              "season_type": 2,
               "scored": 30,
               "allowed": 34
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 17,
               "allowed": 19
             },
             {
               "date": "2026-09-20T17:00Z",
+              "season_type": 2,
               "scored": 6,
               "allowed": 20
             },
             {
               "date": "2026-09-13T17:00Z",
+              "season_type": 2,
               "scored": 31,
               "allowed": 36
-            },
-            {
-              "date": "2026-08-21T00:00Z",
-              "scored": 20,
-              "allowed": 22
-            },
-            {
-              "date": "2026-08-14T00:00Z",
-              "scored": 7,
-              "allowed": 27
             }
           ]
         }
@@ -3069,57 +3118,55 @@
       "teams": [
         {
           "team": "Arizona Cardinals",
-          "sample_size": 10,
+          "sample_size": 8,
           "score_history": [
             {
               "date": "2026-11-01T18:00Z",
+              "season_type": 2,
               "scored": 33,
               "allowed": 30
             },
             {
               "date": "2026-10-25T20:05Z",
+              "season_type": 2,
               "scored": 16,
               "allowed": 30
             },
             {
               "date": "2026-10-18T20:05Z",
+              "season_type": 2,
               "scored": 18,
               "allowed": 16
             },
             {
               "date": "2026-10-11T20:25Z",
+              "season_type": 2,
               "scored": 21,
               "allowed": 45
             },
             {
               "date": "2026-10-04T17:00Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 36
             },
             {
               "date": "2026-09-27T20:05Z",
+              "season_type": 2,
               "scored": 30,
               "allowed": 36
             },
             {
               "date": "2026-09-20T20:25Z",
+              "season_type": 2,
               "scored": 7,
               "allowed": 31
             },
             {
               "date": "2026-09-13T20:25Z",
+              "season_type": 2,
               "scored": 26,
               "allowed": 14
-            },
-            {
-              "date": "2026-08-14T00:00Z",
-              "scored": 27,
-              "allowed": 14
-            },
-            {
-              "date": "2026-08-07T00:00Z",
-              "scored": 30,
-              "allowed": 33
             }
           ]
         },
@@ -3129,36 +3176,43 @@
           "score_history": [
             {
               "date": "2026-11-01T21:25Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 28
             },
             {
               "date": "2026-10-26T00:20Z",
+              "season_type": 2,
               "scored": 3,
               "allowed": 20
             },
             {
               "date": "2026-10-18T20:25Z",
+              "season_type": 2,
               "scored": 22,
               "allowed": 6
             },
             {
               "date": "2026-10-04T20:25Z",
+              "season_type": 2,
               "scored": 30,
               "allowed": 27
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 10
             },
             {
               "date": "2026-09-21T00:20Z",
+              "season_type": 2,
               "scored": 33,
               "allowed": 30
             },
             {
               "date": "2026-09-15T00:15Z",
+              "season_type": 2,
               "scored": 31,
               "allowed": 10
             }
@@ -3179,46 +3233,55 @@
           "score_history": [
             {
               "date": "2026-11-06T01:15Z",
+              "season_type": 2,
               "scored": 10,
               "allowed": 33
             },
             {
               "date": "2026-11-01T18:00Z",
+              "season_type": 2,
               "scored": 10,
               "allowed": 36
             },
             {
               "date": "2026-10-25T17:00Z",
+              "season_type": 2,
               "scored": 13,
               "allowed": 35
             },
             {
               "date": "2026-10-18T17:00Z",
+              "season_type": 2,
               "scored": 10,
               "allowed": 13
             },
             {
               "date": "2026-10-12T00:20Z",
+              "season_type": 2,
               "scored": 30,
               "allowed": 23
             },
             {
               "date": "2026-10-04T17:00Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 18
             },
             {
               "date": "2026-09-27T20:25Z",
+              "season_type": 2,
               "scored": 34,
               "allowed": 31
             },
             {
               "date": "2026-09-20T17:00Z",
+              "season_type": 2,
               "scored": 17,
               "allowed": 24
             },
             {
               "date": "2026-09-13T17:00Z",
+              "season_type": 2,
               "scored": 41,
               "allowed": 23
             }
@@ -3226,47 +3289,49 @@
         },
         {
           "team": "Carolina Panthers",
-          "sample_size": 8,
+          "sample_size": 7,
           "score_history": [
             {
               "date": "2026-10-30T00:15Z",
+              "season_type": 2,
               "scored": 19,
               "allowed": 27
             },
             {
               "date": "2026-10-25T17:00Z",
+              "season_type": 2,
               "scored": 13,
               "allowed": 43
             },
             {
               "date": "2026-10-18T17:00Z",
+              "season_type": 2,
               "scored": 25,
               "allowed": 14
             },
             {
               "date": "2026-10-05T00:20Z",
+              "season_type": 2,
               "scored": 32,
               "allowed": 26
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 18,
               "allowed": 21
             },
             {
               "date": "2026-09-20T17:00Z",
+              "season_type": 2,
               "scored": 34,
               "allowed": 3
             },
             {
               "date": "2026-09-13T17:00Z",
+              "season_type": 2,
               "scored": 37,
               "allowed": 59
-            },
-            {
-              "date": "2026-08-07T00:00Z",
-              "scored": 33,
-              "allowed": 30
             }
           ]
         }
@@ -3285,41 +3350,49 @@
           "score_history": [
             {
               "date": "2026-11-06T01:15Z",
+              "season_type": 2,
               "scored": 33,
               "allowed": 10
             },
             {
               "date": "2026-11-01T18:00Z",
+              "season_type": 2,
               "scored": 42,
               "allowed": 7
             },
             {
               "date": "2026-10-18T13:30Z",
+              "season_type": 2,
               "scored": 31,
               "allowed": 34
             },
             {
               "date": "2026-10-11T13:30Z",
+              "season_type": 2,
               "scored": 19,
               "allowed": 17
             },
             {
               "date": "2026-10-04T17:00Z",
+              "season_type": 2,
               "scored": 22,
               "allowed": 17
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 35,
               "allowed": 6
             },
             {
               "date": "2026-09-20T20:05Z",
+              "season_type": 2,
               "scored": 13,
               "allowed": 20
             },
             {
               "date": "2026-09-13T17:00Z",
+              "season_type": 2,
               "scored": 34,
               "allowed": 10
             }
@@ -3331,36 +3404,43 @@
           "score_history": [
             {
               "date": "2026-10-25T17:00Z",
+              "season_type": 2,
               "scored": 27,
               "allowed": 21
             },
             {
               "date": "2026-10-18T17:00Z",
+              "season_type": 2,
               "scored": 27,
               "allowed": 34
             },
             {
               "date": "2026-10-11T17:00Z",
+              "season_type": 2,
               "scored": 27,
               "allowed": 27
             },
             {
               "date": "2026-10-04T17:00Z",
+              "season_type": 2,
               "scored": 36,
               "allowed": 24
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 12,
               "allowed": 7
             },
             {
               "date": "2026-09-22T00:15Z",
+              "season_type": 2,
               "scored": 6,
               "allowed": 28
             },
             {
               "date": "2026-09-14T00:20Z",
+              "season_type": 2,
               "scored": 28,
               "allowed": 20
             }
@@ -3381,36 +3461,43 @@
           "score_history": [
             {
               "date": "2026-11-01T21:25Z",
+              "season_type": 2,
               "scored": 19,
               "allowed": 24
             },
             {
               "date": "2026-10-25T17:00Z",
+              "season_type": 2,
               "scored": 28,
               "allowed": 25
             },
             {
               "date": "2026-10-11T17:00Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 31
             },
             {
               "date": "2026-10-04T20:05Z",
+              "season_type": 2,
               "scored": 10,
               "allowed": 15
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 10,
               "allowed": 24
             },
             {
               "date": "2026-09-20T20:25Z",
+              "season_type": 2,
               "scored": 13,
               "allowed": 35
             },
             {
               "date": "2026-09-13T20:25Z",
+              "season_type": 2,
               "scored": 13,
               "allowed": 27
             }
@@ -3418,47 +3505,49 @@
         },
         {
           "team": "Buffalo Bills",
-          "sample_size": 8,
+          "sample_size": 7,
           "score_history": [
             {
               "date": "2026-11-01T18:00Z",
+              "season_type": 2,
               "scored": 36,
               "allowed": 10
             },
             {
               "date": "2026-10-18T20:25Z",
+              "season_type": 2,
               "scored": 33,
               "allowed": 30
             },
             {
               "date": "2026-10-13T00:15Z",
+              "season_type": 2,
               "scored": 37,
               "allowed": 34
             },
             {
               "date": "2026-10-04T17:00Z",
+              "season_type": 2,
               "scored": 26,
               "allowed": 29
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 16
             },
             {
               "date": "2026-09-18T00:15Z",
+              "season_type": 2,
               "scored": 41,
               "allowed": 31
             },
             {
               "date": "2026-09-13T17:00Z",
+              "season_type": 2,
               "scored": 36,
               "allowed": 31
-            },
-            {
-              "date": "2026-08-27T23:00Z",
-              "scored": 28,
-              "allowed": 27
             }
           ]
         }
@@ -3477,36 +3566,43 @@
           "score_history": [
             {
               "date": "2026-10-25T13:30Z",
+              "season_type": 2,
               "scored": 10,
               "allowed": 16
             },
             {
               "date": "2026-10-18T17:00Z",
+              "season_type": 2,
               "scored": 34,
               "allowed": 27
             },
             {
               "date": "2026-10-11T17:00Z",
+              "season_type": 2,
               "scored": 13,
               "allowed": 23
             },
             {
               "date": "2026-10-06T00:15Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 45
             },
             {
               "date": "2026-09-27T20:25Z",
+              "season_type": 2,
               "scored": 27,
               "allowed": 35
             },
             {
               "date": "2026-09-20T17:00Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 17
             },
             {
               "date": "2026-09-13T17:00Z",
+              "season_type": 2,
               "scored": 30,
               "allowed": 31
             }
@@ -3518,41 +3614,49 @@
           "score_history": [
             {
               "date": "2026-11-03T01:15Z",
+              "season_type": 2,
               "scored": 34,
               "allowed": 17
             },
             {
               "date": "2026-10-23T00:15Z",
+              "season_type": 2,
               "scored": 30,
               "allowed": 24
             },
             {
               "date": "2026-10-18T17:00Z",
+              "season_type": 2,
               "scored": 31,
               "allowed": 23
             },
             {
               "date": "2026-10-11T17:00Z",
+              "season_type": 2,
               "scored": 7,
               "allowed": 31
             },
             {
               "date": "2026-10-04T17:00Z",
+              "season_type": 2,
               "scored": 23,
               "allowed": 12
             },
             {
               "date": "2026-09-29T00:15Z",
+              "season_type": 2,
               "scored": 27,
               "allowed": 7
             },
             {
               "date": "2026-09-20T17:00Z",
+              "season_type": 2,
               "scored": 3,
               "allowed": 9
             },
             {
               "date": "2026-09-13T17:00Z",
+              "season_type": 2,
               "scored": 59,
               "allowed": 37
             }
@@ -3573,41 +3677,49 @@
           "score_history": [
             {
               "date": "2026-11-01T18:00Z",
+              "season_type": 2,
               "scored": 16,
               "allowed": 0
             },
             {
               "date": "2026-10-25T17:00Z",
+              "season_type": 2,
               "scored": 43,
               "allowed": 13
             },
             {
               "date": "2026-10-18T17:00Z",
+              "season_type": 2,
               "scored": 19,
               "allowed": 26
             },
             {
               "date": "2026-10-09T00:15Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 16
             },
             {
               "date": "2026-10-04T17:00Z",
+              "season_type": 2,
               "scored": 14,
               "allowed": 17
             },
             {
               "date": "2026-09-27T20:05Z",
+              "season_type": 2,
               "scored": 16,
               "allowed": 23
             },
             {
               "date": "2026-09-20T17:00Z",
+              "season_type": 2,
               "scored": 19,
               "allowed": 23
             },
             {
               "date": "2026-09-13T17:00Z",
+              "season_type": 2,
               "scored": 27,
               "allowed": 33
             }
@@ -3615,47 +3727,49 @@
         },
         {
           "team": "Detroit Lions",
-          "sample_size": 8,
+          "sample_size": 7,
           "score_history": [
             {
               "date": "2026-11-01T18:00Z",
+              "season_type": 2,
               "scored": 19,
               "allowed": 15
             },
             {
               "date": "2026-10-25T20:25Z",
+              "season_type": 2,
               "scored": 20,
               "allowed": 17
             },
             {
               "date": "2026-10-11T20:25Z",
+              "season_type": 2,
               "scored": 45,
               "allowed": 21
             },
             {
               "date": "2026-10-05T00:20Z",
+              "season_type": 2,
               "scored": 26,
               "allowed": 32
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 31,
               "allowed": 24
             },
             {
               "date": "2026-09-18T00:15Z",
+              "season_type": 2,
               "scored": 31,
               "allowed": 41
             },
             {
               "date": "2026-09-13T17:00Z",
+              "season_type": 2,
               "scored": 31,
               "allowed": 30
-            },
-            {
-              "date": "2026-08-13T23:00Z",
-              "scored": 14,
-              "allowed": 16
             }
           ]
         }
@@ -3670,57 +3784,55 @@
       "teams": [
         {
           "team": "Tennessee Titans",
-          "sample_size": 10,
+          "sample_size": 8,
           "score_history": [
             {
               "date": "2026-11-01T18:00Z",
+              "season_type": 2,
               "scored": 36,
               "allowed": 43
             },
             {
               "date": "2026-10-25T17:00Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 27
             },
             {
               "date": "2026-10-18T17:00Z",
+              "season_type": 2,
               "scored": 26,
               "allowed": 20
             },
             {
               "date": "2026-10-11T17:00Z",
+              "season_type": 2,
               "scored": 3,
               "allowed": 26
             },
             {
               "date": "2026-10-04T17:00Z",
+              "season_type": 2,
               "scored": 18,
               "allowed": 24
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 7,
               "allowed": 12
             },
             {
               "date": "2026-09-20T17:00Z",
+              "season_type": 2,
               "scored": 20,
               "allowed": 24
             },
             {
               "date": "2026-09-13T17:00Z",
+              "season_type": 2,
               "scored": 10,
               "allowed": 23
-            },
-            {
-              "date": "2026-08-24T00:00Z",
-              "scored": 19,
-              "allowed": 16
-            },
-            {
-              "date": "2026-08-14T01:00Z",
-              "scored": 19,
-              "allowed": 13
             }
           ]
         },
@@ -3730,41 +3842,49 @@
           "score_history": [
             {
               "date": "2026-11-01T18:00Z",
+              "season_type": 2,
               "scored": 30,
               "allowed": 33
             },
             {
               "date": "2026-10-27T00:15Z",
+              "season_type": 2,
               "scored": 38,
               "allowed": 21
             },
             {
               "date": "2026-10-19T00:20Z",
+              "season_type": 2,
               "scored": 13,
               "allowed": 23
             },
             {
               "date": "2026-10-09T00:15Z",
+              "season_type": 2,
               "scored": 16,
               "allowed": 24
             },
             {
               "date": "2026-10-04T17:00Z",
+              "season_type": 2,
               "scored": 34,
               "allowed": 30
             },
             {
               "date": "2026-09-27T20:25Z",
+              "season_type": 2,
               "scored": 31,
               "allowed": 34
             },
             {
               "date": "2026-09-20T20:25Z",
+              "season_type": 2,
               "scored": 37,
               "allowed": 20
             },
             {
               "date": "2026-09-14T00:20Z",
+              "season_type": 2,
               "scored": 20,
               "allowed": 28
             }
@@ -3785,41 +3905,49 @@
           "score_history": [
             {
               "date": "2026-11-01T18:00Z",
+              "season_type": 2,
               "scored": 33,
               "allowed": 38
             },
             {
               "date": "2026-10-25T17:00Z",
+              "season_type": 2,
               "scored": 25,
               "allowed": 28
             },
             {
               "date": "2026-10-18T17:00Z",
+              "season_type": 2,
               "scored": 19,
               "allowed": 26
             },
             {
               "date": "2026-10-11T17:00Z",
+              "season_type": 2,
               "scored": 17,
               "allowed": 12
             },
             {
               "date": "2026-10-04T17:00Z",
+              "season_type": 2,
               "scored": 12,
               "allowed": 23
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 31
             },
             {
               "date": "2026-09-20T17:00Z",
+              "season_type": 2,
               "scored": 17,
               "allowed": 20
             },
             {
               "date": "2026-09-13T17:00Z",
+              "season_type": 2,
               "scored": 23,
               "allowed": 10
             }
@@ -3827,57 +3955,49 @@
         },
         {
           "team": "Los Angeles Chargers",
-          "sample_size": 10,
+          "sample_size": 7,
           "score_history": [
             {
               "date": "2026-11-01T21:05Z",
+              "season_type": 2,
               "scored": 9,
               "allowed": 24
             },
             {
               "date": "2026-10-18T20:25Z",
+              "season_type": 2,
               "scored": 6,
               "allowed": 22
             },
             {
               "date": "2026-10-11T20:05Z",
+              "season_type": 2,
               "scored": 17,
               "allowed": 23
             },
             {
               "date": "2026-10-04T20:25Z",
+              "season_type": 2,
               "scored": 23,
               "allowed": 30
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 16,
               "allowed": 24
             },
             {
               "date": "2026-09-20T20:05Z",
+              "season_type": 2,
               "scored": 14,
               "allowed": 26
             },
             {
               "date": "2026-09-13T20:25Z",
+              "season_type": 2,
               "scored": 14,
               "allowed": 26
-            },
-            {
-              "date": "2026-08-28T02:00Z",
-              "scored": 18,
-              "allowed": 20
-            },
-            {
-              "date": "2026-08-21T02:00Z",
-              "scored": 17,
-              "allowed": 41
-            },
-            {
-              "date": "2026-08-14T00:00Z",
-              "scored": 27,
-              "allowed": 7
             }
           ]
         }
@@ -3892,62 +4012,55 @@
       "teams": [
         {
           "team": "Las Vegas Raiders",
-          "sample_size": 11,
+          "sample_size": 8,
           "score_history": [
             {
               "date": "2026-11-01T18:00Z",
+              "season_type": 2,
               "scored": 38,
               "allowed": 33
             },
             {
               "date": "2026-10-25T20:25Z",
+              "season_type": 2,
               "scored": 21,
               "allowed": 35
             },
             {
               "date": "2026-10-18T20:25Z",
+              "season_type": 2,
               "scored": 30,
               "allowed": 33
             },
             {
               "date": "2026-10-11T17:00Z",
+              "season_type": 2,
               "scored": 17,
               "allowed": 45
             },
             {
               "date": "2026-10-04T20:25Z",
+              "season_type": 2,
               "scored": 27,
               "allowed": 30
             },
             {
               "date": "2026-09-27T20:25Z",
+              "season_type": 2,
               "scored": 35,
               "allowed": 27
             },
             {
               "date": "2026-09-20T20:05Z",
+              "season_type": 2,
               "scored": 26,
               "allowed": 14
             },
             {
               "date": "2026-09-13T20:25Z",
+              "season_type": 2,
               "scored": 27,
               "allowed": 13
-            },
-            {
-              "date": "2026-08-28T00:00Z",
-              "scored": 12,
-              "allowed": 18
-            },
-            {
-              "date": "2026-08-21T00:00Z",
-              "scored": 22,
-              "allowed": 20
-            },
-            {
-              "date": "2026-08-14T00:00Z",
-              "scored": 14,
-              "allowed": 27
             }
           ]
         },
@@ -3957,41 +4070,49 @@
           "score_history": [
             {
               "date": "2026-11-01T21:25Z",
+              "season_type": 2,
               "scored": 28,
               "allowed": 24
             },
             {
               "date": "2026-10-25T20:05Z",
+              "season_type": 2,
               "scored": 30,
               "allowed": 16
             },
             {
               "date": "2026-10-16T00:15Z",
+              "season_type": 2,
               "scored": 17,
               "allowed": 14
             },
             {
               "date": "2026-10-11T20:05Z",
+              "season_type": 2,
               "scored": 23,
               "allowed": 17
             },
             {
               "date": "2026-10-04T20:25Z",
+              "season_type": 2,
               "scored": 14,
               "allowed": 24
             },
             {
               "date": "2026-09-28T00:20Z",
+              "season_type": 2,
               "scored": 30,
               "allowed": 26
             },
             {
               "date": "2026-09-20T20:05Z",
+              "season_type": 2,
               "scored": 20,
               "allowed": 13
             },
             {
               "date": "2026-09-15T00:15Z",
+              "season_type": 2,
               "scored": 10,
               "allowed": 31
             }
@@ -4008,57 +4129,55 @@
       "teams": [
         {
           "team": "Pittsburgh Steelers",
-          "sample_size": 10,
+          "sample_size": 8,
           "score_history": [
             {
               "date": "2026-11-01T18:00Z",
+              "season_type": 2,
               "scored": 27,
               "allowed": 6
             },
             {
               "date": "2026-10-25T13:30Z",
+              "season_type": 2,
               "scored": 16,
               "allowed": 10
             },
             {
               "date": "2026-10-18T17:00Z",
+              "season_type": 2,
               "scored": 26,
               "allowed": 19
             },
             {
               "date": "2026-10-11T17:00Z",
+              "season_type": 2,
               "scored": 34,
               "allowed": 22
             },
             {
               "date": "2026-10-02T00:15Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 27
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 30,
               "allowed": 27
             },
             {
               "date": "2026-09-20T17:00Z",
+              "season_type": 2,
               "scored": 3,
               "allowed": 20
             },
             {
               "date": "2026-09-13T17:00Z",
+              "season_type": 2,
               "scored": 20,
               "allowed": 13
-            },
-            {
-              "date": "2026-08-27T23:00Z",
-              "scored": 27,
-              "allowed": 28
-            },
-            {
-              "date": "2026-08-13T23:00Z",
-              "scored": 28,
-              "allowed": 9
             }
           ]
         },
@@ -4068,41 +4187,49 @@
           "score_history": [
             {
               "date": "2026-11-02T01:20Z",
+              "season_type": 2,
               "scored": 10,
               "allowed": 27
             },
             {
               "date": "2026-10-27T00:15Z",
+              "season_type": 2,
               "scored": 21,
               "allowed": 38
             },
             {
               "date": "2026-10-18T17:00Z",
+              "season_type": 2,
               "scored": 14,
               "allowed": 25
             },
             {
               "date": "2026-10-11T13:30Z",
+              "season_type": 2,
               "scored": 17,
               "allowed": 19
             },
             {
               "date": "2026-10-04T17:00Z",
+              "season_type": 2,
               "scored": 20,
               "allowed": 24
             },
             {
               "date": "2026-09-29T00:15Z",
+              "season_type": 2,
               "scored": 7,
               "allowed": 27
             },
             {
               "date": "2026-09-20T17:00Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 20
             },
             {
               "date": "2026-09-13T20:25Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 22
             }
@@ -4123,36 +4250,43 @@
           "score_history": [
             {
               "date": "2026-11-01T18:00Z",
+              "season_type": 2,
               "scored": 15,
               "allowed": 19
             },
             {
               "date": "2026-10-25T17:00Z",
+              "season_type": 2,
               "scored": 16,
               "allowed": 10
             },
             {
               "date": "2026-10-11T17:00Z",
+              "season_type": 2,
               "scored": 23,
               "allowed": 13
             },
             {
               "date": "2026-10-04T20:05Z",
+              "season_type": 2,
               "scored": 15,
               "allowed": 10
             },
             {
               "date": "2026-09-27T20:05Z",
+              "season_type": 2,
               "scored": 23,
               "allowed": 16
             },
             {
               "date": "2026-09-20T17:00Z",
+              "season_type": 2,
               "scored": 9,
               "allowed": 3
             },
             {
               "date": "2026-09-13T20:25Z",
+              "season_type": 2,
               "scored": 39,
               "allowed": 22
             }
@@ -4160,57 +4294,49 @@
         },
         {
           "team": "San Francisco 49ers",
-          "sample_size": 10,
+          "sample_size": 7,
           "score_history": [
             {
               "date": "2026-10-25T17:00Z",
+              "season_type": 2,
               "scored": 20,
               "allowed": 29
             },
             {
               "date": "2026-10-20T00:15Z",
+              "season_type": 2,
               "scored": 23,
               "allowed": 17
             },
             {
               "date": "2026-10-11T20:25Z",
+              "season_type": 2,
               "scored": 32,
               "allowed": 29
             },
             {
               "date": "2026-10-04T20:25Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 14
             },
             {
               "date": "2026-09-27T20:05Z",
+              "season_type": 2,
               "scored": 36,
               "allowed": 30
             },
             {
               "date": "2026-09-20T20:25Z",
+              "season_type": 2,
               "scored": 35,
               "allowed": 13
             },
             {
               "date": "2026-09-11T00:35Z",
+              "season_type": 2,
               "scored": 27,
               "allowed": 7
-            },
-            {
-              "date": "2026-08-28T00:00Z",
-              "scored": 18,
-              "allowed": 12
-            },
-            {
-              "date": "2026-08-21T02:00Z",
-              "scored": 41,
-              "allowed": 17
-            },
-            {
-              "date": "2026-08-14T01:00Z",
-              "scored": 13,
-              "allowed": 19
             }
           ]
         }
@@ -4225,47 +4351,49 @@
       "teams": [
         {
           "team": "Cincinnati Bengals",
-          "sample_size": 8,
+          "sample_size": 7,
           "score_history": [
             {
               "date": "2026-11-01T18:00Z",
+              "season_type": 2,
               "scored": 43,
               "allowed": 36
             },
             {
               "date": "2026-10-25T17:00Z",
+              "season_type": 2,
               "scored": 35,
               "allowed": 13
             },
             {
               "date": "2026-10-11T17:00Z",
+              "season_type": 2,
               "scored": 31,
               "allowed": 24
             },
             {
               "date": "2026-10-04T17:00Z",
+              "season_type": 2,
               "scored": 17,
               "allowed": 22
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 27,
               "allowed": 30
             },
             {
               "date": "2026-09-20T17:00Z",
+              "season_type": 2,
               "scored": 20,
               "allowed": 6
             },
             {
               "date": "2026-09-13T17:00Z",
+              "season_type": 2,
               "scored": 33,
               "allowed": 27
-            },
-            {
-              "date": "2026-08-13T23:00Z",
-              "scored": 16,
-              "allowed": 14
             }
           ]
         },
@@ -4275,36 +4403,43 @@
           "score_history": [
             {
               "date": "2026-11-02T01:20Z",
+              "season_type": 2,
               "scored": 27,
               "allowed": 10
             },
             {
               "date": "2026-10-20T00:15Z",
+              "season_type": 2,
               "scored": 17,
               "allowed": 23
             },
             {
               "date": "2026-10-11T17:00Z",
+              "season_type": 2,
               "scored": 27,
               "allowed": 27
             },
             {
               "date": "2026-10-04T13:30Z",
+              "season_type": 2,
               "scored": 13,
               "allowed": 30
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 33,
               "allowed": 31
             },
             {
               "date": "2026-09-20T20:25Z",
+              "season_type": 2,
               "scored": 20,
               "allowed": 37
             },
             {
               "date": "2026-09-13T20:25Z",
+              "season_type": 2,
               "scored": 22,
               "allowed": 24
             }
@@ -4321,103 +4456,109 @@
       "teams": [
         {
           "team": "Green Bay Packers",
-          "sample_size": 9,
+          "sample_size": 8,
           "score_history": [
             {
               "date": "2026-10-30T00:15Z",
+              "season_type": 2,
               "scored": 27,
               "allowed": 19
             },
             {
               "date": "2026-10-25T20:25Z",
+              "season_type": 2,
               "scored": 17,
               "allowed": 20
             },
             {
               "date": "2026-10-19T00:20Z",
+              "season_type": 2,
               "scored": 23,
               "allowed": 13
             },
             {
               "date": "2026-10-11T17:00Z",
+              "season_type": 2,
               "scored": 31,
               "allowed": 7
             },
             {
               "date": "2026-10-04T17:00Z",
+              "season_type": 2,
               "scored": 17,
               "allowed": 14
             },
             {
               "date": "2026-09-25T00:15Z",
+              "season_type": 2,
               "scored": 14,
               "allowed": 35
             },
             {
               "date": "2026-09-20T17:00Z",
+              "season_type": 2,
               "scored": 20,
               "allowed": 17
             },
             {
               "date": "2026-09-13T20:25Z",
+              "season_type": 2,
               "scored": 22,
               "allowed": 39
-            },
-            {
-              "date": "2026-08-13T23:00Z",
-              "scored": 9,
-              "allowed": 28
             }
           ]
         },
         {
           "team": "Los Angeles Rams",
-          "sample_size": 9,
+          "sample_size": 8,
           "score_history": [
             {
               "date": "2026-11-01T21:05Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 9
             },
             {
               "date": "2026-10-25T20:25Z",
+              "season_type": 2,
               "scored": 35,
               "allowed": 21
             },
             {
               "date": "2026-10-18T20:05Z",
+              "season_type": 2,
               "scored": 16,
               "allowed": 18
             },
             {
               "date": "2026-10-13T00:15Z",
+              "season_type": 2,
               "scored": 34,
               "allowed": 37
             },
             {
               "date": "2026-10-04T17:00Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 20
             },
             {
               "date": "2026-09-28T00:20Z",
+              "season_type": 2,
               "scored": 26,
               "allowed": 30
             },
             {
               "date": "2026-09-22T00:15Z",
+              "season_type": 2,
               "scored": 28,
               "allowed": 6
             },
             {
               "date": "2026-09-11T00:35Z",
+              "season_type": 2,
               "scored": 7,
               "allowed": 27
-            },
-            {
-              "date": "2026-08-28T02:00Z",
-              "scored": 20,
-              "allowed": 18
             }
           ]
         }
@@ -4436,41 +4577,49 @@
           "score_history": [
             {
               "date": "2026-11-03T01:15Z",
+              "season_type": 2,
               "scored": 34,
               "allowed": 17
             },
             {
               "date": "2026-10-23T00:15Z",
+              "season_type": 2,
               "scored": 30,
               "allowed": 24
             },
             {
               "date": "2026-10-18T17:00Z",
+              "season_type": 2,
               "scored": 31,
               "allowed": 23
             },
             {
               "date": "2026-10-11T17:00Z",
+              "season_type": 2,
               "scored": 7,
               "allowed": 31
             },
             {
               "date": "2026-10-04T17:00Z",
+              "season_type": 2,
               "scored": 23,
               "allowed": 12
             },
             {
               "date": "2026-09-29T00:15Z",
+              "season_type": 2,
               "scored": 27,
               "allowed": 7
             },
             {
               "date": "2026-09-20T17:00Z",
+              "season_type": 2,
               "scored": 3,
               "allowed": 9
             },
             {
               "date": "2026-09-13T17:00Z",
+              "season_type": 2,
               "scored": 59,
               "allowed": 37
             }
@@ -4478,47 +4627,49 @@
         },
         {
           "team": "Detroit Lions",
-          "sample_size": 8,
+          "sample_size": 7,
           "score_history": [
             {
               "date": "2026-11-01T18:00Z",
+              "season_type": 2,
               "scored": 19,
               "allowed": 15
             },
             {
               "date": "2026-10-25T20:25Z",
+              "season_type": 2,
               "scored": 20,
               "allowed": 17
             },
             {
               "date": "2026-10-11T20:25Z",
+              "season_type": 2,
               "scored": 45,
               "allowed": 21
             },
             {
               "date": "2026-10-05T00:20Z",
+              "season_type": 2,
               "scored": 26,
               "allowed": 32
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 31,
               "allowed": 24
             },
             {
               "date": "2026-09-18T00:15Z",
+              "season_type": 2,
               "scored": 31,
               "allowed": 41
             },
             {
               "date": "2026-09-13T17:00Z",
+              "season_type": 2,
               "scored": 31,
               "allowed": 30
-            },
-            {
-              "date": "2026-08-13T23:00Z",
-              "scored": 14,
-              "allowed": 16
             }
           ]
         }
@@ -4537,41 +4688,49 @@
           "score_history": [
             {
               "date": "2026-11-02T01:20Z",
+              "season_type": 2,
               "scored": 10,
               "allowed": 27
             },
             {
               "date": "2026-10-27T00:15Z",
+              "season_type": 2,
               "scored": 21,
               "allowed": 38
             },
             {
               "date": "2026-10-18T17:00Z",
+              "season_type": 2,
               "scored": 14,
               "allowed": 25
             },
             {
               "date": "2026-10-11T13:30Z",
+              "season_type": 2,
               "scored": 17,
               "allowed": 19
             },
             {
               "date": "2026-10-04T17:00Z",
+              "season_type": 2,
               "scored": 20,
               "allowed": 24
             },
             {
               "date": "2026-09-29T00:15Z",
+              "season_type": 2,
               "scored": 7,
               "allowed": 27
             },
             {
               "date": "2026-09-20T17:00Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 20
             },
             {
               "date": "2026-09-13T20:25Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 22
             }
@@ -4583,41 +4742,49 @@
           "score_history": [
             {
               "date": "2026-11-01T18:00Z",
+              "season_type": 2,
               "scored": 30,
               "allowed": 33
             },
             {
               "date": "2026-10-27T00:15Z",
+              "season_type": 2,
               "scored": 38,
               "allowed": 21
             },
             {
               "date": "2026-10-19T00:20Z",
+              "season_type": 2,
               "scored": 13,
               "allowed": 23
             },
             {
               "date": "2026-10-09T00:15Z",
+              "season_type": 2,
               "scored": 16,
               "allowed": 24
             },
             {
               "date": "2026-10-04T17:00Z",
+              "season_type": 2,
               "scored": 34,
               "allowed": 30
             },
             {
               "date": "2026-09-27T20:25Z",
+              "season_type": 2,
               "scored": 31,
               "allowed": 34
             },
             {
               "date": "2026-09-20T20:25Z",
+              "season_type": 2,
               "scored": 37,
               "allowed": 20
             },
             {
               "date": "2026-09-14T00:20Z",
+              "season_type": 2,
               "scored": 20,
               "allowed": 28
             }
@@ -4638,36 +4805,43 @@
           "score_history": [
             {
               "date": "2026-11-01T21:25Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 28
             },
             {
               "date": "2026-10-26T00:20Z",
+              "season_type": 2,
               "scored": 3,
               "allowed": 20
             },
             {
               "date": "2026-10-18T20:25Z",
+              "season_type": 2,
               "scored": 22,
               "allowed": 6
             },
             {
               "date": "2026-10-04T20:25Z",
+              "season_type": 2,
               "scored": 30,
               "allowed": 27
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 10
             },
             {
               "date": "2026-09-21T00:20Z",
+              "season_type": 2,
               "scored": 33,
               "allowed": 30
             },
             {
               "date": "2026-09-15T00:15Z",
+              "season_type": 2,
               "scored": 31,
               "allowed": 10
             }
@@ -4675,47 +4849,49 @@
         },
         {
           "team": "Buffalo Bills",
-          "sample_size": 8,
+          "sample_size": 7,
           "score_history": [
             {
               "date": "2026-11-01T18:00Z",
+              "season_type": 2,
               "scored": 36,
               "allowed": 10
             },
             {
               "date": "2026-10-18T20:25Z",
+              "season_type": 2,
               "scored": 33,
               "allowed": 30
             },
             {
               "date": "2026-10-13T00:15Z",
+              "season_type": 2,
               "scored": 37,
               "allowed": 34
             },
             {
               "date": "2026-10-04T17:00Z",
+              "season_type": 2,
               "scored": 26,
               "allowed": 29
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 16
             },
             {
               "date": "2026-09-18T00:15Z",
+              "season_type": 2,
               "scored": 41,
               "allowed": 31
             },
             {
               "date": "2026-09-13T17:00Z",
+              "season_type": 2,
               "scored": 36,
               "allowed": 31
-            },
-            {
-              "date": "2026-08-27T23:00Z",
-              "scored": 28,
-              "allowed": 27
             }
           ]
         }
@@ -4734,41 +4910,49 @@
           "score_history": [
             {
               "date": "2026-11-01T21:25Z",
+              "season_type": 2,
               "scored": 28,
               "allowed": 24
             },
             {
               "date": "2026-10-25T20:05Z",
+              "season_type": 2,
               "scored": 30,
               "allowed": 16
             },
             {
               "date": "2026-10-16T00:15Z",
+              "season_type": 2,
               "scored": 17,
               "allowed": 14
             },
             {
               "date": "2026-10-11T20:05Z",
+              "season_type": 2,
               "scored": 23,
               "allowed": 17
             },
             {
               "date": "2026-10-04T20:25Z",
+              "season_type": 2,
               "scored": 14,
               "allowed": 24
             },
             {
               "date": "2026-09-28T00:20Z",
+              "season_type": 2,
               "scored": 30,
               "allowed": 26
             },
             {
               "date": "2026-09-20T20:05Z",
+              "season_type": 2,
               "scored": 20,
               "allowed": 13
             },
             {
               "date": "2026-09-15T00:15Z",
+              "season_type": 2,
               "scored": 10,
               "allowed": 31
             }
@@ -4776,57 +4960,55 @@
         },
         {
           "team": "Pittsburgh Steelers",
-          "sample_size": 10,
+          "sample_size": 8,
           "score_history": [
             {
               "date": "2026-11-01T18:00Z",
+              "season_type": 2,
               "scored": 27,
               "allowed": 6
             },
             {
               "date": "2026-10-25T13:30Z",
+              "season_type": 2,
               "scored": 16,
               "allowed": 10
             },
             {
               "date": "2026-10-18T17:00Z",
+              "season_type": 2,
               "scored": 26,
               "allowed": 19
             },
             {
               "date": "2026-10-11T17:00Z",
+              "season_type": 2,
               "scored": 34,
               "allowed": 22
             },
             {
               "date": "2026-10-02T00:15Z",
+              "season_type": 2,
               "scored": 24,
               "allowed": 27
             },
             {
               "date": "2026-09-27T17:00Z",
+              "season_type": 2,
               "scored": 30,
               "allowed": 27
             },
             {
               "date": "2026-09-20T17:00Z",
+              "season_type": 2,
               "scored": 3,
               "allowed": 20
             },
             {
               "date": "2026-09-13T17:00Z",
+              "season_type": 2,
               "scored": 20,
               "allowed": 13
-            },
-            {
-              "date": "2026-08-27T23:00Z",
-              "scored": 27,
-              "allowed": 28
-            },
-            {
-              "date": "2026-08-13T23:00Z",
-              "scored": 28,
-              "allowed": 9
             }
           ]
         }
