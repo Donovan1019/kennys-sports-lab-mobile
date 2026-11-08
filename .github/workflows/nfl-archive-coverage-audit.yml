@@ -1,0 +1,24 @@
+name: NFL Historical Archive Coverage Audit
+on:
+  pull_request:
+    paths:
+      - 'scripts/audit_nfl_archive_coverage.py'
+      - 'scripts/test_audit_nfl_archive_coverage.py'
+      - '.github/workflows/nfl-archive-coverage-audit.yml'
+  schedule:
+    - cron: '40 12 * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test archive coverage calculations
+        run: python -m unittest scripts/test_audit_nfl_archive_coverage.py
+      - name: Audit real historical pregame archive coverage
+        run: python -m scripts.audit_nfl_archive_coverage
