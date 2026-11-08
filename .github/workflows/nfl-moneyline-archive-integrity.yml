@@ -4,6 +4,7 @@ on:
     paths:
       - 'scripts/archive_nfl_moneyline_snapshots.py'
       - 'scripts/test_nfl_moneyline_archive.py'
+      - 'scripts/test_nfl_refresh_workflows.py'
       - '.github/workflows/nfl-moneyline-inputs.yml'
       - '.github/workflows/refresh-odds.yml'
       - '.github/workflows/nfl-moneyline-archive-integrity.yml'
@@ -18,5 +19,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Validate point-in-time NFL snapshots
-        run: python -m unittest scripts/test_nfl_moneyline_archive.py
+      - name: Install YAML parser
+        run: python -m pip install PyYAML==6.0.2
+      - name: Validate NFL archives and scheduled workflows
+        run: python -m unittest scripts/test_nfl_moneyline_archive.py scripts/test_nfl_refresh_workflows.py
