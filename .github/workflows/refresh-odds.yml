@@ -1,5 +1,7 @@
 name: Refresh public odds snapshot
 on:
+  schedule:
+    - cron: '10 11,20 * * *'
   workflow_dispatch:
     inputs:
       sport:
@@ -37,8 +39,8 @@ jobs:
       - name: Fetch authorized sportsbook odds
         env:
           THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
-          ODDS_SPORT: ${{ inputs.sport }}
-          ODDS_MARKETS: ${{ inputs.markets }}
+          ODDS_SPORT: ${{ inputs.sport || 'americanfootball_nfl' }}
+          ODDS_MARKETS: ${{ inputs.markets || 'h2h' }}
         run: python scripts/fetch_odds.py
       - name: Publish snapshot
         run: |
