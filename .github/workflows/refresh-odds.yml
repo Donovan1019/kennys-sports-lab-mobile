@@ -39,9 +39,19 @@ jobs:
       - name: Fetch authorized sportsbook odds
         env:
           THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
+          ODDSPAPI_API_KEY: ${{ secrets.ODDSPAPI_API_KEY }}
           ODDS_SPORT: ${{ inputs.sport || 'americanfootball_nfl' }}
           ODDS_MARKETS: ${{ inputs.markets || 'h2h' }}
-        run: python scripts/fetch_odds.py
+        run: |
+          if python scripts/fetch_odds.py; then
+            echo 'Primary odds provider succeeded'
+          elif [ "${ODDS_SPORT}" = 'americanfootball_nfl' ] && [ "${ODDS_MARKETS}" = 'h2h' ]; then
+            echo 'Primary provider unavailable; trying OddsPapi NFL fallback'
+            python scripts/fetch_nfl_oddspapi.py
+          else
+            echo 'Primary odds provider failed; no compatible fallback for this sport/market'
+            exit 1
+          fi
       - name: Archive pre-kickoff NFL moneyline prices
         if: ${{ (inputs.sport || 'americanfootball_nfl') == 'americanfootball_nfl' }}
         run: python scripts/archive_nfl_moneyline_snapshots.py odds
