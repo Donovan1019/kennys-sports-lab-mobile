@@ -1,0 +1,21 @@
+name: NFL OddsPapi Fallback Integrity
+on:
+  pull_request:
+    paths:
+      - 'scripts/fetch_nfl_oddspapi.py'
+      - 'scripts/test_fetch_nfl_oddspapi.py'
+      - '.github/workflows/refresh-odds.yml'
+      - '.github/workflows/nfl-oddspapi-fallback-integrity.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  fallback-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test fail-closed OddsPapi normalization
+        run: python -m unittest scripts/test_fetch_nfl_oddspapi.py
