@@ -1,0 +1,22 @@
+name: NFL Moneyline Point-in-Time Archive Integrity
+on:
+  pull_request:
+    paths:
+      - 'scripts/archive_nfl_moneyline_snapshots.py'
+      - 'scripts/test_nfl_moneyline_archive.py'
+      - '.github/workflows/nfl-moneyline-inputs.yml'
+      - '.github/workflows/refresh-odds.yml'
+      - '.github/workflows/nfl-moneyline-archive-integrity.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  archive-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate point-in-time NFL snapshots
+        run: python -m unittest scripts/test_nfl_moneyline_archive.py
