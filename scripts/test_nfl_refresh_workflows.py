@@ -19,7 +19,10 @@ class WorkflowIntegrityTests(unittest.TestCase):
         self.assertTrue(any("archive_nfl_moneyline_snapshots.py " + kind in c for c in commands))
         self.assertTrue(any("git add" in c and "archive/nfl_moneyline/" + kind in c for c in commands))
         self.assertTrue(any("scripts/" + ("refresh_nfl_moneyline_inputs.py" if kind == "inputs" else "fetch_odds.py") in c for c in commands))
-        self.assertTrue(any("schedule" in str(k) for k in workflow.keys()))
+        triggers = workflow.get("on", workflow.get(True, {}))
+        self.assertIsInstance(triggers, dict)
+        self.assertIn("schedule", triggers)
+        self.assertIn("workflow_dispatch", triggers)
 
     def test_inputs_workflow(self):
         self.check_workflow("nfl-moneyline-inputs.yml", "inputs")
