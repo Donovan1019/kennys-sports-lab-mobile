@@ -19,7 +19,9 @@ jobs:
           python-version: '3.11'
       - name: Refresh schedule and completed scoring history
         run: python scripts/refresh_nfl_moneyline_inputs.py
-      - name: Archive pre-kickoff input snapshot\n        run: python scripts/archive_nfl_moneyline_snapshots.py inputs\n      - name: Commit only validated source updates
+      - name: Archive pre-kickoff input snapshot
+        run: python scripts/archive_nfl_moneyline_snapshots.py inputs
+      - name: Commit only validated source updates
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
