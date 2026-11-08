@@ -16,7 +16,7 @@ const history=(t,kickoff)=>{const cutoff=Math.min(Date.now(),Date.parse(kickoff)
 const mean=x=>x.reduce((a,b)=>a+b,0)/x.length;
 const seedRand=key=>{let state=Array.from(key).reduce((h,c)=>(Math.imul(h,1664525)+c.charCodeAt(0)+1013904223)>>>0,2166136261)||1;return()=>{state=(Math.imul(state,1664525)+1013904223)>>>0;return (state+.5)/4294967296}};
 const pct=(x,p)=>x[Math.max(0,Math.min(x.length-1,Math.floor(p*(x.length-1))))];
-function simulation(g){const away=g.teams?.find(t=>clean(t.team)===clean(g.away)),home=g.teams?.find(t=>clean(t.team)===clean(g.home));const ah=history(away,g.commence_time),hh=history(home,g.commence_time);if(ah.length<8||hh.length<8)return null;
+function simulation(g){const away=g.teams?.find(t=>clean(t.team)===clean(g.away)),home=g.teams?.find(t=>clean(t.team)===clean(g.home));const ah=history(away,g.commence_time),hh=history(home,g.commence_time);if(ah.length<6||hh.length<6)return null;
 const af=mean(ah.map(x=>Number(x.scored))),aa=mean(ah.map(x=>Number(x.allowed))),hf=mean(hh.map(x=>Number(x.scored))),ha=mean(hh.map(x=>Number(x.allowed)));
 const aMean=(af+ha)/2,hMean=(hf+aa)/2;
 const rand=seedRand(g.event_id||g.event),draws=[];let aWins=0,hWins=0,ties=0;
