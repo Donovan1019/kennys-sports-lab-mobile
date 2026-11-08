@@ -21,6 +21,8 @@ jobs:
         run: python scripts/refresh_nfl_moneyline_inputs.py
       - name: Archive pre-kickoff input snapshot
         run: python scripts/archive_nfl_moneyline_snapshots.py inputs
+      - name: Verify persisted pregame input archive
+        run: python scripts/verify_nfl_archive_write.py inputs
       - name: Commit only validated source updates
         run: |
           git config user.name "github-actions[bot]"
