@@ -109,7 +109,7 @@ function verdict(card,g,sim,sourceStale){
 }
 async function loadOdds(){
  try{const r=await fetch('./feed/americanfootball_nfl.json?projection_odds='+Date.now(),{cache:'no-store'});if(!r.ok)throw Error('HTTP '+r.status);const d=await r.json();if(!Array.isArray(d.odds))throw Error('invalid feed');quotes=d.odds;oddsError='';oddsCheckedAt=Date.now()}
- catch(e){quotes=[];oddsError=e.message;oddsCheckedAt=Date.now()}draw()
+ catch(e){quotes=[];oddsError=e.message;oddsCheckedAt=Date.now()}draw();window.dispatchEvent(new Event('ksl-nfl-moneyline-odds-updated'))
 }
 function draw(){output.replaceChildren();const g=games.find(x=>x.event_id===matchup.value);if(!g){status.textContent='No upcoming scheduled matchup with verified team inputs';return}
 const card=document.createElement('article');card.style.cssText='border:1px solid #45687d;border-radius:12px;padding:14px;background:#10283a;margin-top:12px';
