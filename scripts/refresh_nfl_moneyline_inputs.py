@@ -87,8 +87,10 @@ def main():
                       "commence_time": event["date"], "away": away, "home": home, "teams": teams})
     if not games:
         raise RuntimeError("No future NFL games from ESPN; refusing to overwrite existing feed")
-    if not any(len(t["score_history"]) >= 8 for g in games for t in g["teams"]):
-        raise RuntimeError("Historical score samples insufficient; refusing to overwrite existing feed")
+    eligible = [g for g in games if len(g["teams"]) == 2 and all(len(t["score_history"]) >= 6 for t in g["teams"])]
+    if not eligible:
+        raise RuntimeError("No upcoming matchup has six regular-season scoring games for BOTH teams; refusing to publish unusable feed")
+    print("Model-eligible NFL matchups:", len(eligible), "of", len(games))
     payload = {"source": "ESPN public scoreboard", "source_detail": "Scheduled games and completed scoring history only; no verified injuries, starters or sportsbook prices.",
                "generated_from_saved_feeds": False, "source_games_fetched_at": now.isoformat(),
                "market_schedule_source": "espn-scoreboard", "history_season_filter": "espn-season-type-2-only", "market_prices_not_verified_live": True, "games": games}
