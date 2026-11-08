@@ -1,6 +1,11 @@
 name: Refresh NFL Moneyline Inputs
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/refresh_nfl_moneyline_inputs.py'
+      - '.github/workflows/nfl-moneyline-inputs.yml'
   schedule:
     - cron: '15 11 * * *'
 permissions:
