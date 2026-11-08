@@ -1,0 +1,22 @@
+name: NFL Archive Write Integrity
+on:
+  pull_request:
+    paths:
+      - 'scripts/verify_nfl_archive_write.py'
+      - 'scripts/test_verify_nfl_archive_write.py'
+      - '.github/workflows/nfl-moneyline-inputs.yml'
+      - '.github/workflows/refresh-odds.yml'
+      - '.github/workflows/nfl-archive-write-integrity.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  archive-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test archive write verification
+        run: python -m unittest scripts/test_verify_nfl_archive_write.py
