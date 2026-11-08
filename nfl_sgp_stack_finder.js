@@ -49,8 +49,15 @@ function sgpMarketCoverage(game){
 function existingGameSimulation(game){
  const api=window.KSL_NFL_ML_ENGINE;
  if(!api||typeof api.getGames!=='function'||typeof api.simulation!=='function')return '<p style="font-size:12px">Existing NFL game simulator not loaded on this page.</p>';
- const matches=api.getGames().filter(g=>g.event_id===game.event_id);
- if(matches.length!==1)return '<p style="font-size:12px">No exact event-ID match in the existing NFL game simulator. No model probability inferred.</p>';
+ const normTeam=x=>String(x||'').toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g,' ').trim();
+ const nameParts=String(game.name||'').split(/\s+@\s+/);
+ const matches=api.getGames().filter(g=>{
+  if(g.event_id===game.event_id)return true;
+  if(nameParts.length!==2||!g.away||!g.home)return false;
+  const a=Date.parse(g.commence_time),b=Date.parse(game.time);
+  return Number.isFinite(a)&&Number.isFinite(b)&&Math.abs(a-b)<=15*60000&&normTeam(g.away)===normTeam(nameParts[0])&&normTeam(g.home)===normTeam(nameParts[1]);
+ });
+ if(matches.length!==1)return '<p style="font-size:12px">No unique verified matchup-and-kickoff match in the existing NFL game simulator. No model probability inferred.</p>';
  const sim=api.simulation(matches[0]);
  if(!sim||!Number.isFinite(sim.n)||sim.n<=0||!Number.isFinite(sim.aWins)||!Number.isFinite(sim.hWins))return '<p style="font-size:12px">Existing historical scoring simulator lacks sufficient team history.</p>';
  const away=100*sim.aWins/sim.n,home=100*sim.hWins/sim.n,tie=100*(sim.ties||0)/sim.n;
