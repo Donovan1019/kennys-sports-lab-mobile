@@ -1,0 +1,60 @@
+{
+  "status": "RESEARCH_ONLY",
+  "source": "feed/nfl_prop_graded_snapshots.json",
+  "records_seen": 90,
+  "exclusions": {},
+  "markets": {
+    "player_pass_tds": {
+      "samples": 6,
+      "distinct_events": 2,
+      "distinct_dates": 2,
+      "model_brier": 0.284777,
+      "no_vig_market_brier": 0.279971,
+      "model_minus_market_brier": 0.004806,
+      "live_use_eligible": false,
+      "status": "INSUFFICIENT_INDEPENDENT_EVENTS"
+    },
+    "player_pass_yds": {
+      "samples": 6,
+      "distinct_events": 2,
+      "distinct_dates": 2,
+      "model_brier": 0.212441,
+      "no_vig_market_brier": 0.250001,
+      "model_minus_market_brier": -0.03756,
+      "live_use_eligible": false,
+      "status": "INSUFFICIENT_INDEPENDENT_EVENTS"
+    },
+    "player_reception_yds": {
+      "samples": 32,
+      "distinct_events": 2,
+      "distinct_dates": 2,
+      "model_brier": 0.238555,
+      "no_vig_market_brier": 0.250211,
+      "model_minus_market_brier": -0.011656,
+      "live_use_eligible": false,
+      "status": "INSUFFICIENT_INDEPENDENT_EVENTS"
+    },
+    "player_receptions": {
+      "samples": 32,
+      "distinct_events": 2,
+      "distinct_dates": 2,
+      "model_brier": 0.233769,
+      "no_vig_market_brier": 0.228523,
+      "model_minus_market_brier": 0.005246,
+      "live_use_eligible": false,
+      "status": "INSUFFICIENT_INDEPENDENT_EVENTS"
+    },
+    "player_rush_yds": {
+      "samples": 14,
+      "distinct_events": 2,
+      "distinct_dates": 2,
+      "model_brier": 0.198049,
+      "no_vig_market_brier": 0.252046,
+      "model_minus_market_brier": -0.053997,
+      "live_use_eligible": false,
+      "status": "INSUFFICIENT_INDEPENDENT_EVENTS"
+    }
+  },
+  "bet_eligibility": "BLOCKED",
+  "limitations": "Snapshot observations from very few games, correlated players and multiple books; not an independent future holdout. No EV or SGP recommendation authorization."
+}
