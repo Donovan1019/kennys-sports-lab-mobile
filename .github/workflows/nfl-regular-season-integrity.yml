@@ -1,0 +1,24 @@
+name: NFL Regular Season History Integrity
+on:
+  pull_request:
+    paths:
+      - 'scripts/refresh_nfl_moneyline_inputs.py'
+      - 'scripts/test_nfl_regular_season_filter.py'
+      - 'nfl_game_projections.js'
+      - 'nfl.html'
+      - '.github/workflows/nfl-regular-season-integrity.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  regular-season-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test NFL season classification
+        run: python -m unittest scripts/test_nfl_regular_season_filter.py
+      - name: Check NFL projections syntax
+        run: node --check nfl_game_projections.js
