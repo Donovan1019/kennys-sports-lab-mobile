@@ -1,41 +1,29 @@
 {
   "status": "validated",
   "sport": "basketball_nba",
-  "generated_at": "2026-11-08T02:59:18.052659+00:00",
+  "generated_at": "2026-11-08T05:00:31.907002+00:00",
   "calibration_passed": true,
   "model_version": "elo-walkforward-v1-holdout-audit",
   "validation_report": {
-    "walk_forward_games": 1203,
-    "brier": 0.21032,
-    "ece": 0.04069,
+    "walk_forward_games": 1209,
+    "brier": 0.21013,
+    "ece": 0.04017,
     "method": "chronological Elo, 200-game burn-in, no odds inputs",
     "holdout": {
-      "games": 281,
-      "start": "2026-03-31T00:00Z",
-      "end": "2026-11-07T03:00Z",
-      "brier": 0.193713,
-      "ece": 0.046271,
-      "constant_baseline_brier": 0.245666,
+      "games": 282,
+      "start": "2026-03-31T02:00Z",
+      "end": "2026-11-08T02:00Z",
+      "brier": 0.195238,
+      "ece": 0.036564,
+      "constant_baseline_brier": 0.24497,
       "beats_constant_baseline": true,
       "method": "untouched chronological final 20%; pregame Elo; descriptive only"
     },
     "holdout_promotion_approved": false,
     "holdout_review_reason": "Holdout metrics are descriptive; independent sportsbook price validation and injury availability remain unverified"
   },
-  "training_cutoff": "2026-11-07T03:00Z",
+  "training_cutoff": "2026-11-08T02:00Z",
   "predictions": [
-    {
-      "event_id": "08d47dd5e50e83839e395e49870d6a0d",
-      "team": "Portland Trail Blazers",
-      "date_et": "2026-11-07",
-      "win_probability": 0.383357
-    },
-    {
-      "event_id": "08d47dd5e50e83839e395e49870d6a0d",
-      "team": "San Antonio Spurs",
-      "date_et": "2026-11-07",
-      "win_probability": 0.616643
-    },
     {
       "event_id": "a5d2d9c68b7446860de658aa4bc33c5b",
       "team": "Chicago Bulls",
@@ -71,6 +59,18 @@
       "team": "Utah Jazz",
       "date_et": "2026-11-08",
       "win_probability": 0.092924
+    },
+    {
+      "event_id": "c5b6599e8e4949749798dcdadceb68d4",
+      "team": "Dallas Mavericks",
+      "date_et": "2026-11-08",
+      "win_probability": 0.715672
+    },
+    {
+      "event_id": "c5b6599e8e4949749798dcdadceb68d4",
+      "team": "Brooklyn Nets",
+      "date_et": "2026-11-08",
+      "win_probability": 0.284328
     },
     {
       "event_id": "98eae523edadc7d4d42ab37222eb2c88",
