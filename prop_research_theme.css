@@ -45,7 +45,7 @@ th:first-child,td:first-child{background:#18191b!important}
 .ksl-market-group{padding:12px 0;border-top:1px solid #2c2e30}
 .ksl-market-group>strong{font-size:12px;color:#e4e4e4;letter-spacing:.03em}
 .ksl-market-pills{display:flex;overflow-x:auto;gap:8px;padding:9px 0 3px}
-.ksl-market-pills span{flex:0 0 auto;background:#242527;border:1px solid #353638;border-radius:10px;color:#b9bbbd;padding:10px 12px;font-size:12px;min-height:40px}
+.ksl-market-pills :is(span,a){flex:0 0 auto;background:#242527;border:1px solid #353638;border-radius:10px;color:#b9bbbd;padding:10px 12px;font-size:12px;min-height:40px}
 
 /* Shared player breakdown chart: reference-inspired geometry, verified logs only. */
 .ksl-featured-player{background:#191a1c;border:1px solid #343537;border-radius:18px;padding:16px;margin:16px 0}
@@ -95,7 +95,7 @@ th:first-child,td:first-child{background:#18191b!important}
   min-width:0;box-sizing:border-box;
 }
 .ksl-market-pills{overscroll-behavior-x:contain;scroll-snap-type:x proximity}
-.ksl-market-pills span{scroll-snap-align:start;display:inline-flex;align-items:center}
+.ksl-market-pills :is(span,a){scroll-snap-align:start;display:inline-flex;align-items:center}
 .ksl-game-log-column{min-width:20px}
 .ksl-game-log-column small{font-variant-numeric:tabular-nums}
 @media(max-width:430px){
@@ -136,3 +136,8 @@ body>.ksl-nav a[aria-current="page"],body>nav.ksl-nav a[aria-current="page"]{
   body>.ksl-nav,body>nav.ksl-nav{gap:6px;padding:8px 10px!important}
   body>.ksl-nav a,body>nav.ksl-nav a{padding:9px 11px!important;font-size:12px}
 }
+
+/* Preserve original Explore Markets pill appearance for functional anchors. */
+.ksl-market-pills a{color:#b9bbbd!important;text-decoration:none!important;cursor:pointer;white-space:nowrap}
+.ksl-market-pills a:hover,.ksl-market-pills a:focus-visible,.ksl-market-pills a[aria-current="true"]{color:#f3c621!important;border-color:#f3c621;outline-offset:2px}
+.ksl-market-pills a:focus-visible{outline:2px solid #f3c621}
