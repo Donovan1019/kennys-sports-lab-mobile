@@ -1,0 +1,22 @@
+name: NFL Pregame Outcome Join Integrity
+on:
+  pull_request:
+    paths:
+      - 'scripts/join_nfl_pregame_results.py'
+      - 'scripts/test_nfl_pregame_results_join.py'
+      - '.github/workflows/nfl-pregame-outcome-integrity.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  join-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate exact-ID NFL pregame outcome joins
+        run: python -m unittest scripts/test_nfl_pregame_results_join.py
+      - name: Inspect existing archive coverage
+        run: python scripts/join_nfl_pregame_results.py
