@@ -25,7 +25,7 @@ def parse(iso):
 def main():
     now = dt.datetime.now(UTC)
     # Week-level queries limit HTTP requests while covering recent history and next 3 weeks.
-    days = [now.date() + dt.timedelta(days=i) for i in range(-105, 22, 7)]
+    days = sorted(set([now.date() + dt.timedelta(days=i) for i in range(-105, 0) if (now.date() + dt.timedelta(days=i)).weekday() in (0, 3, 6)] + [now.date() + dt.timedelta(days=i) for i in range(0, 22)]))
     events = {}
     successful = 0
     for day in days:
