@@ -1,6 +1,6 @@
 {
   "status": "diagnostic_only",
-  "generated_at": "2026-11-08T01:16:50.219724+00:00",
+  "generated_at": "2026-11-08T02:59:19.131868+00:00",
   "source": "historical team box-score possessions, not Elo or bookmaker odds",
   "qualified_teams": 30,
   "games": [
@@ -17,24 +17,6 @@
       "regulation_tie_probability": 0.0224,
       "home_full_game_win_probability": 0.6227,
       "overtime_periods_simulated": 239,
-      "overtime_unmodeled": false,
-      "injuries_rest_unmodeled": true,
-      "historical_calibration_unverified": true,
-      "betting_eligible": false
-    },
-    {
-      "event_id": "6faeaee3bdf2a167eb67f93c44d3ef37",
-      "status": "diagnostic_only",
-      "home": "Oklahoma City Thunder",
-      "away": "Washington Wizards",
-      "draws": 10000,
-      "estimated_possessions": 101.92,
-      "home_offense_ppp": 1.1904,
-      "away_offense_ppp": 1.0846,
-      "home_regulation_win_probability": 0.7427,
-      "regulation_tie_probability": 0.02,
-      "home_full_game_win_probability": 0.7427,
-      "overtime_periods_simulated": 215,
       "overtime_unmodeled": false,
       "injuries_rest_unmodeled": true,
       "historical_calibration_unverified": true,

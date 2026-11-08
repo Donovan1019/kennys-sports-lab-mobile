@@ -1,7 +1,7 @@
 {
   "status": "validated",
   "sport": "basketball_nba",
-  "generated_at": "2026-11-08T01:16:49.041347+00:00",
+  "generated_at": "2026-11-08T02:59:18.052659+00:00",
   "calibration_passed": true,
   "model_version": "elo-walkforward-v1-holdout-audit",
   "validation_report": {
@@ -24,30 +24,6 @@
   },
   "training_cutoff": "2026-11-07T03:00Z",
   "predictions": [
-    {
-      "event_id": "39099dc03208d0771daaab5f7993478a",
-      "team": "Golden State Warriors",
-      "date_et": "2026-11-07",
-      "win_probability": 0.499039
-    },
-    {
-      "event_id": "39099dc03208d0771daaab5f7993478a",
-      "team": "Orlando Magic",
-      "date_et": "2026-11-07",
-      "win_probability": 0.500961
-    },
-    {
-      "event_id": "af8d920f175d73f12933c64ae296573f",
-      "team": "Phoenix Suns",
-      "date_et": "2026-11-07",
-      "win_probability": 0.391543
-    },
-    {
-      "event_id": "af8d920f175d73f12933c64ae296573f",
-      "team": "Houston Rockets",
-      "date_et": "2026-11-07",
-      "win_probability": 0.608457
-    },
     {
       "event_id": "08d47dd5e50e83839e395e49870d6a0d",
       "team": "Portland Trail Blazers",
