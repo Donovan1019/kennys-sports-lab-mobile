@@ -4,7 +4,6 @@ No sportsbook odds, injuries, or starting lineup claims. Fail closed on source e
 """
 import datetime as dt
 import json
-import os
 import pathlib
 import urllib.request
 
@@ -21,6 +20,15 @@ def fetch(day):
 
 def parse(iso):
     return dt.datetime.fromisoformat(iso.replace("Z", "+00:00"))
+
+def is_regular_season(event):
+    """ESPN season.type 2 means regular season; reject missing/unknown type."""
+    season = event.get("season") or {}
+    raw = season.get("type")
+    try:
+        return int(raw) == 2
+    except (TypeError, ValueError):
+        return False
 
 def main():
     now = dt.datetime.now(UTC)
@@ -41,6 +49,8 @@ def main():
     history = {}
     upcoming = []
     for event in events.values():
+        if not is_regular_season(event):
+            continue
         comps = event.get("competitions", [])
         if not comps:
             continue
@@ -63,8 +73,8 @@ def main():
                 hs, ass = int(home["score"]), int(away["score"])
             except (KeyError, ValueError, TypeError):
                 continue
-            history.setdefault(home_name, []).append({"date": event["date"], "scored": hs, "allowed": ass})
-            history.setdefault(away_name, []).append({"date": event["date"], "scored": ass, "allowed": hs})
+            history.setdefault(home_name, []).append({"date": event["date"], "season_type": 2, "scored": hs, "allowed": ass})
+            history.setdefault(away_name, []).append({"date": event["date"], "season_type": 2, "scored": ass, "allowed": hs})
         elif now < when <= now + dt.timedelta(days=21):
             upcoming.append((when, event, home_name, away_name))
     games = []
@@ -81,7 +91,7 @@ def main():
         raise RuntimeError("Historical score samples insufficient; refusing to overwrite existing feed")
     payload = {"source": "ESPN public scoreboard", "source_detail": "Scheduled games and completed scoring history only; no verified injuries, starters or sportsbook prices.",
                "generated_from_saved_feeds": False, "source_games_fetched_at": now.isoformat(),
-               "market_schedule_source": "espn-scoreboard", "market_prices_not_verified_live": True, "games": games}
+               "market_schedule_source": "espn-scoreboard", "history_season_filter": "espn-season-type-2-only", "market_prices_not_verified_live": True, "games": games}
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(payload, indent=2) + "\n")
     print("Published", len(games), "future games, with", len(events), "source events")
