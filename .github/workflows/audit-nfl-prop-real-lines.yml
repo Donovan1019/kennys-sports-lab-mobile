@@ -31,12 +31,13 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          mkdir -p /tmp/nfl-real-line
-          cp feed/nfl_prop_real_line_backtest.json /tmp/nfl-real-line/result.json
           for attempt in 1 2 3; do
             git fetch origin main
             git reset --hard origin/main
-            cp /tmp/nfl-real-line/result.json feed/nfl_prop_real_line_backtest.json
+            # Recompute against the latest archived graded snapshots on main,
+            # rather than publishing a stale result calculated before a concurrent grade.
+            python scripts/test_nfl_prop_real_line_audit.py
+            python scripts/audit_nfl_prop_real_lines.py
             git add feed/nfl_prop_real_line_backtest.json
             if git diff --cached --quiet; then exit 0; fi
             git commit -m "Update NFL real-line research backtest"
