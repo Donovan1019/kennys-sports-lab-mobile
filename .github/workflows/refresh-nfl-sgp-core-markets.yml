@@ -1,0 +1,45 @@
+name: Refresh NFL SGP Core Markets
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '15 14,17,20,23 * * 0,1,4'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/fetch_nfl_sgp_core_markets.py'
+      - '.github/workflows/refresh-nfl-sgp-core-markets.yml'
+permissions:
+  contents: write
+concurrency:
+  group: nfl-sgp-core-markets
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Collect real DK and FD NFL moneylines spreads and totals
+        env:
+          THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
+        run: python scripts/fetch_nfl_sgp_core_markets.py
+      - name: Publish snapshot safely
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          mkdir -p /tmp/nfl-core
+          cp feed/nfl_sgp_core_markets.json /tmp/nfl-core/snapshot.json
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+            cp /tmp/nfl-core/snapshot.json feed/nfl_sgp_core_markets.json
+            git add feed/nfl_sgp_core_markets.json
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m "Refresh real NFL SGP core odds"
+            if git push origin HEAD:main; then exit 0; fi
+            sleep 2
+          done
+          exit 1
