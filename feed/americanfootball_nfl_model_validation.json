@@ -1,13 +1,13 @@
 {
   "status": "research_only",
-  "sample_size": 381,
-  "block_count": 33,
+  "sample_size": 395,
+  "block_count": 34,
   "bootstrap_replicates": 2000,
   "block_method": "NFL calendar week / NBA calendar month",
-  "correlated_minus_independent_brier": 1.6e-05,
+  "correlated_minus_independent_brier": 9e-06,
   "paired_block_bootstrap_95_interval": [
-    -0.00013,
-    0.00017
+    -0.000131,
+    0.000172
   ],
   "seasons": [
     {
@@ -18,8 +18,8 @@
     },
     {
       "season": "2026",
-      "games": 154,
-      "correlated_minus_independent_brier": 4.8e-05,
+      "games": 168,
+      "correlated_minus_independent_brier": 2.9e-05,
       "winner": "independent"
     }
   ],

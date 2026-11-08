@@ -2,20 +2,20 @@
   "status": "research_only",
   "method": "strict_walk_forward_same_games",
   "trials_per_game": 10000,
-  "sample_size": 381,
+  "sample_size": 395,
   "independent": {
-    "sample_size": 381,
-    "brier": 0.225199,
-    "total_interval_80_coverage": 0.790026,
-    "total_interval_80_width": 34.292738
+    "sample_size": 395,
+    "brier": 0.224517,
+    "total_interval_80_coverage": 0.789873,
+    "total_interval_80_width": 34.257096
   },
   "correlated": {
-    "sample_size": 381,
-    "brier": 0.225214,
-    "total_interval_80_coverage": 0.790026,
-    "total_interval_80_width": 34.547562
+    "sample_size": 395,
+    "brier": 0.224526,
+    "total_interval_80_coverage": 0.789873,
+    "total_interval_80_width": 34.518733
   },
-  "correlated_minus_independent_brier": 1.5e-05,
+  "correlated_minus_independent_brier": 9e-06,
   "promotion_approved": false,
   "warning": "Score correlation is observational; game-total interval coverage and Brier alone do not establish betting edge or calibrated player-prop dependencies.",
   "results": [
@@ -6875,6 +6875,258 @@
         "home_won": 1,
         "total_interval_contains_actual": 1,
         "total_interval_width": 42.475717072555156
+      }
+    },
+    {
+      "date": "2026-11-01T18:00:00+00:00",
+      "event_id": "401873031",
+      "correlation": 0.026001,
+      "history_size": 522,
+      "independent": {
+        "home_win_probability": 0.7765,
+        "home_won": 1,
+        "total_interval_contains_actual": 0,
+        "total_interval_width": 29.524629090714868
+      },
+      "correlated": {
+        "home_win_probability": 0.7809,
+        "home_won": 1,
+        "total_interval_contains_actual": 0,
+        "total_interval_width": 29.94867517332701
+      }
+    },
+    {
+      "date": "2026-11-01T18:00:00+00:00",
+      "event_id": "401873026",
+      "correlation": 0.026001,
+      "history_size": 522,
+      "independent": {
+        "home_win_probability": 0.5127,
+        "home_won": 1,
+        "total_interval_contains_actual": 1,
+        "total_interval_width": 34.413063503698105
+      },
+      "correlated": {
+        "home_win_probability": 0.5122512251225122,
+        "home_won": 1,
+        "total_interval_contains_actual": 1,
+        "total_interval_width": 34.8337557846312
+      }
+    },
+    {
+      "date": "2026-11-01T18:00:00+00:00",
+      "event_id": "401873024",
+      "correlation": 0.026001,
+      "history_size": 522,
+      "independent": {
+        "home_win_probability": 0.6621,
+        "home_won": 0,
+        "total_interval_contains_actual": 1,
+        "total_interval_width": 32.641284816776626
+      },
+      "correlated": {
+        "home_win_probability": 0.6644,
+        "home_won": 0,
+        "total_interval_contains_actual": 1,
+        "total_interval_width": 33.07198494474623
+      }
+    },
+    {
+      "date": "2026-11-01T18:00:00+00:00",
+      "event_id": "401873030",
+      "correlation": 0.026001,
+      "history_size": 522,
+      "independent": {
+        "home_win_probability": 0.46289257851570315,
+        "home_won": 1,
+        "total_interval_contains_actual": 1,
+        "total_interval_width": 32.38999126708268
+      },
+      "correlated": {
+        "home_win_probability": 0.46179235847169436,
+        "home_won": 1,
+        "total_interval_contains_actual": 1,
+        "total_interval_width": 32.75210991479209
+      }
+    },
+    {
+      "date": "2026-11-01T18:00:00+00:00",
+      "event_id": "401873029",
+      "correlation": 0.026001,
+      "history_size": 522,
+      "independent": {
+        "home_win_probability": 0.4651,
+        "home_won": 0,
+        "total_interval_contains_actual": 0,
+        "total_interval_width": 33.52454869425932
+      },
+      "correlated": {
+        "home_win_probability": 0.4644,
+        "home_won": 0,
+        "total_interval_contains_actual": 0,
+        "total_interval_width": 34.00348573259059
+      }
+    },
+    {
+      "date": "2026-11-01T18:00:00+00:00",
+      "event_id": "401873027",
+      "correlation": 0.026001,
+      "history_size": 522,
+      "independent": {
+        "home_win_probability": 0.5313594078223467,
+        "home_won": 1,
+        "total_interval_contains_actual": 1,
+        "total_interval_width": 32.96900427586826
+      },
+      "correlated": {
+        "home_win_probability": 0.5300120048019208,
+        "home_won": 1,
+        "total_interval_contains_actual": 1,
+        "total_interval_width": 33.37052451593844
+      }
+    },
+    {
+      "date": "2026-11-01T18:00:00+00:00",
+      "event_id": "401873025",
+      "correlation": 0.026001,
+      "history_size": 522,
+      "independent": {
+        "home_win_probability": 0.48219643928785755,
+        "home_won": 1,
+        "total_interval_contains_actual": 0,
+        "total_interval_width": 33.4466500358883
+      },
+      "correlated": {
+        "home_win_probability": 0.48249299719887956,
+        "home_won": 1,
+        "total_interval_contains_actual": 0,
+        "total_interval_width": 33.92876082565105
+      }
+    },
+    {
+      "date": "2026-11-01T18:00:00+00:00",
+      "event_id": "401873028",
+      "correlation": 0.026001,
+      "history_size": 522,
+      "independent": {
+        "home_win_probability": 0.7068,
+        "home_won": 1,
+        "total_interval_contains_actual": 1,
+        "total_interval_width": 33.50895313459293
+      },
+      "correlated": {
+        "home_win_probability": 0.7084708470847084,
+        "home_won": 1,
+        "total_interval_contains_actual": 1,
+        "total_interval_width": 33.889503169556605
+      }
+    },
+    {
+      "date": "2026-11-01T21:05:00+00:00",
+      "event_id": "401873032",
+      "correlation": 0.028934,
+      "history_size": 530,
+      "independent": {
+        "home_win_probability": 0.6977697769776978,
+        "home_won": 1,
+        "total_interval_contains_actual": 1,
+        "total_interval_width": 30.920349363135394
+      },
+      "correlated": {
+        "home_win_probability": 0.7009700970097009,
+        "home_won": 1,
+        "total_interval_contains_actual": 1,
+        "total_interval_width": 31.374485008527653
+      }
+    },
+    {
+      "date": "2026-11-01T21:25:00+00:00",
+      "event_id": "401873033",
+      "correlation": 0.028769,
+      "history_size": 531,
+      "independent": {
+        "home_win_probability": 0.5302530253025303,
+        "home_won": 1,
+        "total_interval_contains_actual": 1,
+        "total_interval_width": 32.90554650819602
+      },
+      "correlated": {
+        "home_win_probability": 0.5311531153115312,
+        "home_won": 1,
+        "total_interval_contains_actual": 1,
+        "total_interval_width": 33.34374452983004
+      }
+    },
+    {
+      "date": "2026-11-01T21:25:00+00:00",
+      "event_id": "401873034",
+      "correlation": 0.028769,
+      "history_size": 531,
+      "independent": {
+        "home_win_probability": 0.34893957583033214,
+        "home_won": 0,
+        "total_interval_contains_actual": 1,
+        "total_interval_width": 35.188124554223805
+      },
+      "correlated": {
+        "home_win_probability": 0.3480392156862745,
+        "home_won": 0,
+        "total_interval_contains_actual": 1,
+        "total_interval_width": 35.70483246497345
+      }
+    },
+    {
+      "date": "2026-11-02T01:20:00+00:00",
+      "event_id": "401873035",
+      "correlation": 0.02877,
+      "history_size": 533,
+      "independent": {
+        "home_win_probability": 0.529,
+        "home_won": 1,
+        "total_interval_contains_actual": 1,
+        "total_interval_width": 25.533641588246297
+      },
+      "correlated": {
+        "home_win_probability": 0.529,
+        "home_won": 1,
+        "total_interval_contains_actual": 1,
+        "total_interval_width": 25.863690165472395
+      }
+    },
+    {
+      "date": "2026-11-03T01:15:00+00:00",
+      "event_id": "401873036",
+      "correlation": 0.028029,
+      "history_size": 534,
+      "independent": {
+        "home_win_probability": 0.5001501651816999,
+        "home_won": 0,
+        "total_interval_contains_actual": 1,
+        "total_interval_width": 39.78397746656516
+      },
+      "correlated": {
+        "home_win_probability": 0.5001501651816999,
+        "home_won": 0,
+        "total_interval_contains_actual": 1,
+        "total_interval_width": 40.374543996488704
+      }
+    },
+    {
+      "date": "2026-11-06T01:15:00+00:00",
+      "event_id": "401873037",
+      "correlation": 0.026682,
+      "history_size": 535,
+      "independent": {
+        "home_win_probability": 0.41633306645316254,
+        "home_won": 0,
+        "total_interval_contains_actual": 1,
+        "total_interval_width": 39.269796225957926
+      },
+      "correlated": {
+        "home_win_probability": 0.41501501501501503,
+        "home_won": 0,
+        "total_interval_contains_actual": 1,
+        "total_interval_width": 39.81806937985091
       }
     }
   ]
