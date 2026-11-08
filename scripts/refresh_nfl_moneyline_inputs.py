@@ -68,7 +68,7 @@ def main():
         elif now < when <= now + dt.timedelta(days=21):
             upcoming.append((when, event, home_name, away_name))
     games = []
-    for when, event, home, away in sorted(upcoming):
+    for when, event, home, away in sorted(upcoming, key=lambda item: (item[0], str(item[1].get('id', '')))):
         teams = []
         for name in (away, home):
             logs = sorted((x for x in history.get(name, []) if parse(x["date"]) < when), key=lambda x: x["date"], reverse=True)
