@@ -47,7 +47,8 @@ def parse(source):
             continue
         if not r.get("player_id") or not r.get(name_column) or not values:continue
         opponent=str(r.get("opponent_team") or r.get("opponent") or "").strip().upper()
-        game_id=str(r.get("game_id") or "").strip()\n        rows.append({"id":r["player_id"],"name":r[name_column],"team":r[team_column],"position":str(r.get(position_column) or "").upper() if position_column else "","season":year,"week":week,"season_type":r["season_type"],"values":values,**({"game_id":game_id} if game_id else {}),**({"opponent_abbr":opponent} if opponent and opponent!=str(r[team_column]).upper() and opponent.isalpha() and len(opponent)<=4 else {})})
+        game_id=str(r.get("game_id") or "").strip()
+        rows.append({"id":r["player_id"],"name":r[name_column],"team":r[team_column],"position":str(r.get(position_column) or "").upper() if position_column else "","season":year,"week":week,"season_type":r["season_type"],"values":values,**({"game_id":game_id} if game_id else {}),**({"opponent_abbr":opponent} if opponent and opponent!=str(r[team_column]).upper() and opponent.isalpha() and len(opponent)<=4 else {})})
     return rows
 
 def fetch(year):
