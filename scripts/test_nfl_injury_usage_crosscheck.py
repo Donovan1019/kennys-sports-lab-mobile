@@ -23,5 +23,5 @@ class CrosscheckTests(unittest.TestCase):
   self.assertEqual(join(self.usage,self.injury)["ambiguous"],1)
  def test_stale_observation(self):
   self.injury["injuries"][0]["reported_at"]=ts(datetime.now(timezone.utc)-timedelta(days=1))
-  self.assertEqual(join(self.usage,self.injury)["stale_or_missing"],1)
+  self.assertEqual(join(self.usage,self.injury)["stale_or_missing"],1)\n  self.assertEqual(join(self.usage,self.injury)["historical_name_team_candidates"],1)
 if __name__=="__main__":unittest.main()
