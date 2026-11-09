@@ -3,7 +3,7 @@
 Data source: nflverse/nflverse-data stats_player GitHub release.
 Only observed regular/postseason weekly stats, never projections.
 """
-import csv, io, json, math, urllib.request
+import csv, io, json, math, time, urllib.error, urllib.request
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
@@ -51,11 +51,22 @@ def parse(source):
     return rows
 
 def fetch(year):
-    req=urllib.request.Request(URL.format(year=year),headers={"User-Agent":"KennysSportsLab/1.0"})
-    with urllib.request.urlopen(req,timeout=75) as res:
-        data=res.read(35_000_000)
-        if res.read(1):raise ValueError("Source exceeds safety size limit")
-        return data.decode("utf-8-sig")
+    url=URL.format(year=year)
+    errors=[]
+    for attempt in range(3):
+        try:
+            req=urllib.request.Request(url,headers={"User-Agent":"KennysSportsLab/1.0","Accept":"text/csv,application/octet-stream"})
+            with urllib.request.urlopen(req,timeout=45) as res:
+                data=res.read(35_000_000)
+                if res.read(1):raise ValueError("Source exceeds safety size limit")
+                decoded=data.decode("utf-8-sig")
+                if not decoded.startswith("season,") and "player_id" not in decoded.split("\\n",1)[0]:
+                    raise ValueError("Unexpected weekly player CSV header")
+                return decoded
+        except (urllib.error.URLError, TimeoutError, ValueError, UnicodeError) as exc:
+            errors.append(type(exc).__name__+":"+str(exc)[:120])
+            if attempt<2:time.sleep(2*(attempt+1))
+    raise RuntimeError(f"2026 NFL weekly source unavailable after 3 attempts: {errors}")
 
 def main():
     combined=[];failures=[]
