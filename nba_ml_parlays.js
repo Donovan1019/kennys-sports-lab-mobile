@@ -45,6 +45,27 @@ async function refresh(){
  try{
  const resp=await fetch('./feed/basketball_nba.json?ml='+Date.now(),{cache:'no-store'});if(!resp.ok)throw Error('NBA odds feed HTTP '+resp.status);
  const data=await resp.json();if(data.sport!=='basketball_nba'||!Array.isArray(data.odds))throw Error('NBA odds feed schema mismatch: sport='+String(data.sport)+'; odds array='+String(Array.isArray(data.odds)));if(data.status!==undefined&&data.status!=='ok')throw Error('NBA odds publisher status: '+String(data.status));const rows=Array.isArray(data.odds)?data.odds:[];const feedAge=data.fetched_at?Date.parse(data.fetched_at):Math.max(...rows.map(r=>Date.parse(r.updated_at)).filter(Number.isFinite),-Infinity);if(!Number.isFinite(feedAge)||feedAge>Date.now()||Date.now()-feedAge>150*60000){const age=Number.isFinite(feedAge)?Math.round((Date.now()-feedAge)/60000):null;status.textContent='NBA ML PARLAYS · ODDS FEED STALE · NOT BET ELIGIBLE';out.append(node('p','Last published sportsbook snapshot: '+(Number.isFinite(feedAge)?new Date(feedAge).toLocaleString('en-US',{timeZone:'America/New_York',year:'numeric',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'}):'timestamp missing')+(age===null?'':' · '+age+' minutes old')+'.'));const scheduled=new Map();for(const r of rows){if(r.market!=='h2h'||!r.event_id||!r.commence_time||Date.parse(r.commence_time)<=Date.now())continue;const key=String(r.event_id);if(!scheduled.has(key))scheduled.set(key,r)}if(scheduled.size){out.append(node('p','Previously captured upcoming games (schedule reference only; prices are stale):'));const ul=node('ul','');for(const r of [...scheduled.values()].sort((a,b)=>Date.parse(a.commence_time)-Date.parse(b.commence_time)).slice(0,20))ul.append(node('li',String(r.event||r.event_id)+' · '+new Date(r.commence_time).toLocaleString('en-US',{timeZone:'America/New_York',weekday:'short',hour:'numeric',minute:'2-digit',timeZoneName:'short'})));out.append(ul)}else out.append(node('p','No upcoming games in the last published snapshot.'));out.append(node('p','No live picks or parlays are issued from stale odds. Reloading this page cannot refresh the upstream sportsbook feed.'));await showPaperSandbox();return;}
+ // Always show verified current pregame prices independently of parlay certification.
+ // A refreshed odds feed does not certify the model, simulations or a parlay quote.
+ const current=new Map();
+ for(const r of rows){
+  if(r.market!=='h2h'||!r.event_id||!r.bookmaker||!r.selection||!Number.isFinite(Number(r.price))||Number(r.price)===0)continue;
+  const tip=Date.parse(r.commence_time),updated=Date.parse(r.updated_at);
+  if(!Number.isFinite(tip)||tip<=Date.now()||tip-Date.now()>48*3600000||!Number.isFinite(updated)||updated>Date.now()+120000||Date.now()-updated>150*60000)continue;
+  const key=String(r.event_id)+'|'+String(r.bookmaker),group=current.get(key)||[];
+  group.push(r);current.set(key,group);
+ }
+ const paired=[...current.values()].filter(group=>group.length===2&&new Set(group.map(r=>r.selection)).size===2).sort((a,b)=>Date.parse(a[0].commence_time)-Date.parse(b[0].commence_time));
+ out.append(node('h3','Current NBA moneylines · verified sportsbook snapshot'));
+ out.append(node('p','Published '+new Date(feedAge).toLocaleString('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'})+' · '+paired.length+' two-sided same-book game quotes. Prices are informational; not certified picks or executable parlay quotes.'));
+ if(!paired.length)out.append(node('p','No current pregame two-sided sportsbook moneylines remain in this snapshot.'));
+ for(const group of paired.slice(0,24)){
+  const card=node('section','');card.style.cssText='border:1px solid #42677b;border-radius:10px;padding:12px;margin:9px 0;background:#10283a';
+  card.append(node('h4',String(group[0].event)+' · '+group[0].bookmaker));
+  card.append(node('p',new Date(group[0].commence_time).toLocaleString('en-US',{timeZone:'America/New_York',weekday:'short',hour:'numeric',minute:'2-digit',timeZoneName:'short'})));
+  const ul=node('ul','');for(const r of group)ul.append(node('li',String(r.selection)+' ML · '+(Number(r.price)>0?'+':'')+Number(r.price)));card.append(ul);
+  card.append(node('p','CURRENT ODDS ONLY · model edge and parlay certification not verified'));out.append(card);
+ }
  const readinessResponse=await fetch('./feed/nba_ml_betting_readiness.json?ml='+Date.now(),{cache:'no-store'});
  if(!readinessResponse.ok)throw Error('NBA moneyline readiness report unavailable; fail closed');
  const readiness=await readinessResponse.json();
