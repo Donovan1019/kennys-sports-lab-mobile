@@ -47,6 +47,19 @@ def eligible_events(events, now):
         except (ValueError,TypeError,AttributeError):pass
     return sorted(upcoming,key=lambda e:e["commence_time"])
 
+def free_plan_budget_guard(now, prior_path=Path("feed/nfl_props.json"), reserve=20):
+    """Avoid paid-credit calls when same-month published remaining balance is low."""
+    if not prior_path.exists():return None
+    try:
+        previous=json.loads(prior_path.read_text())
+        remaining=int(previous.get("remaining_credits"))
+        fetched=datetime.fromisoformat(previous["fetched_at"].replace("Z","+00:00"))
+        if fetched.tzinfo is None or fetched.astimezone(timezone.utc).strftime("%Y-%m")!=now.astimezone(timezone.utc).strftime("%Y-%m"):return None
+        if remaining<=reserve:return remaining
+    except (ValueError,TypeError,KeyError,OSError,AttributeError):
+        pass
+    return None
+
 def main():
     key=os.environ.get("THE_ODDS_API_KEY")
     if not key:print("Missing secret");return 2
@@ -54,6 +67,11 @@ def main():
     except ValueError:return 2
     if not 1<=limit<=20:
         print("Choose MAX_EVENTS between 1 and 20 explicitly; no requests made");return 2
+    if os.environ.get("IGNORE_FREE_PLAN_BUDGET_GUARD")!="1":
+        remaining=free_plan_budget_guard(datetime.now(timezone.utc))
+        if remaining is not None:
+            print("FREE_PLAN_BUDGET_GUARD: same-month remaining",remaining,"<= reserve 20; no provider requests")
+            return 0
     query=lambda d:urllib.parse.urlencode(d)
     common={"apiKey":key,"bookmakers":",".join(BOOKS),"oddsFormat":"american"}
     try:
@@ -81,6 +99,9 @@ def main():
         if not events:print("No upcoming events; no snapshot overwritten");return 1
         rows=[];errors=[];captured=[];attempted=[]
         for event in events:
+            if remaining is not None and str(remaining).isdigit() and int(remaining)<=20:
+                print("FREE_PLAN_BUDGET_GUARD: stopping event requests at",remaining,"credits")
+                break
             attempted.append(event["id"])
             try:
                 payload,remaining=request_json(BASE+"/events/"+urllib.parse.quote(event["id"],safe="")+"/odds?"+query({**common,"markets":",".join(MARKETS)}))
