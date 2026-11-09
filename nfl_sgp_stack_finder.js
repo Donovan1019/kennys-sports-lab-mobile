@@ -113,7 +113,7 @@ const riskFor=market=>({player_pass_yds:'Passing volume / blowout',player_pass_t
 function scriptAudit(legs){const counts={pass:0,rush:0,receive:0,td:0};for(const x of legs){if(x.market==='player_pass_yds'||x.market==='player_pass_tds')counts.pass++;if(x.market==='player_rush_yds')counts.rush++;if(x.market==='player_receptions'||x.market==='player_reception_yds')counts.receive++;if(x.market==='player_anytime_td'||x.market==='player_pass_tds')counts.td++}const flags=[];if(counts.pass&&counts.receive)flags.push('Shared passing-volume exposure: QB and receiver legs may fail together');if(counts.pass&&counts.rush)flags.push('Run/pass game-script conflict: test leading and trailing scripts');if(counts.td)flags.push('TD conversion volatility: do not infer TD probability from yardage');if(legs.some(x=>x.market==='player_rush_yds')&&legs.some(x=>x.market==='player_receptions'||x.market==='player_reception_yds'))flags.push('RB usage split: rushing and receiving opportunities need separate forecasts');if(!flags.length)flags.push('Player usage, injury status, and shared game script still require validation');return flags}
 let lastRenderArgs=null;
 window.addEventListener('ksl-nfl-moneyline-ready',()=>{if(lastRenderArgs)render(...lastRenderArgs)});
-function render(d,stats,ledger,readiness,calibration){lastRenderArgs=[d,stats,ledger,readiness,calibration];const odds=(d.odds||[]).filter(x=>x.event_id&&x.commence_time&&x.player&&Number.isFinite(Number(x.price))&&['draftkings','fanduel'].includes(x.bookmaker)&&Number.isFinite(Date.parse(x.updated_at))&&Date.now()>=Date.parse(x.updated_at)&&Date.now()-Date.parse(x.updated_at)<=30*60000&&new Date(x.commence_time)>new Date());
+function render(d,stats,ledger,readiness,calibration){lastRenderArgs=[d,stats,ledger,readiness,calibration];const odds=(d.odds||[]).filter(x=>x.event_id&&x.commence_time&&x.player&&Number.isFinite(Number(x.price))&&['draftkings','fanduel'].includes(x.bookmaker)&&Number.isFinite(Date.parse(x.updated_at))&&Date.now()>=Date.parse(x.updated_at)&&new Date(x.commence_time)>new Date());
 const games=new Map();for(const o of odds){if(!games.has(o.event_id))games.set(o.event_id,{event_id:o.event_id,name:o.event,time:o.commence_time,rows:[]});games.get(o.event_id).rows.push(o)}
 const coreRows=(Array.isArray(d.core_odds)?d.core_odds:[]).filter(x=>x&&x.event_id&&x.commence_time&&['h2h','spreads','totals'].includes(x.market)&&typeof x.selection==='string'&&x.selection.trim()&&Number.isFinite(Number(x.price))&&Math.abs(Number(x.price))>=100&&['draftkings','fanduel'].includes(x.bookmaker)&&Number.isFinite(Date.parse(x.updated_at))&&Date.now()-Date.parse(x.updated_at)<=30*60000&&Date.now()>=Date.parse(x.updated_at)&&new Date(x.commence_time)>new Date());
 const coreUnique=new Map();for(const o of coreRows){const key=[o.event_id,o.bookmaker,o.market,o.selection,o.point].join('|');const prev=coreUnique.get(key);if(!prev||Date.parse(o.updated_at)>Date.parse(prev.updated_at))coreUnique.set(key,o)}for(const o of coreUnique.values()){if(!games.has(o.event_id))games.set(o.event_id,{event_id:o.event_id,name:o.event||'NFL matchup',time:o.commence_time,rows:[]});games.get(o.event_id).rows.push(o)}
@@ -122,12 +122,13 @@ const coreUnique=new Map();for(const o of coreRows){const key=[o.event_id,o.book
 const scheduleRows=Array.isArray(d.schedule_games)?d.schedule_games:[];
 for(const g of scheduleRows){
  if(!g||!g.event_id||!g.commence_time||!Number.isFinite(Date.parse(g.commence_time))||Date.parse(g.commence_time)<=Date.now())continue;
- const already=[...games.values()].some(x=>x.time===g.commence_time&&x.name===g.event);
+ const already=[...games.values()].some(x=>Math.abs(Date.parse(x.time)-Date.parse(g.commence_time))<60000&&x.name===g.event);
  if(!already&&!games.has(g.event_id))games.set(g.event_id,{event_id:g.event_id,name:g.event||'Scheduled NFL matchup',time:g.commence_time,rows:[],schedule_only:true});
 }
 const scheduled=Array.isArray(d.schedule_games)?d.schedule_games.filter(g=>g&&g.event_id&&Date.parse(g.commence_time)>Date.now()):[];
-const covered=new Set(odds.map(x=>x.event_id));
-const coverageHtml='<section aria-label="NFL full-slate prop coverage" style="border:1px solid #47617a;border-radius:10px;padding:12px;margin:12px 0"><strong>Full-slate player-prop coverage: '+covered.size+' / '+(scheduled.length||games.size)+' games</strong><p style="font-size:12px">Fresh DraftKings/FanDuel player props only. Games without current prices remain visible but cannot produce betting-ready SGPs. Gold, Silver and Bronze still require validated simulation, player status, and official combined prices.</p></section>';
+const covered=new Set(odds.filter(x=>Date.now()-Date.parse(x.updated_at)<=30*60000).map(x=>x.event_id));
+const quoted=new Set(odds.map(x=>x.event_id));
+const coverageHtml='<section aria-label="NFL full-slate prop coverage" style="border:1px solid #47617a;border-radius:10px;padding:12px;margin:12px 0"><strong>Full-slate player-prop coverage: '+covered.size+' / '+(scheduled.length||games.size)+' games</strong><p style="font-size:12px">Fresh DK/FD player props: '+covered.size+' games; published pregame quotes (including stale): '+quoted.size+' games. Stale quotes are displayed for inspection only, never as current betting recommendations. Games without prices remain visible but cannot produce betting-ready SGPs. Gold, Silver and Bronze still require validated simulation, player status, and official combined prices.</p></section>';
 const publishedRows=(d.odds||[]).filter(x=>x&&x.event_id&&x.commence_time&&['draftkings','fanduel'].includes(x.bookmaker));
 const upcomingPublished=publishedRows.filter(x=>Date.parse(x.commence_time)>Date.now());
 const expiredPublished=publishedRows.length-upcomingPublished.length;
@@ -167,7 +168,13 @@ try{
   if(sd.source==='ESPN public scoreboard'&&Array.isArray(sd.games))scheduleGames=sd.games.map(g=>({event_id:g.event_id,event:g.event,commence_time:g.commence_time}));
  }
 }catch(e){console.warn('NFL schedule unavailable:',e.message)}
-odds.schedule_games=scheduleGames.length?scheduleGames:(Array.isArray(odds.schedule_games)?odds.schedule_games:[]);
+// Prefer the sportsbook event IDs already attached to the published prop quotes.
+ // ESPN uses different event IDs; use it only to fill genuinely missing matchups.
+ const providerSchedule=Array.isArray(odds.schedule_games)?odds.schedule_games:[];
+ const normalize=x=>String(x||'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
+ const matchKey=g=>normalize(g.event)+'|'+String(Date.parse(g.commence_time)||'');
+ const known=new Set(providerSchedule.map(matchKey));
+ odds.schedule_games=providerSchedule.concat(scheduleGames.filter(g=>!known.has(matchKey(g))));
 render(odds,null,ledger,readiness,calibration);if(!window.KSLNFLStats)return;try{const stats=await Promise.race([window.KSLNFLStats.load(),new Promise((_,reject)=>setTimeout(()=>reject(Error('Stats request timed out')),8000))]);render(odds,stats,ledger,readiness,calibration)}catch(e){console.warn('SGP historical stats unavailable:',e.message)}}catch(e){root.innerHTML='<h2>🏈 NFL SGP Stack Finder</h2><p>Market coverage unavailable: '+esc(e.name==='AbortError'?'Odds request timed out':e.message)+'. No betting recommendations can be verified.</p><button id="nfl-sgp-retry" type="button">Retry loading</button>';document.getElementById('nfl-sgp-retry').onclick=load}}
 // A long-lived mobile tab must not continue showing yesterday's matchups.
 let lastResumeRefresh=0;
