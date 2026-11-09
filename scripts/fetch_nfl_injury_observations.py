@@ -25,10 +25,11 @@ def parse(payload,checked_at):
                 observed=datetime.fromisoformat(date.replace("Z","+00:00"))
                 if observed.tzinfo is None:raise ValueError("naive")
             except ValueError:errors+=1;continue
-            key=(team_id,name.strip().lower(),date,status)
+            athlete_id=str(athlete.get("id") or "").strip() or None
+            key=(team_id,athlete_id or name.strip().lower(),date,status)
             if key in seen:continue
             seen.add(key)
-            rows.append({"team_id":team_id,"team":team.get("displayName"),"player":name.strip(),"status":status.strip(),"reported_at":date,"source":"ESPN injury feed","confirmed_inactive":False,"confirmed_active":False,"usage_adjustment_eligible":False})
+            rows.append({"team_id":team_id,"team":team.get("displayName"),"player":name.strip(),"espn_athlete_id":athlete_id,"status":status.strip(),"reported_at":date,"source":"ESPN injury feed","confirmed_inactive":False,"confirmed_active":False,"usage_adjustment_eligible":False})
     return {"source_url":URL,"checked_at":checked_at,"status":"OBSERVED_UNVERIFIED_FOR_GAME_DAY","verified_player_reports":0,"observed_reports":len(rows),"invalid_records":errors,"injuries":rows,"betting_eligible":False}
 def main():
     req=urllib.request.Request(URL,headers={"User-Agent":"KennysSportsLab/1.0"})
