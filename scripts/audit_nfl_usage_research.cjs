@@ -24,7 +24,7 @@ for(const p of stats.players||[]){
  }
  if(!Object.keys(market).length)continue;
  report.blockers.injury_and_active_role_unverified++;
- report.profiles.push({name:p.name,position,team:p.team||null,latest_week:games[0].week,markets:market,injury_verified:false,role_verified:false,betting_eligible:false});
+ report.profiles.push({nflverse_player_id:p.id||null,name:p.name,position,team:p.team||null,latest_week:games[0].week,markets:market,injury_verified:false,role_verified:false,betting_eligible:false});
 }
 report.profiles.sort((a,b)=>a.position.localeCompare(b.position)||a.name.localeCompare(b.name));
 fs.writeFileSync(path.join(root,'feed/nfl_usage_research.json'),JSON.stringify(report,null,2)+'\n');
