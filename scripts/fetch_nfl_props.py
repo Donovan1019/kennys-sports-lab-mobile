@@ -81,6 +81,7 @@ def main():
         upcoming=eligible_events(events,now)
         print("Provider events",len(events),"eligible future events",len(upcoming))
         events=upcoming
+        schedule_games=[{"event_id":e["id"],"event":e["away_team"]+" @ "+e["home_team"],"commence_time":e["commence_time"]} for e in upcoming]
         target_date=os.environ.get("TARGET_DATE")
         if target_date:
             datetime.strptime(target_date,"%Y-%m-%d")
@@ -132,7 +133,7 @@ def main():
         captured=[e["id"] for e in upcoming if e["id"] in available_ids]
         scope_ids={e["id"] for e in upcoming}
         missing_ids=[e["id"] for e in upcoming if e["id"] not in available_ids]
-        coverage={"generated_at":datetime.now(timezone.utc).isoformat(),"target_date":target_date or None,"expected_upcoming_events":expected,"requested_events":len(events),"captured_event_ids":captured,"captured_events":len(captured),"missing_event_ids":missing_ids,"unrequested_events":max(0,expected-len(events)) if not retry_missing else 0,"complete":not missing_ids and not errors,"requested_scope_complete":bool(attempted) and all(eid in available_ids for eid in attempted) and not errors,"errors":errors,"status":"COMPLETE" if not missing_ids and not errors else "PARTIAL","requested_scope_status":"COMPLETE" if attempted and all(eid in available_ids for eid in attempted) and not errors else "PARTIAL","retry_missing_only":retry_missing,"attempted_event_ids":attempted}
+        coverage={"schedule_games":schedule_games,"generated_at":datetime.now(timezone.utc).isoformat(),"target_date":target_date or None,"expected_upcoming_events":expected,"requested_events":len(events),"captured_event_ids":captured,"captured_events":len(captured),"missing_event_ids":missing_ids,"unrequested_events":max(0,expected-len(events)) if not retry_missing else 0,"complete":not missing_ids and not errors,"requested_scope_complete":bool(attempted) and all(eid in available_ids for eid in attempted) and not errors,"errors":errors,"status":"COMPLETE" if not missing_ids and not errors else "PARTIAL","requested_scope_status":"COMPLETE" if attempted and all(eid in available_ids for eid in attempted) and not errors else "PARTIAL","retry_missing_only":retry_missing,"attempted_event_ids":attempted}
         Path("feed/nfl_prop_capture_coverage.json").write_text(json.dumps(coverage,indent=2)+chr(10))
         print("CAPTURE_COVERAGE",json.dumps(coverage))
         if not rows:print("No verified prop prices returned; old feed preserved");return 1
@@ -140,7 +141,7 @@ def main():
                 "fetched_at":datetime.now(timezone.utc).isoformat(),
                 "markets_requested":list(MARKETS),"books":list(BOOKS),
                 "events_requested":len(events),"errors":errors,
-                "remaining_credits":remaining,"odds":rows}
+                "remaining_credits":remaining,"schedule_games":schedule_games,"odds":rows}
         path=Path("feed/nfl_props.json");path.parent.mkdir(exist_ok=True)
         path.write_text(json.dumps(output,ensure_ascii=False,separators=(",",":"))+"\n",encoding="utf-8")
         print("Saved",len(rows),"verified prop prices")
