@@ -10,6 +10,10 @@ on:
       - 'scripts/fetch_nfl_stats.py'
       - 'scripts/test_fetch_nfl_stats.py'
       - 'scripts/test_nfl_sgp_joint.cjs'
+      - 'scripts/test_nfl_seven_module_integrity.cjs'
+      - 'nfl.html'
+      - 'nfl_sgp_stack_finder.js'
+      - 'nfl_qb_unders.js'
       - '.github/workflows/refresh-nfl-stats.yml'
 permissions:
   contents: write
@@ -28,6 +32,8 @@ jobs:
         run: |
           python -m py_compile scripts/fetch_nfl_stats.py
           python scripts/test_fetch_nfl_stats.py
+      - name: Validate NFL seven-module integrity and betting safety
+        run: node scripts/test_nfl_seven_module_integrity.cjs
       - name: Validate existing NFL SGP joint simulator
         run: node scripts/test_nfl_sgp_joint.cjs
       - name: Fetch public nflverse weekly player stats
