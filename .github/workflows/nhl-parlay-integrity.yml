@@ -1,0 +1,28 @@
+name: NHL Moneyline Parlay Integrity
+on:
+  push:
+    paths:
+      - 'nhl_ml_parlay.js'
+      - 'nhl-ml-parlay.html'
+      - 'tests/nhl_ml_parlay.test.cjs'
+      - '.github/workflows/nhl-parlay-integrity.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  integrity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify NHL parlay JavaScript syntax
+        run: node --check nhl_ml_parlay.js
+      - name: Run NHL parlay regression tests
+        run: node --test tests/nhl_ml_parlay.test.cjs
+      - name: Check NHL parlay entry point
+        run: |
+          test -f nhl-ml-parlay.html
+          grep -q 'nhl_ml_parlay.js' nhl-ml-parlay.html
+          grep -q 'nhl-ml-parlay.html' nhl.html
