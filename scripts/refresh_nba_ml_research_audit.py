@@ -31,6 +31,18 @@ def main():
                 price=float(r["price"]);decimal=1+100/(-price) if price<0 else 1+price/100
                 mc=sum(rng.random()<p for _ in range(10000))/10000
                 result["games"].append({"event_id":eid,"bookmaker":book,"team":team,"price":price,"model_probability":p,"mc_probability":mc,"single_leg_ev":p*decimal-1,"stress_ev_minus_3pp":max(0,p-.03)*decimal-1,"market_divergence_flag":False})
+        # Independent-game research combinations; never imply executable sportsbook pricing.
+        books=sorted({g["bookmaker"] for g in result["games"]})
+        for book in books:
+            candidates=sorted((g for g in result["games"] if g["bookmaker"]==book and g["price"]<0 and g["model_probability"]>=.60 and g["stress_ev_minus_3pp"]>0),key=lambda g:g["stress_ev_minus_3pp"],reverse=True)
+            unique=[];seen=set()
+            for g in candidates:
+                if g["event_id"] not in seen:unique.append(g);seen.add(g["event_id"])
+            for n in (2,3,4,5):
+                if len(unique)<n:continue
+                legs=unique[:n];joint=math.prod(g["model_probability"] for g in legs)
+                stress=math.prod(max(0,g["model_probability"]-.03) for g in legs)
+                result["parlays"].append({"bookmaker":book,"legs":[{"event_id":g["event_id"],"team":g["team"]} for g in legs],"independent_mc_probability":sum(all(rng.random()<g["model_probability"] for g in legs) for _ in range(10000))/10000,"stress_probability_minus_3pp":stress,"betting_eligible":False,"executable_parlay_quote_verified":False})
         result["status"]="simulated_not_bet_eligible" if result["games"] else "unavailable"
         result["reason"]="Independent-game research simulations only; lineup, correlation, executable parlay quote and CLV unverified"
     except (ValueError,KeyError,TypeError) as e:result["reason"]=str(e)
