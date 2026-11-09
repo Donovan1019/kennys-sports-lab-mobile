@@ -1,0 +1,56 @@
+name: NHL Independent Model Build and Verify
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/build_nhl_goal_rates.py'
+      - 'scripts/build_nhl_ml_predictions.py'
+      - 'scripts/nhl_moneyline_model.py'
+      - '.github/workflows/nhl-model-verify.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: nhl-model-verify
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check Python syntax
+        run: python -m py_compile scripts/build_nhl_goal_rates.py scripts/build_nhl_ml_predictions.py scripts/nhl_moneyline_model.py
+      - name: Build independent historical scoring inputs
+        run: python scripts/build_nhl_goal_rates.py
+      - name: Build NHL moneyline projections
+        run: python scripts/build_nhl_ml_predictions.py
+      - name: Validate model output and provenance
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          data=json.loads(Path('feed/nhl_ml_predictions.json').read_text())
+          rows=data['predictions']
+          assert rows, 'Empty NHL predictions'
+          active=[x for x in rows if x['home_win_probability'] is not None]
+          assert active, 'No independently generated NHL probabilities'
+          for x in active:
+              p=x['home_win_probability']
+              assert 0<p<1 and abs(p+x['away_win_probability']-1)<1e-9
+              assert x['data_quality']=='RESEARCH_ONLY_GOALS_PER_GAME'
+              assert x['goalie_status']=='UNVERIFIED'
+          print('PASS:',len(active),'research probabilities of',len(rows),'events')
+          PY
+      - name: Publish verified research feeds
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add feed/nhl_expected_goals.json feed/nhl_ml_predictions.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Update independent NHL research projections'
+            git push
+          fi
