@@ -11,6 +11,10 @@ on:
     - cron: '5 23 * * 1,4'
   workflow_dispatch:
     inputs:
+      target_date:
+        description: "Optional NFL game date in Eastern Time (YYYY-MM-DD); prioritizes that date before API requests"
+        required: false
+        type: string
       max_events:
         description: "Upcoming NFL games to refresh, including previously captured games (API credits apply)"
         required: true
@@ -47,7 +51,7 @@ jobs:
         env:
           THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
           MAX_EVENTS: ${{ inputs.max_events || '16' }}
-          TARGET_DATE: ''
+          TARGET_DATE: \${{ inputs.target_date || '' }}
           RETRY_MISSING_ONLY: '0'
         run: python scripts/fetch_nfl_props.py
       - name: Export and archive genuine pregame forecasts immediately after refresh
