@@ -5,7 +5,7 @@ import json
 import tempfile
 from pathlib import Path
 from datetime import datetime,timezone,timedelta
-from fetch_nfl_props import eligible_events, extract, free_plan_budget_guard
+from fetch_nfl_props import eligible_events, extract, free_plan_budget_guard, reusable_event_ids
 
 class EventSelectionTests(unittest.TestCase):
     def test_future_only_and_sorted(self):
@@ -46,5 +46,19 @@ class CreditBudgetTests(unittest.TestCase):
         self.assertEqual(len(rows),1)
         self.assertEqual(rows[0]["updated_at"],"2026-11-15T17:00:00Z")
         self.assertEqual(rows[0]["player"],"Test QB")
+
+class FullSlateCacheTests(unittest.TestCase):
+    def test_reuse_requires_both_books_all_markets_and_fresh_quotes(self):
+        from fetch_nfl_props import MARKETS, BOOKS
+        now=datetime(2026,11,9,12,tzinfo=timezone.utc)
+        event={"id":"game1"}
+        rows=[{"event_id":"game1","bookmaker":book,"market":market,"updated_at":"2026-11-09T11:50:00Z"} for book in BOOKS for market in MARKETS]
+        self.assertEqual(reusable_event_ids([event],{"odds":rows},now),{"game1"})
+        self.assertEqual(reusable_event_ids([event],{"odds":rows[:-1]},now),set())
+        rows[0]["updated_at"]="2026-11-09T10:00:00Z"
+        self.assertEqual(reusable_event_ids([event],{"odds":rows},now),set())
+    def test_different_game_never_reused(self):
+        now=datetime(2026,11,9,12,tzinfo=timezone.utc)
+        self.assertEqual(reusable_event_ids([{"id":"game2"}],{"odds":[{"event_id":"game1","bookmaker":"draftkings","market":"player_pass_yds","updated_at":"2026-11-09T11:55:00Z"}]},now),set())
 
 if __name__=="__main__":unittest.main()
