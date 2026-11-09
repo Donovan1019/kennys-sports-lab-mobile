@@ -19,7 +19,7 @@ def join(usage,injury):
  for r in injury.get("injuries",[]):
   team=TEAMS.get(r.get("team"));name=norm(r.get("player"));t=stamp(r.get("reported_at"))
   if team and name and t:index[(team,name)].append(r)
- out={"generated_at":now.isoformat(),"status":"RESEARCH_ONLY","identity_verified":False,"game_day_status_verified":False,"injury_feed_fresh":fresh,"betting_eligible":False,"profiles_checked":0,"name_team_candidates":0,"ambiguous":0,"stale_or_missing":0,"no_match":0,"candidates":[]}
+ out={"generated_at":now.isoformat(),"status":"RESEARCH_ONLY","identity_verified":False,"game_day_status_verified":False,"injury_feed_fresh":fresh,"betting_eligible":False,"profiles_checked":0,"name_team_candidates":0,"historical_name_team_candidates":0,"ambiguous":0,"stale_or_missing":0,"no_match":0,"candidates":[]}
  for p in usage.get("profiles",[]):
   out["profiles_checked"]+=1
   team=ALIASES.get(str(p.get("team") or "").upper(),str(p.get("team") or "").upper())
@@ -30,9 +30,9 @@ def join(usage,injury):
   if len(statuses)>1:out["ambiguous"]+=1;continue
   latest=max(found,key=lambda r:stamp(r["reported_at"]))
   age=(now-stamp(latest["reported_at"])).total_seconds()
-  if not fresh or age<0 or age>6*3600:out["stale_or_missing"]+=1;continue
+  if not fresh or age<0 or age>6*3600:\n   out["stale_or_missing"]+=1\n   out["historical_name_team_candidates"]+=1\n   continue
   out["name_team_candidates"]+=1
-  out["candidates"].append({"player":p.get("name"),"team":team,"position":p.get("position"),"source_status":latest.get("status"),"reported_at":latest.get("reported_at"),"match_method":"NORMALIZED_NAME_AND_TEAM_ONLY","identity_verified":False,"game_day_active_verified":False,"game_day_inactive_verified":False,"projection_adjustment_eligible":False})
+  out["candidates"].append({"player":p.get("name"),"nflverse_player_id":p.get("nflverse_player_id"),"espn_athlete_id":None,"team":team,"position":p.get("position"),"source_status":latest.get("status"),"reported_at":latest.get("reported_at"),"match_method":"NORMALIZED_NAME_AND_TEAM_ONLY","identity_verified":False,"game_day_active_verified":False,"game_day_inactive_verified":False,"projection_adjustment_eligible":False})
  return out
 def main():
  root=Path(__file__).resolve().parent.parent
