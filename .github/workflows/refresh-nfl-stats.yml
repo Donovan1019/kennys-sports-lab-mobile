@@ -2,11 +2,13 @@ name: Refresh NFL Player Stats
 on:
   schedule:
     - cron: '20 12 * * 1,4,6'
+    - cron: '15 16,20 * * 0'
   workflow_dispatch:
   push:
     branches: [main]
     paths:
       - 'scripts/fetch_nfl_stats.py'
+      - 'scripts/test_fetch_nfl_stats.py'
       - '.github/workflows/refresh-nfl-stats.yml'
 permissions:
   contents: write
