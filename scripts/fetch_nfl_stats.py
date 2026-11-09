@@ -47,7 +47,8 @@ def parse(source):
             continue
         if not r.get("player_id") or not r.get(name_column) or not values:continue
         opponent=str(r.get("opponent_team") or r.get("opponent") or "").strip().upper()
-        rows.append({"id":r["player_id"],"name":r[name_column],"team":r[team_column],"position":str(r.get(position_column) or "").upper() if position_column else "","season":year,"week":week,"season_type":r["season_type"],"values":values,**({"opponent_abbr":opponent} if opponent and opponent!=str(r[team_column]).upper() and opponent.isalpha() and len(opponent)<=4 else {})})
+        game_id=str(r.get("game_id") or "").strip()
+        rows.append({"id":r["player_id"],"name":r[name_column],"team":r[team_column],"position":str(r.get(position_column) or "").upper() if position_column else "","season":year,"week":week,"season_type":r["season_type"],"values":values,**({"game_id":game_id} if game_id else {}),**({"opponent_abbr":opponent} if opponent and opponent!=str(r[team_column]).upper() and opponent.isalpha() and len(opponent)<=4 else {})})
     return rows
 
 def fetch(year):
@@ -86,7 +87,7 @@ def main():
     players=defaultdict(lambda:{"name":"","team":"","position":"","games":[]})
     for row in combined:
         p=players[row["id"]];p["name"]=row["name"];p["team"]=row["team"];p["position"]=row["position"] or p["position"]
-        p["games"].append({"season":row["season"],"week":row["week"],"season_type":row["season_type"],"values":row["values"],**({"opponent_abbr":row["opponent_abbr"]} if row.get("opponent_abbr") else {})})
+        p["games"].append({"season":row["season"],"week":row["week"],"season_type":row["season_type"],"values":row["values"],**({"game_id":row["game_id"]} if row.get("game_id") else {}),**({"opponent_abbr":row["opponent_abbr"]} if row.get("opponent_abbr") else {})})
     output={"source":"nflverse-stats-player-week","source_url":"https://github.com/nflverse/nflverse-data/releases/tag/stats_player","fetched_at":datetime.now(timezone.utc).isoformat(),"seasons":sorted({row["season"] for row in combined}),"unavailable_seasons":failures,"players":[{"id":pid,**p} for pid,p in sorted(players.items())]}
     path=Path("feed/nfl_player_stats.json");path.parent.mkdir(exist_ok=True)
     path.write_text(json.dumps(output,separators=(",",":"))+"\n",encoding="utf-8")
