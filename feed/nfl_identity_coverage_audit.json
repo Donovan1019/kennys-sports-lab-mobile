@@ -1,0 +1,25 @@
+{
+  "generated_at": "2026-11-09T14:59:42.487262+00:00",
+  "status": "RESEARCH_ONLY",
+  "betting_eligible": false,
+  "identity_crosswalk_verified": false,
+  "game_day_availability_verified": false,
+  "players_in_stats": 2366,
+  "unique_nflverse_player_ids": 2366,
+  "usage_profiles": 342,
+  "usage_profiles_with_nflverse_id": 342,
+  "injury_observations": 800,
+  "injury_observations_with_espn_id": 0,
+  "unique_espn_ids_observed": 0,
+  "fresh_name_team_candidates": 4,
+  "historical_stale_matches": 245,
+  "unmatched_profiles": 93,
+  "ambiguous_profiles": 0,
+  "source_feed_fresh": true,
+  "blockers": [
+    "NO_VERIFIED_CROSS_PROVIDER_IDENTITY",
+    "NO_CONFIRMED_GAME_DAY_AVAILABILITY",
+    "NO_VALIDATED_INJURY_ADJUSTMENT"
+  ],
+  "notes": "Source-native IDs are not an independently verified crosswalk; never promote name/team matches to betting eligibility."
+}
