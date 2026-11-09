@@ -17,6 +17,8 @@ on:
       - 'scripts/test_nfl_injury_observations.py'
       - 'scripts/crosscheck_nfl_injury_usage.py'
       - 'scripts/test_nfl_injury_usage_crosscheck.py'
+      - 'scripts/audit_nfl_identity_coverage.py'
+      - 'scripts/test_nfl_identity_coverage.py'
       - 'nfl.html'
       - 'nfl_sgp_stack_finder.js'
       - 'nfl_qb_unders.js'
@@ -50,6 +52,10 @@ jobs:
           python scripts/test_nfl_injury_observations.py
       - name: Validate injury usage crosscheck
         run: python scripts/test_nfl_injury_usage_crosscheck.py
+      - name: Validate NFL identity coverage diagnostics
+        run: |
+          python -m py_compile scripts/audit_nfl_identity_coverage.py scripts/test_nfl_identity_coverage.py
+          python scripts/test_nfl_identity_coverage.py
       - name: Fetch public nflverse weekly player stats
         run: python scripts/fetch_nfl_stats.py
       - name: Verify generated player snapshot is usable
@@ -86,11 +92,19 @@ jobs:
           else
             echo 'No injury observations: research crosscheck unavailable'
           fi
+      - name: Audit source-native identity coverage
+        run: |
+          if [ -f feed/nfl_injury_observations.json ] && [ -f feed/nfl_injury_usage_crosscheck.json ]; then
+            python scripts/audit_nfl_identity_coverage.py
+          else
+            echo 'Identity audit unavailable: injury source missing'
+          fi
       - name: Commit verified snapshot
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add feed/nfl_player_stats.json feed/nfl_usage_research.json feed/nfl_injury_usage_crosscheck.json
+          if [ -f feed/nfl_identity_coverage_audit.json ]; then git add feed/nfl_identity_coverage_audit.json; fi
           if [ -f feed/nfl_injury_observations.json ]; then git add feed/nfl_injury_observations.json; fi
           if ! git diff --cached --quiet; then
             git commit -m "Refresh verified NFL player game logs"
