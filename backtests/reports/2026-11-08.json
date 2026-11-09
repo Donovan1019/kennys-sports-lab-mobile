@@ -1,10 +1,10 @@
 {
   "date": "2026-11-08",
-  "generated_at": "2026-11-08T16:48:33.477515+00:00",
+  "generated_at": "2026-11-09T01:44:12.091244+00:00",
   "sports": {
     "NFL": {
       "status": "NO_VERIFIED_PREGAME_PREDICTIONS",
-      "saved_quotes": 2682,
+      "saved_quotes": 4023,
       "eligible_predictions": 0,
       "research_only_predictions": 0,
       "bet_eligible_predictions": 0,
@@ -25,23 +25,60 @@
       "pending": 32
     },
     "NHL": {
-      "status": "OUTCOMES_UNVERIFIED",
+      "status": "PARTIALLY_SETTLED_MONEYLINES",
       "saved_quotes": 0,
       "eligible_predictions": 108,
       "research_only_predictions": 108,
       "bet_eligible_predictions": 0,
       "blocked_predictions": [],
-      "graded": 0,
-      "settled": [],
-      "pending": 108
+      "graded": 6,
+      "settled": [
+        {
+          "event": "Florida Panthers @ Boston Bruins",
+          "market": "h2h",
+          "selection": "Boston Bruins",
+          "outcome": "win"
+        },
+        {
+          "event": "Florida Panthers @ Boston Bruins",
+          "market": "h2h",
+          "selection": "Florida Panthers",
+          "outcome": "loss"
+        },
+        {
+          "event": "Vegas Golden Knights @ Buffalo Sabres",
+          "market": "h2h",
+          "selection": "Buffalo Sabres",
+          "outcome": "loss"
+        },
+        {
+          "event": "Vegas Golden Knights @ Buffalo Sabres",
+          "market": "h2h",
+          "selection": "Vegas Golden Knights",
+          "outcome": "win"
+        },
+        {
+          "event": "Tampa Bay Lightning @ Winnipeg Jets",
+          "market": "h2h",
+          "selection": "Winnipeg Jets",
+          "outcome": "win"
+        },
+        {
+          "event": "Tampa Bay Lightning @ Winnipeg Jets",
+          "market": "h2h",
+          "selection": "Tampa Bay Lightning",
+          "outcome": "loss"
+        }
+      ],
+      "pending": 102
     }
   },
   "summary": {
-    "verified_picks": 0,
-    "wins": 0,
-    "losses": 0,
+    "verified_picks": 6,
+    "wins": 3,
+    "losses": 3,
     "pushes": 0,
     "roi": null,
-    "hit_rate": null
+    "hit_rate": 0.5
   }
 }

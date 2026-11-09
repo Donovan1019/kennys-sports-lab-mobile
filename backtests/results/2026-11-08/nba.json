@@ -1,0 +1,33 @@
+{
+  "sport": "NBA",
+  "date": "2026-11-08",
+  "games": [
+    {
+      "event_id": "401909945",
+      "event": "Philadelphia 76ers at Chicago Bulls",
+      "commence_time": "2026-11-08T20:30Z",
+      "home": "Chicago Bulls",
+      "away": "Philadelphia 76ers",
+      "home_score": 121,
+      "away_score": 127,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261108&limit=100"
+    },
+    {
+      "event_id": "401909946",
+      "event": "Los Angeles Lakers at Detroit Pistons",
+      "commence_time": "2026-11-08T23:00Z",
+      "home": "Detroit Pistons",
+      "away": "Los Angeles Lakers",
+      "home_score": 116,
+      "away_score": 121,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261108&limit=100"
+    }
+  ],
+  "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261108&limit=100"
+}

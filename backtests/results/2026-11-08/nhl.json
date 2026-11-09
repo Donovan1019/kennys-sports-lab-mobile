@@ -1,0 +1,46 @@
+{
+  "sport": "NHL",
+  "date": "2026-11-08",
+  "games": [
+    {
+      "event_id": "401892674",
+      "event": "Florida Panthers at Boston Bruins",
+      "commence_time": "2026-11-08T18:00Z",
+      "home": "Boston Bruins",
+      "away": "Florida Panthers",
+      "home_score": 4,
+      "away_score": 1,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261108&limit=100"
+    },
+    {
+      "event_id": "401892675",
+      "event": "Vegas Golden Knights at Buffalo Sabres",
+      "commence_time": "2026-11-08T20:30Z",
+      "home": "Buffalo Sabres",
+      "away": "Vegas Golden Knights",
+      "home_score": 1,
+      "away_score": 4,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261108&limit=100"
+    },
+    {
+      "event_id": "401892677",
+      "event": "Tampa Bay Lightning at Winnipeg Jets",
+      "commence_time": "2026-11-08T23:00Z",
+      "home": "Winnipeg Jets",
+      "away": "Tampa Bay Lightning",
+      "home_score": 4,
+      "away_score": 3,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261108&limit=100"
+    }
+  ],
+  "source_url": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261108&limit=100"
+}
