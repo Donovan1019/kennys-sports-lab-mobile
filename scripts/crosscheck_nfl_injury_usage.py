@@ -25,14 +25,18 @@ def join(usage,injury):
   team=ALIASES.get(str(p.get("team") or "").upper(),str(p.get("team") or "").upper())
   found=index.get((team,norm(p.get("name"))),[])
   if not found:out["no_match"]+=1;continue
+  if len({str(r.get("espn_athlete_id")) for r in found if r.get("espn_athlete_id")})>1:out["ambiguous"]+=1;continue
   # Multiple distinct source statuses/timestamps must never silently overwrite one another.
   statuses={str(r.get("status") or "").strip().lower() for r in found}
   if len(statuses)>1:out["ambiguous"]+=1;continue
   latest=max(found,key=lambda r:stamp(r["reported_at"]))
   age=(now-stamp(latest["reported_at"])).total_seconds()
-  if not fresh or age<0 or age>6*3600:\n   out["stale_or_missing"]+=1\n   out["historical_name_team_candidates"]+=1\n   continue
+  if not fresh or age<0 or age>6*3600:
+   out["stale_or_missing"]+=1
+   out["historical_name_team_candidates"]+=1
+   continue
   out["name_team_candidates"]+=1
-  out["candidates"].append({"player":p.get("name"),"nflverse_player_id":p.get("nflverse_player_id"),"espn_athlete_id":None,"team":team,"position":p.get("position"),"source_status":latest.get("status"),"reported_at":latest.get("reported_at"),"match_method":"NORMALIZED_NAME_AND_TEAM_ONLY","identity_verified":False,"game_day_active_verified":False,"game_day_inactive_verified":False,"projection_adjustment_eligible":False})
+  out["candidates"].append({"player":p.get("name"),"nflverse_player_id":p.get("nflverse_player_id"),"espn_athlete_id":latest.get("espn_athlete_id"),"team":team,"position":p.get("position"),"source_status":latest.get("status"),"reported_at":latest.get("reported_at"),"match_method":"NORMALIZED_NAME_AND_TEAM_ONLY","identity_verified":False,"game_day_active_verified":False,"game_day_inactive_verified":False,"projection_adjustment_eligible":False})
  return out
 def main():
  root=Path(__file__).resolve().parent.parent
