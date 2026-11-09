@@ -39,6 +39,7 @@ jobs:
       - name: Verify pregame export and archive integrity
         run: |
           python scripts/test_nfl_prop_event_selection.py
+          python scripts/test_merge_nfl_prop_forecast_ledgers.py
           node scripts/test_nfl_prop_export.cjs
           node scripts/test_nfl_prop_archive.cjs
       - name: Fetch capped NFL player prop odds
@@ -73,7 +74,12 @@ jobs:
             for attempt in 1 2 3; do
               git fetch origin main
               git reset --hard origin/main
-              cp /tmp/ksl-nfl-refresh/* feed/
+              cp /tmp/ksl-nfl-refresh/nfl_props.json /tmp/ksl-nfl-refresh/nfl_prop_capture_coverage.json feed/
+              if [ -f /tmp/ksl-nfl-refresh/nfl_prop_forecast_ledger.json ]; then
+                # Merge append-only forecast IDs from the latest main, never replace
+                # a concurrently archived forecast with an older snapshot.
+                python scripts/merge_nfl_prop_forecast_ledgers.py feed/nfl_prop_forecast_ledger.json /tmp/ksl-nfl-refresh/nfl_prop_forecast_ledger.json
+              fi
               git add feed/nfl_props.json feed/nfl_prop_capture_coverage.json feed/nfl_prop_forecast_ledger.json
               if git diff --cached --quiet; then exit 0; fi
               git commit -m "Publish NFL full-slate prop capture and pregame archive"
