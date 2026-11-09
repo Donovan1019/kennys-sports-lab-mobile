@@ -102,15 +102,15 @@
     ]
   },
   "deduplicated": {
-    "total": 64,
-    "wins": 39,
-    "losses": 21,
+    "total": 491,
+    "wins": 267,
+    "losses": 191,
     "pushes": 0,
-    "no_edge": 4
+    "no_edge": 33
   },
   "archived_forecasts": 2799,
-  "graded_forecasts": 90,
-  "games_with_grades": 2,
+  "graded_forecasts": 1049,
+  "games_with_grades": 10,
   "game_results": [
     {
       "game": "Arizona Cardinals @ Dallas Cowboys",
@@ -155,25 +155,25 @@
     {
       "game": "Cincinnati Bengals @ Atlanta Falcons",
       "archived": 174,
-      "graded": 0,
-      "wins": 0,
-      "losses": 0,
+      "graded": 136,
+      "wins": 82,
+      "losses": 54,
       "pushes": 0
     },
     {
       "game": "Cleveland Browns @ New Orleans Saints",
       "archived": 96,
-      "graded": 0,
-      "wins": 0,
-      "losses": 0,
+      "graded": 96,
+      "wins": 63,
+      "losses": 33,
       "pushes": 0
     },
     {
       "game": "Dallas Cowboys @ Indianapolis Colts",
       "archived": 135,
-      "graded": 0,
-      "wins": 0,
-      "losses": 0,
+      "graded": 123,
+      "wins": 69,
+      "losses": 54,
       "pushes": 0
     },
     {
@@ -187,17 +187,17 @@
     {
       "game": "Denver Broncos @ Carolina Panthers",
       "archived": 184,
-      "graded": 0,
-      "wins": 0,
-      "losses": 0,
+      "graded": 184,
+      "wins": 101,
+      "losses": 83,
       "pushes": 0
     },
     {
       "game": "Detroit Lions @ Miami Dolphins",
       "archived": 130,
-      "graded": 0,
-      "wins": 0,
-      "losses": 0,
+      "graded": 126,
+      "wins": 87,
+      "losses": 39,
       "pushes": 0
     },
     {
@@ -243,25 +243,25 @@
     {
       "game": "Los Angeles Rams @ Washington Commanders",
       "archived": 114,
-      "graded": 0,
-      "wins": 0,
-      "losses": 0,
+      "graded": 106,
+      "wins": 43,
+      "losses": 63,
       "pushes": 0
     },
     {
       "game": "New York Giants @ Philadelphia Eagles",
       "archived": 62,
-      "graded": 0,
-      "wins": 0,
-      "losses": 0,
+      "graded": 58,
+      "wins": 36,
+      "losses": 22,
       "pushes": 0
     },
     {
       "game": "New York Jets @ Kansas City Chiefs",
       "archived": 142,
-      "graded": 0,
-      "wins": 0,
-      "losses": 0,
+      "graded": 130,
+      "wins": 72,
+      "losses": 58,
       "pushes": 0
     },
     {
@@ -297,5 +297,5 @@
       "pushes": 0
     }
   ],
-  "calibration_status": "INSUFFICIENT_CROSS_GAME_SAMPLE"
+  "calibration_status": "REQUIRES_INDEPENDENT_CALIBRATION"
 }
