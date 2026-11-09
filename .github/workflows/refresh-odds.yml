@@ -54,7 +54,9 @@ jobs:
           fi
       - name: Rebuild NHL independent moneyline research feed
         if: ${{ (inputs.sport || 'americanfootball_nfl') == 'icehockey_nhl' }}
-        run: python scripts/build_nhl_ml_predictions.py
+        run: |
+          python scripts/build_nhl_goal_rates.py
+          python scripts/build_nhl_ml_predictions.py
       - name: Rebuild NBA moneyline model and research simulations
         if: ${{ (inputs.sport || 'americanfootball_nfl') == 'basketball_nba' }}
         run: |
