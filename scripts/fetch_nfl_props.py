@@ -82,16 +82,20 @@ def main():
     except ValueError:return 2
     if not 1<=limit<=20:
         print("Choose MAX_EVENTS between 1 and 20 explicitly; no requests made");return 2
-    if os.environ.get("IGNORE_FREE_PLAN_BUDGET_GUARD")!="1":
-        remaining=free_plan_budget_guard(datetime.now(timezone.utc))
-        if remaining is not None:
-            print("FREE_PLAN_BUDGET_GUARD: same-month remaining",remaining,"<= reserve 20; no provider requests")
-            return 0
+    # Never use a published snapshot's old balance as the current key's quota.
+    # The events endpoint is free and returns live x-requests-remaining.
     query=lambda d:urllib.parse.urlencode(d)
     common={"apiKey":key,"bookmakers":",".join(BOOKS),"oddsFormat":"american"}
     try:
         events,remaining=request_json(BASE+"/events?"+query({"apiKey":key}))
         if not isinstance(events,list):raise ValueError("Unexpected events response")
+        if remaining is None or not str(remaining).isdigit():
+            print("FREE_PLAN_BUDGET_GUARD: live provider balance unavailable; no paid event requests")
+            return 2
+        print("LIVE_PROVIDER_CREDITS_REMAINING",remaining)
+        if int(remaining)<=20:
+            print("FREE_PLAN_BUDGET_GUARD: live balance",remaining,"<= reserve 20; no paid event requests")
+            return 0
         now=datetime.now(timezone.utc)
         upcoming=eligible_events(events,now)
         print("Provider events",len(events),"eligible future events",len(upcoming))
