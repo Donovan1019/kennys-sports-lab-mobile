@@ -16,4 +16,9 @@ class InjuryObservationTests(unittest.TestCase):
   self.assertEqual(d["observed_reports"],0)
   self.assertEqual(d["invalid_records"],1)
   with self.assertRaises(ValueError):parse({}, "now")
+    def test_athlete_id_preserved_not_verified(self):
+        payload={"injuries":[{"id":"1","displayName":"Example Team","injuries":[{"athlete":{"id":"12345","displayName":"Example Player"},"status":"Questionable","date":"2026-11-09T12:00:00Z"}]}]}
+        d=parse(payload,"2026-11-09T12:05:00Z")
+        self.assertEqual(d["injuries"][0]["espn_athlete_id"],"12345")
+        self.assertFalse(d["injuries"][0]["usage_adjustment_eligible"])
 if __name__=="__main__":unittest.main()
