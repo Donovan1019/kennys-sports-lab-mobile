@@ -9,8 +9,8 @@ for(const id of ['nfl-sgp-stack-finder','nfl-qb-unders','nfl-qb-unders-status','
 for(const market of ['Passing Touchdowns','Passing Yards','Rushing Yards','Interceptions','Pass Attempts','Pass Completions','Rush Attempts','Sacks Taken','Completion Percentage','Yards Per Attempt'])assert(qb.includes("'"+market+"'"),'missing QB market '+market);
 for(const tier of ['gold','silver','bronze'])assert(sgp.includes("id:'"+tier+"'"),'missing SGP tier '+tier);
 assert(sgp.includes('coverageHtml'),'missing full-slate coverage');
-assert(sgp.includes('injury_verified===true'),'injury verification gate removed');
-assert(sgp.includes('role_stable===true'),'role verification gate removed');
+assert(sgp.includes('injury_verified!==true'),'injury verification gate removed');
+assert(sgp.includes('role_stable!==true'),'role verification gate removed');
 assert(sgp.includes('NO_CALIBRATED_JOINT_SIMULATION'),'joint simulation gate removed');
 assert(sgp.includes('NO_VERIFIED_COMBINED_SGP_PRICE'),'official SGP price gate removed');
 assert(sgp.includes('Date.now()-Date.parse(x.updated_at)<=30*60000'),'quote freshness gate removed');
