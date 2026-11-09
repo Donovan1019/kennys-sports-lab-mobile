@@ -29,7 +29,7 @@ def main():
             p=home_moneyline_probability(away,home)
             status='RESEARCH_ONLY'
         else:p=None;status='UNAVAILABLE'
-        out.append({'event_id':eid,'event':r.get('event'),'commence_time':r.get('commence_time'),'status':status,'home_win_probability':p,'away_win_probability':None if p is None else 1-p,'goalie_status':'UNVERIFIED','simulation_status':'UNAVAILABLE','source':item.get('source') if valid else None})
+        out.append({'event_id':eid,'event':r.get('event'),'commence_time':r.get('commence_time'),'status':status,'home_win_probability':p,'away_win_probability':None if p is None else 1-p,'goalie_status':'UNVERIFIED','simulation_status':'UNAVAILABLE','source':item.get('source') if valid else None,'data_quality':item.get('data_quality') if valid else None,'away_sample_games':item.get('away_games') if valid else None,'home_sample_games':item.get('home_games') if valid else None})
     target=ROOT/'feed/nhl_ml_predictions.json'
     target.write_text(json.dumps({'generated_at':datetime.now(timezone.utc).isoformat(),'model':'independent-poisson-research-baseline','status':'RESEARCH_ONLY','predictions':out},indent=2)+'\n')
     print('NHL research feed: %s games, %s independent inputs'%(len(out),sum(x['home_win_probability'] is not None for x in out)))
