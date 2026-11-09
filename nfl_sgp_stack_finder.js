@@ -125,6 +125,9 @@ for(const g of scheduleRows){
  const already=[...games.values()].some(x=>x.time===g.commence_time&&x.name===g.event);
  if(!already&&!games.has(g.event_id))games.set(g.event_id,{event_id:g.event_id,name:g.event||'Scheduled NFL matchup',time:g.commence_time,rows:[],schedule_only:true});
 }
+const scheduled=Array.isArray(d.schedule_games)?d.schedule_games.filter(g=>g&&g.event_id&&Date.parse(g.commence_time)>Date.now()):[];
+const covered=new Set(odds.map(x=>x.event_id));
+const coverageHtml='<section aria-label="NFL full-slate prop coverage" style="border:1px solid #47617a;border-radius:10px;padding:12px;margin:12px 0"><strong>Full-slate player-prop coverage: '+covered.size+' / '+(scheduled.length||games.size)+' games</strong><p style="font-size:12px">Fresh DraftKings/FanDuel player props only. Games without current prices remain visible but cannot produce betting-ready SGPs. Gold, Silver and Bronze still require validated simulation, player status, and official combined prices.</p></section>';
 const publishedRows=(d.odds||[]).filter(x=>x&&x.event_id&&x.commence_time&&['draftkings','fanduel'].includes(x.bookmaker));
 const upcomingPublished=publishedRows.filter(x=>Date.parse(x.commence_time)>Date.now());
 const expiredPublished=publishedRows.length-upcomingPublished.length;
