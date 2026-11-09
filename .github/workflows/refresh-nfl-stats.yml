@@ -12,6 +12,9 @@ on:
       - '.github/workflows/refresh-nfl-stats.yml'
 permissions:
   contents: write
+concurrency:
+  group: nfl-player-stats-refresh
+  cancel-in-progress: false
 jobs:
   refresh:
     runs-on: ubuntu-latest
@@ -26,6 +29,21 @@ jobs:
           python scripts/test_fetch_nfl_stats.py
       - name: Fetch public nflverse weekly player stats
         run: python scripts/fetch_nfl_stats.py
+      - name: Verify generated player snapshot is usable
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("feed/nfl_player_stats.json")
+          if not p.is_file() or p.stat().st_size<100:
+              raise SystemExit("NFL player snapshot missing or empty after refresh")
+          d=json.loads(p.read_text())
+          players=d.get("players",[])
+          current=[x for x in players if x.get("position") in ("QB","RB","WR","TE") and any(g.get("season")==2026 and g.get("season_type")=="REG" for g in x.get("games",[]))]
+          print("NFL player feed:",len(players),"players,",len(current),"current-season skill players")
+          if d.get("source")!="nflverse-stats-player-week" or not current:
+              raise SystemExit("NFL player feed failed current-season verification")
+          PY
       - name: Commit verified snapshot
         run: |
           git config user.name "github-actions[bot]"

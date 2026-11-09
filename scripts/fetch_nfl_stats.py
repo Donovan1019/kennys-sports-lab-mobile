@@ -60,13 +60,13 @@ def fetch(year):
                 data=res.read(35_000_000)
                 if res.read(1):raise ValueError("Source exceeds safety size limit")
                 decoded=data.decode("utf-8-sig")
-                if not decoded.startswith("season,") and "player_id" not in decoded.splitlines()[0]:
+                if not decoded.splitlines() or "player_id" not in decoded.splitlines()[0].split(",") or "season" not in decoded.splitlines()[0].split(","):
                     raise ValueError("Unexpected weekly player CSV header")
                 return decoded
         except (urllib.error.URLError, TimeoutError, ValueError, UnicodeError) as exc:
             errors.append(type(exc).__name__+":"+str(exc)[:120])
             if attempt<2:time.sleep(2*(attempt+1))
-    raise RuntimeError(f"2026 NFL weekly source unavailable after 3 attempts: {errors}")
+    raise RuntimeError(f"NFL weekly source for season {year} unavailable after 3 attempts: {errors}")
 
 def main():
     combined=[];failures=[]
