@@ -18,6 +18,24 @@ def inspect(ledger, graded, coverage):
     graded_ids={x.get("forecast_id") for x in graded if isinstance(x,dict) and x.get("outcome_verified") is True}
     awaiting=sum(1 for x in ids if x not in graded_ids)
     markets=dict(Counter(str(x.get("market")) for x in forecasts))
+    # Only immutable archived pregame forecasts with independently verified grades
+    # may enter forward calibration. Never use unlinked historical results.
+    by_id={x["forecast_id"]:x for x in forecasts}
+    verified=[]
+    for row in graded:
+        if not isinstance(row,dict) or row.get("outcome_verified") is not True:continue
+        f=by_id.get(row.get("forecast_id"))
+        if not f:continue
+        p=f.get("model_probability")
+        outcome=row.get("over_hit")
+        if not isinstance(p,(int,float)) or isinstance(p,bool) or not 0<=p<=1 or type(outcome) is not bool:continue
+        try:
+            forecast_at=datetime.fromisoformat(f["forecast_at"].replace("Z","+00:00"))
+            kickoff=datetime.fromisoformat(f["kickoff"].replace("Z","+00:00"))
+            if forecast_at.tzinfo is None or kickoff.tzinfo is None or forecast_at>=kickoff:continue
+        except (KeyError,TypeError,ValueError,AttributeError):continue
+        verified.append((p,int(outcome)))
+    brier=sum((p-y)**2 for p,y in verified)/len(verified) if verified else None
     return {
         "status":"RESEARCH_ONLY",
         "pregame_forecasts_archived":len(forecasts),
@@ -27,6 +45,9 @@ def inspect(ledger, graded, coverage):
         "capture_status":coverage.get("status","UNKNOWN") if isinstance(coverage,dict) else "UNKNOWN",
         "captured_events":coverage.get("captured_events",0) if isinstance(coverage,dict) else 0,
         "expected_upcoming_events":coverage.get("expected_upcoming_events",0) if isinstance(coverage,dict) else 0,
+        "matched_verified_forward_grades":len(verified),
+        "forward_brier_score":brier,
+        "forward_calibration_approved":False,
         "bet_eligibility":"BLOCKED",
         "limitations":"Verified graded historical rows can predate the current append-only forecast ledger. Counts are not a predictive edge or authorization to wager."
     }
