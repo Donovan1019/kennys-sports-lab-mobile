@@ -13,6 +13,8 @@ on:
       - 'scripts/test_nfl_seven_module_integrity.cjs'
       - 'scripts/audit_nfl_usage_research.cjs'
       - 'scripts/test_nfl_usage_research.cjs'
+      - 'scripts/fetch_nfl_injury_observations.py'
+      - 'scripts/test_nfl_injury_observations.py'
       - 'nfl.html'
       - 'nfl_sgp_stack_finder.js'
       - 'nfl_qb_unders.js'
@@ -40,6 +42,8 @@ jobs:
         run: node scripts/test_nfl_sgp_joint.cjs
       - name: Validate offline player usage audit
         run: node scripts/test_nfl_usage_research.cjs
+      - name: Validate ESPN injury observation parser
+        run: python scripts/test_nfl_injury_observations.py
       - name: Fetch public nflverse weekly player stats
         run: python scripts/fetch_nfl_stats.py
       - name: Verify generated player snapshot is usable
@@ -64,6 +68,9 @@ jobs:
           if d.get("source")!="nflverse-stats-player-week" or not current:
               raise SystemExit("NFL player feed failed current-season verification")
           PY
+      - name: Fetch free ESPN NFL injury observations
+        continue-on-error: true
+        run: python scripts/fetch_nfl_injury_observations.py
       - name: Generate historical usage research profiles
         run: node scripts/audit_nfl_usage_research.cjs
       - name: Commit verified snapshot
@@ -71,6 +78,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add feed/nfl_player_stats.json feed/nfl_usage_research.json
+          if [ -f feed/nfl_injury_observations.json ]; then git add feed/nfl_injury_observations.json; fi
           if ! git diff --cached --quiet; then
             git commit -m "Refresh verified NFL player game logs"
             git pull --rebase origin main
