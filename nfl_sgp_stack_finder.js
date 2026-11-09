@@ -166,5 +166,14 @@ try{
 }catch(e){console.warn('NFL schedule unavailable:',e.message)}
 odds.schedule_games=scheduleGames;
 render(odds,null,ledger,readiness,calibration);if(!window.KSLNFLStats)return;try{const stats=await Promise.race([window.KSLNFLStats.load(),new Promise((_,reject)=>setTimeout(()=>reject(Error('Stats request timed out')),8000))]);render(odds,stats,ledger,readiness,calibration)}catch(e){console.warn('SGP historical stats unavailable:',e.message)}}catch(e){root.innerHTML='<h2>🏈 NFL SGP Stack Finder</h2><p>Market coverage unavailable: '+esc(e.name==='AbortError'?'Odds request timed out':e.message)+'. No betting recommendations can be verified.</p><button id="nfl-sgp-retry" type="button">Retry loading</button>';document.getElementById('nfl-sgp-retry').onclick=load}}
+// A long-lived mobile tab must not continue showing yesterday's matchups.
+let lastResumeRefresh=0;
+function refreshOnResume(){
+ if(document.visibilityState==='hidden'||Date.now()-lastResumeRefresh<60000)return;
+ lastResumeRefresh=Date.now();
+ load();
+}
+document.addEventListener('visibilitychange',refreshOnResume);
+window.addEventListener('focus',refreshOnResume);
 if(!window.KSLNFLStats){const script=document.createElement('script');script.src='./nfl_sgp_verified_stats.js';script.onload=load;script.onerror=load;document.head.append(script)}else load();
 })();
