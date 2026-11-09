@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-09T23:02:44Z",
+  "generated_at": "2026-11-09T23:18:51.381863+00:00",
   "model": "independent-poisson-research-baseline",
   "status": "RESEARCH_ONLY",
   "predictions": [
@@ -7,89 +7,113 @@
       "event_id": "c0de79c9c801e5fc0d1bb3873b10a164",
       "event": "New York Rangers @ Edmonton Oilers",
       "commence_time": "2026-11-10T01:10:00Z",
-      "status": "UNAVAILABLE",
-      "home_win_probability": null,
-      "away_win_probability": null,
+      "status": "RESEARCH_ONLY",
+      "home_win_probability": 0.5944628770612721,
+      "away_win_probability": 0.4055371229387279,
       "goalie_status": "UNVERIFIED",
       "simulation_status": "UNAVAILABLE",
-      "source": null
+      "source": "ESPN completed game scores; 23-day lookback; shrinkage to 3.0 goals/game; NOT shot-quality xG",
+      "data_quality": "RESEARCH_ONLY_GOALS_PER_GAME",
+      "away_sample_games": 9,
+      "home_sample_games": 11
     },
     {
       "event_id": "d6c28acaab1a3d7db58968f5f33fbf3a",
       "event": "Philadelphia Flyers @ Vancouver Canucks",
       "commence_time": "2026-11-10T02:40:00Z",
-      "status": "UNAVAILABLE",
-      "home_win_probability": null,
-      "away_win_probability": null,
+      "status": "RESEARCH_ONLY",
+      "home_win_probability": 0.4611356960852847,
+      "away_win_probability": 0.5388643039147153,
       "goalie_status": "UNVERIFIED",
       "simulation_status": "UNAVAILABLE",
-      "source": null
+      "source": "ESPN completed game scores; 23-day lookback; shrinkage to 3.0 goals/game; NOT shot-quality xG",
+      "data_quality": "RESEARCH_ONLY_GOALS_PER_GAME",
+      "away_sample_games": 10,
+      "home_sample_games": 10
     },
     {
       "event_id": "4b345990c8a04ff88ce31d233a406011",
       "event": "New York Islanders @ San Jose Sharks",
       "commence_time": "2026-11-10T03:10:00Z",
-      "status": "UNAVAILABLE",
-      "home_win_probability": null,
-      "away_win_probability": null,
+      "status": "RESEARCH_ONLY",
+      "home_win_probability": 0.4375024058773564,
+      "away_win_probability": 0.5624975941226436,
       "goalie_status": "UNVERIFIED",
       "simulation_status": "UNAVAILABLE",
-      "source": null
+      "source": "ESPN completed game scores; 23-day lookback; shrinkage to 3.0 goals/game; NOT shot-quality xG",
+      "data_quality": "RESEARCH_ONLY_GOALS_PER_GAME",
+      "away_sample_games": 9,
+      "home_sample_games": 12
     },
     {
       "event_id": "54a0d86217b79fbc969d6fca0e1564e8",
       "event": "Colorado Avalanche @ Toronto Maple Leafs",
       "commence_time": "2026-11-11T00:10:00Z",
-      "status": "UNAVAILABLE",
-      "home_win_probability": null,
-      "away_win_probability": null,
+      "status": "RESEARCH_ONLY",
+      "home_win_probability": 0.47094336074092097,
+      "away_win_probability": 0.529056639259079,
       "goalie_status": "UNVERIFIED",
       "simulation_status": "UNAVAILABLE",
-      "source": null
+      "source": "ESPN completed game scores; 23-day lookback; shrinkage to 3.0 goals/game; NOT shot-quality xG",
+      "data_quality": "RESEARCH_ONLY_GOALS_PER_GAME",
+      "away_sample_games": 10,
+      "home_sample_games": 11
     },
     {
       "event_id": "18d63193c9a696acd715bc27d9fb65f6",
-      "event": "Minnesota Wild @ Montréal Canadiens",
+      "event": "Minnesota Wild @ Montr\u00e9al Canadiens",
       "commence_time": "2026-11-11T00:10:00Z",
       "status": "UNAVAILABLE",
       "home_win_probability": null,
       "away_win_probability": null,
       "goalie_status": "UNVERIFIED",
       "simulation_status": "UNAVAILABLE",
-      "source": null
+      "source": null,
+      "data_quality": null,
+      "away_sample_games": null,
+      "home_sample_games": null
     },
     {
       "event_id": "11f3c6f0f406c5ffb575dbcd671cf964",
       "event": "New Jersey Devils @ Winnipeg Jets",
       "commence_time": "2026-11-11T00:10:00Z",
-      "status": "UNAVAILABLE",
-      "home_win_probability": null,
-      "away_win_probability": null,
+      "status": "RESEARCH_ONLY",
+      "home_win_probability": 0.36864535005465715,
+      "away_win_probability": 0.6313546499453428,
       "goalie_status": "UNVERIFIED",
       "simulation_status": "UNAVAILABLE",
-      "source": null
+      "source": "ESPN completed game scores; 23-day lookback; shrinkage to 3.0 goals/game; NOT shot-quality xG",
+      "data_quality": "RESEARCH_ONLY_GOALS_PER_GAME",
+      "away_sample_games": 11,
+      "home_sample_games": 11
     },
     {
       "event_id": "0e5af7e0f9734ecda4b3c3013712deb6",
       "event": "Washington Capitals @ Ottawa Senators",
       "commence_time": "2026-11-11T00:10:00Z",
-      "status": "UNAVAILABLE",
-      "home_win_probability": null,
-      "away_win_probability": null,
+      "status": "RESEARCH_ONLY",
+      "home_win_probability": 0.49429555588035073,
+      "away_win_probability": 0.5057044441196492,
       "goalie_status": "UNVERIFIED",
       "simulation_status": "UNAVAILABLE",
-      "source": null
+      "source": "ESPN completed game scores; 23-day lookback; shrinkage to 3.0 goals/game; NOT shot-quality xG",
+      "data_quality": "RESEARCH_ONLY_GOALS_PER_GAME",
+      "away_sample_games": 8,
+      "home_sample_games": 10
     },
     {
       "event_id": "d85899eb0ddff2e6e18a63b0c83bc7b8",
       "event": "Florida Panthers @ Columbus Blue Jackets",
       "commence_time": "2026-11-11T00:40:00Z",
-      "status": "UNAVAILABLE",
-      "home_win_probability": null,
-      "away_win_probability": null,
+      "status": "RESEARCH_ONLY",
+      "home_win_probability": 0.4035857145804564,
+      "away_win_probability": 0.5964142854195436,
       "goalie_status": "UNVERIFIED",
       "simulation_status": "UNAVAILABLE",
-      "source": null
+      "source": "ESPN completed game scores; 23-day lookback; shrinkage to 3.0 goals/game; NOT shot-quality xG",
+      "data_quality": "RESEARCH_ONLY_GOALS_PER_GAME",
+      "away_sample_games": 10,
+      "home_sample_games": 10
     },
     {
       "event_id": "9600ca13a787cb4772bf21e6e61bdf07",
@@ -100,18 +124,24 @@
       "away_win_probability": null,
       "goalie_status": "UNVERIFIED",
       "simulation_status": "UNAVAILABLE",
-      "source": null
+      "source": null,
+      "data_quality": null,
+      "away_sample_games": null,
+      "home_sample_games": null
     },
     {
       "event_id": "e71ce66a01d66fc935632b206d2dedbd",
       "event": "Nashville Predators @ Los Angeles Kings",
       "commence_time": "2026-11-11T03:10:00Z",
-      "status": "UNAVAILABLE",
-      "home_win_probability": null,
-      "away_win_probability": null,
+      "status": "RESEARCH_ONLY",
+      "home_win_probability": 0.4999999999999999,
+      "away_win_probability": 0.5000000000000001,
       "goalie_status": "UNVERIFIED",
       "simulation_status": "UNAVAILABLE",
-      "source": null
+      "source": "ESPN completed game scores; 23-day lookback; shrinkage to 3.0 goals/game; NOT shot-quality xG",
+      "data_quality": "RESEARCH_ONLY_GOALS_PER_GAME",
+      "away_sample_games": 10,
+      "home_sample_games": 10
     }
   ]
 }
