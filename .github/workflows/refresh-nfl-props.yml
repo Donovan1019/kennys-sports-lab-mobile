@@ -58,7 +58,12 @@ jobs:
           MAX_EVENTS: ${{ inputs.max_events || '16' }}
           TARGET_DATE: ${{ inputs.target_date || '' }}
           RETRY_MISSING_ONLY: '0'
-        run: python scripts/fetch_nfl_props.py
+        run: |
+          if [ -z "$TARGET_DATE" ] && [ "$(TZ=America/New_York date +%u)" = '1' ]; then
+            export TARGET_DATE="$(TZ=America/New_York date +%F)"
+            echo "Monday game-date priority: $TARGET_DATE"
+          fi
+          python scripts/fetch_nfl_props.py
       - name: Export and archive genuine pregame forecasts immediately after refresh
         shell: bash
         run: |
@@ -72,6 +77,18 @@ jobs:
         run: node scripts/audit_nfl_sgp_research.cjs
       - name: Audit forecast archive and verified grading coverage
         run: python scripts/audit_nfl_prop_archive_health.py
+      - name: Summarize SGP feed readiness
+        if: always()
+        run: |
+          python - <<'PY'
+          import json, pathlib
+          for name in ('nfl_props','nfl_prop_capture_coverage','nfl_sgp_research_audit'):
+              p=pathlib.Path('feed')/(name+'.json')
+              if not p.exists():
+                  print(name, 'UNAVAILABLE'); continue
+              d=json.loads(p.read_text())
+              print(name,'timestamp',d.get('fetched_at') or d.get('generated_at'),'rows',len(d.get('odds',[])),'status',d.get('status'),'errors',len(d.get('errors',[])))
+          PY
       - name: Publish verified prop snapshot
         run: |
           git config user.name "github-actions[bot]"
