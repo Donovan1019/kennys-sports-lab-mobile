@@ -9,7 +9,7 @@ const ctx={window:{}};vm.runInNewContext(fs.readFileSync(path.join(root,'nfl_sgp
 const joint=ctx.window.KSLSGPJoint.joint;
 const now=Date.now(),pairs=new Map();
 for(const o of feed.odds||[]){
- if(!o||!['draftkings','fanduel'].includes(o.bookmaker)||!['Over','Under'].includes(o.selection)||!o.event_id||!o.player||!Number.isFinite(Number(o.point))||!Number.isFinite(Number(o.price))||Date.parse(o.commence_time)<=now||Date.parse(o.updated_at)>now||now-Date.parse(o.updated_at)>30*60000)continue;
+ if(!o||!['draftkings','fanduel'].includes(o.bookmaker)||!['Over','Under'].includes(o.selection)||!o.event_id||!o.player||!Number.isFinite(Number(o.point))||!Number.isFinite(Number(o.price))||!Number.isFinite(Date.parse(o.commence_time))||!Number.isFinite(Date.parse(o.updated_at))||Date.parse(o.commence_time)<=now||Date.parse(o.updated_at)>now||now-Date.parse(o.updated_at)>30*60000)continue;
  const k=[o.event_id,o.bookmaker,o.player,o.market,o.point].join('|');
  if(!pairs.has(k))pairs.set(k,{});
  pairs.get(k)[o.selection]=o;
