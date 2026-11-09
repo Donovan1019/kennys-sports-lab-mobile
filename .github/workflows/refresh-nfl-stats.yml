@@ -41,6 +41,13 @@ jobs:
           players=d.get("players",[])
           current=[x for x in players if x.get("position") in ("QB","RB","WR","TE") and any(g.get("season")==2026 and g.get("season_type")=="REG" for g in x.get("games",[]))]
           print("NFL player feed:",len(players),"players,",len(current),"current-season skill players")
+          from collections import Counter
+          ids=Counter(g["game_id"] for p in players for g in p.get("games",[]) if g.get("season")==2026 and g.get("season_type")=="REG" and g.get("game_id"))
+          paired=sum(n>=2 for n in ids.values())
+          print("NFL same-event simulation coverage:",len(ids),"unique game IDs;",paired,"games with 2+ player records")
+          if paired<5:
+              print("WARNING: insufficient real shared game IDs for same-event historical bootstrap; research simulations remain BLOCKED")
+
           if d.get("source")!="nflverse-stats-player-week" or not current:
               raise SystemExit("NFL player feed failed current-season verification")
           PY
