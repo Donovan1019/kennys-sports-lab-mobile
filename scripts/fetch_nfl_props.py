@@ -60,6 +60,21 @@ def free_plan_budget_guard(now, prior_path=Path("feed/nfl_props.json"), reserve=
         pass
     return None
 
+def reusable_event_ids(events, prior, now, max_age_minutes=30):
+    """Skip a paid request only if both books and every required market are fresh."""
+    valid={e["id"] for e in events}
+    by_event={}
+    for row in prior.get("odds",[]):
+        eid=row.get("event_id")
+        if eid not in valid or row.get("bookmaker") not in BOOKS or row.get("market") not in MARKETS:continue
+        try:
+            updated=datetime.fromisoformat(row["updated_at"].replace("Z","+00:00"))
+            if updated.tzinfo is None or not 0<=(now-updated).total_seconds()<=max_age_minutes*60:continue
+        except (ValueError,TypeError,KeyError,AttributeError):continue
+        by_event.setdefault(eid,set()).add((row["bookmaker"],row["market"]))
+    expected={(book,market) for book in BOOKS for market in MARKETS}
+    return {eid for eid,pairs in by_event.items() if expected.issubset(pairs)}
+
 def main():
     key=os.environ.get("THE_ODDS_API_KEY")
     if not key:print("Missing secret");return 2
@@ -96,8 +111,15 @@ def main():
             missing=set(prior_coverage.get("missing_event_ids",[]))
             events=[e for e in events if e["id"] in missing or e["id"] not in set(prior_coverage.get("captured_event_ids",[]))]
             print("Retry missing events",len(events))
-        events=events[:limit]
-        if not events:print("No upcoming events; no snapshot overwritten");return 1
+        prior_path=Path("feed/nfl_props.json")
+        prior=json.loads(prior_path.read_text()) if prior_path.exists() else {}
+        current_ids={e["id"] for e in upcoming}
+        cached=reusable_event_ids(events,prior,now)
+        events=[e for e in events if e["id"] not in cached][:limit]
+        print("Fresh complete-event cache hits",len(cached),"paid requests avoided")
+        if not events:
+            print("No new event requests needed; existing published feed retained")
+            return 0
         rows=[];errors=[];captured=[];attempted=[]
         for event in events:
             if remaining is not None and str(remaining).isdigit() and int(remaining)<=20:
@@ -114,16 +136,11 @@ def main():
             except (urllib.error.HTTPError,urllib.error.URLError,ValueError) as exc:
                 errors.append({"event_id":event["id"],"error":type(exc).__name__})
                 print("Event unavailable",event["id"],type(exc).__name__)
-        # Keep still-future previously captured prices; never replace 9 good games
-        # with a narrow retry snapshot. Deduplicate identical bookmaker selections.
-        if retry_missing:
-            prior_path=Path("feed/nfl_props.json")
-            if prior_path.exists():
-                old=json.loads(prior_path.read_text())
-                current_ids={e["id"] for e in upcoming}
-                old_rows=[o for o in old.get("odds",[]) if o.get("event_id") in current_ids and o.get("event_id") not in set(attempted)]
-                rows=old_rows+rows
-                print("Preserved prior selections",len(old_rows))
+        # Preserve every unattempted upcoming event's quote history. Old timestamps
+        # remain unchanged so the UI cannot mistake cached prices for fresh odds.
+        old_rows=[o for o in prior.get("odds",[]) if o.get("event_id") in current_ids and o.get("event_id") not in set(attempted)]
+        rows=old_rows+rows
+        print("Preserved unattempted upcoming event selections",len(old_rows))
         unique={}
         for o in rows:
             k=(o.get("event_id"),o.get("bookmaker"),o.get("market"),o.get("player"),o.get("selection"),o.get("point"))
@@ -131,9 +148,8 @@ def main():
         rows=list(unique.values())
         available_ids={o.get("event_id") for o in rows}
         captured=[e["id"] for e in upcoming if e["id"] in available_ids]
-        scope_ids={e["id"] for e in upcoming}
         missing_ids=[e["id"] for e in upcoming if e["id"] not in available_ids]
-        coverage={"schedule_games":schedule_games,"generated_at":datetime.now(timezone.utc).isoformat(),"target_date":target_date or None,"expected_upcoming_events":expected,"requested_events":len(events),"captured_event_ids":captured,"captured_events":len(captured),"missing_event_ids":missing_ids,"unrequested_events":max(0,expected-len(events)) if not retry_missing else 0,"complete":not missing_ids and not errors,"requested_scope_complete":bool(attempted) and all(eid in available_ids for eid in attempted) and not errors,"errors":errors,"status":"COMPLETE" if not missing_ids and not errors else "PARTIAL","requested_scope_status":"COMPLETE" if attempted and all(eid in available_ids for eid in attempted) and not errors else "PARTIAL","retry_missing_only":retry_missing,"attempted_event_ids":attempted}
+        coverage={"schedule_games":schedule_games,"generated_at":datetime.now(timezone.utc).isoformat(),"target_date":target_date or None,"expected_upcoming_events":expected,"requested_events":len(attempted),"cached_complete_events":len(cached),"captured_event_ids":captured,"captured_events":len(captured),"missing_event_ids":missing_ids,"unrequested_events":max(0,expected-len(events)) if not retry_missing else 0,"complete":not missing_ids and not errors,"requested_scope_complete":bool(attempted) and all(eid in available_ids for eid in attempted) and not errors,"errors":errors,"status":"COMPLETE" if not missing_ids and not errors else "PARTIAL","requested_scope_status":"COMPLETE" if attempted and all(eid in available_ids for eid in attempted) and not errors else "PARTIAL","retry_missing_only":retry_missing,"attempted_event_ids":attempted}
         Path("feed/nfl_prop_capture_coverage.json").write_text(json.dumps(coverage,indent=2)+chr(10))
         print("CAPTURE_COVERAGE",json.dumps(coverage))
         if not rows:print("No verified prop prices returned; old feed preserved");return 1
