@@ -9,6 +9,7 @@ on:
     paths:
       - 'scripts/fetch_nfl_stats.py'
       - 'scripts/test_fetch_nfl_stats.py'
+      - 'scripts/test_nfl_sgp_joint.cjs'
       - '.github/workflows/refresh-nfl-stats.yml'
 permissions:
   contents: write
@@ -27,6 +28,8 @@ jobs:
         run: |
           python -m py_compile scripts/fetch_nfl_stats.py
           python scripts/test_fetch_nfl_stats.py
+      - name: Validate existing NFL SGP joint simulator
+        run: node scripts/test_nfl_sgp_joint.cjs
       - name: Fetch public nflverse weekly player stats
         run: python scripts/fetch_nfl_stats.py
       - name: Verify generated player snapshot is usable
