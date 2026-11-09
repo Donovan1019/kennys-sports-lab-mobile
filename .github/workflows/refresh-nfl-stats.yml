@@ -45,7 +45,9 @@ jobs:
       - name: Validate offline player usage audit
         run: node scripts/test_nfl_usage_research.cjs
       - name: Validate ESPN injury observation parser
-        run: python scripts/test_nfl_injury_observations.py
+        run: |
+          python -m py_compile scripts/fetch_nfl_injury_observations.py scripts/crosscheck_nfl_injury_usage.py scripts/test_nfl_injury_usage_crosscheck.py
+          python scripts/test_nfl_injury_observations.py
       - name: Validate injury usage crosscheck
         run: python scripts/test_nfl_injury_usage_crosscheck.py
       - name: Fetch public nflverse weekly player stats
@@ -78,7 +80,12 @@ jobs:
       - name: Generate historical usage research profiles
         run: node scripts/audit_nfl_usage_research.cjs
       - name: Crosscheck injury observations against usage profiles
-        run: python scripts/crosscheck_nfl_injury_usage.py
+        run: |
+          if [ -f feed/nfl_injury_observations.json ]; then
+            python scripts/crosscheck_nfl_injury_usage.py
+          else
+            echo 'No injury observations: research crosscheck unavailable'
+          fi
       - name: Commit verified snapshot
         run: |
           git config user.name "github-actions[bot]"
