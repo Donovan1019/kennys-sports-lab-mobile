@@ -1,6 +1,6 @@
 {
   "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
-  "checked_at": "2026-11-09T14:40:32.092536+00:00",
+  "checked_at": "2026-11-09T14:44:23.761527+00:00",
   "status": "OBSERVED_UNVERIFIED_FOR_GAME_DAY",
   "verified_player_reports": 0,
   "observed_reports": 800,
@@ -4684,6 +4684,17 @@
     {
       "team_id": "24",
       "team": "Los Angeles Chargers",
+      "player": "Ladd McConkey",
+      "status": "Questionable",
+      "reported_at": "2026-11-09T14:38Z",
+      "source": "ESPN injury feed",
+      "confirmed_inactive": false,
+      "confirmed_active": false,
+      "usage_adjustment_eligible": false
+    },
+    {
+      "team_id": "24",
+      "team": "Los Angeles Chargers",
       "player": "Cameron Dicker",
       "status": "Active",
       "reported_at": "2026-11-09T04:55Z",
@@ -4786,17 +4797,6 @@
       "player": "Justin Eboigbe",
       "status": "Questionable",
       "reported_at": "2026-11-08T21:50Z",
-      "source": "ESPN injury feed",
-      "confirmed_inactive": false,
-      "confirmed_active": false,
-      "usage_adjustment_eligible": false
-    },
-    {
-      "team_id": "24",
-      "team": "Los Angeles Chargers",
-      "player": "Ladd McConkey",
-      "status": "Questionable",
-      "reported_at": "2026-11-08T21:23Z",
       "source": "ESPN injury feed",
       "confirmed_inactive": false,
       "confirmed_active": false,
