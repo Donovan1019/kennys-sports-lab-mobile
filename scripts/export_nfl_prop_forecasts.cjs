@@ -19,7 +19,15 @@ const implied=o=>o>0?100/(o+100):-o/(-o+100);
 const output=[],reject={};
 const dest=path.join(root,'feed','nfl_prop_forecast_inbox.json');
 fs.rmSync(dest,{force:true});
-const archived=fs.existsSync(path.join(root,'feed','nfl_prop_forecast_ledger.json'))?read('feed/nfl_prop_forecast_ledger.json').forecasts||[]:[];
+const ledgerPath=path.join(root,'feed','nfl_prop_forecast_ledger.json');
+let archived=[];
+if(fs.existsSync(ledgerPath)){
+ const ledger=read('feed/nfl_prop_forecast_ledger.json');
+ if(!ledger||!Array.isArray(ledger.forecasts)){
+  throw new Error('Invalid NFL pregame forecast ledger: expected forecasts array; refusing to silently reset archive');
+ }
+ archived=ledger.forecasts;
+}
 const archivedIds=new Set(archived.map(x=>x.forecast_id));
 const skip=k=>{reject[k]=(reject[k]||0)+1};
 for(const pair of books.values()){
