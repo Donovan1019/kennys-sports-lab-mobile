@@ -60,7 +60,7 @@ def fetch(year):
                 data=res.read(35_000_000)
                 if res.read(1):raise ValueError("Source exceeds safety size limit")
                 decoded=data.decode("utf-8-sig")
-                if not decoded.startswith("season,") and "player_id" not in decoded.split("\\n",1)[0]:
+                if not decoded.startswith("season,") and "player_id" not in decoded.splitlines()[0]:
                     raise ValueError("Unexpected weekly player CSV header")
                 return decoded
         except (urllib.error.URLError, TimeoutError, ValueError, UnicodeError) as exc:
