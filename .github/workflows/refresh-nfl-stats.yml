@@ -11,6 +11,8 @@ on:
       - 'scripts/test_fetch_nfl_stats.py'
       - 'scripts/test_nfl_sgp_joint.cjs'
       - 'scripts/test_nfl_seven_module_integrity.cjs'
+      - 'scripts/audit_nfl_usage_research.cjs'
+      - 'scripts/test_nfl_usage_research.cjs'
       - 'nfl.html'
       - 'nfl_sgp_stack_finder.js'
       - 'nfl_qb_unders.js'
@@ -36,6 +38,8 @@ jobs:
         run: node scripts/test_nfl_seven_module_integrity.cjs
       - name: Validate existing NFL SGP joint simulator
         run: node scripts/test_nfl_sgp_joint.cjs
+      - name: Validate offline player usage audit
+        run: node scripts/test_nfl_usage_research.cjs
       - name: Fetch public nflverse weekly player stats
         run: python scripts/fetch_nfl_stats.py
       - name: Verify generated player snapshot is usable
@@ -60,11 +64,13 @@ jobs:
           if d.get("source")!="nflverse-stats-player-week" or not current:
               raise SystemExit("NFL player feed failed current-season verification")
           PY
+      - name: Generate historical usage research profiles
+        run: node scripts/audit_nfl_usage_research.cjs
       - name: Commit verified snapshot
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add feed/nfl_player_stats.json
+          git add feed/nfl_player_stats.json feed/nfl_usage_research.json
           if ! git diff --cached --quiet; then
             git commit -m "Refresh verified NFL player game logs"
             git pull --rebase origin main
