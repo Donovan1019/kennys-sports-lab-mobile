@@ -66,7 +66,10 @@ jobs:
           if ! git diff --cached --quiet; then
             git commit -m "Refresh NFL player prop snapshot"
             mkdir -p /tmp/ksl-nfl-refresh
-            cp feed/nfl_props.json feed/nfl_prop_capture_coverage.json feed/nfl_prop_forecast_ledger.json /tmp/ksl-nfl-refresh/
+            cp feed/nfl_props.json feed/nfl_prop_capture_coverage.json /tmp/ksl-nfl-refresh/
+            if [ -f feed/nfl_prop_forecast_ledger.json ]; then
+              cp feed/nfl_prop_forecast_ledger.json /tmp/ksl-nfl-refresh/
+            fi
             for attempt in 1 2 3; do
               git fetch origin main
               git reset --hard origin/main
