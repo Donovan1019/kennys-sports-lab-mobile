@@ -21,7 +21,9 @@ jobs:
         with:
           python-version: '3.12'
       - name: Validate free NFL player stats parser
-        run: python scripts/test_fetch_nfl_stats.py
+        run: |
+          python -m py_compile scripts/fetch_nfl_stats.py
+          python scripts/test_fetch_nfl_stats.py
       - name: Fetch public nflverse weekly player stats
         run: python scripts/fetch_nfl_stats.py
       - name: Commit verified snapshot
