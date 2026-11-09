@@ -1,12 +1,18 @@
 {
   "status": "RESEARCH_ONLY",
-  "pregame_forecasts_archived": 0,
+  "pregame_forecasts_archived": 60,
   "verified_graded_rows": 1049,
-  "archived_forecasts_awaiting_verified_grade": 0,
-  "forecast_markets": {},
+  "archived_forecasts_awaiting_verified_grade": 60,
+  "forecast_markets": {
+    "player_pass_tds": 2,
+    "player_pass_yds": 2,
+    "player_reception_yds": 24,
+    "player_receptions": 22,
+    "player_rush_yds": 10
+  },
   "capture_status": "PARTIAL",
-  "captured_events": 7,
-  "expected_upcoming_events": 26,
+  "captured_events": 1,
+  "expected_upcoming_events": 1,
   "matched_verified_forward_grades": 0,
   "forward_brier_score": null,
   "forward_calibration_approved": false,

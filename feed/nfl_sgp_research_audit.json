@@ -1,12 +1,280 @@
 {
-  "generated_at": "2026-11-09T21:19:59.202Z",
+  "generated_at": "2026-11-09T21:25:21.445Z",
   "status": "RESEARCH_ONLY",
   "betting_eligible": false,
   "source": "verified historical player logs + timestamped published DK/FD quotes",
-  "games_examined": 0,
-  "combinations_examined": 0,
-  "simulated": 0,
-  "blocked": 0,
-  "reasons": {},
-  "samples": []
+  "games_examined": 2,
+  "combinations_examined": 200,
+  "simulated": 56,
+  "blocked": 144,
+  "reasons": {
+    "Fewer than five complete same-game samples": 129,
+    "Player not uniquely matched: Justin Jefferson": 15
+  },
+  "samples": [
+    {
+      "event_id": "17ad7eff2f7875e20a8109abe40470e3",
+      "bookmaker": "draftkings",
+      "legs": [
+        {
+          "player": "Carson Wentz",
+          "market": "player_pass_tds",
+          "selection": "Over",
+          "point": 1.5
+        },
+        {
+          "player": "Jordan Addison",
+          "market": "player_reception_yds",
+          "selection": "Over",
+          "point": 42.5
+        }
+      ],
+      "simulation_status": "EXPERIMENTAL",
+      "paired_events": 5,
+      "betting_eligible": false,
+      "official_combined_price_available": false
+    },
+    {
+      "event_id": "17ad7eff2f7875e20a8109abe40470e3",
+      "bookmaker": "draftkings",
+      "legs": [
+        {
+          "player": "Carson Wentz",
+          "market": "player_pass_tds",
+          "selection": "Over",
+          "point": 1.5
+        },
+        {
+          "player": "T.J. Hockenson",
+          "market": "player_reception_yds",
+          "selection": "Over",
+          "point": 40.5
+        }
+      ],
+      "simulation_status": "EXPERIMENTAL",
+      "paired_events": 6,
+      "betting_eligible": false,
+      "official_combined_price_available": false
+    },
+    {
+      "event_id": "17ad7eff2f7875e20a8109abe40470e3",
+      "bookmaker": "draftkings",
+      "legs": [
+        {
+          "player": "Josh Allen",
+          "market": "player_pass_tds",
+          "selection": "Over",
+          "point": 1.5
+        },
+        {
+          "player": "Khalil Shakir",
+          "market": "player_reception_yds",
+          "selection": "Over",
+          "point": 41.5
+        }
+      ],
+      "simulation_status": "EXPERIMENTAL",
+      "paired_events": 22,
+      "betting_eligible": false,
+      "official_combined_price_available": false
+    },
+    {
+      "event_id": "17ad7eff2f7875e20a8109abe40470e3",
+      "bookmaker": "draftkings",
+      "legs": [
+        {
+          "player": "Josh Allen",
+          "market": "player_pass_tds",
+          "selection": "Over",
+          "point": 1.5
+        },
+        {
+          "player": "Dalton Kincaid",
+          "market": "player_reception_yds",
+          "selection": "Over",
+          "point": 39.5
+        }
+      ],
+      "simulation_status": "EXPERIMENTAL",
+      "paired_events": 18,
+      "betting_eligible": false,
+      "official_combined_price_available": false
+    },
+    {
+      "event_id": "17ad7eff2f7875e20a8109abe40470e3",
+      "bookmaker": "draftkings",
+      "legs": [
+        {
+          "player": "Josh Allen",
+          "market": "player_pass_tds",
+          "selection": "Over",
+          "point": 1.5
+        },
+        {
+          "player": "Keon Coleman",
+          "market": "player_reception_yds",
+          "selection": "Over",
+          "point": 25.5
+        }
+      ],
+      "simulation_status": "EXPERIMENTAL",
+      "paired_events": 18,
+      "betting_eligible": false,
+      "official_combined_price_available": false
+    },
+    {
+      "event_id": "17ad7eff2f7875e20a8109abe40470e3",
+      "bookmaker": "draftkings",
+      "legs": [
+        {
+          "player": "Josh Allen",
+          "market": "player_pass_tds",
+          "selection": "Over",
+          "point": 1.5
+        },
+        {
+          "player": "Ty Johnson",
+          "market": "player_reception_yds",
+          "selection": "Over",
+          "point": 14.5
+        }
+      ],
+      "simulation_status": "EXPERIMENTAL",
+      "paired_events": 21,
+      "betting_eligible": false,
+      "official_combined_price_available": false
+    },
+    {
+      "event_id": "17ad7eff2f7875e20a8109abe40470e3",
+      "bookmaker": "draftkings",
+      "legs": [
+        {
+          "player": "Josh Allen",
+          "market": "player_pass_tds",
+          "selection": "Over",
+          "point": 1.5
+        },
+        {
+          "player": "Dawson Knox",
+          "market": "player_reception_yds",
+          "selection": "Over",
+          "point": 9.5
+        }
+      ],
+      "simulation_status": "EXPERIMENTAL",
+      "paired_events": 22,
+      "betting_eligible": false,
+      "official_combined_price_available": false
+    },
+    {
+      "event_id": "17ad7eff2f7875e20a8109abe40470e3",
+      "bookmaker": "draftkings",
+      "legs": [
+        {
+          "player": "Josh Allen",
+          "market": "player_pass_tds",
+          "selection": "Over",
+          "point": 1.5
+        },
+        {
+          "player": "James Cook",
+          "market": "player_reception_yds",
+          "selection": "Over",
+          "point": 8.5
+        }
+      ],
+      "simulation_status": "EXPERIMENTAL",
+      "paired_events": 23,
+      "betting_eligible": false,
+      "official_combined_price_available": false
+    },
+    {
+      "event_id": "17ad7eff2f7875e20a8109abe40470e3",
+      "bookmaker": "draftkings",
+      "legs": [
+        {
+          "player": "Josh Allen",
+          "market": "player_pass_yds",
+          "selection": "Over",
+          "point": 228.5
+        },
+        {
+          "player": "Khalil Shakir",
+          "market": "player_reception_yds",
+          "selection": "Over",
+          "point": 41.5
+        }
+      ],
+      "simulation_status": "EXPERIMENTAL",
+      "paired_events": 22,
+      "betting_eligible": false,
+      "official_combined_price_available": false
+    },
+    {
+      "event_id": "17ad7eff2f7875e20a8109abe40470e3",
+      "bookmaker": "draftkings",
+      "legs": [
+        {
+          "player": "Josh Allen",
+          "market": "player_pass_yds",
+          "selection": "Over",
+          "point": 228.5
+        },
+        {
+          "player": "Dalton Kincaid",
+          "market": "player_reception_yds",
+          "selection": "Over",
+          "point": 39.5
+        }
+      ],
+      "simulation_status": "EXPERIMENTAL",
+      "paired_events": 18,
+      "betting_eligible": false,
+      "official_combined_price_available": false
+    },
+    {
+      "event_id": "17ad7eff2f7875e20a8109abe40470e3",
+      "bookmaker": "draftkings",
+      "legs": [
+        {
+          "player": "Josh Allen",
+          "market": "player_pass_yds",
+          "selection": "Over",
+          "point": 228.5
+        },
+        {
+          "player": "Keon Coleman",
+          "market": "player_reception_yds",
+          "selection": "Over",
+          "point": 25.5
+        }
+      ],
+      "simulation_status": "EXPERIMENTAL",
+      "paired_events": 18,
+      "betting_eligible": false,
+      "official_combined_price_available": false
+    },
+    {
+      "event_id": "17ad7eff2f7875e20a8109abe40470e3",
+      "bookmaker": "draftkings",
+      "legs": [
+        {
+          "player": "Josh Allen",
+          "market": "player_pass_yds",
+          "selection": "Over",
+          "point": 228.5
+        },
+        {
+          "player": "Ty Johnson",
+          "market": "player_reception_yds",
+          "selection": "Over",
+          "point": 14.5
+        }
+      ],
+      "simulation_status": "EXPERIMENTAL",
+      "paired_events": 21,
+      "betting_eligible": false,
+      "official_combined_price_available": false
+    }
+  ]
 }
