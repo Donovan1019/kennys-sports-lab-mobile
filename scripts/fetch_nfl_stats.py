@@ -8,7 +8,7 @@ from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 
-SEASONS=(2025,2026)
+SEASONS=(2026,2025)
 URL="https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_{year}.csv"
 MARKETS={
  "Receiving yards":"receiving_yards",
@@ -69,14 +69,14 @@ def main():
             failures.append({"year":year,"reason":type(exc).__name__})
             print(year,": unavailable:",type(exc).__name__,str(exc)[:350])
     if not combined:raise SystemExit("No verified records retrieved; existing snapshot preserved")
-    if failures:raise SystemExit("Partial season fetch: refusing mixed-age snapshot; "+str(failures))
+    # Current-season records are independently usable even if the optional prior\n    # season archive fails to download. Never publish an empty current season.\n    if failures:print("Optional season retrieval failures:",failures)
     if not any(row["season"]==2026 and row["position"] in ("QB","RB","WR","TE") for row in combined):raise SystemExit("Missing 2026 player positions: refusing unusable snapshot")
     combined.sort(key=lambda r:(r["season"],r["week"],r["season_type"]=="POST"))
     players=defaultdict(lambda:{"name":"","team":"","position":"","games":[]})
     for row in combined:
         p=players[row["id"]];p["name"]=row["name"];p["team"]=row["team"];p["position"]=row["position"] or p["position"]
         p["games"].append({"season":row["season"],"week":row["week"],"season_type":row["season_type"],"values":row["values"],**({"opponent_abbr":row["opponent_abbr"]} if row.get("opponent_abbr") else {})})
-    output={"source":"nflverse-stats-player-week","source_url":"https://github.com/nflverse/nflverse-data/releases/tag/stats_player","fetched_at":datetime.now(timezone.utc).isoformat(),"seasons":list(SEASONS),"unavailable_seasons":failures,"players":[{"id":pid,**p} for pid,p in sorted(players.items())]}
+    output={"source":"nflverse-stats-player-week","source_url":"https://github.com/nflverse/nflverse-data/releases/tag/stats_player","fetched_at":datetime.now(timezone.utc).isoformat(),"seasons":sorted({row["season"] for row in combined}),"unavailable_seasons":failures,"players":[{"id":pid,**p} for pid,p in sorted(players.items())]}
     path=Path("feed/nfl_player_stats.json");path.parent.mkdir(exist_ok=True)
     path.write_text(json.dumps(output,separators=(",",":"))+"\n",encoding="utf-8")
     print("Saved",len(output["players"]),"players")
