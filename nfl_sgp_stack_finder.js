@@ -103,7 +103,7 @@ function historicalNamedCandidates(game,stats){
   if(!teams.has(p.team)||!Array.isArray(p.games))continue;
   for(const [pos,market] of markets){
    if(p.position!==pos)continue;
-   const logs=p.games.filter(g=>g.season_type==='REG'&&Number(g.season)>=2025&&Number.isFinite(g.values?.[market])).sort((a,b)=>Number(b.season)-Number(a.season)||Number(b.week)-Number(a.week)).slice(0,5);
+   const logs=p.games.filter(g=>g.season_type==='REG'&&Number(g.season)===new Date(game.time).getUTCFullYear()&&Number.isFinite(g.values?.[market])).sort((a,b)=>Number(b.season)-Number(a.season)||Number(b.week)-Number(a.week)).slice(0,5);
    if(logs.length<4)continue;
    const values=logs.map(g=>g.values[market]);
    const mean=values.reduce((a,b)=>a+b,0)/values.length;
@@ -121,7 +121,7 @@ function historicalNamedCandidates(game,stats){
   const legs=[unique[i],unique[i+1]];
   cards.push('<article style="border:1px solid #47617a;border-radius:8px;padding:10px;margin:8px 0"><strong>Named-player research pair '+(cards.length+1)+'</strong><ol>'+legs.map(l=>'<li>'+esc(l.player)+' ('+esc(l.team)+') — '+esc(l.market)+' OVER '+l.threshold+' <small>historical '+l.over+'/'+l.games+' at model-derived threshold</small></li>').join('')+'</ol><small>NOT sportsbook lines; NOT a joint simulation; no SGP odds, injury confirmation, EV or betting eligibility. Research only.</small></article>');
  }
- return '<section style="border:1px solid #47617a;border-radius:10px;padding:12px;margin:10px 0"><strong>Specific player-prop research candidates</strong><p>Named players and thresholds derived from last five available verified nflverse weekly logs. Not priced sportsbook selections.</p>'+cards.join('')+'</section>';
+ return '<section style="border:1px solid #47617a;border-radius:10px;padding:12px;margin:10px 0"><strong>Specific player-prop research candidates</strong><p>Named players and thresholds derived from last five available verified current-season nflverse weekly logs. Not priced sportsbook selections.</p>'+cards.join('')+'</section>';
 }
 function noCreditPlayerProps(game){
  const rows=Array.isArray(game.rows)?game.rows:[];
