@@ -1,18 +1,21 @@
 {
-  "generated_at": "2026-11-09T14:45:56.034520+00:00",
+  "generated_at": "2026-11-09T14:52:54.450377+00:00",
   "status": "RESEARCH_ONLY",
   "identity_verified": false,
   "game_day_status_verified": false,
   "injury_feed_fresh": true,
   "betting_eligible": false,
   "profiles_checked": 342,
-  "name_team_candidates": 3,
+  "name_team_candidates": 4,
+  "historical_name_team_candidates": 245,
   "ambiguous": 0,
-  "stale_or_missing": 246,
+  "stale_or_missing": 245,
   "no_match": 93,
   "candidates": [
     {
       "player": "Malik Willis",
+      "nflverse_player_id": "00-0038128",
+      "espn_athlete_id": null,
       "team": "MIA",
       "position": "QB",
       "source_status": "Questionable",
@@ -25,6 +28,8 @@
     },
     {
       "player": "Jake Ferguson",
+      "nflverse_player_id": "00-0038041",
+      "espn_athlete_id": null,
       "team": "DAL",
       "position": "TE",
       "source_status": "Questionable",
@@ -36,7 +41,23 @@
       "projection_adjustment_eligible": false
     },
     {
+      "player": "Calvin Ridley",
+      "nflverse_player_id": "00-0034837",
+      "espn_athlete_id": null,
+      "team": "TEN",
+      "position": "WR",
+      "source_status": "Active",
+      "reported_at": "2026-11-09T14:43Z",
+      "match_method": "NORMALIZED_NAME_AND_TEAM_ONLY",
+      "identity_verified": false,
+      "game_day_active_verified": false,
+      "game_day_inactive_verified": false,
+      "projection_adjustment_eligible": false
+    },
+    {
       "player": "Ladd McConkey",
+      "nflverse_player_id": "00-0039915",
+      "espn_athlete_id": null,
       "team": "LAC",
       "position": "WR",
       "source_status": "Questionable",
