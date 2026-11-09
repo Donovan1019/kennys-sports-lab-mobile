@@ -15,6 +15,8 @@ on:
       - 'scripts/test_nfl_usage_research.cjs'
       - 'scripts/fetch_nfl_injury_observations.py'
       - 'scripts/test_nfl_injury_observations.py'
+      - 'scripts/crosscheck_nfl_injury_usage.py'
+      - 'scripts/test_nfl_injury_usage_crosscheck.py'
       - 'nfl.html'
       - 'nfl_sgp_stack_finder.js'
       - 'nfl_qb_unders.js'
@@ -44,6 +46,8 @@ jobs:
         run: node scripts/test_nfl_usage_research.cjs
       - name: Validate ESPN injury observation parser
         run: python scripts/test_nfl_injury_observations.py
+      - name: Validate injury usage crosscheck
+        run: python scripts/test_nfl_injury_usage_crosscheck.py
       - name: Fetch public nflverse weekly player stats
         run: python scripts/fetch_nfl_stats.py
       - name: Verify generated player snapshot is usable
@@ -73,11 +77,13 @@ jobs:
         run: python scripts/fetch_nfl_injury_observations.py
       - name: Generate historical usage research profiles
         run: node scripts/audit_nfl_usage_research.cjs
+      - name: Crosscheck injury observations against usage profiles
+        run: python scripts/crosscheck_nfl_injury_usage.py
       - name: Commit verified snapshot
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add feed/nfl_player_stats.json feed/nfl_usage_research.json
+          git add feed/nfl_player_stats.json feed/nfl_usage_research.json feed/nfl_injury_usage_crosscheck.json
           if [ -f feed/nfl_injury_observations.json ]; then git add feed/nfl_injury_observations.json; fi
           if ! git diff --cached --quiet; then
             git commit -m "Refresh verified NFL player game logs"
