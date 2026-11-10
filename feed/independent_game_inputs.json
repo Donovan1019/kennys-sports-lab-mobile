@@ -2,116 +2,11 @@
   "source": "ESPN public scoreboard",
   "source_detail": "Scheduled games and completed scoring history only; no verified injuries, starters or sportsbook prices.",
   "generated_from_saved_feeds": false,
-  "source_games_fetched_at": "2026-11-09T12:06:35.915453+00:00",
+  "source_games_fetched_at": "2026-11-10T18:41:04.438644+00:00",
   "market_schedule_source": "espn-scoreboard",
   "history_season_filter": "espn-season-type-2-only",
   "market_prices_not_verified_live": true,
   "games": [
-    {
-      "event_id": "401873051",
-      "event": "Buffalo Bills @ Minnesota Vikings",
-      "commence_time": "2026-11-10T01:15Z",
-      "away": "Buffalo Bills",
-      "home": "Minnesota Vikings",
-      "teams": [
-        {
-          "team": "Buffalo Bills",
-          "sample_size": 7,
-          "score_history": [
-            {
-              "date": "2026-11-01T18:00Z",
-              "season_type": 2,
-              "scored": 36,
-              "allowed": 10
-            },
-            {
-              "date": "2026-10-18T20:25Z",
-              "season_type": 2,
-              "scored": 33,
-              "allowed": 30
-            },
-            {
-              "date": "2026-10-13T00:15Z",
-              "season_type": 2,
-              "scored": 37,
-              "allowed": 34
-            },
-            {
-              "date": "2026-10-04T17:00Z",
-              "season_type": 2,
-              "scored": 26,
-              "allowed": 29
-            },
-            {
-              "date": "2026-09-27T17:00Z",
-              "season_type": 2,
-              "scored": 24,
-              "allowed": 16
-            },
-            {
-              "date": "2026-09-18T00:15Z",
-              "season_type": 2,
-              "scored": 41,
-              "allowed": 31
-            },
-            {
-              "date": "2026-09-13T17:00Z",
-              "season_type": 2,
-              "scored": 36,
-              "allowed": 31
-            }
-          ]
-        },
-        {
-          "team": "Minnesota Vikings",
-          "sample_size": 7,
-          "score_history": [
-            {
-              "date": "2026-11-01T18:00Z",
-              "season_type": 2,
-              "scored": 15,
-              "allowed": 19
-            },
-            {
-              "date": "2026-10-25T17:00Z",
-              "season_type": 2,
-              "scored": 16,
-              "allowed": 10
-            },
-            {
-              "date": "2026-10-11T17:00Z",
-              "season_type": 2,
-              "scored": 23,
-              "allowed": 13
-            },
-            {
-              "date": "2026-10-04T20:05Z",
-              "season_type": 2,
-              "scored": 15,
-              "allowed": 10
-            },
-            {
-              "date": "2026-09-27T20:05Z",
-              "season_type": 2,
-              "scored": 23,
-              "allowed": 16
-            },
-            {
-              "date": "2026-09-20T17:00Z",
-              "season_type": 2,
-              "scored": 9,
-              "allowed": 3
-            },
-            {
-              "date": "2026-09-13T20:25Z",
-              "season_type": 2,
-              "scored": 39,
-              "allowed": 22
-            }
-          ]
-        }
-      ]
-    },
     {
       "event_id": "401873052",
       "event": "Washington Commanders @ New York Giants",
@@ -355,8 +250,14 @@
       "teams": [
         {
           "team": "Buffalo Bills",
-          "sample_size": 7,
+          "sample_size": 8,
           "score_history": [
+            {
+              "date": "2026-11-10T01:15Z",
+              "season_type": 2,
+              "scored": 23,
+              "allowed": 6
+            },
             {
               "date": "2026-11-01T18:00Z",
               "season_type": 2,
@@ -1075,8 +976,14 @@
       "teams": [
         {
           "team": "Minnesota Vikings",
-          "sample_size": 7,
+          "sample_size": 8,
           "score_history": [
+            {
+              "date": "2026-11-10T01:15Z",
+              "season_type": 2,
+              "scored": 6,
+              "allowed": 23
+            },
             {
               "date": "2026-11-01T18:00Z",
               "season_type": 2,
@@ -2168,123 +2075,6 @@
       ]
     },
     {
-      "event_id": "401873069",
-      "event": "Jacksonville Jaguars @ New York Giants",
-      "commence_time": "2026-11-22T18:00Z",
-      "away": "Jacksonville Jaguars",
-      "home": "New York Giants",
-      "teams": [
-        {
-          "team": "Jacksonville Jaguars",
-          "sample_size": 8,
-          "score_history": [
-            {
-              "date": "2026-11-06T01:15Z",
-              "season_type": 2,
-              "scored": 33,
-              "allowed": 10
-            },
-            {
-              "date": "2026-11-01T18:00Z",
-              "season_type": 2,
-              "scored": 42,
-              "allowed": 7
-            },
-            {
-              "date": "2026-10-18T13:30Z",
-              "season_type": 2,
-              "scored": 31,
-              "allowed": 34
-            },
-            {
-              "date": "2026-10-11T13:30Z",
-              "season_type": 2,
-              "scored": 19,
-              "allowed": 17
-            },
-            {
-              "date": "2026-10-04T17:00Z",
-              "season_type": 2,
-              "scored": 22,
-              "allowed": 17
-            },
-            {
-              "date": "2026-09-27T17:00Z",
-              "season_type": 2,
-              "scored": 35,
-              "allowed": 6
-            },
-            {
-              "date": "2026-09-20T20:05Z",
-              "season_type": 2,
-              "scored": 13,
-              "allowed": 20
-            },
-            {
-              "date": "2026-09-13T17:00Z",
-              "season_type": 2,
-              "scored": 34,
-              "allowed": 10
-            }
-          ]
-        },
-        {
-          "team": "New York Giants",
-          "sample_size": 8,
-          "score_history": [
-            {
-              "date": "2026-11-08T18:00Z",
-              "season_type": 2,
-              "scored": 19,
-              "allowed": 11
-            },
-            {
-              "date": "2026-10-25T17:00Z",
-              "season_type": 2,
-              "scored": 27,
-              "allowed": 21
-            },
-            {
-              "date": "2026-10-18T17:00Z",
-              "season_type": 2,
-              "scored": 27,
-              "allowed": 34
-            },
-            {
-              "date": "2026-10-11T17:00Z",
-              "season_type": 2,
-              "scored": 27,
-              "allowed": 27
-            },
-            {
-              "date": "2026-10-04T17:00Z",
-              "season_type": 2,
-              "scored": 36,
-              "allowed": 24
-            },
-            {
-              "date": "2026-09-27T17:00Z",
-              "season_type": 2,
-              "scored": 12,
-              "allowed": 7
-            },
-            {
-              "date": "2026-09-22T00:15Z",
-              "season_type": 2,
-              "scored": 6,
-              "allowed": 28
-            },
-            {
-              "date": "2026-09-14T00:20Z",
-              "season_type": 2,
-              "scored": 28,
-              "allowed": 20
-            }
-          ]
-        }
-      ]
-    },
-    {
       "event_id": "401873070",
       "event": "Miami Dolphins @ Buffalo Bills",
       "commence_time": "2026-11-22T18:00Z",
@@ -2347,8 +2137,14 @@
         },
         {
           "team": "Buffalo Bills",
-          "sample_size": 7,
+          "sample_size": 8,
           "score_history": [
+            {
+              "date": "2026-11-10T01:15Z",
+              "season_type": 2,
+              "scored": 23,
+              "allowed": 6
+            },
             {
               "date": "2026-11-01T18:00Z",
               "season_type": 2,
@@ -2765,6 +2561,129 @@
       ]
     },
     {
+      "event_id": "401873076",
+      "event": "Pittsburgh Steelers @ Philadelphia Eagles",
+      "commence_time": "2026-11-22T18:00Z",
+      "away": "Pittsburgh Steelers",
+      "home": "Philadelphia Eagles",
+      "teams": [
+        {
+          "team": "Pittsburgh Steelers",
+          "sample_size": 8,
+          "score_history": [
+            {
+              "date": "2026-11-01T18:00Z",
+              "season_type": 2,
+              "scored": 27,
+              "allowed": 6
+            },
+            {
+              "date": "2026-10-25T13:30Z",
+              "season_type": 2,
+              "scored": 16,
+              "allowed": 10
+            },
+            {
+              "date": "2026-10-18T17:00Z",
+              "season_type": 2,
+              "scored": 26,
+              "allowed": 19
+            },
+            {
+              "date": "2026-10-11T17:00Z",
+              "season_type": 2,
+              "scored": 34,
+              "allowed": 22
+            },
+            {
+              "date": "2026-10-02T00:15Z",
+              "season_type": 2,
+              "scored": 24,
+              "allowed": 27
+            },
+            {
+              "date": "2026-09-27T17:00Z",
+              "season_type": 2,
+              "scored": 30,
+              "allowed": 27
+            },
+            {
+              "date": "2026-09-20T17:00Z",
+              "season_type": 2,
+              "scored": 3,
+              "allowed": 20
+            },
+            {
+              "date": "2026-09-13T17:00Z",
+              "season_type": 2,
+              "scored": 20,
+              "allowed": 13
+            }
+          ]
+        },
+        {
+          "team": "Philadelphia Eagles",
+          "sample_size": 9,
+          "score_history": [
+            {
+              "date": "2026-11-08T18:00Z",
+              "season_type": 2,
+              "scored": 11,
+              "allowed": 19
+            },
+            {
+              "date": "2026-11-02T01:20Z",
+              "season_type": 2,
+              "scored": 10,
+              "allowed": 27
+            },
+            {
+              "date": "2026-10-27T00:15Z",
+              "season_type": 2,
+              "scored": 21,
+              "allowed": 38
+            },
+            {
+              "date": "2026-10-18T17:00Z",
+              "season_type": 2,
+              "scored": 14,
+              "allowed": 25
+            },
+            {
+              "date": "2026-10-11T13:30Z",
+              "season_type": 2,
+              "scored": 17,
+              "allowed": 19
+            },
+            {
+              "date": "2026-10-04T17:00Z",
+              "season_type": 2,
+              "scored": 20,
+              "allowed": 24
+            },
+            {
+              "date": "2026-09-29T00:15Z",
+              "season_type": 2,
+              "scored": 7,
+              "allowed": 27
+            },
+            {
+              "date": "2026-09-20T17:00Z",
+              "season_type": 2,
+              "scored": 24,
+              "allowed": 20
+            },
+            {
+              "date": "2026-09-13T20:25Z",
+              "season_type": 2,
+              "scored": 24,
+              "allowed": 22
+            }
+          ]
+        }
+      ]
+    },
+    {
       "event_id": "401873074",
       "event": "New York Jets @ Los Angeles Chargers",
       "commence_time": "2026-11-22T21:05Z",
@@ -2882,6 +2801,123 @@
               "season_type": 2,
               "scored": 14,
               "allowed": 26
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "event_id": "401873069",
+      "event": "Jacksonville Jaguars @ New York Giants",
+      "commence_time": "2026-11-22T21:25Z",
+      "away": "Jacksonville Jaguars",
+      "home": "New York Giants",
+      "teams": [
+        {
+          "team": "Jacksonville Jaguars",
+          "sample_size": 8,
+          "score_history": [
+            {
+              "date": "2026-11-06T01:15Z",
+              "season_type": 2,
+              "scored": 33,
+              "allowed": 10
+            },
+            {
+              "date": "2026-11-01T18:00Z",
+              "season_type": 2,
+              "scored": 42,
+              "allowed": 7
+            },
+            {
+              "date": "2026-10-18T13:30Z",
+              "season_type": 2,
+              "scored": 31,
+              "allowed": 34
+            },
+            {
+              "date": "2026-10-11T13:30Z",
+              "season_type": 2,
+              "scored": 19,
+              "allowed": 17
+            },
+            {
+              "date": "2026-10-04T17:00Z",
+              "season_type": 2,
+              "scored": 22,
+              "allowed": 17
+            },
+            {
+              "date": "2026-09-27T17:00Z",
+              "season_type": 2,
+              "scored": 35,
+              "allowed": 6
+            },
+            {
+              "date": "2026-09-20T20:05Z",
+              "season_type": 2,
+              "scored": 13,
+              "allowed": 20
+            },
+            {
+              "date": "2026-09-13T17:00Z",
+              "season_type": 2,
+              "scored": 34,
+              "allowed": 10
+            }
+          ]
+        },
+        {
+          "team": "New York Giants",
+          "sample_size": 8,
+          "score_history": [
+            {
+              "date": "2026-11-08T18:00Z",
+              "season_type": 2,
+              "scored": 19,
+              "allowed": 11
+            },
+            {
+              "date": "2026-10-25T17:00Z",
+              "season_type": 2,
+              "scored": 27,
+              "allowed": 21
+            },
+            {
+              "date": "2026-10-18T17:00Z",
+              "season_type": 2,
+              "scored": 27,
+              "allowed": 34
+            },
+            {
+              "date": "2026-10-11T17:00Z",
+              "season_type": 2,
+              "scored": 27,
+              "allowed": 27
+            },
+            {
+              "date": "2026-10-04T17:00Z",
+              "season_type": 2,
+              "scored": 36,
+              "allowed": 24
+            },
+            {
+              "date": "2026-09-27T17:00Z",
+              "season_type": 2,
+              "scored": 12,
+              "allowed": 7
+            },
+            {
+              "date": "2026-09-22T00:15Z",
+              "season_type": 2,
+              "scored": 6,
+              "allowed": 28
+            },
+            {
+              "date": "2026-09-14T00:20Z",
+              "season_type": 2,
+              "scored": 28,
+              "allowed": 20
             }
           ]
         }
@@ -3017,129 +3053,6 @@
       ]
     },
     {
-      "event_id": "401873076",
-      "event": "Pittsburgh Steelers @ Philadelphia Eagles",
-      "commence_time": "2026-11-22T21:25Z",
-      "away": "Pittsburgh Steelers",
-      "home": "Philadelphia Eagles",
-      "teams": [
-        {
-          "team": "Pittsburgh Steelers",
-          "sample_size": 8,
-          "score_history": [
-            {
-              "date": "2026-11-01T18:00Z",
-              "season_type": 2,
-              "scored": 27,
-              "allowed": 6
-            },
-            {
-              "date": "2026-10-25T13:30Z",
-              "season_type": 2,
-              "scored": 16,
-              "allowed": 10
-            },
-            {
-              "date": "2026-10-18T17:00Z",
-              "season_type": 2,
-              "scored": 26,
-              "allowed": 19
-            },
-            {
-              "date": "2026-10-11T17:00Z",
-              "season_type": 2,
-              "scored": 34,
-              "allowed": 22
-            },
-            {
-              "date": "2026-10-02T00:15Z",
-              "season_type": 2,
-              "scored": 24,
-              "allowed": 27
-            },
-            {
-              "date": "2026-09-27T17:00Z",
-              "season_type": 2,
-              "scored": 30,
-              "allowed": 27
-            },
-            {
-              "date": "2026-09-20T17:00Z",
-              "season_type": 2,
-              "scored": 3,
-              "allowed": 20
-            },
-            {
-              "date": "2026-09-13T17:00Z",
-              "season_type": 2,
-              "scored": 20,
-              "allowed": 13
-            }
-          ]
-        },
-        {
-          "team": "Philadelphia Eagles",
-          "sample_size": 9,
-          "score_history": [
-            {
-              "date": "2026-11-08T18:00Z",
-              "season_type": 2,
-              "scored": 11,
-              "allowed": 19
-            },
-            {
-              "date": "2026-11-02T01:20Z",
-              "season_type": 2,
-              "scored": 10,
-              "allowed": 27
-            },
-            {
-              "date": "2026-10-27T00:15Z",
-              "season_type": 2,
-              "scored": 21,
-              "allowed": 38
-            },
-            {
-              "date": "2026-10-18T17:00Z",
-              "season_type": 2,
-              "scored": 14,
-              "allowed": 25
-            },
-            {
-              "date": "2026-10-11T13:30Z",
-              "season_type": 2,
-              "scored": 17,
-              "allowed": 19
-            },
-            {
-              "date": "2026-10-04T17:00Z",
-              "season_type": 2,
-              "scored": 20,
-              "allowed": 24
-            },
-            {
-              "date": "2026-09-29T00:15Z",
-              "season_type": 2,
-              "scored": 7,
-              "allowed": 27
-            },
-            {
-              "date": "2026-09-20T17:00Z",
-              "season_type": 2,
-              "scored": 24,
-              "allowed": 20
-            },
-            {
-              "date": "2026-09-13T20:25Z",
-              "season_type": 2,
-              "scored": 24,
-              "allowed": 22
-            }
-          ]
-        }
-      ]
-    },
-    {
       "event_id": "401873077",
       "event": "Minnesota Vikings @ San Francisco 49ers",
       "commence_time": "2026-11-23T01:20Z",
@@ -3148,8 +3061,14 @@
       "teams": [
         {
           "team": "Minnesota Vikings",
-          "sample_size": 7,
+          "sample_size": 8,
           "score_history": [
+            {
+              "date": "2026-11-10T01:15Z",
+              "season_type": 2,
+              "scored": 6,
+              "allowed": 23
+            },
             {
               "date": "2026-11-01T18:00Z",
               "season_type": 2,
@@ -3811,8 +3730,14 @@
         },
         {
           "team": "Buffalo Bills",
-          "sample_size": 7,
+          "sample_size": 8,
           "score_history": [
+            {
+              "date": "2026-11-10T01:15Z",
+              "season_type": 2,
+              "scored": 23,
+              "allowed": 6
+            },
             {
               "date": "2026-11-01T18:00Z",
               "season_type": 2,
@@ -4051,8 +3976,14 @@
         },
         {
           "team": "Minnesota Vikings",
-          "sample_size": 7,
+          "sample_size": 8,
           "score_history": [
+            {
+              "date": "2026-11-10T01:15Z",
+              "season_type": 2,
+              "scored": 6,
+              "allowed": 23
+            },
             {
               "date": "2026-11-01T18:00Z",
               "season_type": 2,
@@ -5183,6 +5114,129 @@
               "season_type": 2,
               "scored": 14,
               "allowed": 26
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "event_id": "401873094",
+      "event": "Carolina Panthers @ Tampa Bay Buccaneers",
+      "commence_time": "2026-12-01T01:15Z",
+      "away": "Carolina Panthers",
+      "home": "Tampa Bay Buccaneers",
+      "teams": [
+        {
+          "team": "Carolina Panthers",
+          "sample_size": 8,
+          "score_history": [
+            {
+              "date": "2026-11-08T18:00Z",
+              "season_type": 2,
+              "scored": 21,
+              "allowed": 26
+            },
+            {
+              "date": "2026-10-30T00:15Z",
+              "season_type": 2,
+              "scored": 19,
+              "allowed": 27
+            },
+            {
+              "date": "2026-10-25T17:00Z",
+              "season_type": 2,
+              "scored": 13,
+              "allowed": 43
+            },
+            {
+              "date": "2026-10-18T17:00Z",
+              "season_type": 2,
+              "scored": 25,
+              "allowed": 14
+            },
+            {
+              "date": "2026-10-05T00:20Z",
+              "season_type": 2,
+              "scored": 32,
+              "allowed": 26
+            },
+            {
+              "date": "2026-09-27T17:00Z",
+              "season_type": 2,
+              "scored": 18,
+              "allowed": 21
+            },
+            {
+              "date": "2026-09-20T17:00Z",
+              "season_type": 2,
+              "scored": 34,
+              "allowed": 3
+            },
+            {
+              "date": "2026-09-13T17:00Z",
+              "season_type": 2,
+              "scored": 37,
+              "allowed": 59
+            }
+          ]
+        },
+        {
+          "team": "Tampa Bay Buccaneers",
+          "sample_size": 9,
+          "score_history": [
+            {
+              "date": "2026-11-09T01:20Z",
+              "season_type": 2,
+              "scored": 24,
+              "allowed": 27
+            },
+            {
+              "date": "2026-11-01T18:00Z",
+              "season_type": 2,
+              "scored": 16,
+              "allowed": 0
+            },
+            {
+              "date": "2026-10-25T17:00Z",
+              "season_type": 2,
+              "scored": 43,
+              "allowed": 13
+            },
+            {
+              "date": "2026-10-18T17:00Z",
+              "season_type": 2,
+              "scored": 19,
+              "allowed": 26
+            },
+            {
+              "date": "2026-10-09T00:15Z",
+              "season_type": 2,
+              "scored": 24,
+              "allowed": 16
+            },
+            {
+              "date": "2026-10-04T17:00Z",
+              "season_type": 2,
+              "scored": 14,
+              "allowed": 17
+            },
+            {
+              "date": "2026-09-27T20:05Z",
+              "season_type": 2,
+              "scored": 16,
+              "allowed": 23
+            },
+            {
+              "date": "2026-09-20T17:00Z",
+              "season_type": 2,
+              "scored": 19,
+              "allowed": 23
+            },
+            {
+              "date": "2026-09-13T17:00Z",
+              "season_type": 2,
+              "scored": 27,
+              "allowed": 33
             }
           ]
         }
