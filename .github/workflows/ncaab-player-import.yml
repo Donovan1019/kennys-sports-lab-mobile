@@ -16,14 +16,14 @@ concurrency:
 jobs:
   import:
     runs-on: ubuntu-latest
-    timeout-minutes: 35
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
       - name: Verify identity mapping unit tests
         run: python3 -m unittest discover -s scripts -p 'test_ncaab_player_import.py'
       - name: Import ESPN player boxscores with no API key
         env:
-          NCAAB_PLAYER_IMPORT_BATCH: '75'
+          NCAAB_PLAYER_IMPORT_BATCH: '150'
         run: python3 scripts/ncaab_player_import.py
       - name: Validate imported player IDs and mappings
         run: |
