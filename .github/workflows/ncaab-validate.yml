@@ -4,6 +4,7 @@ on:
     paths:
       - 'ncaab.html'
       - 'ncaab_intelligence.js'
+      - 'ncaab_simulator.js'
       - 'data/ncaab_*.json'
       - '.github/workflows/ncaab-*'
   workflow_dispatch:
@@ -17,6 +18,7 @@ jobs:
       - name: Validate JavaScript syntax and data integrity
         run: |
           node --check ncaab_intelligence.js
+          node --check ncaab_simulator.js
           python3 - <<'PY'
           import pathlib,re,json,subprocess
           html=pathlib.Path('ncaab.html').read_text()
@@ -29,6 +31,7 @@ jobs:
           assert 'Market Audit' in html and 'Team Matchups' in html
           assert 'SGP' in html and 'Best Lines' in html
           assert 'ncaab_intelligence.js' in html
+          assert 'ncaab_simulator.js' in html
           for name in ('data/ncaab_primary.json','data/ncaab_odds.json'):
               p=pathlib.Path(name)
               if not p.exists(): continue
