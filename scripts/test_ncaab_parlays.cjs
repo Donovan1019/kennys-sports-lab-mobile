@@ -8,6 +8,8 @@ const event=(id,start)=>({id,home_team:'Home '+id,away_team:'Away '+id,commence_
 const date='2026-11-10',meta={fetched_at:'2026-11-10T17:30:00Z'};
 const good=[event('A','2026-11-10T23:00:00Z'),event('B','2026-11-11T01:00:00Z')];
 assert.match(render(good,date,meta),/Calculated parlay price/);
+assert.match(render(good,date,meta,{coverage:{eligible_teams:1,observed_teams:502}},{walk_forward:{games:0}}),/Eligible teams: 1 \/ 502 observed/);
+assert.match(render(good,date,meta,{coverage:{eligible_teams:1,observed_teams:502}},{walk_forward:{games:0}}),/No model-approved parlays/);
 assert.match(render(good,date,meta),/implied break-even/);
 assert.doesNotMatch(render(good,date,{fetched_at:'2026-11-10T10:00:00Z'}),/Calculated parlay price/);
 assert.doesNotMatch(render([event('A','2026-11-10T17:00:00Z'),good[1]],date,meta),/Calculated parlay price/);
