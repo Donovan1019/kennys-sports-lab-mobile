@@ -30,7 +30,7 @@ jobs:
           node --check ncaab_quality.js
           node --check ncaab_backtest.js
           python3 -m py_compile scripts/ncaab_research_backtest.py scripts/ncaab_espn_history.py
-          python3 -m py_compile scripts/ncaab_espn_history.py
+          python3 scripts/ncaab_research_backtest.py
           python3 - <<'PY'
           import pathlib,re,json,subprocess
           html=pathlib.Path('ncaab.html').read_text()
@@ -50,6 +50,10 @@ jobs:
           assert 'Backtesting' in html
           assert 'ncaab_backtest.js' in html
           assert 'ESPN History' in html
+          report=json.loads(pathlib.Path('data/ncaab_research.json').read_text())
+          assert report['research_only'] is True
+          assert report['historical_games']>=report['walk_forward']['games']
+          assert report['walk_forward']['status'] in ('RESEARCH_BASELINE','INSUFFICIENT_HISTORY')
           for name in ('data/ncaab_primary.json','data/ncaab_odds.json'):
               p=pathlib.Path(name)
               if not p.exists(): continue
