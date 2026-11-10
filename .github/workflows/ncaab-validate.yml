@@ -9,6 +9,7 @@ on:
       - 'ncaab_quality.js'
       - 'ncaab_backtest.js'
       - 'scripts/ncaab_research_backtest.py'
+      - 'scripts/test_ncaab_backtest.py'
       - 'scripts/ncaab_espn_history.py'
       - '.github/workflows/ncaab-prior-season-backfill.yml'
       - 'scripts/ncaab_espn_history.py'
@@ -30,6 +31,7 @@ jobs:
           node --check ncaab_quality.js
           node --check ncaab_backtest.js
           python3 -m py_compile scripts/ncaab_research_backtest.py scripts/ncaab_espn_history.py
+          python3 scripts/test_ncaab_backtest.py
           python3 scripts/ncaab_research_backtest.py
           python3 - <<'PY'
           import pathlib,re,json,subprocess
