@@ -18,7 +18,7 @@ function build(primary,date,odds){
   const n=5000,away=[],home=[];let homeWins=0,awayWins=0,ties=0;
   for(let i=0;i<n;i++){const shared=randNormal()*7,as=Math.max(0,awayMean+shared+randNormal()*9),hs=Math.max(0,homeMean+shared+randNormal()*9);away.push(as);home.push(hs);if(hs>as)homeWins++;else if(as>hs)awayWins++;else ties++}
   const sorted=x=>x.sort((a,b)=>a-b),quant=(x,p)=>x[Math.floor((x.length-1)*p)];
-  const aSorted=sorted(away),hSorted=sorted(home),totals=sorted(away.map((x,i)=>x+home[i]));
+  const totals=sorted(away.map((x,i)=>x+home[i])),aSorted=sorted(away),hSorted=sorted(home);
   output.push({g,status:'EXPLORATORY',n,awayMean,homeMean,homeWins,awayWins,ties,awayRange:[quant(aSorted,.1),quant(aSorted,.9)],homeRange:[quant(hSorted,.1),quant(hSorted,.9)],totalRange:[quant(totals,.1),quant(totals,.9)],totalMean:awayMean+homeMean,awayConference:teams.get(g.away_team.team_id)?.conference,homeConference:teams.get(g.home_team.team_id)?.conference});
  }
  return output;
