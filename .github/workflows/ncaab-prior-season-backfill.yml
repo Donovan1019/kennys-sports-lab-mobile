@@ -45,11 +45,13 @@ jobs:
           PY
       - name: Run date-safe walk-forward backtest
         run: python3 scripts/ncaab_research_backtest.py
+      - name: Build current-season team projection research feed
+        run: python3 scripts/ncaab_team_projections.py
       - name: Commit verified historical data and diagnostics
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/ncaab_espn_history.json data/ncaab_research.json
+          git add data/ncaab_espn_history.json data/ncaab_research.json data/ncaab_team_projections.json
           if ! git diff --cached --quiet; then
             git commit -m 'data: backfill NCAAB prior-season ESPN results'
             git pull --rebase
