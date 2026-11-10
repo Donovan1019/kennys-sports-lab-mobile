@@ -6,6 +6,7 @@ on:
       - 'ncaab_intelligence.js'
       - 'ncaab_simulator.js'
       - 'ncaab_history.js'
+      - 'ncaab_quality.js'
       - 'scripts/ncaab_espn_history.py'
       - 'data/ncaab_*.json'
       - '.github/workflows/ncaab-*'
@@ -22,6 +23,7 @@ jobs:
           node --check ncaab_intelligence.js
           node --check ncaab_simulator.js
           node --check ncaab_history.js
+          node --check ncaab_quality.js
           python3 -m py_compile scripts/ncaab_espn_history.py
           python3 - <<'PY'
           import pathlib,re,json,subprocess
@@ -37,6 +39,8 @@ jobs:
           assert 'ncaab_intelligence.js' in html
           assert 'ncaab_simulator.js' in html
           assert 'ncaab_history.js' in html
+          assert 'ncaab_quality.js' in html
+          assert 'Model Quality' in html
           assert 'ESPN History' in html
           for name in ('data/ncaab_primary.json','data/ncaab_odds.json'):
               p=pathlib.Path(name)
