@@ -1,7 +1,7 @@
 {
   "status": "validated",
   "sport": "basketball_nba",
-  "generated_at": "2026-11-10T02:48:14.913009+00:00",
+  "generated_at": "2026-11-10T04:07:49.706298+00:00",
   "calibration_passed": true,
   "model_version": "elo-walkforward-v1-holdout-audit",
   "validation_report": {
@@ -24,18 +24,6 @@
   },
   "training_cutoff": "2026-11-09T02:00Z",
   "predictions": [
-    {
-      "event_id": "3619e1cf4b0a325c3e0ba5b1fb7f3d91",
-      "team": "Golden State Warriors",
-      "date_et": "2026-11-09",
-      "win_probability": 0.692035
-    },
-    {
-      "event_id": "3619e1cf4b0a325c3e0ba5b1fb7f3d91",
-      "team": "New Orleans Pelicans",
-      "date_et": "2026-11-09",
-      "win_probability": 0.307965
-    },
     {
       "event_id": "3689d555c9a1c81e3d300375b4c80530",
       "team": "New York Knicks",
