@@ -16,6 +16,8 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
+      - name: Validate NBA refresh Python syntax before consuming API credits
+        run: python -m py_compile scripts/fetch_odds.py scripts/build_nba_ml_predictions.py scripts/refresh_nba_ml_research_audit.py
       - name: Fetch current NBA sportsbook prices
         env:
           THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
