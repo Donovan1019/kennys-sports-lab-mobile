@@ -1,7 +1,7 @@
 {
   "status": "validated",
   "sport": "basketball_nba",
-  "generated_at": "2026-11-10T21:21:27.971907+00:00",
+  "generated_at": "2026-11-10T22:36:43.692603+00:00",
   "calibration_passed": true,
   "model_version": "elo-walkforward-v1-holdout-audit",
   "validation_report": {
@@ -82,6 +82,66 @@
       "event_id": "f5477c781c94e09e85374bbf9149c0f1",
       "team": "Oklahoma City Thunder",
       "date_et": "2026-11-10",
+      "win_probability": 0.652211
+    },
+    {
+      "event_id": "e9545a3084389f5f3429e19fea891124",
+      "team": "Indiana Pacers",
+      "date_et": "2026-11-11",
+      "win_probability": 0.588063
+    },
+    {
+      "event_id": "e9545a3084389f5f3429e19fea891124",
+      "team": "Washington Wizards",
+      "date_et": "2026-11-11",
+      "win_probability": 0.411937
+    },
+    {
+      "event_id": "e6a37eea1dddcbd0384c81237e81f47f",
+      "team": "New Orleans Pelicans",
+      "date_et": "2026-11-11",
+      "win_probability": 0.696426
+    },
+    {
+      "event_id": "e6a37eea1dddcbd0384c81237e81f47f",
+      "team": "Brooklyn Nets",
+      "date_et": "2026-11-11",
+      "win_probability": 0.303574
+    },
+    {
+      "event_id": "8e0fdbf07b1f288b00ec5b370f6c1e2d",
+      "team": "Chicago Bulls",
+      "date_et": "2026-11-11",
+      "win_probability": 0.146814
+    },
+    {
+      "event_id": "8e0fdbf07b1f288b00ec5b370f6c1e2d",
+      "team": "San Antonio Spurs",
+      "date_et": "2026-11-11",
+      "win_probability": 0.853186
+    },
+    {
+      "event_id": "f41d186dc7a7dcf01adab32579a82ca3",
+      "team": "Houston Rockets",
+      "date_et": "2026-11-11",
+      "win_probability": 0.7557
+    },
+    {
+      "event_id": "f41d186dc7a7dcf01adab32579a82ca3",
+      "team": "Golden State Warriors",
+      "date_et": "2026-11-11",
+      "win_probability": 0.2443
+    },
+    {
+      "event_id": "d4f288eeb0132970825be17748f2b4f0",
+      "team": "Portland Trail Blazers",
+      "date_et": "2026-11-11",
+      "win_probability": 0.347789
+    },
+    {
+      "event_id": "d4f288eeb0132970825be17748f2b4f0",
+      "team": "Oklahoma City Thunder",
+      "date_et": "2026-11-11",
       "win_probability": 0.652211
     }
   ]
