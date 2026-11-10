@@ -1,30 +1,30 @@
 {
-  "generated_at": "2026-11-10T03:33:37.471800+00:00",
+  "generated_at": "2026-11-10T18:42:41.710461+00:00",
   "status": "research_only",
   "sports": {
     "NFL": {
       "player_history_present": true,
       "player_history_count": 2366,
       "archived_market_types": [
-        "h2h",
-        "spreads",
-        "totals"
+        "h2h"
       ],
-      "archived_quote_rows": 336,
-      "valid_archived_quote_rows": 336,
+      "archived_quote_rows": 56,
+      "valid_archived_quote_rows": 56,
       "invalid_archived_quote_rows": 0,
       "archived_bookmakers": [
         "draftkings",
         "fanduel"
       ],
-      "stale_archived_quote_rows_over_60m": 336,
+      "stale_archived_quote_rows_over_60m": 0,
       "future_dated_quote_rows": 0,
       "inconsistent_event_metadata_rows": 0,
-      "upcoming_events_by_market": {},
-      "future_event_count_with_archived_quotes": 0,
-      "archived_quote_last_update": "2026-11-01T11:23:45+00:00",
-      "archived_quote_age_minutes": 12489.9,
-      "fresh_quote_timestamp_within_60m": false,
+      "upcoming_events_by_market": {
+        "h2h": 14
+      },
+      "future_event_count_with_archived_quotes": 14,
+      "archived_quote_last_update": "2026-11-10T18:38:48+00:00",
+      "archived_quote_age_minutes": 3.9,
+      "fresh_quote_timestamp_within_60m": true,
       "fresh_quote_is_not_live_market_verification": true,
       "live_event_matched_player_props_verified": false,
       "independent_player_team_and_lineup_verified": false,
@@ -39,23 +39,23 @@
       "archived_market_types": [
         "h2h"
       ],
-      "archived_quote_rows": 38,
-      "valid_archived_quote_rows": 38,
+      "archived_quote_rows": 24,
+      "valid_archived_quote_rows": 24,
       "invalid_archived_quote_rows": 0,
       "archived_bookmakers": [
         "draftkings",
         "fanduel"
       ],
-      "stale_archived_quote_rows_over_60m": 0,
+      "stale_archived_quote_rows_over_60m": 24,
       "future_dated_quote_rows": 0,
       "inconsistent_event_metadata_rows": 0,
       "upcoming_events_by_market": {
-        "h2h": 5
+        "h2h": 6
       },
-      "future_event_count_with_archived_quotes": 5,
-      "archived_quote_last_update": "2026-11-10T02:47:49+00:00",
-      "archived_quote_age_minutes": 45.8,
-      "fresh_quote_timestamp_within_60m": true,
+      "future_event_count_with_archived_quotes": 6,
+      "archived_quote_last_update": "2026-11-10T12:39:19+00:00",
+      "archived_quote_age_minutes": 363.4,
+      "fresh_quote_timestamp_within_60m": false,
       "fresh_quote_is_not_live_market_verification": true,
       "live_event_matched_player_props_verified": false,
       "independent_player_team_and_lineup_verified": false,
@@ -85,7 +85,7 @@
       },
       "future_event_count_with_archived_quotes": 7,
       "archived_quote_last_update": "2026-11-09T23:02:44+00:00",
-      "archived_quote_age_minutes": 270.9,
+      "archived_quote_age_minutes": 1180.0,
       "fresh_quote_timestamp_within_60m": false,
       "fresh_quote_is_not_live_market_verification": true,
       "live_event_matched_player_props_verified": false,
