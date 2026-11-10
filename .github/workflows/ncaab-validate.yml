@@ -37,6 +37,7 @@ jobs:
           node --check ncaab_backtest.js
           node --check ncaab_decision.js
           node --check ncaab_projections.js
+          node --check ncaab_parlays.js
           node scripts/test_ncaab_projections.cjs
           node scripts/test_ncaab_decision.cjs
           python3 -m py_compile scripts/ncaab_research_backtest.py scripts/ncaab_espn_history.py
