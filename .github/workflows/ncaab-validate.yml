@@ -12,6 +12,8 @@ on:
       - 'ncaab_projections.js'
       - 'ncaab_parlays.js'
       - 'ncaab_probability.js'
+      - 'scripts/ncaab_odds_refresh.py'
+      - '.github/workflows/ncaab-odds-freshness.yml'
       - 'scripts/test_ncaab_probability.cjs'
       - 'scripts/test_ncaab_parlays.cjs'
       - 'scripts/test_ncaab_decision.cjs'
@@ -44,6 +46,7 @@ jobs:
           node --check ncaab_parlays.js
           node --check ncaab_probability.js
           node scripts/test_ncaab_probability.cjs
+          python3 -m py_compile scripts/ncaab_odds_refresh.py
           node scripts/test_ncaab_parlays.cjs
           node scripts/test_ncaab_projections.cjs
           node scripts/test_ncaab_decision.cjs

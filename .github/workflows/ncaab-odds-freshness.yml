@@ -1,0 +1,41 @@
+name: NCAAB Odds Freshness
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '10 0,3,12,15,18,21 * * *'
+permissions:
+  contents: write
+concurrency:
+  group: ncaab-odds-freshness
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch and validate upcoming bookmaker odds
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
+        run: python3 scripts/ncaab_odds_refresh.py
+      - name: Validate saved cache
+        run: |
+          python3 - <<'PY'
+          import json
+          d=json.load(open('data/ncaab_odds.json'))
+          assert d['sport']=='basketball_ncaab'
+          assert d['fetched_at'] and d['events']
+          assert all(e['bookmakers'] for e in d['events'])
+          print('Validated NCAA odds events:',len(d['events']))
+          PY
+      - name: Publish verified odds snapshot
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/ncaab_odds.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'data: refresh verified NCAA sportsbook odds'
+            git pull --rebase
+            git push
+          fi
