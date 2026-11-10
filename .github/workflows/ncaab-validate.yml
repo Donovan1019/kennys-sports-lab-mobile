@@ -49,6 +49,8 @@ jobs:
           assert d['research_only'] is True
           assert d['provider']=='espn-public'
           assert all(x['games']>=5 for x in d['coverage'].get('teams',{}).values())
+          assert d['coverage']['eligible_teams']<=d['coverage']['observed_teams']
+          assert all(x['needed']==max(0,5-x['games']) for x in d['coverage']['team_progress'].values())
           PY
           python3 - <<'PY'
           import pathlib,re,json,subprocess
