@@ -6,8 +6,11 @@ on:
       - 'scripts/build_nhl_goal_rates.py'
       - 'scripts/build_nhl_ml_predictions.py'
       - 'scripts/nhl_moneyline_model.py'
+      - 'tests/test_nhl_ml_simulation.py'
       - '.github/workflows/nhl-model-verify.yml'
   workflow_dispatch:
+  schedule:
+    - cron: '20 15,21 * * *'
 permissions:
   contents: write
 concurrency:
