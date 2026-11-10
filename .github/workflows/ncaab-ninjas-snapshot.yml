@@ -1,0 +1,57 @@
+name: NCAAB API Ninjas Primary Snapshot
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '15 14,20 * * *'
+permissions:
+  contents: write
+concurrency:
+  group: ncaab-ninjas-snapshot
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    env:
+      API_NINJAS_KEY: ${{ secrets.API_NINJAS_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate primary API secret
+        run: |
+          if [ -z "$API_NINJAS_KEY" ]; then
+            echo 'API_NINJAS_KEY is missing; add it under Settings > Secrets and variables > Actions.'
+            exit 1
+          fi
+      - name: Fetch NCAAB games, teams, standings and polls
+        run: |
+          python3 - <<'PY'
+          import os,json,urllib.request,urllib.parse,datetime,pathlib,time
+          key=os.environ['API_NINJAS_KEY']
+          base='https://api.api-ninjas.com/v1/'
+          calls={'games':('basketballgames',{'league':'ncaab'}),'teams':('basketballteams',{'league':'ncaab'}),'standings':('basketballstandings',{'league':'ncaab'}),'ap_poll':('basketballstandings',{'league':'ncaab','poll':'ap'})}
+          payload={'sport':'ncaab','provider':'api-ninjas','fetched_at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'data':{},'errors':{}}
+          for label,(endpoint,params) in calls.items():
+            try:
+              url=base+endpoint+'?'+urllib.parse.urlencode(params)
+              request=urllib.request.Request(url,headers={'X-Api-Key':key,'User-Agent':'KennysSportsLab/1.0'})
+              with urllib.request.urlopen(request,timeout=35) as response: data=json.load(response)
+              if not isinstance(data,list): raise ValueError('Expected array')
+              payload['data'][label]=data
+              print(label,len(data))
+            except Exception as exc:
+              payload['errors'][label]=str(exc)[:180]
+              print(label,'UNAVAILABLE',type(exc).__name__)
+            time.sleep(0.25)
+          if not isinstance(payload['data'].get('games'),list): raise RuntimeError('Primary games feed unavailable; preserve previous snapshot')
+          path=pathlib.Path('data/ncaab_primary.json')
+          path.parent.mkdir(parents=True,exist_ok=True)
+          path.write_text(json.dumps(payload,separators=(',',':'))+'\n')
+          PY
+      - name: Commit primary snapshot
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/ncaab_primary.json
+          if ! git diff --cached --quiet; then
+            git commit -m "data: refresh NCAAB primary API Ninjas snapshot"
+            git push
+          fi
