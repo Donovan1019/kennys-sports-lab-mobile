@@ -1,6 +1,11 @@
 name: NCAAB Odds Freshness
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/ncaab-odds-freshness.yml'
+      - 'scripts/ncaab_odds_refresh.py'
   schedule:
     - cron: '10 0,3,12,15,18,21 * * *'
 permissions:
