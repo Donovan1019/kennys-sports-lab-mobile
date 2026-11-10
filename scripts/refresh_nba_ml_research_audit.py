@@ -55,7 +55,6 @@ def main():
         result["status"]="simulated_not_bet_eligible" if result["games"] else "unavailable"
         result["reason"]="Independent-game research simulations only; lineup, correlation, executable parlay quote and CLV unverified"
     except (ValueError,KeyError,TypeError) as e:result["reason"]=str(e)
-    pathlib.Path("feed/nba_ml_simulation_audit.json").write_text(json.dumps(result,indent=2)+"
-")
+    pathlib.Path("feed/nba_ml_simulation_audit.json").write_text(json.dumps(result,indent=2)+chr(10))
     print("NBA ML simulation audit:",result["status"],len(result["games"]),"game sides; parlays",len(result["parlays"]))
 if __name__=="__main__":main()
