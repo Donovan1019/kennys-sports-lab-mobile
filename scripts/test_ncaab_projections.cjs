@@ -1,0 +1,14 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+const sandbox={window:{},Date,Intl};vm.runInNewContext(fs.readFileSync('ncaab_projections.js','utf8'),sandbox);
+const p=sandbox.window.NCAABProjections;
+const home={pace:70,off:110,def:100,games:6,team:'Florida State Seminoles'};
+const away={pace:68,off:105,def:102,games:6,team:'Florida Gators'};
+const calc=p.project(home,away);
+assert(Math.abs(calc.total-(calc.home+calc.away))<1e-9);
+const event={commence_time:'2026-11-11T00:30:00Z',home_team:'Florida St Seminoles',away_team:'Florida Gators'};
+const fresh={provider:'espn-public',research_only:true,source_fetched_at:new Date(Date.now()-60000).toISOString(),coverage:{teams:{a:home,b:away}}};
+const html=p.render(fresh,[event],'2026-11-10');
+assert(html.includes('Projected total')&&!html.includes('insufficient history or unmatched'));
+assert(p.render(fresh,[event],'2026-11-11').includes('No sportsbook schedule'));
+assert(p.render({...fresh,source_fetched_at:'2020-01-01T00:00:00Z'},[event],'2026-11-10').includes('UNAVAILABLE'));
+console.log('NCAA projections date, alias, score and freshness checks passed');
