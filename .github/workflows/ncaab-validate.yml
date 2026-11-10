@@ -11,6 +11,7 @@ on:
       - 'ncaab_decision.js'
       - 'ncaab_projections.js'
       - 'scripts/test_ncaab_decision.cjs'
+      - 'scripts/test_ncaab_projections.cjs'
       - 'scripts/ncaab_research_backtest.py'
       - 'scripts/ncaab_team_projections.py'
       - 'scripts/test_ncaab_backtest.py'
@@ -36,6 +37,7 @@ jobs:
           node --check ncaab_backtest.js
           node --check ncaab_decision.js
           node --check ncaab_projections.js
+          node scripts/test_ncaab_projections.cjs
           node scripts/test_ncaab_decision.cjs
           python3 -m py_compile scripts/ncaab_research_backtest.py scripts/ncaab_espn_history.py
           python3 scripts/test_ncaab_backtest.py
