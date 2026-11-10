@@ -22,7 +22,13 @@ def main():
                 if price==0 or not math.isfinite(price):continue
             except (ValueError,TypeError,KeyError):continue
             bybook.setdefault((str(r["event_id"]),r["bookmaker"]),[]).append(r)
-        # Different providers may assign multiple IDs to the same matchup.\n        # Canonicalize the unordered team pair before constructing parlays.\n        matchup_by_event={}\n        for (eid,book),rs in bybook.items():\n            if len(rs)==2 and len({r["selection"] for r in rs})==2:\n                matchup_by_event[eid]=tuple(sorted(str(r["selection"]).strip().casefold() for r in rs))\n        rng=random.Random(20261109)
+        # Different providers may assign multiple IDs to the same matchup.
+        # Canonicalize the unordered team pair before constructing parlays.
+        matchup_by_event={}
+        for (eid,book),rs in bybook.items():
+            if len(rs)==2 and len({r["selection"] for r in rs})==2:
+                matchup_by_event[eid]=tuple(sorted(str(r["selection"]).strip().casefold() for r in rs))
+        rng=random.Random(20261109)
         for (eid,book),rs in bybook.items():
             if len(rs)!=2 or len({r["selection"] for r in rs})!=2:continue
             for r in rs:
@@ -37,7 +43,10 @@ def main():
             candidates=sorted((g for g in result["games"] if g["bookmaker"]==book and g["price"]<0 and g["model_probability"]>=.60 and g["stress_ev_minus_3pp"]>0),key=lambda g:g["stress_ev_minus_3pp"],reverse=True)
             unique=[];seen=set()
             for g in candidates:
-                matchup=matchup_by_event.get(g["event_id"])\n                if matchup is not None and matchup not in seen:\n                    unique.append(g)\n                    seen.add(matchup)
+                matchup=matchup_by_event.get(g["event_id"])
+                if matchup is not None and matchup not in seen:
+                    unique.append(g)
+                    seen.add(matchup)
             for n in (2,3,4,5):
                 if len(unique)<n:continue
                 legs=unique[:n];joint=math.prod(g["model_probability"] for g in legs)
@@ -46,6 +55,7 @@ def main():
         result["status"]="simulated_not_bet_eligible" if result["games"] else "unavailable"
         result["reason"]="Independent-game research simulations only; lineup, correlation, executable parlay quote and CLV unverified"
     except (ValueError,KeyError,TypeError) as e:result["reason"]=str(e)
-    pathlib.Path("feed/nba_ml_simulation_audit.json").write_text(json.dumps(result,indent=2)+"\n")
+    pathlib.Path("feed/nba_ml_simulation_audit.json").write_text(json.dumps(result,indent=2)+"
+")
     print("NBA ML simulation audit:",result["status"],len(result["games"]),"game sides; parlays",len(result["parlays"]))
 if __name__=="__main__":main()
