@@ -14,6 +14,14 @@ WANTED = {
     "espn_mens_college_basketball_schedules",
     "espn_mens_college_basketball_pbp",
     "espn_mens_college_basketball_rosters",
+    "espn_mens_college_basketball_team_season_stats",
+    "espn_mens_college_basketball_player_season_stats",
+    "espn_mens_college_basketball_game_rosters",
+    "espn_mens_college_basketball_shots",
+    "espn_mens_college_basketball_player_core",
+    "espn_mens_college_basketball_standings",
+    "mbb_ratings",
+    "mbb_player_value",
     "mbb_crosswalk",
 }
 def audit():
@@ -36,7 +44,8 @@ def audit():
         found[tag] = {"release_url":release.get("html_url"),"published_at":release.get("published_at"),"assets":assets}
     if not found:
         raise RuntimeError("No supported public release datasets discovered")
-    return {"provider":"sportsdataverse-hoopr-public-releases","checked_at":dt.datetime.now(dt.timezone.utc).isoformat(),"source_url":URL,"datasets":found,"status":"METADATA_ONLY","limitations":["Availability audit only; no unverified game rows or model predictions imported","Bulk ingestion requires explicit schema and historical identity checks","Do not fetch subscription-only or access-controlled sources"]}
+    missing = sorted(WANTED - set(found))
+    return {"provider":"sportsdataverse-hoopr-public-releases","checked_at":dt.datetime.now(dt.timezone.utc).isoformat(),"source_url":URL,"datasets":found,"missing_datasets":missing,"status":"METADATA_ONLY","limitations":["Availability audit only; no unverified game rows or model predictions imported","Bulk ingestion requires explicit schema and historical identity checks","Do not fetch subscription-only or access-controlled sources"]}
 def main():
     result = audit()
     DEST.parent.mkdir(parents=True,exist_ok=True)
