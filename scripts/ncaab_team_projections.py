@@ -17,7 +17,7 @@ MIN_GAMES=5
 def build(games):
     valid=sorted((g for g in games if eligible_game(g)),key=lambda g:(g["date"],g["event_id"]))
     if not valid:return {}
-    latest=season_key(valid[-1]["date"])
+    latest=season_key(dt.datetime.now(dt.timezone.utc).date().isoformat())
     history=collections.defaultdict(list)
     for g in valid:
         if season_key(g["date"])!=latest:continue
