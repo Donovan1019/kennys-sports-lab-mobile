@@ -27,10 +27,13 @@ jobs:
           d=json.load(open('data/ncaab_research.json'))
           x=d['walk_forward']
           assert d['research_only'] is True
+          assert isinstance(x['season_evaluations'],dict)
+          assert x['sample_sufficient']==(x['games']>=200)
+          assert x['minimum_evaluations_for_research']==200
           if x['games']:
               assert isinstance(x['margin_mae'],(int,float))
-              assert isinstance(x['season_evaluations'],dict)
-              assert x['sample_sufficient']==(x['games']>=200)
+          else:
+              assert x['margin_mae'] is None and not x['season_evaluations']
           print('NCAA research diagnostics validated:',x['games'],'evaluations')
           PY
       - name: Commit refreshed research audit

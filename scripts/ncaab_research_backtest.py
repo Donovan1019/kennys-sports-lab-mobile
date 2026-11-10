@@ -77,7 +77,9 @@ def evaluate(games):
 
 def summarize(rows):
     if not rows:
-        return {"status": "INSUFFICIENT_HISTORY", "games": 0, "minimum_prior_games_per_team": MIN_HISTORY}
+        return {"status": "INSUFFICIENT_HISTORY", "games": 0, "minimum_prior_games_per_team": MIN_HISTORY,
+                "margin_mae": None, "season_evaluations": {}, "sample_sufficient": False,
+                "minimum_evaluations_for_research": 200}
     errors = [r["total_pred"] - r["total_actual"] for r in rows]
     margin_errors = [(r["a_pred"] - r["b_pred"]) - (r["a_actual"] - r["b_actual"]) for r in rows]
     by_season = collections.Counter(r["season"] for r in rows)
@@ -88,6 +90,7 @@ def summarize(rows):
             "margin_mae": round(statistics.mean(abs(e) for e in margin_errors), 3),
             "season_evaluations": dict(sorted(by_season.items())),
             "sample_sufficient": len(rows) >= 200,
+            "minimum_evaluations_for_research": 200,
             "minimum_prior_games_per_team": MIN_HISTORY}
 
 def main():

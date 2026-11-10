@@ -25,4 +25,10 @@ summary=m.summarize(pred)
 assert summary["games"]==3
 assert summary["sample_sufficient"] is False
 assert summary["margin_mae"]==0
+empty=m.summarize([])
+assert empty["status"]=="INSUFFICIENT_HISTORY"
+assert empty["sample_sufficient"] is False
+assert empty["season_evaluations"]=={}
+assert empty["margin_mae"] is None
+assert empty["minimum_evaluations_for_research"]==200
 print("NCAA season-isolation and historical no-leakage tests passed")
