@@ -10,7 +10,7 @@ const a=m.simulate(5,12,123,10000),b=m.simulate(5,12,123,10000);
 assert.equal(a.home,b.home);
 assert(a.home>.5&&a.home<.9);
 assert.equal(m.simulate(5,0),null);
-const rows=Array.from({length:200},(_,i)=>({a_pred:70,b_pred:65,a_actual:65+(i%9),b_actual:62+(i%7)}));
+const rows=Array.from({length:200},(_,i)=>({a_pred:70,b_pred:65,a_actual:65+(i%21),b_actual:62+(i%17)}));
 const research={research_only:true,walk_forward:{games:200,sample_sufficient:true},evaluations:rows};
 assert.equal(m.audit(research).ready,false);
 assert.equal(m.audit(research).reason,'INDEPENDENT_CALIBRATION_REQUIRED');
