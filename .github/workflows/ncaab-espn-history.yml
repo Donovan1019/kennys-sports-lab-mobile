@@ -32,11 +32,13 @@ jobs:
               assert all(t['points'] is not None for t in g['teams'])
           print('ESPN history validated:',len(ids),'games')
           PY
+      - name: Walk-forward historical research audit
+        run: python3 scripts/ncaab_research_backtest.py
       - name: Commit updated research cache
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/ncaab_espn_history.json
+          git add data/ncaab_espn_history.json data/ncaab_research.json
           if ! git diff --cached --quiet; then
             git commit -m 'data: refresh NCAAB ESPN completed game history'
             git pull --rebase
