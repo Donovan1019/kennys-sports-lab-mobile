@@ -1,0 +1,41 @@
+name: NCAAB Projection Feed Bootstrap
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/ncaab-projection-bootstrap.yml'
+      - 'scripts/ncaab_team_projections.py'
+      - 'data/ncaab_espn_history.json'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: ncaab-espn-enrichment
+  cancel-in-progress: false
+jobs:
+  bootstrap:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate research projection feed
+        run: python3 scripts/ncaab_team_projections.py
+      - name: Validate generated JSON and minimum history
+        run: |
+          python3 - <<'PY'
+          import json
+          d=json.load(open('data/ncaab_team_projections.json'))
+          assert d['provider']=='espn-public' and d['research_only'] is True
+          assert all(v['games']>=5 for v in d['coverage'].get('teams',{}).values())
+          print('Projection feed teams:',len(d['coverage'].get('teams',{})))
+          PY
+      - name: Commit generated feed
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/ncaab_team_projections.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'data: bootstrap NCAA research projection feed'
+            git pull --rebase
+            git push
+          fi
