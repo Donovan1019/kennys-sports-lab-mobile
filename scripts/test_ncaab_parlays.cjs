@@ -1,0 +1,18 @@
+const assert=require('node:assert/strict');const fs=require('node:fs');const vm=require('node:vm');
+const source=fs.readFileSync('ncaab_parlays.js','utf8');
+const now=Date.parse('2026-11-10T18:00:00Z');
+const context={window:{},Date:class extends Date{constructor(...a){super(...(a.length?a:[now]))}static now(){return now}}};
+vm.runInNewContext(source,context);
+const render=context.window.NCAABParlays.render;
+const event=(id,start)=>({id,home_team:'Home '+id,away_team:'Away '+id,commence_time:start,bookmakers:[{key:'test',title:'Test Book',last_update:'2026-11-10T17:00:00Z',markets:[{key:'h2h',outcomes:[{name:'Home '+id,price:-150},{name:'Away '+id,price:130}]}]}]});
+const date='2026-11-10',meta={fetched_at:'2026-11-10T17:30:00Z'};
+const good=[event('A','2026-11-10T23:00:00Z'),event('B','2026-11-11T01:00:00Z')];
+assert.match(render(good,date,meta),/Calculated parlay price/);
+assert.match(render(good,date,meta),/implied break-even/);
+assert.doesNotMatch(render(good,date,{fetched_at:'2026-11-10T10:00:00Z'}),/Calculated parlay price/);
+assert.doesNotMatch(render([event('A','2026-11-10T17:00:00Z'),good[1]],date,meta),/Calculated parlay price/);
+const stale=JSON.parse(JSON.stringify(good));stale[0].bookmakers[0].last_update='2026-11-10T09:00:00Z';
+assert.doesNotMatch(render(stale,date,meta),/Calculated parlay price/);
+const dup=JSON.parse(JSON.stringify(good));dup[1].id='A';
+assert.doesNotMatch(render(dup,date,meta),/Calculated parlay price/);
+console.log('NCAA parlay integrity tests passed');
