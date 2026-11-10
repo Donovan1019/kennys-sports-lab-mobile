@@ -1,0 +1,17 @@
+const assert=require('node:assert/strict');const fs=require('node:fs');const vm=require('node:vm');
+const context={window:{},Math,Date};vm.runInNewContext(fs.readFileSync('ncaab_probability.js','utf8'),context);
+const m=context.window.NCAABProbability;
+assert.equal(m.audit({research_only:true,walk_forward:{games:0,sample_sufficient:false},evaluations:[]}).ready,false);
+assert.equal(m.audit({research_only:true,walk_forward:{games:0,sample_sufficient:false},evaluations:[]}).reason,'INSUFFICIENT_HISTORY');
+assert.equal(m.matchup({teams:{}},'A','B'),null);
+const coverage={teams:{1:{team:'A',pace:70,off:110,def:95,games:8},2:{team:'B',pace:70,off:100,def:105,games:8}}};
+assert(m.matchup(coverage,'A','B').margin>0);
+const a=m.simulate(5,12,123,10000),b=m.simulate(5,12,123,10000);
+assert.equal(a.home,b.home);
+assert(a.home>.5&&a.home<.9);
+assert.equal(m.simulate(5,0),null);
+const rows=Array.from({length:200},(_,i)=>({a_pred:70,b_pred:65,a_actual:65+(i%21),b_actual:62+(i%17)}));
+const research={research_only:true,walk_forward:{games:200,sample_sufficient:true},evaluations:rows};
+assert.equal(m.audit(research).ready,false);
+assert.equal(m.audit(research).reason,'INDEPENDENT_CALIBRATION_REQUIRED');
+console.log('NCAA simulation and calibration gates passed');

@@ -11,6 +11,8 @@ on:
       - 'ncaab_decision.js'
       - 'ncaab_projections.js'
       - 'ncaab_parlays.js'
+      - 'ncaab_probability.js'
+      - 'scripts/test_ncaab_probability.cjs'
       - 'scripts/test_ncaab_parlays.cjs'
       - 'scripts/test_ncaab_decision.cjs'
       - 'scripts/test_ncaab_projections.cjs'
@@ -40,6 +42,8 @@ jobs:
           node --check ncaab_decision.js
           node --check ncaab_projections.js
           node --check ncaab_parlays.js
+          node --check ncaab_probability.js
+          node scripts/test_ncaab_probability.cjs
           node scripts/test_ncaab_parlays.cjs
           node scripts/test_ncaab_projections.cjs
           node scripts/test_ncaab_decision.cjs
