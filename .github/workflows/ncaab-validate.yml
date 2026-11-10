@@ -1,0 +1,45 @@
+name: Validate NCAAB Module
+on:
+  pull_request:
+    paths:
+      - 'ncaab.html'
+      - 'ncaab_intelligence.js'
+      - 'data/ncaab_*.json'
+      - '.github/workflows/ncaab-*'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate JavaScript syntax and data integrity
+        run: |
+          node --check ncaab_intelligence.js
+          python3 - <<'PY'
+          import pathlib,re,json,subprocess
+          html=pathlib.Path('ncaab.html').read_text()
+          scripts=re.findall(r'<script(?:\s[^>]*)?>(.*?)</script>',html,flags=re.S)
+          for i,script in enumerate(scripts):
+              if script.strip():
+                  p=pathlib.Path('/tmp/ncaab-inline-%s.js'%i)
+                  p.write_text(script)
+                  subprocess.run(['node','--check',str(p)],check=True)
+          assert 'Market Audit' in html and 'Team Matchups' in html
+          assert 'SGP' in html and 'Best Lines' in html
+          assert 'ncaab_intelligence.js' in html
+          for name in ('data/ncaab_primary.json','data/ncaab_odds.json'):
+              p=pathlib.Path(name)
+              if not p.exists(): continue
+              data=json.loads(p.read_text())
+              assert isinstance(data,dict)
+              assert isinstance(data.get('fetched_at'),str)
+              if 'odds' in name:
+                  assert data.get('sport')=='basketball_ncaab'
+                  assert isinstance(data.get('events'),list)
+              else:
+                  assert data.get('provider')=='api-ninjas'
+                  assert isinstance(data.get('data',{}).get('games'),list)
+          print('NCAAB JavaScript and data schema checks passed')
+          PY
