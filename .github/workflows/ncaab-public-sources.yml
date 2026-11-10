@@ -1,0 +1,45 @@
+name: NCAAB Public Data Source Audit
+on:
+  schedule:
+    - cron: '40 12 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/ncaab-public-sources.yml'
+      - 'scripts/ncaab_public_sources.py'
+permissions:
+  contents: write
+concurrency:
+  group: ncaab-public-source-audit
+  cancel-in-progress: false
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify public dataset metadata without API credentials
+        run: python3 scripts/ncaab_public_sources.py
+      - name: Validate provenance and permitted release URLs
+        run: |
+          python3 - <<'PY'
+          import json
+          d=json.load(open('data/ncaab_public_sources.json'))
+          assert d['status']=='METADATA_ONLY'
+          assert d['datasets']
+          for v in d['datasets'].values():
+              for a in v['assets']:
+                  assert a['url'].startswith('https://github.com/sportsdataverse/hoopR-mbb-data/releases/download/')
+          print('Verified public release metadata')
+          PY
+      - name: Publish source availability snapshot
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/ncaab_public_sources.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'data: audit public NCAAB historical data sources'
+            git pull --rebase
+            git push
+          fi
