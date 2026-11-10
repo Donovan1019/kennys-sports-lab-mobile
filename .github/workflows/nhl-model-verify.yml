@@ -31,6 +31,18 @@ jobs:
         run: python -m unittest discover -s tests -p 'test_nhl_ml_simulation.py'
       - name: Build independent historical scoring inputs
         run: python scripts/build_nhl_goal_rates.py
+      - name: Validate chronological backtest
+        run: |
+          python - <<'PY'
+          import json,math
+          from pathlib import Path
+          d=json.loads(Path('feed/nhl_model_backtest.json').read_text())
+          assert d['sample_games']>=0
+          if d['sample_games']:
+              assert all(math.isfinite(d[k]) and d[k]>=0 for k in ('brier','baseline_brier','log_loss'))
+          assert d['status'] in ('RESEARCH_ONLY','INSUFFICIENT_SAMPLE','UNAVAILABLE')
+          print('Walk-forward:',d)
+          PY
       - name: Build NHL moneyline projections
         run: python scripts/build_nhl_ml_predictions.py
       - name: Validate model output and provenance
@@ -59,7 +71,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add feed/nhl_expected_goals.json feed/nhl_ml_predictions.json
+          git add feed/nhl_expected_goals.json feed/nhl_ml_predictions.json feed/nhl_model_backtest.json
           if ! git diff --cached --quiet; then
             git commit -m 'Update independent NHL research projections'
             git push
