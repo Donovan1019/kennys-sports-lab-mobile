@@ -27,6 +27,8 @@ jobs:
               events=json.load(r)
               remaining=r.headers.get('x-requests-remaining','unknown')
           if not isinstance(events,list): raise ValueError('Unexpected API payload')
+          for event in events:
+              if not all(k in event for k in ('id','home_team','away_team','commence_time')): raise ValueError('Malformed odds event')
           path=pathlib.Path('data/ncaab_odds.json')
           path.parent.mkdir(parents=True,exist_ok=True)
           path.write_text(json.dumps({'sport':'basketball_ncaab','fetched_at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'remaining_credits':remaining,'events':events},separators=(',',':'))+'\n')
@@ -34,7 +36,9 @@ jobs:
           PY
       - name: Report missing secret
         if: env.ODDS_API_KEY == ''
-        run: echo 'UNAVAILABLE - set existing Odds API key as ODDS_API_KEY or THE_ODDS_API_KEY in Actions secrets'
+        run: |
+          echo 'UNAVAILABLE - set existing Odds API key as ODDS_API_KEY or THE_ODDS_API_KEY in Actions secrets'
+          exit 1
       - name: Commit validated snapshot
         if: env.ODDS_API_KEY != ''
         run: |
