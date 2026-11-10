@@ -11,6 +11,7 @@ on:
       - 'ncaab_decision.js'
       - 'scripts/test_ncaab_decision.cjs'
       - 'scripts/ncaab_research_backtest.py'
+      - 'scripts/ncaab_team_projections.py'
       - 'scripts/test_ncaab_backtest.py'
       - 'scripts/ncaab_espn_history.py'
       - '.github/workflows/ncaab-prior-season-backfill.yml'
@@ -37,6 +38,14 @@ jobs:
           python3 -m py_compile scripts/ncaab_research_backtest.py scripts/ncaab_espn_history.py
           python3 scripts/test_ncaab_backtest.py
           python3 scripts/ncaab_research_backtest.py
+          python3 scripts/ncaab_team_projections.py
+          python3 - <<'PY'
+          import json
+          d=json.load(open('data/ncaab_team_projections.json'))
+          assert d['research_only'] is True
+          assert d['provider']=='espn-public'
+          assert all(x['games']>=5 for x in d['coverage'].get('teams',{}).values())
+          PY
           python3 - <<'PY'
           import pathlib,re,json,subprocess
           html=pathlib.Path('ncaab.html').read_text()
