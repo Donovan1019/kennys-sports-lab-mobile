@@ -1,0 +1,44 @@
+name: NCAAB ESPN Historical Enrichment
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '35 12,22 * * *'
+permissions:
+  contents: write
+concurrency:
+  group: ncaab-espn-enrichment
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch verified completed games and boxscores
+        env:
+          NCAAB_ESPN_LOOKBACK_DAYS: '7'
+          NCAAB_ESPN_MAX_NEW: '24'
+        run: python3 scripts/ncaab_espn_history.py
+      - name: Validate historical cache
+        run: |
+          python3 - <<'PY'
+          import json
+          p=json.load(open('data/ncaab_espn_history.json'))
+          assert p['provider']=='espn-public'
+          ids=[g['event_id'] for g in p['games']]
+          assert len(ids)==len(set(ids))
+          for g in p['games']:
+              assert len(g['teams'])==2
+              assert all(t['points'] is not None for t in g['teams'])
+          print('ESPN history validated:',len(ids),'games')
+          PY
+      - name: Commit updated research cache
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/ncaab_espn_history.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'data: refresh NCAAB ESPN completed game history'
+            git pull --rebase
+            git push
+          fi
