@@ -109,7 +109,7 @@ async function refresh(){
         if(p.betting_eligible===true||p.executable_parlay_quote_verified===true)continue;
         const key=p.bookmaker+'|'+p.legs.length;
         if(shown.has(key))continue;
-        const valid=p.legs.every(l=>l&&l.event_id&&l.team)&&new Set(p.legs.map(l=>String(l.event_id))).size===p.legs.length;
+        const valid=p.legs.every(l=>l&&l.event_id&&l.team)&&new Set(p.legs.map(l=>String(l.event_id))).size===p.legs.length&&new Set(p.legs.map(l=>String(l.team).trim().toLowerCase())).size===p.legs.length;
         if(!valid)continue;
         // A high-EV longshot is not a conservative parlay. Match every leg to
         // its own same-book game-side diagnostic before showing a scenario.
