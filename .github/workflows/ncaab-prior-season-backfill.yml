@@ -15,7 +15,7 @@ on:
       max_new:
         description: 'Maximum new boxscores this batch (1-900)'
         required: true
-        default: '600'
+        default: '900'
 permissions:
   contents: write
 concurrency:
@@ -24,14 +24,14 @@ concurrency:
 jobs:
   backfill:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 50
     steps:
       - uses: actions/checkout@v4
       - name: Backfill prior-season games from ESPN
         env:
           NCAAB_ESPN_START_DATE: ${{ inputs.start_date || '2025-11-01' }}
           NCAAB_ESPN_END_DATE: ${{ inputs.end_date || '2026-04-10' }}
-          NCAAB_ESPN_MAX_NEW: ${{ inputs.max_new || '600' }}
+          NCAAB_ESPN_MAX_NEW: ${{ inputs.max_new || '900' }}
         run: python3 scripts/ncaab_espn_history.py
       - name: Validate historical coverage
         run: |
