@@ -29,7 +29,9 @@ def build(games):
               "def":100*opp["points"]/opp["possessions_est"],
               "date":g["date"]})
     result={}
+    progress={}
     for k,rows in history.items():
+        progress[k]={"team":rows[-1]["name"],"games":len(rows),"needed":max(0,MIN_GAMES-len(rows))}
         if len(rows)<MIN_GAMES:continue
         window=rows[-15:]
         result[k]={"team_id":k,"team":rows[-1]["name"],"games":len(rows),
@@ -37,7 +39,9 @@ def build(games):
           "off":round(statistics.mean(x["off"] for x in window),3),
           "def":round(statistics.mean(x["def"] for x in window),3),
           "last_game":rows[-1]["date"]}
-    return {"season":latest,"teams":result,"minimum_games":MIN_GAMES}
+    return {"season":latest,"teams":result,"minimum_games":MIN_GAMES,
+            "observed_teams":len(progress),"eligible_teams":len(result),
+            "team_progress":progress}
 
 def main():
     src=json.loads(SOURCE.read_text())
