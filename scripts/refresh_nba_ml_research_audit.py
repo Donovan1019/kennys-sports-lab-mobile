@@ -22,7 +22,7 @@ def main():
                 if price==0 or not math.isfinite(price):continue
             except (ValueError,TypeError,KeyError):continue
             bybook.setdefault((str(r["event_id"]),r["bookmaker"]),[]).append(r)
-        rng=random.Random(20261109)
+        # Different providers may assign multiple IDs to the same matchup.\n        # Canonicalize the unordered team pair before constructing parlays.\n        matchup_by_event={}\n        for (eid,book),rs in bybook.items():\n            if len(rs)==2 and len({r["selection"] for r in rs})==2:\n                matchup_by_event[eid]=tuple(sorted(str(r["selection"]).strip().casefold() for r in rs))\n        rng=random.Random(20261109)
         for (eid,book),rs in bybook.items():
             if len(rs)!=2 or len({r["selection"] for r in rs})!=2:continue
             for r in rs:
@@ -37,7 +37,7 @@ def main():
             candidates=sorted((g for g in result["games"] if g["bookmaker"]==book and g["price"]<0 and g["model_probability"]>=.60 and g["stress_ev_minus_3pp"]>0),key=lambda g:g["stress_ev_minus_3pp"],reverse=True)
             unique=[];seen=set()
             for g in candidates:
-                if g["event_id"] not in seen:unique.append(g);seen.add(g["event_id"])
+                matchup=matchup_by_event.get(g["event_id"])\n                if matchup is not None and matchup not in seen:\n                    unique.append(g)\n                    seen.add(matchup)
             for n in (2,3,4,5):
                 if len(unique)<n:continue
                 legs=unique[:n];joint=math.prod(g["model_probability"] for g in legs)
