@@ -3,8 +3,7 @@
 'use strict';
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const norm=s=>String(s||'').toLowerCase().replace(/[^a-z0-9]/g,'');
-const aliases={'floridast':'floridastate','michiganst':'michiganstate','ohio st':'ohiostate','uconn':'connecticut'};
-const canonical=s=>{const n=norm(s);return aliases[n]||n};
+const canonical=s=>norm(String(s||'').replace(/\bSt\.?\b/gi,'State').replace(/\bUConn\b/gi,'Connecticut'));
 function project(home,away){
  const pace=(home.pace+away.pace)/2;
  const h=pace*(home.off+away.def)/200;
