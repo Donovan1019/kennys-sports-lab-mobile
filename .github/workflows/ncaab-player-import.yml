@@ -38,11 +38,11 @@ jobs:
           assert not (set(m['unique_name_aliases']) & set(m['ambiguous_name_aliases']))
           print('Validated',len(rows),'player game rows and',len(m['players']),'player identities')
           PY
-      - name: Commit verified player data and mapping
+      - name: Audit player IDs against completed historical games\n        run: python3 scripts/ncaab_player_integrity.py\n      - name: Commit verified player data and mapping
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/ncaab_player_boxscores.json data/ncaab_player_map.json
+          git add data/ncaab_player_boxscores.json data/ncaab_player_map.json data/ncaab_player_integrity.json
           if ! git diff --cached --quiet; then
             git commit -m 'data: import verified NCAAB player boxscores and identity map'
             git pull --rebase
