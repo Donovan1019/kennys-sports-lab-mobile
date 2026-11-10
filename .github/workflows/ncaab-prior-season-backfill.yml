@@ -1,5 +1,7 @@
 name: NCAAB Prior-Season Backfill
 on:
+  schedule:
+    - cron: '15 5 * * *'
   workflow_dispatch:
     inputs:
       start_date:
@@ -27,9 +29,9 @@ jobs:
       - uses: actions/checkout@v4
       - name: Backfill prior-season games from ESPN
         env:
-          NCAAB_ESPN_START_DATE: ${{ inputs.start_date }}
-          NCAAB_ESPN_END_DATE: ${{ inputs.end_date }}
-          NCAAB_ESPN_MAX_NEW: ${{ inputs.max_new }}
+          NCAAB_ESPN_START_DATE: ${{ inputs.start_date || '2025-11-01' }}
+          NCAAB_ESPN_END_DATE: ${{ inputs.end_date || '2026-04-10' }}
+          NCAAB_ESPN_MAX_NEW: ${{ inputs.max_new || '600' }}
         run: python3 scripts/ncaab_espn_history.py
       - name: Validate historical coverage
         run: |
