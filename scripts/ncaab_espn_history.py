@@ -94,8 +94,10 @@ def main():
         except Exception as exc:
             errors.append({"event_id": eid, "error": type(exc).__name__})
         time.sleep(1.1)
-    if not records and errors:
+    if errors and not added and not records:
         raise RuntimeError("ESPN fetch failed; preserving previous history")
+    if candidates and not added and not errors:
+        raise RuntimeError("No candidate boxscores could be parsed; preserving previous history")
     output = {"provider": "espn-public", "fetched_at": dt.datetime.now(dt.timezone.utc).isoformat(),
               "schema_version": 1, "games": sorted(records.values(), key=lambda r: (r["date"], r["event_id"]))[-12000:],
               "errors": errors[:30]}
