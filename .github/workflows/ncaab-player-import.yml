@@ -1,7 +1,7 @@
 name: NCAAB Player Boxscore and Identity Import
 on:
   schedule:
-    - cron: '20 6,18 * * *'
+    - cron: '20 */2 * * *'
   workflow_dispatch:
   push:
     branches: [main]
