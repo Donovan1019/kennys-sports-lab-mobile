@@ -3,10 +3,12 @@
   "status": "ok",
   "sport": "basketball_nba",
   "markets_requested": [
-    "h2h"
+    "h2h",
+    "spreads",
+    "totals"
   ],
-  "fetched_at": "2026-11-10T21:21:27.913742+00:00",
-  "remaining_credits": "455",
+  "fetched_at": "2026-11-10T21:48:11.399186+00:00",
+  "remaining_credits": "452",
   "odds": [
     {
       "event": "Milwaukee Bucks @ New York Knicks",
@@ -20,7 +22,7 @@
       "point": null,
       "price": 750,
       "bookmaker": "fanduel",
-      "updated_at": "2026-11-10T21:20:50Z"
+      "updated_at": "2026-11-10T21:48:07Z"
     },
     {
       "event": "Milwaukee Bucks @ New York Knicks",
@@ -34,7 +36,63 @@
       "point": null,
       "price": -1200,
       "bookmaker": "fanduel",
-      "updated_at": "2026-11-10T21:20:50Z"
+      "updated_at": "2026-11-10T21:48:07Z"
+    },
+    {
+      "event": "Milwaukee Bucks @ New York Knicks",
+      "event_id": "3689d555c9a1c81e3d300375b4c80530",
+      "commence_time": "2026-11-11T00:40:00Z",
+      "sport": "basketball_nba",
+      "market": "spreads",
+      "description": null,
+      "player": null,
+      "selection": "Milwaukee Bucks",
+      "point": 15.5,
+      "price": -112,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-11-10T21:48:07Z"
+    },
+    {
+      "event": "Milwaukee Bucks @ New York Knicks",
+      "event_id": "3689d555c9a1c81e3d300375b4c80530",
+      "commence_time": "2026-11-11T00:40:00Z",
+      "sport": "basketball_nba",
+      "market": "spreads",
+      "description": null,
+      "player": null,
+      "selection": "New York Knicks",
+      "point": -15.5,
+      "price": -108,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-11-10T21:48:07Z"
+    },
+    {
+      "event": "Milwaukee Bucks @ New York Knicks",
+      "event_id": "3689d555c9a1c81e3d300375b4c80530",
+      "commence_time": "2026-11-11T00:40:00Z",
+      "sport": "basketball_nba",
+      "market": "totals",
+      "description": null,
+      "player": null,
+      "selection": "Over",
+      "point": 221.5,
+      "price": -115,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-11-10T21:48:07Z"
+    },
+    {
+      "event": "Milwaukee Bucks @ New York Knicks",
+      "event_id": "3689d555c9a1c81e3d300375b4c80530",
+      "commence_time": "2026-11-11T00:40:00Z",
+      "sport": "basketball_nba",
+      "market": "totals",
+      "description": null,
+      "player": null,
+      "selection": "Under",
+      "point": 221.5,
+      "price": -105,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-11-10T21:48:07Z"
     },
     {
       "event": "Milwaukee Bucks @ New York Knicks",
@@ -48,7 +106,7 @@
       "point": null,
       "price": 670,
       "bookmaker": "draftkings",
-      "updated_at": "2026-11-10T21:21:09Z"
+      "updated_at": "2026-11-10T21:47:47Z"
     },
     {
       "event": "Milwaukee Bucks @ New York Knicks",
@@ -62,7 +120,63 @@
       "point": null,
       "price": -1040,
       "bookmaker": "draftkings",
-      "updated_at": "2026-11-10T21:21:09Z"
+      "updated_at": "2026-11-10T21:47:47Z"
+    },
+    {
+      "event": "Milwaukee Bucks @ New York Knicks",
+      "event_id": "3689d555c9a1c81e3d300375b4c80530",
+      "commence_time": "2026-11-11T00:40:00Z",
+      "sport": "basketball_nba",
+      "market": "spreads",
+      "description": null,
+      "player": null,
+      "selection": "Milwaukee Bucks",
+      "point": 15.5,
+      "price": -115,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-11-10T21:47:47Z"
+    },
+    {
+      "event": "Milwaukee Bucks @ New York Knicks",
+      "event_id": "3689d555c9a1c81e3d300375b4c80530",
+      "commence_time": "2026-11-11T00:40:00Z",
+      "sport": "basketball_nba",
+      "market": "spreads",
+      "description": null,
+      "player": null,
+      "selection": "New York Knicks",
+      "point": -15.5,
+      "price": -105,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-11-10T21:47:47Z"
+    },
+    {
+      "event": "Milwaukee Bucks @ New York Knicks",
+      "event_id": "3689d555c9a1c81e3d300375b4c80530",
+      "commence_time": "2026-11-11T00:40:00Z",
+      "sport": "basketball_nba",
+      "market": "totals",
+      "description": null,
+      "player": null,
+      "selection": "Over",
+      "point": 222.5,
+      "price": -105,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-11-10T21:47:47Z"
+    },
+    {
+      "event": "Milwaukee Bucks @ New York Knicks",
+      "event_id": "3689d555c9a1c81e3d300375b4c80530",
+      "commence_time": "2026-11-11T00:40:00Z",
+      "sport": "basketball_nba",
+      "market": "totals",
+      "description": null,
+      "player": null,
+      "selection": "Under",
+      "point": 222.5,
+      "price": -115,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-11-10T21:47:47Z"
     },
     {
       "event": "Boston Celtics @ Philadelphia 76ers",
@@ -74,9 +188,9 @@
       "player": null,
       "selection": "Boston Celtics",
       "point": null,
-      "price": -122,
+      "price": -120,
       "bookmaker": "fanduel",
-      "updated_at": "2026-11-10T21:20:50Z"
+      "updated_at": "2026-11-10T21:48:07Z"
     },
     {
       "event": "Boston Celtics @ Philadelphia 76ers",
@@ -88,9 +202,65 @@
       "player": null,
       "selection": "Philadelphia 76ers",
       "point": null,
-      "price": 104,
+      "price": 102,
       "bookmaker": "fanduel",
-      "updated_at": "2026-11-10T21:20:50Z"
+      "updated_at": "2026-11-10T21:48:07Z"
+    },
+    {
+      "event": "Boston Celtics @ Philadelphia 76ers",
+      "event_id": "cfa503c66cd505776a910921875ef7dd",
+      "commence_time": "2026-11-11T01:10:00Z",
+      "sport": "basketball_nba",
+      "market": "spreads",
+      "description": null,
+      "player": null,
+      "selection": "Boston Celtics",
+      "point": -1.5,
+      "price": -110,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-11-10T21:48:07Z"
+    },
+    {
+      "event": "Boston Celtics @ Philadelphia 76ers",
+      "event_id": "cfa503c66cd505776a910921875ef7dd",
+      "commence_time": "2026-11-11T01:10:00Z",
+      "sport": "basketball_nba",
+      "market": "spreads",
+      "description": null,
+      "player": null,
+      "selection": "Philadelphia 76ers",
+      "point": 1.5,
+      "price": -110,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-11-10T21:48:07Z"
+    },
+    {
+      "event": "Boston Celtics @ Philadelphia 76ers",
+      "event_id": "cfa503c66cd505776a910921875ef7dd",
+      "commence_time": "2026-11-11T01:10:00Z",
+      "sport": "basketball_nba",
+      "market": "totals",
+      "description": null,
+      "player": null,
+      "selection": "Over",
+      "point": 217.5,
+      "price": -106,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-11-10T21:48:07Z"
+    },
+    {
+      "event": "Boston Celtics @ Philadelphia 76ers",
+      "event_id": "cfa503c66cd505776a910921875ef7dd",
+      "commence_time": "2026-11-11T01:10:00Z",
+      "sport": "basketball_nba",
+      "market": "totals",
+      "description": null,
+      "player": null,
+      "selection": "Under",
+      "point": 217.5,
+      "price": -114,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-11-10T21:48:07Z"
     },
     {
       "event": "Boston Celtics @ Philadelphia 76ers",
@@ -104,7 +274,7 @@
       "point": null,
       "price": -117,
       "bookmaker": "draftkings",
-      "updated_at": "2026-11-10T21:21:09Z"
+      "updated_at": "2026-11-10T21:47:47Z"
     },
     {
       "event": "Boston Celtics @ Philadelphia 76ers",
@@ -118,7 +288,63 @@
       "point": null,
       "price": -101,
       "bookmaker": "draftkings",
-      "updated_at": "2026-11-10T21:21:09Z"
+      "updated_at": "2026-11-10T21:47:47Z"
+    },
+    {
+      "event": "Boston Celtics @ Philadelphia 76ers",
+      "event_id": "cfa503c66cd505776a910921875ef7dd",
+      "commence_time": "2026-11-11T01:10:00Z",
+      "sport": "basketball_nba",
+      "market": "spreads",
+      "description": null,
+      "player": null,
+      "selection": "Boston Celtics",
+      "point": -1.5,
+      "price": -113,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-11-10T21:47:47Z"
+    },
+    {
+      "event": "Boston Celtics @ Philadelphia 76ers",
+      "event_id": "cfa503c66cd505776a910921875ef7dd",
+      "commence_time": "2026-11-11T01:10:00Z",
+      "sport": "basketball_nba",
+      "market": "spreads",
+      "description": null,
+      "player": null,
+      "selection": "Philadelphia 76ers",
+      "point": 1.5,
+      "price": -107,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-11-10T21:47:47Z"
+    },
+    {
+      "event": "Boston Celtics @ Philadelphia 76ers",
+      "event_id": "cfa503c66cd505776a910921875ef7dd",
+      "commence_time": "2026-11-11T01:10:00Z",
+      "sport": "basketball_nba",
+      "market": "totals",
+      "description": null,
+      "player": null,
+      "selection": "Over",
+      "point": 217.5,
+      "price": -107,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-11-10T21:47:47Z"
+    },
+    {
+      "event": "Boston Celtics @ Philadelphia 76ers",
+      "event_id": "cfa503c66cd505776a910921875ef7dd",
+      "commence_time": "2026-11-11T01:10:00Z",
+      "sport": "basketball_nba",
+      "market": "totals",
+      "description": null,
+      "player": null,
+      "selection": "Under",
+      "point": 217.5,
+      "price": -113,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-11-10T21:47:47Z"
     },
     {
       "event": "Los Angeles Clippers @ Phoenix Suns",
@@ -130,9 +356,9 @@
       "player": null,
       "selection": "Los Angeles Clippers",
       "point": null,
-      "price": 144,
+      "price": 140,
       "bookmaker": "fanduel",
-      "updated_at": "2026-11-10T21:20:50Z"
+      "updated_at": "2026-11-10T21:48:07Z"
     },
     {
       "event": "Los Angeles Clippers @ Phoenix Suns",
@@ -144,9 +370,65 @@
       "player": null,
       "selection": "Phoenix Suns",
       "point": null,
-      "price": -172,
+      "price": -166,
       "bookmaker": "fanduel",
-      "updated_at": "2026-11-10T21:20:50Z"
+      "updated_at": "2026-11-10T21:48:07Z"
+    },
+    {
+      "event": "Los Angeles Clippers @ Phoenix Suns",
+      "event_id": "8178ff2ec61f604b61dfe6d7b8d71103",
+      "commence_time": "2026-11-11T02:10:00Z",
+      "sport": "basketball_nba",
+      "market": "spreads",
+      "description": null,
+      "player": null,
+      "selection": "Los Angeles Clippers",
+      "point": 3.5,
+      "price": -106,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-11-10T21:48:07Z"
+    },
+    {
+      "event": "Los Angeles Clippers @ Phoenix Suns",
+      "event_id": "8178ff2ec61f604b61dfe6d7b8d71103",
+      "commence_time": "2026-11-11T02:10:00Z",
+      "sport": "basketball_nba",
+      "market": "spreads",
+      "description": null,
+      "player": null,
+      "selection": "Phoenix Suns",
+      "point": -3.5,
+      "price": -114,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-11-10T21:48:07Z"
+    },
+    {
+      "event": "Los Angeles Clippers @ Phoenix Suns",
+      "event_id": "8178ff2ec61f604b61dfe6d7b8d71103",
+      "commence_time": "2026-11-11T02:10:00Z",
+      "sport": "basketball_nba",
+      "market": "totals",
+      "description": null,
+      "player": null,
+      "selection": "Over",
+      "point": 224.5,
+      "price": -110,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-11-10T21:48:07Z"
+    },
+    {
+      "event": "Los Angeles Clippers @ Phoenix Suns",
+      "event_id": "8178ff2ec61f604b61dfe6d7b8d71103",
+      "commence_time": "2026-11-11T02:10:00Z",
+      "sport": "basketball_nba",
+      "market": "totals",
+      "description": null,
+      "player": null,
+      "selection": "Under",
+      "point": 224.5,
+      "price": -110,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-11-10T21:48:07Z"
     },
     {
       "event": "Los Angeles Clippers @ Phoenix Suns",
@@ -160,7 +442,7 @@
       "point": null,
       "price": 145,
       "bookmaker": "draftkings",
-      "updated_at": "2026-11-10T21:21:10Z"
+      "updated_at": "2026-11-10T21:47:47Z"
     },
     {
       "event": "Los Angeles Clippers @ Phoenix Suns",
@@ -174,7 +456,63 @@
       "point": null,
       "price": -173,
       "bookmaker": "draftkings",
-      "updated_at": "2026-11-10T21:21:10Z"
+      "updated_at": "2026-11-10T21:47:47Z"
+    },
+    {
+      "event": "Los Angeles Clippers @ Phoenix Suns",
+      "event_id": "8178ff2ec61f604b61dfe6d7b8d71103",
+      "commence_time": "2026-11-11T02:10:00Z",
+      "sport": "basketball_nba",
+      "market": "spreads",
+      "description": null,
+      "player": null,
+      "selection": "Los Angeles Clippers",
+      "point": 3.5,
+      "price": -108,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-11-10T21:47:47Z"
+    },
+    {
+      "event": "Los Angeles Clippers @ Phoenix Suns",
+      "event_id": "8178ff2ec61f604b61dfe6d7b8d71103",
+      "commence_time": "2026-11-11T02:10:00Z",
+      "sport": "basketball_nba",
+      "market": "spreads",
+      "description": null,
+      "player": null,
+      "selection": "Phoenix Suns",
+      "point": -3.5,
+      "price": -112,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-11-10T21:47:47Z"
+    },
+    {
+      "event": "Los Angeles Clippers @ Phoenix Suns",
+      "event_id": "8178ff2ec61f604b61dfe6d7b8d71103",
+      "commence_time": "2026-11-11T02:10:00Z",
+      "sport": "basketball_nba",
+      "market": "totals",
+      "description": null,
+      "player": null,
+      "selection": "Over",
+      "point": 224.5,
+      "price": -108,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-11-10T21:47:47Z"
+    },
+    {
+      "event": "Los Angeles Clippers @ Phoenix Suns",
+      "event_id": "8178ff2ec61f604b61dfe6d7b8d71103",
+      "commence_time": "2026-11-11T02:10:00Z",
+      "sport": "basketball_nba",
+      "market": "totals",
+      "description": null,
+      "player": null,
+      "selection": "Under",
+      "point": 224.5,
+      "price": -112,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-11-10T21:47:47Z"
     },
     {
       "event": "Miami Heat @ Utah Jazz",
@@ -186,9 +524,9 @@
       "player": null,
       "selection": "Miami Heat",
       "point": null,
-      "price": -430,
+      "price": -405,
       "bookmaker": "fanduel",
-      "updated_at": "2026-11-10T21:20:50Z"
+      "updated_at": "2026-11-10T21:48:07Z"
     },
     {
       "event": "Miami Heat @ Utah Jazz",
@@ -200,9 +538,65 @@
       "player": null,
       "selection": "Utah Jazz",
       "point": null,
-      "price": 340,
+      "price": 320,
       "bookmaker": "fanduel",
-      "updated_at": "2026-11-10T21:20:50Z"
+      "updated_at": "2026-11-10T21:48:07Z"
+    },
+    {
+      "event": "Miami Heat @ Utah Jazz",
+      "event_id": "9ac02cb22adf276b325b1e9c9c6c588e",
+      "commence_time": "2026-11-11T02:10:00Z",
+      "sport": "basketball_nba",
+      "market": "spreads",
+      "description": null,
+      "player": null,
+      "selection": "Miami Heat",
+      "point": -9.5,
+      "price": -110,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-11-10T21:48:07Z"
+    },
+    {
+      "event": "Miami Heat @ Utah Jazz",
+      "event_id": "9ac02cb22adf276b325b1e9c9c6c588e",
+      "commence_time": "2026-11-11T02:10:00Z",
+      "sport": "basketball_nba",
+      "market": "spreads",
+      "description": null,
+      "player": null,
+      "selection": "Utah Jazz",
+      "point": 9.5,
+      "price": -110,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-11-10T21:48:07Z"
+    },
+    {
+      "event": "Miami Heat @ Utah Jazz",
+      "event_id": "9ac02cb22adf276b325b1e9c9c6c588e",
+      "commence_time": "2026-11-11T02:10:00Z",
+      "sport": "basketball_nba",
+      "market": "totals",
+      "description": null,
+      "player": null,
+      "selection": "Over",
+      "point": 227.5,
+      "price": -115,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-11-10T21:48:07Z"
+    },
+    {
+      "event": "Miami Heat @ Utah Jazz",
+      "event_id": "9ac02cb22adf276b325b1e9c9c6c588e",
+      "commence_time": "2026-11-11T02:10:00Z",
+      "sport": "basketball_nba",
+      "market": "totals",
+      "description": null,
+      "player": null,
+      "selection": "Under",
+      "point": 227.5,
+      "price": -105,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-11-10T21:48:07Z"
     },
     {
       "event": "Miami Heat @ Utah Jazz",
@@ -214,9 +608,9 @@
       "player": null,
       "selection": "Miami Heat",
       "point": null,
-      "price": -438,
+      "price": -406,
       "bookmaker": "draftkings",
-      "updated_at": "2026-11-10T21:21:10Z"
+      "updated_at": "2026-11-10T21:47:47Z"
     },
     {
       "event": "Miami Heat @ Utah Jazz",
@@ -228,9 +622,65 @@
       "player": null,
       "selection": "Utah Jazz",
       "point": null,
-      "price": 341,
+      "price": 319,
       "bookmaker": "draftkings",
-      "updated_at": "2026-11-10T21:21:10Z"
+      "updated_at": "2026-11-10T21:47:47Z"
+    },
+    {
+      "event": "Miami Heat @ Utah Jazz",
+      "event_id": "9ac02cb22adf276b325b1e9c9c6c588e",
+      "commence_time": "2026-11-11T02:10:00Z",
+      "sport": "basketball_nba",
+      "market": "spreads",
+      "description": null,
+      "player": null,
+      "selection": "Miami Heat",
+      "point": -9.5,
+      "price": -105,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-11-10T21:47:47Z"
+    },
+    {
+      "event": "Miami Heat @ Utah Jazz",
+      "event_id": "9ac02cb22adf276b325b1e9c9c6c588e",
+      "commence_time": "2026-11-11T02:10:00Z",
+      "sport": "basketball_nba",
+      "market": "spreads",
+      "description": null,
+      "player": null,
+      "selection": "Utah Jazz",
+      "point": 9.5,
+      "price": -115,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-11-10T21:47:47Z"
+    },
+    {
+      "event": "Miami Heat @ Utah Jazz",
+      "event_id": "9ac02cb22adf276b325b1e9c9c6c588e",
+      "commence_time": "2026-11-11T02:10:00Z",
+      "sport": "basketball_nba",
+      "market": "totals",
+      "description": null,
+      "player": null,
+      "selection": "Over",
+      "point": 227.5,
+      "price": -108,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-11-10T21:47:47Z"
+    },
+    {
+      "event": "Miami Heat @ Utah Jazz",
+      "event_id": "9ac02cb22adf276b325b1e9c9c6c588e",
+      "commence_time": "2026-11-11T02:10:00Z",
+      "sport": "basketball_nba",
+      "market": "totals",
+      "description": null,
+      "player": null,
+      "selection": "Under",
+      "point": 227.5,
+      "price": -112,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-11-10T21:47:47Z"
     },
     {
       "event": "Orlando Magic @ Sacramento Kings",
@@ -242,9 +692,9 @@
       "player": null,
       "selection": "Orlando Magic",
       "point": null,
-      "price": -250,
+      "price": -220,
       "bookmaker": "fanduel",
-      "updated_at": "2026-11-10T21:20:50Z"
+      "updated_at": "2026-11-10T21:48:07Z"
     },
     {
       "event": "Orlando Magic @ Sacramento Kings",
@@ -256,9 +706,65 @@
       "player": null,
       "selection": "Sacramento Kings",
       "point": null,
-      "price": 205,
+      "price": 180,
       "bookmaker": "fanduel",
-      "updated_at": "2026-11-10T21:20:50Z"
+      "updated_at": "2026-11-10T21:48:07Z"
+    },
+    {
+      "event": "Orlando Magic @ Sacramento Kings",
+      "event_id": "78ab42ddb22b68903fd53a384d0fc616",
+      "commence_time": "2026-11-11T03:10:00Z",
+      "sport": "basketball_nba",
+      "market": "spreads",
+      "description": null,
+      "player": null,
+      "selection": "Orlando Magic",
+      "point": -5.5,
+      "price": -112,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-11-10T21:48:07Z"
+    },
+    {
+      "event": "Orlando Magic @ Sacramento Kings",
+      "event_id": "78ab42ddb22b68903fd53a384d0fc616",
+      "commence_time": "2026-11-11T03:10:00Z",
+      "sport": "basketball_nba",
+      "market": "spreads",
+      "description": null,
+      "player": null,
+      "selection": "Sacramento Kings",
+      "point": 5.5,
+      "price": -108,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-11-10T21:48:07Z"
+    },
+    {
+      "event": "Orlando Magic @ Sacramento Kings",
+      "event_id": "78ab42ddb22b68903fd53a384d0fc616",
+      "commence_time": "2026-11-11T03:10:00Z",
+      "sport": "basketball_nba",
+      "market": "totals",
+      "description": null,
+      "player": null,
+      "selection": "Over",
+      "point": 221.5,
+      "price": -112,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-11-10T21:48:07Z"
+    },
+    {
+      "event": "Orlando Magic @ Sacramento Kings",
+      "event_id": "78ab42ddb22b68903fd53a384d0fc616",
+      "commence_time": "2026-11-11T03:10:00Z",
+      "sport": "basketball_nba",
+      "market": "totals",
+      "description": null,
+      "player": null,
+      "selection": "Under",
+      "point": 221.5,
+      "price": -108,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-11-10T21:48:07Z"
     },
     {
       "event": "Orlando Magic @ Sacramento Kings",
@@ -272,7 +778,7 @@
       "point": null,
       "price": -229,
       "bookmaker": "draftkings",
-      "updated_at": "2026-11-10T21:21:10Z"
+      "updated_at": "2026-11-10T21:47:47Z"
     },
     {
       "event": "Orlando Magic @ Sacramento Kings",
@@ -286,7 +792,63 @@
       "point": null,
       "price": 190,
       "bookmaker": "draftkings",
-      "updated_at": "2026-11-10T21:21:10Z"
+      "updated_at": "2026-11-10T21:47:47Z"
+    },
+    {
+      "event": "Orlando Magic @ Sacramento Kings",
+      "event_id": "78ab42ddb22b68903fd53a384d0fc616",
+      "commence_time": "2026-11-11T03:10:00Z",
+      "sport": "basketball_nba",
+      "market": "spreads",
+      "description": null,
+      "player": null,
+      "selection": "Orlando Magic",
+      "point": -5.5,
+      "price": -112,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-11-10T21:47:47Z"
+    },
+    {
+      "event": "Orlando Magic @ Sacramento Kings",
+      "event_id": "78ab42ddb22b68903fd53a384d0fc616",
+      "commence_time": "2026-11-11T03:10:00Z",
+      "sport": "basketball_nba",
+      "market": "spreads",
+      "description": null,
+      "player": null,
+      "selection": "Sacramento Kings",
+      "point": 5.5,
+      "price": -108,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-11-10T21:47:47Z"
+    },
+    {
+      "event": "Orlando Magic @ Sacramento Kings",
+      "event_id": "78ab42ddb22b68903fd53a384d0fc616",
+      "commence_time": "2026-11-11T03:10:00Z",
+      "sport": "basketball_nba",
+      "market": "totals",
+      "description": null,
+      "player": null,
+      "selection": "Over",
+      "point": 222.5,
+      "price": -108,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-11-10T21:47:47Z"
+    },
+    {
+      "event": "Orlando Magic @ Sacramento Kings",
+      "event_id": "78ab42ddb22b68903fd53a384d0fc616",
+      "commence_time": "2026-11-11T03:10:00Z",
+      "sport": "basketball_nba",
+      "market": "totals",
+      "description": null,
+      "player": null,
+      "selection": "Under",
+      "point": 222.5,
+      "price": -112,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-11-10T21:47:47Z"
     },
     {
       "event": "Oklahoma City Thunder @ Portland Trail Blazers",
@@ -298,9 +860,9 @@
       "player": null,
       "selection": "Oklahoma City Thunder",
       "point": null,
-      "price": -134,
+      "price": -122,
       "bookmaker": "fanduel",
-      "updated_at": "2026-11-10T21:20:50Z"
+      "updated_at": "2026-11-10T21:48:07Z"
     },
     {
       "event": "Oklahoma City Thunder @ Portland Trail Blazers",
@@ -312,9 +874,65 @@
       "player": null,
       "selection": "Portland Trail Blazers",
       "point": null,
-      "price": 114,
+      "price": 104,
       "bookmaker": "fanduel",
-      "updated_at": "2026-11-10T21:20:50Z"
+      "updated_at": "2026-11-10T21:48:07Z"
+    },
+    {
+      "event": "Oklahoma City Thunder @ Portland Trail Blazers",
+      "event_id": "f5477c781c94e09e85374bbf9149c0f1",
+      "commence_time": "2026-11-11T04:10:00Z",
+      "sport": "basketball_nba",
+      "market": "spreads",
+      "description": null,
+      "player": null,
+      "selection": "Oklahoma City Thunder",
+      "point": -1.5,
+      "price": -112,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-11-10T21:48:07Z"
+    },
+    {
+      "event": "Oklahoma City Thunder @ Portland Trail Blazers",
+      "event_id": "f5477c781c94e09e85374bbf9149c0f1",
+      "commence_time": "2026-11-11T04:10:00Z",
+      "sport": "basketball_nba",
+      "market": "spreads",
+      "description": null,
+      "player": null,
+      "selection": "Portland Trail Blazers",
+      "point": 1.5,
+      "price": -108,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-11-10T21:48:07Z"
+    },
+    {
+      "event": "Oklahoma City Thunder @ Portland Trail Blazers",
+      "event_id": "f5477c781c94e09e85374bbf9149c0f1",
+      "commence_time": "2026-11-11T04:10:00Z",
+      "sport": "basketball_nba",
+      "market": "totals",
+      "description": null,
+      "player": null,
+      "selection": "Over",
+      "point": 226.5,
+      "price": -108,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-11-10T21:48:07Z"
+    },
+    {
+      "event": "Oklahoma City Thunder @ Portland Trail Blazers",
+      "event_id": "f5477c781c94e09e85374bbf9149c0f1",
+      "commence_time": "2026-11-11T04:10:00Z",
+      "sport": "basketball_nba",
+      "market": "totals",
+      "description": null,
+      "player": null,
+      "selection": "Under",
+      "point": 226.5,
+      "price": -112,
+      "bookmaker": "fanduel",
+      "updated_at": "2026-11-10T21:48:07Z"
     },
     {
       "event": "Oklahoma City Thunder @ Portland Trail Blazers",
@@ -328,7 +946,7 @@
       "point": null,
       "price": -125,
       "bookmaker": "draftkings",
-      "updated_at": "2026-11-10T21:21:10Z"
+      "updated_at": "2026-11-10T21:47:47Z"
     },
     {
       "event": "Oklahoma City Thunder @ Portland Trail Blazers",
@@ -342,7 +960,63 @@
       "point": null,
       "price": 106,
       "bookmaker": "draftkings",
-      "updated_at": "2026-11-10T21:21:10Z"
+      "updated_at": "2026-11-10T21:47:47Z"
+    },
+    {
+      "event": "Oklahoma City Thunder @ Portland Trail Blazers",
+      "event_id": "f5477c781c94e09e85374bbf9149c0f1",
+      "commence_time": "2026-11-11T04:10:00Z",
+      "sport": "basketball_nba",
+      "market": "spreads",
+      "description": null,
+      "player": null,
+      "selection": "Oklahoma City Thunder",
+      "point": -1.5,
+      "price": -111,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-11-10T21:47:47Z"
+    },
+    {
+      "event": "Oklahoma City Thunder @ Portland Trail Blazers",
+      "event_id": "f5477c781c94e09e85374bbf9149c0f1",
+      "commence_time": "2026-11-11T04:10:00Z",
+      "sport": "basketball_nba",
+      "market": "spreads",
+      "description": null,
+      "player": null,
+      "selection": "Portland Trail Blazers",
+      "point": 1.5,
+      "price": -109,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-11-10T21:47:47Z"
+    },
+    {
+      "event": "Oklahoma City Thunder @ Portland Trail Blazers",
+      "event_id": "f5477c781c94e09e85374bbf9149c0f1",
+      "commence_time": "2026-11-11T04:10:00Z",
+      "sport": "basketball_nba",
+      "market": "totals",
+      "description": null,
+      "player": null,
+      "selection": "Over",
+      "point": 226.5,
+      "price": -107,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-11-10T21:47:47Z"
+    },
+    {
+      "event": "Oklahoma City Thunder @ Portland Trail Blazers",
+      "event_id": "f5477c781c94e09e85374bbf9149c0f1",
+      "commence_time": "2026-11-11T04:10:00Z",
+      "sport": "basketball_nba",
+      "market": "totals",
+      "description": null,
+      "player": null,
+      "selection": "Under",
+      "point": 226.5,
+      "price": -113,
+      "bookmaker": "draftkings",
+      "updated_at": "2026-11-10T21:47:47Z"
     }
   ]
 }
