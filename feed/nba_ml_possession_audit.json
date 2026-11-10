@@ -1,6 +1,6 @@
 {
   "status": "diagnostic_only",
-  "generated_at": "2026-11-10T04:07:50.614426+00:00",
+  "generated_at": "2026-11-10T12:39:45.754031+00:00",
   "source": "historical team box-score possessions, not Elo or bookmaker odds",
   "qualified_teams": 30,
   "games": [
@@ -39,6 +39,11 @@
       "injuries_rest_unmodeled": true,
       "historical_calibration_unverified": true,
       "betting_eligible": false
+    },
+    {
+      "event_id": "8178ff2ec61f604b61dfe6d7b8d71103",
+      "status": "unavailable",
+      "reason": "historical_box_score_possessions_missing"
     },
     {
       "event_id": "9ac02cb22adf276b325b1e9c9c6c588e",

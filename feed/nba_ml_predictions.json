@@ -1,28 +1,28 @@
 {
   "status": "validated",
   "sport": "basketball_nba",
-  "generated_at": "2026-11-10T04:07:49.706298+00:00",
+  "generated_at": "2026-11-10T12:39:41.695989+00:00",
   "calibration_passed": true,
   "model_version": "elo-walkforward-v1-holdout-audit",
   "validation_report": {
-    "walk_forward_games": 1216,
-    "brier": 0.20959,
-    "ece": 0.04167,
+    "walk_forward_games": 1224,
+    "brier": 0.20951,
+    "ece": 0.0407,
     "method": "chronological Elo, 200-game burn-in, no odds inputs",
     "holdout": {
-      "games": 284,
-      "start": "2026-04-01T00:00Z",
-      "end": "2026-11-09T02:00Z",
-      "brier": 0.194662,
-      "ece": 0.032457,
-      "constant_baseline_brier": 0.245983,
+      "games": 285,
+      "start": "2026-04-02T00:00Z",
+      "end": "2026-11-10T03:00Z",
+      "brier": 0.195038,
+      "ece": 0.036599,
+      "constant_baseline_brier": 0.244826,
       "beats_constant_baseline": true,
       "method": "untouched chronological final 20%; pregame Elo; descriptive only"
     },
     "holdout_promotion_approved": false,
     "holdout_review_reason": "Holdout metrics are descriptive; independent sportsbook price validation and injury availability remain unverified"
   },
-  "training_cutoff": "2026-11-09T02:00Z",
+  "training_cutoff": "2026-11-10T03:00Z",
   "predictions": [
     {
       "event_id": "3689d555c9a1c81e3d300375b4c80530",
