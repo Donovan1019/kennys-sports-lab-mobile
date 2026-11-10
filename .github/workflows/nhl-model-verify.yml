@@ -43,6 +43,9 @@ jobs:
               assert 0<p<1 and abs(p+x['away_win_probability']-1)<1e-9
               assert x['data_quality']=='RESEARCH_ONLY_GOALS_PER_GAME'
               assert x['goalie_status']=='UNVERIFIED'
+              assert x['simulation_status']=='RESEARCH_ONLY'
+              assert x['simulation_iterations']>=20000
+              assert abs(x['simulation_home_probability']-p)<=max(.025,5*x['simulation_standard_error'])
           print('PASS:',len(active),'research probabilities of',len(rows),'events')
           PY
       - name: Publish verified research feeds
