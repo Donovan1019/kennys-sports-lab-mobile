@@ -1,0 +1,50 @@
+name: NCAAB Player Boxscore and Identity Import
+on:
+  schedule:
+    - cron: '20 6,18 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/ncaab-player-import.yml'
+      - 'scripts/ncaab_player_import.py'
+permissions:
+  contents: write
+concurrency:
+  group: ncaab-player-import
+  cancel-in-progress: false
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify identity mapping unit tests
+        run: python3 -m unittest discover -s scripts -p 'test_ncaab_player_import.py'
+      - name: Import ESPN player boxscores with no API key
+        env:
+          NCAAB_PLAYER_IMPORT_BATCH: '75'
+        run: python3 scripts/ncaab_player_import.py
+      - name: Validate imported player IDs and mappings
+        run: |
+          python3 - <<'PY'
+          import json
+          d=json.load(open('data/ncaab_player_boxscores.json'))
+          m=json.load(open('data/ncaab_player_map.json'))
+          rows=d['rows']
+          assert len(rows)==len({(r['event_id'],r['canonical_player_id']) for r in rows})
+          assert all(r['canonical_player_id']=='espn:'+r['provider_player_id'] for r in rows)
+          assert all(r['canonical_player_id'] in m['players'] for r in rows)
+          assert not (set(m['unique_name_aliases']) & set(m['ambiguous_name_aliases']))
+          print('Validated',len(rows),'player game rows and',len(m['players']),'player identities')
+          PY
+      - name: Commit verified player data and mapping
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/ncaab_player_boxscores.json data/ncaab_player_map.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'data: import verified NCAAB player boxscores and identity map'
+            git pull --rebase
+            git push
+          fi
