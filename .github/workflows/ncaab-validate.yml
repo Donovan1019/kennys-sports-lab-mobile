@@ -8,6 +8,7 @@ on:
       - 'ncaab_history.js'
       - 'ncaab_quality.js'
       - 'ncaab_backtest.js'
+      - 'ncaab_decision.js'
       - 'scripts/ncaab_research_backtest.py'
       - 'scripts/test_ncaab_backtest.py'
       - 'scripts/ncaab_espn_history.py'
@@ -30,6 +31,7 @@ jobs:
           node --check ncaab_history.js
           node --check ncaab_quality.js
           node --check ncaab_backtest.js
+          node --check ncaab_decision.js
           python3 -m py_compile scripts/ncaab_research_backtest.py scripts/ncaab_espn_history.py
           python3 scripts/test_ncaab_backtest.py
           python3 scripts/ncaab_research_backtest.py
@@ -51,6 +53,8 @@ jobs:
           assert 'Model Quality' in html
           assert 'Backtesting' in html
           assert 'ncaab_backtest.js' in html
+          assert 'ncaab_decision.js' in html
+          assert 'Betting Board' in html
           assert 'ESPN History' in html
           report=json.loads(pathlib.Path('data/ncaab_research.json').read_text())
           assert report['research_only'] is True
