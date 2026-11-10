@@ -68,12 +68,19 @@ def main():
     old = json.loads(DEST.read_text()) if DEST.exists() else {}
     records = {x["event_id"]: x for x in old.get("games", []) if x.get("event_id")}
     today = dt.datetime.now(dt.timezone.utc).date()
-    lookback = max(1, min(int(os.getenv("NCAAB_ESPN_LOOKBACK_DAYS", "14")), 180))
-    max_new = max(1, min(int(os.getenv("NCAAB_ESPN_MAX_NEW", "300")), 600))
+    lookback = max(1, min(int(os.getenv("NCAAB_ESPN_LOOKBACK_DAYS", "45")), 730))
+    max_new = max(1, min(int(os.getenv("NCAAB_ESPN_MAX_NEW", "300")), 900))
+    # Optional historical season sweep, e.g. 2025-01-01 to 2025-04-10.
+    start_text = os.getenv("NCAAB_ESPN_START_DATE", "").strip()
+    end_text = os.getenv("NCAAB_ESPN_END_DATE", "").strip()
+    start = dt.date.fromisoformat(start_text) if start_text else today - dt.timedelta(days=lookback)
+    end = dt.date.fromisoformat(end_text) if end_text else today - dt.timedelta(days=1)
+    if start > end or (end - start).days > 730 or end >= today:
+        raise ValueError("Historical range must be ordered, <=731 days, and before today")
     candidates = []
     errors = []
-    for delta in range(lookback, 0, -1):
-        day = today - dt.timedelta(days=delta)
+    for offset in range((end - start).days + 1):
+        day = start + dt.timedelta(days=offset)
         try:
             board = get("scoreboard", {"dates": day.strftime("%Y%m%d"), "groups": "50", "limit": "500"})
             for event in board.get("events") or []:
