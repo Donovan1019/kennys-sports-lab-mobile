@@ -68,11 +68,11 @@ def main():
     old = json.loads(DEST.read_text()) if DEST.exists() else {}
     records = {x["event_id"]: x for x in old.get("games", []) if x.get("event_id")}
     today = dt.datetime.now(dt.timezone.utc).date()
-    lookback = max(1, min(int(os.getenv("NCAAB_ESPN_LOOKBACK_DAYS", "7")), 21))
-    max_new = max(1, min(int(os.getenv("NCAAB_ESPN_MAX_NEW", "24")), 50))
+    lookback = max(1, min(int(os.getenv("NCAAB_ESPN_LOOKBACK_DAYS", "14")), 180))
+    max_new = max(1, min(int(os.getenv("NCAAB_ESPN_MAX_NEW", "300")), 600))
     candidates = []
     errors = []
-    for delta in range(1, lookback + 1):
+    for delta in range(lookback, 0, -1):
         day = today - dt.timedelta(days=delta)
         try:
             board = get("scoreboard", {"dates": day.strftime("%Y%m%d"), "groups": "50", "limit": "500"})
@@ -82,7 +82,8 @@ def main():
                     candidates.append((eid, day.isoformat()))
         except Exception as exc:
             errors.append({"day": day.isoformat(), "error": type(exc).__name__})
-        time.sleep(1.1)
+        time.sleep(0.2)
+    print("Candidate games",len(candidates),"batch budget",max_new)
     added = 0
     for eid, date in candidates[:max_new]:
         try:
