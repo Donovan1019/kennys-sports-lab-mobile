@@ -41,7 +41,7 @@ async function researchPreview(){
  for(const [k,arr] of games){
  const sides=new Set(arr.map(q=>q.selection));
  if(sides.size!==2||arr.length!==2)continue;
- for(const q of arr){if(q.p>=0.55&&q.p*decimal(q.price)>1)options.push(q)}
+ for(const q of arr){if(q.p*decimal(q.price)>1)options.push(q)}
  }
  let best=null;
  for(const book of ['fanduel','draftkings']){
@@ -54,7 +54,14 @@ async function researchPreview(){
  }
  if(list.length)walk(0,[],1,1);
  }
- if(!best)return false;
+ if(!best){
+  const singles=options.sort((a,b)=>(b.p*decimal(b.price)-1)-(a.p*decimal(a.price)-1)).slice(0,5);
+  if(!singles.length)return false;
+  status.textContent='RESEARCH ONLY — '+singles.length+' positive-model-EV moneylines; no qualifying +100 same-book parlay';
+  ticket.innerHTML=singles.map(r=>'<div class="kml-leg"><b>'+esc(r.selection)+'</b><span>NBA · '+esc(r.event)+'</span><span>'+esc(r.bookmaker)+' '+esc(r.price>0?'+'+r.price:r.price)+' · model '+(r.p*100).toFixed(1)+'% · estimated EV '+((r.p*decimal(r.price)-1)*100).toFixed(1)+'%</span></div>').join('')+
+   '<p class="kml-note"><strong>NOT BET-ELIGIBLE.</strong> Independent NBA research estimates only; no certified injury/lineup checks, independently approved holdout, or executable parlay quote. Historical paper ROI was negative. Do not treat displayed model EV as a validated edge.</p>';
+  return true;
+ }
  const n=50000;let wins=0;for(let i=0;i<n;i++)if(best.legs.every(r=>Math.random()<r.p))wins++;
  const mc=wins/n;
  const blockers=Object.entries(readiness.checks||{}).filter(([k,v])=>v!==true).map(([k])=>k.replaceAll('_',' '));
