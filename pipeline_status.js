@@ -10,9 +10,9 @@ function mount(){
   const section=document.createElement('section');section.id='ksl-pipeline-status';
   section.setAttribute('aria-label','Pipeline status');
   section.innerHTML='<div class="ksl-status-head"><h2>⚙ Pipeline Status</h2><button type="button" id="ksl-status-refresh">↻ Check status</button></div><p class="ksl-status-sub">Latest verified GitHub Actions runs · NBA / NHL / NFL</p><div id="ksl-status-list" aria-live="polite">Loading workflow status…</div><p class="ksl-status-foot">GitHub schedules may start late. Manual runs are labeled; an older successful run does not prove today’s scheduled run completed.</p>';
-  main.prepend(section);
-  // Other homepage modules prepend asynchronously; keep status first.
-  const prioritize=()=>{if(section.parentElement===main&&main.firstElementChild!==section)main.prepend(section);const selected=document.getElementById('ksl-sport-select');section.hidden=!!selected&&selected.value!=='Home'};
+  main.append(section);
+  // Keep pipeline status directly after the homepage-first market scanner.
+  const prioritize=()=>{if(section.parentElement===main&&section!==main.lastElementChild)main.append(section);const selected=document.getElementById('ksl-sport-select');section.hidden=!!selected&&selected.value!=='Home'};
   new MutationObserver(prioritize).observe(main,{childList:true});
   prioritize();
   const list=section.querySelector('#ksl-status-list');
