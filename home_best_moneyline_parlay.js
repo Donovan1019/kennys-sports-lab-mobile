@@ -6,7 +6,7 @@ const decimal=o=>o>0?1+o/100:1+100/(-o);
 const american=d=>d>=2?'+'+Math.round((d-1)*100):'-'+Math.round(100/(d-1));
 const age=t=>Date.now()-Date.parse(t);
 const verified=r=>r&&r.market==='ML'&&r.data_status==='VERIFIED'&&r.simulation_status==='COMPLETE'&&r.price_verified===true&&Number.isInteger(r.simulations)&&r.simulations>=10000&&Number.isFinite(r.model_probability)&&r.model_probability>0&&r.model_probability<1&&Number.isFinite(r.odds)&&Math.abs(r.odds)>=100&&r.odds!==0&&r.model_source&& !['sportsbook','implied_odds'].includes(String(r.model_source).toLowerCase())&&r.selection&&r.event&&r.sport&&r.source&&['CONFIRMED','VERIFIED'].includes(r.lineup_status)&&age(r.odds_timestamp)>=0&&age(r.odds_timestamp)<=15*60000&&age(r.model_generated_at)>=0&&age(r.model_generated_at)<=60*60000&&Date.parse(r.start_time)>Date.now();
-root.innerHTML='<div class="kml-head"><div><h2>🏆 Best Moneyline Parlay · All Sports</h2><p>Kenny’s verified projections only · +100 minimum · Monte Carlo</p></div><button id="kml-refresh" type="button">↻ Refresh</button></div><p id="kml-status" role="status">Checking Kenny’s model…</p><div id="kml-ticket"></div><p class="kml-note">One selection per game. Independent cross-game simulation; correlation calibration pending. Never substitute market-implied probabilities for model projections.</p>';
+root.innerHTML='<div class="kml-head"><div><h2>🏆 Best Moneyline Parlay · All Sports</h2><p>Verified picks prioritized · research clearly labeled · +100 minimum · Monte Carlo</p></div><button id="kml-refresh" type="button">↻ Refresh</button></div><p id="kml-status" role="status">Checking Kenny’s model…</p><div id="kml-ticket"></div><p class="kml-note">One selection per game. Independent cross-game simulation; correlation calibration pending. Never substitute market-implied probabilities for model projections.</p>';
 const status=document.getElementById('kml-status'),ticket=document.getElementById('kml-ticket'),button=document.getElementById('kml-refresh');
 function best(rows){
  const unique=new Map();
@@ -24,10 +24,10 @@ function best(rows){
 }
 function simulate(legs,n=50000){let wins=0;for(let i=0;i<n;i++){let hit=true;for(const r of legs){if(Math.random()>=r.model_probability){hit=false;break}}if(hit)wins++}return {wins,n,p:wins/n}}
 async function researchPreview(){
- const paths=['basketball_nba','icehockey_nhl'];
+ const paths=['basketball_nba','icehockey_nhl','basketball_ncaab'];
  const loaded=await Promise.all(paths.map(async sport=>{
   try{
-   const [odds,model]=await Promise.all([fetch('./feed/'+sport+'.json?ts='+Date.now(),{cache:'no-store'}),fetch('./feed/'+(sport==='basketball_nba'?'nba':'nhl')+'_ml_predictions.json?ts='+Date.now(),{cache:'no-store'})]);
+   const [odds,model]=await Promise.all([fetch('./feed/'+sport+'.json?ts='+Date.now(),{cache:'no-store'}),fetch('./feed/'+(sport==='basketball_nba'?'nba':sport==='icehockey_nhl'?'nhl':'ncaab')+'_ml_predictions.json?ts='+Date.now(),{cache:'no-store'})]);
    if(!odds.ok||!model.ok)return null;
    return {sport,odds:await odds.json(),model:await model.json()};
   }catch{return null}
@@ -36,12 +36,12 @@ async function researchPreview(){
  for(const entry of loaded){
   if(!entry)continue;
   const {sport,odds,model}=entry;
-  if(odds.status!=='ok'||(sport==='basketball_nba'?(model.status!=='validated'||model.calibration_passed!==true):model.status!=='RESEARCH_ONLY'))continue;
+  if(odds.status!=='ok'||(sport==='basketball_nba'?(model.status!=='validated'||model.calibration_passed!==true):sport==='icehockey_nhl'?model.status!=='RESEARCH_ONLY':model.status!=='RESEARCH_ONLY'))continue;
   const generated=Date.parse(model.generated_at),fetched=Date.parse(odds.fetched_at);
   if(!Number.isFinite(generated)||!Number.isFinite(fetched)||now-generated<0||now-generated>150*60000||now-fetched<0||now-fetched>15*60000)continue;
   const predictions=new Map();
   for(const p of model.predictions||[]){
-   if(sport==='basketball_nba'&&p.event_id&&p.team&&Number.isFinite(p.win_probability))predictions.set(p.event_id+'|'+p.team,p.win_probability);
+   if((sport==='basketball_nba'||sport==='basketball_ncaab')&&p.event_id&&p.team&&Number.isFinite(p.win_probability))predictions.set(p.event_id+'|'+p.team,p.win_probability);
    if(sport==='icehockey_nhl'&&p.event_id&&p.event&&p.event.includes(' @ ')){
     const [away,home]=p.event.split(' @ ');
     if(Number.isFinite(p.away_win_probability))predictions.set(p.event_id+'|'+away,p.away_win_probability);
@@ -63,9 +63,9 @@ async function researchPreview(){
  }
  let best=null;
  for(const book of ['fanduel','draftkings']){
-  const list=candidates.filter(q=>q.bookmaker===book).sort((a,b)=>b.p-a.p).slice(0,16);
+  const list=candidates.filter(q=>q.bookmaker===book).sort((a,b)=>(b.p*decimal(b.price)-1)-(a.p*decimal(a.price)-1)).slice(0,24);
   function walk(i,legs,d,p){
-   if(legs.length>=2&&d>=2&&p*d>1&&(!best||p>best.p))best={legs:[...legs],d,p,book};
+   if(legs.length>=2&&d>=2&&p*d>1&&(!best||(p*d-1)>best.ev+1e-9||(Math.abs((p*d-1)-best.ev)<1e-9&&p>best.p)))best={legs:[...legs],d,p,ev:p*d-1,book};
    if(i>=list.length||legs.length>=5)return;
    walk(i+1,legs,d,p);
    if(!legs.some(x=>x.sport===list[i].sport&&x.event_id===list[i].event_id))walk(i+1,[...legs,list[i]],d*decimal(list[i].price),p*list[i].p);
@@ -76,14 +76,14 @@ async function researchPreview(){
   const n=50000;let wins=0;for(let i=0;i<n;i++)if(best.legs.every(r=>Math.random()<r.p))wins++;
   status.textContent='RESEARCH ONLY — '+n.toLocaleString()+' independent Monte Carlo trials · NOT BET-ELIGIBLE';
   ticket.innerHTML='<div class="kml-summary"><strong>'+american(best.d)+'</strong><span>Simulated win '+(wins/n*100).toFixed(1)+'%</span><span>Book '+esc(best.book)+'</span><span>Estimated EV '+((best.p*best.d-1)*100).toFixed(1)+'%</span></div>'+
-   best.legs.map(r=>'<div class="kml-leg"><b>'+esc(r.selection)+'</b><span>'+esc(r.sport==='basketball_nba'?'NBA':'NHL')+' · '+esc(r.event)+'</span><span>'+esc(r.price>0?'+'+r.price:r.price)+' · Research model '+(r.p*100).toFixed(1)+'%</span></div>').join('')+
+   best.legs.map(r=>'<div class="kml-leg"><b>'+esc(r.selection)+'</b><span>'+esc(r.sport==='basketball_nba'?'NBA':r.sport==='basketball_ncaab'?'NCAAB':'NHL')+' · '+esc(r.event)+'</span><span>'+esc(r.price>0?'+'+r.price:r.price)+' · Research model '+(r.p*100).toFixed(1)+'%</span></div>').join('')+
    '<p class="kml-note"><strong>NOT A VERIFIED BET.</strong> NBA holdout is not approved for betting; NHL goalie and calibration inputs are unverified. Cross-game outcomes sampled independently; prices are individual legs, not a confirmed executable parlay quote. Research-only EV may be unreliable.</p>';
   return true;
  }
  if(!candidates.length)return false;
  const singles=candidates.sort((a,b)=>(b.p*decimal(b.price)-1)-(a.p*decimal(a.price)-1)).slice(0,5);
  status.textContent='RESEARCH ONLY — '+singles.length+' positive-model-EV moneylines; no qualifying +100 parlay';
- ticket.innerHTML=singles.map(r=>'<div class="kml-leg"><b>'+esc(r.selection)+'</b><span>'+esc(r.sport==='basketball_nba'?'NBA':'NHL')+' · '+esc(r.event)+'</span><span>'+esc(r.bookmaker)+' '+esc(r.price>0?'+'+r.price:r.price)+' · Model '+(r.p*100).toFixed(1)+'% · estimated EV '+((r.p*decimal(r.price)-1)*100).toFixed(1)+'%</span></div>').join('')+
+ ticket.innerHTML=singles.map(r=>'<div class="kml-leg"><b>'+esc(r.selection)+'</b><span>'+esc(r.sport==='basketball_nba'?'NBA':r.sport==='basketball_ncaab'?'NCAAB':'NHL')+' · '+esc(r.event)+'</span><span>'+esc(r.bookmaker)+' '+esc(r.price>0?'+'+r.price:r.price)+' · Model '+(r.p*100).toFixed(1)+'% · estimated EV '+((r.p*decimal(r.price)-1)*100).toFixed(1)+'%</span></div>').join('')+
   '<p class="kml-note"><strong>NOT BET-ELIGIBLE.</strong> NBA holdout, injury and lineup checks and NHL goalie and calibration checks remain unverified. Historical NBA paper ROI was negative. Research-only EV is not a validated edge.</p>';
  return true;
 }
