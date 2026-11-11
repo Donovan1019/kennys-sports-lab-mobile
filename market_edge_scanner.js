@@ -17,7 +17,15 @@ function render(){const sport=$('me-sport').value,market=$('me-market').value,mi
 const stake=Math.min(10000,Math.max(1,Number($('me-stake').value)||25));
 const list=rows.filter(r=>(sport==='ALL'||r.sport===sport)&&(market==='ALL'||r.market===market)&&r.ev>=min).sort((a,b)=>b.ev-a.ev).slice(0,10);
 $('me-results').replaceChildren();if(!list.length){$('me-results').innerHTML='<p class="me-empty">No verified positive-EV candidates meet these filters. No picks generated.</p>';return}
-for(const r of list){const item=document.createElement('article');item.className='me-card';item.innerHTML='<div class="me-top"><strong>'+esc(r.sport)+' · '+esc(r.event)+'</strong><span>'+esc(r.market)+'</span></div><h3>'+esc(r.selection)+'</h3><div class="me-metrics"><span>Odds <b>'+esc(r.odds>0?'+'+r.odds:r.odds)+'</b></span><span>Model <b>'+(100*r.model_probability).toFixed(1)+'%</b></span><span>Fair <b>'+american(r.model_probability)+'</b></span><span>EV <b class="me-positive">+'+(100*r.ev).toFixed(1)+'%</b></span></div><small>'+esc(r.source)+' · '+r.simulations.toLocaleString()+' simulations · updated '+new Date(r.odds_timestamp).toLocaleTimeString()+'</small>'; $('me-results').append(item)}
+for(const r of list){
+const item=document.createElement('article');item.className='me-card';
+item.innerHTML='<div class="me-top"><strong>'+esc(r.sport)+' · '+esc(r.event)+'</strong><span>'+esc(r.market)+'</span></div>'+
+'<h3>'+esc(r.selection)+' <span class="me-tier">'+tier(r)+'</span></h3>'+
+'<div class="me-metrics"><span>Odds <b>'+esc(r.odds>0?'+'+r.odds:r.odds)+'</b></span><span>Model <b>'+(100*r.model_probability).toFixed(1)+'%</b></span><span>Fair <b>'+american(r.model_probability)+'</b></span><span>EV <b class="me-positive">+'+(100*r.ev).toFixed(1)+'%</b></span></div>'+
+'<div class="me-bet-details"><span>Break-even <b>'+(100*prob(r.odds)).toFixed(1)+'%</b></span><span>Probability edge <b>+'+(100*(r.model_probability-prob(r.odds))).toFixed(1)+' pp</b></span><span>Expected profit on $'+stake.toFixed(0)+' <b>+$'+(stake*r.ev).toFixed(2)+'</b></span><span>¼ Kelly, capped at 1% bankroll <b>'+(100*Math.min(.01,.25*kelly(r.model_probability,r.odds))).toFixed(2)+'%</b></span></div>'+
+'<small>'+esc(r.source)+' · '+r.simulations.toLocaleString()+' simulations · updated '+new Date(r.odds_timestamp).toLocaleTimeString()+'</small>';
+$('me-results').append(item);
+}
 }
 async function refresh(){ $('me-status').textContent='Loading verified four-sport model feed…';$('me-refresh').disabled=true;
 try{const res=await fetch('./data/market_edges.json?ts='+Date.now(),{cache:'no-store'});if(!res.ok)throw Error('Feed unavailable');const payload=await res.json();const entries=Array.isArray(payload)?payload:payload.edges;if(!Array.isArray(entries))throw Error('Invalid feed');
