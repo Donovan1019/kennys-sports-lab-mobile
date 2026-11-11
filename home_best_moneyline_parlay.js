@@ -63,12 +63,12 @@ async function researchPreview(){
  }
  let best=null;
  for(const book of ['fanduel','draftkings']){
-  const list=candidates.filter(q=>q.bookmaker===book).sort((a,b)=>(b.p*decimal(b.price)-1)-(a.p*decimal(a.price)-1)).slice(0,24);
+  const list=candidates.filter(q=>q.bookmaker===book&&q.p>=0.5&&decimal(q.price)<=3).sort((a,b)=>b.p-a.p).slice(0,16);
   function walk(i,legs,d,p){
-   if(legs.length>=2&&d>=2&&p*d>1&&(!best||(p*d-1)>best.ev+1e-9||(Math.abs((p*d-1)-best.ev)<1e-9&&p>best.p)))best={legs:[...legs],d,p,ev:p*d-1,book};
+   if(legs.length>=2&&d>=2&&d<=6&&p>=0.35&&p*d>1&&(!best||p>best.p+1e-9||(Math.abs(p-best.p)<1e-9&&(p*d-1)>best.ev)))best={legs:[...legs],d,p,ev:p*d-1,book};
    if(i>=list.length||legs.length>=5)return;
    walk(i+1,legs,d,p);
-   if(!legs.some(x=>x.sport===list[i].sport&&x.event_id===list[i].event_id))walk(i+1,[...legs,list[i]],d*decimal(list[i].price),p*list[i].p);
+   if(decimal(list[i].price)<=3&&list[i].p>=0.5&&d*decimal(list[i].price)<=6&&!legs.some(x=>x.sport===list[i].sport&&x.event_id===list[i].event_id))walk(i+1,[...legs,list[i]],d*decimal(list[i].price),p*list[i].p);
   }
   if(list.length)walk(0,[],1,1);
  }
@@ -81,7 +81,7 @@ async function researchPreview(){
   return true;
  }
  if(!candidates.length)return false;
- const singles=candidates.sort((a,b)=>(b.p*decimal(b.price)-1)-(a.p*decimal(a.price)-1)).slice(0,5);
+ const singles=candidates.filter(q=>q.p>=0.5&&decimal(q.price)<=3).sort((a,b)=>b.p-a.p).slice(0,5);
  status.textContent='RESEARCH ONLY — '+singles.length+' positive-model-EV moneylines; no qualifying +100 parlay';
  ticket.innerHTML=singles.map(r=>'<div class="kml-leg"><b>'+esc(r.selection)+'</b><span>'+esc(r.sport==='basketball_nba'?'NBA':r.sport==='basketball_ncaab'?'NCAAB':'NHL')+' · '+esc(r.event)+'</span><span>'+esc(r.bookmaker)+' '+esc(r.price>0?'+'+r.price:r.price)+' · Model '+(r.p*100).toFixed(1)+'% · estimated EV '+((r.p*decimal(r.price)-1)*100).toFixed(1)+'%</span></div>').join('')+
   '<p class="kml-note"><strong>NOT BET-ELIGIBLE.</strong> NBA holdout, injury and lineup checks and NHL goalie and calibration checks remain unverified. Historical NBA paper ROI was negative. Research-only EV is not a validated edge.</p>';
