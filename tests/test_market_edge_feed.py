@@ -24,6 +24,10 @@ class FeedTests(unittest.TestCase):
         r=sample();r["lineup_status"]="UNVERIFIED";self.assertFalse(build([r],NOW)["edges"])
     def test_stale_model_rejected(self):
         r=sample();r["model_generated_at"]=(NOW-timedelta(hours=2)).isoformat();self.assertFalse(build([r],NOW)["edges"])
+    def test_reject_whitespace_model_source(self):
+        r=sample();r["model_source"]="  ";self.assertFalse(build([r],NOW)["edges"])
+    def test_status_when_no_qualified_edges(self):
+        self.assertEqual(build([],NOW)["status"],"NO_QUALIFIED_EDGES")
     def test_deduplication(self):
         self.assertEqual(len(build([sample(),sample()],NOW)["edges"]),1)
     def test_future_price_rejected(self):
