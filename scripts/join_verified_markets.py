@@ -5,6 +5,7 @@ Never estimates model probabilities or marks quotes verified. Strict exact contr
 Input files are independently published JSON lists or objects with 'markets'/'quotes'.
 """
 import json
+import math
 from datetime import datetime, timezone
 from pathlib import Path
 from scripts.build_market_edges import build, timestamp
@@ -30,7 +31,7 @@ def contract(row):
         return None
     point = row.get("point")
     if row["market"] in ("SPREAD", "TOTAL"):
-        if type(point) not in (int, float):
+        if type(point) not in (int, float) or not math.isfinite(point):
             return None
         return (row["sport"], event, row["market"], selection, float(point))
     return (row["sport"], event, row["market"], selection, None)
@@ -66,6 +67,8 @@ def join(models, quotes, now=None):
         candidates.append(row)
     result = build(candidates, now)
     result["matched_contracts"] = len(candidates)
+    result["model_contracts"] = len(models_by_key)
+    result["quote_contracts"] = len(rows(quotes, "quotes"))
     result["status"] = "VERIFIED" if result["edges"] else "NO_QUALIFIED_EDGES"
     return result
 
