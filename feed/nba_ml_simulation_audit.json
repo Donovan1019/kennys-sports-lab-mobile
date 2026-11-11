@@ -1,6 +1,6 @@
 {
   "status": "simulated_not_bet_eligible",
-  "generated_at": "2026-11-11T23:10:08.628161+00:00",
+  "generated_at": "2026-11-11T23:18:02.844421+00:00",
   "draws": 10000,
   "games": [
     {
@@ -73,22 +73,22 @@
       "event_id": "095441822e3b9b1b84bff9e482b9057a",
       "bookmaker": "draftkings",
       "team": "Cleveland Cavaliers",
-      "price": 179.0,
+      "price": 171.0,
       "model_probability": 0.360026,
       "mc_probability": 0.3703,
-      "single_leg_ev": 0.00447254000000008,
-      "stress_ev_minus_3pp": -0.07922745999999992,
+      "single_leg_ev": -0.024329539999999983,
+      "stress_ev_minus_3pp": -0.10562953999999991,
       "market_divergence_flag": false
     },
     {
       "event_id": "095441822e3b9b1b84bff9e482b9057a",
       "bookmaker": "draftkings",
       "team": "New York Knicks",
-      "price": -216.0,
+      "price": -205.0,
       "model_probability": 0.639974,
       "mc_probability": 0.6417,
-      "single_leg_ev": -0.06374174074074068,
-      "stress_ev_minus_3pp": -0.10763062962962955,
+      "single_leg_ev": -0.04784356097560971,
+      "stress_ev_minus_3pp": -0.09247770731707317,
       "market_divergence_flag": false
     },
     {
@@ -337,22 +337,22 @@
       "event_id": "423255883d0e6c5d1a94a533b90e935b",
       "bookmaker": "draftkings",
       "team": "Orlando Magic",
-      "price": -179.0,
+      "price": -185.0,
       "model_probability": 0.749307,
       "mc_probability": 0.7548,
-      "single_leg_ev": 0.16791426256983244,
-      "stress_ev_minus_3pp": 0.12115448603351942,
+      "single_leg_ev": 0.15433781081081066,
+      "stress_ev_minus_3pp": 0.10812159459459458,
       "market_divergence_flag": false
     },
     {
       "event_id": "423255883d0e6c5d1a94a533b90e935b",
       "bookmaker": "draftkings",
       "team": "Utah Jazz",
-      "price": 150.0,
+      "price": 155.0,
       "model_probability": 0.250693,
       "mc_probability": 0.2579,
-      "single_leg_ev": -0.3732675,
-      "stress_ev_minus_3pp": -0.44826750000000004,
+      "single_leg_ev": -0.36073285,
+      "stress_ev_minus_3pp": -0.43723285,
       "market_divergence_flag": false
     },
     {
@@ -449,15 +449,15 @@
       "bookmaker": "draftkings",
       "legs": [
         {
-          "event_id": "423255883d0e6c5d1a94a533b90e935b",
-          "team": "Orlando Magic"
-        },
-        {
           "event_id": "e6a37eea1dddcbd0384c81237e81f47f",
           "team": "New Orleans Pelicans"
+        },
+        {
+          "event_id": "423255883d0e6c5d1a94a533b90e935b",
+          "team": "Orlando Magic"
         }
       ],
-      "independent_mc_probability": 0.5205,
+      "independent_mc_probability": 0.5194,
       "stress_probability_minus_3pp": 0.4793648867819999,
       "betting_eligible": false,
       "executable_parlay_quote_verified": false
@@ -466,19 +466,19 @@
       "bookmaker": "draftkings",
       "legs": [
         {
-          "event_id": "423255883d0e6c5d1a94a533b90e935b",
-          "team": "Orlando Magic"
-        },
-        {
           "event_id": "e6a37eea1dddcbd0384c81237e81f47f",
           "team": "New Orleans Pelicans"
+        },
+        {
+          "event_id": "423255883d0e6c5d1a94a533b90e935b",
+          "team": "Orlando Magic"
         },
         {
           "event_id": "21792501482fecfaacd3a4a24776c9e6",
           "team": "Denver Nuggets"
         }
       ],
-      "independent_mc_probability": 0.3721,
+      "independent_mc_probability": 0.3763,
       "stress_probability_minus_3pp": 0.3312655843755878,
       "betting_eligible": false,
       "executable_parlay_quote_verified": false
@@ -487,12 +487,12 @@
       "bookmaker": "draftkings",
       "legs": [
         {
-          "event_id": "423255883d0e6c5d1a94a533b90e935b",
-          "team": "Orlando Magic"
-        },
-        {
           "event_id": "e6a37eea1dddcbd0384c81237e81f47f",
           "team": "New Orleans Pelicans"
+        },
+        {
+          "event_id": "423255883d0e6c5d1a94a533b90e935b",
+          "team": "Orlando Magic"
         },
         {
           "event_id": "21792501482fecfaacd3a4a24776c9e6",
@@ -503,7 +503,7 @@
           "team": "Houston Rockets"
         }
       ],
-      "independent_mc_probability": 0.2809,
+      "independent_mc_probability": 0.2794,
       "stress_probability_minus_3pp": 0.24039943458136406,
       "betting_eligible": false,
       "executable_parlay_quote_verified": false
@@ -520,7 +520,7 @@
           "team": "Denver Nuggets"
         }
       ],
-      "independent_mc_probability": 0.5554,
+      "independent_mc_probability": 0.5551,
       "stress_probability_minus_3pp": 0.49707782165699993,
       "betting_eligible": false,
       "executable_parlay_quote_verified": false
@@ -541,7 +541,7 @@
           "team": "New Orleans Pelicans"
         }
       ],
-      "independent_mc_probability": 0.3741,
+      "independent_mc_probability": 0.3746,
       "stress_probability_minus_3pp": 0.33126558437558784,
       "betting_eligible": false,
       "executable_parlay_quote_verified": false
@@ -566,7 +566,7 @@
           "team": "Houston Rockets"
         }
       ],
-      "independent_mc_probability": 0.274,
+      "independent_mc_probability": 0.275,
       "stress_probability_minus_3pp": 0.2403994345813641,
       "betting_eligible": false,
       "executable_parlay_quote_verified": false
