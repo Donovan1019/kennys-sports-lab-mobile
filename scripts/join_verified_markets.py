@@ -33,8 +33,8 @@ def contract(row):
     if row["market"] in ("SPREAD", "TOTAL"):
         if type(point) not in (int, float) or not math.isfinite(point):
             return None
-        return (row["sport"], event, row["market"], selection, float(point))
-    return (row["sport"], event, row["market"], selection, None)
+        return (row["sport"], event, row["market"], selection.strip().casefold(), float(point))
+    return (row["sport"], event, row["market"], selection.strip().casefold(), None)
 
 def join(models, quotes, now=None):
     now = now or datetime.now(timezone.utc)
