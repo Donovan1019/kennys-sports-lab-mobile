@@ -1,0 +1,42 @@
+name: Publish Four-Sport Market Edges
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/15 * * * *'
+permissions:
+  contents: write
+concurrency:
+  group: publish-four-sport-market-edges
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run scanner validation
+        run: python -m unittest discover -s tests -p 'test_market_edge_feed.py' -v
+      - name: Normalize verified upstream records only
+        shell: bash
+        run: |
+          if [ -f data/model_market_candidates.json ]; then
+            python scripts/build_market_edges.py data/model_market_candidates.json data/market_edges.json
+          else
+            echo 'Verified upstream model_market_candidates.json not published; no invented recommendations.'
+            mkdir -p data
+            printf '{"edges":[],"status":"UNAVAILABLE","reason":"Verified upstream model candidates not connected"}\n' > data/market_edges.json
+          fi
+      - name: Publish feed only if changed
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/market_edges.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Refresh verified homepage market edges'
+            git push
+          fi
