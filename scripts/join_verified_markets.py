@@ -69,6 +69,16 @@ def join(models, quotes, now=None):
             continue
         if m.get("lineup_status") not in ("CONFIRMED", "VERIFIED"):
             continue
+        # Only count model contracts that can actually pass the betting feed gate.
+        p = m.get("model_probability")
+        sims = m.get("simulations")
+        source = m.get("model_source")
+        if type(p) not in (int, float) or not math.isfinite(p) or not 0 < p < 1:
+            continue
+        if type(sims) is not int or sims < 1000:
+            continue
+        if not isinstance(source, str) or not source.strip() or source.strip().casefold() in ("sportsbook", "implied_odds"):
+            continue
         stamp = timestamp(m.get("model_generated_at"))
         if not stamp or not 0 <= (now-stamp).total_seconds() <= 3600:
             continue

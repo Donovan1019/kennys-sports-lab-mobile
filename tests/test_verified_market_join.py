@@ -72,3 +72,16 @@ class JoinTests(unittest.TestCase):
     def test_matching_matchup_label(self):
         q=quote();q["event"]="A vs B"
         self.assertEqual(len(join([model()],[q],NOW)["edges"]),1)
+
+class ModelEligibilityTests(unittest.TestCase):
+    def test_reject_model_without_simulations(self):
+        m=model();m['simulations']=0
+        result=join([m],[quote()],NOW)
+        self.assertEqual(result['status'],'UNAVAILABLE')
+        self.assertEqual(result['model_contracts'],0)
+    def test_reject_model_without_probability(self):
+        m=model();m['model_probability']=None
+        self.assertEqual(join([m],[quote()],NOW)['model_contracts'],0)
+    def test_reject_sportsbook_derived_model(self):
+        m=model();m['model_source']='implied_odds'
+        self.assertEqual(join([m],[quote()],NOW)['model_contracts'],0)
