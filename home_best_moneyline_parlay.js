@@ -18,8 +18,8 @@ function best(rows){
  visit(i+1,legs,d,p);
  for(const r of groups[i])visit(i+1,[...legs,r],d*decimal(r.odds),p*r.model_probability);
  }
- // Limit search to highest-value 16 distinct events to keep mobile responsive.
- const limited=groups.sort((a,b)=>Math.max(...b.map(r=>r.model_probability))-Math.max(...a.map(r=>r.model_probability))).slice(0,16);
+ // Limit search to highest-value 9 distinct events to keep mobile responsive.
+ const limited=groups.sort((a,b)=>Math.max(...b.map(r=>r.model_probability))-Math.max(...a.map(r=>r.model_probability))).slice(0,9);
  groups.length=0;groups.push(...limited);visit(0,[],1,1);return winner;
 }
 function simulate(legs,n=50000){let wins=0;for(let i=0;i<n;i++){let hit=true;for(const r of legs){if(Math.random()>=r.model_probability){hit=false;break}}if(hit)wins++}return {wins,n,p:wins/n}}
