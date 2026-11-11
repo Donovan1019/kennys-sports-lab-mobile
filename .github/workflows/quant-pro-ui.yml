@@ -1,0 +1,25 @@
+name: Quant Pro Betting UI Validation
+on:
+  pull_request:
+    paths:
+      - 'market_edge_scanner.js'
+      - 'market_edge_scanner.css'
+      - '.github/workflows/quant-pro-ui.yml'
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate scanner JavaScript syntax
+        run: node --check market_edge_scanner.js
+      - name: Validate betting metric controls and display
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          s=Path('market_edge_scanner.js').read_text()
+          for token in ('me-stake','me-bet-details','kelly(','prob(r.odds)','stake*r.ev','tier(r)'):
+              assert token in s,token
+          print('Betting metric controls and render paths present')
+          PY
