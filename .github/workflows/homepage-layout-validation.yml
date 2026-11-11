@@ -1,0 +1,44 @@
+name: Homepage Layout Validation
+on:
+  pull_request:
+    paths:
+      - 'index.html'
+      - 'pipeline_status.js'
+      - 'market_edge_scanner.js'
+      - '.github/workflows/homepage-layout-validation.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate homepage modules, order and navigation
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          from html.parser import HTMLParser
+          page=Path('index.html').read_text()
+          assert page.count('id="ksl-market-edge"')==1
+          assert page.count('<main>')==1 and page.count('</main>')==1
+          assert page.index('id="ksl-market-edge"')>page.index('<main>')
+          assert 'pipeline_status.js' in page and 'market_edge_scanner.js' in page
+          assert 'main.append(section)' in Path('pipeline_status.js').read_text()
+          assert 'main.prepend(section)' not in Path('pipeline_status.js').read_text()
+          for legacy in ('ksl-nba-travel-embed','MAIN BETTING RESEARCH TOOL','id="sport"','id="tbody"','home_top10.js'):
+              assert legacy not in page, legacy
+          for href in ('nba.html','nfl.html','nhl.html','ncaab.html','ufc.html','prizepicks.html'):
+              assert href in page, href
+          class Check(HTMLParser):
+              def __init__(self): super().__init__();self.sections=[]
+              def handle_starttag(self,tag,attrs):
+                  if tag=='section':self.sections.append(dict(attrs).get('id'))
+          p=Check();p.feed(page)
+          assert p.sections==['ksl-market-edge'],p.sections
+          print('Homepage scanner-first + pipeline status dynamic mount verified')
+          PY
+      - name: Check JavaScript syntax
+        run: |
+          node --check pipeline_status.js
+          node --check market_edge_scanner.js
