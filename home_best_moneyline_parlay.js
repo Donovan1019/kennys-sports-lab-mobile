@@ -13,10 +13,10 @@ function best(rows){
  for(const r of rows.filter(verified)){const key=String(r.sport)+'|'+String(r.event_id||r.event);const old=unique.get(key)||[];old.push(r);unique.set(key,old)}
  const groups=[...unique.values()].map(a=>a.sort((x,y)=>y.model_probability*decimal(y.odds)-x.model_probability*decimal(x.odds)).slice(0,3));
  let winner=null;
- function visit(i,legs,d,p){if(legs.length>=2&&d>=2){const ev=p*d-1;if(ev>0&&(!winner||p>winner.p+1e-9||(Math.abs(p-winner.p)<1e-9&&ev>winner.ev)))winner={legs:[...legs],d,p,ev};}
+ function visit(i,legs,d,p){if(legs.length>=2&&d>=2&&legs.every(r=>r.source===legs[0].source)){const ev=p*d-1;if(ev>0&&(!winner||p>winner.p+1e-9||(Math.abs(p-winner.p)<1e-9&&ev>winner.ev)))winner={legs:[...legs],d,p,ev};}
  if(i>=groups.length||legs.length>=5)return;
  visit(i+1,legs,d,p);
- for(const r of groups[i])visit(i+1,[...legs,r],d*decimal(r.odds),p*r.model_probability);
+ for(const r of groups[i])if(!legs.length||r.source===legs[0].source)visit(i+1,[...legs,r],d*decimal(r.odds),p*r.model_probability);
  }
  // Limit search to highest-value 9 distinct events to keep mobile responsive.
  const limited=groups.sort((a,b)=>Math.max(...b.map(r=>r.model_probability))-Math.max(...a.map(r=>r.model_probability))).slice(0,9);
@@ -40,7 +40,7 @@ async function researchPreview(){
  const options=[];
  for(const [k,arr] of games){
  const sides=new Set(arr.map(q=>q.selection));
- if(sides.size!==2)continue;
+ if(sides.size!==2||arr.length!==2)continue;
  for(const q of arr){if(q.p>=0.55&&q.p*decimal(q.price)>1)options.push(q)}
  }
  let best=null;
