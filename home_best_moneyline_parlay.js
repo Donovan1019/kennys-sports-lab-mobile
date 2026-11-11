@@ -24,51 +24,67 @@ function best(rows){
 }
 function simulate(legs,n=50000){let wins=0;for(let i=0;i<n;i++){let hit=true;for(const r of legs){if(Math.random()>=r.model_probability){hit=false;break}}if(hit)wins++}return {wins,n,p:wins/n}}
 async function researchPreview(){
- const files=await Promise.all(['./feed/basketball_nba.json','./feed/nba_ml_predictions.json','./feed/nba_ml_betting_readiness.json'].map(async p=>{const r=await fetch(p+'?ts='+Date.now(),{cache:'no-store'});if(!r.ok)throw Error('Research source unavailable');return r.json()}));
- const [odds,model,readiness]=files;
- if(odds.status!=='ok'||model.status!=='validated'||model.calibration_passed!==true)return false;
- const now=Date.now(),fetched=Date.parse(odds.fetched_at),generated=Date.parse(model.generated_at);
- if(!Number.isFinite(fetched)||!Number.isFinite(generated)||now-fetched<0||now-fetched>15*60000||now-generated<0||now-generated>150*60000)return false;
- const predictions=new Map((model.predictions||[]).filter(p=>p.event_id&&p.team&&Number.isFinite(p.win_probability)).map(p=>[p.event_id+'|'+p.team,p.win_probability]));
- const games=new Map();
- for(const q of odds.odds||[]){
- if(q.market!=='h2h'||!['fanduel','draftkings'].includes(q.bookmaker)||Date.parse(q.commence_time)<=now||now-Date.parse(q.updated_at)<0||now-Date.parse(q.updated_at)>15*60000)continue;
- const p=predictions.get(q.event_id+'|'+q.selection);
- if(!(p>0&&p<1)||!Number.isFinite(q.price)||Math.abs(q.price)<100)continue;
- const k=q.bookmaker+'|'+q.event_id,arr=games.get(k)||[];arr.push({...q,p});games.set(k,arr);
+ const paths=['basketball_nba','icehockey_nhl'];
+ const loaded=await Promise.all(paths.map(async sport=>{
+  try{
+   const [odds,model]=await Promise.all([fetch('./feed/'+sport+'.json?ts='+Date.now(),{cache:'no-store'}),fetch('./feed/'+(sport==='basketball_nba'?'nba':'nhl')+'_ml_predictions.json?ts='+Date.now(),{cache:'no-store'})]);
+   if(!odds.ok||!model.ok)return null;
+   return {sport,odds:await odds.json(),model:await model.json()};
+  }catch{return null}
+ }));
+ const now=Date.now(),groups=new Map(),candidates=[];
+ for(const entry of loaded){
+  if(!entry)continue;
+  const {sport,odds,model}=entry;
+  if(odds.status!=='ok'||(sport==='basketball_nba'?(model.status!=='validated'||model.calibration_passed!==true):model.status!=='RESEARCH_ONLY'))continue;
+  const generated=Date.parse(model.generated_at),fetched=Date.parse(odds.fetched_at);
+  if(!Number.isFinite(generated)||!Number.isFinite(fetched)||now-generated<0||now-generated>150*60000||now-fetched<0||now-fetched>15*60000)continue;
+  const predictions=new Map();
+  for(const p of model.predictions||[]){
+   if(sport==='basketball_nba'&&p.event_id&&p.team&&Number.isFinite(p.win_probability))predictions.set(p.event_id+'|'+p.team,p.win_probability);
+   if(sport==='icehockey_nhl'&&p.event_id&&p.event&&p.event.includes(' @ ')){
+    const [away,home]=p.event.split(' @ ');
+    if(Number.isFinite(p.away_win_probability))predictions.set(p.event_id+'|'+away,p.away_win_probability);
+    if(Number.isFinite(p.home_win_probability))predictions.set(p.event_id+'|'+home,p.home_win_probability);
+   }
+  }
+  for(const q of odds.odds||[]){
+   const updated=Date.parse(q.updated_at);
+   if(q.market!=='h2h'||!['fanduel','draftkings'].includes(q.bookmaker)||Date.parse(q.commence_time)<=now||!Number.isFinite(updated)||now-updated<0||now-updated>15*60000)continue;
+   const p=predictions.get(q.event_id+'|'+q.selection);
+   if(!(p>0&&p<1)||!Number.isFinite(q.price)||Math.abs(q.price)<100)continue;
+   const key=q.bookmaker+'|'+sport+'|'+q.event_id,arr=groups.get(key)||[];
+   arr.push({...q,p,sport});groups.set(key,arr);
+  }
  }
- const options=[];
- for(const [k,arr] of games){
- const sides=new Set(arr.map(q=>q.selection));
- if(sides.size!==2||arr.length!==2)continue;
- for(const q of arr){if(q.p*decimal(q.price)>1)options.push(q)}
+ for(const arr of groups.values()){
+  if(arr.length!==2||new Set(arr.map(q=>q.selection)).size!==2)continue;
+  for(const q of arr)if(q.p*decimal(q.price)>1)candidates.push(q);
  }
  let best=null;
  for(const book of ['fanduel','draftkings']){
- const list=options.filter(x=>x.bookmaker===book).sort((a,b)=>b.p-a.p).slice(0,12);
- function walk(i,legs,d,p){
- if(legs.length>=2&&d>=2&&(!best||p>best.p))best={legs:[...legs],d,p,book};
- if(i>=list.length||legs.length>=5)return;
- walk(i+1,legs,d,p);
- if(!legs.some(x=>x.event_id===list[i].event_id))walk(i+1,[...legs,list[i]],d*decimal(list[i].price),p*list[i].p);
+  const list=candidates.filter(q=>q.bookmaker===book).sort((a,b)=>b.p-a.p).slice(0,16);
+  function walk(i,legs,d,p){
+   if(legs.length>=2&&d>=2&&p*d>1&&(!best||p>best.p))best={legs:[...legs],d,p,book};
+   if(i>=list.length||legs.length>=5)return;
+   walk(i+1,legs,d,p);
+   if(!legs.some(x=>x.sport===list[i].sport&&x.event_id===list[i].event_id))walk(i+1,[...legs,list[i]],d*decimal(list[i].price),p*list[i].p);
+  }
+  if(list.length)walk(0,[],1,1);
  }
- if(list.length)walk(0,[],1,1);
- }
- if(!best){
-  const singles=options.sort((a,b)=>(b.p*decimal(b.price)-1)-(a.p*decimal(a.price)-1)).slice(0,5);
-  if(!singles.length)return false;
-  status.textContent='RESEARCH ONLY — '+singles.length+' positive-model-EV moneylines; no qualifying +100 same-book parlay';
-  ticket.innerHTML=singles.map(r=>'<div class="kml-leg"><b>'+esc(r.selection)+'</b><span>NBA · '+esc(r.event)+'</span><span>'+esc(r.bookmaker)+' '+esc(r.price>0?'+'+r.price:r.price)+' · model '+(r.p*100).toFixed(1)+'% · estimated EV '+((r.p*decimal(r.price)-1)*100).toFixed(1)+'%</span></div>').join('')+
-   '<p class="kml-note"><strong>NOT BET-ELIGIBLE.</strong> Independent NBA research estimates only; no certified injury/lineup checks, independently approved holdout, or executable parlay quote. Historical paper ROI was negative. Do not treat displayed model EV as a validated edge.</p>';
+ if(best){
+  const n=50000;let wins=0;for(let i=0;i<n;i++)if(best.legs.every(r=>Math.random()<r.p))wins++;
+  status.textContent='RESEARCH ONLY — '+n.toLocaleString()+' independent Monte Carlo trials · NOT BET-ELIGIBLE';
+  ticket.innerHTML='<div class="kml-summary"><strong>'+american(best.d)+'</strong><span>Simulated win '+(wins/n*100).toFixed(1)+'%</span><span>Book '+esc(best.book)+'</span><span>Estimated EV '+((best.p*best.d-1)*100).toFixed(1)+'%</span></div>'+
+   best.legs.map(r=>'<div class="kml-leg"><b>'+esc(r.selection)+'</b><span>'+esc(r.sport==='basketball_nba'?'NBA':'NHL')+' · '+esc(r.event)+'</span><span>'+esc(r.price>0?'+'+r.price:r.price)+' · Research model '+(r.p*100).toFixed(1)+'%</span></div>').join('')+
+   '<p class="kml-note"><strong>NOT A VERIFIED BET.</strong> NBA holdout is not approved for betting; NHL goalie and calibration inputs are unverified. Cross-game outcomes sampled independently; prices are individual legs, not a confirmed executable parlay quote. Research-only EV may be unreliable.</p>';
   return true;
  }
- const n=50000;let wins=0;for(let i=0;i<n;i++)if(best.legs.every(r=>Math.random()<r.p))wins++;
- const mc=wins/n;
- const blockers=Object.entries(readiness.checks||{}).filter(([k,v])=>v!==true).map(([k])=>k.replaceAll('_',' '));
- status.textContent='RESEARCH ONLY — '+n.toLocaleString()+' independent Monte Carlo trials; NOT BET-ELIGIBLE';
- ticket.innerHTML='<div class="kml-summary"><strong>'+american(best.d)+'</strong><span>Research simulation '+(mc*100).toFixed(1)+'%</span><span>Book '+esc(best.book)+'</span></div>'+
- best.legs.map(r=>'<div class="kml-leg"><b>'+esc(r.selection)+'</b><span>NBA · '+esc(r.event)+'</span><span>'+esc(r.price>0?'+'+r.price:r.price)+' · Kenny’s research '+(r.p*100).toFixed(1)+'%</span></div>').join('')+
- '<p class="kml-note"><strong>NOT A VERIFIED BET.</strong> The research model has unverified betting readiness and negative historical paper ROI. Missing checks: '+esc(blockers.join(', ')||'independent betting certification')+'. Prices are individual legs, not a confirmed executable parlay quote.</p>';
+ if(!candidates.length)return false;
+ const singles=candidates.sort((a,b)=>(b.p*decimal(b.price)-1)-(a.p*decimal(a.price)-1)).slice(0,5);
+ status.textContent='RESEARCH ONLY — '+singles.length+' positive-model-EV moneylines; no qualifying +100 parlay';
+ ticket.innerHTML=singles.map(r=>'<div class="kml-leg"><b>'+esc(r.selection)+'</b><span>'+esc(r.sport==='basketball_nba'?'NBA':'NHL')+' · '+esc(r.event)+'</span><span>'+esc(r.bookmaker)+' '+esc(r.price>0?'+'+r.price:r.price)+' · Model '+(r.p*100).toFixed(1)+'% · estimated EV '+((r.p*decimal(r.price)-1)*100).toFixed(1)+'%</span></div>').join('')+
+  '<p class="kml-note"><strong>NOT BET-ELIGIBLE.</strong> NBA holdout, injury and lineup checks and NHL goalie and calibration checks remain unverified. Historical NBA paper ROI was negative. Research-only EV is not a validated edge.</p>';
  return true;
 }
 async function refresh(){
