@@ -23,7 +23,11 @@ def normalize(feeds,now=None):
             counts[sport]=0
             continue
         count=0
-        for r in feed.get("odds",[]):
+        odds_rows=feed.get("odds")
+        if not isinstance(odds_rows,list):
+            counts[sport]=0
+            continue
+        for r in odds_rows:
             if not isinstance(r,dict) or r.get("market") not in MARKETS or r.get("bookmaker") not in ("fanduel","draftkings"):
                 continue
             stamp=timestamp(r.get("updated_at"))
