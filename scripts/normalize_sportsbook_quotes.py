@@ -45,7 +45,7 @@ def normalize(feeds,now=None):
             eid=r.get("event_id")
             if not all(isinstance(v,str) and v.strip() for v in (event,selection,eid)):
                 continue
-            quotes.append({"sport":sport,"event_id":eid,"market":MARKETS[r["market"]],"selection_id":selection.strip() if r["market"]!="totals" else selection.strip().lower(),"point":point if r["market"]!="h2h" else None,"odds":price,"source":r["bookmaker"],"price_verified":True,"odds_timestamp":stamp.isoformat(),"start_time":start.isoformat()})
+            quotes.append({"sport":sport,"event_id":eid,"event":event.strip(),"market":MARKETS[r["market"]],"selection_id":selection.strip() if r["market"]!="totals" else selection.strip().lower(),"point":point if r["market"]!="h2h" else None,"odds":price,"source":r["bookmaker"],"price_verified":True,"odds_timestamp":stamp.isoformat(),"start_time":start.isoformat()})
             count+=1
         counts[sport]=count
     return {"generated_at":now.isoformat(),"status":"VERIFIED" if quotes else "UNAVAILABLE","quotes":quotes,"counts":counts}
