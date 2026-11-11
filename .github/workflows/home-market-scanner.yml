@@ -1,0 +1,26 @@
+name: Homepage Market Scanner Validation
+on:
+  pull_request:
+    paths:
+      - 'scripts/build_market_edges.py'
+      - 'tests/test_market_edge_feed.py'
+      - '.github/workflows/home-market-scanner.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/build_market_edges.py'
+      - 'tests/test_market_edge_feed.py'
+      - '.github/workflows/home-market-scanner.yml'
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate four-sport scanner and EV gates
+        run: python -m unittest discover -s tests -p 'test_market_edge_feed.py' -v
