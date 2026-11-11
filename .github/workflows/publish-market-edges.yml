@@ -29,12 +29,10 @@ jobs:
         run: |
           if [ -f data/verified_model_markets.json ] && [ -f data/verified_sportsbook_quotes.json ]; then
             python -m scripts.join_verified_markets
-          elif [ -f data/model_market_candidates.json ]; then
-            python scripts/build_market_edges.py data/model_market_candidates.json data/market_edges.json
           else
-            echo 'Verified upstream model_market_candidates.json not published; no invented recommendations.'
+            echo 'Verified independent model markets and sportsbook quotes must both exist; fail closed.'
             mkdir -p data
-            printf '{"edges":[],"status":"UNAVAILABLE","reason":"Verified upstream model candidates not connected"}\n' > data/market_edges.json
+            printf '{"edges":[],"status":"UNAVAILABLE","reason":"Verified independent model markets or sportsbook quotes not connected"}\n' > data/market_edges.json
           fi
       - name: Publish feed only if changed
         shell: bash
