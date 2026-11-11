@@ -22,10 +22,14 @@ jobs:
         run: python -m unittest discover -s tests -p 'test_market_edge_feed.py' -v
       - name: Audit existing sport feeds and model/odds candidate readiness
         run: python -m scripts.market_edge_readiness
+      - name: Test exact-contract model and sportsbook join
+        run: python -m unittest tests.test_verified_market_join -v
       - name: Normalize verified upstream records only
         shell: bash
         run: |
-          if [ -f data/model_market_candidates.json ]; then
+          if [ -f data/verified_model_markets.json ] && [ -f data/verified_sportsbook_quotes.json ]; then
+            python -m scripts.join_verified_markets
+          elif [ -f data/model_market_candidates.json ]; then
             python scripts/build_market_edges.py data/model_market_candidates.json data/market_edges.json
           else
             echo 'Verified upstream model_market_candidates.json not published; no invented recommendations.'
