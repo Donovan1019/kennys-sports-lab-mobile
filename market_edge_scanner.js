@@ -9,9 +9,9 @@ const prob=odds=>odds>0?100/(odds+100):-odds/(100-odds);
 const payout=odds=>odds>0?odds/100:100/-odds;
 const kelly=(p,odds)=>{const b=payout(odds);return Math.max(0,(p*b-(1-p))/b)};
 const maxPrice=p=>p>=.5?-Math.ceil(100*p/(1-p)):Math.floor(100*(1-p)/p);
-const tier=r=>r.ev>=.05&&r.simulations>=10000?'DIAMOND':r.ev>=.03?'GOLD':'SILVER';
+const tier=r=>r.ev>=.05&&r.simulations>=10000?'HIGH EV':r.ev>=.03?'MEDIUM EV':'LOW EV';
 const american=p=>p>=.5?'-'+Math.round(100*p/(1-p)):'+'+Math.round(100*(1-p)/p);
-const valid=r=>r&&sports.includes(r.sport)&&markets.includes(r.market)&&typeof r.event==='string'&&r.event.trim()&&typeof r.selection==='string'&&r.selection.trim()&&Number.isFinite(r.odds)&&r.odds!==0&&Math.abs(r.odds)>=100&&Number.isFinite(r.model_probability)&&r.model_probability>0&&r.model_probability<1&&Number.isInteger(r.simulations)&&r.simulations>=1000&&r.simulation_status==='COMPLETE'&&r.price_verified===true&&typeof r.source==='string'&&r.source.trim()&&Number.isFinite(Date.parse(r.odds_timestamp))&&Number.isFinite(Date.parse(r.start_time))&&Date.parse(r.start_time)>Date.now()&&Date.now()-Date.parse(r.odds_timestamp)>=0&&Date.now()-Date.parse(r.odds_timestamp)<=15*60*1000&&r.lineup_status!=='UNVERIFIED'&&r.data_status==='VERIFIED';
+const valid=r=>r&&sports.includes(r.sport)&&markets.includes(r.market)&&typeof r.event==='string'&&r.event.trim()&&typeof r.selection==='string'&&r.selection.trim()&&Number.isFinite(r.odds)&&r.odds!==0&&Math.abs(r.odds)>=100&&Number.isFinite(r.model_probability)&&r.model_probability>0&&r.model_probability<1&&Number.isInteger(r.simulations)&&r.simulations>=1000&&r.simulation_status==='COMPLETE'&&r.price_verified===true&&typeof r.source==='string'&&r.source.trim()&&Number.isFinite(Date.parse(r.odds_timestamp))&&Number.isFinite(Date.parse(r.start_time))&&Date.parse(r.start_time)>Date.now()&&Date.now()-Date.parse(r.odds_timestamp)>=0&&Date.now()-Date.parse(r.odds_timestamp)<=15*60*1000&&['CONFIRMED','VERIFIED'].includes(r.lineup_status)&&r.data_status==='VERIFIED'&&typeof r.model_source==='string'&&r.model_source.trim()&&r.model_source!=='sportsbook'&&r.model_source!=='implied_odds'&&Number.isFinite(Date.parse(r.model_generated_at))&&Date.now()-Date.parse(r.model_generated_at)>=0&&Date.now()-Date.parse(r.model_generated_at)<=60*60*1000&&(r.market==='ML'||(Number.isFinite(r.point)));
 let rows=[];
 function render(){const sport=$('me-sport').value,market=$('me-market').value,min=Number($('me-min').value);
 const stake=Math.min(10000,Math.max(1,Number($('me-stake').value)||25));
@@ -20,7 +20,7 @@ $('me-results').replaceChildren();if(!list.length){$('me-results').innerHTML='<p
 for(const r of list){
 const item=document.createElement('article');item.className='me-card';
 item.innerHTML='<div class="me-top"><strong>'+esc(r.sport)+' · '+esc(r.event)+'</strong><span>'+esc(r.market)+'</span></div>'+
-'<h3>'+esc(r.selection)+' <span class="me-tier">'+tier(r)+'</span></h3>'+
+'<h3>'+esc(r.selection)+(r.market==='ML'?'':' ('+esc(r.point>0?'+'+r.point:r.point)+')')+' <span class="me-tier">'+tier(r)+'</span></h3>'+
 '<div class="me-metrics"><span>Odds <b>'+esc(r.odds>0?'+'+r.odds:r.odds)+'</b></span><span>Model <b>'+(100*r.model_probability).toFixed(1)+'%</b></span><span>Fair <b>'+american(r.model_probability)+'</b></span><span>EV <b class="me-positive">+'+(100*r.ev).toFixed(1)+'%</b></span></div>'+
 '<div class="me-bet-details"><span>Break-even <b>'+(100*prob(r.odds)).toFixed(1)+'%</b></span><span>Probability edge <b>+'+(100*(r.model_probability-prob(r.odds))).toFixed(1)+' pp</b></span><span>Expected profit on $'+stake.toFixed(0)+' <b>+$'+(stake*r.ev).toFixed(2)+'</b></span><span>¼ Kelly, capped at 1% bankroll <b>'+(100*Math.min(.01,.25*kelly(r.model_probability,r.odds))).toFixed(2)+'%</b></span></div>'+
 '<small>'+esc(r.source)+' · '+r.simulations.toLocaleString()+' simulations · updated '+new Date(r.odds_timestamp).toLocaleTimeString()+'</small>';
@@ -30,7 +30,7 @@ $('me-results').append(item);
 async function refresh(){ $('me-status').textContent='Loading verified four-sport model feed…';$('me-refresh').disabled=true;
 try{const res=await fetch('./data/market_edges.json?ts='+Date.now(),{cache:'no-store'});if(!res.ok)throw Error('Feed unavailable');const payload=await res.json();const entries=Array.isArray(payload)?payload:payload.edges;if(!Array.isArray(entries))throw Error('Invalid feed');
 rows=entries.filter(valid).map(r=>({...r,ev:r.model_probability*payout(r.odds)-(1-r.model_probability)})).filter(r=>r.ev>0);
-$('me-status').textContent=rows.length+' verified positive-EV candidates · '+sports.join(' / ');
+$('me-status').textContent=rows.length+' verified positive-EV candidates · '+sports.join(' / ')+(payload.status==='UNAVAILABLE'?' · FEED UNAVAILABLE: '+String(payload.reason||'no connected model candidates'):'');
 }catch(e){rows=[];$('me-status').textContent='UNAVAILABLE — verified live model/odds feed not connected';}
 finally{$('me-refresh').disabled=false;render()}}
 ['me-sport','me-market','me-min','me-stake'].forEach(id=>$(id).addEventListener('change',render));$('me-refresh').addEventListener('click',refresh);refresh();

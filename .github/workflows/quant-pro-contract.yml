@@ -1,0 +1,21 @@
+name: Quant Pro Contract Validation
+on:
+  pull_request:
+    paths:
+      - 'market_edge_scanner.js'
+      - 'scripts/build_market_edges.py'
+      - 'tests/test_market_edge_feed.py'
+      - '.github/workflows/quant-pro-contract.yml'
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m unittest discover -s tests -p 'test_market_edge_feed.py' -v
+      - run: node --check market_edge_scanner.js
+      - run: python -m compileall -q scripts/build_market_edges.py
