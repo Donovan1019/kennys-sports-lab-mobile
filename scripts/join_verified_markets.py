@@ -78,6 +78,8 @@ def join(models, quotes, now=None):
     candidates = []
     for q in rows(quotes, "quotes"):
         key = contract(q)
+        if key is None:
+            continue
         m = models_by_key.get(key)
         if m is None:
             # Only permit explicit, source-verified home/away team mapping.
