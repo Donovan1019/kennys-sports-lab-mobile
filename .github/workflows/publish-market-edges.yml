@@ -46,5 +46,11 @@ jobs:
           git add data/market_edges.json data/market_edge_readiness.json data/verified_sportsbook_quotes.json data/four_sport_odds_coverage.json
           if ! git diff --cached --quiet; then
             git commit -m 'Refresh verified homepage market edges'
-            git push
+            for attempt in 1 2 3 4 5; do
+              git pull --rebase origin main
+              if git push origin HEAD:main; then exit 0; fi
+              sleep $((attempt * 2))
+            done
+            echo 'Publish failed after five concurrent-write retries' >&2
+            exit 1
           fi
