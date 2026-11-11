@@ -1,0 +1,85 @@
+{
+  "sport": "NBA",
+  "date": "2026-11-10",
+  "games": [
+    {
+      "event_id": "401909960",
+      "event": "Milwaukee Bucks at New York Knicks",
+      "commence_time": "2026-11-11T00:30Z",
+      "home": "New York Knicks",
+      "away": "Milwaukee Bucks",
+      "home_score": 117,
+      "away_score": 85,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261110&limit=100"
+    },
+    {
+      "event_id": "401909961",
+      "event": "Boston Celtics at Philadelphia 76ers",
+      "commence_time": "2026-11-11T01:00Z",
+      "home": "Philadelphia 76ers",
+      "away": "Boston Celtics",
+      "home_score": 101,
+      "away_score": 123,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261110&limit=100"
+    },
+    {
+      "event_id": "401909962",
+      "event": "LA Clippers at Phoenix Suns",
+      "commence_time": "2026-11-11T02:00Z",
+      "home": "Phoenix Suns",
+      "away": "LA Clippers",
+      "home_score": 133,
+      "away_score": 110,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261110&limit=100"
+    },
+    {
+      "event_id": "401909963",
+      "event": "Miami Heat at Utah Jazz",
+      "commence_time": "2026-11-11T02:00Z",
+      "home": "Utah Jazz",
+      "away": "Miami Heat",
+      "home_score": 109,
+      "away_score": 115,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261110&limit=100"
+    },
+    {
+      "event_id": "401909964",
+      "event": "Orlando Magic at Sacramento Kings",
+      "commence_time": "2026-11-11T03:00Z",
+      "home": "Sacramento Kings",
+      "away": "Orlando Magic",
+      "home_score": 100,
+      "away_score": 107,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261110&limit=100"
+    },
+    {
+      "event_id": "401909965",
+      "event": "Oklahoma City Thunder at Portland Trail Blazers",
+      "commence_time": "2026-11-11T04:00Z",
+      "home": "Portland Trail Blazers",
+      "away": "Oklahoma City Thunder",
+      "home_score": 123,
+      "away_score": 103,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261110&limit=100"
+    }
+  ],
+  "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261110&limit=100"
+}

@@ -1,6 +1,6 @@
 {
   "date": "2026-11-11",
-  "generated_at": "2026-11-11T01:57:07.898848+00:00",
+  "generated_at": "2026-11-11T22:41:55.760961+00:00",
   "sports": {
     "NFL": {
       "status": "NO_VERIFIED_PREGAME_PREDICTIONS",
@@ -15,7 +15,7 @@
     },
     "NBA": {
       "status": "OUTCOMES_UNVERIFIED",
-      "saved_quotes": 0,
+      "saved_quotes": 1640,
       "eligible_predictions": 32,
       "research_only_predictions": 32,
       "bet_eligible_predictions": 0,
@@ -25,23 +25,36 @@
       "pending": 32
     },
     "NHL": {
-      "status": "OUTCOMES_UNVERIFIED",
+      "status": "PARTIALLY_SETTLED_MONEYLINES",
       "saved_quotes": 0,
-      "eligible_predictions": 104,
-      "research_only_predictions": 104,
+      "eligible_predictions": 174,
+      "research_only_predictions": 174,
       "bet_eligible_predictions": 0,
       "blocked_predictions": [],
-      "graded": 0,
-      "settled": [],
-      "pending": 104
+      "graded": 2,
+      "settled": [
+        {
+          "event": "Nashville Predators @ Los Angeles Kings",
+          "market": "h2h",
+          "selection": "Los Angeles Kings",
+          "outcome": "loss"
+        },
+        {
+          "event": "Nashville Predators @ Los Angeles Kings",
+          "market": "h2h",
+          "selection": "Nashville Predators",
+          "outcome": "win"
+        }
+      ],
+      "pending": 172
     }
   },
   "summary": {
-    "verified_picks": 0,
-    "wins": 0,
-    "losses": 0,
+    "verified_picks": 2,
+    "wins": 1,
+    "losses": 1,
     "pushes": 0,
     "roi": null,
-    "hit_rate": null
+    "hit_rate": 0.5
   }
 }
