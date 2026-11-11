@@ -21,9 +21,15 @@ def audit(root=Path("."),now=None):
         except (OSError,ValueError,TypeError):
             report[sport]={"status":"MISSING","age_minutes":None,"missing_markets":list(REQUIRED)}
             continue
+        if not isinstance(obj,dict):
+            report[sport]={"status":"UNVERIFIED","age_minutes":None,"missing_markets":list(REQUIRED),"events_with_quotes":0}
+            continue
+        odds=obj.get("odds")
+        if not isinstance(odds,list):
+            odds=[]
         at=timestamp(obj.get("fetched_at"))
         age=(now-at).total_seconds()/60 if at else None
-        markets={r.get("market") for r in obj.get("odds",[]) if isinstance(r,dict)}
+        markets={r.get("market") for r in odds if isinstance(r,dict)}
         missing=sorted(set(REQUIRED)-markets)
         if obj.get("status")!="ok" or obj.get("sport")!=slug or age is None or age<0:
             status="UNVERIFIED"
