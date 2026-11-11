@@ -1,0 +1,63 @@
+{
+  "generated_at": "2026-11-11T21:11:46.738354+00:00",
+  "status": "UNAVAILABLE",
+  "candidate_count": 0,
+  "sports": {
+    "NBA": {
+      "model": {
+        "status": "experimental_research_only",
+        "path": "feed/basketball_nba_pregame_research.json",
+        "events": 0
+      },
+      "market": {
+        "status": "research_only",
+        "path": "feed/basketball_nba_market_consensus.json",
+        "events": 0
+      },
+      "betting_ready": false,
+      "reason": "No standardized verified model-and-odds candidate feed; research-only files must not be promoted into betting recommendations"
+    },
+    "NHL": {
+      "model": {
+        "status": "experimental_research_only",
+        "path": "feed/icehockey_nhl_pregame_research.json",
+        "events": 0
+      },
+      "market": {
+        "status": "research_only",
+        "path": "feed/icehockey_nhl_market_consensus.json",
+        "events": 0
+      },
+      "betting_ready": false,
+      "reason": "No standardized verified model-and-odds candidate feed; research-only files must not be promoted into betting recommendations"
+    },
+    "NFL": {
+      "model": {
+        "status": "experimental_research_only",
+        "path": "feed/americanfootball_nfl_pregame_research.json",
+        "events": 0
+      },
+      "market": {
+        "status": "research_only",
+        "path": "feed/americanfootball_nfl_market_consensus.json",
+        "events": 0
+      },
+      "betting_ready": false,
+      "reason": "No standardized verified model-and-odds candidate feed; research-only files must not be promoted into betting recommendations"
+    },
+    "NCAAB": {
+      "model": {
+        "status": "MISSING",
+        "path": "feed/basketball_ncaab_pregame_research.json",
+        "events": 0
+      },
+      "market": {
+        "status": "MISSING",
+        "path": "feed/basketball_ncaab_market_consensus.json",
+        "events": 0
+      },
+      "betting_ready": false,
+      "reason": "No standardized verified model-and-odds candidate feed; research-only files must not be promoted into betting recommendations"
+    }
+  }
+}
