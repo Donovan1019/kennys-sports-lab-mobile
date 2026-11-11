@@ -57,7 +57,7 @@ def join(models, quotes, now=None):
         m = models_by_key.get(key)
         if not m or q.get("price_verified") is not True:
             continue
-        if m.get("start_time") != q.get("start_time"):
+        if not timestamp(m.get("start_time")) or timestamp(m.get("start_time")) != timestamp(q.get("start_time")):
             continue
         row = {**m, "odds": q.get("odds"), "source": q.get("source"),
                "odds_timestamp": q.get("odds_timestamp"), "price_verified": True,
