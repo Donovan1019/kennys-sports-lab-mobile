@@ -3,6 +3,7 @@
 A quote is verified only when provider metadata is valid and fresh. No model estimates.
 """
 import json
+import math
 from datetime import datetime, timezone
 from pathlib import Path
 from scripts.build_market_edges import timestamp
@@ -30,10 +31,10 @@ def normalize(feeds,now=None):
             price=r.get("price")
             if not stamp or not start or not 0<=(now-stamp).total_seconds()<=900 or start<=now:
                 continue
-            if type(price) not in (int,float) or abs(price)<100:
+            if type(price) not in (int,float) or not math.isfinite(price) or abs(price)<100:
                 continue
             point=r.get("point")
-            if r["market"]!="h2h" and type(point) not in (int,float):
+            if r["market"]!="h2h" and (type(point) not in (int,float) or not math.isfinite(point)):
                 continue
             event=r.get("event")
             selection=r.get("selection")
