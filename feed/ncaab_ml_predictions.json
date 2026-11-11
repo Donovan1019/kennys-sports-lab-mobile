@@ -1,0 +1,109 @@
+{
+  "generated_at": "2026-11-11T23:25:46.438344+00:00",
+  "status": "RESEARCH_ONLY",
+  "model": "independent-score-margin-shrinkage-baseline",
+  "source": "ESPN completed NCAA MBB scores, 30-day historical lookback; no bookmaker prices in probability inputs",
+  "calibration_status": "UNVERIFIED",
+  "lineup_status": "UNVERIFIED",
+  "bet_eligible": false,
+  "predictions": [
+    {
+      "event_id": "dce2f501e790814a83c007c4bfeaf299",
+      "team": "Indiana Hoosiers",
+      "win_probability": 0.603592,
+      "sample_games": 3
+    },
+    {
+      "event_id": "dce2f501e790814a83c007c4bfeaf299",
+      "team": "Tennessee Tech Golden Eagles",
+      "win_probability": 0.396408,
+      "sample_games": 3
+    },
+    {
+      "event_id": "c62dc747fca57d00af7e4fe8f1326f58",
+      "team": "Penn State Nittany Lions",
+      "win_probability": 0.661605,
+      "sample_games": 3
+    },
+    {
+      "event_id": "c62dc747fca57d00af7e4fe8f1326f58",
+      "team": "Mercyhurst Lakers",
+      "win_probability": 0.338395,
+      "sample_games": 3
+    },
+    {
+      "event_id": "60340e8a19f88be7b0c22c5428810081",
+      "team": "Brown Bears",
+      "win_probability": 0.594494,
+      "sample_games": 3
+    },
+    {
+      "event_id": "60340e8a19f88be7b0c22c5428810081",
+      "team": "Canisius Golden Griffins",
+      "win_probability": 0.405506,
+      "sample_games": 3
+    },
+    {
+      "event_id": "ddcf26810b7aa3e03d38719931c1d035",
+      "team": "High Point Panthers",
+      "win_probability": 0.265234,
+      "sample_games": 3
+    },
+    {
+      "event_id": "ddcf26810b7aa3e03d38719931c1d035",
+      "team": "Southern Utah Thunderbirds",
+      "win_probability": 0.734766,
+      "sample_games": 3
+    },
+    {
+      "event_id": "1898e50ec19d9c95f900cd2487cb18ae",
+      "team": "Howard Bison",
+      "win_probability": 0.668356,
+      "sample_games": 3
+    },
+    {
+      "event_id": "1898e50ec19d9c95f900cd2487cb18ae",
+      "team": "Stetson Hatters",
+      "win_probability": 0.331644,
+      "sample_games": 3
+    },
+    {
+      "event_id": "acfcff07d0a7ec0e61020263a6fafdb8",
+      "team": "Rhode Island Rams",
+      "win_probability": 0.727193,
+      "sample_games": 3
+    },
+    {
+      "event_id": "acfcff07d0a7ec0e61020263a6fafdb8",
+      "team": "Maryland-Eastern Shore Hawks",
+      "win_probability": 0.272807,
+      "sample_games": 4
+    },
+    {
+      "event_id": "941f2cdc3c144d4d6ec9d98620c4804c",
+      "team": "South Alabama Jaguars",
+      "win_probability": 0.440622,
+      "sample_games": 3
+    },
+    {
+      "event_id": "941f2cdc3c144d4d6ec9d98620c4804c",
+      "team": "Loyola Marymount Lions",
+      "win_probability": 0.559378,
+      "sample_games": 3
+    },
+    {
+      "event_id": "b1475de379dc7a6760a16fea0af94a6f",
+      "team": "Minnesota Golden Gophers",
+      "win_probability": 0.794398,
+      "sample_games": 3
+    },
+    {
+      "event_id": "b1475de379dc7a6760a16fea0af94a6f",
+      "team": "Southern Jaguars",
+      "win_probability": 0.205602,
+      "sample_games": 4
+    }
+  ],
+  "history_events": 592,
+  "failed_days": 0
+}
