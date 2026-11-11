@@ -1,5 +1,11 @@
 name: Publish Four-Sport Market Edges
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/build_ncaab_ml_predictions.py'
+      - 'home_best_moneyline_parlay.js'
+      - '.github/workflows/publish-market-edges.yml'
   workflow_dispatch:
   workflow_run:
     workflows:
