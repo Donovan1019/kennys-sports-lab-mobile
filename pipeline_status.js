@@ -2,6 +2,8 @@
 (()=>{'use strict';
 const repo='Donovan1019/kennys-sports-lab-mobile';
 const workflows=[
+  {id:'refresh-odds.yml',label:'Sportsbook Odds Refresh',schedule:'Four sports · scheduled daily; manual refresh supported'},
+  {id:'publish-market-edges.yml',label:'Top 10 Scanner Publisher',schedule:'Every 15 minutes and after successful odds refresh'},
   {id:'grade-nba-nhl-forecasts.yml',label:'NBA · NHL · NFL Daily',schedule:'7:23 AM / 5:17 PM EDT · 6:23 AM / 4:17 PM EST'},
   {id:'weekly-three-sport-research.yml',label:'Historical Research',schedule:'Sunday · 6:40 AM EDT / 5:40 AM EST'}
 ];
@@ -9,7 +11,7 @@ function mount(){
   const main=document.querySelector('main');if(!main||document.getElementById('ksl-pipeline-status'))return;
   const section=document.createElement('section');section.id='ksl-pipeline-status';
   section.setAttribute('aria-label','Pipeline status');
-  section.innerHTML='<div class="ksl-status-head"><h2>⚙ Pipeline Status</h2><button type="button" id="ksl-status-refresh">↻ Check status</button></div><p class="ksl-status-sub">Latest verified GitHub Actions runs · NBA / NHL / NFL</p><div id="ksl-status-list" aria-live="polite">Loading workflow status…</div><p class="ksl-status-foot">GitHub schedules may start late. Manual runs are labeled; an older successful run does not prove today’s scheduled run completed.</p>';
+  section.innerHTML='<div class="ksl-status-head"><h2>⚙ Pipeline Status</h2><button type="button" id="ksl-status-refresh">↻ Check status</button></div><p class="ksl-status-sub">GitHub Actions runs · sportsbook refresh, scanner publisher and model grading</p><div id="ksl-status-list" aria-live="polite">Loading workflow status…</div><p class="ksl-status-foot">GitHub schedules may start late. Manual runs are labeled; an older successful run does not prove today’s scheduled run completed.</p>';
   main.append(section);
   // Keep pipeline status directly after the homepage-first market scanner.
   const prioritize=()=>{if(section.parentElement===main&&section!==main.lastElementChild)main.append(section);const selected=document.getElementById('ksl-sport-select');section.hidden=!!selected&&selected.value!=='Home'};
