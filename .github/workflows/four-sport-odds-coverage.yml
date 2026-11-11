@@ -1,0 +1,19 @@
+name: Four Sport Odds Coverage Validation
+on:
+  pull_request:
+    paths:
+      - 'scripts/four_sport_odds_coverage.py'
+      - 'tests/test_four_sport_odds_coverage.py'
+      - '.github/workflows/four-sport-odds-coverage.yml'
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m unittest tests.test_four_sport_odds_coverage -v
+      - run: python -m compileall -q scripts/four_sport_odds_coverage.py
