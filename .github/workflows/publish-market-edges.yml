@@ -1,6 +1,8 @@
 name: Publish Four-Sport Market Edges
 on:
   workflow_dispatch:
+  schedule:
+    - cron: '35 20,22,0 * * *' # after scheduled sportsbook snapshots; no 15-minute polling
 permissions:
   contents: write
 concurrency:
@@ -16,6 +18,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Validate homepage moneyline engine syntax
+        run: node --check home_best_moneyline_parlay.js
       - name: Run scanner validation
         run: python -m unittest discover -s tests -p 'test_market_edge_feed.py' -v
       - name: Audit four-sport odds coverage
