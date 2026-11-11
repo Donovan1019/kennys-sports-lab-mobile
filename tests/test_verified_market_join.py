@@ -35,3 +35,16 @@ class JoinTests(unittest.TestCase):
     def test_research_only_rejected(self):
         m=model();m["data_status"]="research_only"
         self.assertFalse(join([m],[quote()],NOW)["edges"])
+    def test_equivalent_timezone_start_matches(self):
+        m=model();q=quote()
+        q["start_time"]=(NOW+timedelta(hours=2)).strftime("%Y-%m-%dT%H:%M:%SZ")
+        self.assertEqual(len(join([m],[q],NOW)["edges"]),1)
+    def test_reject_unmatched_team_name_selection(self):
+        q=quote();q["selection_id"]="Different Team"
+        self.assertFalse(join([model()],[q],NOW)["edges"])
+    def test_reject_stale_model(self):
+        m=model();m["model_generated_at"]=(NOW-timedelta(hours=2)).isoformat()
+        self.assertFalse(join([m],[quote()],NOW)["edges"])
+    def test_reject_stale_odds(self):
+        q=quote();q["odds_timestamp"]=(NOW-timedelta(minutes=16)).isoformat()
+        self.assertFalse(join([model()],[q],NOW)["edges"])
