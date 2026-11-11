@@ -48,3 +48,19 @@ class JoinTests(unittest.TestCase):
     def test_reject_stale_odds(self):
         q=quote();q["odds_timestamp"]=(NOW-timedelta(minutes=16)).isoformat()
         self.assertFalse(join([model()],[q],NOW)["edges"])
+    def test_explicit_home_team_mapping(self):
+        m=model();m.update(event="Away Club @ Home Club",selection_id="home",selection="Home Club",home_team="Home Club",away_team="Away Club")
+        q=quote();q["selection_id"]="Home Club"
+        self.assertEqual(len(join([m],[q],NOW)["edges"]),1)
+    def test_reject_unverified_home_team_mapping(self):
+        m=model();m.update(event="Away Club @ Home Club",selection_id="home",selection="Home Club")
+        q=quote();q["selection_id"]="Home Club"
+        self.assertFalse(join([m],[q],NOW)["edges"])
+    def test_reject_reversed_home_away(self):
+        m=model();m.update(event="Home Club @ Away Club",selection_id="home",selection="Home Club",home_team="Home Club",away_team="Away Club")
+        q=quote();q["selection_id"]="Home Club"
+        self.assertFalse(join([m],[q],NOW)["edges"])
+    def test_reject_wrong_team_quote(self):
+        m=model();m.update(event="Away Club @ Home Club",selection_id="home",selection="Home Club",home_team="Home Club",away_team="Away Club")
+        q=quote();q["selection_id"]="Away Club"
+        self.assertFalse(join([m],[q],NOW)["edges"])
