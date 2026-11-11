@@ -23,7 +23,7 @@ jobs:
       - name: Audit existing sport feeds and model/odds candidate readiness
         run: python -m scripts.market_edge_readiness
       - name: Test exact-contract model and sportsbook join
-        run: python -m unittest tests.test_verified_market_join -v
+        run: python -m unittest discover -s tests -p 'test_verified_market_join.py' -v
       - name: Normalize verified upstream records only
         shell: bash
         run: |
