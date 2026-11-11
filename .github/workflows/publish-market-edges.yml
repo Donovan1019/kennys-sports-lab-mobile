@@ -1,5 +1,10 @@
 name: Publish Four-Sport Market Edges
 on:
+  workflow_run:
+    workflows:
+      - Refresh public odds snapshot
+    types:
+      - completed
   workflow_dispatch:
   schedule:
     - cron: '*/15 * * * *'
@@ -10,6 +15,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   publish:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
