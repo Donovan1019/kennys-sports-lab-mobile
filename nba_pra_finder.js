@@ -51,6 +51,32 @@ const legend=$('div');legend.className='pra-legend';for(const [color,label,count
 };render();return holder;
 }
 
+function american(decimal){const n=decimal>=2?Math.round((decimal-1)*100):Math.round(-100/(decimal-1));return (n>0?'+':'')+n}
+function parlayPanel(rows){
+const panel=$('section');panel.className='pra-card';panel.append($('h3','PRA Parlay Builder · Historical Screen'));
+const controls=$('div');controls.className='pra-controls';
+const legs=$('select');for(const n of [2,3,4]){const option=$('option',n+' legs');option.value=n;legs.append(option)}
+const book=$('select');for(const name of ['Best available','DraftKings','FanDuel']){const option=$('option',name);option.value=name;book.append(option)}
+controls.append(legs,book);panel.append(controls);
+const result=$('div');panel.append(result);
+const render=()=>{
+result.replaceChildren();const count=Number(legs.value),selectedBook=book.value.toLowerCase();
+const available=rows.filter(r=>r.history.length>=10&&r.eligible&&(selectedBook==='best available'||r.q.bookmaker===selectedBook));
+const picks=[],usedPlayers=new Set(),usedGames=new Set();
+for(const r of available){const player=norm(r.p.name),event=String(r.q.event_id);if(usedPlayers.has(player)||usedGames.has(event))continue;picks.push(r);usedPlayers.add(player);usedGames.add(event);if(picks.length===count)break}
+if(picks.length<count){result.append($('p','UNAVAILABLE — Only '+picks.length+' qualifying selections across distinct games with current '+side.value+' PRA quotes. No fabricated parlay.'));return}
+let decimal=1,independent=1;const list=$('ol');
+for(const r of picks){const price=Number(r.q.price);decimal*=price>0?1+price/100:1+100/Math.abs(price);independent*=r.sim.prob;
+const item=$('li',r.p.name+' · '+side.value+' '+r.line+' PRA · '+r.q.bookmaker.toUpperCase()+' '+(price>0?'+':'')+price+' · L10 '+pct(r.l10,r.line,side.value==='Over')+' · L20 '+pct(r.l20,r.line,side.value==='Over'));list.append(item)}
+result.append(list);
+const joint=Math.pow(independent,1),breakeven=1/decimal;
+result.append($('p','Illustrative combined price: '+american(decimal)+' · Decimal '+decimal.toFixed(2)+' · Independent historical-resampling estimate: '+(joint*100).toFixed(1)+'% · Break-even: '+(breakeven*100).toFixed(1)+'%'));
+const sameBook=new Set(picks.map(r=>r.q.bookmaker)).size===1;
+const caution=$('p',(sameBook?'Single-book quote set. ':'Mixed-book quote set: combined price may not be offered at any sportsbook. ')+'Distinct-game selections reduce same-game overlap, but results may still be correlated. Estimated probability is NOT calibrated, injury-adjusted or verified positive EV. Recheck all lines, availability and sportsbook parlay acceptance before betting. Recommendation: RESEARCH ONLY / PASS pending full simulation validation.');
+caution.className='pra-meta';result.append(caution);
+};legs.addEventListener('change',render);book.addEventListener('change',render);render();return panel
+}
+
 let snapshot=null;
 function draw(){cards.replaceChildren();if(!snapshot)return;const {stats,props}=snapshot,over=side.value==='Over',now=Date.now();
 const events=(props.odds||[]).filter(q=>Date.parse(q.commence_time)>now&&q.event_id).map(q=>String(q.event_id));const activeEvents=new Set(events);
@@ -67,6 +93,7 @@ const sim=bootstrap(history,line,over,Number(q.event_id?.slice(0,7).replace(/[^0
 rows.sort((a,b)=>Number(b.eligible)-Number(a.eligible)||b.edge-a.edge||b.history.length-a.history.length);
 const top=rows.slice(0,10);const newest=props.fetched_at||'unknown',stale=Date.parse(newest);status.textContent=top.length+' matched current PRA markets · '+rows.filter(r=>r.eligible).length+' historical trend candidates · odds feed '+newest+' · stats feed '+(stats.fetched_at||'unknown')+' · current season only · 60-minute quote limit';if(!top.length){const diagnostic=$('p','DATA STATUS · '+(props.odds||[]).filter(q=>norm(q.market)==='playerpointsreboundsassists').length+' PRA quotes in saved feed · '+(stats.players||[]).length+' player histories · '+qualifiedLogs+' with 5+ current-season games · '+quotes.length+' fresh '+side.value+' quotes · '+nameMatches+' player-name matches · '+activeEvents.size+' future sportsbook events. '+(Number.isFinite(stale)&&now-stale>3600000?'Odds feed is stale; refresh the existing sportsbook feed workflow.':'Check current event IDs, quote timestamps and player game logs.'));diagnostic.className='pra-meta';cards.append(diagnostic)}
 if(!top.length){cards.append($('p','UNAVAILABLE — No matched, fresh DK/FD PRA markets and 2026–27 player logs for upcoming games. No fabricated Top 10 or bets.'));return}
+cards.append(parlayPanel(rows));
 top.forEach((r,i)=>{const c=$('article');c.className='pra-card';const title=$('h3',(i+1)+'. '+r.p.name+' · '+(r.p.team||'NBA')+' · '+side.value+' '+r.line);c.append(title,$('p',r.q.bookmaker+' '+(Number(r.q.price)>0?'+':'')+r.q.price+' · '+(r.eligible?'TREND CANDIDATE — verify lineup, calibration and simulator before betting':'PASS — no verified betting edge')));
 const grid=$('div');grid.className='pra-grid';for(const [label,value] of [['L5',rate(r.l5,r.line,over)+' · '+pct(r.l5,r.line,over)],['L10',rate(r.l10,r.line,over)+' · '+pct(r.l10,r.line,over)],['L20',rate(r.l20,r.line,over)+' · '+pct(r.l20,r.line,over)],['Projection',fmt(r.projection)],['Trend L5−L10',(r.trend>=0?'+':'')+fmt(r.trend)],['Smoothed hit %',Math.round(100*r.prob)+'%'],['Break-even',Math.round(100*r.breakEven)+'%'],['Historical proxy edge',(r.edge>=0?'+':'')+(r.edge*100).toFixed(1)+' pp'],['Bootstrap MC hit',Math.round(r.sim.prob*100)+'%'],['MC 80% range',fmt(r.sim.low)+'–'+fmt(r.sim.high)]]){const box=$('div');box.className='pra-stat';box.append($('small',label),$('strong',value));grid.append(box)}c.append(grid);
 c.append(makeViz(r));
