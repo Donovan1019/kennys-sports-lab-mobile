@@ -29,7 +29,7 @@ $('me-results').append(item);
 }
 async function refresh(){ $('me-status').textContent='Loading verified four-sport model feed…';$('me-refresh').disabled=true;
 try{const res=await fetch('./data/market_edges.json?ts='+Date.now(),{cache:'no-store'});if(!res.ok)throw Error('Feed unavailable');const payload=await res.json();const entries=Array.isArray(payload)?payload:payload.edges;if(!Array.isArray(entries))throw Error('Invalid feed');
-rows=entries.filter(valid).map(r=>({...r,ev:r.model_probability*payout(r.odds)-(1-r.model_probability)})).filter(r=>r.ev>0);feedStatus=payload.status==='UNAVAILABLE'?'UNAVAILABLE: '+String(payload.reason||'Verified upstream model or sportsbook data missing'):payload.status==='NO_QUALIFIED_EDGES'?'No qualifying positive-EV contracts in the verified feed.':'No picks match these filters.';
+rows=payload.status==='VERIFIED'||Array.isArray(payload)?entries.filter(valid).map(r=>({...r,ev:r.model_probability*payout(r.odds)-(1-r.model_probability)})).filter(r=>r.ev>0):[];feedStatus=payload.status==='UNAVAILABLE'?'UNAVAILABLE: '+String(payload.reason||'Verified upstream model or sportsbook data missing'):payload.status==='NO_QUALIFIED_EDGES'?'No qualifying positive-EV contracts in the verified feed.':'No picks match these filters.';
 $('me-status').textContent=rows.length+' verified positive-EV candidates · '+sports.join(' / ')+(payload.status==='UNAVAILABLE'?' · FEED UNAVAILABLE: '+String(payload.reason||'no connected model candidates'):'');
 }catch(e){rows=[];feedStatus='UNAVAILABLE: Could not load the verified market feed.';$('me-status').textContent=feedStatus;}
 finally{$('me-refresh').disabled=false;render()}}
