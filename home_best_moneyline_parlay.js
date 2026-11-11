@@ -82,6 +82,7 @@ async function researchPreview(){
  }
  if(!candidates.length)return false;
  const singles=candidates.filter(q=>q.p>=0.5&&decimal(q.price)<=3).sort((a,b)=>b.p-a.p).slice(0,5);
+ if(!singles.length)return false;
  status.textContent='RESEARCH ONLY — '+singles.length+' positive-model-EV moneylines; no qualifying +100 parlay';
  ticket.innerHTML=singles.map(r=>'<div class="kml-leg"><b>'+esc(r.selection)+'</b><span>'+esc(r.sport==='basketball_nba'?'NBA':r.sport==='basketball_ncaab'?'NCAAB':'NHL')+' · '+esc(r.event)+'</span><span>'+esc(r.bookmaker)+' '+esc(r.price>0?'+'+r.price:r.price)+' · Model '+(r.p*100).toFixed(1)+'% · estimated EV '+((r.p*decimal(r.price)-1)*100).toFixed(1)+'%</span></div>').join('')+
   '<p class="kml-note"><strong>NOT BET-ELIGIBLE.</strong> NBA holdout, injury and lineup checks and NHL goalie and calibration checks remain unverified. Historical NBA paper ROI was negative. Research-only EV is not a validated edge.</p>';
