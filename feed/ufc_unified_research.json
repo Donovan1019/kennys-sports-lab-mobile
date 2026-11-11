@@ -4,12 +4,12 @@
   "research_only": true,
   "bet_eligible": false,
   "coverage": {
-    "fights": 12,
+    "fights": 13,
     "scheduled_rounds_verified": 0,
     "fighter_status_verified": 0,
     "odds_verified": 0,
     "paired_historical_round_rows": 11,
-    "paired_elo_available": 9,
+    "paired_elo_available": 10,
     "count_simulations_available": 0,
     "historical_per_round_available": 23,
     "point_in_time_calibration_certified": false,
@@ -399,6 +399,53 @@
           "scenario_warning": "Unverified fight length; hypothetical 3/5-round counts are not predictions or bet-eligible"
         },
         "Samuel Sanches": {
+          "status": "UNAVAILABLE",
+          "reason": "Verified scheduled rounds or historical count rates missing"
+        }
+      },
+      "input_evidence": {
+        "scheduled_rounds_verified": false,
+        "fighter_status_verified": false,
+        "odds_verified": false,
+        "paired_historical_round_rows": 0,
+        "opponent_quality_verified": false
+      },
+      "calibration": {
+        "status": "UNVERIFIED",
+        "point_in_time_validated": false,
+        "evaluated_fights": 0,
+        "brier": null,
+        "log_loss": null
+      },
+      "betting": {
+        "status": "NOT_ELIGIBLE",
+        "model_ev": null,
+        "reason": "No calibrated independent live probability and verified executable price"
+      }
+    },
+    {
+      "fight_id": "401933936",
+      "red": "Alatengheili",
+      "blue": "Juan Diaz",
+      "opponent_adjustment": {
+        "elo_available": true,
+        "verified_strength_of_schedule": false
+      },
+      "sparse_data_probability": {
+        "red": 0.5013,
+        "blue": 0.4987,
+        "red_uncertainty_interval": [
+          0.0873,
+          0.9153
+        ],
+        "status": "UNCALIBRATED_RESEARCH"
+      },
+      "count_simulation": {
+        "Alatengheili": {
+          "status": "UNAVAILABLE",
+          "reason": "Verified scheduled rounds or historical count rates missing"
+        },
+        "Juan Diaz": {
           "status": "UNAVAILABLE",
           "reason": "Verified scheduled rounds or historical count rates missing"
         }
