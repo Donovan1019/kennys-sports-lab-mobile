@@ -110,7 +110,9 @@ def join(models, quotes, now=None):
     result["matched_contracts"] = len(candidates)
     result["model_contracts"] = len(models_by_key)
     result["quote_contracts"] = len(rows(quotes, "quotes"))
-    result["status"] = "VERIFIED" if result["edges"] else "NO_QUALIFIED_EDGES"
+    result["status"] = "VERIFIED" if result["edges"] else ("UNAVAILABLE" if not models_by_key or not rows(quotes, "quotes") else "NO_QUALIFIED_EDGES")
+    if result["status"] == "UNAVAILABLE":
+        result["reason"] = "No eligible independently verified model markets" if not models_by_key else "No fresh verified sportsbook quotes"
     return result
 
 def main():
