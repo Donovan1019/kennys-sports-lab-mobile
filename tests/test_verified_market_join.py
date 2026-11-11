@@ -15,6 +15,14 @@ class JoinTests(unittest.TestCase):
     def test_mismatched_selection(self):
         q=quote();q["selection_id"]="away"
         self.assertFalse(join([model()],[q],NOW)["edges"])
+    def test_nan_point_rejected(self):
+        q=quote();q["point"]=float("nan")
+        self.assertFalse(join([model()],[q],NOW)["edges"])
+    def test_join_coverage(self):
+        result=join([model()],[quote()],NOW)
+        self.assertEqual(result["model_contracts"],1)
+        self.assertEqual(result["quote_contracts"],1)
+        self.assertEqual(result["matched_contracts"],1)
     def test_unverified_price(self):
         q=quote();q["price_verified"]=False
         self.assertFalse(join([model()],[q],NOW)["edges"])
