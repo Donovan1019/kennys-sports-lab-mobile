@@ -1,7 +1,10 @@
 name: Refresh public odds snapshot
 on:
   schedule:
-    - cron: '10 11,20 * * *'
+    - cron: '10 11 * * *'
+    - cron: '10 14 * * *'
+    - cron: '10 17 * * *'
+    - cron: '10 20 * * *'
   workflow_dispatch:
     inputs:
       sport:
@@ -40,9 +43,22 @@ jobs:
         env:
           THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
           ODDSPAPI_API_KEY: ${{ secrets.ODDSPAPI_API_KEY }}
-          ODDS_SPORT: ${{ inputs.sport || 'americanfootball_nfl' }}
-          ODDS_MARKETS: ${{ inputs.markets || 'h2h' }}
+          ODDS_SPORT: ${{ inputs.sport || '' }}
+          ODDS_MARKETS: ${{ inputs.markets || '' }}
         run: |
+          # Rotate one sport per scheduled run to limit free-quota usage.
+          # Explicit workflow_dispatch selections always take precedence.
+          if [ -z "$ODDS_SPORT" ]; then
+            case "$(date -u +%H)" in
+              11) export ODDS_SPORT=basketball_ncaab ;;
+              14) export ODDS_SPORT=americanfootball_nfl ;;
+              17) export ODDS_SPORT=icehockey_nhl ;;
+              20) export ODDS_SPORT=basketball_nba ;;
+              *) echo 'Unsupported scheduled UTC slot'; exit 1 ;;
+            esac
+          fi
+          export ODDS_MARKETS="${ODDS_MARKETS:-h2h,spreads,totals}"
+          echo "Refreshing $ODDS_SPORT markets $ODDS_MARKETS (one sport per run)"
           if python scripts/fetch_odds.py; then
             echo 'Primary odds provider succeeded'
           elif [ "${ODDS_SPORT}" = 'americanfootball_nfl' ] && [ "${ODDS_MARKETS}" = 'h2h' ]; then
@@ -53,17 +69,17 @@ jobs:
             exit 1
           fi
       - name: Rebuild NHL independent moneyline research feed
-        if: ${{ (inputs.sport || 'americanfootball_nfl') == 'icehockey_nhl' }}
+        if: ${{ inputs.sport == 'icehockey_nhl' || (github.event_name == 'schedule' && github.event.schedule == '10 17 * * *') }}
         run: |
           python scripts/build_nhl_goal_rates.py
           python scripts/build_nhl_ml_predictions.py
       - name: Rebuild NBA moneyline model and research simulations
-        if: ${{ (inputs.sport || 'americanfootball_nfl') == 'basketball_nba' }}
+        if: ${{ inputs.sport == 'basketball_nba' || (github.event_name == 'schedule' && github.event.schedule == '10 20 * * *') }}
         run: |
           python scripts/build_nba_ml_predictions.py
           python scripts/refresh_nba_ml_research_audit.py
       - name: Archive pre-kickoff NFL moneyline prices
-        if: ${{ (inputs.sport || 'americanfootball_nfl') == 'americanfootball_nfl' }}
+        if: ${{ inputs.sport == 'americanfootball_nfl' || (github.event_name == 'schedule' && github.event.schedule == '10 14 * * *') }}
         run: python scripts/archive_nfl_moneyline_snapshots.py odds
       - name: Verify NFL moneyline archive before publishing
         if: ${{ (inputs.sport || 'americanfootball_nfl') == 'americanfootball_nfl' }}
