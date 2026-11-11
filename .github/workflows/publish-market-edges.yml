@@ -25,6 +25,31 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Fetch all four sports in the same batch (manual and scheduled runs)
+        if: ${{ github.event_name != 'workflow_run' }}
+        env:
+          THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
+        shell: bash
+        run: |
+          mkdir -p data
+          : > data/market_refresh_results.txt
+          for sport in basketball_nba icehockey_nhl americanfootball_nfl basketball_ncaab; do
+            echo "::group::Fetch $sport"
+            if ODDS_SPORT="$sport" ODDS_MARKETS=h2h python scripts/fetch_odds.py; then
+              echo "$sport FRESH" >> data/market_refresh_results.txt
+              if [ "$sport" = basketball_nba ]; then
+                python scripts/build_nba_ml_predictions.py
+                python scripts/refresh_nba_ml_research_audit.py
+              elif [ "$sport" = icehockey_nhl ]; then
+                python scripts/build_nhl_goal_rates.py || echo "NHL independent model research unavailable"
+                python scripts/build_nhl_ml_predictions.py
+              fi
+            else
+              echo "$sport UNAVAILABLE" >> data/market_refresh_results.txt
+            fi
+            echo "::endgroup::"
+          done
+          cat data/market_refresh_results.txt
       - name: Validate homepage moneyline engine syntax
         run: node --check home_best_moneyline_parlay.js
       - name: Run scanner validation
@@ -51,6 +76,8 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add data/market_edges.json data/market_edge_readiness.json data/verified_sportsbook_quotes.json data/four_sport_odds_coverage.json
+          if [ -f data/market_refresh_results.txt ]; then git add data/market_refresh_results.txt; fi
+          git add feed/basketball_nba.json feed/icehockey_nhl.json feed/americanfootball_nfl.json feed/basketball_ncaab.json feed/nba_ml_predictions.json feed/nba_ml_simulation_audit.json feed/nhl_ml_predictions.json feed/nhl_expected_goals.json feed/nhl_model_backtest.json feed/latest.json 2>/dev/null || true
           if ! git diff --cached --quiet; then
             git commit -m 'Refresh verified homepage market edges'
             for attempt in 1 2 3 4 5; do
