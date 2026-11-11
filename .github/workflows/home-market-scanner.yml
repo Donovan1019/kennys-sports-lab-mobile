@@ -5,6 +5,7 @@ on:
       - 'scripts/build_market_edges.py'
       - 'tests/test_market_edge_feed.py'
       - '.github/workflows/home-market-scanner.yml'
+      - '.github/workflows/publish-market-edges.yml'
   push:
     branches: [main]
     paths:
