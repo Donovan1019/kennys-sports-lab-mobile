@@ -66,3 +66,9 @@ class JoinTests(unittest.TestCase):
         self.assertFalse(join([m],[q],NOW)["edges"])
     def test_reject_malformed_quote_contracts(self):
         self.assertFalse(join([model()],[None,{"sport":"NBA"},quote() | {"point":"invalid"}],NOW)["edges"])
+    def test_reject_conflicting_matchup_label(self):
+        q=quote();q["event"]="Different Teams @ Another Team"
+        self.assertFalse(join([model()],[q],NOW)["edges"])
+    def test_matching_matchup_label(self):
+        q=quote();q["event"]="A vs B"
+        self.assertEqual(len(join([model()],[q],NOW)["edges"]),1)
