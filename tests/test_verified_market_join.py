@@ -64,3 +64,5 @@ class JoinTests(unittest.TestCase):
         m=model();m.update(event="Away Club @ Home Club",selection_id="home",selection="Home Club",home_team="Home Club",away_team="Away Club")
         q=quote();q["selection_id"]="Away Club"
         self.assertFalse(join([m],[q],NOW)["edges"])
+    def test_reject_malformed_quote_contracts(self):
+        self.assertFalse(join([model()],[None,{"sport":"NBA"},quote() | {"point":"invalid"}],NOW)["edges"])
