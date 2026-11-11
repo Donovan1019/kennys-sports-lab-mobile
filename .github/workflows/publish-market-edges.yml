@@ -50,6 +50,18 @@ jobs:
             echo "::endgroup::"
           done
           cat data/market_refresh_results.txt
+      - name: Materialize independent model-market input contract without false certification
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('data/verified_model_markets.json')
+          if not p.exists():
+              p.write_text(json.dumps({'status':'UNAVAILABLE','markets':[],'reason':'No independently certified lineup and simulation records; research-only forecasts excluded'},indent=2)+'\n')
+          else:
+              obj=json.loads(p.read_text())
+              assert isinstance(obj,dict) and isinstance(obj.get('markets'),list), 'Invalid verified model market contract'
+          PY
       - name: Validate homepage moneyline engine syntax
         run: node --check home_best_moneyline_parlay.js
       - name: Run scanner validation
@@ -75,7 +87,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/market_edges.json data/market_edge_readiness.json data/verified_sportsbook_quotes.json data/four_sport_odds_coverage.json
+          git add data/market_edges.json data/verified_model_markets.json data/market_edge_readiness.json data/verified_sportsbook_quotes.json data/four_sport_odds_coverage.json
           if [ -f data/market_refresh_results.txt ]; then git add data/market_refresh_results.txt; fi
           git add feed/basketball_nba.json feed/icehockey_nhl.json feed/americanfootball_nfl.json feed/basketball_ncaab.json feed/nba_ml_predictions.json feed/nba_ml_simulation_audit.json feed/nhl_ml_predictions.json feed/nhl_expected_goals.json feed/nhl_model_backtest.json feed/latest.json 2>/dev/null || true
           if ! git diff --cached --quiet; then
