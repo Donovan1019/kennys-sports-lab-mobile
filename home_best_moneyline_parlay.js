@@ -69,7 +69,7 @@ async function refresh(){
  try{const response=await fetch('./data/market_edges.json?ts='+Date.now(),{cache:'no-store'});if(!response.ok)throw Error('Verified feed unavailable');const payload=await response.json(),rows=Array.isArray(payload)?payload:payload.edges;
  if(!Array.isArray(rows))throw Error('Invalid verified market feed');
  const eligible=rows.filter(verified),pick=best(eligible);
- if(!pick){if(await researchPreview().catch(()=>false))return;status.textContent='UNAVAILABLE — no verified +100 parlay or fresh independent research candidates. No picks invented.';return}
+ if(!pick){if(await researchPreview().catch(()=>false))return;status.textContent='UNAVAILABLE — '+esc(payload.reason||'No qualified +100 parlay with verified inputs')+'; no fresh research alternative.';return}
  const mc=simulate(pick.legs),simEV=mc.p*pick.d-1;
  status.textContent='COMPLETE · '+mc.n.toLocaleString()+' Monte Carlo trials · '+pick.legs.length+' verified legs';
  ticket.innerHTML='<div class="kml-summary"><strong>'+american(pick.d)+'</strong><span>Simulated win '+(mc.p*100).toFixed(1)+'%</span><span>Model fair '+american(1/pick.p)+'</span><span>Simulated EV '+(simEV*100).toFixed(1)+'%</span></div>'+
