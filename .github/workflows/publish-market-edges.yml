@@ -41,13 +41,7 @@ jobs:
       - name: Normalize verified upstream records only
         shell: bash
         run: |
-          if [ -f data/verified_model_markets.json ] && [ -f data/verified_sportsbook_quotes.json ]; then
-            python -m scripts.join_verified_markets
-          else
-            echo 'Verified independent model markets and sportsbook quotes must both exist; fail closed.'
-            mkdir -p data
-            printf '{"edges":[],"status":"UNAVAILABLE","reason":"Verified independent model markets or sportsbook quotes not connected"}\n' > data/market_edges.json
-          fi
+          python -m scripts.join_verified_markets
       - name: Publish feed only if changed
         shell: bash
         run: |
