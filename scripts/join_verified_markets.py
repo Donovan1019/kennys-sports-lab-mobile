@@ -77,6 +77,8 @@ def join(models, quotes, now=None):
             models_by_key[key] = m
     candidates = []
     for q in rows(quotes, "quotes"):
+        if not isinstance(q, dict):
+            continue
         key = contract(q)
         if key is None:
             continue
@@ -87,6 +89,14 @@ def join(models, quotes, now=None):
                       if mk[0] == key[0] and mk[1] == key[1] and mk[2] == key[2]
                       and mk[4] == key[4] and mapped_quote_key(candidate, q) == mk), None)
         if not m or q.get("price_verified") is not True:
+            continue
+        # Provider event IDs alone are insufficient when event participant labels
+        # conflict. Reject a quote that explicitly names a different matchup.
+        quote_event = q.get("event")
+        if quote_event is not None and (
+            not isinstance(quote_event, str) or
+            quote_event.strip().casefold() != str(m.get("event", "")).strip().casefold()
+        ):
             continue
         if not timestamp(m.get("start_time")) or timestamp(m.get("start_time")) != timestamp(q.get("start_time")):
             continue
