@@ -1,8 +1,14 @@
 name: Publish Four-Sport Market Edges
 on:
   workflow_dispatch:
+  workflow_run:
+    workflows:
+      - Refresh NBA sportsbook odds
+      - Automated NBA ML odds and research refresh
+      - Refresh public odds snapshot
+    types: [completed]
   schedule:
-    - cron: '35 20,22,0 * * *' # after scheduled sportsbook snapshots; no 15-minute polling
+    - cron: '25 20,22 * * *' # safety fallback, not 15-minute polling
 permissions:
   contents: write
 concurrency:
@@ -10,6 +16,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   publish:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
