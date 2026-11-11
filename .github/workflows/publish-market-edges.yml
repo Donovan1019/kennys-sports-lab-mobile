@@ -43,6 +43,8 @@ jobs:
               elif [ "$sport" = icehockey_nhl ]; then
                 python scripts/build_nhl_goal_rates.py || echo "NHL independent model research unavailable"
                 python scripts/build_nhl_ml_predictions.py
+              elif [ "$sport" = basketball_ncaab ]; then
+                python scripts/build_ncaab_ml_predictions.py
               fi
             else
               echo "$sport UNAVAILABLE" >> data/market_refresh_results.txt
@@ -62,8 +64,10 @@ jobs:
               obj=json.loads(p.read_text())
               assert isinstance(obj,dict) and isinstance(obj.get('markets'),list), 'Invalid verified model market contract'
           PY
-      - name: Validate homepage moneyline engine syntax
-        run: node --check home_best_moneyline_parlay.js
+      - name: Validate homepage and NCAA research model syntax
+        run: |
+          node --check home_best_moneyline_parlay.js
+          python -m py_compile scripts/build_ncaab_ml_predictions.py
       - name: Run scanner validation
         run: python -m unittest discover -s tests -p 'test_market_edge_feed.py' -v
       - name: Audit four-sport odds coverage
@@ -89,7 +93,7 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add data/market_edges.json data/verified_model_markets.json data/market_edge_readiness.json data/verified_sportsbook_quotes.json data/four_sport_odds_coverage.json
           if [ -f data/market_refresh_results.txt ]; then git add data/market_refresh_results.txt; fi
-          git add feed/basketball_nba.json feed/icehockey_nhl.json feed/americanfootball_nfl.json feed/basketball_ncaab.json feed/nba_ml_predictions.json feed/nba_ml_simulation_audit.json feed/nhl_ml_predictions.json feed/nhl_expected_goals.json feed/nhl_model_backtest.json feed/latest.json 2>/dev/null || true
+          git add feed/basketball_nba.json feed/icehockey_nhl.json feed/americanfootball_nfl.json feed/basketball_ncaab.json feed/nba_ml_predictions.json feed/nba_ml_simulation_audit.json feed/nhl_ml_predictions.json feed/nhl_expected_goals.json feed/nhl_model_backtest.json feed/ncaab_ml_predictions.json feed/latest.json 2>/dev/null || true
           if ! git diff --cached --quiet; then
             git commit -m 'Refresh verified homepage market edges'
             for attempt in 1 2 3 4 5; do
