@@ -1,0 +1,20 @@
+name: Quant Pro Feed Readiness Validation
+on:
+  pull_request:
+    paths:
+      - 'scripts/market_edge_readiness.py'
+      - 'tests/test_market_edge_readiness.py'
+      - '.github/workflows/publish-market-edges.yml'
+      - '.github/workflows/quant-pro-feed-readiness.yml'
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m unittest tests.test_market_edge_readiness -v
+      - run: python -m scripts.market_edge_readiness
