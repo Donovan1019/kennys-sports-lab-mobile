@@ -34,7 +34,7 @@ def qualify(row, now):
         if type(point) not in (int, float) or not math.isfinite(point):
             return None
     # Explicit model provenance prevents a bookmaker price being relabeled as a model forecast.
-    if row.get("model_source") in (None, "", "sportsbook", "implied_odds"):
+    if not isinstance(row.get("model_source"), str) or not row["model_source"].strip() or row["model_source"].lower() in ("sportsbook", "implied_odds"):
         return None
     if row.get("model_generated_at") is None or timestamp(row.get("model_generated_at")) is None:
         return None
@@ -66,7 +66,7 @@ def build(records, now=None):
         key = (row["sport"], row["event"], row["market"], row["selection"], row.get("point"), row["source"])
         if key not in unique or row["odds_timestamp"] > unique[key]["odds_timestamp"]:
             unique[key] = row
-    return {"generated_at": now.isoformat(), "edges": sorted(unique.values(), key=lambda r: -r["ev"])}
+    return {"generated_at": now.isoformat(), "status": "VERIFIED" if unique else "NO_QUALIFIED_EDGES", "edges": sorted(unique.values(), key=lambda r: -r["ev"])}
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
