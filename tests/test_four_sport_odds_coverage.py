@@ -21,3 +21,13 @@ class CoverageTests(unittest.TestCase):
             p=Path(d)/"feed";p.mkdir()
             (p/"basketball_nba.json").write_text(json.dumps({"status":"ok","sport":"basketball_nba","fetched_at":(NOW-timedelta(minutes=30)).isoformat(),"odds":[]}))
             self.assertEqual(audit(Path(d),NOW)["sports"]["NBA"]["status"],"STALE")
+    def test_malformed_list_snapshot(self):
+        with tempfile.TemporaryDirectory() as d:
+            p=Path(d)/"feed";p.mkdir()
+            (p/"basketball_nba.json").write_text("[]")
+            self.assertEqual(audit(Path(d),NOW)["sports"]["NBA"]["status"],"UNVERIFIED")
+    def test_malformed_odds_object(self):
+        with tempfile.TemporaryDirectory() as d:
+            p=Path(d)/"feed";p.mkdir()
+            (p/"basketball_nba.json").write_text(json.dumps({"status":"ok","sport":"basketball_nba","fetched_at":NOW.isoformat(),"odds":{"unexpected":"shape"}}))
+            self.assertEqual(audit(Path(d),NOW)["sports"]["NBA"]["events_with_quotes"],0)
