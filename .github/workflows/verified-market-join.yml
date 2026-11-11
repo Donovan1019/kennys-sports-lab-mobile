@@ -1,0 +1,21 @@
+name: Verified Market Join Validation
+on:
+  pull_request:
+    paths:
+      - 'scripts/join_verified_markets.py'
+      - 'tests/test_verified_market_join.py'
+      - '.github/workflows/publish-market-edges.yml'
+      - '.github/workflows/verified-market-join.yml'
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m unittest discover -s tests -p 'test_verified_market_join.py' -v
+      - run: python -m unittest discover -s tests -p 'test_market_edge_feed.py' -v
+      - run: python -m compileall -q scripts/join_verified_markets.py
