@@ -1,15 +1,15 @@
 {
   "status": "descriptive_only",
-  "evaluated_games": 1191,
+  "evaluated_games": 1197,
   "minimum_holdout_games": 100,
   "betting_eligible": false,
   "blockers": [
     "overtime_approximation_unvalidated",
     "historical_validation_unverified"
   ],
-  "brier": 0.222105,
-  "log_loss": 0.635626,
-  "accuracy": 0.651553,
+  "brier": 0.222121,
+  "log_loss": 0.635631,
+  "accuracy": 0.651629,
   "calibration_bins": [
     {
       "range": [
@@ -42,12 +42,12 @@
         0.4,
         0.5
       ],
-      "count": 379,
-      "mean_predicted": 0.450053,
-      "observed_win_rate": 0.477573,
+      "count": 384,
+      "mean_predicted": 0.449802,
+      "observed_win_rate": 0.476562,
       "observed_wilson_95": [
-        0.427761,
-        0.527834
+        0.427087,
+        0.526503
       ]
     },
     {
@@ -81,23 +81,23 @@
         0.7,
         0.8
       ],
-      "count": 35,
-      "mean_predicted": 0.727886,
-      "observed_win_rate": 0.857143,
+      "count": 36,
+      "mean_predicted": 0.729611,
+      "observed_win_rate": 0.861111,
       "observed_wilson_95": [
-        0.706241,
-        0.937399
+        0.713401,
+        0.939183
       ]
     }
   ],
   "baseline": {
-    "constant_home_win_rate": 0.551637,
-    "constant_brier": 0.247334,
+    "constant_home_win_rate": 0.551378,
+    "constant_brier": 0.24736,
     "warning": "In-sample constant-rate comparator, not a point-in-time bookmaker or independent out-of-sample baseline."
   },
   "calibration_coverage": {
-    "total_evaluated": 1191,
-    "binned_games": 1191,
+    "total_evaluated": 1197,
+    "binned_games": 1197,
     "excluded_games": 0,
     "small_sample_bins": [
       [
@@ -114,11 +114,11 @@
   "forward_baseline": {
     "status": "descriptive_only",
     "warmup_games": 100,
-    "evaluated_games": 1091,
-    "model_brier": 0.222345,
-    "baseline_brier": 0.247883,
-    "model_log_loss": 0.636034,
-    "baseline_log_loss": 0.688911,
+    "evaluated_games": 1097,
+    "model_brier": 0.222361,
+    "baseline_brier": 0.24791,
+    "model_log_loss": 0.636038,
+    "baseline_log_loss": 0.688966,
     "warning": "Sequential past-only constant-rate baseline; neither independently frozen model validation nor bookmaker comparison."
   },
   "calibration_warning": "Chronological diagnostic only; Wilson intervals reflect binomial sampling uncertainty, not time dependence or model uncertainty. No independent market baseline, executed odds, or validated forward performance."
