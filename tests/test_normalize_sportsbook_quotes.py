@@ -19,3 +19,9 @@ class QuoteTests(unittest.TestCase):
     def test_reject_unapproved_book(self):
         f=feed();f["odds"][0]["bookmaker"]="unknown"
         self.assertFalse(normalize({"NBA":f},NOW)["quotes"])
+    def test_malformed_odds_collection(self):
+        f=feed();f["odds"]=None
+        self.assertFalse(normalize({"NBA":f},NOW)["quotes"])
+    def test_nonfinite_price_rejected(self):
+        f=feed();f["odds"][0]["price"]=float("nan")
+        self.assertFalse(normalize({"NBA":f},NOW)["quotes"])
