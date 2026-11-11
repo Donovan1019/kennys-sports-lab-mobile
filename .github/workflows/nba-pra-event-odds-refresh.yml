@@ -1,0 +1,55 @@
+name: NBA PRA Event Odds Refresh
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '35 15,20,23 * * *'
+permissions:
+  contents: write
+concurrency:
+  group: nba-pra-event-odds-refresh
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Collect fresh NBA event player props
+        env:
+          THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
+          NBA_PROPS_MAX_EVENTS: '12'
+        run: python scripts/fetch_nba_event_props.py
+      - name: Validate current PRA market
+        run: |
+          python - <<'PY'
+          import json
+          from datetime import datetime, timezone, timedelta
+          data=json.load(open('feed/nba_props.json'))
+          now=datetime.now(timezone.utc)
+          stamp=datetime.fromisoformat(data['fetched_at'].replace('Z','+00:00'))
+          assert now-timedelta(minutes=15) < stamp <= now+timedelta(minutes=1)
+          assert any(x.get('market')=='player_points_rebounds_assists' for x in data['odds'])
+          print('Validated',len(data['odds']),'fresh player-prop quotes')
+          PY
+      - name: Publish validated player props
+        run: |
+          set -euo pipefail
+          cp feed/nba_props.json /tmp/nba_props.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git checkout -B main origin/main
+            cp /tmp/nba_props.json feed/nba_props.json
+            git add feed/nba_props.json
+            if git diff --cached --quiet; then echo "Already current"; exit 0; fi
+            git commit -m "Refresh verified NBA player prop odds [skip ci]"
+            if git push origin HEAD:main; then exit 0; fi
+            echo "Concurrent update, retrying"
+          done
+          exit 1
