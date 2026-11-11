@@ -36,7 +36,7 @@ async function researchPreview(){
  for(const entry of loaded){
   if(!entry)continue;
   const {sport,odds,model}=entry;
-  if(odds.status!=='ok'||(sport==='basketball_nba'?(model.status!=='validated'||model.calibration_passed!==true):sport==='icehockey_nhl'?model.status!=='RESEARCH_ONLY':model.status!=='RESEARCH_ONLY'))continue;
+  if(odds.status!=='ok'||(sport==='basketball_nba'?(model.status!=='validated'||model.calibration_passed!==true):sport==='icehockey_nhl'?model.status!=='RESEARCH_ONLY':!(model.status==='RESEARCH_ONLY'&&model.calibration_status==='VALIDATED'&&model.holdout_passed===true)))continue;
   const generated=Date.parse(model.generated_at),fetched=Date.parse(odds.fetched_at);
   if(!Number.isFinite(generated)||!Number.isFinite(fetched)||now-generated<0||now-generated>150*60000||now-fetched<0||now-fetched>15*60000)continue;
   const predictions=new Map();
