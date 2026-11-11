@@ -1,8 +1,6 @@
 name: NBA PRA Event Odds Refresh
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '35 15,20,23 * * *'
 permissions:
   contents: write
 concurrency:
