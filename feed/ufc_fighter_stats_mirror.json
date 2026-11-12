@@ -2,13 +2,36 @@
   "schema": 1,
   "sport": "UFC",
   "source": "Greco1899/scrape_ufc_stats public CSV mirror",
-  "retrieved_at": "2026-11-10T21:16:58.395861+00:00",
+  "retrieved_at": "2026-11-12T21:50:14.467799+00:00",
   "source_files": [
     "ufc_fighter_details.csv",
     "ufc_fighter_tott.csv",
     "ufc_fight_stats.csv"
   ],
   "fighters": [
+    {
+      "name": "Alatengheili",
+      "status": "MATCHED_HISTORICAL_STATS",
+      "source_profile": "http://ufcstats.com/fighter-details/1897b7b913736a7c",
+      "height": "5' 5\"",
+      "weight": "135 lbs.",
+      "reach": "66\"",
+      "stance": "Orthodox",
+      "career_round_totals": {
+        "round_rows": 28,
+        "sig_landed": 368,
+        "sig_attempted": 1154,
+        "total_landed": 557,
+        "td_landed": 17,
+        "td_attempted": 40,
+        "submission_attempts": 0,
+        "knockdowns": 0,
+        "control_seconds": 1268
+      },
+      "fighter_status_verified": false,
+      "stats_asof_verified": false,
+      "bet_eligible": false
+    },
     {
       "name": "Amanda Nunes",
       "status": "MATCHED_HISTORICAL_STATS",
@@ -326,6 +349,29 @@
         "submission_attempts": 0,
         "knockdowns": 0,
         "control_seconds": 510
+      },
+      "fighter_status_verified": false,
+      "stats_asof_verified": false,
+      "bet_eligible": false
+    },
+    {
+      "name": "Juan Diaz",
+      "status": "MATCHED_HISTORICAL_STATS",
+      "source_profile": "http://ufcstats.com/fighter-details/74939a16c7b56f33",
+      "height": "--",
+      "weight": "135 lbs.",
+      "reach": "--",
+      "stance": "",
+      "career_round_totals": {
+        "round_rows": 2,
+        "sig_landed": 13,
+        "sig_attempted": 25,
+        "total_landed": 18,
+        "td_landed": 5,
+        "td_attempted": 8,
+        "submission_attempts": 0,
+        "knockdowns": 0,
+        "control_seconds": 228
       },
       "fighter_status_verified": false,
       "stats_asof_verified": false,
