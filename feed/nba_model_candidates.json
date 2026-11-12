@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "generated_at": "2026-11-11T21:31:24.025331+00:00",
+  "generated_at": "2026-11-12T02:31:22.518104+00:00",
   "model_status": "research_only_not_bet_eligible",
   "prediction_type": "single_leg_empirical_history_not_sgp",
   "predictions": [],
@@ -9,8 +9,8 @@
   },
   "feed_freshness": {
     "status": "stale",
-    "fetched_at": "2026-10-29T20:54:21.966385+00:00",
-    "age_seconds": 1125422.1,
+    "fetched_at": "2026-11-11T22:17:34.467549+00:00",
+    "age_seconds": 15228.1,
     "max_age_seconds": 5400,
     "recovery_workflow": "refresh-nba-nhl-props.yml",
     "recovery_note": "Refresh verified sportsbook quotes; never change fetched_at without fetching fresh quotes."
