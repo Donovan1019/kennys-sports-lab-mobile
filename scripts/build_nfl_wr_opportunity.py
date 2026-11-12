@@ -48,6 +48,12 @@ def main():
         # of full team coverage: do not publish a misleading share.
         declared={number(r,'team_targets') for r in players if number(r,'team_targets') is not None}
         verified_total=next(iter(declared)) if len(declared)==1 else None
+        # nflverse weekly player data has no team_targets column. Use all
+        # recorded player targets only when consistent with team QB attempts.
+        if verified_total is None and not declared:
+            qb_attempts=sum(number(r,'attempts','passing_attempts') or 0 for r in players if r.get('position')=='QB')
+            if qb_attempts >= total and qb_attempts-total <= max(12,qb_attempts*0.25):
+                verified_total=total
         if len(declared)>1:continue
         if verified_total is not None and abs(total-verified_total)>0.01:continue
         if total<=0:continue
@@ -73,7 +79,7 @@ def main():
     if not games:raise SystemExit('No validated team-week opportunity rows; refusing to publish empty feed')
     payload={'season':a.season,'generated_at':datetime.datetime.now(datetime.timezone.utc).isoformat(),
              'source':'supplied verified weekly CSV; charted fields only when present',
-             'coverage':'team-weeks with >=5 recorded players; target share only with verified team_targets',
+             'coverage':'team-weeks with >=5 recorded players; target denominators checked against QB passing attempts or explicit team totals',
              'games':games}
     out=pathlib.Path(a.output);out.parent.mkdir(parents=True,exist_ok=True)
     out.write_text(json.dumps(payload,separators=(',',':'))+'\n')
