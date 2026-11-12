@@ -32,6 +32,12 @@ class MatchTests(unittest.TestCase):
     def test_missing_kickoff_cannot_match(self):
         s=schedule();s['odds'][0].pop('commence_time')
         with self.assertRaisesRegex(ValueError,'No NFL events'):match(staging(),s,NOW)
+    def test_same_event_id_conflicting_kickoff_rejected(self):
+        s=schedule();s['odds'].append(dict(s['odds'][0],commence_time='2026-11-02T19:00:00Z'))
+        with self.assertRaisesRegex(ValueError,'Conflicting schedule event'):match(staging(),s,NOW)
+    def test_duplicate_same_event_and_kickoff_allowed(self):
+        s=schedule();s['odds'].append(dict(s['odds'][0]))
+        self.assertEqual(match(staging(),s,NOW)['schedule_event_count'],1)
     def test_ambiguous_double_header(self):
         s=schedule();s['odds'].append({'event_id':'xyz','event':'New York Giants @ Philadelphia Eagles','commence_time':'2026-11-03T18:00:00Z'})
         result=match(staging(),s,NOW)
