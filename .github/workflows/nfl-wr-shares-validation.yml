@@ -4,6 +4,7 @@ on:
     paths:
       - 'nfl_wr_shares*'
       - 'scripts/build_nfl_wr_opportunity.py'
+      - 'scripts/fetch_nfl_wr_weekly.py'
       - 'tests/test_nfl_wr_opportunity.py'
       - '.github/workflows/nfl-wr-shares-validation.yml'
   workflow_dispatch:
@@ -17,5 +18,10 @@ jobs:
           python-version: '3.11'
       - name: Validate opportunity feed builder
         run: python -m unittest discover -s tests -p test_nfl_wr_opportunity.py
+      - name: Validate live 2026 nflverse integration
+        run: |
+          python scripts/fetch_nfl_wr_weekly.py
+          python scripts/build_nfl_wr_opportunity.py --input tmp/nfl_wr_2026_weekly.csv --season 2026 --output tmp/nfl_wr_opportunity.json
+          python -c "import json; d=json.load(open('tmp/nfl_wr_opportunity.json')); assert len(d['games'])>=100; assert any(x['team_targets'] for x in d['games'])"
       - name: Syntax check UI
         run: node --check nfl_wr_shares.js
