@@ -10,6 +10,11 @@ on:
       - 'scripts/audit_nfl_wr_coverage.py'
       - 'tests/test_nfl_wr_opportunity.py'
       - 'tests/test_nfl_wr_enrichment.py'
+      - 'scripts/fetch_nfl_wr_prop_odds.py'
+      - 'scripts/validate_nfl_wr_betting.py'
+      - 'scripts/build_nfl_wr_betting_feed.py'
+      - 'tests/test_nfl_wr_betting.py'
+      - '.github/workflows/nfl-wr-opportunity-refresh.yml'
       - '.github/workflows/nfl-wr-shares-validation.yml'
   workflow_dispatch:
 jobs:
@@ -39,5 +44,10 @@ jobs:
           JS
       - name: Validate enrichment and coverage scripts
         run: python -m py_compile scripts/fetch_nfl_wr_snap_counts.py scripts/enrich_nfl_wr_opportunity.py scripts/audit_nfl_wr_coverage.py
+      - name: Validate NFL WR betting pipeline
+        run: |
+          python -m unittest discover -s tests -p test_nfl_wr_betting.py
+          python -m py_compile scripts/fetch_nfl_wr_prop_odds.py scripts/build_nfl_wr_betting_feed.py scripts/validate_nfl_wr_betting.py
+          python -m scripts.build_nfl_wr_betting_feed
       - name: Syntax check UI
         run: node --check nfl_wr_shares.js
