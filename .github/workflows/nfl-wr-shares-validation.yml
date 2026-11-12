@@ -4,7 +4,7 @@ on:
     paths:
       - 'nfl_wr_shares*'
       - 'scripts/build_nfl_wr_opportunity.py'
-      - 'scripts/fetch_nfl_wr_weekly.py'
+      - 'scripts/fetch_nfl_wr_weekly.py'\n      - 'scripts/fetch_nfl_wr_snap_counts.py'\n      - 'scripts/enrich_nfl_wr_opportunity.py'\n      - 'scripts/audit_nfl_wr_coverage.py'
       - 'tests/test_nfl_wr_opportunity.py'
       - '.github/workflows/nfl-wr-shares-validation.yml'
   workflow_dispatch:
@@ -31,5 +31,5 @@ jobs:
           if(!source.includes("v===null||v===undefined||v===''")) throw Error('Null values are not protected');
           if(!source.includes('Invalid or empty opportunity feed')) throw Error('Empty feed must fail closed');
           JS
-      - name: Syntax check UI
+      - name: Validate enrichment and coverage scripts\n        run: python -m py_compile scripts/fetch_nfl_wr_snap_counts.py scripts/enrich_nfl_wr_opportunity.py scripts/audit_nfl_wr_coverage.py\n      - name: Syntax check UI
         run: node --check nfl_wr_shares.js
