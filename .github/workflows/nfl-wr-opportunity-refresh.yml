@@ -28,11 +28,11 @@ jobs:
           assert all(g['targets'] is not None for g in p['games'])
           print('Validated',len(p['games']),'rows across',len({g['team'] for g in p['games']}),'teams')
           PY
-      - name: Publish verified data only
+      - name: Try verified PFR snap-count enrichment\n        shell: bash\n        run: |\n          if python scripts/fetch_nfl_wr_snap_counts.py --season 2026; then\n            python scripts/enrich_nfl_wr_opportunity.py --input feed/nfl_wr_opportunity.json --supplement tmp/nfl_wr_snap_counts.csv --source 'nflverse PFR snap counts; exact player IDs' --output feed/nfl_wr_opportunity.json || echo 'Snap enrichment unavailable: no verified matching IDs'\n          else\n            echo 'Snap source unavailable or incompatible: preserving null values'\n          fi\n      - name: Audit player-week metric coverage\n        run: python scripts/audit_nfl_wr_coverage.py\n      - name: Publish verified data only
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add feed/nfl_wr_opportunity.json
+          git add feed/nfl_wr_opportunity.json feed/nfl_wr_coverage.json
           if ! git diff --cached --quiet; then
             git commit -m "Refresh verified 2026 NFL WR opportunity data"
             git push
