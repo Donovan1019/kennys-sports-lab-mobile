@@ -1,0 +1,35 @@
+name: NFL WR Shares Validation
+on:
+  pull_request:
+    paths:
+      - 'nfl_wr_shares*'
+      - 'scripts/build_nfl_wr_opportunity.py'
+      - 'scripts/fetch_nfl_wr_weekly.py'
+      - 'tests/test_nfl_wr_opportunity.py'
+      - '.github/workflows/nfl-wr-shares-validation.yml'
+  workflow_dispatch:
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate opportunity feed builder
+        run: python -m unittest discover -s tests -p test_nfl_wr_opportunity.py
+      - name: Validate live 2026 nflverse integration
+        run: |
+          python scripts/fetch_nfl_wr_weekly.py
+          python scripts/build_nfl_wr_opportunity.py --input tmp/nfl_wr_2026_weekly.csv --season 2026 --output tmp/nfl_wr_opportunity.json
+          python -c "import json; d=json.load(open('tmp/nfl_wr_opportunity.json')); assert len(d['games'])>=100; assert any(x['team_targets'] for x in d['games'])"
+      - name: Verify missing data stays unavailable in UI
+        run: |
+          node - <<'JS'
+          const fs=require('fs');
+          const source=fs.readFileSync('nfl_wr_shares.js','utf8');
+          if(!source.includes("v===null||v===undefined||v===''")) throw Error('Null values are not protected');
+          if(!source.includes('Invalid or empty opportunity feed')) throw Error('Empty feed must fail closed');
+          JS
+      - name: Syntax check UI
+        run: node --check nfl_wr_shares.js
