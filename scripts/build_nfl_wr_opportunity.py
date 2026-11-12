@@ -41,8 +41,15 @@ def main():
         # receiving contributors. This is a conservative integrity check, not proof
         # of complete coverage.
         positions={r['position'] for r in players}
-        if 'QB' not in positions or len({r['player_id'] for r in players})<5:continue
+        if len({r['player_id'] for r in players})<5:continue
         total=sum(number(r,'targets') or 0 for r in players)
+        # A complete, independently supplied team target total is preferred.
+        # Otherwise the sum of individual player rows is not sufficient proof
+        # of full team coverage: do not publish a misleading share.
+        declared={number(r,'team_targets') for r in players if number(r,'team_targets') is not None}
+        verified_total=next(iter(declared)) if len(declared)==1 else None
+        if len(declared)>1:continue
+        if verified_total is not None and abs(total-verified_total)>0.01:continue
         if total<=0:continue
         for row in players:
             if row['position'] not in ('WR','RB','TE'):continue
@@ -50,7 +57,7 @@ def main():
             item={'player_id':row['player_id'],'player_name':row['player_name'],
                   'position':row['position'],'team':team,'game_id':f'{a.season}-{week}-{team}',
                   'game_date':row.get('game_date') or None,'week':week,
-                  'targets':metric('targets'),'team_targets':total,
+                  'targets':metric('targets'),'team_targets':verified_total,
                   'receptions':metric('receptions'),'receiving_yards':metric('receiving_yards'),
                   'receiving_tds':metric('receiving_tds','receiving_touchdowns'),
                   'routes_run':metric('routes_run'),
@@ -66,7 +73,7 @@ def main():
     if not games:raise SystemExit('No validated team-week opportunity rows; refusing to publish empty feed')
     payload={'season':a.season,'generated_at':datetime.datetime.now(datetime.timezone.utc).isoformat(),
              'source':'supplied verified weekly CSV; charted fields only when present',
-             'coverage':'team-weeks with QB and >=5 recorded players',
+             'coverage':'team-weeks with >=5 recorded players; target share only with verified team_targets',
              'games':games}
     out=pathlib.Path(a.output);out.parent.mkdir(parents=True,exist_ok=True)
     out.write_text(json.dumps(payload,separators=(',',':'))+'\n')
