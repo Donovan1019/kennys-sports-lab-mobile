@@ -10,7 +10,7 @@ from urllib.request import Request,urlopen
 BASE="https://raw.githubusercontent.com/Greco1899/scrape_ufc_stats/main/"
 FILES=("ufc_fighter_details.csv","ufc_fighter_tott.csv","ufc_fight_stats.csv")
 def key(s):
- return " ".join("".join(c for c in unicodedata.normalize("NFKD",s.casefold()) if not unicodedata.combining(c)).split())
+ return " ".join(re.sub(r"[^a-z0-9 ]", " ", "".join(c for c in unicodedata.normalize("NFKD",(s or "").casefold()) if not unicodedata.combining(c))).split())
 def read_csv(name):
  if name not in FILES:raise ValueError("Unapproved source file")
  with urlopen(Request(BASE+name,headers={"User-Agent":"KennysSportsLabResearch/1.0"}),timeout=35) as f:

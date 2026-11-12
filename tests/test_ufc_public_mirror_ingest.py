@@ -1,6 +1,9 @@
 import unittest
-from scripts.ufc_public_mirror_ingest import build,pair,secs
+from scripts.ufc_public_mirror_ingest import build,pair,secs,key
 class Tests(unittest.TestCase):
+ def test_name_normalization(self):
+  self.assertEqual(key("José O'Malley"),key("Jose O Malley"))
+  self.assertNotEqual(key("Jane Doe"),key("Jane Roe"))
  def test_parsers(self):
   self.assertEqual(pair("3 of 12"),(3,12));self.assertEqual(pair("---"),(0,0));self.assertEqual(secs("2:14"),134)
  def test_match(self):

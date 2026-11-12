@@ -2,6 +2,8 @@ name: UFC Public Mirror Ingestion
 on:
   pull_request:
   workflow_dispatch:
+  schedule:
+    - cron: '15 10 * * *'
 jobs:
   validate:
     runs-on: ubuntu-latest
@@ -23,3 +25,9 @@ jobs:
           assert r['bet_eligible'] is False
           assert len(r['fighters'])>0
           PY
+      - name: Publish refreshed UFCStats snapshot as CI artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ufc-fighter-stats-refreshed
+          path: /tmp/ufc_fighter_stats_mirror.json
+          retention-days: 14
