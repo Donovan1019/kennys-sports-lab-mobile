@@ -1,6 +1,6 @@
 {
   "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
-  "checked_at": "2026-11-12T19:47:35.455294+00:00",
+  "checked_at": "2026-11-12T19:54:40.777536+00:00",
   "status": "OBSERVED_UNVERIFIED_FOR_GAME_DAY",
   "verified_player_reports": 0,
   "observed_reports": 800,
@@ -3309,6 +3309,18 @@
     {
       "team_id": "9",
       "team": "Green Bay Packers",
+      "player": "Josh Whyle",
+      "espn_athlete_id": null,
+      "status": "Out",
+      "reported_at": "2026-11-12T19:34Z",
+      "source": "ESPN injury feed",
+      "confirmed_inactive": false,
+      "confirmed_active": false,
+      "usage_adjustment_eligible": false
+    },
+    {
+      "team_id": "9",
+      "team": "Green Bay Packers",
       "player": "Zaire Franklin",
       "espn_athlete_id": null,
       "status": "Out",
@@ -3541,18 +3553,6 @@
       "espn_athlete_id": null,
       "status": "Active",
       "reported_at": "2026-11-10T16:24Z",
-      "source": "ESPN injury feed",
-      "confirmed_inactive": false,
-      "confirmed_active": false,
-      "usage_adjustment_eligible": false
-    },
-    {
-      "team_id": "9",
-      "team": "Green Bay Packers",
-      "player": "Josh Whyle",
-      "espn_athlete_id": null,
-      "status": "Questionable",
-      "reported_at": "2026-11-10T15:44Z",
       "source": "ESPN injury feed",
       "confirmed_inactive": false,
       "confirmed_active": false,
