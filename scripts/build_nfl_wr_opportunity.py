@@ -48,12 +48,14 @@ def main():
         # of full team coverage: do not publish a misleading share.
         declared={number(r,'team_targets') for r in players if number(r,'team_targets') is not None}
         verified_total=next(iter(declared)) if len(declared)==1 else None
+        denominator_source='explicit_team_targets' if verified_total is not None else None
         # nflverse weekly player data has no team_targets column. Use all
         # recorded player targets only when consistent with team QB attempts.
         if verified_total is None and not declared:
             qb_attempts=sum(number(r,'attempts','passing_attempts') or 0 for r in players if r.get('position')=='QB')
             if qb_attempts >= total and qb_attempts-total <= max(12,qb_attempts*0.25):
                 verified_total=total
+                denominator_source='player_targets_qb_attempts_consistency_check'
         if len(declared)>1:continue
         if verified_total is not None and abs(total-verified_total)>0.01:continue
         if total<=0:continue
@@ -61,7 +63,7 @@ def main():
             if row['position'] not in ('WR','RB','TE'):continue
             def metric(*keys):return number(row,*keys)
             item={'player_id':row['player_id'],'player_name':row['player_name'],
-                  'position':row['position'],'team':team,'game_id':f'{a.season}-{week}-{team}',
+                  'position':row['position'],'team':team,'season':a.season,'denominator_source':denominator_source,'game_id':f'{a.season}-{week}-{team}',
                   'game_date':row.get('game_date') or None,'week':week,
                   'targets':metric('targets'),'team_targets':verified_total,
                   'receptions':metric('receptions'),'receiving_yards':metric('receiving_yards'),
