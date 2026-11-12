@@ -1,0 +1,21 @@
+name: NFL WR Shares Validation
+on:
+  pull_request:
+    paths:
+      - 'nfl_wr_shares*'
+      - 'scripts/build_nfl_wr_opportunity.py'
+      - 'tests/test_nfl_wr_opportunity.py'
+      - '.github/workflows/nfl-wr-shares-validation.yml'
+  workflow_dispatch:
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate opportunity feed builder
+        run: python -m unittest discover -s tests -p test_nfl_wr_opportunity.py
+      - name: Syntax check UI
+        run: node --check nfl_wr_shares.js
