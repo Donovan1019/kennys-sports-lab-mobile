@@ -44,8 +44,7 @@ def main():
     else:
         result = process({"picks":join(json.loads(ODDS.read_text()),json.loads(PREDICTIONS.read_text()))})
     OUTPUT.parent.mkdir(parents=True,exist_ok=True)
-    OUTPUT.write_text(json.dumps(result,indent=2)+"
-")
+    OUTPUT.write_text(json.dumps(result,indent=2)+"\\n")
     print("Validated",len(result["picks"]),"exact-match WR betting candidates")
 
 if __name__ == "__main__":
