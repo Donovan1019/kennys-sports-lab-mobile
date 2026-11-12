@@ -28,11 +28,37 @@ jobs:
           assert all(g['targets'] is not None for g in p['games'])
           print('Validated',len(p['games']),'rows across',len({g['team'] for g in p['games']}),'teams')
           PY
+      - name: Try verified PFR snap-count enrichment
+        shell: bash
+        run: |
+          if python scripts/fetch_nfl_wr_snap_counts.py --season 2026; then
+            python scripts/enrich_nfl_wr_opportunity.py --input feed/nfl_wr_opportunity.json --supplement tmp/nfl_wr_snap_counts.csv --source 'nflverse PFR snap counts; exact player IDs' --output feed/nfl_wr_opportunity.json || echo 'Snap enrichment unavailable: no verified matching IDs'
+          else
+            echo 'Snap source unavailable or incompatible: preserving null values'
+          fi
+      - name: Apply verified charting export when supplied
+        shell: bash
+        run: |
+          if [ -f data/nfl_wr_verified_charting_2026.csv ]; then
+            python scripts/enrich_nfl_wr_opportunity.py --input feed/nfl_wr_opportunity.json --supplement data/nfl_wr_verified_charting_2026.csv --source 'verified charting export; provider attribution required' --output feed/nfl_wr_opportunity.json
+          else
+            echo 'No authorized charting export supplied; route/first-read/end-zone remain unavailable'
+          fi
+      - name: Enrich verified charting exports when present
+        shell: bash
+        run: |
+          shopt -s nullglob
+          for dataset in data/nfl_wr_verified/*.csv; do
+            provider=$(basename "$dataset" .csv)
+            python scripts/enrich_nfl_wr_opportunity.py --input feed/nfl_wr_opportunity.json --supplement "$dataset" --source "verified charting export: $provider" --output feed/nfl_wr_opportunity.json
+          done
+      - name: Audit player-week metric coverage
+        run: python scripts/audit_nfl_wr_coverage.py
       - name: Publish verified data only
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add feed/nfl_wr_opportunity.json
+          git add feed/nfl_wr_opportunity.json feed/nfl_wr_coverage.json
           if ! git diff --cached --quiet; then
             git commit -m "Refresh verified 2026 NFL WR opportunity data"
             git push
