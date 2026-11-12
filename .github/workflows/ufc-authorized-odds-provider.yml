@@ -1,0 +1,16 @@
+name: UFC Authorized Odds Provider Adapter
+on:
+  push:
+    branches:
+      - feature/ufc-odds-api-provider-20261023
+  pull_request:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m unittest discover -s tests -p test_ufc_theoddsapi_adapter.py -v
