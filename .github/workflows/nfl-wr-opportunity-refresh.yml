@@ -54,11 +54,13 @@ jobs:
           done
       - name: Audit player-week metric coverage
         run: python scripts/audit_nfl_wr_coverage.py
+      - name: Build fail-closed WR betting feed
+        run: python -m scripts.build_nfl_wr_betting_feed
       - name: Publish verified data only
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add feed/nfl_wr_opportunity.json feed/nfl_wr_coverage.json
+          git add feed/nfl_wr_opportunity.json feed/nfl_wr_coverage.json feed/nfl_wr_betting.json
           if ! git diff --cached --quiet; then
             git commit -m "Refresh verified 2026 NFL WR opportunity data"
             git push
