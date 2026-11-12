@@ -4,8 +4,12 @@ on:
     paths:
       - 'nfl_wr_shares*'
       - 'scripts/build_nfl_wr_opportunity.py'
-      - 'scripts/fetch_nfl_wr_weekly.py'\n      - 'scripts/fetch_nfl_wr_snap_counts.py'\n      - 'scripts/enrich_nfl_wr_opportunity.py'\n      - 'scripts/audit_nfl_wr_coverage.py'
-      - 'tests/test_nfl_wr_opportunity.py'\n      - 'tests/test_nfl_wr_enrichment.py'
+      - 'scripts/fetch_nfl_wr_weekly.py'
+      - 'scripts/fetch_nfl_wr_snap_counts.py'
+      - 'scripts/enrich_nfl_wr_opportunity.py'
+      - 'scripts/audit_nfl_wr_coverage.py'
+      - 'tests/test_nfl_wr_opportunity.py'
+      - 'tests/test_nfl_wr_enrichment.py'
       - '.github/workflows/nfl-wr-shares-validation.yml'
   workflow_dispatch:
 jobs:
@@ -17,7 +21,9 @@ jobs:
         with:
           python-version: '3.11'
       - name: Validate opportunity feed builder
-        run: |\n          python -m unittest discover -s tests -p test_nfl_wr_opportunity.py\n          python -m unittest discover -s tests -p test_nfl_wr_enrichment.py
+        run: |
+          python -m unittest discover -s tests -p test_nfl_wr_opportunity.py
+          python -m unittest discover -s tests -p test_nfl_wr_enrichment.py
       - name: Validate live 2026 nflverse integration
         run: |
           python scripts/fetch_nfl_wr_weekly.py
@@ -31,5 +37,7 @@ jobs:
           if(!source.includes("v===null||v===undefined||v===''")) throw Error('Null values are not protected');
           if(!source.includes('Invalid or empty opportunity feed')) throw Error('Empty feed must fail closed');
           JS
-      - name: Validate enrichment and coverage scripts\n        run: python -m py_compile scripts/fetch_nfl_wr_snap_counts.py scripts/enrich_nfl_wr_opportunity.py scripts/audit_nfl_wr_coverage.py\n      - name: Syntax check UI
+      - name: Validate enrichment and coverage scripts
+        run: python -m py_compile scripts/fetch_nfl_wr_snap_counts.py scripts/enrich_nfl_wr_opportunity.py scripts/audit_nfl_wr_coverage.py
+      - name: Syntax check UI
         run: node --check nfl_wr_shares.js
