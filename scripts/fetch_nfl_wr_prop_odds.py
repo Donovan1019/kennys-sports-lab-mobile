@@ -46,7 +46,7 @@ def fetch(key, limit=2, get=get_json):
                 for outcome in market.get("outcomes",[]):
                     if not outcome.get("description") or not isinstance(outcome.get("price"),(int,float)):
                         continue
-                    rows.append({"event_id":event["id"],"commence_time":event["commence_time"],"player_name":outcome["description"],"market":market["key"],"side":outcome.get("name"),"line":outcome.get("point"),"american_odds":outcome["price"],"book":book["key"],"verified_at":market.get("last_update") or book.get("last_update"),"source":"the-odds-api-v4"})
+                    rows.append({"event_id":event["id"],"commence_time":event["commence_time"],"player_name":outcome["description"],"market":market["key"],"side":outcome.get("name"),"line":(0.5 if market["key"]=="player_anytime_td" and outcome.get("point") is None else outcome.get("point")),"american_odds":outcome["price"],"book":book["key"],"verified_at":market.get("last_update") or book.get("last_update"),"source":"the-odds-api-v4"})
     return rows
 
 def main():
