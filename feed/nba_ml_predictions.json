@@ -1,7 +1,7 @@
 {
   "status": "validated",
   "sport": "basketball_nba",
-  "generated_at": "2026-11-11T23:31:32.401352+00:00",
+  "generated_at": "2026-11-12T00:44:28.250830+00:00",
   "calibration_passed": true,
   "model_version": "elo-walkforward-v1-holdout-audit",
   "validation_report": {
@@ -24,42 +24,6 @@
   },
   "training_cutoff": "2026-11-11T04:00Z",
   "predictions": [
-    {
-      "event_id": "37f4c00ff7ec01d5aa7c33dd1ac84bbc",
-      "team": "Toronto Raptors",
-      "date_et": "2026-11-11",
-      "win_probability": 0.360215
-    },
-    {
-      "event_id": "37f4c00ff7ec01d5aa7c33dd1ac84bbc",
-      "team": "Boston Celtics",
-      "date_et": "2026-11-11",
-      "win_probability": 0.639785
-    },
-    {
-      "event_id": "095441822e3b9b1b84bff9e482b9057a",
-      "team": "New York Knicks",
-      "date_et": "2026-11-11",
-      "win_probability": 0.639974
-    },
-    {
-      "event_id": "095441822e3b9b1b84bff9e482b9057a",
-      "team": "Cleveland Cavaliers",
-      "date_et": "2026-11-11",
-      "win_probability": 0.360026
-    },
-    {
-      "event_id": "e9545a3084389f5f3429e19fea891124",
-      "team": "Indiana Pacers",
-      "date_et": "2026-11-11",
-      "win_probability": 0.588063
-    },
-    {
-      "event_id": "e9545a3084389f5f3429e19fea891124",
-      "team": "Washington Wizards",
-      "date_et": "2026-11-11",
-      "win_probability": 0.411937
-    },
     {
       "event_id": "e6a37eea1dddcbd0384c81237e81f47f",
       "team": "New Orleans Pelicans",
