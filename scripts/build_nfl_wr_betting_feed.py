@@ -18,7 +18,9 @@ def join(odds, predictions):
                 index[key] = None  # ambiguous projections must never match
             else:
                 index[key] = p
-    for quote in odds.get("odds", []):\n        if not isinstance(quote,dict):\n            continue
+    for quote in odds.get("odds", []):
+        if not isinstance(quote,dict):
+            continue
         market = MARKETS.get(quote.get("market"))
         side = str(quote.get("side","")).lower()
         if market == "receiving_touchdowns" and side == "yes":
@@ -30,7 +32,9 @@ def join(odds, predictions):
         candidate = dict(p)
         candidate.update({k:quote[k] for k in ("player_name","line","american_odds","book","verified_at","event_id")})
         candidate["market"] = market
-        candidate["side"] = side\n        if candidate.get("team") != p.get("team"):\n            continue
+        candidate["side"] = side
+        if candidate.get("team") != p.get("team"):
+            continue
         candidates.append(candidate)
     return candidates
 
@@ -40,7 +44,8 @@ def main():
     else:
         result = process({"picks":join(json.loads(ODDS.read_text()),json.loads(PREDICTIONS.read_text()))})
     OUTPUT.parent.mkdir(parents=True,exist_ok=True)
-    OUTPUT.write_text(json.dumps(result,indent=2)+"\n")
+    OUTPUT.write_text(json.dumps(result,indent=2)+"
+")
     print("Validated",len(result["picks"]),"exact-match WR betting candidates")
 
 if __name__ == "__main__":
