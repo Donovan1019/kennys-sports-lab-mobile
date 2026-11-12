@@ -18,7 +18,7 @@ def join(odds, predictions):
                 index[key] = None  # ambiguous projections must never match
             else:
                 index[key] = p
-    for quote in odds.get("odds", []):
+    for quote in odds.get("odds", []):\n        if not isinstance(quote,dict):\n            continue
         market = MARKETS.get(quote.get("market"))
         side = str(quote.get("side","")).lower()
         if market == "receiving_touchdowns" and side == "yes":
@@ -30,7 +30,7 @@ def join(odds, predictions):
         candidate = dict(p)
         candidate.update({k:quote[k] for k in ("player_name","line","american_odds","book","verified_at","event_id")})
         candidate["market"] = market
-        candidate["side"] = side
+        candidate["side"] = side\n        if candidate.get("team") != p.get("team"):\n            continue
         candidates.append(candidate)
     return candidates
 
