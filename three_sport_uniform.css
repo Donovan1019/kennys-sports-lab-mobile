@@ -4,3 +4,12 @@
 .ksl-unified-sections a{display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;min-height:42px;padding:10px 14px;background:#10283a;border:1px solid #42677b;border-radius:10px;color:#eaf3ff;text-decoration:none;font-size:14px;font-weight:700;scroll-snap-align:start}
 .ksl-unified-sections a:focus-visible,.ksl-unified-sections a:hover{border-color:#91eaff;background:#163a4c;outline-offset:2px}
 @media(max-width:600px){.ksl-unified-sections{margin-inline:-4px;padding-inline:4px}.ksl-unified-sections a{min-height:44px}}
+
+/* Unified research palette shared by NBA, NFL, NHL and WR Shares. */
+:root{--ksl-bg:#090909;--ksl-card:#18191b;--ksl-border:#303234;--ksl-text:#f5f5f5;--ksl-accent:#f3c621;--ksl-green:#16a34a;--ksl-muted:#a1a1a5}
+.ksl-nav{background:#101112;border-bottom-color:#292b2d}
+.ksl-nav a{background:#1b1d1f;border-color:#303234;border-radius:12px;color:#f5f5f5}
+.ksl-nav a[aria-current="page"]{background:#302a14;border-color:#f3c621;color:#f3c621}
+.ksl-unified-sections a{background:#18191b;border-color:#353638;border-radius:12px;color:#f5f5f5}
+.ksl-unified-sections a:hover,.ksl-unified-sections a:focus-visible,.ksl-unified-sections a[aria-current="page"]{background:#302a14;border-color:#f3c621;color:#f3c621}
+.ksl-shell h1{color:#f5f5f5}.ksl-frame{background:#101112;border-color:#303234}
