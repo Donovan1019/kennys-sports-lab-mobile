@@ -23,5 +23,13 @@ jobs:
           python scripts/fetch_nfl_wr_weekly.py
           python scripts/build_nfl_wr_opportunity.py --input tmp/nfl_wr_2026_weekly.csv --season 2026 --output tmp/nfl_wr_opportunity.json
           python -c "import json; d=json.load(open('tmp/nfl_wr_opportunity.json')); assert len(d['games'])>=100; assert any(x['team_targets'] for x in d['games'])"
+      - name: Verify missing data stays unavailable in UI
+        run: |
+          node - <<'JS'
+          const fs=require('fs');
+          const source=fs.readFileSync('nfl_wr_shares.js','utf8');
+          if(!source.includes("v===null||v===undefined||v===''")) throw Error('Null values are not protected');
+          if(!source.includes('Invalid or empty opportunity feed')) throw Error('Empty feed must fail closed');
+          JS
       - name: Syntax check UI
         run: node --check nfl_wr_shares.js
