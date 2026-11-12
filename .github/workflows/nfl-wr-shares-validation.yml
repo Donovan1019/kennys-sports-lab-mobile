@@ -5,7 +5,7 @@ on:
       - 'nfl_wr_shares*'
       - 'scripts/build_nfl_wr_opportunity.py'
       - 'scripts/fetch_nfl_wr_weekly.py'\n      - 'scripts/fetch_nfl_wr_snap_counts.py'\n      - 'scripts/enrich_nfl_wr_opportunity.py'\n      - 'scripts/audit_nfl_wr_coverage.py'
-      - 'tests/test_nfl_wr_opportunity.py'
+      - 'tests/test_nfl_wr_opportunity.py'\n      - 'tests/test_nfl_wr_enrichment.py'
       - '.github/workflows/nfl-wr-shares-validation.yml'
   workflow_dispatch:
 jobs:
@@ -17,7 +17,7 @@ jobs:
         with:
           python-version: '3.11'
       - name: Validate opportunity feed builder
-        run: python -m unittest discover -s tests -p test_nfl_wr_opportunity.py
+        run: |\n          python -m unittest discover -s tests -p test_nfl_wr_opportunity.py\n          python -m unittest discover -s tests -p test_nfl_wr_enrichment.py
       - name: Validate live 2026 nflverse integration
         run: |
           python scripts/fetch_nfl_wr_weekly.py
