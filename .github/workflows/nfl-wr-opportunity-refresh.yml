@@ -1,0 +1,39 @@
+name: Refresh NFL WR Opportunity Feed
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '30 11 * * 2,4'
+permissions:
+  contents: write
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Download verified nflverse 2026 weekly data
+        run: python scripts/fetch_nfl_wr_weekly.py
+      - name: Build and validate WR feed
+        run: |
+          python scripts/build_nfl_wr_opportunity.py --input tmp/nfl_wr_2026_weekly.csv --season 2026
+          python - <<'PY'
+          import json
+          p=json.load(open('feed/nfl_wr_opportunity.json'))
+          assert len(p['games'])>=100
+          assert len({g['team'] for g in p['games']})>=20
+          assert all(g['targets'] is not None for g in p['games'])
+          print('Validated',len(p['games']),'rows across',len({g['team'] for g in p['games']}),'teams')
+          PY
+      - name: Publish verified data only
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add feed/nfl_wr_opportunity.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Refresh verified 2026 NFL WR opportunity data"
+            git push
+          fi
