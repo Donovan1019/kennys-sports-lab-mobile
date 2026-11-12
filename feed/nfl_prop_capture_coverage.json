@@ -1,11 +1,6 @@
 {
   "schedule_games": [
     {
-      "event_id": "17ad7eff2f7875e20a8109abe40470e3",
-      "event": "Buffalo Bills @ Minnesota Vikings",
-      "commence_time": "2026-11-10T01:15:00Z"
-    },
-    {
       "event_id": "74d39e19225caf211ad2c8eb4110179f",
       "event": "Washington Commanders @ New York Giants",
       "commence_time": "2026-11-13T01:15:00Z"
@@ -74,18 +69,79 @@
       "event_id": "35e3bdff558b5d1506251e814986f164",
       "event": "Los Angeles Chargers @ Baltimore Ravens",
       "commence_time": "2026-11-17T01:15:00Z"
+    },
+    {
+      "event_id": "66f9e83cf025d58acee12bce18661fb3",
+      "event": "Indianapolis Colts @ Houston Texans",
+      "commence_time": "2026-11-20T01:15:00Z"
+    },
+    {
+      "event_id": "403a88701352da05b0710a9e883b803e",
+      "event": "Arizona Cardinals @ Kansas City Chiefs",
+      "commence_time": "2026-11-22T18:00:00Z"
+    },
+    {
+      "event_id": "4527f57f5bc32742d8194af1ccf7da7e",
+      "event": "Baltimore Ravens @ Carolina Panthers",
+      "commence_time": "2026-11-22T18:00:00Z"
+    },
+    {
+      "event_id": "4c5b1c0843a260278e95eb93e7787576",
+      "event": "Miami Dolphins @ Buffalo Bills",
+      "commence_time": "2026-11-22T18:00:00Z"
+    },
+    {
+      "event_id": "3ea90704fb576633bd1e2fa5aafd9ea3",
+      "event": "New Orleans Saints @ Chicago Bears",
+      "commence_time": "2026-11-22T18:00:00Z"
+    },
+    {
+      "event_id": "5e63079b678f8c13419adc169fff02d3",
+      "event": "Tennessee Titans @ Dallas Cowboys",
+      "commence_time": "2026-11-22T18:00:00Z"
+    },
+    {
+      "event_id": "41e2dd69bddd65d7e823d9ed61cc2afc",
+      "event": "Tampa Bay Buccaneers @ Detroit Lions",
+      "commence_time": "2026-11-22T18:00:00Z"
+    },
+    {
+      "event_id": "cbe45bafcc2615fc1d96cbc12840377a",
+      "event": "Pittsburgh Steelers @ Philadelphia Eagles",
+      "commence_time": "2026-11-22T18:00:00Z"
+    },
+    {
+      "event_id": "4b20b742b6168aaca4f25d87f11b1526",
+      "event": "New York Jets @ Los Angeles Chargers",
+      "commence_time": "2026-11-22T21:05:00Z"
+    },
+    {
+      "event_id": "1940706a79cbcbafacdcbf231069716b",
+      "event": "Las Vegas Raiders @ Denver Broncos",
+      "commence_time": "2026-11-22T21:25:00Z"
+    },
+    {
+      "event_id": "8ba112fabf4e87639338a5f437c5abfe",
+      "event": "Jacksonville Jaguars @ New York Giants",
+      "commence_time": "2026-11-22T21:25:00Z"
+    },
+    {
+      "event_id": "60e1d27b083a335b722c2c852ea85612",
+      "event": "Minnesota Vikings @ San Francisco 49ers",
+      "commence_time": "2026-11-23T01:20:00Z"
+    },
+    {
+      "event_id": "3a60ed1d20004aa4d4772b2c1a2272e7",
+      "event": "Cincinnati Bengals @ Washington Commanders",
+      "commence_time": "2026-11-24T01:15:00Z"
     }
   ],
-  "generated_at": "2026-11-09T23:23:48.433821+00:00",
-  "target_date": "2026-11-09",
-  "expected_upcoming_events": 1,
-  "requested_events": 1,
+  "generated_at": "2026-11-12T21:26:05.795386+00:00",
+  "target_date": null,
+  "expected_upcoming_events": 27,
+  "requested_events": 16,
   "cached_complete_events": 0,
   "captured_event_ids": [
-    "17ad7eff2f7875e20a8109abe40470e3"
-  ],
-  "captured_events": 1,
-  "missing_event_ids": [
     "74d39e19225caf211ad2c8eb4110179f",
     "b8c10fdf1e0ac4e13deee7f7c0af0b0b",
     "3c71d515b726f1096aabb435badb83fd",
@@ -101,14 +157,54 @@
     "48e497c230e6c9afcb3b600091d28e17",
     "35e3bdff558b5d1506251e814986f164"
   ],
-  "unrequested_events": 0,
+  "captured_events": 14,
+  "missing_event_ids": [
+    "66f9e83cf025d58acee12bce18661fb3",
+    "403a88701352da05b0710a9e883b803e",
+    "4527f57f5bc32742d8194af1ccf7da7e",
+    "4c5b1c0843a260278e95eb93e7787576",
+    "3ea90704fb576633bd1e2fa5aafd9ea3",
+    "5e63079b678f8c13419adc169fff02d3",
+    "41e2dd69bddd65d7e823d9ed61cc2afc",
+    "cbe45bafcc2615fc1d96cbc12840377a",
+    "4b20b742b6168aaca4f25d87f11b1526",
+    "1940706a79cbcbafacdcbf231069716b",
+    "8ba112fabf4e87639338a5f437c5abfe",
+    "60e1d27b083a335b722c2c852ea85612",
+    "3a60ed1d20004aa4d4772b2c1a2272e7"
+  ],
+  "unrequested_events": 11,
   "complete": false,
-  "requested_scope_complete": true,
-  "errors": [],
+  "requested_scope_complete": false,
+  "errors": [
+    {
+      "event_id": "66f9e83cf025d58acee12bce18661fb3",
+      "error": "no_supported_bookmaker_props"
+    },
+    {
+      "event_id": "403a88701352da05b0710a9e883b803e",
+      "error": "no_supported_bookmaker_props"
+    }
+  ],
   "status": "PARTIAL",
-  "requested_scope_status": "COMPLETE",
+  "requested_scope_status": "PARTIAL",
   "retry_missing_only": false,
   "attempted_event_ids": [
-    "17ad7eff2f7875e20a8109abe40470e3"
+    "74d39e19225caf211ad2c8eb4110179f",
+    "b8c10fdf1e0ac4e13deee7f7c0af0b0b",
+    "3c71d515b726f1096aabb435badb83fd",
+    "1057d50949844ddf483da9c8c20354be",
+    "e5aa20e1364dd639f042af1c2281bbe2",
+    "be0e03cc42fbc9b6962467b22c7bf9dd",
+    "5d8d85473b87f772a979ecf294acab94",
+    "b5700b4d938fd94429f60d4622cc9c0a",
+    "28800df7e768ecec14f116454d560f9b",
+    "6c932a965110f3f89ec4a5f1a6ac256e",
+    "6079a5cbabf99b265a17edfc92a1da60",
+    "7627192fd89b05120ab6c712aa23fd81",
+    "48e497c230e6c9afcb3b600091d28e17",
+    "35e3bdff558b5d1506251e814986f164",
+    "66f9e83cf025d58acee12bce18661fb3",
+    "403a88701352da05b0710a9e883b803e"
   ]
 }
