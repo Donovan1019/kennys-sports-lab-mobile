@@ -1,9 +1,37 @@
 {
   "season": "2026-27",
   "source": "ESPN public NBA team schedules (NBA league schedule cross-reference)",
-  "updated_at": "2026-11-10T17:53:36.557485+00:00",
-  "games_in_schedule": 1112,
+  "updated_at": "2026-11-13T17:45:45.371560+00:00",
+  "games_in_schedule": 1116,
   "upcoming_b2b": [
+    {
+      "previous_date": "2026-10-23",
+      "date": "2026-10-24",
+      "team": "ATL",
+      "opponent": "HOU",
+      "from": "Charlotte",
+      "to": "Atlanta",
+      "from_venue": "CHA",
+      "to_venue": "ATL",
+      "changed_venue": true,
+      "pattern": "away → home",
+      "game_id": "401909856",
+      "status": "SCHEDULED"
+    },
+    {
+      "previous_date": "2026-10-23",
+      "date": "2026-10-24",
+      "team": "HOU",
+      "opponent": "ATL",
+      "from": "San Antonio",
+      "to": "Atlanta",
+      "from_venue": "SAS",
+      "to_venue": "ATL",
+      "changed_venue": true,
+      "pattern": "away → away",
+      "game_id": "401909856",
+      "status": "SCHEDULED"
+    },
     {
       "previous_date": "2026-10-23",
       "date": "2026-10-24",
@@ -72,34 +100,6 @@
       "changed_venue": true,
       "pattern": "home → away",
       "game_id": "401909860",
-      "status": "SCHEDULED"
-    },
-    {
-      "previous_date": "2026-10-23",
-      "date": "2026-10-24",
-      "team": "ATL",
-      "opponent": "HOU",
-      "from": "Charlotte",
-      "to": "Atlanta",
-      "from_venue": "CHA",
-      "to_venue": "ATL",
-      "changed_venue": true,
-      "pattern": "away → home",
-      "game_id": "401909856",
-      "status": "SCHEDULED"
-    },
-    {
-      "previous_date": "2026-10-23",
-      "date": "2026-10-24",
-      "team": "HOU",
-      "opponent": "ATL",
-      "from": "San Antonio",
-      "to": "Atlanta",
-      "from_venue": "SAS",
-      "to_venue": "ATL",
-      "changed_venue": true,
-      "pattern": "away → away",
-      "game_id": "401909856",
       "status": "SCHEDULED"
     },
     {
@@ -357,6 +357,20 @@
     {
       "previous_date": "2026-11-01",
       "date": "2026-11-02",
+      "team": "IND",
+      "opponent": "ATL",
+      "from": "Indianapolis",
+      "to": "Indianapolis",
+      "from_venue": "IND",
+      "to_venue": "IND",
+      "changed_venue": false,
+      "pattern": "home → home",
+      "game_id": "401909909",
+      "status": "SCHEDULED"
+    },
+    {
+      "previous_date": "2026-11-01",
+      "date": "2026-11-02",
       "team": "BOS",
       "opponent": "HOU",
       "from": "Orlando",
@@ -394,20 +408,6 @@
       "changed_venue": false,
       "pattern": "home → home",
       "game_id": "401909919",
-      "status": "SCHEDULED"
-    },
-    {
-      "previous_date": "2026-11-01",
-      "date": "2026-11-02",
-      "team": "IND",
-      "opponent": "ATL",
-      "from": "Indianapolis",
-      "to": "Indianapolis",
-      "from_venue": "IND",
-      "to_venue": "IND",
-      "changed_venue": false,
-      "pattern": "home → home",
-      "game_id": "401909909",
       "status": "SCHEDULED"
     },
     {
@@ -539,6 +539,20 @@
     {
       "previous_date": "2026-11-08",
       "date": "2026-11-09",
+      "team": "LAL",
+      "opponent": "ATL",
+      "from": "Detroit",
+      "to": "Atlanta",
+      "from_venue": "DET",
+      "to_venue": "ATL",
+      "changed_venue": true,
+      "pattern": "away → away",
+      "game_id": "401909952",
+      "status": "SCHEDULED"
+    },
+    {
+      "previous_date": "2026-11-08",
+      "date": "2026-11-09",
       "team": "DAL",
       "opponent": "IND",
       "from": "Dallas",
@@ -562,20 +576,6 @@
       "changed_venue": true,
       "pattern": "away → away",
       "game_id": "401909959",
-      "status": "SCHEDULED"
-    },
-    {
-      "previous_date": "2026-11-08",
-      "date": "2026-11-09",
-      "team": "LAL",
-      "opponent": "ATL",
-      "from": "Detroit",
-      "to": "Atlanta",
-      "from_venue": "DET",
-      "to_venue": "ATL",
-      "changed_venue": true,
-      "pattern": "away → away",
-      "game_id": "401909952",
       "status": "SCHEDULED"
     },
     {
@@ -1463,6 +1463,20 @@
     {
       "previous_date": "2026-12-18",
       "date": "2026-12-19",
+      "team": "ORL",
+      "opponent": "ATL",
+      "from": "Brooklyn, NY",
+      "to": "Atlanta",
+      "from_venue": "BKN",
+      "to_venue": "ATL",
+      "changed_venue": true,
+      "pattern": "away → away",
+      "game_id": "401910146",
+      "status": "SCHEDULED"
+    },
+    {
+      "previous_date": "2026-12-18",
+      "date": "2026-12-19",
       "team": "CHA",
       "opponent": "POR",
       "from": "Charlotte",
@@ -1500,20 +1514,6 @@
       "changed_venue": true,
       "pattern": "away → away",
       "game_id": "401910148",
-      "status": "SCHEDULED"
-    },
-    {
-      "previous_date": "2026-12-18",
-      "date": "2026-12-19",
-      "team": "ORL",
-      "opponent": "ATL",
-      "from": "Brooklyn, NY",
-      "to": "Atlanta",
-      "from_venue": "BKN",
-      "to_venue": "ATL",
-      "changed_venue": true,
-      "pattern": "away → away",
-      "game_id": "401910146",
       "status": "SCHEDULED"
     },
     {
@@ -1673,20 +1673,6 @@
     {
       "previous_date": "2026-12-22",
       "date": "2026-12-23",
-      "team": "DAL",
-      "opponent": "SAC",
-      "from": "San Francisco",
-      "to": "Sacramento",
-      "from_venue": "GSW",
-      "to_venue": "SAC",
-      "changed_venue": true,
-      "pattern": "away → away",
-      "game_id": "401910185",
-      "status": "SCHEDULED"
-    },
-    {
-      "previous_date": "2026-12-22",
-      "date": "2026-12-23",
       "team": "DET",
       "opponent": "ATL",
       "from": "Oklahoma City",
@@ -1696,6 +1682,20 @@
       "changed_venue": true,
       "pattern": "away → away",
       "game_id": "401910172",
+      "status": "SCHEDULED"
+    },
+    {
+      "previous_date": "2026-12-22",
+      "date": "2026-12-23",
+      "team": "DAL",
+      "opponent": "SAC",
+      "from": "San Francisco",
+      "to": "Sacramento",
+      "from_venue": "GSW",
+      "to_venue": "SAC",
+      "changed_venue": true,
+      "pattern": "away → away",
+      "game_id": "401910185",
       "status": "SCHEDULED"
     },
     {
@@ -1724,6 +1724,20 @@
       "changed_venue": true,
       "pattern": "home → away",
       "game_id": "401910182",
+      "status": "SCHEDULED"
+    },
+    {
+      "previous_date": "2026-12-26",
+      "date": "2026-12-27",
+      "team": "ATL",
+      "opponent": "SAS",
+      "from": "Atlanta",
+      "to": "San Antonio",
+      "from_venue": "ATL",
+      "to_venue": "SAS",
+      "changed_venue": true,
+      "pattern": "home → away",
+      "game_id": "401910202",
       "status": "SCHEDULED"
     },
     {
@@ -1836,20 +1850,6 @@
       "changed_venue": true,
       "pattern": "home → away",
       "game_id": "401910200",
-      "status": "SCHEDULED"
-    },
-    {
-      "previous_date": "2026-12-26",
-      "date": "2026-12-27",
-      "team": "ATL",
-      "opponent": "SAS",
-      "from": "Atlanta",
-      "to": "San Antonio",
-      "from_venue": "ATL",
-      "to_venue": "SAS",
-      "changed_venue": true,
-      "pattern": "home → away",
-      "game_id": "401910202",
       "status": "SCHEDULED"
     },
     {
@@ -2023,20 +2023,6 @@
     {
       "previous_date": "2027-01-01",
       "date": "2027-01-02",
-      "team": "BOS",
-      "opponent": "POR",
-      "from": "Salt Lake City",
-      "to": "Portland, OR",
-      "from_venue": "UTA",
-      "to_venue": "POR",
-      "changed_venue": true,
-      "pattern": "away → away",
-      "game_id": "401910250",
-      "status": "SCHEDULED"
-    },
-    {
-      "previous_date": "2027-01-01",
-      "date": "2027-01-02",
       "team": "DAL",
       "opponent": "ATL",
       "from": "Houston",
@@ -2046,6 +2032,20 @@
       "changed_venue": true,
       "pattern": "away → away",
       "game_id": "401910245",
+      "status": "SCHEDULED"
+    },
+    {
+      "previous_date": "2027-01-01",
+      "date": "2027-01-02",
+      "team": "BOS",
+      "opponent": "POR",
+      "from": "Salt Lake City",
+      "to": "Portland, OR",
+      "from_venue": "UTA",
+      "to_venue": "POR",
+      "changed_venue": true,
+      "pattern": "away → away",
+      "game_id": "401910250",
       "status": "SCHEDULED"
     },
     {
@@ -2205,6 +2205,20 @@
     {
       "previous_date": "2027-01-06",
       "date": "2027-01-07",
+      "team": "IND",
+      "opponent": "ATL",
+      "from": "San Antonio",
+      "to": "Atlanta",
+      "from_venue": "SAS",
+      "to_venue": "ATL",
+      "changed_venue": true,
+      "pattern": "away → away",
+      "game_id": "401910279",
+      "status": "SCHEDULED"
+    },
+    {
+      "previous_date": "2027-01-06",
+      "date": "2027-01-07",
       "team": "BKN",
       "opponent": "MIA",
       "from": "Brooklyn, NY",
@@ -2242,20 +2256,6 @@
       "changed_venue": false,
       "pattern": "home → home",
       "game_id": "401910288",
-      "status": "SCHEDULED"
-    },
-    {
-      "previous_date": "2027-01-06",
-      "date": "2027-01-07",
-      "team": "IND",
-      "opponent": "ATL",
-      "from": "San Antonio",
-      "to": "Atlanta",
-      "from_venue": "SAS",
-      "to_venue": "ATL",
-      "changed_venue": true,
-      "pattern": "away → away",
-      "game_id": "401910279",
       "status": "SCHEDULED"
     },
     {
@@ -2667,6 +2667,20 @@
     {
       "previous_date": "2027-01-19",
       "date": "2027-01-20",
+      "team": "POR",
+      "opponent": "ATL",
+      "from": "Miami",
+      "to": "Atlanta",
+      "from_venue": "MIA",
+      "to_venue": "ATL",
+      "changed_venue": true,
+      "pattern": "away → away",
+      "game_id": "401910375",
+      "status": "SCHEDULED"
+    },
+    {
+      "previous_date": "2027-01-19",
+      "date": "2027-01-20",
       "team": "IND",
       "opponent": "BOS",
       "from": "Philadelphia",
@@ -2749,20 +2763,6 @@
       "status": "SCHEDULED"
     },
     {
-      "previous_date": "2027-01-19",
-      "date": "2027-01-20",
-      "team": "POR",
-      "opponent": "ATL",
-      "from": "Miami",
-      "to": "Atlanta",
-      "from_venue": "MIA",
-      "to_venue": "ATL",
-      "changed_venue": true,
-      "pattern": "away → away",
-      "game_id": "401910375",
-      "status": "SCHEDULED"
-    },
-    {
       "previous_date": "2027-01-20",
       "date": "2027-01-21",
       "team": "BOS",
@@ -2821,6 +2821,20 @@
     {
       "previous_date": "2027-01-22",
       "date": "2027-01-23",
+      "team": "ATL",
+      "opponent": "MIA",
+      "from": "Atlanta",
+      "to": "Miami",
+      "from_venue": "ATL",
+      "to_venue": "MIA",
+      "changed_venue": true,
+      "pattern": "home → away",
+      "game_id": "401910403",
+      "status": "SCHEDULED"
+    },
+    {
+      "previous_date": "2027-01-22",
+      "date": "2027-01-23",
       "team": "CHA",
       "opponent": "BOS",
       "from": "Charlotte",
@@ -2858,20 +2872,6 @@
       "changed_venue": true,
       "pattern": "away → away",
       "game_id": "401910405",
-      "status": "SCHEDULED"
-    },
-    {
-      "previous_date": "2027-01-22",
-      "date": "2027-01-23",
-      "team": "ATL",
-      "opponent": "MIA",
-      "from": "Atlanta",
-      "to": "Miami",
-      "from_venue": "ATL",
-      "to_venue": "MIA",
-      "changed_venue": true,
-      "pattern": "home → away",
-      "game_id": "401910403",
       "status": "SCHEDULED"
     },
     {
@@ -3353,20 +3353,6 @@
     {
       "previous_date": "2027-02-07",
       "date": "2027-02-08",
-      "team": "PHI",
-      "opponent": "BKN",
-      "from": "Philadelphia",
-      "to": "Philadelphia",
-      "from_venue": "PHI",
-      "to_venue": "PHI",
-      "changed_venue": false,
-      "pattern": "home → home",
-      "game_id": "401910523",
-      "status": "SCHEDULED"
-    },
-    {
-      "previous_date": "2027-02-07",
-      "date": "2027-02-08",
       "team": "ATL",
       "opponent": "MIA",
       "from": "Atlanta",
@@ -3376,6 +3362,20 @@
       "changed_venue": false,
       "pattern": "home → home",
       "game_id": "401910521",
+      "status": "SCHEDULED"
+    },
+    {
+      "previous_date": "2027-02-07",
+      "date": "2027-02-08",
+      "team": "PHI",
+      "opponent": "BKN",
+      "from": "Philadelphia",
+      "to": "Philadelphia",
+      "from_venue": "PHI",
+      "to_venue": "PHI",
+      "changed_venue": false,
+      "pattern": "home → home",
+      "game_id": "401910523",
       "status": "SCHEDULED"
     },
     {
@@ -3549,20 +3549,6 @@
     {
       "previous_date": "2027-02-13",
       "date": "2027-02-14",
-      "team": "POR",
-      "opponent": "CHI",
-      "from": "Portland, OR",
-      "to": "Portland, OR",
-      "from_venue": "POR",
-      "to_venue": "POR",
-      "changed_venue": false,
-      "pattern": "home → home",
-      "game_id": "401910573",
-      "status": "SCHEDULED"
-    },
-    {
-      "previous_date": "2027-02-13",
-      "date": "2027-02-14",
       "team": "SAC",
       "opponent": "ATL",
       "from": "Indianapolis",
@@ -3572,6 +3558,20 @@
       "changed_venue": true,
       "pattern": "away → away",
       "game_id": "401910567",
+      "status": "SCHEDULED"
+    },
+    {
+      "previous_date": "2027-02-13",
+      "date": "2027-02-14",
+      "team": "POR",
+      "opponent": "CHI",
+      "from": "Portland, OR",
+      "to": "Portland, OR",
+      "from_venue": "POR",
+      "to_venue": "POR",
+      "changed_venue": false,
+      "pattern": "home → home",
+      "game_id": "401910573",
       "status": "SCHEDULED"
     },
     {
@@ -3745,6 +3745,20 @@
     {
       "previous_date": "2027-02-25",
       "date": "2027-02-26",
+      "team": "ATL",
+      "opponent": "TOR",
+      "from": "Chicago",
+      "to": "Toronto",
+      "from_venue": "CHI",
+      "to_venue": "TOR",
+      "changed_venue": true,
+      "pattern": "away → away",
+      "game_id": "401910611",
+      "status": "SCHEDULED"
+    },
+    {
+      "previous_date": "2027-02-25",
+      "date": "2027-02-26",
       "team": "CLE",
       "opponent": "BOS",
       "from": "Cleveland",
@@ -3782,20 +3796,6 @@
       "changed_venue": true,
       "pattern": "away → away",
       "game_id": "401910616",
-      "status": "SCHEDULED"
-    },
-    {
-      "previous_date": "2027-02-25",
-      "date": "2027-02-26",
-      "team": "ATL",
-      "opponent": "TOR",
-      "from": "Chicago",
-      "to": "Toronto",
-      "from_venue": "CHI",
-      "to_venue": "TOR",
-      "changed_venue": true,
-      "pattern": "away → away",
-      "game_id": "401910611",
       "status": "SCHEDULED"
     },
     {
@@ -3941,6 +3941,20 @@
     {
       "previous_date": "2027-03-03",
       "date": "2027-03-04",
+      "team": "ATL",
+      "opponent": "MEM",
+      "from": "Atlanta",
+      "to": "Atlanta",
+      "from_venue": "ATL",
+      "to_venue": "ATL",
+      "changed_venue": false,
+      "pattern": "home → home",
+      "game_id": "401910657",
+      "status": "SCHEDULED"
+    },
+    {
+      "previous_date": "2027-03-03",
+      "date": "2027-03-04",
       "team": "BKN",
       "opponent": "LAC",
       "from": "Phoenix",
@@ -3964,20 +3978,6 @@
       "changed_venue": false,
       "pattern": "home → home",
       "game_id": "401910656",
-      "status": "SCHEDULED"
-    },
-    {
-      "previous_date": "2027-03-03",
-      "date": "2027-03-04",
-      "team": "ATL",
-      "opponent": "MEM",
-      "from": "Atlanta",
-      "to": "Atlanta",
-      "from_venue": "ATL",
-      "to_venue": "ATL",
-      "changed_venue": false,
-      "pattern": "home → home",
-      "game_id": "401910657",
       "status": "SCHEDULED"
     },
     {
@@ -4485,6 +4485,20 @@
       "status": "SCHEDULED"
     },
     {
+      "previous_date": "2027-03-17",
+      "date": "2027-03-18",
+      "team": "UTA",
+      "opponent": "MIN",
+      "from": "Salt Lake City",
+      "to": "Salt Lake City",
+      "from_venue": "UTA",
+      "to_venue": "UTA",
+      "changed_venue": false,
+      "pattern": "home → home",
+      "game_id": "401910764",
+      "status": "SCHEDULED"
+    },
+    {
       "previous_date": "2027-03-18",
       "date": "2027-03-19",
       "team": "SAS",
@@ -4809,6 +4823,20 @@
     {
       "previous_date": "2027-03-27",
       "date": "2027-03-28",
+      "team": "UTA",
+      "opponent": "CHA",
+      "from": "Atlanta",
+      "to": "Charlotte",
+      "from_venue": "ATL",
+      "to_venue": "CHA",
+      "changed_venue": true,
+      "pattern": "away → away",
+      "game_id": "401910834",
+      "status": "SCHEDULED"
+    },
+    {
+      "previous_date": "2027-03-27",
+      "date": "2027-03-28",
       "team": "TOR",
       "opponent": "PHX",
       "from": "Sacramento",
@@ -4818,6 +4846,20 @@
       "changed_venue": true,
       "pattern": "away → away",
       "game_id": "401910838",
+      "status": "SCHEDULED"
+    },
+    {
+      "previous_date": "2027-03-28",
+      "date": "2027-03-29",
+      "team": "MIN",
+      "opponent": "ATL",
+      "from": "Minneapolis",
+      "to": "Atlanta",
+      "from_venue": "MIN",
+      "to_venue": "ATL",
+      "changed_venue": true,
+      "pattern": "home → away",
+      "game_id": "401910840",
       "status": "SCHEDULED"
     },
     {
@@ -4846,20 +4888,6 @@
       "changed_venue": true,
       "pattern": "home → away",
       "game_id": "401910847",
-      "status": "SCHEDULED"
-    },
-    {
-      "previous_date": "2027-03-28",
-      "date": "2027-03-29",
-      "team": "MIN",
-      "opponent": "ATL",
-      "from": "Minneapolis",
-      "to": "Atlanta",
-      "from_venue": "MIN",
-      "to_venue": "ATL",
-      "changed_venue": true,
-      "pattern": "home → away",
-      "game_id": "401910840",
       "status": "SCHEDULED"
     },
     {
