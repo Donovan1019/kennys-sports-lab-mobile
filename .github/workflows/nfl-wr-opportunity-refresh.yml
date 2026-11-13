@@ -40,7 +40,7 @@ jobs:
       - name: Download verified player ID crosswalk
         shell: bash
         run: |
-          python -m pip install --quiet pyreadr
+          python -m pip install --quiet pandas pyreadr
           python scripts/fetch_nfl_wr_player_crosswalk.py || echo 'Verified crosswalk unavailable; snap counts remain null'
       - name: Try verified PFR snap-count enrichment
         shell: bash
