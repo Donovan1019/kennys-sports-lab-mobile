@@ -9,6 +9,7 @@ on:
       - 'scripts/enrich_nfl_wr_opportunity.py'
       - 'scripts/fetch_nfl_wr_player_crosswalk.py'
       - 'scripts/fetch_nfl_wr_endzone_pbp.py'
+      - 'scripts/fetch_nfl_wr_ftn_first_reads.py'
       - 'scripts/build_nfl_wr_source_context.py'
   workflow_dispatch:
   schedule:
@@ -58,6 +59,14 @@ jobs:
             python scripts/enrich_nfl_wr_opportunity.py --input feed/nfl_wr_opportunity.json --supplement tmp/nfl_wr_endzone_pbp.csv --source 'nflverse PBP: air_yards >= yardline_100; derived end-zone target estimate' --output feed/nfl_wr_opportunity.json
           else
             echo 'PBP end-zone derivation unavailable; preserving null values'
+          fi
+      - name: Join FTN first or designed reads to verified NFL play-by-play
+        shell: bash
+        run: |
+          if python scripts/fetch_nfl_wr_ftn_first_reads.py --season 2026; then
+            python scripts/enrich_nfl_wr_opportunity.py --input feed/nfl_wr_opportunity.json --supplement tmp/nfl_wr_ftn_first_reads.csv --source 'FTN Data charting (CC BY-SA 4.0), first or designed reads; joined to nflverse PBP' --output feed/nfl_wr_opportunity.json || echo 'FTN player-week joins unavailable; preserving null'
+          else
+            echo 'FTN charting unavailable or incompatible; preserving null'
           fi
       - name: Apply verified charting export when supplied
         shell: bash
