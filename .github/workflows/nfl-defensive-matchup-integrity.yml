@@ -1,0 +1,28 @@
+name: NFL Defensive Matchup Data Integrity
+on:
+  pull_request:
+    paths:
+      - 'feed/americanfootball_nfl_defensive_comparison.json'
+      - 'scripts/build_nfl_defensive_comparison.py'
+      - 'scripts/test_nfl_defensive_matchup_feed.py'
+      - '.github/workflows/nfl-defensive-matchup-integrity.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'feed/americanfootball_nfl_defensive_comparison.json'
+      - 'scripts/build_nfl_defensive_comparison.py'
+      - 'scripts/test_nfl_defensive_matchup_feed.py'
+      - '.github/workflows/nfl-defensive-matchup-integrity.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate defensive matchup snapshot
+        run: python scripts/test_nfl_defensive_matchup_feed.py
