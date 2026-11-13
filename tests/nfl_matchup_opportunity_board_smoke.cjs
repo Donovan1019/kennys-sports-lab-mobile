@@ -19,7 +19,7 @@ async function run(overrides={},selectedEvent='none'){
  const files={...feeds,...overrides};
  const context={document,Date,console,fetch:async(path)=>({ok:Object.hasOwn(files,path),json:async()=>files[path]})};
  vm.runInNewContext(script,context,{timeout:1000});
- await new Promise(resolve=>setImmediate(resolve));
+ for(let attempt=0;attempt<40&&root.textContent==='Loading verified source snapshots…';attempt++) await new Promise(resolve=>setImmediate(resolve));
  return root.textContent||root.innerHTML;
 }
 (async()=>{
