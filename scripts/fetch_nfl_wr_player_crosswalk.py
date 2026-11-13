@@ -20,10 +20,10 @@ def main():
  if not pfr or not gsis:raise SystemExit("Unexpected nflverse crosswalk schema: "+str(sorted(fields)))
  mapping={};ambiguous=set()
  for row in frame[[pfr,gsis]].itertuples(index=False,name=None):
-  a,b=(str(v).strip() if v is not None else "" for v in row)
-  if not a or not b or a.lower()=="nan" or b.lower()=="nan":continue
-  if a in mapping and mapping[a]!=b:ambiguous.add(a)
-  else:mapping[a]=b
+  pfr_id,gsis_id=(str(v).strip() if v is not None else "" for v in row)
+  if not pfr_id or not gsis_id or pfr_id.lower()=="nan" or gsis_id.lower()=="nan":continue
+  if pfr_id in mapping and mapping[pfr_id]!=gsis_id:ambiguous.add(pfr_id)
+  else:mapping[pfr_id]=gsis_id
  for a in ambiguous:mapping.pop(a,None)
  if len(mapping)<100:raise SystemExit("Crosswalk coverage too small")
  out=pathlib.Path(a.output);out.parent.mkdir(parents=True,exist_ok=True)
