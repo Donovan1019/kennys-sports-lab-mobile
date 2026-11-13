@@ -1,11 +1,6 @@
 {
   "schedule_games": [
     {
-      "event_id": "74d39e19225caf211ad2c8eb4110179f",
-      "event": "Washington Commanders @ New York Giants",
-      "commence_time": "2026-11-13T01:15:00Z"
-    },
-    {
       "event_id": "b8c10fdf1e0ac4e13deee7f7c0af0b0b",
       "event": "New England Patriots @ Detroit Lions",
       "commence_time": "2026-11-15T14:30:00Z"
@@ -121,28 +116,17 @@
       "commence_time": "2026-11-22T21:25:00Z"
     },
     {
-      "event_id": "8ba112fabf4e87639338a5f437c5abfe",
-      "event": "Jacksonville Jaguars @ New York Giants",
-      "commence_time": "2026-11-22T21:25:00Z"
-    },
-    {
       "event_id": "60e1d27b083a335b722c2c852ea85612",
       "event": "Minnesota Vikings @ San Francisco 49ers",
       "commence_time": "2026-11-23T01:20:00Z"
-    },
-    {
-      "event_id": "3a60ed1d20004aa4d4772b2c1a2272e7",
-      "event": "Cincinnati Bengals @ Washington Commanders",
-      "commence_time": "2026-11-24T01:15:00Z"
     }
   ],
-  "generated_at": "2026-11-12T21:26:05.795386+00:00",
+  "generated_at": "2026-11-13T03:21:40.575524+00:00",
   "target_date": null,
-  "expected_upcoming_events": 27,
+  "expected_upcoming_events": 24,
   "requested_events": 16,
   "cached_complete_events": 0,
   "captured_event_ids": [
-    "74d39e19225caf211ad2c8eb4110179f",
     "b8c10fdf1e0ac4e13deee7f7c0af0b0b",
     "3c71d515b726f1096aabb435badb83fd",
     "1057d50949844ddf483da9c8c20354be",
@@ -157,7 +141,7 @@
     "48e497c230e6c9afcb3b600091d28e17",
     "35e3bdff558b5d1506251e814986f164"
   ],
-  "captured_events": 14,
+  "captured_events": 13,
   "missing_event_ids": [
     "66f9e83cf025d58acee12bce18661fb3",
     "403a88701352da05b0710a9e883b803e",
@@ -169,11 +153,9 @@
     "cbe45bafcc2615fc1d96cbc12840377a",
     "4b20b742b6168aaca4f25d87f11b1526",
     "1940706a79cbcbafacdcbf231069716b",
-    "8ba112fabf4e87639338a5f437c5abfe",
-    "60e1d27b083a335b722c2c852ea85612",
-    "3a60ed1d20004aa4d4772b2c1a2272e7"
+    "60e1d27b083a335b722c2c852ea85612"
   ],
-  "unrequested_events": 11,
+  "unrequested_events": 8,
   "complete": false,
   "requested_scope_complete": false,
   "errors": [
@@ -184,13 +166,16 @@
     {
       "event_id": "403a88701352da05b0710a9e883b803e",
       "error": "no_supported_bookmaker_props"
+    },
+    {
+      "event_id": "4527f57f5bc32742d8194af1ccf7da7e",
+      "error": "no_supported_bookmaker_props"
     }
   ],
   "status": "PARTIAL",
   "requested_scope_status": "PARTIAL",
   "retry_missing_only": false,
   "attempted_event_ids": [
-    "74d39e19225caf211ad2c8eb4110179f",
     "b8c10fdf1e0ac4e13deee7f7c0af0b0b",
     "3c71d515b726f1096aabb435badb83fd",
     "1057d50949844ddf483da9c8c20354be",
@@ -205,6 +190,7 @@
     "48e497c230e6c9afcb3b600091d28e17",
     "35e3bdff558b5d1506251e814986f164",
     "66f9e83cf025d58acee12bce18661fb3",
-    "403a88701352da05b0710a9e883b803e"
+    "403a88701352da05b0710a9e883b803e",
+    "4527f57f5bc32742d8194af1ccf7da7e"
   ]
 }
