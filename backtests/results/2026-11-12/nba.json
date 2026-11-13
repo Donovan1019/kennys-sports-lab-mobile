@@ -1,0 +1,20 @@
+{
+  "sport": "NBA",
+  "date": "2026-11-12",
+  "games": [
+    {
+      "event_id": "401909976",
+      "event": "Toronto Raptors at Philadelphia 76ers",
+      "commence_time": "2026-11-13T00:00Z",
+      "home": "Philadelphia 76ers",
+      "away": "Toronto Raptors",
+      "home_score": 123,
+      "away_score": 112,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261112&limit=100"
+    }
+  ],
+  "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261112&limit=100"
+}

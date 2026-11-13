@@ -1,0 +1,72 @@
+{
+  "sport": "NHL",
+  "date": "2026-11-12",
+  "games": [
+    {
+      "event_id": "401891808",
+      "event": "Carolina Hurricanes at Seattle Kraken",
+      "commence_time": "2026-11-12T17:00Z",
+      "home": "Seattle Kraken",
+      "away": "Carolina Hurricanes",
+      "home_score": 1,
+      "away_score": 4,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261112&limit=100"
+    },
+    {
+      "event_id": "401892696",
+      "event": "Montreal Canadiens at Boston Bruins",
+      "commence_time": "2026-11-13T00:00Z",
+      "home": "Boston Bruins",
+      "away": "Montreal Canadiens",
+      "home_score": 2,
+      "away_score": 5,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261112&limit=100"
+    },
+    {
+      "event_id": "401892697",
+      "event": "Minnesota Wild at Toronto Maple Leafs",
+      "commence_time": "2026-11-13T00:00Z",
+      "home": "Toronto Maple Leafs",
+      "away": "Minnesota Wild",
+      "home_score": 2,
+      "away_score": 5,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261112&limit=100"
+    },
+    {
+      "event_id": "401892700",
+      "event": "Washington Capitals at New Jersey Devils",
+      "commence_time": "2026-11-13T00:00Z",
+      "home": "New Jersey Devils",
+      "away": "Washington Capitals",
+      "home_score": 5,
+      "away_score": 2,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261112&limit=100"
+    },
+    {
+      "event_id": "401892701",
+      "event": "Tampa Bay Lightning at Columbus Blue Jackets",
+      "commence_time": "2026-11-13T00:00Z",
+      "home": "Columbus Blue Jackets",
+      "away": "Tampa Bay Lightning",
+      "home_score": 1,
+      "away_score": 3,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261112&limit=100"
+    }
+  ],
+  "source_url": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261112&limit=100"
+}
