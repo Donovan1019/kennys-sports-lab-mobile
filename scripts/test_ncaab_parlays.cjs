@@ -17,4 +17,10 @@ const stale=JSON.parse(JSON.stringify(good));stale[0].bookmakers[0].last_update=
 assert.doesNotMatch(render(stale,date,meta),/Calculated parlay price/);
 const dup=JSON.parse(JSON.stringify(good));dup[1].id='A';
 assert.doesNotMatch(render(dup,date,meta),/Calculated parlay price/);
-console.log('NCAA parlay integrity tests passed');
+const diagnostic=render(good,date,meta,{coverage:{eligible_teams:8,observed_teams:526,provisional_teams:{a:{},b:{}},ineligible_reasons:{insufficient_current_season_games:518}}},{walk_forward:{games:1922}});
+assert.match(diagnostic,/Teams below five current-season games: 518/);
+assert.match(diagnostic,/Provisional research teams: 2/);
+assert.match(diagnostic,/INDEPENDENT_CALIBRATION_REQUIRED|MODEL_NOT_LOADED/);
+assert.match(diagnostic,/No model-approved parlays/);
+assert.doesNotMatch(diagnostic,/model-approved probability: [0-9]/);
+console.log('NCAA parlay integrity and coverage diagnostics tests passed');
