@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "updated_at": "2026-11-13",
+  "sources": [
+    {
+      "id": "nflverse-pbp",
+      "name": "nflverse Play-by-Play",
+      "url": "https://github.com/nflverse/nflverse-data/releases",
+      "role": "independent game/play-level reconciliation, EPA, success rate",
+      "status": "candidate",
+      "frequency": "daily during NFL season",
+      "caveat": "Requires game/team ID mapping and cross-source reconciliation before production use"
+    },
+    {
+      "id": "nflverse-stats",
+      "name": "nflverse Snap Counts and Advanced Stats",
+      "url": "https://github.com/nflverse/nflverse-data",
+      "role": "snap counts, player usage and advanced player statistics",
+      "status": "candidate",
+      "frequency": "multiple daily polls",
+      "caveat": "Verify release freshness and per-player mapping"
+    },
+    {
+      "id": "ftn-charting",
+      "name": "FTN Charting via nflverse",
+      "url": "https://nflreadr.nflverse.com/reference/load_ftn_charting.html",
+      "role": "play action, motion, screens, RPO, defensive box, QB read",
+      "status": "candidate",
+      "frequency": "charting within ~48 hours of game",
+      "caveat": "CC-BY-SA 4.0 attribution and license obligations; not a full man/zone or route tracking dataset"
+    },
+    {
+      "id": "nfl-ngs-trends",
+      "name": "NFL Next Gen Stats Trends",
+      "url": "https://www.nfl.com/stats/ngs/trends",
+      "role": "coverage, blitz, pressure, personnel and defensive identity reference",
+      "status": "reference-only",
+      "frequency": "site updates",
+      "caveat": "No verified public bulk API or reuse permission for automated ingestion"
+    },
+    {
+      "id": "nfl-pro",
+      "name": "NFL Pro / Next Gen Stats",
+      "url": "https://pro.nfl.com/",
+      "role": "coverage-specific player and team matchup research",
+      "status": "reference-only",
+      "frequency": "weekly",
+      "caveat": "Access and reuse rights must be checked before ingestion"
+    },
+    {
+      "id": "sharp-coverage",
+      "name": "Sharp Football Coverage Schemes",
+      "url": "https://www.sharpfootballanalysis.com/stats-nfl/nfl-coverage-schemes/",
+      "role": "team man/zone coverage rate cross-check",
+      "status": "reference-only",
+      "frequency": "periodic",
+      "caveat": "Public viewing does not establish permission for automated redistribution"
+    },
+    {
+      "id": "espn-box",
+      "name": "ESPN NFL Summary Boxscores",
+      "url": "https://www.espn.com/nfl/",
+      "role": "current observed defensive position-group boxscore data",
+      "status": "connected",
+      "frequency": "daily scheduled refresh",
+      "caveat": "Position IDs can be incomplete; require sample completeness and independent validation"
+    }
+  ]
+}
