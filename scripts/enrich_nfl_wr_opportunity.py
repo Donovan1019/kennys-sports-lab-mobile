@@ -16,6 +16,19 @@ def numeric(v):
         if math.isfinite(n) and n>=0:return n
     except (TypeError,ValueError):pass
     raise ValueError('Invalid nonnegative metric: '+str(v))
+def validate_route_metrics(row, incoming, record_key):
+    """Reject impossible charting values rather than publishing false route efficiency."""
+    for field in ('routes_run','team_dropbacks'):
+        value=incoming.get(field, row.get(field))
+        if value is not None and (not float(value).is_integer() or value < 0):
+            raise SystemExit('Invalid route metric count: '+str(record_key)+' '+field)
+    routes=incoming.get('routes_run',row.get('routes_run'))
+    snaps=incoming.get('offensive_snaps',row.get('offensive_snaps'))
+    if routes is not None and snaps is not None and routes > snaps:
+        raise SystemExit('Routes exceed offensive snaps: '+str(record_key))
+    dropbacks=incoming.get('team_dropbacks',row.get('team_dropbacks'))
+    if routes is not None and dropbacks is not None and routes > dropbacks:
+        raise SystemExit('Routes exceed team dropbacks: '+str(record_key))
 def key(row):
     return (str(row.get('season','')),str(row.get('week','')),str(row.get('team','')).upper(),str(row.get('player_id','')))
 def main():
@@ -40,6 +53,7 @@ def main():
         k=key(row)
         if k not in supplements:continue
         matched+=1
+        validate_route_metrics(row,supplements[k],k)
         provenance=row.setdefault('metric_sources',{})
         for field,value in supplements[k].items():
             if value is None:continue
