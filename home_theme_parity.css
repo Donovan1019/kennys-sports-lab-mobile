@@ -1,0 +1,18 @@
+/* Home page parity with black/charcoal/yellow research theme. */
+:root{--ksl-bg:#090909;--ksl-card:#18191b;--ksl-border:#292b2d;--ksl-text:#f5f5f5;--ksl-accent:#f3c621}
+html,body{background:#090909!important;color:#f5f5f5!important}
+body>main{max-width:1200px;padding:18px 14px 48px}
+body>.ksl-nav{background:#090909!important;border-color:#292b2d!important}
+.ksl-home-hero{background:#141516!important;border:1px solid #303234!important;border-radius:18px;padding:20px;margin-bottom:18px}
+.ksl-home-eyebrow{font-size:11px;letter-spacing:.12em;font-weight:800;color:#f3c621}
+.ksl-home-hero h1{margin:8px 0;color:#f5f5f5!important;font-size:clamp(24px,4vw,36px)}
+.ksl-home-hero p{margin:0;color:#a1a1a5}
+#ksl-best-ml-parlay,#ksl-market-edge,#ksl-pipeline-status{background:#18191b!important;border:1px solid #303234!important;color:#f5f5f5!important;border-radius:16px!important}
+#ksl-best-ml-parlay .kml-head h2,#ksl-market-edge h2,#ksl-pipeline-status h2{color:#f3c621!important}
+#ksl-best-ml-parlay .kml-summary,#ksl-market-edge .me-card,#ksl-market-edge .me-bet-details span,#ksl-pipeline-status .ksl-status-card{background:#202123!important;border-color:#353638!important;color:#f5f5f5!important}
+#ksl-best-ml-parlay .kml-leg{border-color:#353638!important}
+#ksl-best-ml-parlay .kml-summary strong{color:#16a34a!important}
+#ksl-best-ml-parlay .kml-note,#ksl-best-ml-parlay .kml-leg span,#ksl-market-edge p,#ksl-market-edge small,#ksl-market-edge .me-metrics span{color:#aeb1b5!important}
+#ksl-market-edge button,#ksl-market-edge select,#ksl-best-ml-parlay input{background:#1c1e20!important;border:1px solid #353638!important;color:#f5f5f5!important;border-radius:12px!important}
+#ksl-market-edge .me-positive{color:#16a34a!important}
+@media(max-width:650px){body>main{padding:12px!important}.ksl-home-hero{padding:15px;border-radius:14px}#ksl-best-ml-parlay,#ksl-market-edge{padding:13px!important}}
