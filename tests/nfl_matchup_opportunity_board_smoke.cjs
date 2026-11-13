@@ -20,7 +20,7 @@ async function run(overrides={},selectedEvent='none'){
  const context={document,Date,console,fetch:async(path)=>({ok:Object.hasOwn(files,path),json:async()=>files[path]})};
  vm.runInNewContext(script,context,{timeout:1000});
  for(let attempt=0;attempt<40&&root.textContent==='Loading verified source snapshots…';attempt++) await new Promise(resolve=>setImmediate(resolve));
- return root.textContent||root.innerHTML;
+ return root.innerHTML||root.textContent;
 }
 (async()=>{
  let output=await run();assert.match(output,/UNAVAILABLE/);assert.match(output,/No upcoming NFL games/);assert.doesNotMatch(output,/betting-ready/i);
