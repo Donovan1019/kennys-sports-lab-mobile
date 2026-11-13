@@ -7,6 +7,7 @@ on:
       - 'scripts/build_nfl_wr_opportunity.py'
       - 'scripts/fetch_nfl_wr_weekly.py'
       - 'scripts/enrich_nfl_wr_opportunity.py'
+      - 'scripts/fetch_nfl_wr_player_crosswalk.py'
       - 'scripts/build_nfl_wr_source_context.py'
   workflow_dispatch:
   schedule:
@@ -36,6 +37,11 @@ jobs:
           assert all(g['targets'] is not None for g in p['games'])
           print('Validated',len(p['games']),'rows across',len({g['team'] for g in p['games']}),'teams')
           PY
+      - name: Download verified player ID crosswalk
+        shell: bash
+        run: |
+          python -m pip install --quiet pyreadr
+          python scripts/fetch_nfl_wr_player_crosswalk.py || echo 'Verified crosswalk unavailable; snap counts remain null'
       - name: Try verified PFR snap-count enrichment
         shell: bash
         run: |
