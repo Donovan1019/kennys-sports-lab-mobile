@@ -14,4 +14,11 @@ const rows=Array.from({length:200},(_,i)=>({a_pred:70,b_pred:65,a_actual:65+(i%2
 const research={research_only:true,walk_forward:{games:200,sample_sufficient:true},evaluations:rows};
 assert.equal(m.audit(research).ready,false);
 assert.equal(m.audit(research).reason,'INDEPENDENT_CALIBRATION_REQUIRED');
-console.log('NCAA simulation and calibration gates passed');
+const temporal=Array.from({length:500},(_,i)=>({date:'2025-'+String(1+Math.floor(i/45)).padStart(2,'0')+'-'+String(1+i%28).padStart(2,'0'),a_pred:75,b_pred:70,a_actual:70+i%19,b_actual:68+i%13}));
+const hold=m.independentHoldout(temporal);
+assert.equal(hold.ready,false);
+assert.equal(hold.reason,'HOLDOUT_AUDIT_ONLY_NOT_CALIBRATED');
+assert(hold.testGames>=75&&hold.trainGames>=200);
+assert(Number.isFinite(hold.brier));
+assert.equal(m.independentHoldout(temporal.slice(0,20)).ready,false);
+console.log('NCAA simulation and independent temporal holdout diagnostics passed');
