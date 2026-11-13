@@ -1,5 +1,12 @@
 name: Refresh NFL WR Opportunity Feed
 on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/nfl-wr-opportunity-refresh.yml'
+      - 'scripts/build_nfl_wr_opportunity.py'
+      - 'scripts/fetch_nfl_wr_weekly.py'
+      - 'scripts/enrich_nfl_wr_opportunity.py'
   workflow_dispatch:
   schedule:
     - cron: '30 11 * * 2,4'
