@@ -17,6 +17,16 @@ async function loadBacktest(){try{const r=await fetch('./data/ncaab_research.jso
 async function loadHistory(){try{const r=await fetch('./data/ncaab_espn_history.json?t='+Date.now(),{cache:'no-store'});if(!r.ok)throw Error('missing');const d=await r.json();if(d.provider!=='espn-public'||!Array.isArray(d.games))throw Error('invalid');history=d;}catch(e){history=null}if(active==='ESPN History'||active==='Model Quality')render()}
 
 let playerSearch='',playerTeamFilter='';
+function renderNCAABHoldout(){
+ const audit=window.NCAABProbability?.audit(backtest);
+ const h=audit?.holdout;
+ if(!h)return '<div class="panel"><strong>Independent Holdout</strong><p>UNAVAILABLE — historical backtest or probability audit not loaded.</p></div>';
+ const latest=backtest?.latest_source_game_date||backtest?.latest_evaluation_date;
+ const days=latest?Math.floor((Date.now()-Date.parse(latest+'T00:00:00Z'))/86400000):NaN;
+ const freshness=Number.isFinite(days)&&days>=0&&days<=7?'RECENT SOURCE HISTORY':'STALE OR UNAVAILABLE SOURCE HISTORY';
+ const val=x=>Number.isFinite(x)?x.toFixed(4):'UNAVAILABLE';
+ return '<div class="panel"><h2>Independent Chronological Holdout</h2><p>Latest source game: '+esc(latest||'UNAVAILABLE')+' · '+esc(freshness)+'</p><p>Status: '+esc(h.reason)+' · Training games: '+esc(h.trainGames??0)+' · Holdout games: '+esc(h.testGames??0)+'</p><p>Holdout Brier: '+val(h.brier)+' · Baseline Brier: '+val(h.baselineBrier)+' · Log loss: '+val(h.logLoss)+'</p><p>Cutoff: '+esc(h.cutoffDate||'UNAVAILABLE')+' · Betting approval: BLOCKED pending calibration.</p></div>';
+}
 function ncaabStatNumber(v){const n=Number(v);return Number.isFinite(n)?n:null}
 function renderNCAABPlayers(){
  if(!playerBoxscores||!playerMap)return '<div class="panel"><h2>NCAA Player Research</h2><p>UNAVAILABLE — verified player boxscore and identity snapshots have not loaded. No player props or projections are fabricated.</p></div>';

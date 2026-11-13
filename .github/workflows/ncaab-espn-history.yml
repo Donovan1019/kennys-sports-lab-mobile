@@ -11,13 +11,13 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 35
     steps:
       - uses: actions/checkout@v4
       - name: Fetch verified completed games and boxscores
         env:
           NCAAB_ESPN_LOOKBACK_DAYS: '45'
-          NCAAB_ESPN_MAX_NEW: '300'
+          NCAAB_ESPN_MAX_NEW: '450'
         run: python3 scripts/ncaab_espn_history.py
       - name: Validate historical cache
         run: |

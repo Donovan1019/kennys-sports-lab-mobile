@@ -103,6 +103,8 @@ def main():
     output = {"provider": "ncaab-research-baseline", "source": "espn-public",
               "generated_at": dt.datetime.now(dt.timezone.utc).isoformat(),
               "source_fetched_at": source.get("fetched_at"),
+              "latest_evaluation_date": max((r["date"] for r in rows), default=None),
+              "latest_source_game_date": max((g.get("date", "") for g in unique.values()), default=None),
               "historical_games": len(unique), "usable_games": sum(eligible_game(g) for g in unique.values()),
               "teams_observed": len(history), "walk_forward": summarize(rows),
               "research_only": True,
