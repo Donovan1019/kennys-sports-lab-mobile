@@ -7,6 +7,7 @@ on:
       - 'scripts/build_nfl_wr_opportunity.py'
       - 'scripts/fetch_nfl_wr_weekly.py'
       - 'scripts/enrich_nfl_wr_opportunity.py'
+      - 'scripts/build_nfl_wr_source_context.py'
   workflow_dispatch:
   schedule:
     - cron: '30 11 * * 2,4'
@@ -59,6 +60,8 @@ jobs:
             provider=$(basename "$dataset" .csv)
             python scripts/enrich_nfl_wr_opportunity.py --input feed/nfl_wr_opportunity.json --supplement "$dataset" --source "verified charting export: $provider" --output feed/nfl_wr_opportunity.json
           done
+      - name: Build five-source research context and verified last-four trends
+        run: python scripts/build_nfl_wr_source_context.py
       - name: Audit player-week metric coverage
         run: python scripts/audit_nfl_wr_coverage.py
       - name: Refresh existing Odds API NFL player prop quotes when enabled
@@ -73,7 +76,7 @@ jobs:
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add feed/nfl_wr_opportunity.json feed/nfl_wr_coverage.json feed/nfl_wr_betting.json
+          git add feed/nfl_wr_opportunity.json feed/nfl_wr_coverage.json feed/nfl_wr_betting.json feed/nfl_wr_source_context.json
           if [ -f feed/nfl_wr_prop_odds.json ]; then git add feed/nfl_wr_prop_odds.json; fi
           if ! git diff --cached --quiet; then
             git commit -m "Refresh verified 2026 NFL WR opportunity data"
