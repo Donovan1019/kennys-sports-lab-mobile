@@ -79,17 +79,21 @@ def main():
         raise ValueError("Historical range must be ordered, <=731 days, and before today")
     candidates = []
     errors = []
+    seen_candidates = set()
     for offset in range((end - start).days + 1):
         day = start + dt.timedelta(days=offset)
         try:
             board = get("scoreboard", {"dates": day.strftime("%Y%m%d"), "groups": "50", "limit": "500"})
             for event in board.get("events") or []:
                 eid = str(event.get("id") or "")
-                if eid and eid not in records and (event.get("status") or {}).get("type", {}).get("completed") is True:
+                if eid and eid not in records and eid not in seen_candidates and (event.get("status") or {}).get("type", {}).get("completed") is True:
+                    seen_candidates.add(eid)
                     candidates.append((eid, day.isoformat()))
         except Exception as exc:
             errors.append({"day": day.isoformat(), "error": type(exc).__name__})
         time.sleep(0.2)
+    # Prioritize newest missing results, then progressively fill older gaps on subsequent runs.
+    candidates.sort(key=lambda item: (item[1], item[0]), reverse=True)
     print("Candidate games",len(candidates),"batch budget",max_new)
     added = 0
     for eid, date in candidates[:max_new]:
