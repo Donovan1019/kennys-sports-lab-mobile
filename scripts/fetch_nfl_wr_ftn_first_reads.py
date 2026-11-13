@@ -13,8 +13,8 @@ def fetch(url,compressed=False):
 def build(ftn,pbp,season):
  chart={}
  for r in ftn:
-  if not {'game_id','play_id','read_thrown'}.issubset(r):raise SystemExit('FTN schema lacks game_id/play_id/read_thrown')
-  key=((r.get('game_id') or '').strip(),(r.get('play_id') or '').strip())
+  if not {'nflverse_game_id','nflverse_play_id','read_thrown'}.issubset(r):raise SystemExit('FTN schema lacks nflverse_game_id/nflverse_play_id/read_thrown')
+  key=((r.get('nflverse_game_id') or '').strip(),(r.get('nflverse_play_id') or '').strip())
   if not all(key):continue
   read=(r.get('read_thrown') or '').strip().upper()
   if key in chart:raise SystemExit('Duplicate FTN game/play: '+str(key))
