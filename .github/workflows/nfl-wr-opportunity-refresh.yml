@@ -8,6 +8,7 @@ on:
       - 'scripts/fetch_nfl_wr_weekly.py'
       - 'scripts/enrich_nfl_wr_opportunity.py'
       - 'scripts/fetch_nfl_wr_player_crosswalk.py'
+      - 'scripts/fetch_nfl_wr_endzone_pbp.py'
       - 'scripts/build_nfl_wr_source_context.py'
   workflow_dispatch:
   schedule:
@@ -49,6 +50,14 @@ jobs:
             python scripts/enrich_nfl_wr_opportunity.py --input feed/nfl_wr_opportunity.json --supplement tmp/nfl_wr_snap_counts.csv --source 'nflverse PFR snap counts; exact player IDs' --output feed/nfl_wr_opportunity.json || echo 'Snap enrichment unavailable: no verified matching IDs'
           else
             echo 'Snap source unavailable or incompatible: preserving null values'
+          fi
+      - name: Derive NFL play-by-play end-zone targets when available
+        shell: bash
+        run: |
+          if python scripts/fetch_nfl_wr_endzone_pbp.py --season 2026; then
+            python scripts/enrich_nfl_wr_opportunity.py --input feed/nfl_wr_opportunity.json --supplement tmp/nfl_wr_endzone_pbp.csv --source 'nflverse PBP: air_yards >= yardline_100; derived end-zone target estimate' --output feed/nfl_wr_opportunity.json
+          else
+            echo 'PBP end-zone derivation unavailable; preserving null values'
           fi
       - name: Apply verified charting export when supplied
         shell: bash
