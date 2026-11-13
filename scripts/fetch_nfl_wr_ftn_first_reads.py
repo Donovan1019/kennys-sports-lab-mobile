@@ -20,10 +20,12 @@ def build(ftn,pbp,season):
   if key in chart:raise SystemExit('Duplicate FTN game/play: '+str(key))
   chart[key]=read
  if not chart:raise SystemExit('No FTN charting rows')
- counts=collections.Counter();team_counts=collections.Counter();charted=collections.Counter();seen=set();matched=0
+ counts=collections.Counter();team_counts=collections.Counter();charted=collections.Counter();all_passes=collections.Counter();seen=set();matched=0
  for r in pbp:
   if str(r.get('season'))!=str(season) or str(r.get('season_type','REG')).upper()!='REG':continue
   key=((r.get('game_id') or '').strip(),(r.get('play_id') or '').strip())
+  if str(r.get('pass_attempt','')).strip() in ('1','1.0') and (r.get('posteam') or '').strip() and (r.get('week') or '').strip():
+   all_passes[(str(season),(r.get('week') or '').strip(),(r.get('posteam') or '').strip().upper())]+=1
   if key not in chart:continue
   matched+=1
   if str(r.get('pass_attempt','')).strip() in ('1','1.0') and (r.get('posteam') or '').strip() and (r.get('week') or '').strip():
@@ -37,18 +39,18 @@ def build(ftn,pbp,season):
   counts[(str(season),week,team,player)]+=1
   team_counts[(str(season),week,team)]+=1
  if not matched or not counts:raise SystemExit('No matched FTN first-read targets; preserving null')
- return counts,team_counts,charted,matched
+ return counts,team_counts,charted,all_passes,matched
 def main():
  p=argparse.ArgumentParser();p.add_argument('--season',type=int,default=2026);p.add_argument('--output',default='tmp/nfl_wr_ftn_first_reads.csv');p.add_argument('--feed',default='feed/nfl_wr_opportunity.json');a=p.parse_args()
- counts,teams,charted,matched=build(fetch(FTN.format(season=a.season)),fetch(PBP.format(season=a.season),True),a.season)
+ counts,teams,charted,all_passes,matched=build(fetch(FTN.format(season=a.season)),fetch(PBP.format(season=a.season),True),a.season)
  feed=json.loads(pathlib.Path(a.feed).read_text())
  players={(str(r['season']),str(r['week']),str(r['team']),str(r['player_id'])) for r in feed['games']}
  out=pathlib.Path(a.output);out.parent.mkdir(parents=True,exist_ok=True)
  with out.open('w',newline='') as f:
   writer=csv.DictWriter(f,fieldnames=['season','week','team','player_id','first_read_targets','team_first_read_targets']);writer.writeheader()
   for season,week,team,player in sorted(players):
-   # Only publish zero for team-weeks with substantial verified FTN pass charting.
-   if charted[(season,week,team)] < 10:continue
+   # Only publish zero for team-weeks with complete FTN coverage of PBP pass attempts.
+   if not all_passes[(season,week,team)] or charted[(season,week,team)] != all_passes[(season,week,team)]:continue
    writer.writerow(dict(season=season,week=week,team=team,player_id=player,first_read_targets=counts.get((season,week,team,player),0),team_first_read_targets=teams.get((season,week,team),0)))
  print('FTN/PBP joined',matched,'plays;',sum(counts.values()),'first or designed read targets')
 if __name__=='__main__':main()
