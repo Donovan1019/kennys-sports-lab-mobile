@@ -64,6 +64,10 @@ jobs:
           shopt -s nullglob
           for dataset in data/nfl_wr_verified/*.csv; do
             provider=$(basename "$dataset" .csv)
+          if [ "$provider" = "pfr_gsis_crosswalk" ]; then
+            echo "Skipping player ID crosswalk; not a charting metric export"
+            continue
+          fi
             python scripts/enrich_nfl_wr_opportunity.py --input feed/nfl_wr_opportunity.json --supplement "$dataset" --source "verified charting export: $provider" --output feed/nfl_wr_opportunity.json
           done
       - name: Build five-source research context and verified last-four trends
