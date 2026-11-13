@@ -33,7 +33,8 @@ async function run(overrides={},selectedEvent='none'){
   './feed/americanfootball_nfl_defensive_comparison.json':{generated_at:iso(now),events:[{event_id:'test-game',matchup_stats:{season:{wr:{home:{receptions_allowed:{value:9,sample_size:4,games_in_window:4}},away:{receptions_allowed:{value:8,sample_size:4,games_in_window:4}}}}}}]},
   './feed/nfl_usage_research.json':{generated_at:iso(now),status:'RESEARCH_ONLY',betting_eligible:false,profiles:[{nflverse_player_id:'00-001',name:'Test Receiver',team:'ARI',position:'WR',latest_week:9,markets:{}}]}
  };
- output=await run(positive,'test-game');assert.match(output,/Test Receiver/);assert.match(output,/Historical opportunity research/);assert.match(output,/UNVERIFIED/);
+ output=await run(positive,'test-game');assert.match(output,/Test Receiver/);
+ output=await run(positive);assert.match(output,/Test Receiver/);assert.match(output,/Historical opportunity research/);assert.match(output,/UNVERIFIED/);
  const injury={status:'VERIFIED',reports:[{verified:true,event_id:'other-game',report_type:'official_inactives',source_url:'https://www.nfl.com/injuries/',reported_at:iso(now-120000),fetched_at:iso(now-60000),players:[{name:'Test Receiver',team:'Arizona Cardinals',status:'inactive'}]}]};
  output=await run({...positive,'./feed/nfl_injury_reports.json':injury},'test-game');assert.doesNotMatch(output,/OUT \/ INACTIVE/);
  injury.reports[0].event_id='test-game';
