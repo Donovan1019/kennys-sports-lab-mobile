@@ -14,7 +14,7 @@ function statusFor(p,eventId,teamName){
  if(!Array.isArray(reports))return 'UNVERIFIED';
  const matches=reports.filter(x=>x.verified===true&&x.event_id===eventId&&['game_designation','official_inactives'].includes(x.report_type)&&Array.isArray(x.players)&&/^https:\/\/(?:www\.)?(?:nfl\.com|espn\.com)\//i.test(x.source_url||'')&&Number.isFinite(Date.parse(x.fetched_at))&&Date.now()-Date.parse(x.fetched_at)>=0&&Date.now()-Date.parse(x.fetched_at)<21600000&&Number.isFinite(Date.parse(x.reported_at))&&Date.parse(x.reported_at)<=Date.parse(x.fetched_at)&&Date.parse(x.fetched_at)-Date.parse(x.reported_at)<21600000);
  const identity=p.name.trim().toLowerCase();
- const found=matches.flatMap(x=>x.players.map(y=>({report:x,player:y}))).filter(x=>x.player&&x.player.name?.trim().toLowerCase()===identity&&x.player.team===teamName);
+ const found=matches.flatMap(x=>x.players.map(y=>({report:x,player:y}))).filter(x=>x.player&&x.player.name?.trim().toLowerCase()===identity&&x.player.team===teamName&&(!x.player.nflverse_player_id||x.player.nflverse_player_id===p.nflverse_player_id));if(new Set(found.map(x=>x.player.nflverse_player_id).filter(Boolean)).size>1)return 'UNVERIFIED';
  if(found.some(x=>x.player.status==='inactive'||x.player.status==='out'))return 'OUT / INACTIVE';
  if(found.some(x=>x.player.status==='questionable'||x.player.status==='doubtful'))return 'INJURY FLAG';
  return 'UNVERIFIED';
@@ -24,7 +24,7 @@ function chartingFor(p){
  if(!Array.isArray(rows))return null;
  const valid=rows.filter(x=>x.player_id===p.nflverse_player_id&&(x.team==='LA'?'LAR':x.team)===(p.team==='LA'?'LAR':p.team)&&x.complete_team_week_charting===true&&Number.isInteger(x.week)&&x.week<=p.latest_week&&x.week>p.latest_week-5&&Number.isInteger(x.primary_read_targets)&&x.primary_read_targets>=0&&Number.isInteger(x.designed_read_targets)&&x.designed_read_targets>=0);
  const weeks=new Set(valid.map(x=>x.week));
- if(weeks.size<3||weeks.size!==valid.length)return null;
+ if(weeks.size<3||weeks.size!==valid.length||data.ftn.season!==2026)return null;
  return {weeks:weeks.size,primary:valid.reduce((s,x)=>s+x.primary_read_targets,0),designed:valid.reduce((s,x)=>s+x.designed_read_targets,0)};
 }
 function render(){if(!data)return;const event=$('mx-event')?.value,window=$('mx-window')?.value||'season',position=$('mx-position')?.value||'wr';const game=data.games.find(x=>x.event_id===event),record=data.defense.events?.find(x=>x.event_id===event);if(!game||!record){root.textContent='UNAVAILABLE — no matched upcoming game and defensive record.';return}
