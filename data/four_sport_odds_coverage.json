@@ -1,31 +1,28 @@
 {
-  "generated_at": "2026-11-13T21:58:28.986422+00:00",
+  "generated_at": "2026-11-13T22:34:12.605679+00:00",
   "status": "UNAVAILABLE",
   "sports": {
     "NBA": {
-      "status": "COMPLETE",
-      "age_minutes": 0.3,
+      "status": "STALE",
+      "age_minutes": 36.0,
       "missing_markets": [],
       "events_with_quotes": 9
     },
     "NHL": {
-      "status": "STALE",
-      "age_minutes": 1245.7,
-      "missing_markets": [
-        "spreads",
-        "totals"
-      ],
-      "events_with_quotes": 12
+      "status": "COMPLETE",
+      "age_minutes": 0.4,
+      "missing_markets": [],
+      "events_with_quotes": 16
     },
     "NFL": {
       "status": "STALE",
-      "age_minutes": 65.1,
+      "age_minutes": 100.8,
       "missing_markets": [],
       "events_with_quotes": 26
     },
     "NCAAB": {
       "status": "STALE",
-      "age_minutes": 209.0,
+      "age_minutes": 244.7,
       "missing_markets": [],
       "events_with_quotes": 55
     }
