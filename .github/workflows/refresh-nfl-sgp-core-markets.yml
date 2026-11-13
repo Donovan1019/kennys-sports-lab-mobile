@@ -21,7 +21,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Validate NFL core market collector offline\n        run: python scripts/test_nfl_sgp_core_markets.py\n      - name: Collect real DK and FD NFL moneylines spreads and totals
+      - name: Validate NFL core market collector offline
+        run: python scripts/test_nfl_sgp_core_markets.py
+      - name: Collect real DK and FD NFL moneylines spreads and totals
         env:
           THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
         run: python scripts/fetch_nfl_sgp_core_markets.py
