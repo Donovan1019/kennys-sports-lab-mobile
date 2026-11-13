@@ -1,7 +1,7 @@
 {
   "status": "validated",
   "sport": "basketball_nba",
-  "generated_at": "2026-11-13T01:05:43.826151+00:00",
+  "generated_at": "2026-11-13T01:12:47.378821+00:00",
   "calibration_passed": true,
   "model_version": "elo-walkforward-v1-holdout-audit",
   "validation_report": {
@@ -24,18 +24,6 @@
   },
   "training_cutoff": "2026-11-12T03:00Z",
   "predictions": [
-    {
-      "event_id": "3c93e4724d36d796aed71c0ca4055b1b",
-      "team": "Minnesota Timberwolves",
-      "date_et": "2026-11-12",
-      "win_probability": 0.813387
-    },
-    {
-      "event_id": "3c93e4724d36d796aed71c0ca4055b1b",
-      "team": "Dallas Mavericks",
-      "date_et": "2026-11-12",
-      "win_probability": 0.186613
-    },
     {
       "event_id": "f3f429e773bfb2340ba2bb90f2b9dd1e",
       "team": "Phoenix Suns",
