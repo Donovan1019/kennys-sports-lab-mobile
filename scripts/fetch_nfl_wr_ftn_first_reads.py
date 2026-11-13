@@ -50,7 +50,7 @@ def main():
   writer=csv.DictWriter(f,fieldnames=['season','week','team','player_id','first_read_targets','team_first_read_targets']);writer.writeheader()
   for season,week,team,player in sorted(players):
    # Only publish zero for team-weeks with complete FTN coverage of PBP pass attempts.
-   if not all_passes[(season,week,team)] or charted[(season,week,team)] != all_passes[(season,week,team)]:continue
+   if not counts.get((season,week,team,player),0) and (not all_passes[(season,week,team)] or charted[(season,week,team)] != all_passes[(season,week,team)]):continue
    writer.writerow(dict(season=season,week=week,team=team,player_id=player,first_read_targets=counts.get((season,week,team,player),0),team_first_read_targets=teams.get((season,week,team),0)))
  print('FTN/PBP joined',matched,'plays;',sum(counts.values()),'first or designed read targets')
 if __name__=='__main__':main()
