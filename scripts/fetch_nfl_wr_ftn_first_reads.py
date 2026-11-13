@@ -20,7 +20,7 @@ def build(ftn,pbp,season):
   if key in chart:raise SystemExit('Duplicate FTN game/play: '+str(key))
   chart[key]=read
  if not chart:raise SystemExit('No FTN charting rows')
- counts=collections.Counter();team_counts=collections.Counter();charted=collections.Counter();all_passes=collections.Counter();seen=set();matched=0
+ counts=collections.Counter();primary=collections.Counter();designed=collections.Counter();team_counts=collections.Counter();charted=collections.Counter();all_passes=collections.Counter();seen=set();matched=0
  for r in pbp:
   if str(r.get('season'))!=str(season) or str(r.get('season_type','REG')).upper()!='REG':continue
   key=((r.get('game_id') or '').strip(),(r.get('play_id') or '').strip())
@@ -37,12 +37,14 @@ def build(ftn,pbp,season):
   if key in seen:raise SystemExit('Duplicate first-read target event')
   seen.add(key)
   counts[(str(season),week,team,player)]+=1
+  if chart[key]=='DES':designed[(str(season),week,team,player)]+=1
+  else:primary[(str(season),week,team,player)]+=1
   team_counts[(str(season),week,team)]+=1
  if not matched or not counts:raise SystemExit('No matched FTN first-read targets; preserving null')
- return counts,team_counts,charted,all_passes,matched
+ return counts,primary,designed,team_counts,charted,all_passes,matched
 def main():
- p=argparse.ArgumentParser();p.add_argument('--season',type=int,default=2026);p.add_argument('--output',default='tmp/nfl_wr_ftn_first_reads.csv');p.add_argument('--feed',default='feed/nfl_wr_opportunity.json');a=p.parse_args()
- counts,teams,charted,all_passes,matched=build(fetch(FTN.format(season=a.season)),fetch(PBP.format(season=a.season),True),a.season)
+ p=argparse.ArgumentParser();p.add_argument('--season',type=int,default=2026);p.add_argument('--output',default='tmp/nfl_wr_ftn_first_reads.csv');p.add_argument('--feed',default='feed/nfl_wr_opportunity.json');p.add_argument('--breakdown',default='feed/nfl_wr_ftn_read_breakdown.json');a=p.parse_args()
+ counts,primary,designed,teams,charted,all_passes,matched=build(fetch(FTN.format(season=a.season)),fetch(PBP.format(season=a.season),True),a.season)
  feed=json.loads(pathlib.Path(a.feed).read_text())
  players={(str(r['season']),str(r['week']),str(r['team']),str(r['player_id'])) for r in feed['games']}
  out=pathlib.Path(a.output);out.parent.mkdir(parents=True,exist_ok=True)
@@ -52,5 +54,12 @@ def main():
    # Only publish zero for team-weeks with complete FTN coverage of PBP pass attempts.
    if not counts.get((season,week,team,player),0) and (not all_passes[(season,week,team)] or charted[(season,week,team)] != all_passes[(season,week,team)]):continue
    writer.writerow(dict(season=season,week=week,team=team,player_id=player,first_read_targets=counts.get((season,week,team,player),0),team_first_read_targets=teams.get((season,week,team),0)))
+ breakdown={'season':a.season,'source':'FTN charting CC BY-SA 4.0 joined to nflverse PBP','definition':'primary=read_thrown 0; designed=read_thrown DES; null for unverified zeros','player_weeks':[]}
+ for season,week,team,player in sorted(players):
+  k=(season,week,team,player)
+  complete=bool(all_passes[(season,week,team)]) and charted[(season,week,team)]==all_passes[(season,week,team)]
+  if not complete and not counts.get(k,0):continue
+  breakdown['player_weeks'].append({'season':int(season),'week':int(week),'team':team,'player_id':player,'primary_read_targets':primary.get(k,0),'designed_read_targets':designed.get(k,0),'complete_team_week_charting':complete})
+ pathlib.Path(a.breakdown).write_text(json.dumps(breakdown,separators=(',',':'))+'\\n')
  print('FTN/PBP joined',matched,'plays;',sum(counts.values()),'first or designed read targets')
 if __name__=='__main__':main()
