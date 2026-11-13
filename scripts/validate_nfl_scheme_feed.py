@@ -61,8 +61,7 @@ def main():
     args = parser.parse_args()
     payload = validate(json.loads(pathlib.Path(args.input).read_text()))
     pathlib.Path(args.output).parent.mkdir(parents=True, exist_ok=True)
-    pathlib.Path(args.output).write_text(json.dumps(payload, indent=2) + "
-")
+    pathlib.Path(args.output).write_text(json.dumps(payload, indent=2) + "\n")
 
 if __name__ == "__main__":
     main()
