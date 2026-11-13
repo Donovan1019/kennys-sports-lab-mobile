@@ -30,9 +30,22 @@ def build(games):
               "date":g["date"]})
     result={}
     progress={}
+    provisional={}
+    counts=collections.Counter()
     for k,rows in history.items():
         progress[k]={"team":rows[-1]["name"],"games":len(rows),"needed":max(0,MIN_GAMES-len(rows))}
-        if len(rows)<MIN_GAMES:continue
+        counts["observed"]+=1
+        if len(rows)<MIN_GAMES:
+            counts["insufficient_current_season_games"]+=1
+            # Diagnostic only: do not silently promote sparse teams to betting eligibility.
+            window=rows[-15:]
+            provisional[k]={"team":rows[-1]["name"],"games":len(rows),
+                            "pace":round(statistics.mean(x["pace"] for x in window),3),
+                            "off":round(statistics.mean(x["off"] for x in window),3),
+                            "def":round(statistics.mean(x["def"] for x in window),3),
+                            "status":"PROVISIONAL_NOT_CALIBRATED"}
+            continue
+        counts["eligible"]+=1
         window=rows[-15:]
         result[k]={"team_id":k,"team":rows[-1]["name"],"games":len(rows),
           "pace":round(statistics.mean(x["pace"] for x in window),3),
@@ -41,7 +54,9 @@ def build(games):
           "last_game":rows[-1]["date"]}
     return {"season":latest,"teams":result,"minimum_games":MIN_GAMES,
             "observed_teams":len(progress),"eligible_teams":len(result),
-            "team_progress":progress}
+            "team_progress":progress,"provisional_teams":provisional,
+            "ineligible_reasons":dict(counts),
+            "coverage_policy":"Five completed current-season games per team; provisional estimates are research only"}
 
 def main():
     src=json.loads(SOURCE.read_text())
