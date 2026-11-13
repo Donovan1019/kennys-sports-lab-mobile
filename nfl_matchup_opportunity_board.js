@@ -4,7 +4,7 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const $=id=>document.getElementById(id);
 const readiness={player:'UNVERIFIED',odds:'UNAVAILABLE',simulation:'UNAVAILABLE',ev:'UNAVAILABLE'};
 function statusLine(){return 'Player status '+readiness.player+' · Market odds '+readiness.odds+' · Monte Carlo '+readiness.simulation+' · Fair odds/EV '+readiness.ev}
-const teamCodes={'Arizona Cardinals':'ARI','Atlanta Falcons':'ATL','Baltimore Ravens':'BAL','Buffalo Bills':'BUF','Carolina Panthers':'CAR','Chicago Bears':'CHI','Cincinnati Bengals':'CIN','Cleveland Browns':'CLE','Dallas Cowboys':'DAL','Denver Broncos':'DEN','Detroit Lions':'DET','Green Bay Packers':'GB','Houston Texans':'HOU','Indianapolis Colts':'IND','Jacksonville Jaguars':'JAX','Kansas City Chiefs':'KC','Las Vegas Raiders':'LV','Los Angeles Chargers':'LAC','Los Angeles Rams':'LA','Miami Dolphins':'MIA','Minnesota Vikings':'MIN','New England Patriots':'NE','New Orleans Saints':'NO','New York Giants':'NYG','New York Jets':'NYJ','Philadelphia Eagles':'PHI','Pittsburgh Steelers':'PIT','San Francisco 49ers':'SF','Seattle Seahawks':'SEA','Tampa Bay Buccaneers':'TB','Tennessee Titans':'TEN','Washington Commanders':'WAS'};
+const teamCodes={'Arizona Cardinals':'ARI','Atlanta Falcons':'ATL','Baltimore Ravens':'BAL','Buffalo Bills':'BUF','Carolina Panthers':'CAR','Chicago Bears':'CHI','Cincinnati Bengals':'CIN','Cleveland Browns':'CLE','Dallas Cowboys':'DAL','Denver Broncos':'DEN','Detroit Lions':'DET','Green Bay Packers':'GB','Houston Texans':'HOU','Indianapolis Colts':'IND','Jacksonville Jaguars':'JAX','Kansas City Chiefs':'KC','Las Vegas Raiders':'LV','Los Angeles Chargers':'LAC','Los Angeles Rams':'LAR','Miami Dolphins':'MIA','Minnesota Vikings':'MIN','New England Patriots':'NE','New Orleans Saints':'NO','New York Giants':'NYG','New York Jets':'NYJ','Philadelphia Eagles':'PHI','Pittsburgh Steelers':'PIT','San Francisco 49ers':'SF','Seattle Seahawks':'SEA','Tampa Bay Buccaneers':'TB','Tennessee Titans':'TEN','Washington Commanders':'WAS'};
 const markets={wr:[['receptions_allowed','Receptions'],['receiving_yards_allowed','Receiving yards'],['receiving_tds_allowed','Receiving TDs']],te:[['receptions_allowed','Receptions'],['receiving_yards_allowed','Receiving yards'],['receiving_tds_allowed','Receiving TDs']],rb:[['rushing_yards_allowed','Rushing yards'],['rush_attempts_allowed','Rush attempts'],['receptions_allowed','Receptions']],qb:[['passing_yards_allowed','Passing yards'],['completions_allowed','Completions'],['passing_tds_allowed','Passing TDs']]};
 function eligible(m){return m&&Number.isFinite(m.value)&&Number.isInteger(m.sample_size)&&m.sample_size>=3&&Number.isInteger(m.games_in_window)&&m.games_in_window>=3&&m.sample_size/m.games_in_window>=.8}
 async function json(path){const r=await fetch(path,{cache:'no-store'});if(!r.ok)throw Error(path+' unavailable');return r.json()}
@@ -12,7 +12,7 @@ let data=null;
 function statusFor(p,eventId,teamName){
  const reports=data?.injuries?.reports;
  if(!Array.isArray(reports))return 'UNVERIFIED';
- const matches=reports.filter(x=>x.verified===true&&x.event_id===eventId&&['game_designation','official_inactives'].includes(x.report_type)&&Array.isArray(x.players)&&/^https:\/\/(?:www\.)?(?:nfl\.com|espn\.com)\//i.test(x.source_url||'')&&Number.isFinite(Date.parse(x.fetched_at))&&Date.now()-Date.parse(x.fetched_at)>=0&&Date.now()-Date.parse(x.fetched_at)<21600000&&Date.parse(x.reported_at)<=Date.parse(x.fetched_at));
+ const matches=reports.filter(x=>x.verified===true&&x.event_id===eventId&&['game_designation','official_inactives'].includes(x.report_type)&&Array.isArray(x.players)&&/^https:\/\/(?:www\.)?(?:nfl\.com|espn\.com)\//i.test(x.source_url||'')&&Number.isFinite(Date.parse(x.fetched_at))&&Date.now()-Date.parse(x.fetched_at)>=0&&Date.now()-Date.parse(x.fetched_at)<21600000&&Number.isFinite(Date.parse(x.reported_at))&&Date.parse(x.reported_at)<=Date.parse(x.fetched_at)&&Date.parse(x.fetched_at)-Date.parse(x.reported_at)<21600000);
  const identity=p.name.trim().toLowerCase();
  const found=matches.flatMap(x=>x.players.map(y=>({report:x,player:y}))).filter(x=>x.player.name?.trim().toLowerCase()===identity&&x.player.team===teamName);
  if(found.some(x=>x.player.status==='inactive'||x.player.status==='out'))return 'OUT / INACTIVE';
@@ -22,7 +22,7 @@ function statusFor(p,eventId,teamName){
 function chartingFor(p){
  const rows=data?.ftn?.player_weeks;
  if(!Array.isArray(rows))return null;
- const valid=rows.filter(x=>x.player_id===p.nflverse_player_id&&x.team===p.team&&x.complete_team_week_charting===true&&Number.isInteger(x.week)&&x.week<=p.latest_week&&x.week>p.latest_week-5&&Number.isInteger(x.primary_read_targets)&&x.primary_read_targets>=0&&Number.isInteger(x.designed_read_targets)&&x.designed_read_targets>=0);
+ const valid=rows.filter(x=>x.player_id===p.nflverse_player_id&&(x.team==='LA'?'LAR':x.team)===(p.team==='LA'?'LAR':p.team)&&x.complete_team_week_charting===true&&Number.isInteger(x.week)&&x.week<=p.latest_week&&x.week>p.latest_week-5&&Number.isInteger(x.primary_read_targets)&&x.primary_read_targets>=0&&Number.isInteger(x.designed_read_targets)&&x.designed_read_targets>=0);
  const weeks=new Set(valid.map(x=>x.week));
  if(weeks.size<3||weeks.size!==valid.length)return null;
  return {weeks:weeks.size,primary:valid.reduce((s,x)=>s+x.primary_read_targets,0),designed:valid.reduce((s,x)=>s+x.designed_read_targets,0)};
@@ -31,7 +31,7 @@ function render(){if(!data)return;const event=$('mx-event')?.value,window=$('mx-
 const sides=game.event.split(' @ ');if(sides.length!==2){root.textContent='UNAVAILABLE — event team mapping invalid.';return}
 const positions=position==='overall'?['qb','rb','wr','te']:[position];const cards=[];
 for(let i=0;i<2;i++){const team=teamCodes[sides[i]],defSide=i===0?'home':'away';if(!team)continue;
-for(const p of data.usage.profiles||[]){const pos=String(p.position||'').toLowerCase();if(p.team!==team||!positions.includes(pos)||!p.name||!p.nflverse_player_id||!Number.isInteger(p.latest_week)||p.latest_week<1)continue;
+for(const p of data.usage.profiles||[]){const pos=String(p.position||'').toLowerCase();if((p.team==='LA'?'LAR':p.team)!==team||!positions.includes(pos)||!p.name||!p.nflverse_player_id||!Number.isInteger(p.latest_week)||p.latest_week<1)continue;
 const metrics=markets[pos]||[];const observed=metrics.map(([key,label])=>({key,label,metric:record.matchup_stats?.[window]?.[pos]?.[defSide]?.[key]})).filter(x=>eligible(x.metric));const trend=Object.entries(p.markets||{}).filter(([,m])=>m&&Number.isFinite(m.recent_three_mean)&&Number.isFinite(m.prior_mean)&&Number.isInteger(m.sample_games)&&m.sample_games>=6).slice(0,5);
 cards.push({p,team,teamName:sides[i],defense:sides[1-i],observed,trend,charting:pos==='wr'||pos==='te'?chartingFor(p):null});}}
 cards.sort((a,b)=>b.observed.length-a.observed.length||b.trend.length-a.trend.length||b.p.latest_week-a.p.latest_week||a.p.name.localeCompare(b.p.name));
