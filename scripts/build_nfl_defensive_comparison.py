@@ -172,8 +172,8 @@ def build():
                     agg={}
                     for field in FIELDS:
                         nums=[stats[position][field] for _,stats in samples if field in stats.get(position,{})]
-                        if nums:agg[field]={'value':round(statistics.mean(nums),2),'sample_size':len(nums)}
-                    if agg:agg['summary']=str(len(samples))+' observed '+str(year)+' games · '+position.upper()
+                        if nums:agg[field]={'value':round(statistics.mean(nums),2),'sample_size':len(nums),'games_in_window':len(samples),'coverage_pct':round(100*len(nums)/len(samples),1) if samples else 0}
+                    if agg:agg['summary']=str(len(samples))+' eligible '+str(year)+' games · '+position.upper()+' · metric sample counts vary'
                     sides[side]=agg
                 matchup[period][position]=sides
         events.append({'event_id':g['event_id'],'matchup_stats':matchup})
