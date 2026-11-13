@@ -39,10 +39,10 @@ async function run(overrides={},selectedEvent='none'){
  output=await run({...positive,'./feed/nfl_injury_reports.json':injury},'test-game');assert.doesNotMatch(output,/OUT \/ INACTIVE/);
  injury.reports[0].event_id='test-game';
  injury.reports[0].fetched_at=iso(now-7*3600000);
- output=await run({...positive,'./feed/nfl_injury_reports.json':injury},'test-game');assert.doesNotMatch(output,/OUT \\/ INACTIVE/);
+ output=await run({...positive,'./feed/nfl_injury_reports.json':injury},'test-game');assert.doesNotMatch(output,/OUT \/ INACTIVE/);
  injury.reports[0].fetched_at=iso(now-60000);
  injury.reports[0].source_url='https://example.com/fake-report';
- output=await run({...positive,'./feed/nfl_injury_reports.json':injury},'test-game');assert.doesNotMatch(output,/OUT \\/ INACTIVE/);
+ output=await run({...positive,'./feed/nfl_injury_reports.json':injury},'test-game');assert.doesNotMatch(output,/OUT \/ INACTIVE/);
  injury.reports[0].source_url='https://www.nfl.com/injuries/';
  output=await run({...positive,'./feed/nfl_injury_reports.json':injury},'test-game');assert.match(output,/OUT \/ INACTIVE/);
  console.log('PASS: empty slate, stale event, invalid usage eligibility, stale defense, matched matchup, cross-game injury isolation, inactive flag');
