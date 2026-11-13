@@ -16,6 +16,13 @@ jobs:
           python-version: '3.12'
       - name: Reconcile ESPN completed scores against nflverse
         run: python scripts/reconcile_nflverse_scores.py
+      - name: Upload reconciliation diagnostics even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nfl-independent-score-audit
+          path: feed/nfl_independent_score_audit.json
+          if-no-files-found: warn
       - name: Publish verified reconciliation report
         run: |
           git config user.name "github-actions[bot]"
