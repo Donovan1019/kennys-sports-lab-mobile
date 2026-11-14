@@ -22,3 +22,8 @@
 .ksl-pfl .ksl-pfl-prediction-win small{color:#c0d9ce}
 .ksl-pfl .ksl-pfl-prediction-pending{background:#252629;border:1px solid #444;color:#c3c4c6;font-size:12px;font-weight:700}
 .ksl-pfl .ksl-pfl-prediction-pending small{font-weight:400;color:#a5a5a8}
+
+.ksl-pfl .ksl-pfl-prediction-market{padding:12px;border-radius:11px;display:flex;flex-direction:column;gap:5px;overflow-wrap:anywhere;background:#342b17;border:1px solid #82672b;color:#f1d48d}
+.ksl-pfl .ksl-pfl-prediction-market strong{font-size:18px;color:#f8cf68;text-transform:capitalize}
+.ksl-pfl .ksl-pfl-prediction-market span{font-size:11px;font-weight:800;letter-spacing:.04em}
+.ksl-pfl .ksl-pfl-prediction-market small{color:#d7c59e}
