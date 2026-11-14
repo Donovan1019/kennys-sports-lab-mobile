@@ -21,7 +21,7 @@ function render(){
  if(sort==='date')visible.sort((a,b)=>a.date.localeCompare(b.date));
  const board=byId('fight-board');if(!board)return;
  if(!hydrated)return; // Keep the HTML-rendered schedule until a successful fetch. 
- board.innerHTML=visible.length?visible.map(b=>'<article class="ksl-pfl-fight"><div><small class="ksl-pfl-eyebrow">'+escape(b.eventName)+'</small><h3>'+escape((b.fighters||[]).map(x=>x.name||x.slug).join(' vs '))+'</h3><small class="ksl-pfl-muted">'+escape(b.date)+' · '+escape(b.scheduledRounds||'—')+' rounds</small>'+model(b)+'</div><div class="ksl-pfl-fightmarket"><span class="ksl-pfl-muted">No sportsbook-verified betting markets</span></div></article>').join(''):'<p class="ksl-pfl-muted">'+(only==='ready'?'No verified betting-ready fights currently available. Choose All fights to view the schedule.':'No upcoming scheduled fights match this view. Completed events are excluded.')+'</p>';
+ board.innerHTML=visible.length?visible.map(b=>'<article class="ksl-pfl-fight" data-fight-id="'+escape(b.id)+'"><div><small class="ksl-pfl-eyebrow">'+escape(b.eventName)+'</small><h3>'+escape((b.fighters||[]).map(x=>x.name||x.slug).join(' vs '))+'</h3><small class="ksl-pfl-muted">'+escape(b.date)+' · '+escape(b.scheduledRounds||'—')+' rounds</small>'+model(b)+'</div><div class="ksl-pfl-fightmarket"><span class="ksl-pfl-muted">No sportsbook-verified betting markets</span></div></article>').join(''):'<p class="ksl-pfl-muted">'+(only==='ready'?'No verified betting-ready fights currently available. Choose All fights to view the schedule.':'No upcoming scheduled fights match this view. Completed events are excluded.')+'</p>';
 }
 function hydrate(snapshot){
  if(!snapshot||!Array.isArray(snapshot.events))throw Error('Invalid event schedule');
