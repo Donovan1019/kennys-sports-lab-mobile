@@ -32,8 +32,11 @@ function modelCard(f){
  const p=f.projection,valid=p&&p.available===true&&Number.isFinite(p.probabilityA)&&Number.isFinite(p.probabilityB)&&Math.abs(p.probabilityA+p.probabilityB-1)<.02&&Array.isArray(p.fighters)&&p.fighters.length===2;
  let winner='<div class="ksl-pfl-prediction-pending">MODEL WINNER: UNAVAILABLE <small>Insufficient verified fighter history</small></div>';
  if(valid){const a=p.probabilityA>=p.probabilityB,w=p.fighters[a?0:1],prob=a?p.probabilityA:p.probabilityB;winner='<div class="ksl-pfl-prediction-win"><span>MODEL PREDICTED WINNER · EXPLORATORY</span><strong>'+safe(fighterName(w).replace(/-/g,' '))+'</strong><small>'+ (prob*100).toFixed(1)+'% · 50K simulations · Not calibrated</small></div>';}
+ const c=f.consensus;
+ if(!valid&&c&&Number.isFinite(c.a)&&Number.isFinite(c.b)){const implied=n=>n<0?-n/(-n+100):100/(n+100),pa=implied(c.a),pb=implied(c.b),side=pa>=pb?c.first:c.second,prob=Math.max(pa,pb)/(pa+pb);winner='<div class="ksl-pfl-prediction-market"><span>CONSENSUS FAVORITE · NOT OUR MODEL PICK</span><strong>'+safe(side)+'</strong><small>'+(prob*100).toFixed(1)+'% no-vig market estimate · Unverified sportsbook</small></div>';}
  const t=f.roundProjection;
  let rounds='<div class="ksl-pfl-prediction-pending">TOTAL ROUNDS: NO MODEL RECOMMENDATION <small>Validated finish-time distribution unavailable</small></div>';
+ if(!t&&Array.isArray(f.totalConsensus)&&f.totalConsensus.length){const v=f.totalConsensus[0],implied=n=>n<0?-n/(-n+100):100/(n+100);if(Number.isFinite(v.line)&&Number.isFinite(v.over?.american)&&Number.isFinite(v.under?.american)){const pa=implied(v.over.american),pb=implied(v.under.american),over=pa>=pb;rounds='<div class="ksl-pfl-prediction-market"><span>ROUNDS MARKET LEAN · NOT OUR MODEL PICK</span><strong>'+(over?'Over ':'Under ')+safe(v.line)+'</strong><small>'+(100*Math.max(pa,pb)/(pa+pb)).toFixed(1)+'% no-vig market estimate · Not verified</small></div>';}}
  if(t&&t.available===true&&t.modelCalibrated===true&&Number.isFinite(t.probability)&&t.probability>0&&t.probability<1&&Number.isFinite(t.line)&&['over','under'].includes(t.side)){rounds='<div class="ksl-pfl-prediction-win"><span>MODEL TOTAL ROUNDS</span><strong>'+safe(t.side.toUpperCase())+' '+safe(t.line)+'</strong><small>'+ (t.probability*100).toFixed(1)+'% · Calibrated</small></div>';}
  return '<div class="ksl-pfl-predictions">'+winner+rounds+'</div>';
 }
@@ -62,7 +65,7 @@ window.KSLPFLFeed.load().then(feed=>{
  const byFight=new Map();
  for(const m of feed.markets){const key=String(m.fightId);if(!byFight.has(key))byFight.set(key,[]);byFight.get(key).push(m)}
  for(const fight of fights){fight.markets=byFight.get(String(fight.id))||[]}
- const consensus=feed.matchedConsensus?.rows?new Map(feed.matchedConsensus.rows.map(r=>[String(r.fightId),{first:r.markets[0].selection,a:r.markets[0].american,second:r.markets[1].selection,b:r.markets[1].american,recordedAt:r.recordedAt,sources:r.sources}])):consensusIndex(feed);for(const fight of fights){fight.consensus=consensus.get(String(fight.id))||null;}
+ const consensus=feed.matchedConsensus?.rows?new Map(feed.matchedConsensus.rows.map(r=>[String(r.fightId),{first:r.markets[0].selection,a:r.markets[0].american,second:r.markets[1].selection,b:r.markets[1].american,recordedAt:r.recordedAt,sources:r.sources}])):consensusIndex(feed);const matched=new Map((feed.matchedConsensus?.rows||[]).map(r=>[String(r.fightId),r]));for(const fight of fights){fight.consensus=consensus.get(String(fight.id))||null;fight.totalConsensus=matched.get(String(fight.id))?.totalRounds||[];}
  const projected=new Map((feed.projections?.bouts||[]).filter(b=>b.available).map(b=>[String(b.boutId),b]));
  for(const fight of fights){fight.projection=projected.get(String(fight.id))||null;}
  const verifiedBouts=feed.boutReadiness?.identityAndHistoryVerified??0;
