@@ -32,7 +32,8 @@ jobs:
       - name: Audit cross-source fight coverage and betting gaps
         run: |
           node tests/pfl_coverage_audit.test.js
-          node scripts/pfl_coverage_audit.js data/pfl/events.json data/pfl/ufcalendar-events.json
+          node scripts/pfl_coverage_audit.js data/pfl/events.json data/pfl/ufcalendar-events.json | tee data/pfl/coverage-audit.json
+          test "${PIPESTATUS[0]}" -eq 0
       - name: Upload data for authorized review (not published to site)
         if: always()
         uses: actions/upload-artifact@v4
@@ -41,4 +42,5 @@ jobs:
           path: |
             data/pfl/events.json
             data/pfl/ufcalendar-events.json
+            data/pfl/coverage-audit.json
           retention-days: 3
