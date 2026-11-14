@@ -1,9 +1,13 @@
 name: PFL Free API Ingestion (Manual)
 on:
   workflow_dispatch:
+concurrency:
+  group: pfl-free-ingestion
+  cancel-in-progress: false
 jobs:
   acquire:
     runs-on: ubuntu-latest
+    timeout-minutes: 25
     permissions:
       contents: read
     steps:
@@ -35,6 +39,7 @@ jobs:
         env:
           CITO_API_KEY: ${{ secrets.CITO_API_KEY }}
           PFL_FIGHTER_LIMIT: '100'
+          PFL_REQUEST_DELAY_MS: '6500'
         run: node scripts/pfl_fighter_histories.js
       - name: Save PFL fighter-history checkpoint
         if: always() && hashFiles('data/pfl/fighter-histories.json') != ''
