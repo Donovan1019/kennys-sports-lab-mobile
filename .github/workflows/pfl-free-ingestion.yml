@@ -1,20 +1,6 @@
 name: PFL Free API Ingestion (Manual)
 on:
   workflow_dispatch:
-    inputs:
-      fighter_offset:
-        description: 'Starting fighter index (0, 6, 12, 18, 24, 30, 36)'
-        required: false
-        default: '0'
-        type: choice
-        options:
-          - '0'
-          - '6'
-          - '12'
-          - '18'
-          - '24'
-          - '30'
-          - '36'
 jobs:
   acquire:
     runs-on: ubuntu-latest
@@ -36,11 +22,10 @@ jobs:
         env:
           CITO_API_KEY: ${{ secrets.CITO_API_KEY }}
         run: node scripts/pfl_acquire.js
-      - name: Fetch bounded PFL fighter profiles and histories
+      - name: Fetch all scheduled PFL fighter profiles and histories
         env:
           CITO_API_KEY: ${{ secrets.CITO_API_KEY }}
-          PFL_FIGHTER_LIMIT: '6'
-          PFL_FIGHTER_OFFSET: ${{ inputs.fighter_offset || '0' }}
+          PFL_FIGHTER_LIMIT: '100'
         run: |
           node tests/pfl_fighter_histories.test.js
           node scripts/pfl_fighter_histories.js
