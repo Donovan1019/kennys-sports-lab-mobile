@@ -36,3 +36,29 @@ New PFL tab consistent with existing UFC and mobile design. Only moneyline and t
 7. No fake live feeds or odds; show UNVERIFIED for missing Onyx lines.
 8. Mobile layout matches existing theme, navigation and accessible interactive elements.
 9. Validate CI and production build before merge.
+
+
+## Verified source discovery — 2026-11-14
+Source candidates; do not claim integration until endpoints, legal access, completeness and freshness are tested.
+
+| Source | Use | Verification |
+| --- | --- | --- |
+| https://pflmma.com/news | Official event announcements, weigh-ins, cancellations, fighter news | Primary official authority; inspect event timestamp |
+| https://pflmma.com/all-fighter/taylor-lapilus | Fighter profile and results | Official profile example |
+| https://pflmma.com/news/professional-fighters-league-introduces-independent-fighter-rankings-powered-by-combat-registry | Rankings context | Rankings are journalist votes, not an independent quantitative rating |
+| https://docs.citoapi.com/pfl-api/ | Candidate events, bouts, scheduled rounds, fighter IDs and UFC linkage | Third-party API; verify authentication, pricing, licensing, completeness and latency; provider says no PFL strike/round stats |
+| http://ufcstats.com | UFC bout-level and round-level historical stats for crossover fighters | UFC history only; not PFL bout statistics |
+| https://www.sherdog.com | Cross-promotion records, opponent histories and finishes | Verify permitted access and cross-check official results |
+| https://www.tapology.com | Event changes, bout records and fighter identities | Verify permitted access and cross-check official results |
+| https://www.espn.com/mma/ | News, reporting, result corroboration | Secondary reporting |
+
+### News/event monitor
+- Event announced -> card versioned; matchup and scheduled rounds confirmed.
+- Fighter withdrawal/replacement, weigh-in miss, catchweight, title-status change -> invalidate affected model/market.
+- Monitor official news and weigh-ins at pre-event intervals; retain timestamps and article URLs.
+- Classify announcements by promotion and sport; exclude boxing cards from MMA projections.
+- Record rumor vs confirmed status; only official confirmation can change the canonical card.
+- Do not label API or news monitoring active before an actual scheduled workflow exists.
+
+### Today's integration fixture
+PFL Dubai November 14 2026 official weigh-ins: Nemkov vs Bilostenniy, Habirora vs El Dafrawy, Popov vs Rahmani, Pettis vs Goto, Rock vs Hughes. Use only as a historical test fixture after event completion; do not assert live odds or forecast outputs.
