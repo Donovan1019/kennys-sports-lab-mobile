@@ -9,7 +9,7 @@ function render(){
  if(!Number.isFinite(stake)||stake<=0){el('parlay-result').textContent='Enter a positive stake.';return;}
  const target=el('target-odds').value;
  const [min,max]=target==='any'?[0,Infinity]:target.split('-').map(Number);
- const p=templates.find(x=>x.legs===legs&&x.strategy===strategy&&(x.market||'ml')===market&&
+ const p=templates.find(x=>x.legs===legs&&x.strategy===strategy&&(x.market||'ml')===market&&x.targetOdds===target&&
  Number.isFinite(x.referenceDecimalOdds)&&100*(x.referenceDecimalOdds-1)>=min&&100*(x.referenceDecimalOdds-1)<=max);
  if(!p){el('parlay-result').textContent='No fresh reference combination available for these settings. Verified betting markets remain '+intake.length+'. No market-reference ticket will be substituted outside the selected odds range.';return;}
  const box=el('parlay-result');box.replaceChildren();
