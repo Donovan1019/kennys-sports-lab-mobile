@@ -1,11 +1,11 @@
 (function(){'use strict';
 const el=id=>document.getElementById(id);
-const defaults={strategy:'silver',legs:'3',market:'ml',stake:'25'};
+const defaults={strategy:'silver',legs:'3','parlay-market':'ml',stake:'25'};
 let templates=[],verified=[];
 const ids=Object.keys(defaults);
 function update(){const s=Number(el('stake').value);el('parlay-summary').textContent=el('legs').value+' legs · '+el('strategy').value.toUpperCase()+' · '+(Number.isFinite(s)&&s>0?'$'+s.toFixed(2):'Invalid stake')+' · '+templates.length+' reference templates · '+verified.length+' verified markets';}
 function render(){
- const stake=Number(el('stake').value),legs=Number(el('legs').value),strategy=el('strategy').value,market=el('market').value;
+ const stake=Number(el('stake').value),legs=Number(el('legs').value),strategy=el('strategy').value,market=el('parlay-market').value;
  if(!Number.isFinite(stake)||stake<=0){el('parlay-result').textContent='Enter a positive stake.';return;}
  if(market==='totals'){el('parlay-result').textContent='No independently validated total-round parlay combinations available.';return;}
  const p=templates.find(x=>x.legs===legs&&x.strategy===strategy);
