@@ -86,6 +86,11 @@ jobs:
         run: |
           node tests/pfl_model_market_intake.test.js
           node scripts/pfl_model_market_intake.js
+      - name: Build historical PFL matchup features without future leakage
+        if: always() && hashFiles('data/pfl/fighter-histories.json', 'data/pfl/bout-readiness.json') != ''
+        run: |
+          node tests/pfl_historical_features.test.js
+          node scripts/pfl_historical_features.js
       - name: Validate snapshots
         if: always() && hashFiles('data/pfl/events.json', 'data/pfl/ufcalendar-events.json') != ''
         run: |
@@ -112,4 +117,5 @@ jobs:
             data/pfl/bout-readiness.json
             data/pfl/odds-validation.json
             data/pfl/model-market-intake.json
+            data/pfl/historical-features.json
           retention-days: 3
