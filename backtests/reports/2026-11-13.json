@@ -1,6 +1,6 @@
 {
   "date": "2026-11-13",
-  "generated_at": "2026-11-14T02:27:21.403262+00:00",
+  "generated_at": "2026-11-14T20:43:46.616624+00:00",
   "sports": {
     "NFL": {
       "status": "NO_VERIFIED_PREGAME_PREDICTIONS",
@@ -14,34 +14,96 @@
       "pending": 0
     },
     "NBA": {
-      "status": "OUTCOMES_UNVERIFIED",
+      "status": "PARTIALLY_SETTLED_MONEYLINES",
       "saved_quotes": 0,
       "eligible_predictions": 32,
       "research_only_predictions": 32,
       "bet_eligible_predictions": 0,
       "blocked_predictions": [],
-      "graded": 0,
-      "settled": [],
-      "pending": 32
+      "graded": 4,
+      "settled": [
+        {
+          "event": "New York Knicks @ Indiana Pacers",
+          "market": "h2h",
+          "selection": "Indiana Pacers",
+          "outcome": "win"
+        },
+        {
+          "event": "New York Knicks @ Indiana Pacers",
+          "market": "h2h",
+          "selection": "New York Knicks",
+          "outcome": "loss"
+        },
+        {
+          "event": "Golden State Warriors @ San Antonio Spurs",
+          "market": "h2h",
+          "selection": "San Antonio Spurs",
+          "outcome": "win"
+        },
+        {
+          "event": "Golden State Warriors @ San Antonio Spurs",
+          "market": "h2h",
+          "selection": "Golden State Warriors",
+          "outcome": "loss"
+        }
+      ],
+      "pending": 28
     },
     "NHL": {
-      "status": "OUTCOMES_UNVERIFIED",
+      "status": "PARTIALLY_SETTLED_MONEYLINES",
       "saved_quotes": 0,
       "eligible_predictions": 152,
       "research_only_predictions": 152,
       "bet_eligible_predictions": 0,
       "blocked_predictions": [],
-      "graded": 0,
-      "settled": [],
-      "pending": 152
+      "graded": 6,
+      "settled": [
+        {
+          "event": "New York Rangers @ Vancouver Canucks",
+          "market": "h2h",
+          "selection": "Vancouver Canucks",
+          "outcome": "loss"
+        },
+        {
+          "event": "New York Rangers @ Vancouver Canucks",
+          "market": "h2h",
+          "selection": "New York Rangers",
+          "outcome": "win"
+        },
+        {
+          "event": "Nashville Predators @ Vegas Golden Knights",
+          "market": "h2h",
+          "selection": "Vegas Golden Knights",
+          "outcome": "loss"
+        },
+        {
+          "event": "Nashville Predators @ Vegas Golden Knights",
+          "market": "h2h",
+          "selection": "Nashville Predators",
+          "outcome": "win"
+        },
+        {
+          "event": "Seattle Kraken @ Carolina Hurricanes",
+          "market": "h2h",
+          "selection": "Carolina Hurricanes",
+          "outcome": "win"
+        },
+        {
+          "event": "Seattle Kraken @ Carolina Hurricanes",
+          "market": "h2h",
+          "selection": "Seattle Kraken",
+          "outcome": "loss"
+        }
+      ],
+      "pending": 146
     }
   },
   "summary": {
-    "verified_picks": 0,
-    "wins": 0,
-    "losses": 0,
+    "verified_picks": 10,
+    "wins": 5,
+    "losses": 5,
     "pushes": 0,
     "roi": null,
-    "hit_rate": null
+    "hit_rate": 0.5
   }
 }

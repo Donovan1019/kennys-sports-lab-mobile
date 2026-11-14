@@ -1,0 +1,33 @@
+{
+  "sport": "NHL",
+  "date": "2026-11-13",
+  "games": [
+    {
+      "event_id": "401892706",
+      "event": "New York Rangers at Vancouver Canucks",
+      "commence_time": "2026-11-14T02:00Z",
+      "home": "Vancouver Canucks",
+      "away": "New York Rangers",
+      "home_score": 1,
+      "away_score": 5,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261113&limit=100"
+    },
+    {
+      "event_id": "401892707",
+      "event": "Nashville Predators at Vegas Golden Knights",
+      "commence_time": "2026-11-14T03:00Z",
+      "home": "Vegas Golden Knights",
+      "away": "Nashville Predators",
+      "home_score": 2,
+      "away_score": 3,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261113&limit=100"
+    }
+  ],
+  "source_url": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261113&limit=100"
+}
