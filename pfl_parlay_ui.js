@@ -12,7 +12,7 @@ function verifiedPreview(stake,legs,strategy,market,min,max){
   crossFightIndependenceValidated:eligible.every(m=>m.crossFightIndependenceValidated===true)};
  if(Number.isFinite(max)){opts.targetMinAmerican=min;opts.targetMaxAmerican=max}
  const result=window.KSLPFLParlays.build(eligible,opts);
- return result.eligible?result:null;
+ return result.eligible&&result.expectedValue>0?result:null;
 }
 const ids=Object.keys(defaults);
 function update(){const s=Number(el('stake').value);el('parlay-summary').textContent=el('legs').value+' legs · '+el('strategy').value.toUpperCase()+' · '+(Number.isFinite(s)&&s>0?'$'+s.toFixed(2):'Invalid stake')+' · target '+el('target-odds').value+' · '+templates.length+' reference templates · '+intake.length+' intake markets';}
