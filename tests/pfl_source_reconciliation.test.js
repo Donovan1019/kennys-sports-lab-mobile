@@ -1,0 +1,11 @@
+const assert=require('node:assert/strict');
+const {audit,entries,norm}=require('../scripts/pfl_source_reconciliation');
+assert.equal(norm('José Silva'),'josesilva');
+assert.equal(entries({data:{items:[{id:1}]}}).length,1);
+const cito={events:[{id:'c1',name:'PFL 1',date:'2026-11-20',bouts:[{fighters:[{slug:'a'},{slug:'b'}]}]}]};
+const api={schedule:{items:[{id:'f1',name:'PFL 1',date:'2026-11-20'}]},events:{items:[{id:'f1',name:'PFL 1'},{id:'f2',name:'Other'}]}};
+const a=audit(cito,api);
+assert.equal(a.citoFighters,2);assert.equal(a.matchedEvents.length,1);
+assert.equal(a.unmatchedEvents.length,1);assert.equal(a.duplicateEventKeys.length,1);
+assert.equal(a.bettingReady,false);assert.equal(a.oddsVerified,false);
+console.log('PFL FighterAPI reconciliation tests passed');
