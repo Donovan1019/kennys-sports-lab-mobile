@@ -4,6 +4,8 @@ on:
     paths:
       - 'pfl_analytics.js'
       - 'pfl_dashboard.js'
+      - 'pfl_snapshot.js'
+      - 'tests/pfl_snapshot.test.js'
       - 'pfl.html'
       - 'pfl_module.css'
       - 'scripts/pfl_acquire.js'
@@ -17,6 +19,8 @@ on:
     paths:
       - 'pfl_analytics.js'
       - 'pfl_dashboard.js'
+      - 'pfl_snapshot.js'
+      - 'tests/pfl_snapshot.test.js'
       - 'pfl.html'
       - 'pfl_module.css'
       - 'scripts/pfl_acquire.js'
@@ -40,6 +44,8 @@ jobs:
           node tests/pfl_models.test.js
           node tests/pfl_confidence.test.js
           node tests/pfl_acquire.test.js
+          node tests/pfl_snapshot.test.js
+          node --check pfl_snapshot.js
           node --check pfl_dashboard.js
           node --check pfl_analytics.js
           node --check pfl_confidence.js
