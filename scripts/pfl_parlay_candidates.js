@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 'use strict';
 const fs=require('node:fs');
-function build(consensus,{iterations=50000,seed=20261114}={}){
+function build(consensus,{iterations=50000,seed=20261114,now=Date.now()}={}){
  if(!Number.isInteger(iterations)||iterations<50000)throw Error('50K simulations required');
- const candidates=(consensus.rows||[]).filter(r=>Number.isFinite(Date.parse(r.recordedAt))&&Date.parse(r.recordedAt)<=Date.now()+300000&&Date.now()-Date.parse(r.recordedAt)<=7200000).filter(r=>r.markets?.length===2&&r.markets.every(m=>Number.isInteger(m.american)&&Math.abs(m.american)>=100)).map(r=>{
+ const candidates=(consensus.rows||[]).filter(r=>Number.isFinite(Date.parse(r.recordedAt))&&Date.parse(r.recordedAt)<=now+300000&&now-Date.parse(r.recordedAt)<=7200000).filter(r=>r.markets?.length===2&&r.markets.every(m=>Number.isInteger(m.american)&&Math.abs(m.american)>=100)).map(r=>{
   const a=r.markets[0],b=r.markets[1];
   const implied=n=>n<0?-n/(-n+100):100/(n+100);
   const pa=implied(a.american),pb=implied(b.american),fair=pa/(pa+pb);
