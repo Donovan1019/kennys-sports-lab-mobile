@@ -65,6 +65,11 @@ jobs:
         run: |
           node tests/pfl_consensus_market.test.js
           node scripts/pfl_consensus_market.js
+      - name: Generate 50K-simulation PFL parlay reference candidates
+        if: always() && hashFiles('data/pfl/consensus-markets.json') != ''
+        run: |
+          node tests/pfl_parlay_candidates.test.js
+          node scripts/pfl_parlay_candidates.js
       - name: Fetch PFL schedule and events from FighterAPI (optional)
         if: always()
         continue-on-error: true
@@ -117,12 +122,12 @@ jobs:
         if: success()
         run: |
           set -euo pipefail
-          for file in events.json ufcalendar-odds.json consensus-markets.json bout-readiness.json odds-validation.json model-market-intake.json historical-features.json projections.json; do
+          for file in events.json ufcalendar-odds.json consensus-markets.json parlay-candidates.json bout-readiness.json odds-validation.json model-market-intake.json historical-features.json projections.json; do
             test -s "data/pfl/$file" || { echo "Required PFL public snapshot missing: $file"; exit 1; }
           done
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/pfl/events.json data/pfl/ufcalendar-odds.json data/pfl/consensus-markets.json data/pfl/bout-readiness.json data/pfl/odds-validation.json data/pfl/model-market-intake.json data/pfl/historical-features.json data/pfl/projections.json
+          git add data/pfl/events.json data/pfl/ufcalendar-odds.json data/pfl/consensus-markets.json data/pfl/parlay-candidates.json data/pfl/bout-readiness.json data/pfl/odds-validation.json data/pfl/model-market-intake.json data/pfl/historical-features.json data/pfl/projections.json
           if git diff --cached --quiet; then echo "PFL public snapshots unchanged"; exit 0; fi
           git commit -m "data(pfl): publish validated public snapshots [skip ci]"
           git push origin "HEAD:${GITHUB_REF_NAME}"
@@ -136,6 +141,7 @@ jobs:
             data/pfl/ufcalendar-events.json
             data/pfl/ufcalendar-odds.json
             data/pfl/consensus-markets.json
+            data/pfl/parlay-candidates.json
             data/pfl/coverage-audit.json
             data/pfl/fighter-histories.json
             data/pfl/history-audit.json
