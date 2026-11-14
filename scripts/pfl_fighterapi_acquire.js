@@ -17,8 +17,14 @@ async function acquire(key,fetcher=fetch){
   catch(error){snapshot.errors.push({field,status:error.status??null,message:error.message});if([401,402,429].includes(error.status))break}
  }
  if(snapshot.events||snapshot.schedule){
-  try{const result=await request('get_odds',{league:'pfl'},key,fetcher);snapshot.odds=result.data;snapshot.oddsCreditsRemaining=result.creditsRemaining}
-  catch(error){snapshot.errors.push({field:'odds',status:error.status??null,message:error.message});}
+  const eventRows=Array.isArray(snapshot.events)?snapshot.events:(snapshot.events?.events||snapshot.events?.items||[]);
+  const upcoming=eventRows.filter(e=>e&&typeof e==='object'&&(!e.status||['scheduled','upcoming'].includes(String(e.status).toLowerCase())));
+  const event=upcoming.find(e=>e.event_id||e.eventId||e.id);
+  const eventId=event&&(event.event_id||event.eventId||event.id);
+  if(eventId){
+   try{const result=await request('get_odds',{league:'pfl',event_id:String(eventId)},key,fetcher);snapshot.odds=result.data;snapshot.oddsEventId=String(eventId);snapshot.oddsCreditsRemaining=result.creditsRemaining}
+   catch(error){snapshot.errors.push({field:'odds',status:error.status??null,message:error.message});}
+  }else snapshot.errors.push({field:'odds',status:null,message:'No verified scheduled event_id available; skipped invalid odds request'});
  }
  return snapshot;
 }
