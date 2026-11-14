@@ -1,0 +1,13 @@
+const assert=require('node:assert/strict');
+const {features}=require('../scripts/pfl_historical_features');
+const bout={boutId:'b1',eventId:'e1',fighters:['a','b'],identityAndHistoryVerified:true,blockedReasons:['LIVE_ODDS_UNVERIFIED']};
+const fight=(id,date,winner,slug)=>({id,date,status:'completed',winnerFighterSlug:winner,perspective:{fighterSlug:slug,outcome:winner===slug?'win':'loss'}});
+const history={profiles:[{slug:'a',fights:[fight('1','2026-01-01','a','a'),fight('2','2026-02-01','b','a'),fight('3','2026-03-01','a','a'),fight('4','2026-12-01','a','a'),fight('3','2026-03-01','a','a')]},{slug:'b',fights:[fight('5','2026-01-01','b','b'),fight('6','2026-02-01','b','b'),fight('7','2026-03-01','a','b')]}]};
+const result=features(history,{bouts:[bout]},'2026-11-14T00:00:00Z');
+assert.equal(result.featureReadyBouts,1);
+assert.equal(result.bouts[0].fighters[0].verifiedFights,3);
+assert.equal(result.bouts[0].fighters[0].wins,2);
+assert.equal(result.bouts[0].modelCalibrated,false);
+assert.equal(result.bettingReady,false);
+assert.equal(features({profiles:[]},{bouts:[bout]},'2026-11-14').featureReadyBouts,0);
+console.log('PFL historical feature tests passed');
