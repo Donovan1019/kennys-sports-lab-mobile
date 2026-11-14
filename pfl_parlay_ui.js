@@ -9,6 +9,21 @@ function render(){
  if(!Number.isFinite(stake)||stake<=0){el('parlay-result').textContent='Enter a positive stake.';return;}
  const target=el('target-odds').value;
  const [min,max]=target==='any'?[0,Infinity]:target.split('-').map(Number);
+ const qualified=intake.filter(m=>window.KSLPFLBets&&window.KSLPFLBets.assess(m).eligible);
+ if(window.KSLPFLParlays&&qualified.length>=legs){
+  const opts={legs,strategy,market:market==='ml'?'ml':'totals',stake,iterations:50000,seed:20261114,crossFightIndependenceValidated:qualified.every(m=>m.crossFightIndependenceValidated===true)};
+  if(Number.isFinite(max)){opts.targetMinAmerican=min;opts.targetMaxAmerican=max;}
+  const model=window.KSLPFLParlays.build(qualified,opts);
+  if(model.eligible&&model.expectedValue>0){
+   const box=el('parlay-result');box.replaceChildren();
+   const title=document.createElement('strong');title.textContent='VERIFIED INDEPENDENT MODEL';box.append(title);
+   const list=document.createElement('ol');
+   for(const leg of model.legs){const item=document.createElement('li');item.textContent=leg.selection+' | odds '+leg.odds+' | probability '+(leg.probability*100).toFixed(1)+'% | fair '+leg.fairOdds+' | EV '+(leg.individualEV*100).toFixed(1)+'%';list.append(item);}
+   box.append(list);
+   const summary=document.createElement('p');summary.textContent='Joint win '+(model.jointProbability*100).toFixed(1)+'% | combined decimal '+model.decimalOdds.toFixed(2)+' | EV '+(model.expectedValue*100).toFixed(1)+'% | profit '+model.netProfit.toFixed(2)+' | simulations '+model.iterations;box.append(summary);
+   return;
+  }
+ }
  const p=templates.find(x=>x.legs===legs&&x.strategy===strategy&&(x.market||'ml')===market&&
  Number.isFinite(x.referenceDecimalOdds)&&100*(x.referenceDecimalOdds-1)>=min&&100*(x.referenceDecimalOdds-1)<=max);
  if(!p){el('parlay-result').textContent='No fresh reference combination available for these settings. Verified betting markets remain '+intake.length+'. No market-reference ticket will be substituted outside the selected odds range.';return;}
