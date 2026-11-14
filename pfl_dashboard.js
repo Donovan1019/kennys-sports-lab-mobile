@@ -82,5 +82,18 @@ window.KSLPFLFeed.load().then(feed=>{
  $('edge-count').textContent=window.KSLPFLBets.rank(feed.markets).filter(x=>x.assessment.positiveEV).length;
  $('coverage-label').textContent=(stale?'Event schedule snapshot is older than 24 hours; refresh required before betting. ':'')+verifiedBouts+' identity/history-verified bouts; '+(feed.projections?.available||0)+' historical simulations; '+feed.markets.length+' validated markets. Betting eligibility requires calibrated simulations and live odds.';
  draw();
-}).catch(e=>{fights=[];$('feed-status').textContent='SNAPSHOT NOT PUBLISHED';$('fight-board').textContent='No published PFL snapshot available: '+e.message;});
+}).catch(async e=>{
+ $('feed-status').textContent='FEED DEGRADED · SCHEDULE FALLBACK';
+ try{
+  const r=await fetch('./data/pfl/events.json',{cache:'no-store'});if(!r.ok)throw Error('HTTP '+r.status);
+  const snapshot=await r.json();if(!validSnapshot(snapshot))throw Error('Invalid event data');
+  fights=snapshot.events.flatMap(event=>(event.bouts||[]).map(b=>({...b,eventName:event.name,date:event.date,eventStatus:event.status,markets:[]})));
+  $('fight-count').textContent=fights.filter(isUpcoming).length;
+  $('fight-label').textContent='Upcoming scheduled bouts · fallback';
+  $('ml-count').textContent='0';$('totals-count').textContent='0';$('edge-count').textContent='0';
+  $('coverage-label').textContent='Fallback schedule only. Predictions and odds are unavailable until the full feed is restored.';
+  $('feed-status').textContent='SCHEDULE ONLY · ODDS UNAVAILABLE';
+  draw();
+ }catch(fallbackError){$('fight-board').textContent='PFL schedule unavailable: '+fallbackError.message+' (initial feed: '+e.message+')';}
+});
 })();
