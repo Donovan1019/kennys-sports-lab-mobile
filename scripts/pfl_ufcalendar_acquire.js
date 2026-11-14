@@ -16,6 +16,20 @@ if(!slug||!e.title||!date||!Number.isFinite(Date.parse(date)))return null;
 return {id:'ufcalendar:'+slug,slug,name:String(e.title),date,status:e.status||'unverified',source:'ufcalendar-pfl',bouts:[]};}
 async function collect(key,fetcher=fetch){const data=await request('/events?org=pfl',key,fetcher);
 return {schemaVersion:1,source:'ufcalendar-pfl',retrievedAt:new Date().toISOString(),dataScope:'event list only; bout odds and statistics not yet ingested',events:data.map(normalizeEvent).filter(Boolean)};}
-async function main(){const data=await collect(process.env.ufccal_key);const dest=process.env.PFL_UFCAL_OUTPUT_PATH||'data/pfl/ufcalendar-events.json';fs.mkdirSync(path.dirname(dest),{recursive:true});fs.writeFileSync(dest,JSON.stringify(data,null,2)+'\n');console.log('Saved '+data.events.length+' UFCalendar PFL event metadata records');}
+async function collectOdds(events,key,fetcher=fetch){
+ const cards=[];
+ for(const event of events.events||[]){
+  if(event.status==='completed'||event.status==='cancelled')continue;
+  if(!/^[a-z0-9-]+$/.test(event.slug))continue;
+  try{
+   const response=await fetcher(BASE+'/events/'+encodeURIComponent(event.slug)+'/odds',{headers:{Authorization:'Bearer '+key,Accept:'application/json'},signal:AbortSignal.timeout(15000)});
+   if(!response.ok){cards.push({eventId:event.id,slug:event.slug,error:'HTTP '+response.status});continue}
+   const payload=await response.json();
+   cards.push({eventId:event.id,slug:event.slug,data:payload.data||null,checkedAt:payload.meta?.checked_at||new Date().toISOString()});
+  }catch(error){cards.push({eventId:event.id,slug:event.slug,error:String(error.message).slice(0,120)})}
+ }
+ return {schemaVersion:1,source:'ufcalendar-consensus',retrievedAt:new Date().toISOString(),bookSpecific:false,cards};
+}
+async function main(){const data=await collect(process.env.ufccal_key);const dest=process.env.PFL_UFCAL_OUTPUT_PATH||'data/pfl/ufcalendar-events.json';fs.mkdirSync(path.dirname(dest),{recursive:true});fs.writeFileSync(dest,JSON.stringify(data,null,2)+'\n');const odds=await collectOdds(data,process.env.ufccal_key);fs.writeFileSync('data/pfl/ufcalendar-odds.json',JSON.stringify(odds,null,2)+'\n');console.log('Saved '+data.events.length+' UFCalendar PFL events and '+odds.cards.filter(c=>c.data).length+' consensus odds card responses');}
 if(require.main===module)main().catch(e=>{console.error('UFCalendar PFL acquisition failed: '+e.message);process.exitCode=1});
-module.exports={request,normalizeEvent,collect};
+module.exports={request,normalizeEvent,collect,collectOdds};
