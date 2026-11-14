@@ -1,0 +1,3 @@
+const assert=require('node:assert/strict');const U=require('../scripts/pfl_ufcalendar_acquire.js');
+const mock=async(url,opts)=>{assert.match(url,/events\?org=pfl/);assert.equal(opts.headers.Authorization,'Bearer dummy');return {ok:true,json:async()=>({data:[{slug:'pfl-test',title:'PFL Test',starts_at:'2026-11-20T20:00:00Z',status:'scheduled'}]})}};
+U.collect('dummy',mock).then(x=>{assert.equal(x.events.length,1);assert.equal(x.events[0].source,'ufcalendar-pfl');assert.equal(x.events[0].bouts.length,0);console.log('UFCalendar adapter tests passed')}).catch(e=>{console.error(e);process.exitCode=1});
