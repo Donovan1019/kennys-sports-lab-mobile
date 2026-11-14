@@ -81,6 +81,11 @@ jobs:
         run: |
           node tests/pfl_odds_validation.test.js
           node scripts/pfl_odds_validation.js
+      - name: Build fail-closed PFL model market intake
+        if: always() && hashFiles('data/pfl/bout-readiness.json', 'data/pfl/odds-validation.json') != ''
+        run: |
+          node tests/pfl_model_market_intake.test.js
+          node scripts/pfl_model_market_intake.js
       - name: Validate snapshots
         if: always() && hashFiles('data/pfl/events.json', 'data/pfl/ufcalendar-events.json') != ''
         run: |
@@ -106,4 +111,5 @@ jobs:
             data/pfl/source-reconciliation.json
             data/pfl/bout-readiness.json
             data/pfl/odds-validation.json
+            data/pfl/model-market-intake.json
           retention-days: 3
