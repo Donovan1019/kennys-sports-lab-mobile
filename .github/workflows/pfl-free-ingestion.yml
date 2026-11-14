@@ -76,6 +76,11 @@ jobs:
         run: |
           node tests/pfl_bout_readiness.test.js
           node scripts/pfl_bout_readiness.js
+      - name: Validate PFL sportsbook odds without inventing missing prices
+        if: always() && hashFiles('data/pfl/bout-readiness.json') != ''
+        run: |
+          node tests/pfl_odds_validation.test.js
+          node scripts/pfl_odds_validation.js
       - name: Validate snapshots
         if: always() && hashFiles('data/pfl/events.json', 'data/pfl/ufcalendar-events.json') != ''
         run: |
@@ -100,4 +105,5 @@ jobs:
             data/pfl/fighterapi-snapshot.json
             data/pfl/source-reconciliation.json
             data/pfl/bout-readiness.json
+            data/pfl/odds-validation.json
           retention-days: 3
