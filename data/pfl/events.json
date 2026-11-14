@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "source": "cito-pfl",
-  "retrievedAt": "2026-11-14T13:41:38.028Z",
+  "retrievedAt": "2026-11-14T20:45:25.395Z",
   "dataScope": "event cards, bout results and fighter identities only; no strike statistics or verified odds",
   "coverageWarning": "API plan history windows may limit completeness",
   "events": [
@@ -10,13 +10,13 @@
       "slug": "pfl-dubai-nemkov-vs-bilostenniy",
       "name": "PFL Dubai: Nemkov vs. Bilostenniy",
       "date": "2026-11-14",
-      "status": "scheduled",
+      "status": "live",
       "source": "cito-pfl",
       "bouts": [
         {
           "id": "pfl-401914113",
           "eventId": "",
-          "status": "scheduled",
+          "status": "live",
           "scheduledRounds": 5,
           "weightClass": "Heavyweight",
           "method": null,
@@ -44,13 +44,13 @@
         {
           "id": "pfl-401914114",
           "eventId": "",
-          "status": "scheduled",
-          "scheduledRounds": null,
+          "status": "completed",
+          "scheduledRounds": 3,
           "weightClass": "Welterweight",
-          "method": null,
-          "resultRound": null,
-          "resultTime": null,
-          "winnerFighterSlug": null,
+          "method": "Technical Submission (Guillotine Choke)",
+          "resultRound": 1,
+          "resultTime": "3:11",
+          "winnerFighterSlug": "patrick-habirora",
           "fighters": [
             {
               "slug": "patrick-habirora",
@@ -72,13 +72,13 @@
         {
           "id": "pfl-401918497",
           "eventId": "",
-          "status": "scheduled",
+          "status": "completed",
           "scheduledRounds": 3,
           "weightClass": "Heavyweight",
-          "method": null,
-          "resultRound": null,
-          "resultTime": null,
-          "winnerFighterSlug": null,
+          "method": "Decision - Unanimous",
+          "resultRound": 3,
+          "resultTime": "5:00",
+          "winnerFighterSlug": "oleg-popov",
           "fighters": [
             {
               "slug": "pouya-rahmani",
@@ -98,43 +98,15 @@
           "source": "cito-pfl"
         },
         {
-          "id": "pfl-401927894",
-          "eventId": "",
-          "status": "scheduled",
-          "scheduledRounds": 3,
-          "weightClass": "Bantamweight",
-          "method": null,
-          "resultRound": null,
-          "resultTime": null,
-          "winnerFighterSlug": null,
-          "fighters": [
-            {
-              "slug": "lewis-mcgrillen",
-              "name": "Lewis McGrillen",
-              "ufcSlug": null,
-              "corner": "red"
-            },
-            {
-              "slug": "nawras-abzakh",
-              "name": "Nawras Abzakh",
-              "ufcSlug": null,
-              "corner": "blue"
-            }
-          ],
-          "officialStats": false,
-          "strikeStats": null,
-          "source": "cito-pfl"
-        },
-        {
           "id": "pfl-401919462",
           "eventId": "",
-          "status": "scheduled",
+          "status": "completed",
           "scheduledRounds": null,
           "weightClass": null,
-          "method": null,
-          "resultRound": null,
-          "resultTime": null,
-          "winnerFighterSlug": null,
+          "method": "Decision - Unanimous",
+          "resultRound": 3,
+          "resultTime": "5:00",
+          "winnerFighterSlug": "joji-goto",
           "fighters": [
             {
               "slug": "sergio-pettis",
@@ -154,15 +126,43 @@
           "source": "cito-pfl"
         },
         {
+          "id": "pfl-401927894",
+          "eventId": "",
+          "status": "completed",
+          "scheduledRounds": 3,
+          "weightClass": "Bantamweight",
+          "method": "KO/TKO",
+          "resultRound": 1,
+          "resultTime": "5:00",
+          "winnerFighterSlug": "lewis-mcgrillen",
+          "fighters": [
+            {
+              "slug": "lewis-mcgrillen",
+              "name": "Lewis McGrillen",
+              "ufcSlug": null,
+              "corner": "red"
+            },
+            {
+              "slug": "nawras-abzakh",
+              "name": "Nawras Abzakh",
+              "ufcSlug": null,
+              "corner": "blue"
+            }
+          ],
+          "officialStats": false,
+          "strikeStats": null,
+          "source": "cito-pfl"
+        },
+        {
           "id": "pfl-401928730",
           "eventId": "",
-          "status": "scheduled",
+          "status": "completed",
           "scheduledRounds": 3,
           "weightClass": "Lightweight",
-          "method": null,
-          "resultRound": null,
-          "resultTime": null,
-          "winnerFighterSlug": null,
+          "method": "KO/TKO",
+          "resultRound": 2,
+          "resultTime": "1:04",
+          "winnerFighterSlug": "connor-hughes",
           "fighters": [
             {
               "slug": "shem-rock",
@@ -182,43 +182,15 @@
           "source": "cito-pfl"
         },
         {
-          "id": "pfl-401919463",
-          "eventId": "",
-          "status": "scheduled",
-          "scheduledRounds": 3,
-          "weightClass": "Featherweight",
-          "method": null,
-          "resultRound": null,
-          "resultTime": null,
-          "winnerFighterSlug": null,
-          "fighters": [
-            {
-              "slug": "khasan-magomedsharipov",
-              "name": "Khasan Magomedsharipov",
-              "ufcSlug": null,
-              "corner": "red"
-            },
-            {
-              "slug": "adam-borics",
-              "name": "Adam Borics",
-              "ufcSlug": null,
-              "corner": "blue"
-            }
-          ],
-          "officialStats": false,
-          "strikeStats": null,
-          "source": "cito-pfl"
-        },
-        {
           "id": "pfl-401921407",
           "eventId": "",
-          "status": "scheduled",
+          "status": "completed",
           "scheduledRounds": 3,
           "weightClass": "Welterweight",
-          "method": null,
-          "resultRound": null,
-          "resultTime": null,
-          "winnerFighterSlug": null,
+          "method": "Submission",
+          "resultRound": 3,
+          "resultTime": "4:27",
+          "winnerFighterSlug": "saygid-izagakhmaev",
           "fighters": [
             {
               "slug": "saygid-izagakhmaev",
@@ -230,34 +202,6 @@
               "slug": "david-martinez",
               "name": "David Martinez",
               "ufcSlug": "david-martinez",
-              "corner": "blue"
-            }
-          ],
-          "officialStats": false,
-          "strikeStats": null,
-          "source": "cito-pfl"
-        },
-        {
-          "id": "pfl-401927893",
-          "eventId": "",
-          "status": "scheduled",
-          "scheduledRounds": 3,
-          "weightClass": "Welterweight",
-          "method": null,
-          "resultRound": null,
-          "resultTime": null,
-          "winnerFighterSlug": null,
-          "fighters": [
-            {
-              "slug": "ernesto-rodriguez",
-              "name": "Ernesto Rodriguez",
-              "ufcSlug": null,
-              "corner": "red"
-            },
-            {
-              "slug": "rhys-mckee",
-              "name": "Rhys McKee",
-              "ufcSlug": "rhys-mckee",
               "corner": "blue"
             }
           ],
@@ -296,13 +240,13 @@
         {
           "id": "pfl-401928732",
           "eventId": "",
-          "status": "scheduled",
+          "status": "completed",
           "scheduledRounds": 3,
           "weightClass": "Lightweight",
-          "method": null,
-          "resultRound": null,
-          "resultTime": null,
-          "winnerFighterSlug": null,
+          "method": "Decision - Unanimous",
+          "resultRound": 3,
+          "resultTime": "5:00",
+          "winnerFighterSlug": "akhmed-magomedov",
           "fighters": [
             {
               "slug": "alexei-pergande",
@@ -313,6 +257,62 @@
             {
               "slug": "akhmed-magomedov",
               "name": "Akhmed Magomedov",
+              "ufcSlug": null,
+              "corner": "blue"
+            }
+          ],
+          "officialStats": false,
+          "strikeStats": null,
+          "source": "cito-pfl"
+        },
+        {
+          "id": "pfl-401919463",
+          "eventId": "",
+          "status": "completed",
+          "scheduledRounds": 3,
+          "weightClass": "Featherweight",
+          "method": "Submission",
+          "resultRound": 1,
+          "resultTime": "4:17",
+          "winnerFighterSlug": "adam-borics",
+          "fighters": [
+            {
+              "slug": "khasan-magomedsharipov",
+              "name": "Khasan Magomedsharipov",
+              "ufcSlug": null,
+              "corner": "red"
+            },
+            {
+              "slug": "adam-borics",
+              "name": "Adam Borics",
+              "ufcSlug": null,
+              "corner": "blue"
+            }
+          ],
+          "officialStats": false,
+          "strikeStats": null,
+          "source": "cito-pfl"
+        },
+        {
+          "id": "pfl-401931801",
+          "eventId": "",
+          "status": "completed",
+          "scheduledRounds": 3,
+          "weightClass": "Heavyweight",
+          "method": "KO/TKO",
+          "resultRound": 1,
+          "resultTime": "3:41",
+          "winnerFighterSlug": "denis-goltsov",
+          "fighters": [
+            {
+              "slug": "denis-goltsov",
+              "name": "Denis Goltsov",
+              "ufcSlug": null,
+              "corner": "red"
+            },
+            {
+              "slug": "maxwell-djantou-nana",
+              "name": "Maxwell Djantou Nana",
               "ufcSlug": null,
               "corner": "blue"
             }
@@ -350,26 +350,26 @@
           "source": "cito-pfl"
         },
         {
-          "id": "pfl-401931801",
+          "id": "pfl-401927893",
           "eventId": "",
-          "status": "scheduled",
+          "status": "completed",
           "scheduledRounds": 3,
-          "weightClass": "Heavyweight",
-          "method": null,
-          "resultRound": null,
-          "resultTime": null,
-          "winnerFighterSlug": null,
+          "weightClass": "Welterweight",
+          "method": "KO/TKO",
+          "resultRound": 1,
+          "resultTime": "2:28",
+          "winnerFighterSlug": "ernesto-rodriguez",
           "fighters": [
             {
-              "slug": "denis-goltsov",
-              "name": "Denis Goltsov",
+              "slug": "ernesto-rodriguez",
+              "name": "Ernesto Rodriguez",
               "ufcSlug": null,
               "corner": "red"
             },
             {
-              "slug": "maxwell-djantou-nana",
-              "name": "Maxwell Djantou Nana",
-              "ufcSlug": null,
+              "slug": "rhys-mckee",
+              "name": "Rhys McKee",
+              "ufcSlug": "rhys-mckee",
               "corner": "blue"
             }
           ],
@@ -380,13 +380,13 @@
         {
           "id": "pfl-401931802",
           "eventId": "",
-          "status": "scheduled",
+          "status": "completed",
           "scheduledRounds": 3,
           "weightClass": "Light Heavyweight",
-          "method": null,
-          "resultRound": null,
-          "resultTime": null,
-          "winnerFighterSlug": null,
+          "method": "KO/TKO",
+          "resultRound": 3,
+          "resultTime": "0:46",
+          "winnerFighterSlug": "khabib-nabiev",
           "fighters": [
             {
               "slug": "khabib-nabiev",
@@ -408,13 +408,13 @@
         {
           "id": "pfl-401932010",
           "eventId": "",
-          "status": "scheduled",
+          "status": "completed",
           "scheduledRounds": 3,
           "weightClass": "Women's Strawweight",
-          "method": null,
-          "resultRound": null,
-          "resultTime": null,
-          "winnerFighterSlug": null,
+          "method": "Decision - Unanimous",
+          "resultRound": 3,
+          "resultTime": "5:00",
+          "winnerFighterSlug": "aleksandra-savicheva",
           "fighters": [
             {
               "slug": "aleksandra-savicheva",
