@@ -99,13 +99,23 @@ def main():
     for g in source.get("games", []):
         if g.get("event_id"):
             unique[g["event_id"]] = g
-    rows, history = evaluate(list(unique.values()))
+    games = list(unique.values())
+    rows, history = evaluate(games)
+    eligible = [g for g in games if eligible_game(g)]
+    recent_cutoff = (dt.datetime.now(dt.timezone.utc).date() - dt.timedelta(days=14)).isoformat()
+    recent = [g for g in games if g.get("date", "") >= recent_cutoff]
+    recent_eligible = [g for g in recent if eligible_game(g)]
+    missing_possessions = sum(any(not isinstance(t.get("possessions_est"), (int, float)) for t in g.get("teams", [])) for g in recent)
+
     output = {"provider": "ncaab-research-baseline", "source": "espn-public",
               "generated_at": dt.datetime.now(dt.timezone.utc).isoformat(),
               "source_fetched_at": source.get("fetched_at"),
               "latest_evaluation_date": max((r["date"] for r in rows), default=None),
               "latest_source_game_date": max((g.get("date", "") for g in unique.values()), default=None),
-              "historical_games": len(unique), "usable_games": sum(eligible_game(g) for g in unique.values()),
+              "latest_usable_game_date": max((g.get("date", "") for g in eligible), default=None),
+              "recent_14d_games": len(recent), "recent_14d_usable_games": len(recent_eligible),
+              "recent_14d_missing_possessions_games": missing_possessions,
+              "historical_games": len(unique), "usable_games": len(eligible),
               "teams_observed": len(history), "walk_forward": summarize(rows),
               "research_only": True,
               "limitations": ["No opponent-adjusted or season-separated calibrated model",

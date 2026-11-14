@@ -23,9 +23,12 @@ function renderNCAABHoldout(){
  if(!h)return '<div class="panel"><strong>Independent Holdout</strong><p>UNAVAILABLE — historical backtest or probability audit not loaded.</p></div>';
  const latest=backtest?.latest_source_game_date||backtest?.latest_evaluation_date;
  const days=latest?Math.floor((Date.now()-Date.parse(latest+'T00:00:00Z'))/86400000):NaN;
+ const usable=backtest?.latest_usable_game_date||backtest?.latest_evaluation_date;
+ const usableDays=usable?Math.floor((Date.now()-Date.parse(usable+'T00:00:00Z'))/86400000):NaN;
  const freshness=Number.isFinite(days)&&days>=0&&days<=7?'RECENT SOURCE HISTORY':'STALE OR UNAVAILABLE SOURCE HISTORY';
+ const usableStatus=Number.isFinite(usableDays)&&usableDays>=0&&usableDays<=7?'RECENT USABLE BOXSCORES':'STALE OR UNAVAILABLE USABLE BOXSCORES';
  const val=x=>Number.isFinite(x)?x.toFixed(4):'UNAVAILABLE';
- return '<div class="panel"><h2>Independent Chronological Holdout</h2><p>Latest source game: '+esc(latest||'UNAVAILABLE')+' · '+esc(freshness)+'</p><p>Status: '+esc(h.reason)+' · Training games: '+esc(h.trainGames??0)+' · Holdout games: '+esc(h.testGames??0)+'</p><p>Holdout Brier: '+val(h.brier)+' · Baseline Brier: '+val(h.baselineBrier)+' · Log loss: '+val(h.logLoss)+'</p><p>Cutoff: '+esc(h.cutoffDate||'UNAVAILABLE')+' · Betting approval: BLOCKED pending calibration.</p></div>';
+ return '<div class="panel"><h2>Independent Chronological Holdout</h2><p>Latest source game: '+esc(latest||'UNAVAILABLE')+' · '+esc(freshness)+'</p><p>Latest usable boxscore: '+esc(usable||'UNAVAILABLE')+' · '+esc(usableStatus)+' · Last 14 days: '+esc(backtest?.recent_14d_usable_games??'UNAVAILABLE')+'/'+esc(backtest?.recent_14d_games??'UNAVAILABLE')+' usable · Missing possessions: '+esc(backtest?.recent_14d_missing_possessions_games??'UNAVAILABLE')+'</p><p>Status: '+esc(h.reason)+' · Training games: '+esc(h.trainGames??0)+' · Holdout games: '+esc(h.testGames??0)+'</p><p>Holdout Brier: '+val(h.brier)+' · Baseline Brier: '+val(h.baselineBrier)+' · Log loss: '+val(h.logLoss)+'</p><p>Cutoff: '+esc(h.cutoffDate||'UNAVAILABLE')+' · Betting approval: BLOCKED pending calibration.</p></div>';
 }
 function ncaabStatNumber(v){const n=Number(v);return Number.isFinite(n)?n:null}
 function renderNCAABPlayers(){
