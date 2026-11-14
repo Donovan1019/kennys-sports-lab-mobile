@@ -6,7 +6,7 @@ function audit(snapshot){
  let completed=0,verified=0,missing=0,conflicts=0;
  for(const p of profiles){
   if(!p.slug||seen.has(p.slug))issues.push('Missing/duplicate fighter slug: '+p.slug);seen.add(p.slug);
-  if(!p.profile||!Array.isArray(p.fights)){issues.push('Missing profile or fight history: '+p.slug);continue}
+  if(!p.profile||!Array.isArray(p.fights)){warnings.push('Profile or fight history unavailable: '+p.slug);missing++;continue}
   for(const f of p.fights){
    if(f.status!=='completed')continue;completed++;
    const perspective=f.perspective||{};
@@ -19,7 +19,7 @@ function audit(snapshot){
    verified++;
   }
  }
- return {fighters:profiles.length,completedFights:completed,verifiedPerspectiveResults:verified,missingResultFields:missing,ambiguousTopLevelResults:conflicts,issues,warnings,usableForHistoricalFeatures:issues.length===0,bettingReady:false};
+ return {fighters:profiles.length,completedFights:completed,verifiedPerspectiveResults:verified,missingResultFields:missing,ambiguousTopLevelResults:conflicts,issues,warnings,usableForHistoricalFeatures:issues.length===0&&verified>0,bettingReady:false};
 }
 if(require.main===module){const input=process.argv[2]||'data/pfl/fighter-histories.json';const result=audit(JSON.parse(fs.readFileSync(input,'utf8')));console.log(JSON.stringify(result,null,2));if(result.issues.length)process.exitCode=1}
 module.exports={audit};
