@@ -11,8 +11,35 @@ if(!Number.isInteger(opts.seed))return {eligible:false,errors:['Reproducible sim
 const qualified=(Array.isArray(markets)?markets:[]).map(m=>({m,a:root.KSLPFLBets.assess(m,opts.now)}))
 .filter(x=>x.a.eligible&&x.a.positiveEV&&(type==='both'||(type==='ml'?x.m.market==='ml':x.m.market==='total')));
 qualified.sort((a,b)=>strategy==='gold'?b.m.probability-a.m.probability:strategy==='bronze'?b.a.ev-a.a.ev:(b.a.ev+b.m.probability)-(a.a.ev+a.m.probability));
+const minTarget=opts.targetMinAmerican,maxTarget=opts.targetMaxAmerican;
+const targeting=minTarget!==undefined||maxTarget!==undefined;
+if(targeting&&(!Number.isFinite(minTarget)||!Number.isFinite(maxTarget)||minTarget<100||maxTarget<minTarget))
+ return {eligible:false,errors:['Invalid positive American odds target range']};
+const decimal=o=>root.KSLPFLMath.americanToDecimal(o);
 const chosen=[],seen=new Set();
-for(const x of qualified){if(seen.has(x.m.fightId))continue;seen.add(x.m.fightId);chosen.push(x);if(chosen.length===legs)break}
+if(targeting){
+ // Bounded combination search: distinct bouts, eligible positive-EV markets only.
+ // Select highest modeled joint win chance within the requested payout range.
+ const pool=qualified.slice(0,24);let best=null,bestP=-1;
+ function search(start,picks,price,prob){
+  if(picks.length===legs){
+   const american=(price-1)*100;
+   if(american>=minTarget&&american<=maxTarget&&prob>bestP){best=picks.slice();bestP=prob}
+   return;
+  }
+  for(let i=start;i<pool.length;i++){
+   const x=pool[i];if(picks.some(p=>p.m.fightId===x.m.fightId))continue;
+   const nextPrice=price*decimal(x.m.odds);
+   if((nextPrice-1)*100>maxTarget)continue;
+   picks.push(x);search(i+1,picks,nextPrice,prob*x.m.probability);picks.pop();
+  }
+ }
+ search(0,[],1,1);
+ if(!best)return {eligible:false,errors:['No verified positive-EV distinct-fight parlay in requested odds range']};
+ chosen.push(...best);
+}else{
+ for(const x of qualified){if(seen.has(x.m.fightId))continue;seen.add(x.m.fightId);chosen.push(x);if(chosen.length===legs)break}
+}
 if(chosen.length<legs)return {eligible:false,errors:['Insufficient distinct, verified, positive-EV fights for requested parlay'],available:chosen.length};
 const random=rng(opts.seed);let hits=0;for(let i=0;i<iterations;i++){let win=true;for(const x of chosen){if(random()>=x.m.probability)win=false}if(win)hits++}
 const jointProbability=hits/iterations;
