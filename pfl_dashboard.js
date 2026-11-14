@@ -12,6 +12,8 @@ $('fight-board').innerHTML=rows.length?rows.map(f=>'<article class="ksl-pfl-figh
 }
 function load(data){
 if(!validSnapshot(data))throw Error('Invalid snapshot schema');
+const gate=window.KSLPFLSnapshot&&window.KSLPFLSnapshot.check(data);
+if(!gate||!gate.ok)throw Error('Snapshot provenance or freshness verification failed');
 const events=data.events;fights=events.flatMap(e=>Array.isArray(e.bouts)?e.bouts.map(b=>({...b,eventName:e.name,date:e.date})):[]);
 $('fight-count').textContent=fights.length||'—';$('fight-label').textContent=fights.length?'Snapshot bouts (not betting-ready)':'Event metadata only';
 $('ml-count').textContent=fights.reduce((n,f)=>n+(f.markets||[]).filter(m=>m.market==='ml'&&ready(m)).length,0);
