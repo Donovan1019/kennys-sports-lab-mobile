@@ -4,12 +4,36 @@ function safe(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&
 function fighterName(f){return typeof f==='string'?f:(f?.name||f?.slug||'Unknown fighter')}
 function validSnapshot(data){return data&&data.schemaVersion===1&&Array.isArray(data.events)&&typeof data.retrievedAt==='string'}
 function ready(m){return !!(window.KSLPFLBets&&window.KSLPFLBets.assess(m).eligible)}
+function normName(v){return String(v||'').toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]/g,'').replace(/sergei/g,'sergey')}
+function consensusIndex(feed){
+ const index=new Map(),events=feed.snapshot?.events||[];
+ for(const card of feed.consensus?.cards||[]){
+  const oddsEvent=feed.consensus?.cards&&card.data?.event;
+  const date=String(oddsEvent?.starts_at||oddsEvent?.date||'').slice(0,10);
+  const sourceEvent=events.find(e=>date&&String(e.date).slice(0,10)===date);
+  if(!sourceEvent)continue;
+  for(const line of card.data?.fights||[]){
+   const names=[line.fighter_a?.name,line.fighter_b?.name].map(normName);
+   if(names.some(n=>!n))continue;
+   const match=(sourceEvent.bouts||[]).filter(b=>{
+    const fighters=(b.fighters||[]).map(x=>normName(fighterName(x)));
+    return fighters.length===2&&fighters.every(n=>names.includes(n));
+   });
+   if(match.length!==1||!line.consensus)continue;
+   const price=line.consensus;
+   if(!Number.isFinite(price.a?.american)||!Number.isFinite(price.b?.american))continue;
+   index.set(String(match[0].id),{a:price.a.american,b:price.b.american,first:line.fighter_a.name,second:line.fighter_b.name,recordedAt:price.recorded_at,sources:price.sources});
+  }
+ }
+ return index;
+}
+function american(n){return (n>0?'+':'')+n}
 function draw(){
 const q=$('fight-search').value.toLowerCase().trim(),market=$('market').value,only=$('only-ready').value,sort=$('sort').value;
 let rows=fights.filter(f=>[f.name,f.eventName,...(f.fighters||[]).map(fighterName)].join(' ').toLowerCase().includes(q)).filter(f=>only!=='ready'||(f.markets||[]).some(ready));
 rows=rows.map(f=>({...f,markets:(f.markets||[]).filter(m=>market==='all'||m.market===market)}));
 rows.sort((a,b)=>sort==='confidence'?(b.confidenceScore||0)-(a.confidenceScore||0):sort==='ev'?(b.bestEv??-Infinity)-(a.bestEv??-Infinity):String(a.date||'').localeCompare(String(b.date||'')));
-$('fight-board').innerHTML=rows.length?rows.map(f=>'<article class="ksl-pfl-fight"><div><small class="ksl-pfl-eyebrow">'+safe(f.eventName||'PFL EVENT')+'</small><h3>'+safe((f.fighters||[]).map(fighterName).join(' vs ')||f.name||'Matchup pending')+'</h3><small class="ksl-pfl-muted">'+safe(f.date||'Date unverified')+' · '+safe(f.scheduledRounds||'—')+' rounds</small>'+(f.projection?'<p class="ksl-pfl-muted">50K model estimate (uncalibrated): '+safe(f.projection.fighters[0])+' '+(f.projection.probabilityA*100).toFixed(1)+'% / '+safe(f.projection.fighters[1])+' '+(f.projection.probabilityB*100).toFixed(1)+'% · MODEL PENDING</p>':'')+'</div><div class="ksl-pfl-fightmarket">'+(f.markets.length?f.markets.map(m=>'<div><strong>'+safe(m.label||m.market)+'</strong><span>'+ (ready(m)?safe(m.odds)+' · '+Math.round(m.probability*100)+'% model':'UNVERIFIED')+'</span></div>').join('') :'<span class="ksl-pfl-muted">No verified betting markets</span>')+'</div></article>').join(''):'<p class="ksl-pfl-muted">No matching verified fight records. Change filters or await an authorized event feed.</p>';
+$('fight-board').innerHTML=rows.length?rows.map(f=>'<article class="ksl-pfl-fight"><div><small class="ksl-pfl-eyebrow">'+safe(f.eventName||'PFL EVENT')+'</small><h3>'+safe((f.fighters||[]).map(fighterName).join(' vs ')||f.name||'Matchup pending')+'</h3>'+(f.consensus?'<p class="ksl-pfl-muted">Market consensus (not sportsbook odds): '+safe(f.consensus.first)+' '+american(f.consensus.a)+' / '+safe(f.consensus.second)+' '+american(f.consensus.b)+' · '+safe(f.consensus.recordedAt||'time unverified')+'</p>':'')+'<small class="ksl-pfl-muted">'+safe(f.date||'Date unverified')+' · '+safe(f.scheduledRounds||'—')+' rounds</small>'+(f.projection?'<p class="ksl-pfl-muted">50K model estimate (uncalibrated): '+safe(f.projection.fighters[0])+' '+(f.projection.probabilityA*100).toFixed(1)+'% / '+safe(f.projection.fighters[1])+' '+(f.projection.probabilityB*100).toFixed(1)+'% · MODEL PENDING</p>':'')+'</div><div class="ksl-pfl-fightmarket">'+(f.markets.length?f.markets.map(m=>'<div><strong>'+safe(m.label||m.market)+'</strong><span>'+ (ready(m)?safe(m.odds)+' · '+Math.round(m.probability*100)+'% model':'UNVERIFIED')+'</span></div>').join('') :'<span class="ksl-pfl-muted">No verified betting markets</span>')+'</div></article>').join(''):'<p class="ksl-pfl-muted">No matching verified fight records. Change filters or await an authorized event feed.</p>';
 }
 function load(data){
 if(!validSnapshot(data))throw Error('Invalid snapshot schema');
@@ -29,6 +53,7 @@ window.KSLPFLFeed.load().then(feed=>{
  const byFight=new Map();
  for(const m of feed.markets){const key=String(m.fightId);if(!byFight.has(key))byFight.set(key,[]);byFight.get(key).push(m)}
  for(const fight of fights){fight.markets=byFight.get(String(fight.id))||[]}
+ const consensus=consensusIndex(feed);for(const fight of fights){fight.consensus=consensus.get(String(fight.id))||null;}
  const projected=new Map((feed.projections?.bouts||[]).filter(b=>b.available).map(b=>[String(b.boutId),b]));
  for(const fight of fights){fight.projection=projected.get(String(fight.id))||null;}
  const verifiedBouts=feed.boutReadiness?.identityAndHistoryVerified??0;
