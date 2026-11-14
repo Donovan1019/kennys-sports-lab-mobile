@@ -1,0 +1,11 @@
+const assert=require('node:assert/strict');require('../pfl_analytics.js');require('../pfl_betting.js');require('../pfl_parlay_engine.js');
+const P=globalThis.KSLPFLParlays,now=Date.parse('2026-11-14T12:00:00Z');
+const m=id=>({market:'ml',fightId:id,selection:id,fightStatus:'scheduled',boutVerified:true,book:'Reference',bookVerified:true,oddsTimestamp:new Date(now).toISOString(),modelCalibrated:true,simulationVerified:true,iterations:50000,probability:.7,odds:100});
+const opts={legs:2,strategy:'silver',market:'both',iterations:50000,seed:123,stake:25,now,crossFightIndependenceValidated:true};
+assert.equal(P.build([m('a'),m('b')],opts).eligible,true);
+assert.deepEqual(P.build([m('a'),m('b')],opts),P.build([m('a'),m('b')],opts));
+assert.equal(P.build([m('a'),m('a')],opts).eligible,false);
+assert.equal(P.build([m('a'),m('b')],{...opts,crossFightIndependenceValidated:false}).eligible,false);
+assert.equal(P.build([m('a'),m('b')],{...opts,iterations:100}).eligible,false);
+assert.equal(P.build([m('a'),{...m('b'),oddsTimestamp:'2020-01-01'}],opts).eligible,false);
+console.log('PFL parlay generator tests passed');
