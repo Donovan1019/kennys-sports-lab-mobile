@@ -7,6 +7,8 @@ on:
       - 'pfl_snapshot.js'
       - 'pfl_betting.js'
       - 'pfl_parlay_engine.js'
+      - 'scripts/pfl_ufcalendar_acquire.js'
+      - 'tests/pfl_ufcalendar.test.js'
       - 'tests/pfl_parlay_engine.test.js'
       - 'tests/pfl_betting.test.js'
       - 'tests/pfl_snapshot.test.js'
@@ -26,6 +28,8 @@ on:
       - 'pfl_snapshot.js'
       - 'pfl_betting.js'
       - 'pfl_parlay_engine.js'
+      - 'scripts/pfl_ufcalendar_acquire.js'
+      - 'tests/pfl_ufcalendar.test.js'
       - 'tests/pfl_parlay_engine.test.js'
       - 'tests/pfl_betting.test.js'
       - 'tests/pfl_snapshot.test.js'
@@ -55,6 +59,7 @@ jobs:
           node tests/pfl_snapshot.test.js
           node tests/pfl_betting.test.js
           node tests/pfl_parlay_engine.test.js
+          node tests/pfl_ufcalendar.test.js
           node --check pfl_parlay_engine.js
           node --check pfl_betting.js
           node --check pfl_snapshot.js
@@ -63,3 +68,4 @@ jobs:
           node --check pfl_confidence.js
           node --check pfl_duration_model.js
           node --check scripts/pfl_acquire.js
+          node --check scripts/pfl_ufcalendar_acquire.js
