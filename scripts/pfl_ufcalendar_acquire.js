@@ -19,17 +19,19 @@ return {schemaVersion:1,source:'ufcalendar-pfl',retrievedAt:new Date().toISOStri
 async function collectOdds(events,key,fetcher=fetch){
  const cards=[];
  for(const event of events.events||[]){
-  if(event.status==='completed'||event.status==='cancelled')continue;
+  if(['completed','cancelled','canceled'].includes(String(event.status).toLowerCase())||Date.parse(event.date)<Date.now()-86400000)continue;
   if(!/^[a-z0-9-]+$/.test(event.slug))continue;
   try{
    const response=await fetcher(BASE+'/events/'+encodeURIComponent(event.slug)+'/odds',{headers:{Authorization:'Bearer '+key,Accept:'application/json'},signal:AbortSignal.timeout(15000)});
    if(!response.ok){cards.push({eventId:event.id,slug:event.slug,error:'HTTP '+response.status});continue}
    const payload=await response.json();
-   cards.push({eventId:event.id,slug:event.slug,data:payload.data||null,checkedAt:payload.meta?.checked_at||new Date().toISOString()});
+   const data=payload.data??null;
+   const entries=Array.isArray(data)?data:Array.isArray(data?.fights)?data.fights:Array.isArray(data?.bouts)?data.bouts:Array.isArray(data?.items)?data.items:[];
+   cards.push({eventId:event.id,slug:event.slug,data,entries:entries.length,checkedAt:payload.meta?.checked_at||new Date().toISOString()});
   }catch(error){cards.push({eventId:event.id,slug:event.slug,error:String(error.message).slice(0,120)})}
  }
  return {schemaVersion:1,source:'ufcalendar-consensus',retrievedAt:new Date().toISOString(),bookSpecific:false,cards};
 }
-async function main(){const data=await collect(process.env.ufccal_key);const dest=process.env.PFL_UFCAL_OUTPUT_PATH||'data/pfl/ufcalendar-events.json';fs.mkdirSync(path.dirname(dest),{recursive:true});fs.writeFileSync(dest,JSON.stringify(data,null,2)+'\n');const odds=await collectOdds(data,process.env.ufccal_key);fs.writeFileSync('data/pfl/ufcalendar-odds.json',JSON.stringify(odds,null,2)+'\n');console.log('Saved '+data.events.length+' UFCalendar PFL events and '+odds.cards.filter(c=>c.data).length+' consensus odds card responses');}
+async function main(){const data=await collect(process.env.ufccal_key);const dest=process.env.PFL_UFCAL_OUTPUT_PATH||'data/pfl/ufcalendar-events.json';fs.mkdirSync(path.dirname(dest),{recursive:true});fs.writeFileSync(dest,JSON.stringify(data,null,2)+'\n');const odds=await collectOdds(data,process.env.ufccal_key);fs.writeFileSync('data/pfl/ufcalendar-odds.json',JSON.stringify(odds,null,2)+'\n');console.log('UFCalendar PFL odds audit:',JSON.stringify({events:data.events.length,queried:odds.cards.length,successful:odds.cards.filter(c=>c.data!==null).length,failed:odds.cards.filter(c=>c.error).length,entries:odds.cards.reduce((n,c)=>n+(c.entries||0),0),errors:odds.cards.filter(c=>c.error).map(c=>({slug:c.slug,error:c.error}))}));}
 if(require.main===module)main().catch(e=>{console.error('UFCalendar PFL acquisition failed: '+e.message);process.exitCode=1});
 module.exports={request,normalizeEvent,collect,collectOdds};
