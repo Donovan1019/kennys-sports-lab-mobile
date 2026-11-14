@@ -66,6 +66,11 @@ jobs:
         run: |
           node tests/pfl_fighterapi_acquire.test.js
           node scripts/pfl_fighterapi_acquire.js
+      - name: Reconcile FighterAPI with Cito events and verify source mappings
+        if: always() && hashFiles('data/pfl/events.json') != ''
+        run: |
+          node tests/pfl_source_reconciliation.test.js
+          node scripts/pfl_source_reconciliation.js
       - name: Validate snapshots
         if: always() && hashFiles('data/pfl/events.json', 'data/pfl/ufcalendar-events.json') != ''
         run: |
@@ -88,4 +93,5 @@ jobs:
             data/pfl/fighter-histories.json
             data/pfl/history-audit.json
             data/pfl/fighterapi-snapshot.json
+            data/pfl/source-reconciliation.json
           retention-days: 3
