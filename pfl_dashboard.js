@@ -51,34 +51,36 @@ $('fight-board').innerHTML=rows.length?rows.map(f=>'<article class="ksl-pfl-figh
 function load(data){
 if(!validSnapshot(data))throw Error('Invalid snapshot schema');
 const gate=window.KSLPFLSnapshot&&window.KSLPFLSnapshot.check(data);
-if(!gate||!gate.ok)throw Error('Snapshot provenance or freshness verification failed');
+if(!gate||!gate.ok){const issues=gate?.errors||['Snapshot validation unavailable'];if(issues.some(x=>!x.includes('older than 24 hours')))throw Error('Invalid event snapshot: '+issues.join('; '));}
+const stale=Date.now()-Date.parse(data.retrievedAt)>24*3600000;
 const events=data.events;fights=events.flatMap(e=>Array.isArray(e.bouts)?e.bouts.map(b=>({...b,eventName:e.name,date:e.date,eventStatus:e.status})):[]);
 $('fight-count').textContent=fights.filter(isUpcoming).length||'0';$('fight-label').textContent='Upcoming scheduled bouts only';
 $('ml-count').textContent=fights.reduce((n,f)=>n+(f.markets||[]).filter(m=>m.market==='ml'&&ready(m)).length,0);
 $('totals-count').textContent=fights.reduce((n,f)=>n+(f.markets||[]).filter(m=>m.market==='total'&&ready(m)).length,0);
 const markets=fights.flatMap(f=>(f.markets||[]).map(m=>({...m,fightId:m.fightId||f.id})));const ranked=window.KSLPFLBets.rank(markets);$('edge-count').textContent=ranked.filter(x=>x.assessment.positiveEV).length;$('edge-board').innerHTML=ranked.filter(x=>x.assessment.positiveEV).length?ranked.filter(x=>x.assessment.positiveEV).slice(0,10).map(x=>'<div class="ksl-pfl-fight"><div><strong>'+safe(x.market.selection)+'</strong><small class="ksl-pfl-muted"> '+safe(x.market.book)+' · '+safe(x.market.oddsTimestamp)+'</small></div><div><strong>EV '+(x.assessment.ev*100).toFixed(1)+'%</strong><small>Fair '+x.assessment.fairOdds+'</small></div></div>').join(''):'No verified positive-EV PFL bets available.';$('feed-status').textContent='ODDS PENDING · MODEL PENDING';
-$('card-state').textContent='UNVERIFIED';draw();
+$('card-state').textContent=stale?'SCHEDULE STALE':'UNVERIFIED';draw();
 }
 ['fight-search','market','sort','only-ready'].forEach(id=>$(id).addEventListener('input',draw));
 window.KSLPFLFeed.load().then(feed=>{
  if(!feed.snapshot)throw Error('Event snapshot not published');
  load(feed.snapshot);
+ const stale=Date.now()-Date.parse(feed.snapshot.retrievedAt)>24*3600000;
  const byFight=new Map();
  for(const m of feed.markets){const key=String(m.fightId);if(!byFight.has(key))byFight.set(key,[]);byFight.get(key).push(m)}
  for(const fight of fights){fight.markets=byFight.get(String(fight.id))||[]}
- const consensus=feed.matchedConsensus?.rows?new Map(feed.matchedConsensus.rows.map(r=>[String(r.fightId),{first:r.markets[0].selection,a:r.markets[0].american,second:r.markets[1].selection,b:r.markets[1].american,recordedAt:r.recordedAt,sources:r.sources}])):consensusIndex(feed);const matched=new Map((feed.matchedConsensus?.rows||[]).map(r=>[String(r.fightId),r]));for(const fight of fights){fight.consensus=consensus.get(String(fight.id))||null;fight.totalConsensus=matched.get(String(fight.id))?.totalRounds||[];}
+ const consensus=feed.matchedConsensus?.rows?new Map(feed.matchedConsensus.rows.map(r=>[String(r.fightId),{first:r.markets[0].selection,a:r.markets[0].american,second:r.markets[1].selection,b:r.markets[1].american,recordedAt:r.recordedAt,sources:r.sources}])):consensusIndex(feed);const matched=new Map((feed.matchedConsensus?.rows||[]).map(r=>[String(r.fightId),r]));for(const fight of fights){fight.consensus=stale?null:(consensus.get(String(fight.id))||null);fight.totalConsensus=stale?[]:(matched.get(String(fight.id))?.totalRounds||[]);}
  const projected=new Map((feed.projections?.bouts||[]).filter(b=>b.available).map(b=>[String(b.boutId),b]));
- for(const fight of fights){fight.projection=projected.get(String(fight.id))||null;}
+ for(const fight of fights){fight.projection=projected.get(String(fight.id))||null;if(stale)fight.markets=[];}
  const verifiedBouts=feed.boutReadiness?.identityAndHistoryVerified??0;
  $('history-state').textContent=feed.history?'HISTORICAL FEATURES LOADED':'NOT PUBLISHED';
  $('card-state').textContent=verifiedBouts+' BOUTS VERIFIED';
  $('odds-state').textContent=feed.markets.filter(ready).length+' BETTING-ELIGIBLE MARKETS';
  $('sim-state').textContent=(feed.projections?.available||0)+'/'+(feed.projections?.bouts?.length||0)+' SIMULATED · MODEL PENDING';
- $('feed-status').textContent='FIGHTS '+fights.length+' · CONSENSUS '+(feed.matchedConsensus?.matched??0)+' · VERIFIED BOOK ODDS '+feed.markets.length;
+ $('feed-status').textContent=(stale?'STALE SCHEDULE · ':'')+'UPCOMING '+fights.filter(isUpcoming).length+' · VERIFIED BOOK ODDS '+(stale?0:feed.markets.length);
  $('ml-count').textContent=feed.markets.filter(m=>m.market==='ml'&&ready(m)).length;
  $('totals-count').textContent=feed.markets.filter(m=>m.market==='total'&&ready(m)).length;
  $('edge-count').textContent=window.KSLPFLBets.rank(feed.markets).filter(x=>x.assessment.positiveEV).length;
- $('coverage-label').textContent=verifiedBouts+' identity/history-verified bouts; '+(feed.projections?.available||0)+' historical simulations; '+feed.markets.length+' validated markets. Betting eligibility requires calibrated simulations and live odds.';
+ $('coverage-label').textContent=(stale?'Event schedule snapshot is older than 24 hours; refresh required before betting. ':'')+verifiedBouts+' identity/history-verified bouts; '+(feed.projections?.available||0)+' historical simulations; '+feed.markets.length+' validated markets. Betting eligibility requires calibrated simulations and live odds.';
  draw();
 }).catch(e=>{fights=[];$('feed-status').textContent='SNAPSHOT NOT PUBLISHED';$('fight-board').textContent='No published PFL snapshot available: '+e.message;});
 })();
