@@ -71,6 +71,11 @@ jobs:
         run: |
           node tests/pfl_source_reconciliation.test.js
           node scripts/pfl_source_reconciliation.js
+      - name: Audit verified PFL bouts and fighter-history readiness
+        if: always() && hashFiles('data/pfl/events.json', 'data/pfl/fighter-histories.json', 'data/pfl/source-reconciliation.json') != ''
+        run: |
+          node tests/pfl_bout_readiness.test.js
+          node scripts/pfl_bout_readiness.js
       - name: Validate snapshots
         if: always() && hashFiles('data/pfl/events.json', 'data/pfl/ufcalendar-events.json') != ''
         run: |
@@ -94,4 +99,5 @@ jobs:
             data/pfl/history-audit.json
             data/pfl/fighterapi-snapshot.json
             data/pfl/source-reconciliation.json
+            data/pfl/bout-readiness.json
           retention-days: 3
