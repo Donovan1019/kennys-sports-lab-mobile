@@ -3,13 +3,13 @@
 (function(){
 'use strict';
 const defaults={strategy:'silver',legs:'3',market:'both',stake:'25'};
-let liveMarkets=[];
-window.KSLPFLFeed.load().then(feed=>{liveMarkets=feed.markets;field('result').textContent=liveMarkets.length?'Loaded '+liveMarkets.length+' verified price records. Calibrated probabilities and correlation validation still required.':'No verified sportsbook markets published. Fight data alone cannot generate a parlay.';update()}).catch(e=>{field('result').textContent='PFL feed unavailable: '+e.message});
+let liveMarkets=[];let referenceParlays=[];
+Promise.all([window.KSLPFLFeed.load(),fetch('./data/pfl/parlay-candidates.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).catch(()=>null)]).then(([feed,candidates])=>{referenceParlays=candidates?.parlays||[];liveMarkets=feed.markets;field('result').textContent=referenceParlays.length?'Loaded '+referenceParlays.length+' simulated market-reference parlay templates. Not sportsbook-verified.':'No simulated parlay templates published yet; run the PFL ingestion workflow.';update()}).catch(e=>{field('result').textContent='PFL feed unavailable: '+e.message});
 const ids=Object.keys(defaults);
 function field(id){return document.getElementById(id)}
 function update(){
 const stake=Number(field('stake').value);
-field('summary').textContent=field('legs').value+'-leg '+field('strategy').value.toUpperCase()+' · '+(field('market').value==='both'?'ML + totals':field('market').value==='ml'?'Moneyline':'Totals')+' · '+(Number.isFinite(stake)&&stake>0?'$'+stake.toFixed(2):'Invalid stake')+' · '+liveMarkets.length+' verified markets loaded';
+field('summary').textContent=field('legs').value+'-leg '+field('strategy').value.toUpperCase()+' · '+(field('market').value==='both'?'ML + totals':field('market').value==='ml'?'Moneyline':'Totals')+' · '+(Number.isFinite(stake)&&stake>0?'$'+stake.toFixed(2):'Invalid stake')+' · '+liveMarkets.length+' verified markets · '+referenceParlays.length+' reference templates';
 }
 ids.forEach(id=>field(id).addEventListener('input',update));
 field('reset').addEventListener('click',()=>{
@@ -19,6 +19,25 @@ field('result').textContent='No verified betting-ready PFL parlays. Waiting for 
 field('generate').addEventListener('click',()=>{
 const stake=Number(field('stake').value);
 if(!Number.isFinite(stake)||stake<=0){field('result').textContent='Enter a valid stake greater than zero.';return}
+const requested=Number(field('legs').value),type=field('market').value;
+if(type!=='totals'){
+ const preview=referenceParlays.find(p=>p.legs===requested);
+ if(preview){
+  const profit=stake*(preview.referenceDecimalOdds-1);
+  field('result').textContent='MARKET-REFERENCE PARLAY — NOT VERIFIED FOR BETTING. '+preview.markets.map(m=>m.selection+' ('+(m.american>0?'+':'')+m.american+')').join(' + ')+' | '+preview.iterations.toLocaleString()+' market-implied simulations | Reference combined decimal '+preview.referenceDecimalOdds.toFixed(2)+' | 
+field('result').textContent='UNAVAILABLE — '+result.errors.join('; ')+'. Current published markets: '+liveMarkets.length+'. Missing calibrated simulations or validated cross-fight correlation cannot be bypassed.';
+});
+update();
+})();
+</script></body></html>+stake.toFixed(2)+' reference stake → 
+field('result').textContent='UNAVAILABLE — '+result.errors.join('; ')+'. Current published markets: '+liveMarkets.length+'. Missing calibrated simulations or validated cross-fight correlation cannot be bypassed.';
+});
+update();
+})();
+</script></body></html>+profit.toFixed(2)+' potential profit at those prices. No verified sportsbook lines, calibrated model, or validated correlation. Verify every line before betting.';
+  return;
+ }
+}
 const result=window.KSLPFLParlays.build(liveMarkets,{legs:Number(field('legs').value),strategy:field('strategy').value,market:field('market').value,stake,iterations:50000,seed:20261114,crossFightIndependenceValidated:false});
 field('result').textContent='UNAVAILABLE — '+result.errors.join('; ')+'. Current published markets: '+liveMarkets.length+'. Missing calibrated simulations or validated cross-fight correlation cannot be bypassed.';
 });
