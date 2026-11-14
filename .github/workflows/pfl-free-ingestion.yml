@@ -1,6 +1,8 @@
 name: PFL Free API Ingestion (Manual + Publish)
 on:
   workflow_dispatch:
+  schedule:
+    - cron: '17 4,16 * * *'
 concurrency:
   group: pfl-free-ingestion
   cancel-in-progress: false
