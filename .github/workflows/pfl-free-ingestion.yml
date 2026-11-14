@@ -62,7 +62,7 @@ jobs:
         if: always()
         continue-on-error: true
         env:
-          FIGHTERAPI_API_KEY: ${{ secrets.FIGHTERAPI_API_KEY }}
+          FIGHTERAPI_API_KEY: ${{ secrets.fighterapi_apikey }}
         run: |
           node tests/pfl_fighterapi_acquire.test.js
           node scripts/pfl_fighterapi_acquire.js
