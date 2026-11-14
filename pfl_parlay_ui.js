@@ -1,19 +1,23 @@
 (function(){'use strict';
 const el=id=>document.getElementById(id);
-const defaults={strategy:'silver',legs:'3','parlay-market':'ml',stake:'25'};
+const defaults={strategy:'silver',legs:'3','parlay-market':'ml',stake:'25','target-odds':'200-300'};
 let templates=[],verified=[];
 const ids=Object.keys(defaults);
-function update(){const s=Number(el('stake').value);el('parlay-summary').textContent=el('legs').value+' legs · '+el('strategy').value.toUpperCase()+' · '+(Number.isFinite(s)&&s>0?'$'+s.toFixed(2):'Invalid stake')+' · '+templates.length+' reference templates · '+verified.length+' verified markets';}
+function update(){const s=Number(el('stake').value);el('parlay-summary').textContent=el('legs').value+' legs · '+el('strategy').value.toUpperCase()+' · '+(Number.isFinite(s)&&s>0?'$'+s.toFixed(2):'Invalid stake')+' · target '+el('target-odds').value+' · '+templates.length+' reference templates · '+verified.length+' verified markets';}
 function render(){
  const stake=Number(el('stake').value),legs=Number(el('legs').value),strategy=el('strategy').value,market=el('parlay-market').value;
  if(!Number.isFinite(stake)||stake<=0){el('parlay-result').textContent='Enter a positive stake.';return;}
- const p=templates.find(x=>x.legs===legs&&x.strategy===strategy&&(x.market||'ml')===market);
- if(!p){el('parlay-result').textContent='No fresh reference combination available for these settings. Verified betting markets remain '+verified.length+'.';return;}
+ const target=el('target-odds').value;
+ const [min,max]=target==='any'?[0,Infinity]:target.split('-').map(Number);
+ const p=templates.find(x=>x.legs===legs&&x.strategy===strategy&&(x.market||'ml')===market&&
+ Number.isFinite(x.referenceDecimalOdds)&&100*(x.referenceDecimalOdds-1)>=min&&100*(x.referenceDecimalOdds-1)<=max);
+ if(!p){el('parlay-result').textContent='No fresh reference combination available for these settings. Verified betting markets remain '+verified.length+'. No market-reference ticket will be substituted outside the selected odds range.';return;}
  const box=el('parlay-result');box.replaceChildren();
  const title=document.createElement('strong');title.textContent='MARKET REFERENCE ONLY — NOT A BETTING RECOMMENDATION';box.append(title);
  const warning=document.createElement('p');warning.textContent=p.negativeEVWarning?'Negative reference EV. These prices do not establish a betting advantage.':'Reference prices are not sportsbook verified; no calibrated model or validated cross-fight correlation.';box.append(warning);
  const list=document.createElement('ol');for(const leg of p.markets){const li=document.createElement('li');li.textContent=leg.selection+' ('+(leg.american>0?'+':'')+leg.american+')';list.append(li);}box.append(list);
  const info=document.createElement('p');info.textContent=p.iterations.toLocaleString()+' market-implied draws · Combined reference decimal '+p.referenceDecimalOdds.toFixed(2)+' · $'+stake.toFixed(2)+' stake → $'+(stake*(p.referenceDecimalOdds-1)).toFixed(2)+' reference profit · Reference EV '+(p.referenceEV*100).toFixed(1)+'%';box.append(info);
+ const metrics=document.createElement('p');metrics.textContent='Independent model probability: UNAVAILABLE · Model fair odds: UNAVAILABLE · Model EV: UNAVAILABLE · Calibration: UNVERIFIED · Betting status: PASS';box.append(metrics);
 }
 ids.forEach(id=>el(id).addEventListener('input',update));
 el('generate-parlay').addEventListener('click',render);
