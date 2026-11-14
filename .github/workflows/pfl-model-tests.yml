@@ -12,6 +12,8 @@ on:
     paths:
       - 'pfl_analytics.js'
       - 'pfl_duration_model.js'
+      - 'pfl_confidence.js'
+      - 'tests/pfl_confidence.test.js'
       - 'tests/pfl_models.test.js'
       - '.github/workflows/pfl-model-tests.yml'
 jobs:
