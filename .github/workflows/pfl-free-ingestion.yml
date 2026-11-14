@@ -11,6 +11,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Restore PFL fighter-history checkpoint
+        uses: actions/cache/restore@v4
+        with:
+          path: data/pfl/fighter-histories.json
+          key: pfl-histories-${{ github.run_id }}
+          restore-keys: |
+            pfl-histories-
       - name: Verify secret availability without revealing values
         env:
           CITO_API_KEY: ${{ secrets.CITO_API_KEY }}
@@ -29,6 +36,12 @@ jobs:
           CITO_API_KEY: ${{ secrets.CITO_API_KEY }}
           PFL_FIGHTER_LIMIT: '100'
         run: node scripts/pfl_fighter_histories.js
+      - name: Save PFL fighter-history checkpoint
+        if: always() && hashFiles('data/pfl/fighter-histories.json') != ''
+        uses: actions/cache/save@v4
+        with:
+          path: data/pfl/fighter-histories.json
+          key: pfl-histories-${{ github.run_id }}
       - name: Audit historical fighter outcomes
         if: always() && hashFiles('data/pfl/fighter-histories.json') != ''
         run: |
