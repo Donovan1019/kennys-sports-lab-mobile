@@ -1,0 +1,14 @@
+const assert=require('node:assert/strict');
+const {build}=require('../scripts/pfl_bout_readiness');
+const events={events:[{id:'e1',bouts:[{id:'b1',status:'scheduled',fighters:[{slug:'a'},{slug:'b'}]}]}]};
+const history={profiles:[{slug:'a',profile:{name:'A'},fights:[]},{slug:'b',profile:{name:'B'},fights:[]}]};
+const verified={verifiedMatches:[{citoEventId:'e1'}]};
+const ok=build(events,history,verified);
+assert.equal(ok.identityAndHistoryVerified,1);
+assert.equal(ok.bettingReadyBouts,0);
+assert.ok(ok.bouts[0].blockedReasons.includes('LIVE_ODDS_UNVERIFIED'));
+assert.equal(build(events,history,{verifiedMatches:[]}).identityAndHistoryVerified,0);
+assert.equal(build(events,{profiles:history.profiles.slice(0,1)},verified).identityAndHistoryVerified,0);
+const dup={events:[{id:'e1',bouts:[{id:'b1',status:'scheduled',fighters:[{slug:'a'},{slug:'a'}]}]}]};
+assert.equal(build(dup,history,verified).identityAndHistoryVerified,0);
+console.log('PFL bout readiness tests passed');
