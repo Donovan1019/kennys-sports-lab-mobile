@@ -14,17 +14,17 @@ jobs:
       - name: Verify secret availability without revealing values
         env:
           CITO_API_KEY: ${{ secrets.CITO_API_KEY }}
-          UFCAL_KEY: ${{ secrets.UFCAL_KEY }}
+          ufccal_key: ${{ secrets.ufccal_key }}
         run: |
           test -n "$CITO_API_KEY" || { echo "CITO_API_KEY not configured"; exit 1; }
-          test -n "$UFCAL_KEY" || { echo "UFCAL_KEY not configured"; exit 1; }
+          test -n "$ufccal_key" || { echo "ufccal_key not configured"; exit 1; }
       - name: Fetch PFL cards from free Cito allocation
         env:
           CITO_API_KEY: ${{ secrets.CITO_API_KEY }}
         run: node scripts/pfl_acquire.js
       - name: Fetch PFL events from free UFCalendar allocation
         env:
-          UFCAL_KEY: ${{ secrets.UFCAL_KEY }}
+          ufccal_key: ${{ secrets.ufccal_key }}
         run: node scripts/pfl_ufcalendar_acquire.js
       - name: Validate snapshots
         run: |
