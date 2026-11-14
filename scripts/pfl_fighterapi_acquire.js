@@ -11,10 +11,14 @@ async function request(tool,params,key,fetcher=fetch){
  const json=await response.json();if(json.error)throw Error('FighterAPI returned an error');return {data:json.data??json,creditsRemaining:response.headers?.get?.('x-credits-remaining')??null};
 }
 async function acquire(key,fetcher=fetch){
- const snapshot={schemaVersion:1,source:'fighterapi',retrievedAt:new Date().toISOString(),league:'pfl',schedule:null,events:null,errors:[],bettingReady:false};
+ const snapshot={schemaVersion:1,source:'fighterapi',retrievedAt:new Date().toISOString(),league:'pfl',schedule:null,events:null,odds:null,errors:[],bettingReady:false};
  for(const [field,tool,params] of [['schedule','get_schedule',{league:'pfl'}],['events','list_events',{league:'pfl',status:'scheduled',limit:20}]]){
   try{const result=await request(tool,params,key,fetcher);snapshot[field]=result.data;snapshot.creditsRemaining=result.creditsRemaining}
   catch(error){snapshot.errors.push({field,status:error.status??null,message:error.message});if([401,402,429].includes(error.status))break}
+ }
+ if(snapshot.events||snapshot.schedule){
+  try{const result=await request('get_odds',{league:'pfl'},key,fetcher);snapshot.odds=result.data;snapshot.oddsCreditsRemaining=result.creditsRemaining}
+  catch(error){snapshot.errors.push({field:'odds',status:error.status??null,message:error.message});}
  }
  return snapshot;
 }
@@ -22,7 +26,7 @@ async function main(){
  const key=process.env.FIGHTERAPI_API_KEY;if(!key){console.log('FighterAPI key not configured; skipping optional enrichment');return}
  const result=await acquire(key);const dest='data/pfl/fighterapi-snapshot.json';fs.mkdirSync(path.dirname(dest),{recursive:true});fs.writeFileSync(dest,JSON.stringify(result,null,2)+'\n');
  console.log('FighterAPI PFL snapshot: schedule='+!!result.schedule+', events='+!!result.events+', errors='+result.errors.length+', bettingReady=false');
- if(result.errors.length)process.exitCode=1;
+ if(result.errors.some(e=>e.field!=='odds'))process.exitCode=1;
 }
 if(require.main===module)main().catch(error=>{console.error(error.message);process.exitCode=1});
 module.exports={request,acquire};
