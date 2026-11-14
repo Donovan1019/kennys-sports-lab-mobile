@@ -1,4 +1,4 @@
-/* Shared PFL browser data loader. Never promotes research snapshots to betting-ready picks. */
+/* Shared PFL browser data loader. Only verified prices and calibrated simulations qualify for betting-ready picks. */
 (function(root){'use strict';
 async function json(path){const r=await fetch(path,{cache:'no-store'});if(!r.ok)throw Error(path+': HTTP '+r.status);return r.json()}
 async function load(){
