@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "source": "pfl-historical-features",
-  "generatedAt": "2026-11-14T13:14:33.556Z",
-  "asOf": "2026-11-14T13:14:33.556Z",
+  "generatedAt": "2026-11-14T13:27:49.709Z",
+  "asOf": "2026-11-14T13:27:49.709Z",
   "featureReadyBouts": 2,
   "bouts": [
     {
@@ -98,19 +98,19 @@
       ]
     },
     {
-      "boutId": "pfl-401919462",
+      "boutId": "pfl-401927894",
       "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
       "fighters": [
         {
-          "slug": "sergio-pettis",
-          "verifiedFights": 3,
-          "wins": 2,
+          "slug": "lewis-mcgrillen",
+          "verifiedFights": 2,
+          "wins": 1,
           "losses": 1,
-          "winRate": 0.6666666666666666,
-          "lastVerifiedFight": "2026-04-11"
+          "winRate": 0.5,
+          "lastVerifiedFight": "2026-08-07"
         },
         {
-          "slug": "joji-goto",
+          "slug": "nawras-abzakh",
           "verifiedFights": 0,
           "wins": 0,
           "losses": 0,
@@ -129,19 +129,19 @@
       ]
     },
     {
-      "boutId": "pfl-401927894",
+      "boutId": "pfl-401919462",
       "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
       "fighters": [
         {
-          "slug": "lewis-mcgrillen",
-          "verifiedFights": 2,
-          "wins": 1,
+          "slug": "sergio-pettis",
+          "verifiedFights": 3,
+          "wins": 2,
           "losses": 1,
-          "winRate": 0.5,
-          "lastVerifiedFight": "2026-08-07"
+          "winRate": 0.6666666666666666,
+          "lastVerifiedFight": "2026-04-11"
         },
         {
-          "slug": "nawras-abzakh",
+          "slug": "joji-goto",
           "verifiedFights": 0,
           "wins": 0,
           "losses": 0,
@@ -191,37 +191,6 @@
       ]
     },
     {
-      "boutId": "pfl-401921407",
-      "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
-      "fighters": [
-        {
-          "slug": "saygid-izagakhmaev",
-          "verifiedFights": 0,
-          "wins": 0,
-          "losses": 0,
-          "winRate": null,
-          "lastVerifiedFight": null
-        },
-        {
-          "slug": "david-martinez",
-          "verifiedFights": 1,
-          "wins": 1,
-          "losses": 0,
-          "winRate": 1,
-          "lastVerifiedFight": "2026-04-16"
-        }
-      ],
-      "featureReady": false,
-      "modelCalibrated": false,
-      "bettingReady": false,
-      "blockedReasons": [
-        "LIVE_ODDS_UNVERIFIED",
-        "MODEL_CALIBRATION_UNVERIFIED",
-        "MONTE_CARLO_UNVERIFIED",
-        "INSUFFICIENT_VERIFIED_HISTORICAL_SAMPLE"
-      ]
-    },
-    {
       "boutId": "pfl-401919463",
       "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
       "fighters": [
@@ -240,6 +209,37 @@
           "losses": 2,
           "winRate": 0.5,
           "lastVerifiedFight": "2026-03-20"
+        }
+      ],
+      "featureReady": false,
+      "modelCalibrated": false,
+      "bettingReady": false,
+      "blockedReasons": [
+        "LIVE_ODDS_UNVERIFIED",
+        "MODEL_CALIBRATION_UNVERIFIED",
+        "MONTE_CARLO_UNVERIFIED",
+        "INSUFFICIENT_VERIFIED_HISTORICAL_SAMPLE"
+      ]
+    },
+    {
+      "boutId": "pfl-401921407",
+      "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+      "fighters": [
+        {
+          "slug": "saygid-izagakhmaev",
+          "verifiedFights": 0,
+          "wins": 0,
+          "losses": 0,
+          "winRate": null,
+          "lastVerifiedFight": null
+        },
+        {
+          "slug": "david-martinez",
+          "verifiedFights": 1,
+          "wins": 1,
+          "losses": 0,
+          "winRate": 1,
+          "lastVerifiedFight": "2026-04-16"
         }
       ],
       "featureReady": false,

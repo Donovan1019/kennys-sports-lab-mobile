@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "source": "ufcalendar-consensus",
-  "retrievedAt": "2026-11-14T13:14:29.663Z",
+  "retrievedAt": "2026-11-14T13:27:46.243Z",
   "bookSpecific": false,
   "cards": [
     {
@@ -32,19 +32,19 @@
             },
             "consensus": {
               "a": {
-                "american": -410,
+                "american": -409,
                 "decimal": 1.244,
-                "implied_probability": 0.8039
+                "implied_probability": 0.8035
               },
               "b": {
-                "american": 302,
-                "decimal": 4.02,
-                "implied_probability": 0.2488
+                "american": 303,
+                "decimal": 4.03,
+                "implied_probability": 0.2481
               },
               "favourite": "a",
-              "fair_probability_a": 0.7637,
+              "fair_probability_a": 0.7641,
               "sources": 13,
-              "recorded_at": "2026-11-14T12:51:05.556Z"
+              "recorded_at": "2026-11-14T13:21:00.293Z"
             },
             "opening": {
               "a": {
@@ -64,12 +64,12 @@
             },
             "closing": null,
             "movement": {
-              "delta_points_a": 5.39,
+              "delta_points_a": 5.35,
               "direction": "a",
               "since": "2026-11-10T02:21:14.993Z"
             },
-            "points": 34,
-            "updated_at": "2026-11-14T12:51:05.556Z",
+            "points": 35,
+            "updated_at": "2026-11-14T13:21:00.293Z",
             "props": {
               "method": {
                 "a": {
@@ -127,18 +127,18 @@
                 {
                   "line": 1.5,
                   "over": {
-                    "american": -236,
-                    "decimal": 1.424,
-                    "implied_probability": 0.7024
+                    "american": -235,
+                    "decimal": 1.426,
+                    "implied_probability": 0.7015
                   },
                   "under": {
                     "american": 185,
                     "decimal": 2.85,
                     "implied_probability": 0.3509
                   },
-                  "fair_probability_over": 0.6669,
+                  "fair_probability_over": 0.6666,
                   "sources": 10,
-                  "recorded_at": "2026-11-14T12:22:02.227Z"
+                  "recorded_at": "2026-11-14T13:21:01.590Z"
                 },
                 {
                   "line": 2.5,
@@ -173,7 +173,7 @@
                 "recorded_at": "2026-11-14T12:22:02.227Z"
               },
               "closing": false,
-              "updated_at": "2026-11-14T12:22:02.227Z"
+              "updated_at": "2026-11-14T13:21:01.590Z"
             }
           },
           {
@@ -191,9 +191,9 @@
             },
             "consensus": {
               "a": {
-                "american": -548,
-                "decimal": 1.182,
-                "implied_probability": 0.8457
+                "american": -545,
+                "decimal": 1.183,
+                "implied_probability": 0.845
               },
               "b": {
                 "american": 390,
@@ -201,9 +201,9 @@
                 "implied_probability": 0.2041
               },
               "favourite": "a",
-              "fair_probability_a": 0.8056,
+              "fair_probability_a": 0.8055,
               "sources": 13,
-              "recorded_at": "2026-11-14T12:21:58.086Z"
+              "recorded_at": "2026-11-14T13:20:57.417Z"
             },
             "opening": {
               "a": {
@@ -223,100 +223,120 @@
             },
             "closing": null,
             "movement": {
-              "delta_points_a": 4.57,
+              "delta_points_a": 4.5,
               "direction": "a",
               "since": "2026-11-10T02:21:13.697Z"
             },
-            "points": 39,
-            "updated_at": "2026-11-14T12:21:58.086Z",
+            "points": 40,
+            "updated_at": "2026-11-14T13:20:57.417Z",
             "props": {
               "method": {
                 "a": {
                   "ko": {
                     "yes": {
-                      "american": -217,
-                      "decimal": 1.461,
-                      "implied_probability": 0.6845
+                      "american": -218,
+                      "decimal": 1.459,
+                      "implied_probability": 0.6855
                     },
                     "no": null,
-                    "fair_probability": null,
-                    "sources": 2,
-                    "recorded_at": "2026-11-14T06:20:54.838Z"
+                    "fair_probability": 0.5858,
+                    "sources": 3,
+                    "recorded_at": "2026-11-14T13:20:58.960Z"
                   },
                   "sub": {
                     "yes": {
-                      "american": 1500,
-                      "decimal": 16,
-                      "implied_probability": 0.0625
+                      "american": 1533,
+                      "decimal": 16.33,
+                      "implied_probability": 0.0612
                     },
                     "no": null,
-                    "fair_probability": null,
-                    "sources": 2,
-                    "recorded_at": "2026-11-14T06:20:54.838Z"
+                    "fair_probability": 0.0523,
+                    "sources": 3,
+                    "recorded_at": "2026-11-14T13:20:58.960Z"
                   },
-                  "dec": null
+                  "dec": {
+                    "yes": {
+                      "american": 500,
+                      "decimal": 6,
+                      "implied_probability": 0.1667
+                    },
+                    "no": null,
+                    "fair_probability": 0.1424,
+                    "sources": 2,
+                    "recorded_at": "2026-11-14T13:20:58.960Z"
+                  }
                 },
                 "b": {
                   "ko": {
                     "yes": {
-                      "american": 675,
-                      "decimal": 7.75,
-                      "implied_probability": 0.129
+                      "american": 683,
+                      "decimal": 7.83,
+                      "implied_probability": 0.1277
                     },
                     "no": null,
-                    "fair_probability": null,
-                    "sources": 2,
-                    "recorded_at": "2026-11-14T06:20:54.838Z"
+                    "fair_probability": 0.1091,
+                    "sources": 3,
+                    "recorded_at": "2026-11-14T13:20:58.960Z"
                   },
                   "sub": {
                     "yes": {
-                      "american": 1650,
-                      "decimal": 17.5,
-                      "implied_probability": 0.0571
+                      "american": 1633,
+                      "decimal": 17.33,
+                      "implied_probability": 0.0577
                     },
                     "no": null,
-                    "fair_probability": null,
-                    "sources": 2,
-                    "recorded_at": "2026-11-14T06:20:54.838Z"
+                    "fair_probability": 0.0493,
+                    "sources": 3,
+                    "recorded_at": "2026-11-14T13:20:58.960Z"
                   },
-                  "dec": null
+                  "dec": {
+                    "yes": {
+                      "american": 1300,
+                      "decimal": 14,
+                      "implied_probability": 0.0714
+                    },
+                    "no": null,
+                    "fair_probability": 0.061,
+                    "sources": 2,
+                    "recorded_at": "2026-11-14T13:20:58.960Z"
+                  }
                 }
               },
               "total_rounds": [
                 {
                   "line": 1.5,
                   "over": {
-                    "american": 129,
-                    "decimal": 2.29,
-                    "implied_probability": 0.4367
+                    "american": 130,
+                    "decimal": 2.3,
+                    "implied_probability": 0.4348
                   },
                   "under": {
-                    "american": -164,
-                    "decimal": 1.61,
-                    "implied_probability": 0.6212
+                    "american": -165,
+                    "decimal": 1.606,
+                    "implied_probability": 0.6226
                   },
-                  "fair_probability_over": 0.4128,
+                  "fair_probability_over": 0.4112,
                   "sources": 11,
-                  "recorded_at": "2026-11-14T12:21:59.234Z"
+                  "recorded_at": "2026-11-14T13:20:58.960Z"
                 }
               ],
               "distance": {
                 "yes": {
-                  "american": 313,
-                  "decimal": 4.13,
-                  "implied_probability": 0.2421
+                  "american": 330,
+                  "decimal": 4.3,
+                  "implied_probability": 0.2326
                 },
                 "no": {
-                  "american": -479,
-                  "decimal": 1.209,
-                  "implied_probability": 0.8273
+                  "american": -512,
+                  "decimal": 1.195,
+                  "implied_probability": 0.8366
                 },
-                "fair_probability": 0.2264,
+                "fair_probability": 0.2175,
                 "sources": 3,
-                "recorded_at": "2026-11-14T06:20:54.838Z"
+                "recorded_at": "2026-11-14T13:20:58.960Z"
               },
               "closing": false,
-              "updated_at": "2026-11-14T12:21:59.234Z"
+              "updated_at": "2026-11-14T13:20:58.960Z"
             }
           },
           {
@@ -772,19 +792,19 @@
             },
             "consensus": {
               "a": {
-                "american": -233,
-                "decimal": 1.429,
-                "implied_probability": 0.6997
+                "american": -237,
+                "decimal": 1.422,
+                "implied_probability": 0.7033
               },
               "b": {
-                "american": 185,
-                "decimal": 2.85,
-                "implied_probability": 0.3509
+                "american": 187,
+                "decimal": 2.87,
+                "implied_probability": 0.3484
               },
               "favourite": "a",
-              "fair_probability_a": 0.666,
+              "fair_probability_a": 0.6687,
               "sources": 11,
-              "recorded_at": "2026-11-14T12:21:46.499Z"
+              "recorded_at": "2026-11-14T13:20:45.234Z"
             },
             "opening": {
               "a": {
@@ -804,12 +824,12 @@
             },
             "closing": null,
             "movement": {
-              "delta_points_a": 3.3,
+              "delta_points_a": 3.66,
               "direction": "a",
               "since": "2026-11-11T20:50:32.945Z"
             },
-            "points": 35,
-            "updated_at": "2026-11-14T12:21:46.499Z",
+            "points": 36,
+            "updated_at": "2026-11-14T13:20:45.234Z",
             "props": {
               "method": {
                 "a": {
@@ -950,19 +970,19 @@
             },
             "consensus": {
               "a": {
-                "american": -257,
-                "decimal": 1.389,
-                "implied_probability": 0.7199
+                "american": -258,
+                "decimal": 1.388,
+                "implied_probability": 0.7207
               },
               "b": {
-                "american": 202,
-                "decimal": 3.02,
-                "implied_probability": 0.3311
+                "american": 203,
+                "decimal": 3.03,
+                "implied_probability": 0.33
               },
               "favourite": "a",
-              "fair_probability_a": 0.6849,
+              "fair_probability_a": 0.6859,
               "sources": 13,
-              "recorded_at": "2026-11-14T12:50:45.382Z"
+              "recorded_at": "2026-11-14T13:20:40.457Z"
             },
             "opening": {
               "a": {
@@ -982,12 +1002,12 @@
             },
             "closing": null,
             "movement": {
-              "delta_points_a": 0.56,
+              "delta_points_a": 0.64,
               "direction": "a",
               "since": "2026-11-10T02:51:18.313Z"
             },
-            "points": 39,
-            "updated_at": "2026-11-14T12:50:45.382Z",
+            "points": 40,
+            "updated_at": "2026-11-14T13:20:40.457Z",
             "props": {
               "method": {
                 "a": {
@@ -1055,19 +1075,19 @@
             },
             "consensus": {
               "a": {
-                "american": -379,
-                "decimal": 1.264,
-                "implied_probability": 0.7912
+                "american": -382,
+                "decimal": 1.262,
+                "implied_probability": 0.7925
               },
               "b": {
-                "american": 286,
-                "decimal": 3.86,
-                "implied_probability": 0.2591
+                "american": 288,
+                "decimal": 3.88,
+                "implied_probability": 0.2577
               },
               "favourite": "a",
-              "fair_probability_a": 0.7533,
+              "fair_probability_a": 0.7546,
               "sources": 13,
-              "recorded_at": "2026-11-14T12:21:38.521Z"
+              "recorded_at": "2026-11-14T13:20:37.806Z"
             },
             "opening": {
               "a": {
@@ -1087,12 +1107,12 @@
             },
             "closing": null,
             "movement": {
-              "delta_points_a": 14.84,
+              "delta_points_a": 14.97,
               "direction": "a",
               "since": "2026-11-10T02:51:17.398Z"
             },
-            "points": 44,
-            "updated_at": "2026-11-14T12:21:38.521Z",
+            "points": 45,
+            "updated_at": "2026-11-14T13:20:37.806Z",
             "props": {
               "method": {
                 "a": {
@@ -1144,19 +1164,19 @@
             },
             "consensus": {
               "a": {
-                "american": -129,
-                "decimal": 1.775,
-                "implied_probability": 0.5633
+                "american": -134,
+                "decimal": 1.746,
+                "implied_probability": 0.5726
               },
               "b": {
-                "american": 105,
-                "decimal": 2.05,
-                "implied_probability": 0.4878
+                "american": 108,
+                "decimal": 2.08,
+                "implied_probability": 0.4808
               },
               "favourite": "a",
-              "fair_probability_a": 0.5359,
+              "fair_probability_a": 0.5436,
               "sources": 13,
-              "recorded_at": "2026-11-14T12:50:40.834Z"
+              "recorded_at": "2026-11-14T13:20:35.100Z"
             },
             "opening": {
               "a": {
@@ -1176,12 +1196,12 @@
             },
             "closing": null,
             "movement": {
-              "delta_points_a": 12.85,
+              "delta_points_a": 13.79,
               "direction": "a",
               "since": "2026-11-10T02:51:15.472Z"
             },
-            "points": 39,
-            "updated_at": "2026-11-14T12:50:40.834Z",
+            "points": 40,
+            "updated_at": "2026-11-14T13:20:35.100Z",
             "props": {
               "method": {
                 "a": {
@@ -1199,23 +1219,23 @@
                 {
                   "line": 1.5,
                   "over": {
-                    "american": -205,
-                    "decimal": 1.488,
-                    "implied_probability": 0.6721
+                    "american": -211,
+                    "decimal": 1.474,
+                    "implied_probability": 0.6785
                   },
                   "under": {
-                    "american": 162,
-                    "decimal": 2.62,
-                    "implied_probability": 0.3817
+                    "american": 167,
+                    "decimal": 2.67,
+                    "implied_probability": 0.3745
                   },
-                  "fair_probability_over": 0.6378,
+                  "fair_probability_over": 0.6443,
                   "sources": 11,
-                  "recorded_at": "2026-11-14T12:50:41.942Z"
+                  "recorded_at": "2026-11-14T13:20:36.279Z"
                 }
               ],
               "distance": null,
               "closing": false,
-              "updated_at": "2026-11-14T12:50:41.942Z"
+              "updated_at": "2026-11-14T13:20:36.279Z"
             }
           },
           {
@@ -1288,23 +1308,23 @@
                 {
                   "line": 1.5,
                   "over": {
-                    "american": -148,
-                    "decimal": 1.676,
-                    "implied_probability": 0.5968
+                    "american": -143,
+                    "decimal": 1.699,
+                    "implied_probability": 0.5885
                   },
                   "under": {
-                    "american": 117,
-                    "decimal": 2.17,
-                    "implied_probability": 0.4608
+                    "american": 114,
+                    "decimal": 2.14,
+                    "implied_probability": 0.4673
                   },
-                  "fair_probability_over": 0.5643,
+                  "fair_probability_over": 0.5574,
                   "sources": 11,
-                  "recorded_at": "2026-11-14T12:21:34.772Z"
+                  "recorded_at": "2026-11-14T13:20:33.771Z"
                 }
               ],
               "distance": null,
               "closing": false,
-              "updated_at": "2026-11-14T12:21:34.772Z"
+              "updated_at": "2026-11-14T13:20:33.771Z"
             }
           },
           {
@@ -1322,9 +1342,9 @@
             },
             "consensus": {
               "a": {
-                "american": 193,
-                "decimal": 2.93,
-                "implied_probability": 0.3413
+                "american": 194,
+                "decimal": 2.94,
+                "implied_probability": 0.3401
               },
               "b": {
                 "american": -244,
@@ -1332,9 +1352,9 @@
                 "implied_probability": 0.7093
               },
               "favourite": "b",
-              "fair_probability_a": 0.3249,
-              "sources": 12,
-              "recorded_at": "2026-11-14T10:20:20.361Z"
+              "fair_probability_a": 0.3241,
+              "sources": 13,
+              "recorded_at": "2026-11-14T13:20:30.649Z"
             },
             "opening": {
               "a": {
@@ -1354,12 +1374,12 @@
             },
             "closing": null,
             "movement": {
-              "delta_points_a": -11.32,
+              "delta_points_a": -11.44,
               "direction": "b",
               "since": "2026-11-10T18:21:09.059Z"
             },
-            "points": 48,
-            "updated_at": "2026-11-14T10:20:20.361Z",
+            "points": 49,
+            "updated_at": "2026-11-14T13:20:30.649Z",
             "props": {
               "method": {
                 "a": {
@@ -1399,7 +1419,7 @@
         ]
       },
       "entries": 13,
-      "checkedAt": "2026-11-14T12:53:04.421Z"
+      "checkedAt": "2026-11-14T13:23:16.168Z"
     },
     {
       "eventId": "ufcalendar:pfl-2026-12-11",
@@ -1480,7 +1500,7 @@
         ]
       },
       "entries": 3,
-      "checkedAt": "2026-11-14T12:53:04.421Z"
+      "checkedAt": "2026-11-14T13:23:16.168Z"
     },
     {
       "eventId": "ufcalendar:pfl-2026-12-12",
@@ -1624,7 +1644,7 @@
         ]
       },
       "entries": 6,
-      "checkedAt": "2026-11-14T12:53:04.421Z"
+      "checkedAt": "2026-11-14T13:23:16.168Z"
     },
     {
       "eventId": "ufcalendar:pfl-2026-12-19",
@@ -1873,7 +1893,7 @@
         ]
       },
       "entries": 11,
-      "checkedAt": "2026-11-14T12:53:04.421Z"
+      "checkedAt": "2026-11-14T13:23:16.168Z"
     }
   ]
 }
