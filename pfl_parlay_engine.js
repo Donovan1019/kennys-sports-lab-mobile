@@ -20,7 +20,7 @@ const chosen=[],seen=new Set();
 if(targeting){
  // Bounded combination search: distinct bouts, eligible positive-EV markets only.
  // Select highest modeled joint win chance within the requested payout range.
- const pool=qualified.slice(0,40);let best=null,bestP=-1;
+ const pool=qualified.slice(0,24);let best=null,bestP=-1;
  function search(start,picks,price,prob){
   if(picks.length===legs){
    const american=(price-1)*100;
