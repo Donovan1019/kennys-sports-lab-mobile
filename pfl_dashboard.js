@@ -2,7 +2,7 @@
 const $=id=>document.getElementById(id);let fights=[];
 function safe(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function validSnapshot(data){return data&&data.schemaVersion===1&&Array.isArray(data.events)&&typeof data.retrievedAt==='string'}
-function ready(m){return m&&m.verified===true&&m.fresh===true&&m.calibrated===true&&m.simulated===true&&Number.isFinite(m.odds)&&Number.isFinite(m.probability)}
+function ready(m){return !!(window.KSLPFLBets&&window.KSLPFLBets.assess(m).eligible)}
 function draw(){
 const q=$('fight-search').value.toLowerCase().trim(),market=$('market').value,only=$('only-ready').value,sort=$('sort').value;
 let rows=fights.filter(f=>[f.name,f.eventName,...(f.fighters||[])].join(' ').toLowerCase().includes(q)).filter(f=>only!=='ready'||(f.markets||[]).some(ready));
@@ -18,7 +18,7 @@ const events=data.events;fights=events.flatMap(e=>Array.isArray(e.bouts)?e.bouts
 $('fight-count').textContent=fights.length||'—';$('fight-label').textContent=fights.length?'Snapshot bouts (not betting-ready)':'Event metadata only';
 $('ml-count').textContent=fights.reduce((n,f)=>n+(f.markets||[]).filter(m=>m.market==='ml'&&ready(m)).length,0);
 $('totals-count').textContent=fights.reduce((n,f)=>n+(f.markets||[]).filter(m=>m.market==='total'&&ready(m)).length,0);
-$('edge-count').textContent='—';$('feed-status').textContent='RESEARCH SNAPSHOT · ODDS UNVERIFIED';
+const markets=fights.flatMap(f=>(f.markets||[]).map(m=>({...m,fightId:m.fightId||f.id})));const ranked=window.KSLPFLBets.rank(markets);$('edge-count').textContent=ranked.filter(x=>x.assessment.positiveEV).length;$('edge-board').innerHTML=ranked.filter(x=>x.assessment.positiveEV).length?ranked.filter(x=>x.assessment.positiveEV).slice(0,10).map(x=>'<div class="ksl-pfl-fight"><div><strong>'+safe(x.market.selection)+'</strong><small class="ksl-pfl-muted"> '+safe(x.market.book)+' · '+safe(x.market.oddsTimestamp)+'</small></div><div><strong>EV '+(x.assessment.ev*100).toFixed(1)+'%</strong><small>Fair '+x.assessment.fairOdds+'</small></div></div>').join(''):'No verified positive-EV PFL bets available.';$('feed-status').textContent='RESEARCH SNAPSHOT · ODDS UNVERIFIED';
 $('card-state').textContent='UNVERIFIED';draw();
 }
 ['fight-search','market','sort','only-ready'].forEach(id=>$(id).addEventListener('input',draw));
