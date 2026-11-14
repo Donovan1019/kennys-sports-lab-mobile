@@ -46,6 +46,7 @@ const q=$('fight-search').value.toLowerCase().trim(),market=$('market').value,on
 let rows=fights.filter(f=>isUpcoming(f)).filter(f=>[f.name,f.eventName,...(f.fighters||[]).map(fighterName)].join(' ').toLowerCase().includes(q)).filter(f=>only!=='ready'||(f.markets||[]).some(ready));
 rows=rows.map(f=>({...f,markets:(f.markets||[]).filter(m=>market==='all'||m.market===market)}));
 rows.sort((a,b)=>sort==='confidence'?(b.confidenceScore||0)-(a.confidenceScore||0):sort==='ev'?(b.bestEv??-Infinity)-(a.bestEv??-Infinity):String(a.date||'').localeCompare(String(b.date||'')));
+if(!rows.length&&fights.length===0){$('feed-status').textContent='SCHEDULE FALLBACK · ANALYTICS UNAVAILABLE';return;}
 $('fight-board').innerHTML=rows.length?rows.map(f=>'<article class="ksl-pfl-fight"><div><small class="ksl-pfl-eyebrow">'+safe(f.eventName||'PFL EVENT')+'</small><h3>'+safe((f.fighters||[]).map(fighterName).join(' vs ')||f.name||'Matchup pending')+'</h3>'+(f.consensus?'<p class="ksl-pfl-muted">Market consensus (not sportsbook odds): '+safe(f.consensus.first)+' '+american(f.consensus.a)+' / '+safe(f.consensus.second)+' '+american(f.consensus.b)+' · '+safe(f.consensus.recordedAt||'time unverified')+'</p>':'')+'<small class="ksl-pfl-muted">'+safe(f.date||'Date unverified')+' · '+safe(f.scheduledRounds||'—')+' rounds</small>' +modelCard(f)+'</div><div class="ksl-pfl-fightmarket">'+(f.markets.length?f.markets.map(m=>'<div><strong>'+safe(m.label||m.market)+'</strong><span>'+ (ready(m)?safe(m.odds)+' · '+Math.round(m.probability*100)+'% model':'UNVERIFIED')+'</span></div>').join('') :'<span class="ksl-pfl-muted">No verified betting markets</span>')+'</div></article>').join(''):'<p class="ksl-pfl-muted">No upcoming scheduled fights match these filters. Past fights are hidden from the betting board.</p>';
 }
 function load(data){
@@ -94,6 +95,6 @@ window.KSLPFLFeed.load().then(feed=>{
   $('coverage-label').textContent='Fallback schedule only. Predictions and odds are unavailable until the full feed is restored.';
   $('feed-status').textContent='SCHEDULE ONLY · ODDS UNAVAILABLE';
   draw();
- }catch(fallbackError){$('fight-board').textContent='PFL schedule unavailable: '+fallbackError.message+' (initial feed: '+e.message+')';}
+ }catch(fallbackError){$('feed-status').textContent='STATIC SCHEDULE · LIVE FEED UNAVAILABLE';$('coverage-label').textContent='Live feed unavailable; showing last published upcoming schedule. '+fallbackError.message;}
 });
 })();
