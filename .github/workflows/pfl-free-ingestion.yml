@@ -93,6 +93,11 @@ jobs:
         run: |
           node tests/pfl_historical_features.test.js
           node scripts/pfl_historical_features.js
+      - name: Simulate independent PFL matchup baselines
+        if: always() && hashFiles('data/pfl/historical-features.json') != ''
+        run: |
+          node tests/pfl_projections.test.js
+          node scripts/pfl_projections.js
       - name: Validate snapshots
         if: always() && hashFiles('data/pfl/events.json', 'data/pfl/ufcalendar-events.json') != ''
         run: |
@@ -107,12 +112,12 @@ jobs:
         if: success()
         run: |
           set -euo pipefail
-          for file in events.json bout-readiness.json odds-validation.json model-market-intake.json historical-features.json; do
+          for file in events.json bout-readiness.json odds-validation.json model-market-intake.json historical-features.json projections.json; do
             test -s "data/pfl/$file" || { echo "Required PFL public snapshot missing: $file"; exit 1; }
           done
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/pfl/events.json data/pfl/bout-readiness.json data/pfl/odds-validation.json data/pfl/model-market-intake.json data/pfl/historical-features.json
+          git add data/pfl/events.json data/pfl/bout-readiness.json data/pfl/odds-validation.json data/pfl/model-market-intake.json data/pfl/historical-features.json data/pfl/projections.json
           if git diff --cached --quiet; then echo "PFL public snapshots unchanged"; exit 0; fi
           git commit -m "data(pfl): publish validated public snapshots [skip ci]"
           git push origin "HEAD:${GITHUB_REF_NAME}"
@@ -133,4 +138,5 @@ jobs:
             data/pfl/odds-validation.json
             data/pfl/model-market-intake.json
             data/pfl/historical-features.json
+            data/pfl/projections.json
           retention-days: 3
