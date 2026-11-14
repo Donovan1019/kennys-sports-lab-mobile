@@ -1,0 +1,13 @@
+const assert=require('node:assert/strict');
+const {assemble}=require('../scripts/pfl_model_market_intake');
+const readiness={bouts:[{boutId:'b1',identityAndHistoryVerified:true},{boutId:'b2',identityAndHistoryVerified:false}]};
+const odds={accepted:[{fightId:'b1',market:'ml',selection:'fighter-a',book:'onyx',odds:-120,oddsTimestamp:'2026-11-14T12:00:00Z'},{fightId:'b2',market:'ml',selection:'fighter-b',book:'onyx',odds:110,oddsTimestamp:'2026-11-14T12:00:00Z'}]};
+const result=assemble(readiness,odds);
+assert.equal(result.markets.length,1);
+assert.equal(result.markets[0].fightId,'b1');
+assert.equal(result.markets[0].modelCalibrated,false);
+assert.equal(result.markets[0].simulationVerified,false);
+assert.equal(result.markets[0].probability,null);
+assert.equal(result.bettingReadyCount,0);
+assert.equal(assemble(readiness,{accepted:[]}).markets.length,0);
+console.log('PFL model market intake tests passed');
