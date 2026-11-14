@@ -1,0 +1,202 @@
+{
+  "schemaVersion": 1,
+  "source": "pfl-exploratory-projections",
+  "generatedAt": "2026-11-14T12:55:43.440Z",
+  "iterations": 50000,
+  "available": 2,
+  "modelCalibrated": false,
+  "bettingReady": false,
+  "bouts": [
+    {
+      "boutId": "pfl-401914113",
+      "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+      "available": true,
+      "fighters": [
+        "vadim-nemkov",
+        "sergei-bilostenniy"
+      ],
+      "historicalBaseline": {
+        "vadim-nemkov": 0.8,
+        "sergei-bilostenniy": 0.7142857142857143
+      },
+      "model": "exploratory-smoothed-win-rate-contrast-v1",
+      "probabilityA": 0.7198,
+      "probabilityB": 0.2802,
+      "monteCarlo": {
+        "iterations": 50000,
+        "seed": 2284387622,
+        "standardError": 0.0020084220671960362,
+        "simulationVerified": true
+      },
+      "uncertainty": "Monte Carlo sampling error only; excludes model uncertainty",
+      "modelCalibrated": false,
+      "bettingReady": false,
+      "blockedReasons": [
+        "OUT_OF_SAMPLE_CALIBRATION_REQUIRED",
+        "LIVE_ODDS_UNVERIFIED"
+      ]
+    },
+    {
+      "boutId": "pfl-401914114",
+      "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+      "available": false,
+      "reason": "INSUFFICIENT_VERIFIED_HISTORY",
+      "bettingReady": false
+    },
+    {
+      "boutId": "pfl-401918497",
+      "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+      "available": false,
+      "reason": "INSUFFICIENT_VERIFIED_HISTORY",
+      "bettingReady": false
+    },
+    {
+      "boutId": "pfl-401919462",
+      "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+      "available": false,
+      "reason": "INSUFFICIENT_VERIFIED_HISTORY",
+      "bettingReady": false
+    },
+    {
+      "boutId": "pfl-401927894",
+      "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+      "available": false,
+      "reason": "INSUFFICIENT_VERIFIED_HISTORY",
+      "bettingReady": false
+    },
+    {
+      "boutId": "pfl-401928730",
+      "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+      "available": false,
+      "reason": "INSUFFICIENT_VERIFIED_HISTORY",
+      "bettingReady": false
+    },
+    {
+      "boutId": "pfl-401921407",
+      "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+      "available": false,
+      "reason": "INSUFFICIENT_VERIFIED_HISTORY",
+      "bettingReady": false
+    },
+    {
+      "boutId": "pfl-401919463",
+      "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+      "available": false,
+      "reason": "INSUFFICIENT_VERIFIED_HISTORY",
+      "bettingReady": false
+    },
+    {
+      "boutId": "pfl-401927893",
+      "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+      "available": false,
+      "reason": "INSUFFICIENT_VERIFIED_HISTORY",
+      "bettingReady": false
+    },
+    {
+      "boutId": "pfl-401928732",
+      "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+      "available": false,
+      "reason": "INSUFFICIENT_VERIFIED_HISTORY",
+      "bettingReady": false
+    },
+    {
+      "boutId": "pfl-401931801",
+      "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+      "available": true,
+      "fighters": [
+        "denis-goltsov",
+        "maxwell-djantou-nana"
+      ],
+      "historicalBaseline": {
+        "denis-goltsov": 0.7619047619047619,
+        "maxwell-djantou-nana": 0.8
+      },
+      "model": "exploratory-smoothed-win-rate-contrast-v1",
+      "probabilityA": 0.39012,
+      "probabilityB": 0.60988,
+      "monteCarlo": {
+        "iterations": 50000,
+        "seed": 2399292085,
+        "standardError": 0.002181404985783245,
+        "simulationVerified": true
+      },
+      "uncertainty": "Monte Carlo sampling error only; excludes model uncertainty",
+      "modelCalibrated": false,
+      "bettingReady": false,
+      "blockedReasons": [
+        "OUT_OF_SAMPLE_CALIBRATION_REQUIRED",
+        "LIVE_ODDS_UNVERIFIED"
+      ]
+    },
+    {
+      "boutId": "pfl-401931802",
+      "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+      "available": false,
+      "reason": "INSUFFICIENT_VERIFIED_HISTORY",
+      "bettingReady": false
+    },
+    {
+      "boutId": "pfl-401932010",
+      "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+      "available": false,
+      "reason": "INSUFFICIENT_VERIFIED_HISTORY",
+      "bettingReady": false
+    },
+    {
+      "boutId": "pfl-401914115",
+      "eventId": "pfl-lyon-lapilus-vs-mckee",
+      "available": false,
+      "reason": "INSUFFICIENT_VERIFIED_HISTORY",
+      "bettingReady": false
+    },
+    {
+      "boutId": "pfl-401919662",
+      "eventId": "pfl-lyon-lapilus-vs-mckee",
+      "available": false,
+      "reason": "INSUFFICIENT_VERIFIED_HISTORY",
+      "bettingReady": false
+    },
+    {
+      "boutId": "pfl-401924503",
+      "eventId": "pfl-lyon-lapilus-vs-mckee",
+      "available": false,
+      "reason": "INSUFFICIENT_VERIFIED_HISTORY",
+      "bettingReady": false
+    },
+    {
+      "boutId": "pfl-401924504",
+      "eventId": "pfl-lyon-lapilus-vs-mckee",
+      "available": false,
+      "reason": "INSUFFICIENT_VERIFIED_HISTORY",
+      "bettingReady": false
+    },
+    {
+      "boutId": "pfl-401914116",
+      "eventId": "pfl-lyon-lapilus-vs-mckee",
+      "available": false,
+      "reason": "INSUFFICIENT_VERIFIED_HISTORY",
+      "bettingReady": false
+    },
+    {
+      "boutId": "pfl-401931775",
+      "eventId": "pfl-lyon-lapilus-vs-mckee",
+      "available": false,
+      "reason": "INSUFFICIENT_VERIFIED_HISTORY",
+      "bettingReady": false
+    },
+    {
+      "boutId": "pfl-401929424",
+      "eventId": "pfl-lyon-lapilus-vs-mckee",
+      "available": false,
+      "reason": "INSUFFICIENT_VERIFIED_HISTORY",
+      "bettingReady": false
+    },
+    {
+      "boutId": "pfl-401931803",
+      "eventId": "pfl-lyon-lapilus-vs-mckee",
+      "available": false,
+      "reason": "INSUFFICIENT_VERIFIED_HISTORY",
+      "bettingReady": false
+    }
+  ]
+}

@@ -1,0 +1,659 @@
+{
+  "schemaVersion": 1,
+  "source": "pfl-historical-features",
+  "generatedAt": "2026-11-14T12:55:43.316Z",
+  "asOf": "2026-11-14T12:55:43.315Z",
+  "featureReadyBouts": 2,
+  "bouts": [
+    {
+      "boutId": "pfl-401914113",
+      "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+      "fighters": [
+        {
+          "slug": "vadim-nemkov",
+          "verifiedFights": 3,
+          "wins": 3,
+          "losses": 0,
+          "winRate": 1,
+          "lastVerifiedFight": "2025-12-13"
+        },
+        {
+          "slug": "sergei-bilostenniy",
+          "verifiedFights": 5,
+          "wins": 4,
+          "losses": 1,
+          "winRate": 0.8,
+          "lastVerifiedFight": "2026-05-02"
+        }
+      ],
+      "featureReady": true,
+      "modelCalibrated": false,
+      "bettingReady": false,
+      "blockedReasons": [
+        "LIVE_ODDS_UNVERIFIED",
+        "MODEL_CALIBRATION_UNVERIFIED",
+        "MONTE_CARLO_UNVERIFIED"
+      ]
+    },
+    {
+      "boutId": "pfl-401914114",
+      "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+      "fighters": [
+        {
+          "slug": "patrick-habirora",
+          "verifiedFights": 2,
+          "wins": 2,
+          "losses": 0,
+          "winRate": 1,
+          "lastVerifiedFight": "2026-05-23"
+        },
+        {
+          "slug": "omar-el-dafrawy",
+          "verifiedFights": 3,
+          "wins": 2,
+          "losses": 1,
+          "winRate": 0.6666666666666666,
+          "lastVerifiedFight": "2026-07-31"
+        }
+      ],
+      "featureReady": false,
+      "modelCalibrated": false,
+      "bettingReady": false,
+      "blockedReasons": [
+        "LIVE_ODDS_UNVERIFIED",
+        "MODEL_CALIBRATION_UNVERIFIED",
+        "MONTE_CARLO_UNVERIFIED",
+        "INSUFFICIENT_VERIFIED_HISTORICAL_SAMPLE"
+      ]
+    },
+    {
+      "boutId": "pfl-401918497",
+      "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+      "fighters": [
+        {
+          "slug": "pouya-rahmani",
+          "verifiedFights": 2,
+          "wins": 2,
+          "losses": 0,
+          "winRate": 1,
+          "lastVerifiedFight": "2026-02-07"
+        },
+        {
+          "slug": "oleg-popov",
+          "verifiedFights": 7,
+          "wins": 6,
+          "losses": 1,
+          "winRate": 0.8571428571428571,
+          "lastVerifiedFight": "2025-08-21"
+        }
+      ],
+      "featureReady": false,
+      "modelCalibrated": false,
+      "bettingReady": false,
+      "blockedReasons": [
+        "LIVE_ODDS_UNVERIFIED",
+        "MODEL_CALIBRATION_UNVERIFIED",
+        "MONTE_CARLO_UNVERIFIED",
+        "INSUFFICIENT_VERIFIED_HISTORICAL_SAMPLE"
+      ]
+    },
+    {
+      "boutId": "pfl-401919462",
+      "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+      "fighters": [
+        {
+          "slug": "sergio-pettis",
+          "verifiedFights": 3,
+          "wins": 2,
+          "losses": 1,
+          "winRate": 0.6666666666666666,
+          "lastVerifiedFight": "2026-04-11"
+        },
+        {
+          "slug": "joji-goto",
+          "verifiedFights": 0,
+          "wins": 0,
+          "losses": 0,
+          "winRate": null,
+          "lastVerifiedFight": null
+        }
+      ],
+      "featureReady": false,
+      "modelCalibrated": false,
+      "bettingReady": false,
+      "blockedReasons": [
+        "LIVE_ODDS_UNVERIFIED",
+        "MODEL_CALIBRATION_UNVERIFIED",
+        "MONTE_CARLO_UNVERIFIED",
+        "INSUFFICIENT_VERIFIED_HISTORICAL_SAMPLE"
+      ]
+    },
+    {
+      "boutId": "pfl-401927894",
+      "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+      "fighters": [
+        {
+          "slug": "lewis-mcgrillen",
+          "verifiedFights": 2,
+          "wins": 1,
+          "losses": 1,
+          "winRate": 0.5,
+          "lastVerifiedFight": "2026-08-07"
+        },
+        {
+          "slug": "nawras-abzakh",
+          "verifiedFights": 0,
+          "wins": 0,
+          "losses": 0,
+          "winRate": null,
+          "lastVerifiedFight": null
+        }
+      ],
+      "featureReady": false,
+      "modelCalibrated": false,
+      "bettingReady": false,
+      "blockedReasons": [
+        "LIVE_ODDS_UNVERIFIED",
+        "MODEL_CALIBRATION_UNVERIFIED",
+        "MONTE_CARLO_UNVERIFIED",
+        "INSUFFICIENT_VERIFIED_HISTORICAL_SAMPLE"
+      ]
+    },
+    {
+      "boutId": "pfl-401928730",
+      "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+      "fighters": [
+        {
+          "slug": "shem-rock",
+          "verifiedFights": 0,
+          "wins": 0,
+          "losses": 0,
+          "winRate": null,
+          "lastVerifiedFight": null
+        },
+        {
+          "slug": "connor-hughes",
+          "verifiedFights": 1,
+          "wins": 0,
+          "losses": 1,
+          "winRate": 0,
+          "lastVerifiedFight": "2025-12-13"
+        }
+      ],
+      "featureReady": false,
+      "modelCalibrated": false,
+      "bettingReady": false,
+      "blockedReasons": [
+        "LIVE_ODDS_UNVERIFIED",
+        "MODEL_CALIBRATION_UNVERIFIED",
+        "MONTE_CARLO_UNVERIFIED",
+        "INSUFFICIENT_VERIFIED_HISTORICAL_SAMPLE"
+      ]
+    },
+    {
+      "boutId": "pfl-401921407",
+      "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+      "fighters": [
+        {
+          "slug": "saygid-izagakhmaev",
+          "verifiedFights": 0,
+          "wins": 0,
+          "losses": 0,
+          "winRate": null,
+          "lastVerifiedFight": null
+        },
+        {
+          "slug": "david-martinez",
+          "verifiedFights": 1,
+          "wins": 1,
+          "losses": 0,
+          "winRate": 1,
+          "lastVerifiedFight": "2026-04-16"
+        }
+      ],
+      "featureReady": false,
+      "modelCalibrated": false,
+      "bettingReady": false,
+      "blockedReasons": [
+        "LIVE_ODDS_UNVERIFIED",
+        "MODEL_CALIBRATION_UNVERIFIED",
+        "MONTE_CARLO_UNVERIFIED",
+        "INSUFFICIENT_VERIFIED_HISTORICAL_SAMPLE"
+      ]
+    },
+    {
+      "boutId": "pfl-401919463",
+      "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+      "fighters": [
+        {
+          "slug": "khasan-magomedsharipov",
+          "verifiedFights": 1,
+          "wins": 1,
+          "losses": 0,
+          "winRate": 1,
+          "lastVerifiedFight": "2026-06-28"
+        },
+        {
+          "slug": "adam-borics",
+          "verifiedFights": 4,
+          "wins": 2,
+          "losses": 2,
+          "winRate": 0.5,
+          "lastVerifiedFight": "2026-03-20"
+        }
+      ],
+      "featureReady": false,
+      "modelCalibrated": false,
+      "bettingReady": false,
+      "blockedReasons": [
+        "LIVE_ODDS_UNVERIFIED",
+        "MODEL_CALIBRATION_UNVERIFIED",
+        "MONTE_CARLO_UNVERIFIED",
+        "INSUFFICIENT_VERIFIED_HISTORICAL_SAMPLE"
+      ]
+    },
+    {
+      "boutId": "pfl-401927893",
+      "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+      "fighters": [
+        {
+          "slug": "ernesto-rodriguez",
+          "verifiedFights": 2,
+          "wins": 1,
+          "losses": 1,
+          "winRate": 0.5,
+          "lastVerifiedFight": "2026-07-26"
+        },
+        {
+          "slug": "rhys-mckee",
+          "verifiedFights": 1,
+          "wins": 1,
+          "losses": 0,
+          "winRate": 1,
+          "lastVerifiedFight": "2026-04-16"
+        }
+      ],
+      "featureReady": false,
+      "modelCalibrated": false,
+      "bettingReady": false,
+      "blockedReasons": [
+        "LIVE_ODDS_UNVERIFIED",
+        "MODEL_CALIBRATION_UNVERIFIED",
+        "MONTE_CARLO_UNVERIFIED",
+        "INSUFFICIENT_VERIFIED_HISTORICAL_SAMPLE"
+      ]
+    },
+    {
+      "boutId": "pfl-401928732",
+      "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+      "fighters": [
+        {
+          "slug": "alexei-pergande",
+          "verifiedFights": 7,
+          "wins": 7,
+          "losses": 0,
+          "winRate": 1,
+          "lastVerifiedFight": "2026-03-28"
+        },
+        {
+          "slug": "akhmed-magomedov",
+          "verifiedFights": 2,
+          "wins": 1,
+          "losses": 1,
+          "winRate": 0.5,
+          "lastVerifiedFight": "2025-07-19"
+        }
+      ],
+      "featureReady": false,
+      "modelCalibrated": false,
+      "bettingReady": false,
+      "blockedReasons": [
+        "LIVE_ODDS_UNVERIFIED",
+        "MODEL_CALIBRATION_UNVERIFIED",
+        "MONTE_CARLO_UNVERIFIED",
+        "INSUFFICIENT_VERIFIED_HISTORICAL_SAMPLE"
+      ]
+    },
+    {
+      "boutId": "pfl-401931801",
+      "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+      "fighters": [
+        {
+          "slug": "denis-goltsov",
+          "verifiedFights": 19,
+          "wins": 15,
+          "losses": 4,
+          "winRate": 0.7894736842105263,
+          "lastVerifiedFight": "2026-08-07"
+        },
+        {
+          "slug": "maxwell-djantou-nana",
+          "verifiedFights": 3,
+          "wins": 3,
+          "losses": 0,
+          "winRate": 1,
+          "lastVerifiedFight": "2026-08-07"
+        }
+      ],
+      "featureReady": true,
+      "modelCalibrated": false,
+      "bettingReady": false,
+      "blockedReasons": [
+        "LIVE_ODDS_UNVERIFIED",
+        "MODEL_CALIBRATION_UNVERIFIED",
+        "MONTE_CARLO_UNVERIFIED"
+      ]
+    },
+    {
+      "boutId": "pfl-401931802",
+      "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+      "fighters": [
+        {
+          "slug": "khabib-nabiev",
+          "verifiedFights": 1,
+          "wins": 1,
+          "losses": 0,
+          "winRate": 1,
+          "lastVerifiedFight": "2026-02-07"
+        },
+        {
+          "slug": "styve-ngono",
+          "verifiedFights": 0,
+          "wins": 0,
+          "losses": 0,
+          "winRate": null,
+          "lastVerifiedFight": null
+        }
+      ],
+      "featureReady": false,
+      "modelCalibrated": false,
+      "bettingReady": false,
+      "blockedReasons": [
+        "LIVE_ODDS_UNVERIFIED",
+        "MODEL_CALIBRATION_UNVERIFIED",
+        "MONTE_CARLO_UNVERIFIED",
+        "INSUFFICIENT_VERIFIED_HISTORICAL_SAMPLE"
+      ]
+    },
+    {
+      "boutId": "pfl-401932010",
+      "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+      "fighters": [
+        {
+          "slug": "aleksandra-savicheva",
+          "verifiedFights": 1,
+          "wins": 1,
+          "losses": 0,
+          "winRate": 1,
+          "lastVerifiedFight": "2026-07-18"
+        },
+        {
+          "slug": "jacinta-austin",
+          "verifiedFights": 1,
+          "wins": 1,
+          "losses": 0,
+          "winRate": 1,
+          "lastVerifiedFight": "2026-03-20"
+        }
+      ],
+      "featureReady": false,
+      "modelCalibrated": false,
+      "bettingReady": false,
+      "blockedReasons": [
+        "LIVE_ODDS_UNVERIFIED",
+        "MODEL_CALIBRATION_UNVERIFIED",
+        "MONTE_CARLO_UNVERIFIED",
+        "INSUFFICIENT_VERIFIED_HISTORICAL_SAMPLE"
+      ]
+    },
+    {
+      "boutId": "pfl-401914115",
+      "eventId": "pfl-lyon-lapilus-vs-mckee",
+      "fighters": [
+        {
+          "slug": "taylor-lapilus",
+          "verifiedFights": 3,
+          "wins": 3,
+          "losses": 0,
+          "winRate": 1,
+          "lastVerifiedFight": "2026-05-23"
+        },
+        {
+          "slug": "mitch-mckee",
+          "verifiedFights": 1,
+          "wins": 1,
+          "losses": 0,
+          "winRate": 1,
+          "lastVerifiedFight": "2026-04-11"
+        }
+      ],
+      "featureReady": false,
+      "modelCalibrated": false,
+      "bettingReady": false,
+      "blockedReasons": [
+        "LIVE_ODDS_UNVERIFIED",
+        "MODEL_CALIBRATION_UNVERIFIED",
+        "MONTE_CARLO_UNVERIFIED",
+        "INSUFFICIENT_VERIFIED_HISTORICAL_SAMPLE"
+      ]
+    },
+    {
+      "boutId": "pfl-401919662",
+      "eventId": "pfl-lyon-lapilus-vs-mckee",
+      "fighters": [
+        {
+          "slug": "boris-mbarga-atangana",
+          "verifiedFights": 2,
+          "wins": 2,
+          "losses": 0,
+          "winRate": 1,
+          "lastVerifiedFight": "2026-05-23"
+        },
+        {
+          "slug": "bryan-battle",
+          "verifiedFights": 2,
+          "wins": 1,
+          "losses": 1,
+          "winRate": 0.5,
+          "lastVerifiedFight": "2026-08-07"
+        }
+      ],
+      "featureReady": false,
+      "modelCalibrated": false,
+      "bettingReady": false,
+      "blockedReasons": [
+        "LIVE_ODDS_UNVERIFIED",
+        "MODEL_CALIBRATION_UNVERIFIED",
+        "MONTE_CARLO_UNVERIFIED",
+        "INSUFFICIENT_VERIFIED_HISTORICAL_SAMPLE"
+      ]
+    },
+    {
+      "boutId": "pfl-401924503",
+      "eventId": "pfl-lyon-lapilus-vs-mckee",
+      "fighters": [
+        {
+          "slug": "abdoul-abdouraguimov",
+          "verifiedFights": 1,
+          "wins": 1,
+          "losses": 0,
+          "winRate": 1,
+          "lastVerifiedFight": "2026-02-07"
+        },
+        {
+          "slug": "andreeas-binder",
+          "verifiedFights": 0,
+          "wins": 0,
+          "losses": 0,
+          "winRate": null,
+          "lastVerifiedFight": null
+        }
+      ],
+      "featureReady": false,
+      "modelCalibrated": false,
+      "bettingReady": false,
+      "blockedReasons": [
+        "LIVE_ODDS_UNVERIFIED",
+        "MODEL_CALIBRATION_UNVERIFIED",
+        "MONTE_CARLO_UNVERIFIED",
+        "INSUFFICIENT_VERIFIED_HISTORICAL_SAMPLE"
+      ]
+    },
+    {
+      "boutId": "pfl-401924504",
+      "eventId": "pfl-lyon-lapilus-vs-mckee",
+      "fighters": [
+        {
+          "slug": "fabian-edwards",
+          "verifiedFights": 5,
+          "wins": 3,
+          "losses": 2,
+          "winRate": 0.6,
+          "lastVerifiedFight": "2026-03-20"
+        },
+        {
+          "slug": "ilian-bouafia",
+          "verifiedFights": 0,
+          "wins": 0,
+          "losses": 0,
+          "winRate": null,
+          "lastVerifiedFight": null
+        }
+      ],
+      "featureReady": false,
+      "modelCalibrated": false,
+      "bettingReady": false,
+      "blockedReasons": [
+        "LIVE_ODDS_UNVERIFIED",
+        "MODEL_CALIBRATION_UNVERIFIED",
+        "MONTE_CARLO_UNVERIFIED",
+        "INSUFFICIENT_VERIFIED_HISTORICAL_SAMPLE"
+      ]
+    },
+    {
+      "boutId": "pfl-401914116",
+      "eventId": "pfl-lyon-lapilus-vs-mckee",
+      "fighters": [
+        {
+          "slug": "baris-adiguzel",
+          "verifiedFights": 2,
+          "wins": 1,
+          "losses": 1,
+          "winRate": 0.5,
+          "lastVerifiedFight": "2026-05-23"
+        },
+        {
+          "slug": "liam-gittins",
+          "verifiedFights": 2,
+          "wins": 0,
+          "losses": 2,
+          "winRate": 0,
+          "lastVerifiedFight": "2026-04-16"
+        }
+      ],
+      "featureReady": false,
+      "modelCalibrated": false,
+      "bettingReady": false,
+      "blockedReasons": [
+        "LIVE_ODDS_UNVERIFIED",
+        "MODEL_CALIBRATION_UNVERIFIED",
+        "MONTE_CARLO_UNVERIFIED",
+        "INSUFFICIENT_VERIFIED_HISTORICAL_SAMPLE"
+      ]
+    },
+    {
+      "boutId": "pfl-401931775",
+      "eventId": "pfl-lyon-lapilus-vs-mckee",
+      "fighters": [
+        {
+          "slug": "bafode-gassama",
+          "verifiedFights": 0,
+          "wins": 0,
+          "losses": 0,
+          "winRate": null,
+          "lastVerifiedFight": null
+        },
+        {
+          "slug": "coby-bradford",
+          "verifiedFights": 1,
+          "wins": 1,
+          "losses": 0,
+          "winRate": 1,
+          "lastVerifiedFight": "2026-07-26"
+        }
+      ],
+      "featureReady": false,
+      "modelCalibrated": false,
+      "bettingReady": false,
+      "blockedReasons": [
+        "LIVE_ODDS_UNVERIFIED",
+        "MODEL_CALIBRATION_UNVERIFIED",
+        "MONTE_CARLO_UNVERIFIED",
+        "INSUFFICIENT_VERIFIED_HISTORICAL_SAMPLE"
+      ]
+    },
+    {
+      "boutId": "pfl-401929424",
+      "eventId": "pfl-lyon-lapilus-vs-mckee",
+      "fighters": [
+        {
+          "slug": "brandon-brachet",
+          "verifiedFights": 0,
+          "wins": 0,
+          "losses": 0,
+          "winRate": null,
+          "lastVerifiedFight": null
+        },
+        {
+          "slug": "adam-meskini",
+          "verifiedFights": 1,
+          "wins": 1,
+          "losses": 0,
+          "winRate": 1,
+          "lastVerifiedFight": "2026-05-23"
+        }
+      ],
+      "featureReady": false,
+      "modelCalibrated": false,
+      "bettingReady": false,
+      "blockedReasons": [
+        "LIVE_ODDS_UNVERIFIED",
+        "MODEL_CALIBRATION_UNVERIFIED",
+        "MONTE_CARLO_UNVERIFIED",
+        "INSUFFICIENT_VERIFIED_HISTORICAL_SAMPLE"
+      ]
+    },
+    {
+      "boutId": "pfl-401931803",
+      "eventId": "pfl-lyon-lapilus-vs-mckee",
+      "fighters": [
+        {
+          "slug": "mathilde-aschenbrenner",
+          "verifiedFights": 0,
+          "wins": 0,
+          "losses": 0,
+          "winRate": null,
+          "lastVerifiedFight": null
+        },
+        {
+          "slug": "shelda-chipito",
+          "verifiedFights": 0,
+          "wins": 0,
+          "losses": 0,
+          "winRate": null,
+          "lastVerifiedFight": null
+        }
+      ],
+      "featureReady": false,
+      "modelCalibrated": false,
+      "bettingReady": false,
+      "blockedReasons": [
+        "LIVE_ODDS_UNVERIFIED",
+        "MODEL_CALIBRATION_UNVERIFIED",
+        "MONTE_CARLO_UNVERIFIED",
+        "INSUFFICIENT_VERIFIED_HISTORICAL_SAMPLE"
+      ]
+    }
+  ],
+  "bettingReady": false
+}
