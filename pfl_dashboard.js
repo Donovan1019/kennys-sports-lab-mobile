@@ -53,7 +53,7 @@ window.KSLPFLFeed.load().then(feed=>{
  const byFight=new Map();
  for(const m of feed.markets){const key=String(m.fightId);if(!byFight.has(key))byFight.set(key,[]);byFight.get(key).push(m)}
  for(const fight of fights){fight.markets=byFight.get(String(fight.id))||[]}
- const consensus=consensusIndex(feed);for(const fight of fights){fight.consensus=consensus.get(String(fight.id))||null;}
+ const consensus=feed.matchedConsensus?.rows?new Map(feed.matchedConsensus.rows.map(r=>[String(r.fightId),{first:r.markets[0].selection,a:r.markets[0].american,second:r.markets[1].selection,b:r.markets[1].american,recordedAt:r.recordedAt,sources:r.sources}])):consensusIndex(feed);for(const fight of fights){fight.consensus=consensus.get(String(fight.id))||null;}
  const projected=new Map((feed.projections?.bouts||[]).filter(b=>b.available).map(b=>[String(b.boutId),b]));
  for(const fight of fights){fight.projection=projected.get(String(fight.id))||null;}
  const verifiedBouts=feed.boutReadiness?.identityAndHistoryVerified??0;
@@ -61,7 +61,7 @@ window.KSLPFLFeed.load().then(feed=>{
  $('card-state').textContent=verifiedBouts+' BOUTS VERIFIED';
  $('odds-state').textContent=feed.markets.filter(ready).length+' BETTING-ELIGIBLE MARKETS';
  $('sim-state').textContent=(feed.projections?.available||0)+'/'+(feed.projections?.bouts?.length||0)+' SIMULATED · MODEL PENDING';
- $('feed-status').textContent='FIGHTS '+fights.length+' · VERIFIED ODDS '+feed.markets.length;
+ $('feed-status').textContent='FIGHTS '+fights.length+' · CONSENSUS '+(feed.matchedConsensus?.matched??0)+' · VERIFIED BOOK ODDS '+feed.markets.length;
  $('ml-count').textContent=feed.markets.filter(m=>m.market==='ml'&&ready(m)).length;
  $('totals-count').textContent=feed.markets.filter(m=>m.market==='total'&&ready(m)).length;
  $('edge-count').textContent=window.KSLPFLBets.rank(feed.markets).filter(x=>x.assessment.positiveEV).length;
