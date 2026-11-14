@@ -4,6 +4,8 @@ on:
     paths:
       - 'pfl_analytics.js'
       - 'pfl_duration_model.js'
+      - 'pfl_confidence.js'
+      - 'tests/pfl_confidence.test.js'
       - 'tests/pfl_models.test.js'
       - '.github/workflows/pfl-model-tests.yml'
   push:
@@ -22,4 +24,6 @@ jobs:
         with:
           node-version: '22'
       - name: PFL model tests
-        run: node tests/pfl_models.test.js
+        run: |
+          node tests/pfl_models.test.js
+          node tests/pfl_confidence.test.js
