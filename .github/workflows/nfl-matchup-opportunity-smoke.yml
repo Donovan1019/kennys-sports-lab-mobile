@@ -1,0 +1,26 @@
+name: NFL Matchup Opportunity Smoke
+on:
+  pull_request:
+    paths:
+      - 'nfl_matchup_opportunity_board.js'
+      - 'tests/nfl_matchup_opportunity_board_smoke.cjs'
+      - '.github/workflows/nfl-matchup-opportunity-smoke.yml'
+  push:
+    paths:
+      - 'nfl_matchup_opportunity_board.js'
+      - 'tests/nfl_matchup_opportunity_board_smoke.cjs'
+      - '.github/workflows/nfl-matchup-opportunity-smoke.yml'
+  workflow_dispatch:
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: JavaScript syntax
+        run: node --check nfl_matchup_opportunity_board.js
+      - name: Offline fail-closed tests
+        run: node tests/nfl_matchup_opportunity_board_smoke.cjs
