@@ -29,6 +29,10 @@ jobs:
       - name: Validate snapshots
         run: |
           node -e "const s=require('./pfl_snapshot.js'); const fs=require('fs'); for(const file of ['data/pfl/events.json','data/pfl/ufcalendar-events.json']){const d=JSON.parse(fs.readFileSync(file));const r=globalThis.KSLPFLSnapshot.check(d);if(!r.ok)throw Error(file+': '+r.errors.join('; ')); console.log(file, 'events:',r.events.length)}"
+      - name: Audit cross-source fight coverage and betting gaps
+        run: |
+          node tests/pfl_coverage_audit.test.js
+          node scripts/pfl_coverage_audit.js data/pfl/events.json data/pfl/ufcalendar-events.json
       - name: Upload data for authorized review (not published to site)
         uses: actions/upload-artifact@v4
         with:
