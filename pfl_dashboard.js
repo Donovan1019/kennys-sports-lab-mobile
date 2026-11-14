@@ -22,5 +22,21 @@ const markets=fights.flatMap(f=>(f.markets||[]).map(m=>({...m,fightId:m.fightId|
 $('card-state').textContent='UNVERIFIED';draw();
 }
 ['fight-search','market','sort','only-ready'].forEach(id=>$(id).addEventListener('input',draw));
-fetch('./data/pfl/events.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Snapshot not published');return r.json()}).then(load).catch(()=>{fights=[];$('feed-status').textContent='DATA UNAVAILABLE';draw()});
+window.KSLPFLFeed.load().then(feed=>{
+ if(!feed.snapshot)throw Error('Event snapshot not published');
+ load(feed.snapshot);
+ const byFight=new Map();
+ for(const m of feed.markets){const key=String(m.fightId);if(!byFight.has(key))byFight.set(key,[]);byFight.get(key).push(m)}
+ for(const fight of fights){fight.markets=byFight.get(String(fight.id))||[]}
+ const verifiedBouts=feed.boutReadiness?.identityAndHistoryVerified??0;
+ $('history-state').textContent=feed.history?'HISTORICAL FEATURES LOADED':'NOT PUBLISHED';
+ $('card-state').textContent=verifiedBouts+' BOUTS VERIFIED';
+ $('odds-state').textContent=feed.markets.length+' VERIFIED MARKETS';
+ $('sim-state').textContent='NOT CALIBRATED';
+ $('feed-status').textContent='FIGHTS '+fights.length+' · VERIFIED ODDS '+feed.markets.length;
+ $('ml-count').textContent=feed.markets.filter(m=>m.market==='ml').length;
+ $('totals-count').textContent=feed.markets.filter(m=>m.market==='total').length;
+ $('coverage-label').textContent=verifiedBouts+' identity/history-verified bouts; '+feed.markets.length+' validated markets. Betting eligibility requires calibrated simulations.';
+ draw();
+}).catch(e=>{fights=[];$('feed-status').textContent='SNAPSHOT NOT PUBLISHED';$('fight-board').textContent='No published PFL snapshot available: '+e.message;});
 })();
