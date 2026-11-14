@@ -23,12 +23,14 @@ function audit(cito,api){
   const row={fighterapiId:id||null,name,date,source:'fighterapi',citoEventId:candidates.length===1?candidates[0].id:null,matchBasis:candidates.length===1?(dated.length?'name-and-date':'name-only-date-missing'):null};
   if(candidates.length===1)matched.push(row);else if(candidates.length>1||nameMatches.length>1&&!day(date))ambiguous.push(row);else unmatched.push(row);
  }
- return {schemaVersion:1,source:'pfl-source-reconciliation',generatedAt:new Date().toISOString(),citoFighters:fighters.size,fighterapiAvailable:!!(api.schedule||api.events),fighterapiEvents:ids.size,matchedEvents:matched,unmatchedEvents:unmatched,ambiguousEvents:ambiguous,duplicateEventKeys:duplicates,oddsVerified:false,statLinesVerified:false,bettingReady:false};
+ const verifiedMatches=matched.filter(r=>r.matchBasis==='name-and-date');
+ const provisionalMatches=matched.filter(r=>r.matchBasis!=='name-and-date');
+ return {schemaVersion:1,source:'pfl-source-reconciliation',generatedAt:new Date().toISOString(),citoFighters:fighters.size,fighterapiAvailable:!!(api.schedule||api.events),fighterapiEvents:ids.size,matchedEvents:matched,verifiedMatches,provisionalMatches,unmatchedEvents:unmatched,ambiguousEvents:ambiguous,duplicateEventKeys:duplicates,oddsVerified:false,statLinesVerified:false,bettingReady:false};
 }
 if(require.main===module){
  const cito=JSON.parse(fs.readFileSync('data/pfl/events.json','utf8'));
  const api=fs.existsSync('data/pfl/fighterapi-snapshot.json')?JSON.parse(fs.readFileSync('data/pfl/fighterapi-snapshot.json','utf8')):{};
  const result=audit(cito,api);fs.writeFileSync('data/pfl/source-reconciliation.json',JSON.stringify(result,null,2)+'\n');
- console.log('PFL source reconciliation:',JSON.stringify({citoFighters:result.citoFighters,fighterapiEvents:result.fighterapiEvents,matched:result.matchedEvents.length,unmatched:result.unmatchedEvents.length,ambiguous:result.ambiguousEvents.length,bettingReady:false}));
+ console.log('PFL source reconciliation:',JSON.stringify({citoFighters:result.citoFighters,fighterapiEvents:result.fighterapiEvents,matched:result.matchedEvents.length,verified:result.verifiedMatches.length,provisional:result.provisionalMatches.length,unmatched:result.unmatchedEvents.length,ambiguous:result.ambiguousEvents.length,bettingReady:false}));
 }
 module.exports={audit,entries,norm};
