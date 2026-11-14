@@ -1,0 +1,14 @@
+const assert=require('node:assert/strict');
+const {validate}=require('../scripts/pfl_odds_validation');
+const now=Date.parse('2026-11-14T15:00:00Z');
+const readiness={bouts:[{boutId:'b1',identityAndHistoryVerified:true},{boutId:'b2',identityAndHistoryVerified:false}]};
+const base={fightId:'b1',book:'draftkings',market:'ml',selection:'fighter-a',odds:-125,oddsTimestamp:'2026-11-14T14:30:00Z',sourceVerified:true,fightStatus:'scheduled'};
+assert.equal(validate([base],readiness,now).accepted.length,1);
+assert.equal(validate([base,base],readiness,now).rejected.length,1);
+assert.equal(validate([{...base,oddsTimestamp:'2026-11-14T11:00:00Z'}],readiness,now).accepted.length,0);
+assert.equal(validate([{...base,fightId:'b2'}],readiness,now).accepted.length,0);
+assert.equal(validate([{...base,book:'unknown'}],readiness,now).accepted.length,0);
+assert.equal(validate([{...base,market:'total',line:2.5,side:'over'}],readiness,now).accepted.length,0);
+assert.equal(validate([{...base,market:'total',line:2.5,side:'over',settlementVerified:true}],readiness,now).accepted.length,1);
+assert.equal(validate([base],readiness,now).bettingReady,false);
+console.log('PFL odds validation tests passed');
