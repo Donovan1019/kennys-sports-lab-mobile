@@ -42,7 +42,7 @@ function modelCard(f){
 }
 function draw(){
 const q=$('fight-search').value.toLowerCase().trim(),market=$('market').value,only=$('only-ready').value,sort=$('sort').value;
-let rows=fights.filter(f=>f.status==='scheduled'&&(!f.date||String(f.date).slice(0,10)>=new Date().toISOString().slice(0,10))).filter(f=>[f.name,f.eventName,...(f.fighters||[]).map(fighterName)].join(' ').toLowerCase().includes(q)).filter(f=>only!=='ready'||(f.markets||[]).some(ready));
+let rows=fights.filter(f=>{const today=new Date().toISOString().slice(0,10),day=String(f.date||'').slice(0,10);return f.status==='scheduled'&&f.eventStatus!=='completed'&&f.eventStatus!=='cancelled'&&/^\d{4}-\d{2}-\d{2}$/.test(day)&&day>=today&&!f.winnerFighterSlug&&!f.resultRound&&!f.method;}).filter(f=>[f.name,f.eventName,...(f.fighters||[]).map(fighterName)].join(' ').toLowerCase().includes(q)).filter(f=>only!=='ready'||(f.markets||[]).some(ready));
 rows=rows.map(f=>({...f,markets:(f.markets||[]).filter(m=>market==='all'||m.market===market)}));
 rows.sort((a,b)=>sort==='confidence'?(b.confidenceScore||0)-(a.confidenceScore||0):sort==='ev'?(b.bestEv??-Infinity)-(a.bestEv??-Infinity):String(a.date||'').localeCompare(String(b.date||'')));
 $('fight-board').innerHTML=rows.length?rows.map(f=>'<article class="ksl-pfl-fight"><div><small class="ksl-pfl-eyebrow">'+safe(f.eventName||'PFL EVENT')+'</small><h3>'+safe((f.fighters||[]).map(fighterName).join(' vs ')||f.name||'Matchup pending')+'</h3>'+(f.consensus?'<p class="ksl-pfl-muted">Market consensus (not sportsbook odds): '+safe(f.consensus.first)+' '+american(f.consensus.a)+' / '+safe(f.consensus.second)+' '+american(f.consensus.b)+' · '+safe(f.consensus.recordedAt||'time unverified')+'</p>':'')+'<small class="ksl-pfl-muted">'+safe(f.date||'Date unverified')+' · '+safe(f.scheduledRounds||'—')+' rounds</small>' +modelCard(f)+'</div><div class="ksl-pfl-fightmarket">'+(f.markets.length?f.markets.map(m=>'<div><strong>'+safe(m.label||m.market)+'</strong><span>'+ (ready(m)?safe(m.odds)+' · '+Math.round(m.probability*100)+'% model':'UNVERIFIED')+'</span></div>').join('') :'<span class="ksl-pfl-muted">No verified betting markets</span>')+'</div></article>').join(''):'<p class="ksl-pfl-muted">No upcoming scheduled fights match these filters. Past fights are hidden from the betting board.</p>';
@@ -51,7 +51,7 @@ function load(data){
 if(!validSnapshot(data))throw Error('Invalid snapshot schema');
 const gate=window.KSLPFLSnapshot&&window.KSLPFLSnapshot.check(data);
 if(!gate||!gate.ok)throw Error('Snapshot provenance or freshness verification failed');
-const events=data.events;fights=events.flatMap(e=>Array.isArray(e.bouts)?e.bouts.map(b=>({...b,eventName:e.name,date:e.date})):[]);
+const events=data.events;fights=events.flatMap(e=>Array.isArray(e.bouts)?e.bouts.map(b=>({...b,eventName:e.name,date:e.date,eventStatus:e.status})):[]);
 $('fight-count').textContent=fights.length||'—';$('fight-label').textContent=fights.length?'Scheduled bouts':'Fight cards pending';
 $('ml-count').textContent=fights.reduce((n,f)=>n+(f.markets||[]).filter(m=>m.market==='ml'&&ready(m)).length,0);
 $('totals-count').textContent=fights.reduce((n,f)=>n+(f.markets||[]).filter(m=>m.market==='total'&&ready(m)).length,0);
