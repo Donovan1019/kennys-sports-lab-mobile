@@ -30,18 +30,22 @@ jobs:
           PFL_FIGHTER_LIMIT: '100'
         run: node scripts/pfl_fighter_histories.js
       - name: Audit historical fighter outcomes
+        if: always() && hashFiles('data/pfl/fighter-histories.json') != ''
         run: |
           node tests/pfl_history_audit.test.js
           node scripts/pfl_history_audit.js data/pfl/fighter-histories.json | tee data/pfl/history-audit.json
           test "${PIPESTATUS[0]}" -eq 0
       - name: Fetch PFL events from free UFCalendar allocation
+        if: always()
         env:
           ufccal_key: ${{ secrets.ufccal_key }}
         run: node scripts/pfl_ufcalendar_acquire.js
       - name: Validate snapshots
+        if: always() && hashFiles('data/pfl/events.json', 'data/pfl/ufcalendar-events.json') != ''
         run: |
           node -e "const s=require('./pfl_snapshot.js'); const fs=require('fs'); for(const file of ['data/pfl/events.json','data/pfl/ufcalendar-events.json']){const d=JSON.parse(fs.readFileSync(file));const r=globalThis.KSLPFLSnapshot.check(d);if(!r.ok)throw Error(file+': '+r.errors.join('; ')); console.log(file, 'events:',r.events.length)}"
       - name: Audit cross-source fight coverage and betting gaps
+        if: always() && hashFiles('data/pfl/events.json', 'data/pfl/ufcalendar-events.json') != ''
         run: |
           node tests/pfl_coverage_audit.test.js
           node scripts/pfl_coverage_audit.js data/pfl/events.json data/pfl/ufcalendar-events.json | tee data/pfl/coverage-audit.json
