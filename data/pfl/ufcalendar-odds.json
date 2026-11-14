@@ -1,0 +1,1879 @@
+{
+  "schemaVersion": 1,
+  "source": "ufcalendar-consensus",
+  "retrievedAt": "2026-11-14T13:14:29.663Z",
+  "bookSpecific": false,
+  "cards": [
+    {
+      "eventId": "ufcalendar:pfl-2026-11-14",
+      "slug": "pfl-2026-11-14",
+      "data": {
+        "event": {
+          "id": 2560,
+          "slug": "pfl-2026-11-14",
+          "title": "PFL Dubai: Nemkov vs Bilostenniy",
+          "org": "pfl",
+          "starts_at": "2026-11-14T14:00:00.000Z",
+          "status": "announced"
+        },
+        "fights": [
+          {
+            "fight_id": 92997,
+            "status": "announced",
+            "fighter_a": {
+              "id": 3873,
+              "slug": "vadim-nemkov",
+              "name": "Vadim Nemkov"
+            },
+            "fighter_b": {
+              "id": 5496,
+              "slug": "sergey-bilostenniy",
+              "name": "Sergey Bilostenniy"
+            },
+            "consensus": {
+              "a": {
+                "american": -410,
+                "decimal": 1.244,
+                "implied_probability": 0.8039
+              },
+              "b": {
+                "american": 302,
+                "decimal": 4.02,
+                "implied_probability": 0.2488
+              },
+              "favourite": "a",
+              "fair_probability_a": 0.7637,
+              "sources": 13,
+              "recorded_at": "2026-11-14T12:51:05.556Z"
+            },
+            "opening": {
+              "a": {
+                "american": -300,
+                "decimal": 1.333,
+                "implied_probability": 0.75
+              },
+              "b": {
+                "american": 245,
+                "decimal": 3.45,
+                "implied_probability": 0.2899
+              },
+              "favourite": "a",
+              "fair_probability_a": 0.7213,
+              "sources": 1,
+              "recorded_at": "2026-11-10T02:21:14.993Z"
+            },
+            "closing": null,
+            "movement": {
+              "delta_points_a": 5.39,
+              "direction": "a",
+              "since": "2026-11-10T02:21:14.993Z"
+            },
+            "points": 34,
+            "updated_at": "2026-11-14T12:51:05.556Z",
+            "props": {
+              "method": {
+                "a": {
+                  "ko": {
+                    "yes": {
+                      "american": 222,
+                      "decimal": 3.22,
+                      "implied_probability": 0.3106
+                    },
+                    "no": null,
+                    "fair_probability": null,
+                    "sources": 2,
+                    "recorded_at": "2026-11-14T12:22:02.227Z"
+                  },
+                  "sub": {
+                    "yes": {
+                      "american": 217,
+                      "decimal": 3.17,
+                      "implied_probability": 0.3155
+                    },
+                    "no": null,
+                    "fair_probability": null,
+                    "sources": 2,
+                    "recorded_at": "2026-11-14T12:22:02.227Z"
+                  },
+                  "dec": null
+                },
+                "b": {
+                  "ko": {
+                    "yes": {
+                      "american": 500,
+                      "decimal": 6,
+                      "implied_probability": 0.1667
+                    },
+                    "no": null,
+                    "fair_probability": null,
+                    "sources": 2,
+                    "recorded_at": "2026-11-14T06:20:57.719Z"
+                  },
+                  "sub": {
+                    "yes": {
+                      "american": 2900,
+                      "decimal": 30,
+                      "implied_probability": 0.0333
+                    },
+                    "no": null,
+                    "fair_probability": null,
+                    "sources": 2,
+                    "recorded_at": "2026-11-14T06:20:57.719Z"
+                  },
+                  "dec": null
+                }
+              },
+              "total_rounds": [
+                {
+                  "line": 1.5,
+                  "over": {
+                    "american": -236,
+                    "decimal": 1.424,
+                    "implied_probability": 0.7024
+                  },
+                  "under": {
+                    "american": 185,
+                    "decimal": 2.85,
+                    "implied_probability": 0.3509
+                  },
+                  "fair_probability_over": 0.6669,
+                  "sources": 10,
+                  "recorded_at": "2026-11-14T12:22:02.227Z"
+                },
+                {
+                  "line": 2.5,
+                  "over": {
+                    "american": -115,
+                    "decimal": 1.87,
+                    "implied_probability": 0.5349
+                  },
+                  "under": {
+                    "american": -115,
+                    "decimal": 1.87,
+                    "implied_probability": 0.5349
+                  },
+                  "fair_probability_over": 0.5,
+                  "sources": 2,
+                  "recorded_at": "2026-11-13T17:51:01.484Z"
+                }
+              ],
+              "distance": {
+                "yes": {
+                  "american": 212,
+                  "decimal": 3.12,
+                  "implied_probability": 0.3205
+                },
+                "no": {
+                  "american": -301,
+                  "decimal": 1.332,
+                  "implied_probability": 0.7506
+                },
+                "fair_probability": 0.2992,
+                "sources": 3,
+                "recorded_at": "2026-11-14T12:22:02.227Z"
+              },
+              "closing": false,
+              "updated_at": "2026-11-14T12:22:02.227Z"
+            }
+          },
+          {
+            "fight_id": 93132,
+            "status": "announced",
+            "fighter_a": {
+              "id": 5905,
+              "slug": "patrick-habirora",
+              "name": "Patrick Habirora"
+            },
+            "fighter_b": {
+              "id": 6267,
+              "slug": "omar-el-dafrawy",
+              "name": "Omar El Dafrawy"
+            },
+            "consensus": {
+              "a": {
+                "american": -548,
+                "decimal": 1.182,
+                "implied_probability": 0.8457
+              },
+              "b": {
+                "american": 390,
+                "decimal": 4.9,
+                "implied_probability": 0.2041
+              },
+              "favourite": "a",
+              "fair_probability_a": 0.8056,
+              "sources": 13,
+              "recorded_at": "2026-11-14T12:21:58.086Z"
+            },
+            "opening": {
+              "a": {
+                "american": -400,
+                "decimal": 1.25,
+                "implied_probability": 0.8
+              },
+              "b": {
+                "american": 316,
+                "decimal": 4.16,
+                "implied_probability": 0.2404
+              },
+              "favourite": "a",
+              "fair_probability_a": 0.7689,
+              "sources": 1,
+              "recorded_at": "2026-11-10T02:21:13.697Z"
+            },
+            "closing": null,
+            "movement": {
+              "delta_points_a": 4.57,
+              "direction": "a",
+              "since": "2026-11-10T02:21:13.697Z"
+            },
+            "points": 39,
+            "updated_at": "2026-11-14T12:21:58.086Z",
+            "props": {
+              "method": {
+                "a": {
+                  "ko": {
+                    "yes": {
+                      "american": -217,
+                      "decimal": 1.461,
+                      "implied_probability": 0.6845
+                    },
+                    "no": null,
+                    "fair_probability": null,
+                    "sources": 2,
+                    "recorded_at": "2026-11-14T06:20:54.838Z"
+                  },
+                  "sub": {
+                    "yes": {
+                      "american": 1500,
+                      "decimal": 16,
+                      "implied_probability": 0.0625
+                    },
+                    "no": null,
+                    "fair_probability": null,
+                    "sources": 2,
+                    "recorded_at": "2026-11-14T06:20:54.838Z"
+                  },
+                  "dec": null
+                },
+                "b": {
+                  "ko": {
+                    "yes": {
+                      "american": 675,
+                      "decimal": 7.75,
+                      "implied_probability": 0.129
+                    },
+                    "no": null,
+                    "fair_probability": null,
+                    "sources": 2,
+                    "recorded_at": "2026-11-14T06:20:54.838Z"
+                  },
+                  "sub": {
+                    "yes": {
+                      "american": 1650,
+                      "decimal": 17.5,
+                      "implied_probability": 0.0571
+                    },
+                    "no": null,
+                    "fair_probability": null,
+                    "sources": 2,
+                    "recorded_at": "2026-11-14T06:20:54.838Z"
+                  },
+                  "dec": null
+                }
+              },
+              "total_rounds": [
+                {
+                  "line": 1.5,
+                  "over": {
+                    "american": 129,
+                    "decimal": 2.29,
+                    "implied_probability": 0.4367
+                  },
+                  "under": {
+                    "american": -164,
+                    "decimal": 1.61,
+                    "implied_probability": 0.6212
+                  },
+                  "fair_probability_over": 0.4128,
+                  "sources": 11,
+                  "recorded_at": "2026-11-14T12:21:59.234Z"
+                }
+              ],
+              "distance": {
+                "yes": {
+                  "american": 313,
+                  "decimal": 4.13,
+                  "implied_probability": 0.2421
+                },
+                "no": {
+                  "american": -479,
+                  "decimal": 1.209,
+                  "implied_probability": 0.8273
+                },
+                "fair_probability": 0.2264,
+                "sources": 3,
+                "recorded_at": "2026-11-14T06:20:54.838Z"
+              },
+              "closing": false,
+              "updated_at": "2026-11-14T12:21:59.234Z"
+            }
+          },
+          {
+            "fight_id": 93003,
+            "status": "announced",
+            "fighter_a": {
+              "id": 6638,
+              "slug": "pouya-rahmani",
+              "name": "Pouya Rahmani"
+            },
+            "fighter_b": {
+              "id": 5921,
+              "slug": "oleg-popov",
+              "name": "Oleg Popov"
+            },
+            "consensus": {
+              "a": {
+                "american": -256,
+                "decimal": 1.391,
+                "implied_probability": 0.7191
+              },
+              "b": {
+                "american": 201,
+                "decimal": 3.01,
+                "implied_probability": 0.3322
+              },
+              "favourite": "a",
+              "fair_probability_a": 0.684,
+              "sources": 13,
+              "recorded_at": "2026-11-14T12:21:55.898Z"
+            },
+            "opening": {
+              "a": {
+                "american": -190,
+                "decimal": 1.526,
+                "implied_probability": 0.6552
+              },
+              "b": {
+                "american": 165,
+                "decimal": 2.65,
+                "implied_probability": 0.3774
+              },
+              "favourite": "a",
+              "fair_probability_a": 0.6345,
+              "sources": 1,
+              "recorded_at": "2026-11-10T02:21:08.074Z"
+            },
+            "closing": null,
+            "movement": {
+              "delta_points_a": 6.39,
+              "direction": "a",
+              "since": "2026-11-10T02:21:08.074Z"
+            },
+            "points": 40,
+            "updated_at": "2026-11-14T12:21:55.898Z",
+            "props": {
+              "method": {
+                "a": {
+                  "ko": {
+                    "yes": {
+                      "american": 298,
+                      "decimal": 3.98,
+                      "implied_probability": 0.2513
+                    },
+                    "no": null,
+                    "fair_probability": null,
+                    "sources": 2,
+                    "recorded_at": "2026-11-14T06:51:02.591Z"
+                  },
+                  "sub": {
+                    "yes": {
+                      "american": 160,
+                      "decimal": 2.6,
+                      "implied_probability": 0.3846
+                    },
+                    "no": null,
+                    "fair_probability": null,
+                    "sources": 2,
+                    "recorded_at": "2026-11-14T06:51:02.591Z"
+                  },
+                  "dec": null
+                },
+                "b": {
+                  "ko": {
+                    "yes": {
+                      "american": 420,
+                      "decimal": 5.2,
+                      "implied_probability": 0.1923
+                    },
+                    "no": null,
+                    "fair_probability": null,
+                    "sources": 2,
+                    "recorded_at": "2026-11-14T06:51:02.591Z"
+                  },
+                  "sub": {
+                    "yes": {
+                      "american": 1250,
+                      "decimal": 13.5,
+                      "implied_probability": 0.0741
+                    },
+                    "no": null,
+                    "fair_probability": null,
+                    "sources": 2,
+                    "recorded_at": "2026-11-14T06:51:02.591Z"
+                  },
+                  "dec": null
+                }
+              },
+              "total_rounds": [
+                {
+                  "line": 1.5,
+                  "over": {
+                    "american": -104,
+                    "decimal": 1.962,
+                    "implied_probability": 0.5098
+                  },
+                  "under": {
+                    "american": -123,
+                    "decimal": 1.813,
+                    "implied_probability": 0.5516
+                  },
+                  "fair_probability_over": 0.4803,
+                  "sources": 11,
+                  "recorded_at": "2026-11-14T12:21:57.340Z"
+                }
+              ],
+              "distance": {
+                "yes": {
+                  "american": 287,
+                  "decimal": 3.87,
+                  "implied_probability": 0.2584
+                },
+                "no": {
+                  "american": -423,
+                  "decimal": 1.236,
+                  "implied_probability": 0.8088
+                },
+                "fair_probability": 0.2421,
+                "sources": 3,
+                "recorded_at": "2026-11-13T17:50:56.162Z"
+              },
+              "closing": false,
+              "updated_at": "2026-11-14T12:21:57.340Z"
+            }
+          },
+          {
+            "fight_id": 93026,
+            "status": "announced",
+            "fighter_a": {
+              "id": 2129,
+              "slug": "sergio-pettis",
+              "name": "Sergio Pettis"
+            },
+            "fighter_b": {
+              "id": 5282,
+              "slug": "joji-goto",
+              "name": "Joji Goto"
+            },
+            "consensus": {
+              "a": {
+                "american": -163,
+                "decimal": 1.613,
+                "implied_probability": 0.6198
+              },
+              "b": {
+                "american": 132,
+                "decimal": 2.32,
+                "implied_probability": 0.431
+              },
+              "favourite": "a",
+              "fair_probability_a": 0.5898,
+              "sources": 13,
+              "recorded_at": "2026-11-14T12:21:53.275Z"
+            },
+            "opening": {
+              "a": {
+                "american": -170,
+                "decimal": 1.588,
+                "implied_probability": 0.6296
+              },
+              "b": {
+                "american": 149,
+                "decimal": 2.49,
+                "implied_probability": 0.4016
+              },
+              "favourite": "a",
+              "fair_probability_a": 0.6106,
+              "sources": 1,
+              "recorded_at": "2026-11-10T02:51:24.278Z"
+            },
+            "closing": null,
+            "movement": {
+              "delta_points_a": -0.99,
+              "direction": "b",
+              "since": "2026-11-10T02:51:24.278Z"
+            },
+            "points": 66,
+            "updated_at": "2026-11-14T12:21:53.275Z",
+            "props": {
+              "method": {
+                "a": {
+                  "ko": null,
+                  "sub": null,
+                  "dec": null
+                },
+                "b": {
+                  "ko": null,
+                  "sub": null,
+                  "dec": null
+                }
+              },
+              "total_rounds": [
+                {
+                  "line": 2.5,
+                  "over": {
+                    "american": -214,
+                    "decimal": 1.467,
+                    "implied_probability": 0.6815
+                  },
+                  "under": {
+                    "american": 167,
+                    "decimal": 2.67,
+                    "implied_probability": 0.3745
+                  },
+                  "fair_probability_over": 0.6454,
+                  "sources": 11,
+                  "recorded_at": "2026-11-14T12:21:54.487Z"
+                }
+              ],
+              "distance": {
+                "yes": {
+                  "american": -184,
+                  "decimal": 1.543,
+                  "implied_probability": 0.6479
+                },
+                "no": {
+                  "american": 137,
+                  "decimal": 2.37,
+                  "implied_probability": 0.4219
+                },
+                "fair_probability": 0.6056,
+                "sources": 3,
+                "recorded_at": "2026-11-14T12:21:54.487Z"
+              },
+              "closing": false,
+              "updated_at": "2026-11-14T12:21:54.487Z"
+            }
+          },
+          {
+            "fight_id": 93296,
+            "status": "announced",
+            "fighter_a": {
+              "id": 5404,
+              "slug": "lewis-mcgrillen-evans",
+              "name": "Lewis McGrillen-Evans"
+            },
+            "fighter_b": {
+              "id": 6075,
+              "slug": "nawras-abzakh",
+              "name": "Nawras Abzakh"
+            },
+            "consensus": {
+              "a": {
+                "american": -395,
+                "decimal": 1.253,
+                "implied_probability": 0.798
+              },
+              "b": {
+                "american": 293,
+                "decimal": 3.93,
+                "implied_probability": 0.2545
+              },
+              "favourite": "a",
+              "fair_probability_a": 0.7582,
+              "sources": 12,
+              "recorded_at": "2026-11-14T12:21:51.318Z"
+            },
+            "opening": {
+              "a": {
+                "american": -300,
+                "decimal": 1.333,
+                "implied_probability": 0.75
+              },
+              "b": {
+                "american": 245,
+                "decimal": 3.45,
+                "implied_probability": 0.2899
+              },
+              "favourite": "a",
+              "fair_probability_a": 0.7213,
+              "sources": 1,
+              "recorded_at": "2026-11-10T02:51:22.902Z"
+            },
+            "closing": null,
+            "movement": {
+              "delta_points_a": 4.8,
+              "direction": "a",
+              "since": "2026-11-10T02:51:22.902Z"
+            },
+            "points": 47,
+            "updated_at": "2026-11-14T12:21:51.318Z",
+            "props": {
+              "method": {
+                "a": {
+                  "ko": null,
+                  "sub": null,
+                  "dec": null
+                },
+                "b": {
+                  "ko": null,
+                  "sub": null,
+                  "dec": null
+                }
+              },
+              "total_rounds": [
+                {
+                  "line": 1.5,
+                  "over": {
+                    "american": -148,
+                    "decimal": 1.676,
+                    "implied_probability": 0.5968
+                  },
+                  "under": {
+                    "american": 117,
+                    "decimal": 2.17,
+                    "implied_probability": 0.4608
+                  },
+                  "fair_probability_over": 0.5643,
+                  "sources": 10,
+                  "recorded_at": "2026-11-14T12:21:52.175Z"
+                }
+              ],
+              "distance": {
+                "yes": {
+                  "american": 183,
+                  "decimal": 2.83,
+                  "implied_probability": 0.3534
+                },
+                "no": {
+                  "american": -247,
+                  "decimal": 1.405,
+                  "implied_probability": 0.7118
+                },
+                "fair_probability": 0.3317,
+                "sources": 3,
+                "recorded_at": "2026-11-14T12:21:52.175Z"
+              },
+              "closing": false,
+              "updated_at": "2026-11-14T12:21:52.175Z"
+            }
+          },
+          {
+            "fight_id": 93306,
+            "status": "announced",
+            "fighter_a": {
+              "id": 369,
+              "slug": "shem-rock",
+              "name": "Shem Rock"
+            },
+            "fighter_b": {
+              "id": 5601,
+              "slug": "connor-hughes",
+              "name": "Connor Hughes"
+            },
+            "consensus": {
+              "a": {
+                "american": 163,
+                "decimal": 2.63,
+                "implied_probability": 0.3802
+              },
+              "b": {
+                "american": -202,
+                "decimal": 1.495,
+                "implied_probability": 0.6689
+              },
+              "favourite": "b",
+              "fair_probability_a": 0.3624,
+              "sources": 13,
+              "recorded_at": "2026-11-14T12:21:49.031Z"
+            },
+            "opening": {
+              "a": {
+                "american": 130,
+                "decimal": 2.3,
+                "implied_probability": 0.4348
+              },
+              "b": {
+                "american": -150,
+                "decimal": 1.667,
+                "implied_probability": 0.6
+              },
+              "favourite": "b",
+              "fair_probability_a": 0.4202,
+              "sources": 1,
+              "recorded_at": "2026-11-10T02:51:20.997Z"
+            },
+            "closing": null,
+            "movement": {
+              "delta_points_a": -5.46,
+              "direction": "b",
+              "since": "2026-11-10T02:51:20.997Z"
+            },
+            "points": 41,
+            "updated_at": "2026-11-14T12:21:49.031Z",
+            "props": {
+              "method": {
+                "a": {
+                  "ko": null,
+                  "sub": null,
+                  "dec": null
+                },
+                "b": {
+                  "ko": null,
+                  "sub": null,
+                  "dec": null
+                }
+              },
+              "total_rounds": [
+                {
+                  "line": 1.5,
+                  "over": {
+                    "american": -148,
+                    "decimal": 1.676,
+                    "implied_probability": 0.5968
+                  },
+                  "under": {
+                    "american": 117,
+                    "decimal": 2.17,
+                    "implied_probability": 0.4608
+                  },
+                  "fair_probability_over": 0.5643,
+                  "sources": 11,
+                  "recorded_at": "2026-11-14T12:21:50.467Z"
+                }
+              ],
+              "distance": null,
+              "closing": false,
+              "updated_at": "2026-11-14T12:21:50.467Z"
+            }
+          },
+          {
+            "fight_id": 93773,
+            "status": "announced",
+            "fighter_a": {
+              "id": 376,
+              "slug": "saygid-izagakhmaev",
+              "name": "Saygid Izagakhmaev"
+            },
+            "fighter_b": {
+              "id": 247396,
+              "slug": "david-martinez-8",
+              "name": "David Martinez"
+            },
+            "consensus": {
+              "a": {
+                "american": -233,
+                "decimal": 1.429,
+                "implied_probability": 0.6997
+              },
+              "b": {
+                "american": 185,
+                "decimal": 2.85,
+                "implied_probability": 0.3509
+              },
+              "favourite": "a",
+              "fair_probability_a": 0.666,
+              "sources": 11,
+              "recorded_at": "2026-11-14T12:21:46.499Z"
+            },
+            "opening": {
+              "a": {
+                "american": -200,
+                "decimal": 1.5,
+                "implied_probability": 0.6667
+              },
+              "b": {
+                "american": 174,
+                "decimal": 2.74,
+                "implied_probability": 0.365
+              },
+              "favourite": "a",
+              "fair_probability_a": 0.6462,
+              "sources": 1,
+              "recorded_at": "2026-11-11T20:50:32.945Z"
+            },
+            "closing": null,
+            "movement": {
+              "delta_points_a": 3.3,
+              "direction": "a",
+              "since": "2026-11-11T20:50:32.945Z"
+            },
+            "points": 35,
+            "updated_at": "2026-11-14T12:21:46.499Z",
+            "props": {
+              "method": {
+                "a": {
+                  "ko": null,
+                  "sub": null,
+                  "dec": null
+                },
+                "b": {
+                  "ko": null,
+                  "sub": null,
+                  "dec": null
+                }
+              },
+              "total_rounds": [
+                {
+                  "line": 2.5,
+                  "over": {
+                    "american": -154,
+                    "decimal": 1.649,
+                    "implied_probability": 0.6063
+                  },
+                  "under": {
+                    "american": 121,
+                    "decimal": 2.21,
+                    "implied_probability": 0.4525
+                  },
+                  "fair_probability_over": 0.5726,
+                  "sources": 9,
+                  "recorded_at": "2026-11-14T12:21:47.567Z"
+                }
+              ],
+              "distance": null,
+              "closing": false,
+              "updated_at": "2026-11-14T12:21:47.567Z"
+            }
+          },
+          {
+            "fight_id": 93400,
+            "status": "announced",
+            "fighter_a": {
+              "id": 4955,
+              "slug": "alexei-pergande",
+              "name": "Alexei Pergande"
+            },
+            "fighter_b": {
+              "id": 6465,
+              "slug": "akhmed-magomedov",
+              "name": "Akhmed Magomedov"
+            },
+            "consensus": {
+              "a": {
+                "american": -197,
+                "decimal": 1.508,
+                "implied_probability": 0.6633
+              },
+              "b": {
+                "american": 160,
+                "decimal": 2.6,
+                "implied_probability": 0.3846
+              },
+              "favourite": "a",
+              "fair_probability_a": 0.633,
+              "sources": 13,
+              "recorded_at": "2026-11-14T12:21:43.732Z"
+            },
+            "opening": {
+              "a": {
+                "american": -180,
+                "decimal": 1.556,
+                "implied_probability": 0.6429
+              },
+              "b": {
+                "american": 157,
+                "decimal": 2.57,
+                "implied_probability": 0.3891
+              },
+              "favourite": "a",
+              "fair_probability_a": 0.6229,
+              "sources": 1,
+              "recorded_at": "2026-11-10T02:51:19.795Z"
+            },
+            "closing": null,
+            "movement": {
+              "delta_points_a": 2.04,
+              "direction": "a",
+              "since": "2026-11-10T02:51:19.795Z"
+            },
+            "points": 46,
+            "updated_at": "2026-11-14T12:21:43.732Z",
+            "props": {
+              "method": {
+                "a": {
+                  "ko": null,
+                  "sub": null,
+                  "dec": null
+                },
+                "b": {
+                  "ko": null,
+                  "sub": null,
+                  "dec": null
+                }
+              },
+              "total_rounds": [
+                {
+                  "line": 2.5,
+                  "over": {
+                    "american": -214,
+                    "decimal": 1.467,
+                    "implied_probability": 0.6815
+                  },
+                  "under": {
+                    "american": 168,
+                    "decimal": 2.68,
+                    "implied_probability": 0.3731
+                  },
+                  "fair_probability_over": 0.6462,
+                  "sources": 11,
+                  "recorded_at": "2026-11-14T12:21:45.134Z"
+                }
+              ],
+              "distance": null,
+              "closing": false,
+              "updated_at": "2026-11-14T12:21:45.134Z"
+            }
+          },
+          {
+            "fight_id": 93025,
+            "status": "announced",
+            "fighter_a": {
+              "id": 34415,
+              "slug": "khasan-magomedsharipov",
+              "name": "Khasan Magomedsharipov"
+            },
+            "fighter_b": {
+              "id": 6056,
+              "slug": "adam-borics",
+              "name": "Adam Borics"
+            },
+            "consensus": {
+              "a": {
+                "american": -257,
+                "decimal": 1.389,
+                "implied_probability": 0.7199
+              },
+              "b": {
+                "american": 202,
+                "decimal": 3.02,
+                "implied_probability": 0.3311
+              },
+              "favourite": "a",
+              "fair_probability_a": 0.6849,
+              "sources": 13,
+              "recorded_at": "2026-11-14T12:50:45.382Z"
+            },
+            "opening": {
+              "a": {
+                "american": -250,
+                "decimal": 1.4,
+                "implied_probability": 0.7143
+              },
+              "b": {
+                "american": 207,
+                "decimal": 3.07,
+                "implied_probability": 0.3257
+              },
+              "favourite": "a",
+              "fair_probability_a": 0.6868,
+              "sources": 1,
+              "recorded_at": "2026-11-10T02:51:18.313Z"
+            },
+            "closing": null,
+            "movement": {
+              "delta_points_a": 0.56,
+              "direction": "a",
+              "since": "2026-11-10T02:51:18.313Z"
+            },
+            "points": 39,
+            "updated_at": "2026-11-14T12:50:45.382Z",
+            "props": {
+              "method": {
+                "a": {
+                  "ko": null,
+                  "sub": null,
+                  "dec": null
+                },
+                "b": {
+                  "ko": null,
+                  "sub": null,
+                  "dec": null
+                }
+              },
+              "total_rounds": [
+                {
+                  "line": 1.5,
+                  "over": {
+                    "american": -189,
+                    "decimal": 1.529,
+                    "implied_probability": 0.654
+                  },
+                  "under": {
+                    "american": 154,
+                    "decimal": 2.54,
+                    "implied_probability": 0.3937
+                  },
+                  "fair_probability_over": 0.6242,
+                  "sources": 2,
+                  "recorded_at": "2026-11-11T23:20:43.121Z"
+                },
+                {
+                  "line": 2.5,
+                  "over": {
+                    "american": -153,
+                    "decimal": 1.654,
+                    "implied_probability": 0.6047
+                  },
+                  "under": {
+                    "american": 121,
+                    "decimal": 2.21,
+                    "implied_probability": 0.4525
+                  },
+                  "fair_probability_over": 0.572,
+                  "sources": 10,
+                  "recorded_at": "2026-11-14T12:21:42.316Z"
+                }
+              ],
+              "distance": null,
+              "closing": false,
+              "updated_at": "2026-11-14T12:21:42.316Z"
+            }
+          },
+          {
+            "fight_id": 93423,
+            "status": "announced",
+            "fighter_a": {
+              "id": 3970,
+              "slug": "denis-goltsov",
+              "name": "Denis Goltsov"
+            },
+            "fighter_b": {
+              "id": 6401,
+              "slug": "maxwell-djantou-nana",
+              "name": "Maxwell Djantou Nana"
+            },
+            "consensus": {
+              "a": {
+                "american": -379,
+                "decimal": 1.264,
+                "implied_probability": 0.7912
+              },
+              "b": {
+                "american": 286,
+                "decimal": 3.86,
+                "implied_probability": 0.2591
+              },
+              "favourite": "a",
+              "fair_probability_a": 0.7533,
+              "sources": 13,
+              "recorded_at": "2026-11-14T12:21:38.521Z"
+            },
+            "opening": {
+              "a": {
+                "american": -180,
+                "decimal": 1.556,
+                "implied_probability": 0.6429
+              },
+              "b": {
+                "american": 157,
+                "decimal": 2.57,
+                "implied_probability": 0.3891
+              },
+              "favourite": "a",
+              "fair_probability_a": 0.6229,
+              "sources": 1,
+              "recorded_at": "2026-11-10T02:51:17.398Z"
+            },
+            "closing": null,
+            "movement": {
+              "delta_points_a": 14.84,
+              "direction": "a",
+              "since": "2026-11-10T02:51:17.398Z"
+            },
+            "points": 44,
+            "updated_at": "2026-11-14T12:21:38.521Z",
+            "props": {
+              "method": {
+                "a": {
+                  "ko": null,
+                  "sub": null,
+                  "dec": null
+                },
+                "b": {
+                  "ko": null,
+                  "sub": null,
+                  "dec": null
+                }
+              },
+              "total_rounds": [
+                {
+                  "line": 1.5,
+                  "over": {
+                    "american": 133,
+                    "decimal": 2.33,
+                    "implied_probability": 0.4292
+                  },
+                  "under": {
+                    "american": -168,
+                    "decimal": 1.595,
+                    "implied_probability": 0.6269
+                  },
+                  "fair_probability_over": 0.4064,
+                  "sources": 11,
+                  "recorded_at": "2026-11-14T12:21:39.782Z"
+                }
+              ],
+              "distance": null,
+              "closing": false,
+              "updated_at": "2026-11-14T12:21:39.782Z"
+            }
+          },
+          {
+            "fight_id": 93299,
+            "status": "announced",
+            "fighter_a": {
+              "id": 6822,
+              "slug": "ernesto-rodriguez",
+              "name": "Ernesto Rodriguez"
+            },
+            "fighter_b": {
+              "id": 260,
+              "slug": "rhys-mckee",
+              "name": "Rhys McKee"
+            },
+            "consensus": {
+              "a": {
+                "american": -129,
+                "decimal": 1.775,
+                "implied_probability": 0.5633
+              },
+              "b": {
+                "american": 105,
+                "decimal": 2.05,
+                "implied_probability": 0.4878
+              },
+              "favourite": "a",
+              "fair_probability_a": 0.5359,
+              "sources": 13,
+              "recorded_at": "2026-11-14T12:50:40.834Z"
+            },
+            "opening": {
+              "a": {
+                "american": 130,
+                "decimal": 2.3,
+                "implied_probability": 0.4348
+              },
+              "b": {
+                "american": -150,
+                "decimal": 1.667,
+                "implied_probability": 0.6
+              },
+              "favourite": "b",
+              "fair_probability_a": 0.4202,
+              "sources": 1,
+              "recorded_at": "2026-11-10T02:51:15.472Z"
+            },
+            "closing": null,
+            "movement": {
+              "delta_points_a": 12.85,
+              "direction": "a",
+              "since": "2026-11-10T02:51:15.472Z"
+            },
+            "points": 39,
+            "updated_at": "2026-11-14T12:50:40.834Z",
+            "props": {
+              "method": {
+                "a": {
+                  "ko": null,
+                  "sub": null,
+                  "dec": null
+                },
+                "b": {
+                  "ko": null,
+                  "sub": null,
+                  "dec": null
+                }
+              },
+              "total_rounds": [
+                {
+                  "line": 1.5,
+                  "over": {
+                    "american": -205,
+                    "decimal": 1.488,
+                    "implied_probability": 0.6721
+                  },
+                  "under": {
+                    "american": 162,
+                    "decimal": 2.62,
+                    "implied_probability": 0.3817
+                  },
+                  "fair_probability_over": 0.6378,
+                  "sources": 11,
+                  "recorded_at": "2026-11-14T12:50:41.942Z"
+                }
+              ],
+              "distance": null,
+              "closing": false,
+              "updated_at": "2026-11-14T12:50:41.942Z"
+            }
+          },
+          {
+            "fight_id": 93545,
+            "status": "announced",
+            "fighter_a": {
+              "id": 6809,
+              "slug": "khabib-nabiev",
+              "name": "Khabib Nabiev"
+            },
+            "fighter_b": {
+              "id": 6749,
+              "slug": "styve-ngono",
+              "name": "Styve Ngono"
+            },
+            "consensus": {
+              "a": {
+                "american": -641,
+                "decimal": 1.156,
+                "implied_probability": 0.865
+              },
+              "b": {
+                "american": 437,
+                "decimal": 5.37,
+                "implied_probability": 0.1862
+              },
+              "favourite": "a",
+              "fair_probability_a": 0.8229,
+              "sources": 13,
+              "recorded_at": "2026-11-14T12:21:33.816Z"
+            },
+            "opening": {
+              "a": {
+                "american": -500,
+                "decimal": 1.2,
+                "implied_probability": 0.8333
+              },
+              "b": {
+                "american": 383,
+                "decimal": 4.83,
+                "implied_probability": 0.207
+              },
+              "favourite": "a",
+              "fair_probability_a": 0.801,
+              "sources": 1,
+              "recorded_at": "2026-11-10T02:51:08.110Z"
+            },
+            "closing": null,
+            "movement": {
+              "delta_points_a": 3.17,
+              "direction": "a",
+              "since": "2026-11-10T02:51:08.110Z"
+            },
+            "points": 37,
+            "updated_at": "2026-11-14T12:21:33.816Z",
+            "props": {
+              "method": {
+                "a": {
+                  "ko": null,
+                  "sub": null,
+                  "dec": null
+                },
+                "b": {
+                  "ko": null,
+                  "sub": null,
+                  "dec": null
+                }
+              },
+              "total_rounds": [
+                {
+                  "line": 1.5,
+                  "over": {
+                    "american": -148,
+                    "decimal": 1.676,
+                    "implied_probability": 0.5968
+                  },
+                  "under": {
+                    "american": 117,
+                    "decimal": 2.17,
+                    "implied_probability": 0.4608
+                  },
+                  "fair_probability_over": 0.5643,
+                  "sources": 11,
+                  "recorded_at": "2026-11-14T12:21:34.772Z"
+                }
+              ],
+              "distance": null,
+              "closing": false,
+              "updated_at": "2026-11-14T12:21:34.772Z"
+            }
+          },
+          {
+            "fight_id": 93614,
+            "status": "announced",
+            "fighter_a": {
+              "id": 7772,
+              "slug": "aleksandra-savicheva",
+              "name": "Aleksandra Savicheva"
+            },
+            "fighter_b": {
+              "id": 3511,
+              "slug": "jacinta-austin",
+              "name": "Jacinta Austin"
+            },
+            "consensus": {
+              "a": {
+                "american": 193,
+                "decimal": 2.93,
+                "implied_probability": 0.3413
+              },
+              "b": {
+                "american": -244,
+                "decimal": 1.41,
+                "implied_probability": 0.7093
+              },
+              "favourite": "b",
+              "fair_probability_a": 0.3249,
+              "sources": 12,
+              "recorded_at": "2026-11-14T10:20:20.361Z"
+            },
+            "opening": {
+              "a": {
+                "american": 120,
+                "decimal": 2.2,
+                "implied_probability": 0.4545
+              },
+              "b": {
+                "american": -163,
+                "decimal": 1.613,
+                "implied_probability": 0.6198
+              },
+              "favourite": "b",
+              "fair_probability_a": 0.4231,
+              "sources": 1,
+              "recorded_at": "2026-11-10T18:21:09.059Z"
+            },
+            "closing": null,
+            "movement": {
+              "delta_points_a": -11.32,
+              "direction": "b",
+              "since": "2026-11-10T18:21:09.059Z"
+            },
+            "points": 48,
+            "updated_at": "2026-11-14T10:20:20.361Z",
+            "props": {
+              "method": {
+                "a": {
+                  "ko": null,
+                  "sub": null,
+                  "dec": null
+                },
+                "b": {
+                  "ko": null,
+                  "sub": null,
+                  "dec": null
+                }
+              },
+              "total_rounds": [
+                {
+                  "line": 2.5,
+                  "over": {
+                    "american": -156,
+                    "decimal": 1.641,
+                    "implied_probability": 0.6094
+                  },
+                  "under": {
+                    "american": 124,
+                    "decimal": 2.24,
+                    "implied_probability": 0.4464
+                  },
+                  "fair_probability_over": 0.5772,
+                  "sources": 11,
+                  "recorded_at": "2026-11-14T12:50:37.002Z"
+                }
+              ],
+              "distance": null,
+              "closing": false,
+              "updated_at": "2026-11-14T12:50:37.002Z"
+            }
+          }
+        ]
+      },
+      "entries": 13,
+      "checkedAt": "2026-11-14T12:53:04.421Z"
+    },
+    {
+      "eventId": "ufcalendar:pfl-2026-12-11",
+      "slug": "pfl-2026-12-11",
+      "data": {
+        "event": {
+          "id": 3544,
+          "slug": "pfl-2026-12-11",
+          "title": "PFL MENA 12: Al Khobar",
+          "org": "pfl",
+          "starts_at": "2026-12-11T15:00:00.000Z",
+          "status": "announced"
+        },
+        "fights": [
+          {
+            "fight_id": 93341,
+            "status": "announced",
+            "fighter_a": {
+              "id": 42593,
+              "slug": "abdelkrim-zouad",
+              "name": "Abdelkrim Zouad"
+            },
+            "fighter_b": {
+              "id": 6272,
+              "slug": "badreddine-diani",
+              "name": "Badreddine Diani"
+            },
+            "consensus": null,
+            "opening": null,
+            "closing": null,
+            "movement": null,
+            "points": 0,
+            "updated_at": null,
+            "props": null
+          },
+          {
+            "fight_id": 93342,
+            "status": "announced",
+            "fighter_a": {
+              "id": 6621,
+              "slug": "mohammad-fahmi",
+              "name": "Mohammad Fahmi"
+            },
+            "fighter_b": {
+              "id": 4409,
+              "slug": "ylies-djiroun",
+              "name": "Ylies Djiroun"
+            },
+            "consensus": null,
+            "opening": null,
+            "closing": null,
+            "movement": null,
+            "points": 0,
+            "updated_at": null,
+            "props": null
+          },
+          {
+            "fight_id": 93343,
+            "status": "announced",
+            "fighter_a": {
+              "id": 19033,
+              "slug": "elias-boudegzdame-2",
+              "name": "Elias Boudegzdame"
+            },
+            "fighter_b": {
+              "id": 7462,
+              "slug": "mehdi-saadi",
+              "name": "Mehdi Saadi"
+            },
+            "consensus": null,
+            "opening": null,
+            "closing": null,
+            "movement": null,
+            "points": 0,
+            "updated_at": null,
+            "props": null
+          }
+        ]
+      },
+      "entries": 3,
+      "checkedAt": "2026-11-14T12:53:04.421Z"
+    },
+    {
+      "eventId": "ufcalendar:pfl-2026-12-12",
+      "slug": "pfl-2026-12-12",
+      "data": {
+        "event": {
+          "id": 3551,
+          "slug": "pfl-2026-12-12",
+          "title": "PFL Africa: Rwanda",
+          "org": "pfl",
+          "starts_at": "2026-12-12T17:00:00.000Z",
+          "status": "announced"
+        },
+        "fights": [
+          {
+            "fight_id": 93492,
+            "status": "announced",
+            "fighter_a": {
+              "id": 6400,
+              "slug": "shido-boris-esperanca",
+              "name": "Shido Boris Esperanca"
+            },
+            "fighter_b": {
+              "id": 6829,
+              "slug": "david-samuel",
+              "name": "David Samuel"
+            },
+            "consensus": null,
+            "opening": null,
+            "closing": null,
+            "movement": null,
+            "points": 0,
+            "updated_at": null,
+            "props": null
+          },
+          {
+            "fight_id": 93493,
+            "status": "announced",
+            "fighter_a": {
+              "id": 6687,
+              "slug": "patrick-ocheme",
+              "name": "Patrick Ocheme"
+            },
+            "fighter_b": {
+              "id": 11224,
+              "slug": "demba-seck",
+              "name": "Demba Seck"
+            },
+            "consensus": null,
+            "opening": null,
+            "closing": null,
+            "movement": null,
+            "points": 0,
+            "updated_at": null,
+            "props": null
+          },
+          {
+            "fight_id": 93642,
+            "status": "announced",
+            "fighter_a": {
+              "id": 6747,
+              "slug": "juliet-ukah",
+              "name": "Juliet Ukah"
+            },
+            "fighter_b": {
+              "id": 6812,
+              "slug": "benita-van-rooij",
+              "name": "Benita van Rooij"
+            },
+            "consensus": null,
+            "opening": null,
+            "closing": null,
+            "movement": null,
+            "points": 0,
+            "updated_at": null,
+            "props": null
+          },
+          {
+            "fight_id": 93494,
+            "status": "announced",
+            "fighter_a": {
+              "id": 5108,
+              "slug": "raphael-uchegbu",
+              "name": "Raphael Uchegbu"
+            },
+            "fighter_b": {
+              "id": 6694,
+              "slug": "dwight-joseph",
+              "name": "Dwight Joseph"
+            },
+            "consensus": null,
+            "opening": null,
+            "closing": null,
+            "movement": null,
+            "points": 0,
+            "updated_at": null,
+            "props": null
+          },
+          {
+            "fight_id": 93643,
+            "status": "announced",
+            "fighter_a": {
+              "id": 6836,
+              "slug": "felista-mugo",
+              "name": "Felista Mugo"
+            },
+            "fighter_b": {
+              "id": 66563,
+              "slug": "sephora-kiala",
+              "name": "Sephora Kiala"
+            },
+            "consensus": null,
+            "opening": null,
+            "closing": null,
+            "movement": null,
+            "points": 0,
+            "updated_at": null,
+            "props": null
+          },
+          {
+            "fight_id": 93644,
+            "status": "announced",
+            "fighter_a": {
+              "id": 6691,
+              "slug": "boule-godogo",
+              "name": "Boule Godogo"
+            },
+            "fighter_b": {
+              "id": 43766,
+              "slug": "ridouan-errami",
+              "name": "Ridouan Errami"
+            },
+            "consensus": null,
+            "opening": null,
+            "closing": null,
+            "movement": null,
+            "points": 0,
+            "updated_at": null,
+            "props": null
+          }
+        ]
+      },
+      "entries": 6,
+      "checkedAt": "2026-11-14T12:53:04.421Z"
+    },
+    {
+      "eventId": "ufcalendar:pfl-2026-12-19",
+      "slug": "pfl-2026-12-19",
+      "data": {
+        "event": {
+          "id": 2561,
+          "slug": "pfl-2026-12-19",
+          "title": "PFL Lyon: Lapilus vs McKee",
+          "org": "pfl",
+          "starts_at": "2026-12-19T16:00:00.000Z",
+          "status": "announced"
+        },
+        "fights": [
+          {
+            "fight_id": 93015,
+            "status": "announced",
+            "fighter_a": {
+              "id": 2364,
+              "slug": "taylor-lapilus",
+              "name": "Taylor Lapilus"
+            },
+            "fighter_b": {
+              "id": 6838,
+              "slug": "mitchell-mckee",
+              "name": "Mitchell McKee"
+            },
+            "consensus": null,
+            "opening": null,
+            "closing": null,
+            "movement": null,
+            "points": 0,
+            "updated_at": null,
+            "props": null
+          },
+          {
+            "fight_id": 93030,
+            "status": "announced",
+            "fighter_a": {
+              "id": 6609,
+              "slug": "boris-atangana",
+              "name": "Boris Atangana"
+            },
+            "fighter_b": {
+              "id": 757,
+              "slug": "bryan-battle",
+              "name": "Bryan Battle"
+            },
+            "consensus": null,
+            "opening": null,
+            "closing": null,
+            "movement": null,
+            "points": 0,
+            "updated_at": null,
+            "props": null
+          },
+          {
+            "fight_id": 93158,
+            "status": "announced",
+            "fighter_a": {
+              "id": 5799,
+              "slug": "abdoul-abdouraguimov",
+              "name": "Abdoul Abdouraguimov"
+            },
+            "fighter_b": {
+              "id": 26916,
+              "slug": "andreeas-binder",
+              "name": "Andreeas Binder"
+            },
+            "consensus": null,
+            "opening": null,
+            "closing": null,
+            "movement": null,
+            "points": 0,
+            "updated_at": null,
+            "props": null
+          },
+          {
+            "fight_id": 93177,
+            "status": "announced",
+            "fighter_a": {
+              "id": 6442,
+              "slug": "fabian-edwards",
+              "name": "Fabian Edwards"
+            },
+            "fighter_b": {
+              "id": 40341,
+              "slug": "ilian-bouafia",
+              "name": "Ilian Bouafia"
+            },
+            "consensus": null,
+            "opening": null,
+            "closing": null,
+            "movement": null,
+            "points": 0,
+            "updated_at": null,
+            "props": null
+          },
+          {
+            "fight_id": 93563,
+            "status": "announced",
+            "fighter_a": {
+              "id": 138473,
+              "slug": "bafode-gassama",
+              "name": "Bafode Gassama"
+            },
+            "fighter_b": {
+              "id": 12197,
+              "slug": "coby-bradford",
+              "name": "Coby Bradford"
+            },
+            "consensus": null,
+            "opening": null,
+            "closing": null,
+            "movement": null,
+            "points": 0,
+            "updated_at": null,
+            "props": null
+          },
+          {
+            "fight_id": 93422,
+            "status": "announced",
+            "fighter_a": {
+              "id": 40846,
+              "slug": "brandon-brachet",
+              "name": "Brandon Brachet"
+            },
+            "fighter_b": {
+              "id": 6074,
+              "slug": "adam-meskini",
+              "name": "Adam Meskini"
+            },
+            "consensus": null,
+            "opening": null,
+            "closing": null,
+            "movement": null,
+            "points": 0,
+            "updated_at": null,
+            "props": null
+          },
+          {
+            "fight_id": 93488,
+            "status": "announced",
+            "fighter_a": {
+              "id": 43356,
+              "slug": "mathilde-aschenbrenner",
+              "name": "Mathilde Aschenbrenner"
+            },
+            "fighter_b": {
+              "id": 6754,
+              "slug": "shelda-chipito",
+              "name": "Shelda Chipito"
+            },
+            "consensus": null,
+            "opening": null,
+            "closing": null,
+            "movement": null,
+            "points": 0,
+            "updated_at": null,
+            "props": null
+          },
+          {
+            "fight_id": 93720,
+            "status": "announced",
+            "fighter_a": {
+              "id": 6133,
+              "slug": "dean-garnett",
+              "name": "Dean Garnett"
+            },
+            "fighter_b": {
+              "id": 5917,
+              "slug": "bryce-meredith",
+              "name": "Bryce Meredith"
+            },
+            "consensus": null,
+            "opening": null,
+            "closing": null,
+            "movement": null,
+            "points": 0,
+            "updated_at": null,
+            "props": null
+          },
+          {
+            "fight_id": 93743,
+            "status": "announced",
+            "fighter_a": {
+              "id": 41030,
+              "slug": "oualy-tandia",
+              "name": "Oualy Tandia"
+            },
+            "fighter_b": {
+              "id": 3311,
+              "slug": "alex-lohore",
+              "name": "Alex Lohoré"
+            },
+            "consensus": null,
+            "opening": null,
+            "closing": null,
+            "movement": null,
+            "points": 0,
+            "updated_at": null,
+            "props": null
+          },
+          {
+            "fight_id": 93785,
+            "status": "announced",
+            "fighter_a": {
+              "id": 6106,
+              "slug": "zakaria-hamou",
+              "name": "Zakaria Hamou"
+            },
+            "fighter_b": {
+              "id": 66343,
+              "slug": "amin-bouazza",
+              "name": "Amin Bouazza"
+            },
+            "consensus": null,
+            "opening": null,
+            "closing": null,
+            "movement": null,
+            "points": 0,
+            "updated_at": null,
+            "props": null
+          },
+          {
+            "fight_id": 93786,
+            "status": "announced",
+            "fighter_a": {
+              "id": 52795,
+              "slug": "mauricio-partida",
+              "name": "Mauricio Partida"
+            },
+            "fighter_b": {
+              "id": 6957,
+              "slug": "jan-cieplowski",
+              "name": "Jan Cieplowski"
+            },
+            "consensus": null,
+            "opening": null,
+            "closing": null,
+            "movement": null,
+            "points": 0,
+            "updated_at": null,
+            "props": null
+          }
+        ]
+      },
+      "entries": 11,
+      "checkedAt": "2026-11-14T12:53:04.421Z"
+    }
+  ]
+}
