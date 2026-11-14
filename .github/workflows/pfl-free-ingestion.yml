@@ -29,6 +29,11 @@ jobs:
         run: |
           node tests/pfl_fighter_histories.test.js
           node scripts/pfl_fighter_histories.js
+      - name: Audit historical fighter outcomes
+        run: |
+          node tests/pfl_history_audit.test.js
+          node scripts/pfl_history_audit.js data/pfl/fighter-histories.json | tee data/pfl/history-audit.json
+          test "${PIPESTATUS[0]}" -eq 0
       - name: Fetch PFL events from free UFCalendar allocation
         env:
           ufccal_key: ${{ secrets.ufccal_key }}
@@ -51,4 +56,5 @@ jobs:
             data/pfl/ufcalendar-events.json
             data/pfl/coverage-audit.json
             data/pfl/fighter-histories.json
+            data/pfl/history-audit.json
           retention-days: 3
