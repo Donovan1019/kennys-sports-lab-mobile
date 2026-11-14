@@ -1,0 +1,71 @@
+name: PFL Model Tests
+on:
+  pull_request:
+    paths:
+      - 'pfl_analytics.js'
+      - 'pfl_dashboard.js'
+      - 'pfl_snapshot.js'
+      - 'pfl_betting.js'
+      - 'pfl_parlay_engine.js'
+      - 'scripts/pfl_ufcalendar_acquire.js'
+      - 'tests/pfl_ufcalendar.test.js'
+      - 'tests/pfl_parlay_engine.test.js'
+      - 'tests/pfl_betting.test.js'
+      - 'tests/pfl_snapshot.test.js'
+      - 'pfl.html'
+      - 'pfl_module.css'
+      - 'scripts/pfl_acquire.js'
+      - 'tests/pfl_acquire.test.js'
+      - 'pfl_duration_model.js'
+      - 'pfl_confidence.js'
+      - 'tests/pfl_confidence.test.js'
+      - 'tests/pfl_models.test.js'
+      - '.github/workflows/pfl-model-tests.yml'
+  push:
+    paths:
+      - 'pfl_analytics.js'
+      - 'pfl_dashboard.js'
+      - 'pfl_snapshot.js'
+      - 'pfl_betting.js'
+      - 'pfl_parlay_engine.js'
+      - 'scripts/pfl_ufcalendar_acquire.js'
+      - 'tests/pfl_ufcalendar.test.js'
+      - 'tests/pfl_parlay_engine.test.js'
+      - 'tests/pfl_betting.test.js'
+      - 'tests/pfl_snapshot.test.js'
+      - 'pfl.html'
+      - 'pfl_module.css'
+      - 'scripts/pfl_acquire.js'
+      - 'tests/pfl_acquire.test.js'
+      - 'pfl_duration_model.js'
+      - 'pfl_confidence.js'
+      - 'tests/pfl_confidence.test.js'
+      - 'tests/pfl_models.test.js'
+      - '.github/workflows/pfl-model-tests.yml'
+jobs:
+  pfl-model-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: PFL model tests
+        run: |
+          node tests/pfl_models.test.js
+          node tests/pfl_confidence.test.js
+          node tests/pfl_acquire.test.js
+          node tests/pfl_snapshot.test.js
+          node tests/pfl_betting.test.js
+          node tests/pfl_parlay_engine.test.js
+          node tests/pfl_ufcalendar.test.js
+          node --check pfl_parlay_engine.js
+          node --check pfl_betting.js
+          node --check pfl_snapshot.js
+          node --check pfl_dashboard.js
+          node --check pfl_analytics.js
+          node --check pfl_confidence.js
+          node --check pfl_duration_model.js
+          node --check scripts/pfl_acquire.js
+          node --check scripts/pfl_ufcalendar_acquire.js

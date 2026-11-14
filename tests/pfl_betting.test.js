@@ -1,0 +1,10 @@
+const assert=require('node:assert/strict');require('../pfl_analytics.js');require('../pfl_betting.js');const B=globalThis.KSLPFLBets;
+const now=Date.parse('2026-11-14T12:00:00Z');const base={market:'ml',fightId:'f1',selection:'Fighter A',fightStatus:'scheduled',boutVerified:true,book:'Reference Book',bookVerified:true,oddsTimestamp:new Date(now).toISOString(),modelCalibrated:true,simulationVerified:true,iterations:50000,probability:.6,odds:100};
+assert.equal(B.assess(base,now).eligible,true);
+assert.ok(Math.abs(B.assess(base,now).ev-.2)<1e-10);
+assert.equal(B.assess({...base,oddsTimestamp:'2020-01-01'},now).eligible,false);
+assert.equal(B.assess({...base,market:'total',line:2.5,side:'over'},now).eligible,false);
+assert.equal(B.assess({...base,iterations:100},now).eligible,false);
+assert.equal(B.assess({...base,fightStatus:'cancelled'},now).eligible,false);
+assert.equal(B.rank([base,{...base,bookVerified:false}],now).length,1);
+console.log('PFL betting qualification tests passed');

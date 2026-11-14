@@ -1,0 +1,10 @@
+const assert=require('node:assert/strict');require('../pfl_analytics.js');require('../pfl_confidence.js');
+const C=globalThis.KSLPFLConfidence;
+const keys=['identity','bout','opponents','results','timing','odds','news'];
+const source=Object.fromEntries(keys.map(k=>[k,{verified:true,ageHours:1}]));
+assert.equal(C.assess({...source,modelCalibrated:true,simulationVerified:true}).eligible,true);
+assert.equal(C.assess({...source,odds:{verified:true,ageHours:3},modelCalibrated:true,simulationVerified:true}).eligible,false);
+assert.equal(C.assess(null).score,0);
+const rows=C.rankMarkets([{probability:.6,odds:100,sources:{...source,modelCalibrated:true,simulationVerified:true}},{probability:.6,odds:100,sources:{}}]);
+assert.equal(rows[0].betEligible,true);assert.equal(rows[1].betEligible,false);
+console.log('PFL confidence tests passed');
