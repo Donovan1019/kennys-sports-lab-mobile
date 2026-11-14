@@ -3,6 +3,8 @@ on:
   pull_request:
     paths:
       - 'pfl_analytics.js'
+      - 'scripts/pfl_acquire.js'
+      - 'tests/pfl_acquire.test.js'
       - 'pfl_duration_model.js'
       - 'pfl_confidence.js'
       - 'tests/pfl_confidence.test.js'
@@ -11,6 +13,8 @@ on:
   push:
     paths:
       - 'pfl_analytics.js'
+      - 'scripts/pfl_acquire.js'
+      - 'tests/pfl_acquire.test.js'
       - 'pfl_duration_model.js'
       - 'pfl_confidence.js'
       - 'tests/pfl_confidence.test.js'
@@ -29,3 +33,4 @@ jobs:
         run: |
           node tests/pfl_models.test.js
           node tests/pfl_confidence.test.js
+          node tests/pfl_acquire.test.js
