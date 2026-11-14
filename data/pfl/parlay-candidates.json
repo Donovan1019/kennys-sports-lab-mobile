@@ -1,10 +1,11 @@
 {
   "schemaVersion": 1,
   "source": "pfl-consensus-parlay-candidates",
-  "generatedAt": "2026-11-14T13:27:46.487Z",
+  "generatedAt": "2026-11-14T13:31:40.099Z",
   "candidateFights": 12,
   "parlays": [
     {
+      "strategy": "gold",
       "legs": 2,
       "markets": [
         {
@@ -29,6 +30,7 @@
       "referenceDecimalOdds": 1.3681174769926578,
       "referenceProbability": 0.66316,
       "referenceEV": -0.09271921395754912,
+      "negativeEVWarning": true,
       "iterations": 50000,
       "simulation": "independent Bernoulli using consensus no-vig probabilities",
       "crossFightIndependenceValidated": false,
@@ -38,6 +40,7 @@
       "classification": "MARKET REFERENCE ONLY — NOT A BETTING RECOMMENDATION"
     },
     {
+      "strategy": "gold",
       "legs": 3,
       "markets": [
         {
@@ -71,6 +74,7 @@
       "referenceDecimalOdds": 1.7026205276021096,
       "referenceProbability": 0.5089,
       "referenceEV": -0.13353641350328638,
+      "negativeEVWarning": true,
       "iterations": 50000,
       "simulation": "independent Bernoulli using consensus no-vig probabilities",
       "crossFightIndependenceValidated": false,
@@ -80,6 +84,7 @@
       "classification": "MARKET REFERENCE ONLY — NOT A BETTING RECOMMENDATION"
     },
     {
+      "strategy": "gold",
       "legs": 4,
       "markets": [
         {
@@ -122,6 +127,7 @@
       "referenceDecimalOdds": 2.1483327076026617,
       "referenceProbability": 0.37814,
       "referenceEV": -0.1876294699471296,
+      "negativeEVWarning": true,
       "iterations": 50000,
       "simulation": "independent Bernoulli using consensus no-vig probabilities",
       "crossFightIndependenceValidated": false,
@@ -131,6 +137,7 @@
       "classification": "MARKET REFERENCE ONLY — NOT A BETTING RECOMMENDATION"
     },
     {
+      "strategy": "gold",
       "legs": 5,
       "markets": [
         {
@@ -182,6 +189,395 @@
       "referenceDecimalOdds": 2.9810198035726856,
       "referenceProbability": 0.26604,
       "referenceEV": -0.2069294914575227,
+      "negativeEVWarning": true,
+      "iterations": 50000,
+      "simulation": "independent Bernoulli using consensus no-vig probabilities",
+      "crossFightIndependenceValidated": false,
+      "modelCalibrated": false,
+      "bookVerified": false,
+      "bettingReady": false,
+      "classification": "MARKET REFERENCE ONLY — NOT A BETTING RECOMMENDATION"
+    },
+    {
+      "strategy": "silver",
+      "legs": 2,
+      "markets": [
+        {
+          "fightId": "pfl-401931802",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Khabib Nabiev",
+          "american": -641,
+          "probability": 0.8228616097361571,
+          "recordedAt": "2026-11-14T12:21:33.816Z",
+          "source": "ufcalendar-consensus"
+        },
+        {
+          "fightId": "pfl-401914114",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Patrick Habirora",
+          "american": -545,
+          "probability": 0.8054592067561454,
+          "recordedAt": "2026-11-14T13:20:57.417Z",
+          "source": "ufcalendar-consensus"
+        }
+      ],
+      "referenceDecimalOdds": 1.3681174769926578,
+      "referenceProbability": 0.66138,
+      "referenceEV": -0.09515446306659603,
+      "negativeEVWarning": true,
+      "iterations": 50000,
+      "simulation": "independent Bernoulli using consensus no-vig probabilities",
+      "crossFightIndependenceValidated": false,
+      "modelCalibrated": false,
+      "bookVerified": false,
+      "bettingReady": false,
+      "classification": "MARKET REFERENCE ONLY — NOT A BETTING RECOMMENDATION"
+    },
+    {
+      "strategy": "silver",
+      "legs": 3,
+      "markets": [
+        {
+          "fightId": "pfl-401931802",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Khabib Nabiev",
+          "american": -641,
+          "probability": 0.8228616097361571,
+          "recordedAt": "2026-11-14T12:21:33.816Z",
+          "source": "ufcalendar-consensus"
+        },
+        {
+          "fightId": "pfl-401914114",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Patrick Habirora",
+          "american": -545,
+          "probability": 0.8054592067561454,
+          "recordedAt": "2026-11-14T13:20:57.417Z",
+          "source": "ufcalendar-consensus"
+        },
+        {
+          "fightId": "pfl-401914113",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Vadim Nemkov",
+          "american": -409,
+          "probability": 0.7640536418714394,
+          "recordedAt": "2026-11-14T13:21:00.293Z",
+          "source": "ufcalendar-consensus"
+        }
+      ],
+      "referenceDecimalOdds": 1.7026205276021096,
+      "referenceProbability": 0.50452,
+      "referenceEV": -0.14099389141418373,
+      "negativeEVWarning": true,
+      "iterations": 50000,
+      "simulation": "independent Bernoulli using consensus no-vig probabilities",
+      "crossFightIndependenceValidated": false,
+      "modelCalibrated": false,
+      "bookVerified": false,
+      "bettingReady": false,
+      "classification": "MARKET REFERENCE ONLY — NOT A BETTING RECOMMENDATION"
+    },
+    {
+      "strategy": "silver",
+      "legs": 4,
+      "markets": [
+        {
+          "fightId": "pfl-401931802",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Khabib Nabiev",
+          "american": -641,
+          "probability": 0.8228616097361571,
+          "recordedAt": "2026-11-14T12:21:33.816Z",
+          "source": "ufcalendar-consensus"
+        },
+        {
+          "fightId": "pfl-401914114",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Patrick Habirora",
+          "american": -545,
+          "probability": 0.8054592067561454,
+          "recordedAt": "2026-11-14T13:20:57.417Z",
+          "source": "ufcalendar-consensus"
+        },
+        {
+          "fightId": "pfl-401914113",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Vadim Nemkov",
+          "american": -409,
+          "probability": 0.7640536418714394,
+          "recordedAt": "2026-11-14T13:21:00.293Z",
+          "source": "ufcalendar-consensus"
+        },
+        {
+          "fightId": "pfl-401927893",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Ernesto Rodriguez",
+          "american": -134,
+          "probability": 0.5436105476673427,
+          "recordedAt": "2026-11-14T13:20:35.100Z",
+          "source": "ufcalendar-consensus"
+        }
+      ],
+      "referenceDecimalOdds": 2.9732328616335346,
+      "referenceProbability": 0.27376,
+      "referenceEV": -0.1860477717992035,
+      "negativeEVWarning": true,
+      "iterations": 50000,
+      "simulation": "independent Bernoulli using consensus no-vig probabilities",
+      "crossFightIndependenceValidated": false,
+      "modelCalibrated": false,
+      "bookVerified": false,
+      "bettingReady": false,
+      "classification": "MARKET REFERENCE ONLY — NOT A BETTING RECOMMENDATION"
+    },
+    {
+      "strategy": "silver",
+      "legs": 5,
+      "markets": [
+        {
+          "fightId": "pfl-401931802",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Khabib Nabiev",
+          "american": -641,
+          "probability": 0.8228616097361571,
+          "recordedAt": "2026-11-14T12:21:33.816Z",
+          "source": "ufcalendar-consensus"
+        },
+        {
+          "fightId": "pfl-401914114",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Patrick Habirora",
+          "american": -545,
+          "probability": 0.8054592067561454,
+          "recordedAt": "2026-11-14T13:20:57.417Z",
+          "source": "ufcalendar-consensus"
+        },
+        {
+          "fightId": "pfl-401914113",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Vadim Nemkov",
+          "american": -409,
+          "probability": 0.7640536418714394,
+          "recordedAt": "2026-11-14T13:21:00.293Z",
+          "source": "ufcalendar-consensus"
+        },
+        {
+          "fightId": "pfl-401927893",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Ernesto Rodriguez",
+          "american": -134,
+          "probability": 0.5436105476673427,
+          "recordedAt": "2026-11-14T13:20:35.100Z",
+          "source": "ufcalendar-consensus"
+        },
+        {
+          "fightId": "pfl-401931801",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Denis Goltsov",
+          "american": -382,
+          "probability": 0.75460247637667,
+          "recordedAt": "2026-11-14T13:20:37.806Z",
+          "source": "ufcalendar-consensus"
+        }
+      ],
+      "referenceDecimalOdds": 3.7515660714852452,
+      "referenceProbability": 0.20612,
+      "referenceEV": -0.22672720134546132,
+      "negativeEVWarning": true,
+      "iterations": 50000,
+      "simulation": "independent Bernoulli using consensus no-vig probabilities",
+      "crossFightIndependenceValidated": false,
+      "modelCalibrated": false,
+      "bookVerified": false,
+      "bettingReady": false,
+      "classification": "MARKET REFERENCE ONLY — NOT A BETTING RECOMMENDATION"
+    },
+    {
+      "strategy": "bronze",
+      "legs": 2,
+      "markets": [
+        {
+          "fightId": "pfl-401927893",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Ernesto Rodriguez",
+          "american": -134,
+          "probability": 0.5436105476673427,
+          "recordedAt": "2026-11-14T13:20:35.100Z",
+          "source": "ufcalendar-consensus"
+        },
+        {
+          "fightId": "pfl-401919462",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Sergio Pettis",
+          "american": -163,
+          "probability": 0.5898059766672905,
+          "recordedAt": "2026-11-14T12:21:53.275Z",
+          "source": "ufcalendar-consensus"
+        }
+      ],
+      "referenceDecimalOdds": 2.817599120959619,
+      "referenceProbability": 0.32574,
+      "referenceEV": -0.08219526233861374,
+      "negativeEVWarning": true,
+      "iterations": 50000,
+      "simulation": "independent Bernoulli using consensus no-vig probabilities",
+      "crossFightIndependenceValidated": false,
+      "modelCalibrated": false,
+      "bookVerified": false,
+      "bettingReady": false,
+      "classification": "MARKET REFERENCE ONLY — NOT A BETTING RECOMMENDATION"
+    },
+    {
+      "strategy": "bronze",
+      "legs": 3,
+      "markets": [
+        {
+          "fightId": "pfl-401927893",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Ernesto Rodriguez",
+          "american": -134,
+          "probability": 0.5436105476673427,
+          "recordedAt": "2026-11-14T13:20:35.100Z",
+          "source": "ufcalendar-consensus"
+        },
+        {
+          "fightId": "pfl-401919462",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Sergio Pettis",
+          "american": -163,
+          "probability": 0.5898059766672905,
+          "recordedAt": "2026-11-14T12:21:53.275Z",
+          "source": "ufcalendar-consensus"
+        },
+        {
+          "fightId": "pfl-401928732",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Alexei Pergande",
+          "american": -197,
+          "probability": 0.6329708353929807,
+          "recordedAt": "2026-11-14T12:21:43.732Z",
+          "source": "ufcalendar-consensus"
+        }
+      ],
+      "referenceDecimalOdds": 4.247852481852827,
+      "referenceProbability": 0.20272,
+      "referenceEV": -0.13887534487879483,
+      "negativeEVWarning": true,
+      "iterations": 50000,
+      "simulation": "independent Bernoulli using consensus no-vig probabilities",
+      "crossFightIndependenceValidated": false,
+      "modelCalibrated": false,
+      "bookVerified": false,
+      "bettingReady": false,
+      "classification": "MARKET REFERENCE ONLY — NOT A BETTING RECOMMENDATION"
+    },
+    {
+      "strategy": "bronze",
+      "legs": 4,
+      "markets": [
+        {
+          "fightId": "pfl-401927893",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Ernesto Rodriguez",
+          "american": -134,
+          "probability": 0.5436105476673427,
+          "recordedAt": "2026-11-14T13:20:35.100Z",
+          "source": "ufcalendar-consensus"
+        },
+        {
+          "fightId": "pfl-401919462",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Sergio Pettis",
+          "american": -163,
+          "probability": 0.5898059766672905,
+          "recordedAt": "2026-11-14T12:21:53.275Z",
+          "source": "ufcalendar-consensus"
+        },
+        {
+          "fightId": "pfl-401928732",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Alexei Pergande",
+          "american": -197,
+          "probability": 0.6329708353929807,
+          "recordedAt": "2026-11-14T12:21:43.732Z",
+          "source": "ufcalendar-consensus"
+        },
+        {
+          "fightId": "pfl-401928730",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Connor Hughes",
+          "american": -202,
+          "probability": 0.6375681059933274,
+          "recordedAt": "2026-11-14T12:21:49.031Z",
+          "source": "ufcalendar-consensus"
+        }
+      ],
+      "referenceDecimalOdds": 6.3507497500968,
+      "referenceProbability": 0.1278,
+      "referenceEV": -0.188374181937629,
+      "negativeEVWarning": true,
+      "iterations": 50000,
+      "simulation": "independent Bernoulli using consensus no-vig probabilities",
+      "crossFightIndependenceValidated": false,
+      "modelCalibrated": false,
+      "bookVerified": false,
+      "bettingReady": false,
+      "classification": "MARKET REFERENCE ONLY — NOT A BETTING RECOMMENDATION"
+    },
+    {
+      "strategy": "bronze",
+      "legs": 5,
+      "markets": [
+        {
+          "fightId": "pfl-401927893",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Ernesto Rodriguez",
+          "american": -134,
+          "probability": 0.5436105476673427,
+          "recordedAt": "2026-11-14T13:20:35.100Z",
+          "source": "ufcalendar-consensus"
+        },
+        {
+          "fightId": "pfl-401919462",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Sergio Pettis",
+          "american": -163,
+          "probability": 0.5898059766672905,
+          "recordedAt": "2026-11-14T12:21:53.275Z",
+          "source": "ufcalendar-consensus"
+        },
+        {
+          "fightId": "pfl-401928732",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Alexei Pergande",
+          "american": -197,
+          "probability": 0.6329708353929807,
+          "recordedAt": "2026-11-14T12:21:43.732Z",
+          "source": "ufcalendar-consensus"
+        },
+        {
+          "fightId": "pfl-401928730",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Connor Hughes",
+          "american": -202,
+          "probability": 0.6375681059933274,
+          "recordedAt": "2026-11-14T12:21:49.031Z",
+          "source": "ufcalendar-consensus"
+        },
+        {
+          "fightId": "pfl-401921407",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Saygid Izagakhmaev",
+          "american": -237,
+          "probability": 0.6686951307032117,
+          "recordedAt": "2026-11-14T13:20:45.234Z",
+          "source": "ufcalendar-consensus"
+        }
+      ],
+      "referenceDecimalOdds": 9.030390994863382,
+      "referenceProbability": 0.08678,
+      "referenceEV": -0.21634266946575575,
+      "negativeEVWarning": true,
       "iterations": 50000,
       "simulation": "independent Bernoulli using consensus no-vig probabilities",
       "crossFightIndependenceValidated": false,

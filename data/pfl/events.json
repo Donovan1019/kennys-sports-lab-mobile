@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "source": "cito-pfl",
-  "retrievedAt": "2026-11-14T13:27:44.897Z",
+  "retrievedAt": "2026-11-14T13:31:36.904Z",
   "dataScope": "event cards, bout results and fighter identities only; no strike statistics or verified odds",
   "coverageWarning": "API plan history windows may limit completeness",
   "events": [
@@ -98,34 +98,6 @@
           "source": "cito-pfl"
         },
         {
-          "id": "pfl-401927894",
-          "eventId": "",
-          "status": "scheduled",
-          "scheduledRounds": 3,
-          "weightClass": "Bantamweight",
-          "method": null,
-          "resultRound": null,
-          "resultTime": null,
-          "winnerFighterSlug": null,
-          "fighters": [
-            {
-              "slug": "lewis-mcgrillen",
-              "name": "Lewis McGrillen",
-              "ufcSlug": null,
-              "corner": "red"
-            },
-            {
-              "slug": "nawras-abzakh",
-              "name": "Nawras Abzakh",
-              "ufcSlug": null,
-              "corner": "blue"
-            }
-          ],
-          "officialStats": false,
-          "strikeStats": null,
-          "source": "cito-pfl"
-        },
-        {
           "id": "pfl-401919462",
           "eventId": "",
           "status": "scheduled",
@@ -145,6 +117,34 @@
             {
               "slug": "joji-goto",
               "name": "Joji Goto",
+              "ufcSlug": null,
+              "corner": "blue"
+            }
+          ],
+          "officialStats": false,
+          "strikeStats": null,
+          "source": "cito-pfl"
+        },
+        {
+          "id": "pfl-401927894",
+          "eventId": "",
+          "status": "scheduled",
+          "scheduledRounds": 3,
+          "weightClass": "Bantamweight",
+          "method": null,
+          "resultRound": null,
+          "resultTime": null,
+          "winnerFighterSlug": null,
+          "fighters": [
+            {
+              "slug": "lewis-mcgrillen",
+              "name": "Lewis McGrillen",
+              "ufcSlug": null,
+              "corner": "red"
+            },
+            {
+              "slug": "nawras-abzakh",
+              "name": "Nawras Abzakh",
               "ufcSlug": null,
               "corner": "blue"
             }
@@ -238,34 +238,6 @@
           "source": "cito-pfl"
         },
         {
-          "id": "pfl-401928731",
-          "eventId": "",
-          "status": "cancelled",
-          "scheduledRounds": 3,
-          "weightClass": "Featherweight",
-          "method": null,
-          "resultRound": null,
-          "resultTime": null,
-          "winnerFighterSlug": null,
-          "fighters": [
-            {
-              "slug": "asael-adjoudj",
-              "name": "Asaël Adjoudj",
-              "ufcSlug": null,
-              "corner": "red"
-            },
-            {
-              "slug": "movlid-khaybulaev",
-              "name": "Movlid Khaybulaev",
-              "ufcSlug": null,
-              "corner": "blue"
-            }
-          ],
-          "officialStats": false,
-          "strikeStats": null,
-          "source": "cito-pfl"
-        },
-        {
           "id": "pfl-401927893",
           "eventId": "",
           "status": "scheduled",
@@ -286,6 +258,34 @@
               "slug": "rhys-mckee",
               "name": "Rhys McKee",
               "ufcSlug": "rhys-mckee",
+              "corner": "blue"
+            }
+          ],
+          "officialStats": false,
+          "strikeStats": null,
+          "source": "cito-pfl"
+        },
+        {
+          "id": "pfl-401928731",
+          "eventId": "",
+          "status": "cancelled",
+          "scheduledRounds": 3,
+          "weightClass": "Featherweight",
+          "method": null,
+          "resultRound": null,
+          "resultTime": null,
+          "winnerFighterSlug": null,
+          "fighters": [
+            {
+              "slug": "asael-adjoudj",
+              "name": "Asaël Adjoudj",
+              "ufcSlug": null,
+              "corner": "red"
+            },
+            {
+              "slug": "movlid-khaybulaev",
+              "name": "Movlid Khaybulaev",
+              "ufcSlug": null,
               "corner": "blue"
             }
           ],
