@@ -7,8 +7,7 @@ function update(){const s=Number(el('stake').value);el('parlay-summary').textCon
 function render(){
  const stake=Number(el('stake').value),legs=Number(el('legs').value),strategy=el('strategy').value,market=el('parlay-market').value;
  if(!Number.isFinite(stake)||stake<=0){el('parlay-result').textContent='Enter a positive stake.';return;}
- if(market==='totals'){el('parlay-result').textContent='No independently validated total-round parlay combinations available.';return;}
- const p=templates.find(x=>x.legs===legs&&x.strategy===strategy);
+ const p=templates.find(x=>x.legs===legs&&x.strategy===strategy&&(x.market||'ml')===market);
  if(!p){el('parlay-result').textContent='No fresh reference combination available for these settings. Verified betting markets remain '+verified.length+'.';return;}
  const box=el('parlay-result');box.replaceChildren();
  const title=document.createElement('strong');title.textContent='MARKET REFERENCE ONLY — NOT A BETTING RECOMMENDATION';box.append(title);
