@@ -1,0 +1,12 @@
+/* PFL uses the existing Kenny's Lab dark research palette, not an independent theme. */
+.ksl-pfl .ksl-pfl-card{background:var(--ksl-card,#18191b);border:1px solid var(--ksl-border,#292b2d);border-radius:16px;padding:16px;margin:14px 0}
+.ksl-pfl .ksl-pfl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+.ksl-pfl h2{margin-top:0}.ksl-pfl .ksl-pfl-eyebrow{color:var(--ksl-accent,#f3c621);font-size:12px;font-weight:800;letter-spacing:.08em}
+.ksl-pfl .ksl-pfl-muted{color:var(--ksl-muted,#a1a1a5)}.ksl-pfl .ksl-pfl-status{padding:12px;border-radius:12px;background:#292b2d}
+.ksl-pfl :is(select,input,button){min-height:44px;max-width:100%;width:100%;padding:10px}
+.ksl-pfl label{display:block;margin-bottom:6px}.ksl-pfl .ksl-pfl-controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+.ksl-pfl .ksl-pfl-actions{display:flex;flex-wrap:wrap;gap:10px}.ksl-pfl .ksl-pfl-actions button{width:auto;flex:1 1 160px}
+.ksl-pfl button:disabled{opacity:.55;cursor:not-allowed}.ksl-pfl .ksl-pfl-stat{font-size:24px;font-weight:800;color:var(--ksl-accent,#f3c621)}
+.ksl-pfl .ksl-pfl-table{width:100%;border-collapse:collapse}.ksl-pfl .ksl-pfl-table td{padding:10px 4px;border-bottom:1px solid var(--ksl-border,#292b2d)}
+.ksl-pfl .ksl-pfl-table td:last-child{text-align:right}.ksl-pfl .ksl-pfl-result{overflow-wrap:anywhere}
+@media(max-width:600px){.ksl-pfl .ksl-pfl-card{padding:12px}.ksl-pfl .ksl-pfl-controls{grid-template-columns:repeat(2,minmax(0,1fr))}}
