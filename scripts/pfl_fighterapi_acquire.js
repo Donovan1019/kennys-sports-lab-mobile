@@ -25,7 +25,8 @@ async function acquire(key,fetcher=fetch){
 async function main(){
  const key=process.env.FIGHTERAPI_API_KEY;if(!key){console.log('FighterAPI key not configured; skipping optional enrichment');return}
  const result=await acquire(key);const dest='data/pfl/fighterapi-snapshot.json';fs.mkdirSync(path.dirname(dest),{recursive:true});fs.writeFileSync(dest,JSON.stringify(result,null,2)+'\n');
- console.log('FighterAPI PFL snapshot: schedule='+!!result.schedule+', events='+!!result.events+', errors='+result.errors.length+', bettingReady=false');
+ console.log('FighterAPI PFL snapshot: schedule='+!!result.schedule+', events='+!!result.events+', odds='+!!result.odds+', errors='+result.errors.length+', bettingReady=false');
+ for(const issue of result.errors)console.warn('FighterAPI '+issue.field+' unavailable: HTTP '+(issue.status??'unknown')+'; '+String(issue.message).slice(0,180));
  if(result.errors.some(e=>e.field!=='odds'))process.exitCode=1;
 }
 if(require.main===module)main().catch(error=>{console.error(error.message);process.exitCode=1});
