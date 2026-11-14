@@ -1,0 +1,14 @@
+const assert=require('node:assert/strict');
+const {generate}=require('../scripts/pfl_projections');
+const row={boutId:'bout-1',eventId:'event-1',featureReady:true,fighters:[{slug:'a',wins:8,verifiedFights:10},{slug:'b',wins:2,verifiedFights:10}]};
+const a=generate({bouts:[row]});
+const b=generate({bouts:[row]});
+assert.equal(a.available,1);
+assert.equal(a.bouts[0].probabilityA,b.bouts[0].probabilityA);
+assert.ok(a.bouts[0].probabilityA>0.5);
+assert.equal(a.bouts[0].monteCarlo.iterations,50000);
+assert.equal(a.bouts[0].modelCalibrated,false);
+assert.equal(a.bouts[0].bettingReady,false);
+assert.equal(generate({bouts:[{...row,featureReady:false}]}).available,0);
+assert.throws(()=>generate({bouts:[row]},{iterations:100}),/50000/);
+console.log('PFL exploratory Monte Carlo tests passed');
