@@ -21,7 +21,8 @@ function build(events,snapshot,now=Date.now()){
    if(!Number.isFinite(ts)||ts>now+300000||now-ts>7200000){unmatched.push({fightId:item.fight_id,reason:'STALE_CONSENSUS'});continue}
    if(seen.has(bout.id)){unmatched.push({fightId:item.fight_id,reason:'DUPLICATE_BOUT'});continue}
    seen.add(bout.id);
-   rows.push({fightId:bout.id,eventId:event.id,sourceFightId:item.fight_id,source:'ufcalendar-consensus',book:null,bookVerified:false,bettingReady:false,recordedAt:p.recorded_at,sources:p.sources||0,markets:[
+   const totals=(item.props?.total_rounds||[]).filter(t=>Number.isFinite(t.line)&&valid(t.over?.american)&&valid(t.under?.american)&&Number.isFinite(Date.parse(t.recorded_at))&&Date.parse(t.recorded_at)<=now+300000&&now-Date.parse(t.recorded_at)<=7200000).map(t=>({line:t.line,over:{american:t.over.american},under:{american:t.under.american},recordedAt:t.recorded_at,sources:t.sources||0}));
+   rows.push({totalRounds:totals,fightId:bout.id,eventId:event.id,sourceFightId:item.fight_id,source:'ufcalendar-consensus',book:null,bookVerified:false,bettingReady:false,recordedAt:p.recorded_at,sources:p.sources||0,markets:[
     {selection:item.fighter_a.name,american:p.a.american},
     {selection:item.fighter_b.name,american:p.b.american}
    ],fairProbabilityA:Number.isFinite(p.fair_probability_a)?p.fair_probability_a:null});
