@@ -1,10 +1,12 @@
 {
   "schemaVersion": 1,
   "source": "pfl-consensus-parlay-candidates",
-  "generatedAt": "2026-11-14T13:31:40.099Z",
+  "generatedAt": "2026-11-14T13:41:02.709Z",
   "candidateFights": 12,
+  "totalRoundMarkets": 12,
   "parlays": [
     {
+      "market": "ml",
       "strategy": "gold",
       "legs": 2,
       "markets": [
@@ -40,6 +42,7 @@
       "classification": "MARKET REFERENCE ONLY — NOT A BETTING RECOMMENDATION"
     },
     {
+      "market": "ml",
       "strategy": "gold",
       "legs": 3,
       "markets": [
@@ -84,6 +87,7 @@
       "classification": "MARKET REFERENCE ONLY — NOT A BETTING RECOMMENDATION"
     },
     {
+      "market": "ml",
       "strategy": "gold",
       "legs": 4,
       "markets": [
@@ -137,6 +141,7 @@
       "classification": "MARKET REFERENCE ONLY — NOT A BETTING RECOMMENDATION"
     },
     {
+      "market": "ml",
       "strategy": "gold",
       "legs": 5,
       "markets": [
@@ -199,6 +204,7 @@
       "classification": "MARKET REFERENCE ONLY — NOT A BETTING RECOMMENDATION"
     },
     {
+      "market": "ml",
       "strategy": "silver",
       "legs": 2,
       "markets": [
@@ -234,6 +240,7 @@
       "classification": "MARKET REFERENCE ONLY — NOT A BETTING RECOMMENDATION"
     },
     {
+      "market": "ml",
       "strategy": "silver",
       "legs": 3,
       "markets": [
@@ -278,6 +285,7 @@
       "classification": "MARKET REFERENCE ONLY — NOT A BETTING RECOMMENDATION"
     },
     {
+      "market": "ml",
       "strategy": "silver",
       "legs": 4,
       "markets": [
@@ -331,6 +339,7 @@
       "classification": "MARKET REFERENCE ONLY — NOT A BETTING RECOMMENDATION"
     },
     {
+      "market": "ml",
       "strategy": "silver",
       "legs": 5,
       "markets": [
@@ -393,6 +402,7 @@
       "classification": "MARKET REFERENCE ONLY — NOT A BETTING RECOMMENDATION"
     },
     {
+      "market": "ml",
       "strategy": "bronze",
       "legs": 2,
       "markets": [
@@ -428,6 +438,7 @@
       "classification": "MARKET REFERENCE ONLY — NOT A BETTING RECOMMENDATION"
     },
     {
+      "market": "ml",
       "strategy": "bronze",
       "legs": 3,
       "markets": [
@@ -472,6 +483,7 @@
       "classification": "MARKET REFERENCE ONLY — NOT A BETTING RECOMMENDATION"
     },
     {
+      "market": "ml",
       "strategy": "bronze",
       "legs": 4,
       "markets": [
@@ -525,6 +537,7 @@
       "classification": "MARKET REFERENCE ONLY — NOT A BETTING RECOMMENDATION"
     },
     {
+      "market": "ml",
       "strategy": "bronze",
       "legs": 5,
       "markets": [
@@ -577,6 +590,642 @@
       "referenceDecimalOdds": 9.030390994863382,
       "referenceProbability": 0.08678,
       "referenceEV": -0.21634266946575575,
+      "negativeEVWarning": true,
+      "iterations": 50000,
+      "simulation": "independent Bernoulli using consensus no-vig probabilities",
+      "crossFightIndependenceValidated": false,
+      "modelCalibrated": false,
+      "bookVerified": false,
+      "bettingReady": false,
+      "classification": "MARKET REFERENCE ONLY — NOT A BETTING RECOMMENDATION"
+    },
+    {
+      "market": "totals",
+      "strategy": "gold",
+      "legs": 2,
+      "markets": [
+        {
+          "fightId": "pfl-401914113",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Over 1.5 rounds",
+          "american": -235,
+          "probability": 0.6665837272953471,
+          "recordedAt": "2026-11-14T13:21:01.590Z",
+          "source": "ufcalendar-consensus",
+          "line": 1.5
+        },
+        {
+          "fightId": "pfl-401928732",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Over 2.5 rounds",
+          "american": -214,
+          "probability": 0.6462051559401477,
+          "recordedAt": "2026-11-14T12:21:45.134Z",
+          "source": "ufcalendar-consensus",
+          "line": 2.5
+        }
+      ],
+      "referenceDecimalOdds": 2.09166832372241,
+      "referenceProbability": 0.42804,
+      "referenceEV": -0.1046822907138596,
+      "negativeEVWarning": true,
+      "iterations": 50000,
+      "simulation": "independent Bernoulli using consensus no-vig probabilities",
+      "crossFightIndependenceValidated": false,
+      "modelCalibrated": false,
+      "bookVerified": false,
+      "bettingReady": false,
+      "classification": "MARKET REFERENCE ONLY — NOT A BETTING RECOMMENDATION"
+    },
+    {
+      "market": "totals",
+      "strategy": "gold",
+      "legs": 3,
+      "markets": [
+        {
+          "fightId": "pfl-401914113",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Over 1.5 rounds",
+          "american": -235,
+          "probability": 0.6665837272953471,
+          "recordedAt": "2026-11-14T13:21:01.590Z",
+          "source": "ufcalendar-consensus",
+          "line": 1.5
+        },
+        {
+          "fightId": "pfl-401928732",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Over 2.5 rounds",
+          "american": -214,
+          "probability": 0.6462051559401477,
+          "recordedAt": "2026-11-14T12:21:45.134Z",
+          "source": "ufcalendar-consensus",
+          "line": 2.5
+        },
+        {
+          "fightId": "pfl-401919462",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Over 2.5 rounds",
+          "american": -214,
+          "probability": 0.645350019200795,
+          "recordedAt": "2026-11-14T12:21:54.487Z",
+          "source": "ufcalendar-consensus",
+          "line": 2.5
+        }
+      ],
+      "referenceDecimalOdds": 3.0690834282655923,
+      "referenceProbability": 0.27508,
+      "referenceEV": -0.1557565305527009,
+      "negativeEVWarning": true,
+      "iterations": 50000,
+      "simulation": "independent Bernoulli using consensus no-vig probabilities",
+      "crossFightIndependenceValidated": false,
+      "modelCalibrated": false,
+      "bookVerified": false,
+      "bettingReady": false,
+      "classification": "MARKET REFERENCE ONLY — NOT A BETTING RECOMMENDATION"
+    },
+    {
+      "market": "totals",
+      "strategy": "gold",
+      "legs": 4,
+      "markets": [
+        {
+          "fightId": "pfl-401914113",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Over 1.5 rounds",
+          "american": -235,
+          "probability": 0.6665837272953471,
+          "recordedAt": "2026-11-14T13:21:01.590Z",
+          "source": "ufcalendar-consensus",
+          "line": 1.5
+        },
+        {
+          "fightId": "pfl-401928732",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Over 2.5 rounds",
+          "american": -214,
+          "probability": 0.6462051559401477,
+          "recordedAt": "2026-11-14T12:21:45.134Z",
+          "source": "ufcalendar-consensus",
+          "line": 2.5
+        },
+        {
+          "fightId": "pfl-401919462",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Over 2.5 rounds",
+          "american": -214,
+          "probability": 0.645350019200795,
+          "recordedAt": "2026-11-14T12:21:54.487Z",
+          "source": "ufcalendar-consensus",
+          "line": 2.5
+        },
+        {
+          "fightId": "pfl-401927893",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Over 1.5 rounds",
+          "american": -211,
+          "probability": 0.6443153356130699,
+          "recordedAt": "2026-11-14T13:20:36.279Z",
+          "source": "ufcalendar-consensus",
+          "line": 1.5
+        }
+      ],
+      "referenceDecimalOdds": 4.523625337396205,
+      "referenceProbability": 0.1843,
+      "referenceEV": -0.1662958503178794,
+      "negativeEVWarning": true,
+      "iterations": 50000,
+      "simulation": "independent Bernoulli using consensus no-vig probabilities",
+      "crossFightIndependenceValidated": false,
+      "modelCalibrated": false,
+      "bookVerified": false,
+      "bettingReady": false,
+      "classification": "MARKET REFERENCE ONLY — NOT A BETTING RECOMMENDATION"
+    },
+    {
+      "market": "totals",
+      "strategy": "gold",
+      "legs": 5,
+      "markets": [
+        {
+          "fightId": "pfl-401914113",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Over 1.5 rounds",
+          "american": -235,
+          "probability": 0.6665837272953471,
+          "recordedAt": "2026-11-14T13:21:01.590Z",
+          "source": "ufcalendar-consensus",
+          "line": 1.5
+        },
+        {
+          "fightId": "pfl-401928732",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Over 2.5 rounds",
+          "american": -214,
+          "probability": 0.6462051559401477,
+          "recordedAt": "2026-11-14T12:21:45.134Z",
+          "source": "ufcalendar-consensus",
+          "line": 2.5
+        },
+        {
+          "fightId": "pfl-401919462",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Over 2.5 rounds",
+          "american": -214,
+          "probability": 0.645350019200795,
+          "recordedAt": "2026-11-14T12:21:54.487Z",
+          "source": "ufcalendar-consensus",
+          "line": 2.5
+        },
+        {
+          "fightId": "pfl-401927893",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Over 1.5 rounds",
+          "american": -211,
+          "probability": 0.6443153356130699,
+          "recordedAt": "2026-11-14T13:20:36.279Z",
+          "source": "ufcalendar-consensus",
+          "line": 1.5
+        },
+        {
+          "fightId": "pfl-401931801",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Under 1.5 rounds",
+          "american": -168,
+          "probability": 0.5935945650855271,
+          "recordedAt": "2026-11-14T12:21:39.782Z",
+          "source": "ufcalendar-consensus",
+          "line": 1.5
+        }
+      ],
+      "referenceDecimalOdds": 7.216259466798709,
+      "referenceProbability": 0.1075,
+      "referenceEV": -0.2242521073191388,
+      "negativeEVWarning": true,
+      "iterations": 50000,
+      "simulation": "independent Bernoulli using consensus no-vig probabilities",
+      "crossFightIndependenceValidated": false,
+      "modelCalibrated": false,
+      "bookVerified": false,
+      "bettingReady": false,
+      "classification": "MARKET REFERENCE ONLY — NOT A BETTING RECOMMENDATION"
+    },
+    {
+      "market": "totals",
+      "strategy": "silver",
+      "legs": 2,
+      "markets": [
+        {
+          "fightId": "pfl-401918497",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Under 1.5 rounds",
+          "american": -123,
+          "probability": 0.519675254742772,
+          "recordedAt": "2026-11-14T12:21:57.340Z",
+          "source": "ufcalendar-consensus",
+          "line": 1.5
+        },
+        {
+          "fightId": "pfl-401931802",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Over 1.5 rounds",
+          "american": -143,
+          "probability": 0.5573931732905906,
+          "recordedAt": "2026-11-14T13:20:33.771Z",
+          "source": "ufcalendar-consensus",
+          "line": 1.5
+        }
+      ],
+      "referenceDecimalOdds": 3.0808459832850073,
+      "referenceProbability": 0.28762,
+      "referenceEV": -0.11388707828756628,
+      "negativeEVWarning": true,
+      "iterations": 50000,
+      "simulation": "independent Bernoulli using consensus no-vig probabilities",
+      "crossFightIndependenceValidated": false,
+      "modelCalibrated": false,
+      "bookVerified": false,
+      "bettingReady": false,
+      "classification": "MARKET REFERENCE ONLY — NOT A BETTING RECOMMENDATION"
+    },
+    {
+      "market": "totals",
+      "strategy": "silver",
+      "legs": 3,
+      "markets": [
+        {
+          "fightId": "pfl-401918497",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Under 1.5 rounds",
+          "american": -123,
+          "probability": 0.519675254742772,
+          "recordedAt": "2026-11-14T12:21:57.340Z",
+          "source": "ufcalendar-consensus",
+          "line": 1.5
+        },
+        {
+          "fightId": "pfl-401931802",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Over 1.5 rounds",
+          "american": -143,
+          "probability": 0.5573931732905906,
+          "recordedAt": "2026-11-14T13:20:33.771Z",
+          "source": "ufcalendar-consensus",
+          "line": 1.5
+        },
+        {
+          "fightId": "pfl-401928730",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Over 1.5 rounds",
+          "american": -148,
+          "probability": 0.5642701525054465,
+          "recordedAt": "2026-11-14T12:21:50.467Z",
+          "source": "ufcalendar-consensus",
+          "line": 1.5
+        }
+      ],
+      "referenceDecimalOdds": 5.162498674693796,
+      "referenceProbability": 0.16502,
+      "referenceEV": -0.14808446870202974,
+      "negativeEVWarning": true,
+      "iterations": 50000,
+      "simulation": "independent Bernoulli using consensus no-vig probabilities",
+      "crossFightIndependenceValidated": false,
+      "modelCalibrated": false,
+      "bookVerified": false,
+      "bettingReady": false,
+      "classification": "MARKET REFERENCE ONLY — NOT A BETTING RECOMMENDATION"
+    },
+    {
+      "market": "totals",
+      "strategy": "silver",
+      "legs": 4,
+      "markets": [
+        {
+          "fightId": "pfl-401918497",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Under 1.5 rounds",
+          "american": -123,
+          "probability": 0.519675254742772,
+          "recordedAt": "2026-11-14T12:21:57.340Z",
+          "source": "ufcalendar-consensus",
+          "line": 1.5
+        },
+        {
+          "fightId": "pfl-401931802",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Over 1.5 rounds",
+          "american": -143,
+          "probability": 0.5573931732905906,
+          "recordedAt": "2026-11-14T13:20:33.771Z",
+          "source": "ufcalendar-consensus",
+          "line": 1.5
+        },
+        {
+          "fightId": "pfl-401928730",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Over 1.5 rounds",
+          "american": -148,
+          "probability": 0.5642701525054465,
+          "recordedAt": "2026-11-14T12:21:50.467Z",
+          "source": "ufcalendar-consensus",
+          "line": 1.5
+        },
+        {
+          "fightId": "pfl-401919463",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Over 2.5 rounds",
+          "american": -153,
+          "probability": 0.5720061576979683,
+          "recordedAt": "2026-11-14T12:21:42.316Z",
+          "source": "ufcalendar-consensus",
+          "line": 2.5
+        }
+      ],
+      "referenceDecimalOdds": 8.536680815016538,
+      "referenceProbability": 0.093,
+      "referenceEV": -0.20608868420346194,
+      "negativeEVWarning": true,
+      "iterations": 50000,
+      "simulation": "independent Bernoulli using consensus no-vig probabilities",
+      "crossFightIndependenceValidated": false,
+      "modelCalibrated": false,
+      "bookVerified": false,
+      "bettingReady": false,
+      "classification": "MARKET REFERENCE ONLY — NOT A BETTING RECOMMENDATION"
+    },
+    {
+      "market": "totals",
+      "strategy": "silver",
+      "legs": 5,
+      "markets": [
+        {
+          "fightId": "pfl-401918497",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Under 1.5 rounds",
+          "american": -123,
+          "probability": 0.519675254742772,
+          "recordedAt": "2026-11-14T12:21:57.340Z",
+          "source": "ufcalendar-consensus",
+          "line": 1.5
+        },
+        {
+          "fightId": "pfl-401931802",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Over 1.5 rounds",
+          "american": -143,
+          "probability": 0.5573931732905906,
+          "recordedAt": "2026-11-14T13:20:33.771Z",
+          "source": "ufcalendar-consensus",
+          "line": 1.5
+        },
+        {
+          "fightId": "pfl-401928730",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Over 1.5 rounds",
+          "american": -148,
+          "probability": 0.5642701525054465,
+          "recordedAt": "2026-11-14T12:21:50.467Z",
+          "source": "ufcalendar-consensus",
+          "line": 1.5
+        },
+        {
+          "fightId": "pfl-401919463",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Over 2.5 rounds",
+          "american": -153,
+          "probability": 0.5720061576979683,
+          "recordedAt": "2026-11-14T12:21:42.316Z",
+          "source": "ufcalendar-consensus",
+          "line": 2.5
+        },
+        {
+          "fightId": "pfl-401921407",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Over 2.5 rounds",
+          "american": -154,
+          "probability": 0.5726351919776559,
+          "recordedAt": "2026-11-14T12:21:47.567Z",
+          "source": "ufcalendar-consensus",
+          "line": 2.5
+        }
+      ],
+      "referenceDecimalOdds": 14.079980045546758,
+      "referenceProbability": 0.05382,
+      "referenceEV": -0.2422154739486735,
+      "negativeEVWarning": true,
+      "iterations": 50000,
+      "simulation": "independent Bernoulli using consensus no-vig probabilities",
+      "crossFightIndependenceValidated": false,
+      "modelCalibrated": false,
+      "bookVerified": false,
+      "bettingReady": false,
+      "classification": "MARKET REFERENCE ONLY — NOT A BETTING RECOMMENDATION"
+    },
+    {
+      "market": "totals",
+      "strategy": "bronze",
+      "legs": 2,
+      "markets": [
+        {
+          "fightId": "pfl-401918497",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Under 1.5 rounds",
+          "american": -123,
+          "probability": 0.519675254742772,
+          "recordedAt": "2026-11-14T12:21:57.340Z",
+          "source": "ufcalendar-consensus",
+          "line": 1.5
+        },
+        {
+          "fightId": "pfl-401931802",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Over 1.5 rounds",
+          "american": -143,
+          "probability": 0.5573931732905906,
+          "recordedAt": "2026-11-14T13:20:33.771Z",
+          "source": "ufcalendar-consensus",
+          "line": 1.5
+        }
+      ],
+      "referenceDecimalOdds": 3.0808459832850073,
+      "referenceProbability": 0.2937,
+      "referenceEV": -0.09515553470919336,
+      "negativeEVWarning": true,
+      "iterations": 50000,
+      "simulation": "independent Bernoulli using consensus no-vig probabilities",
+      "crossFightIndependenceValidated": false,
+      "modelCalibrated": false,
+      "bookVerified": false,
+      "bettingReady": false,
+      "classification": "MARKET REFERENCE ONLY — NOT A BETTING RECOMMENDATION"
+    },
+    {
+      "market": "totals",
+      "strategy": "bronze",
+      "legs": 3,
+      "markets": [
+        {
+          "fightId": "pfl-401918497",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Under 1.5 rounds",
+          "american": -123,
+          "probability": 0.519675254742772,
+          "recordedAt": "2026-11-14T12:21:57.340Z",
+          "source": "ufcalendar-consensus",
+          "line": 1.5
+        },
+        {
+          "fightId": "pfl-401931802",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Over 1.5 rounds",
+          "american": -143,
+          "probability": 0.5573931732905906,
+          "recordedAt": "2026-11-14T13:20:33.771Z",
+          "source": "ufcalendar-consensus",
+          "line": 1.5
+        },
+        {
+          "fightId": "pfl-401928730",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Over 1.5 rounds",
+          "american": -148,
+          "probability": 0.5642701525054465,
+          "recordedAt": "2026-11-14T12:21:50.467Z",
+          "source": "ufcalendar-consensus",
+          "line": 1.5
+        }
+      ],
+      "referenceDecimalOdds": 5.162498674693796,
+      "referenceProbability": 0.16622,
+      "referenceEV": -0.14188947029239718,
+      "negativeEVWarning": true,
+      "iterations": 50000,
+      "simulation": "independent Bernoulli using consensus no-vig probabilities",
+      "crossFightIndependenceValidated": false,
+      "modelCalibrated": false,
+      "bookVerified": false,
+      "bettingReady": false,
+      "classification": "MARKET REFERENCE ONLY — NOT A BETTING RECOMMENDATION"
+    },
+    {
+      "market": "totals",
+      "strategy": "bronze",
+      "legs": 4,
+      "markets": [
+        {
+          "fightId": "pfl-401918497",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Under 1.5 rounds",
+          "american": -123,
+          "probability": 0.519675254742772,
+          "recordedAt": "2026-11-14T12:21:57.340Z",
+          "source": "ufcalendar-consensus",
+          "line": 1.5
+        },
+        {
+          "fightId": "pfl-401931802",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Over 1.5 rounds",
+          "american": -143,
+          "probability": 0.5573931732905906,
+          "recordedAt": "2026-11-14T13:20:33.771Z",
+          "source": "ufcalendar-consensus",
+          "line": 1.5
+        },
+        {
+          "fightId": "pfl-401928730",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Over 1.5 rounds",
+          "american": -148,
+          "probability": 0.5642701525054465,
+          "recordedAt": "2026-11-14T12:21:50.467Z",
+          "source": "ufcalendar-consensus",
+          "line": 1.5
+        },
+        {
+          "fightId": "pfl-401919463",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Over 2.5 rounds",
+          "american": -153,
+          "probability": 0.5720061576979683,
+          "recordedAt": "2026-11-14T12:21:42.316Z",
+          "source": "ufcalendar-consensus",
+          "line": 2.5
+        }
+      ],
+      "referenceDecimalOdds": 8.536680815016538,
+      "referenceProbability": 0.09116,
+      "referenceEV": -0.22179617690309228,
+      "negativeEVWarning": true,
+      "iterations": 50000,
+      "simulation": "independent Bernoulli using consensus no-vig probabilities",
+      "crossFightIndependenceValidated": false,
+      "modelCalibrated": false,
+      "bookVerified": false,
+      "bettingReady": false,
+      "classification": "MARKET REFERENCE ONLY — NOT A BETTING RECOMMENDATION"
+    },
+    {
+      "market": "totals",
+      "strategy": "bronze",
+      "legs": 5,
+      "markets": [
+        {
+          "fightId": "pfl-401918497",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Under 1.5 rounds",
+          "american": -123,
+          "probability": 0.519675254742772,
+          "recordedAt": "2026-11-14T12:21:57.340Z",
+          "source": "ufcalendar-consensus",
+          "line": 1.5
+        },
+        {
+          "fightId": "pfl-401931802",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Over 1.5 rounds",
+          "american": -143,
+          "probability": 0.5573931732905906,
+          "recordedAt": "2026-11-14T13:20:33.771Z",
+          "source": "ufcalendar-consensus",
+          "line": 1.5
+        },
+        {
+          "fightId": "pfl-401928730",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Over 1.5 rounds",
+          "american": -148,
+          "probability": 0.5642701525054465,
+          "recordedAt": "2026-11-14T12:21:50.467Z",
+          "source": "ufcalendar-consensus",
+          "line": 1.5
+        },
+        {
+          "fightId": "pfl-401919463",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Over 2.5 rounds",
+          "american": -153,
+          "probability": 0.5720061576979683,
+          "recordedAt": "2026-11-14T12:21:42.316Z",
+          "source": "ufcalendar-consensus",
+          "line": 2.5
+        },
+        {
+          "fightId": "pfl-401921407",
+          "eventId": "pfl-dubai-nemkov-vs-bilostenniy",
+          "selection": "Over 2.5 rounds",
+          "american": -154,
+          "probability": 0.5726351919776559,
+          "recordedAt": "2026-11-14T12:21:47.567Z",
+          "source": "ufcalendar-consensus",
+          "line": 2.5
+        }
+      ],
+      "referenceDecimalOdds": 14.079980045546758,
+      "referenceProbability": 0.0542,
+      "referenceEV": -0.23686508153136576,
       "negativeEVWarning": true,
       "iterations": 50000,
       "simulation": "independent Bernoulli using consensus no-vig probabilities",

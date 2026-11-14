@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "source": "cito-pfl",
-  "retrievedAt": "2026-11-14T13:31:36.904Z",
+  "retrievedAt": "2026-11-14T13:40:59.135Z",
   "dataScope": "event cards, bout results and fighter identities only; no strike statistics or verified odds",
   "coverageWarning": "API plan history windows may limit completeness",
   "events": [
@@ -98,34 +98,6 @@
           "source": "cito-pfl"
         },
         {
-          "id": "pfl-401919462",
-          "eventId": "",
-          "status": "scheduled",
-          "scheduledRounds": null,
-          "weightClass": null,
-          "method": null,
-          "resultRound": null,
-          "resultTime": null,
-          "winnerFighterSlug": null,
-          "fighters": [
-            {
-              "slug": "sergio-pettis",
-              "name": "Sergio Pettis",
-              "ufcSlug": "sergio-pettis",
-              "corner": "red"
-            },
-            {
-              "slug": "joji-goto",
-              "name": "Joji Goto",
-              "ufcSlug": null,
-              "corner": "blue"
-            }
-          ],
-          "officialStats": false,
-          "strikeStats": null,
-          "source": "cito-pfl"
-        },
-        {
           "id": "pfl-401927894",
           "eventId": "",
           "status": "scheduled",
@@ -145,6 +117,34 @@
             {
               "slug": "nawras-abzakh",
               "name": "Nawras Abzakh",
+              "ufcSlug": null,
+              "corner": "blue"
+            }
+          ],
+          "officialStats": false,
+          "strikeStats": null,
+          "source": "cito-pfl"
+        },
+        {
+          "id": "pfl-401919462",
+          "eventId": "",
+          "status": "scheduled",
+          "scheduledRounds": null,
+          "weightClass": null,
+          "method": null,
+          "resultRound": null,
+          "resultTime": null,
+          "winnerFighterSlug": null,
+          "fighters": [
+            {
+              "slug": "sergio-pettis",
+              "name": "Sergio Pettis",
+              "ufcSlug": "sergio-pettis",
+              "corner": "red"
+            },
+            {
+              "slug": "joji-goto",
+              "name": "Joji Goto",
               "ufcSlug": null,
               "corner": "blue"
             }
