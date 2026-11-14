@@ -9,9 +9,10 @@ const simulationCache=new Map();
 function attach(){
  const board=$('fight-board');if(!board)return;
  for(const card of board.querySelectorAll('article.ksl-pfl-fight')){
-  if(card.querySelector('.ksl-pfl-sim-result'))continue;
   const id=card.getAttribute('data-fight-id')||card.dataset.fightId;
   if(!id)continue;
+  const existing=card.querySelector('.ksl-pfl-sim-result');
+  if(existing){run(id,existing);continue;}
   const wrap=document.createElement('div');wrap.className='ksl-pfl-simulator';
   const result=document.createElement('div');result.className='ksl-pfl-sim-result';result.setAttribute('aria-live','polite');
   wrap.append(result);card.append(wrap);
