@@ -22,13 +22,13 @@ jobs:
         env:
           CITO_API_KEY: ${{ secrets.CITO_API_KEY }}
         run: node scripts/pfl_acquire.js
+      - name: Test PFL fighter-history pagination before API calls
+        run: node tests/pfl_fighter_histories.test.js
       - name: Fetch all scheduled PFL fighter profiles and histories
         env:
           CITO_API_KEY: ${{ secrets.CITO_API_KEY }}
           PFL_FIGHTER_LIMIT: '100'
-        run: |
-          node tests/pfl_fighter_histories.test.js
-          node scripts/pfl_fighter_histories.js
+        run: node scripts/pfl_fighter_histories.js
       - name: Audit historical fighter outcomes
         run: |
           node tests/pfl_history_audit.test.js
