@@ -1,4 +1,4 @@
-name: PFL Free API Ingestion (Manual)
+name: PFL Free API Ingestion (Manual + Publish)
 on:
   workflow_dispatch:
 concurrency:
@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 25
     permissions:
-      contents: read
+      contents: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -101,7 +101,20 @@ jobs:
           node tests/pfl_coverage_audit.test.js
           node scripts/pfl_coverage_audit.js data/pfl/events.json data/pfl/ufcalendar-events.json | tee data/pfl/coverage-audit.json
           test "${PIPESTATUS[0]}" -eq 0
-      - name: Upload data for authorized review (not published to site)
+      - name: Publish validated public PFL snapshots for site consumption
+        if: success()
+        run: |
+          set -euo pipefail
+          for file in events.json bout-readiness.json odds-validation.json model-market-intake.json historical-features.json; do
+            test -s "data/pfl/$file" || { echo "Required PFL public snapshot missing: $file"; exit 1; }
+          done
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/pfl/events.json data/pfl/bout-readiness.json data/pfl/odds-validation.json data/pfl/model-market-intake.json data/pfl/historical-features.json
+          if git diff --cached --quiet; then echo "PFL public snapshots unchanged"; exit 0; fi
+          git commit -m "data(pfl): publish validated public snapshots [skip ci]"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+      - name: Upload data for authorized review
         if: always()
         uses: actions/upload-artifact@v4
         with:
