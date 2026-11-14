@@ -3,17 +3,18 @@ const el=id=>document.getElementById(id);
 const defaults={strategy:'silver',legs:'3','parlay-market':'ml',stake:'25','target-odds':'200-300'};
 let templates=[],intake=[];
 const fmtOdds=n=>n>0?'+'+Math.round(n):String(Math.round(n));
-function addLine(box,text,tag='p'){const node=document.createElement(tag);node.textContent=text;box.append(node);}
+function addLine(box,message,tag='p'){const node=document.createElement(tag);node.textContent=message;box.append(node);}
 function verifiedPreview(stake,legs,strategy,market,min,max){
  if(!window.KSLPFLParlays||!window.KSLPFLBets)return null;
  const eligible=intake.filter(m=>window.KSLPFLBets.assess(m).eligible);
  if(eligible.length<legs)return null;
  const opts={stake,legs,strategy,market:market==='ml'?'ml':'totals',iterations:50000,seed:20261114,
   crossFightIndependenceValidated:eligible.every(m=>m.crossFightIndependenceValidated===true)};
- if(Number.isFinite(max)){opts.targetMinAmerican=min;opts.targetMaxAmerican=max}
+ if(Number.isFinite(max)){opts.targetMinAmerican=min;opts.targetMaxAmerican=max;}
  const result=window.KSLPFLParlays.build(eligible,opts);
  return result.eligible&&result.expectedValue>0?result:null;
 }
+
 const ids=Object.keys(defaults);
 function update(){const s=Number(el('stake').value);el('parlay-summary').textContent=el('legs').value+' legs · '+el('strategy').value.toUpperCase()+' · '+(Number.isFinite(s)&&s>0?'$'+s.toFixed(2):'Invalid stake')+' · target '+el('target-odds').value+' · '+templates.length+' reference templates · '+intake.length+' intake markets';}
 function render(){
@@ -26,7 +27,11 @@ function render(){
   const box=el('parlay-result');box.replaceChildren();
   addLine(box,'INDEPENDENT MODEL — VERIFIED INPUTS','strong');
   const list=document.createElement('ol');
-  for(const leg of model.legs){const li=document.createElement('li');li.textContent=leg.selection+' ('+fmtOdds(leg.odds)+') · Model '+(leg.probability*100).toFixed(1)+'% · Fair '+fmtOdds(leg.fairOdds)+' · EV '+(leg.individualEV*100).toFixed(1)+'%';list.append(li)}
+  for(const leg of model.legs){
+   const li=document.createElement('li');
+   li.textContent=leg.selection+' ('+fmtOdds(leg.odds)+') · Model '+(leg.probability*100).toFixed(1)+'% · Fair '+fmtOdds(leg.fairOdds)+' · EV '+(leg.individualEV*100).toFixed(1)+'%';
+   list.append(li);
+  }
   box.append(list);
   addLine(box,'Joint simulated win probability '+(model.modelProbability*100).toFixed(1)+'% · Combined '+fmtOdds((model.decimalOdds-1)*100)+' · Model EV '+(model.expectedValue*100).toFixed(1)+'%');
   addLine(box,'x.legs===legs&&x.strategy===strategy&&(x.market||'ml')===market&&
