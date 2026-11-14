@@ -35,11 +35,11 @@ window.KSLPFLFeed.load().then(feed=>{
  $('history-state').textContent=feed.history?'HISTORICAL FEATURES LOADED':'NOT PUBLISHED';
  $('card-state').textContent=verifiedBouts+' BOUTS VERIFIED';
  $('odds-state').textContent=feed.markets.length+' VERIFIED MARKETS';
- $('sim-state').textContent=(feed.projections?.available||0)+' EXPLORATORY · UNCALIBRATED';
+ $('sim-state').textContent=(feed.projections?.available||0)+'/'+(feed.projections?.bouts?.length||0)+' EXPLORATORY · UNCALIBRATED';
  $('feed-status').textContent='FIGHTS '+fights.length+' · VERIFIED ODDS '+feed.markets.length;
  $('ml-count').textContent=feed.markets.filter(m=>m.market==='ml').length;
  $('totals-count').textContent=feed.markets.filter(m=>m.market==='total').length;
- $('coverage-label').textContent=verifiedBouts+' identity/history-verified bouts; '+feed.markets.length+' validated markets. Betting eligibility requires calibrated simulations.';
+ $('coverage-label').textContent=verifiedBouts+' identity/history-verified bouts; '+(feed.projections?.available||0)+' historical simulations; '+feed.markets.length+' validated markets. Betting eligibility requires calibrated simulations and live odds.';
  draw();
 }).catch(e=>{fights=[];$('feed-status').textContent='SNAPSHOT NOT PUBLISHED';$('fight-board').textContent='No published PFL snapshot available: '+e.message;});
 })();
