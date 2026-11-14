@@ -2,13 +2,15 @@
   "schema_version": 1,
   "status": "UNAVAILABLE",
   "source": "api-web.nhle.com/v1",
-  "generated_at": "2026-11-14T01:28:17.048Z",
+  "generated_at": "2026-11-14T15:18:00.971Z",
   "records": [],
   "diagnostics": {
     "candidateNames": 120,
     "rosterFailures": [
       "TBL: NHL HTTP 429",
-      "TOR: NHL HTTP 429"
+      "STL: NHL HTTP 429",
+      "TOR: NHL HTTP 429",
+      "UTA: NHL HTTP 429"
     ],
     "gameLogFailures": [],
     "matchedRosterIds": 0,
