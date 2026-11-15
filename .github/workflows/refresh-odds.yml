@@ -24,7 +24,7 @@ on:
       markets:
         description: Featured markets (availability and credits vary)
         required: true
-        default: h2h,spreads,totals
+        default: h2h
         type: choice
         options:
           - h2h
@@ -36,7 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       ODDS_SPORT: ${{ inputs.sport || (github.event.schedule == '10 11 * * *' && 'basketball_ncaab') || (github.event.schedule == '10 14 * * *' && 'americanfootball_nfl') || (github.event.schedule == '10 17 * * *' && 'icehockey_nhl') || (github.event.schedule == '10 20 * * *' && 'basketball_nba') || 'americanfootball_nfl' }}
-      ODDS_MARKETS: ${{ inputs.markets || 'h2h,spreads,totals' }}
+      ODDS_MARKETS: ${{ inputs.markets || 'h2h' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
