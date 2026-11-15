@@ -5,6 +5,7 @@ on:
       - 'index.html'
       - 'pipeline_status.js'
       - 'market_edge_scanner.js'
+      - 'home_refresh_all.js'
       - '.github/workflows/homepage-layout-validation.yml'
   workflow_dispatch:
 permissions:
@@ -35,10 +36,12 @@ jobs:
               def handle_starttag(self,tag,attrs):
                   if tag=='section':self.sections.append(dict(attrs).get('id'))
           p=Check();p.feed(page)
-          assert p.sections==['ksl-market-edge'],p.sections
+          assert p.sections==['ksl-refresh-all','ksl-best-ml-parlay','ksl-market-edge'],p.sections
+          assert 'home_refresh_all.js' in page
           print('Homepage scanner-first + pipeline status dynamic mount verified')
           PY
       - name: Check JavaScript syntax
         run: |
           node --check pipeline_status.js
           node --check market_edge_scanner.js
+          node --check home_refresh_all.js
