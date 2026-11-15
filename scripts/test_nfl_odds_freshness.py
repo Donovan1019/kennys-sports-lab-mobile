@@ -1,6 +1,6 @@
 import unittest
 from datetime import datetime, timezone, timedelta
-from scripts.fetch_odds import validate_rows
+from scripts.fetch_odds import validate_rows, upcoming_rows
 
 NOW = datetime(2026, 11, 8, 13, tzinfo=timezone.utc)
 def row(**kw):
@@ -22,6 +22,14 @@ class OddsFreshnessTests(unittest.TestCase):
         self.assertFalse(validate_rows([row(updated_at=(NOW + timedelta(hours=1)).isoformat())], "americanfootball_nfl", NOW))
     def test_no_spread_substitution(self):
         self.assertFalse(validate_rows([row(market="spreads")], "americanfootball_nfl", NOW))
+    def test_publish_only_upcoming_events(self):
+        old = row(commence_time=(NOW - timedelta(hours=1)).isoformat())
+        future = row()
+        self.assertEqual(upcoming_rows([old, future], NOW), [future])
+
+    def test_reject_invalid_or_naive_kickoffs(self):
+        self.assertEqual(upcoming_rows([row(commence_time="bad"), row(commence_time="2026-11-20T20:00:00")], NOW), [])
+
     def test_other_sports_unmodified(self):
         self.assertTrue(validate_rows([], "basketball_nba", NOW))
 
