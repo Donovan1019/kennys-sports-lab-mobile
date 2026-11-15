@@ -4,6 +4,7 @@ on:
     branches: [main]
     paths:
       - 'feed/ufc_research.json'
+      - 'feed/ufc_joined_stats.json'
       - 'feed/ufc_fighter_stats_mirror.json'
       - 'feed/ufc_elo_projections.json'
       - 'feed/ufc_unified_research.json'
@@ -47,4 +48,13 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add feed/ufc_joined_stats.json
-          git diff --cached --quiet || (git commit -m 'Refresh UFC joined stats feed' && git push)
+          if ! git diff --cached --quiet; then
+            git commit -m 'Refresh UFC joined stats feed'
+            for attempt in 1 2 3 4 5; do
+              git pull --rebase origin main
+              if git push origin HEAD:main; then exit 0; fi
+              sleep $((attempt * 2))
+            done
+            echo 'UFC joined feed publish failed after retries' >&2
+            exit 1
+          fi

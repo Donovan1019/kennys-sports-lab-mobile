@@ -14,4 +14,12 @@ class JoinedUFCTests(unittest.TestCase):
         self.assertEqual(result["fights"][0]["fighters"]["blue"]["unified_count_research"]["historical_per_round"]["sig_landed"],3.75)
         self.assertFalse(result["bet_eligible"])
         self.assertIsNone(result["fights"][0]["model_ev"])
+    def test_rebuild_removes_stale_fights(self):
+        card={"fights":[{"id":"new","red":"A","blue":"B","scheduled_rounds":None}]}
+        result=join(card,{"fighters":[]},{"projections":[]},{"fights":[]},{"blocked":[]})
+        self.assertEqual([f["fight_id"] for f in result["fights"]],["new"])
+        self.assertEqual(result["coverage"]["fights"],1)
+        self.assertFalse(result["bet_eligible"])
+        self.assertIsNone(result["fights"][0]["model_ev"])
+
 if __name__ == "__main__": unittest.main()
