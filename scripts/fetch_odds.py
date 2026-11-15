@@ -55,7 +55,13 @@ def main():
     except Exception as err:
         print("Odds provider unavailable:",type(err).__name__)
         return 1
-    if remaining is not None:\n        try:\n            if int(remaining) <= 0:\n                print("Odds provider reports quota exhausted after this request; no further requests should be scheduled until reset")\n        except (ValueError, TypeError):\n            print("Odds provider remaining quota header could not be parsed")\n    if not isinstance(events,list):
+    if remaining is not None:
+        try:
+            if int(remaining) <= 0:
+                print("Odds provider reports quota exhausted after this request; no further requests should be scheduled until reset")
+        except (ValueError, TypeError):
+            print("Odds provider remaining quota header could not be parsed")
+    if not isinstance(events,list):
         print("Unexpected API response");return 1
     rows=[]
     for event in events:
