@@ -24,6 +24,7 @@ button{cursor:pointer}
 button:focus-visible,a:focus-visible,select:focus-visible{outline:2px solid #8deeb1;outline-offset:2px}
 #ksl-market-edge,#ksl-pipeline-status{margin-bottom:22px}
 @media(max-width:650px){main{padding:12px 10px 36px}.ksl-nav{padding:8px;gap:5px}.ksl-nav a{padding:9px;font-size:13px}}
+.kmd-card{display:flex;justify-content:space-between;gap:12px;padding:12px;margin:8px 0;background:#10233a;border:1px solid #42677b;border-radius:10px;flex-wrap:wrap}.kmd-card>div:last-child{text-align:right}.kmd-muted{color:#a9bccc;font-size:12px;margin-top:4px}.kmd-state{display:inline-block;font-size:11px;font-weight:700;color:#8deeb1;margin-bottom:5px}
 </style>
 </head>
 <body>
@@ -32,9 +33,11 @@ button:focus-visible,a:focus-visible,select:focus-visible{outline:2px solid #8de
 <header class="ksl-home-hero"><span class="ksl-home-eyebrow">KENNY’S SPORTS LAB / ANALYTICS</span><h1>Sports Lab Dashboard</h1><p>Verified models, moneyline builders, and market mispricing research</p></header>
 <section id="ksl-refresh-all" aria-label="Refresh all sports" style="border:1px solid #303234;background:#111214;border-radius:12px;padding:16px;margin-bottom:20px"></section>
 <section id="ksl-best-ml-parlay" aria-label="Best Moneyline Parlay"></section>
+<section id="ksl-model-decisions" aria-label="Independent model market decisions" style="margin-bottom:22px"></section>
 <section id="ksl-market-edge" aria-label="Market Mispricing Scanner"></section>
 </main>
 <script defer src="./home_best_moneyline_parlay.js?v=20261111-ncaab-guard-ee179f87"></script>
+<script defer src="./home_model_decisions.js?v=20261115"></script>
 <script defer src="./market_edge_scanner.js?v=20261111"></script>
 <script defer src="./pipeline_status.js?v=20261111"></script>
 <script defer src="./home_refresh_all.js?v=20261115-compact-1019"></script>
