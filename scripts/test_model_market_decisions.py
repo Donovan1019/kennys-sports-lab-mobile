@@ -8,7 +8,7 @@ QUOTE = (NOW - timedelta(minutes=5)).isoformat()
 
 
 def odds():
-    return {"odds": [{"market": "h2h", "bookmaker": "draftkings", "event_id": "abc",
+    return {"status": "ok", "odds": [{"market": "h2h", "bookmaker": "draftkings", "event_id": "abc",
                       "event": "Away @ Home", "selection": "Home", "price": -110,
                       "commence_time": TIP, "updated_at": QUOTE}]}
 
@@ -28,6 +28,18 @@ class DecisionFeedTests(unittest.TestCase):
         self.assertEqual(result["model_status"], "READY")
         self.assertEqual(result["bet_status"], "PROVISIONAL")
         self.assertNotIn("expected_value", result)
+
+    def test_empty_feed_reports_unavailable(self):
+        result = build({}, NOW)
+        self.assertEqual(result["status"], "unavailable")
+        self.assertEqual(result["decisions"], [])
+
+    def test_unavailable_odds_do_not_publish(self):
+        snapshot = odds()
+        snapshot["status"] = "unavailable"
+        model = {"status": "validated", "calibration_passed": True,
+                 "predictions": [{"event_id": "abc", "team": "Home", "win_probability": .6}]}
+        self.assertEqual(build({"basketball_nba": (snapshot, model)}, NOW)["decisions"], [])
 
     def test_completed_games_excluded(self):
         expired = odds()

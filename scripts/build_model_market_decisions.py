@@ -34,6 +34,8 @@ def build(snapshots, now=None):
     now = now or datetime.now(timezone.utc)
     decisions = []
     for sport, (odds, model) in snapshots.items():
+        if odds.get("status") != "ok":
+            continue
         mapping = predictions_for(sport, model)
         for row in odds.get("odds", []):
             if row.get("market") != "h2h" or row.get("bookmaker") not in ("draftkings", "fanduel"):
@@ -63,7 +65,9 @@ def build(snapshots, now=None):
                               "selection": row.get("selection"), "bookmaker": row.get("bookmaker"),
                               "model_source": model.get("model", model.get("model_version", "independent")),
                               "research_only": not validated, **result})
-    return {"generated_at": now.isoformat(), "status": "ok", "decisions": decisions}
+    return {"generated_at": now.isoformat(), "status": "ok" if decisions else "unavailable",
+            "reason": None if decisions else "No verified upcoming independent projections",
+            "decisions": decisions}
 
 
 def main():
