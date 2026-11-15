@@ -40,6 +40,35 @@ def expected_value(probability, american):
     return probability * decimal_odds(american) - 1
 
 
+def evaluate_uncertainty(model_probability, probability_low, probability_high, american, *,
+                         independent_model=False, price_verified=False, event_verified=False,
+                         model_verified=False, odds_timestamp=None, now=None,
+                         max_price_age_minutes=30):
+    """Conservative edge test using a validated model probability interval.
+
+    The interval must be independently estimated and validated upstream.
+    A positive point EV alone does not imply a robust betting edge.
+    """
+    base = evaluate(model_probability, american, independent_model=independent_model,
+                    price_verified=price_verified, event_verified=event_verified,
+                    model_verified=model_verified, odds_timestamp=odds_timestamp,
+                    now=now, max_price_age_minutes=max_price_age_minutes)
+    if base["bet_status"] not in ("BETTING_READY", "NO_VALUE"):
+        return base
+    if any(isinstance(x, bool) or not isinstance(x, (int, float)) or not isfinite(x)
+           for x in (probability_low, probability_high)):
+        return {**base, "bet_status": "PROVISIONAL", "reason": "Model uncertainty interval unavailable"}
+    if not (0 < probability_low <= model_probability <= probability_high < 1):
+        return {**base, "bet_status": "PROVISIONAL", "reason": "Invalid model uncertainty interval"}
+    lower_ev = expected_value(probability_low, american)
+    upper_ev = expected_value(probability_high, american)
+    return {**base, "probability_interval": [probability_low, probability_high],
+            "ev_interval": [lower_ev, upper_ev],
+            "bet_status": "BETTING_READY" if lower_ev > 0 else "NO_ROBUST_EDGE",
+            "reason": "Positive EV across model uncertainty interval" if lower_ev > 0
+                      else "Edge does not survive model uncertainty"}
+
+
 def evaluate(model_probability, american=None, *, independent_model=False,
              price_verified=False, event_verified=False, model_verified=False,
              critical_data_error=False, odds_timestamp=None, now=None,
