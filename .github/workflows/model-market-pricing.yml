@@ -1,0 +1,25 @@
+name: Model Market Pricing Integrity
+on:
+  push:
+    paths:
+      - 'scripts/model_market_pricing.py'
+      - 'scripts/test_model_market_pricing.py'
+      - '.github/workflows/model-market-pricing.yml'
+  pull_request:
+    paths:
+      - 'scripts/model_market_pricing.py'
+      - 'scripts/test_model_market_pricing.py'
+      - '.github/workflows/model-market-pricing.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m py_compile scripts/model_market_pricing.py scripts/test_model_market_pricing.py
+      - run: python -m unittest scripts.test_model_market_pricing -v
