@@ -50,9 +50,14 @@ def build(snapshots, now=None):
             # Research baselines remain visible as projections, but are never bet-certified.
             validated = sport == "basketball_nba" and model.get("status") == "validated" and model.get("calibration_passed") is True
             result = evaluate(p, row.get("price"), independent_model=True,
-                              model_verified=validated, event_verified=True,
+                              model_verified=True, event_verified=True,
                               price_verified=bool(row.get("updated_at")),
                               odds_timestamp=row.get("updated_at"), now=now)
+            if not validated and result["model_status"] == "READY":
+                result["bet_status"] = "PROVISIONAL"
+                result["reason"] = "Independent research projection is not calibrated for betting"
+                for field in ("expected_value", "edge_probability_points"):
+                    result.pop(field, None)
             decisions.append({"sport": sport, "event_id": row.get("event_id"),
                               "event": row.get("event"), "start_time": row.get("commence_time"),
                               "selection": row.get("selection"), "bookmaker": row.get("bookmaker"),
