@@ -31,6 +31,19 @@ def validate_rows(rows, sport, now=None):
             continue
     return False
 
+def upcoming_rows(rows, now=None):
+    """Keep only selections for future events with timezone-aware kickoff times."""
+    now = now or datetime.now(timezone.utc)
+    filtered = []
+    for row in rows:
+        try:
+            kickoff = datetime.fromisoformat(str(row.get("commence_time", "")).replace("Z", "+00:00"))
+            if kickoff.tzinfo is not None and kickoff > now:
+                filtered.append(row)
+        except (ValueError, TypeError, AttributeError):
+            continue
+    return filtered
+
 def main():
     key=os.environ.get("THE_ODDS_API_KEY")
     if not key:
@@ -73,16 +86,8 @@ def main():
     if not rows:
         print("Odds response contains no DK/FD selections; existing snapshot retained")
         return 1
-    now = datetime.now(timezone.utc)
-    upcoming = []
-    for row in rows:
-        try:
-            kickoff = datetime.fromisoformat(str(row.get("commence_time", "")).replace("Z", "+00:00"))
-            if kickoff.tzinfo is not None and kickoff > now:
-                upcoming.append(row)
-        except (ValueError, TypeError, AttributeError):
-            continue
-    if not upcoming:
+    rows = upcoming_rows(rows)
+    if not rows:
         print("Odds response has no upcoming events; existing snapshot retained")
         return 1
     if not validate_rows(rows, sport):
