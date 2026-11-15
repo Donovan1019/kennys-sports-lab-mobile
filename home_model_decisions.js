@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const root=document.getElementById('ksl-model-decisions');if(!root)return;
+const main=document.querySelector('main'),anchor=document.getElementById('ksl-market-edge');if(!main||!anchor)return;const root=document.createElement('section');root.id='ksl-model-decisions';root.setAttribute('aria-label','Independent model market decisions');root.style.marginBottom='22px';main.insertBefore(root,anchor);
 const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const pct=x=>Number.isFinite(x)?(x*100).toFixed(1)+'%':'—';
 const status=x=>x==='BETTING_READY'?'BETTING READY':x==='NO_VALUE'?'NO VALUE':x==='NO_ROBUST_EDGE'?'UNCERTAIN EDGE':x==='PROVISIONAL'?'PROJECTION ONLY':'BLOCKED';
