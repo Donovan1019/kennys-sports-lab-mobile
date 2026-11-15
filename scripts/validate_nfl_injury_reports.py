@@ -67,5 +67,11 @@ if __name__=="__main__":
     if len(sys.argv)!=2:raise SystemExit("Usage: validate_nfl_injury_reports.py PATH")
     schedule=json.loads(SCHEDULE.read_text(encoding='utf-8')) if SCHEDULE.exists() else None
     if schedule is None:raise SystemExit('Cannot validate publication without current NFL event schedule')
-    count=validate(json.loads(Path(sys.argv[1]).read_text(encoding='utf-8')),schedule=schedule)
+    data=json.loads(Path(sys.argv[1]).read_text(encoding='utf-8'))
+    # An explicitly unavailable feed is a valid fail-closed publication state.
+    # Never treat it as a verified report or silently accept malformed/nonempty feeds.
+    if isinstance(data,dict) and data.get("status")=="UNAVAILABLE" and data.get("reports")==[]:
+        print("No verified player reports published; fail-closed UNAVAILABLE state accepted")
+        raise SystemExit(0)
+    count=validate(data,schedule=schedule)
     print("Validated",count,"source-backed injury reports")
