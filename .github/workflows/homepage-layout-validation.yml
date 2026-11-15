@@ -42,6 +42,8 @@ jobs:
           refresh=Path('home_refresh_all.js').read_text()
           assert "results.style.display='none'" in refresh
           assert "results.style.display=expanded?'grid':'none'" in refresh
+          assert 'refreshPublishedFeeds();' in refresh
+          assert "button.textContent='↻ Check Published Sports Feeds'" in refresh
           print('Homepage scanner-first + pipeline status dynamic mount verified')
           PY
       - name: Check JavaScript syntax
