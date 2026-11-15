@@ -1,0 +1,72 @@
+{
+  "sport": "NBA",
+  "date": "2026-11-14",
+  "games": [
+    {
+      "event_id": "401909980",
+      "event": "Denver Nuggets at New Orleans Pelicans",
+      "commence_time": "2026-11-15T00:00Z",
+      "home": "New Orleans Pelicans",
+      "away": "Denver Nuggets",
+      "home_score": 108,
+      "away_score": 116,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261114&limit=100"
+    },
+    {
+      "event_id": "401909981",
+      "event": "Dallas Mavericks at Cleveland Cavaliers",
+      "commence_time": "2026-11-15T00:30Z",
+      "home": "Cleveland Cavaliers",
+      "away": "Dallas Mavericks",
+      "home_score": 127,
+      "away_score": 117,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261114&limit=100"
+    },
+    {
+      "event_id": "401909982",
+      "event": "Detroit Pistons at Miami Heat",
+      "commence_time": "2026-11-15T01:00Z",
+      "home": "Miami Heat",
+      "away": "Detroit Pistons",
+      "home_score": 137,
+      "away_score": 117,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261114&limit=100"
+    },
+    {
+      "event_id": "401909983",
+      "event": "Brooklyn Nets at Memphis Grizzlies",
+      "commence_time": "2026-11-15T01:00Z",
+      "home": "Memphis Grizzlies",
+      "away": "Brooklyn Nets",
+      "home_score": 129,
+      "away_score": 110,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261114&limit=100"
+    },
+    {
+      "event_id": "401909984",
+      "event": "Chicago Bulls at Minnesota Timberwolves",
+      "commence_time": "2026-11-15T01:00Z",
+      "home": "Minnesota Timberwolves",
+      "away": "Chicago Bulls",
+      "home_score": 106,
+      "away_score": 117,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261114&limit=100"
+    }
+  ],
+  "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261114&limit=100"
+}

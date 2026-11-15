@@ -1,0 +1,33 @@
+{
+  "sport": "NFL",
+  "date": "2026-11-15",
+  "games": [
+    {
+      "event_id": "401873053",
+      "event": "New England Patriots at Detroit Lions",
+      "commence_time": "2026-11-15T14:30Z",
+      "home": "Detroit Lions",
+      "away": "New England Patriots",
+      "home_score": 35,
+      "away_score": 10,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=20261115&limit=100"
+    },
+    {
+      "event_id": "401873060",
+      "event": "Minnesota Vikings at Green Bay Packers",
+      "commence_time": "2026-11-15T18:00Z",
+      "home": "Green Bay Packers",
+      "away": "Minnesota Vikings",
+      "home_score": 10,
+      "away_score": 30,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=20261115&limit=100"
+    }
+  ],
+  "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=20261115&limit=100"
+}
