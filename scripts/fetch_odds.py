@@ -73,6 +73,18 @@ def main():
     if not rows:
         print("Odds response contains no DK/FD selections; existing snapshot retained")
         return 1
+    now = datetime.now(timezone.utc)
+    upcoming = []
+    for row in rows:
+        try:
+            kickoff = datetime.fromisoformat(str(row.get("commence_time", "")).replace("Z", "+00:00"))
+            if kickoff.tzinfo is not None and kickoff > now:
+                upcoming.append(row)
+        except (ValueError, TypeError, AttributeError):
+            continue
+    if not upcoming:
+        print("Odds response has no upcoming events; existing snapshot retained")
+        return 1
     if not validate_rows(rows, sport):
         print("NFL odds response has no fresh pregame DK/FD moneylines; existing snapshot retained")
         return 1
