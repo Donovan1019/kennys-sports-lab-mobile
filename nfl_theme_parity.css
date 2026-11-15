@@ -1,0 +1,24 @@
+/* NFL visual parity with shared black / charcoal / gold research theme. */
+:root{color-scheme:dark;--ksl-bg:#090909;--ksl-card:#18191b;--ksl-border:#303234;--ksl-text:#f5f5f5;--ksl-accent:#f3c621;--ksl-green:#16a34a;--ksl-red:#e5272b}
+body{background:#090909!important;color:#f5f5f5!important}
+.ksl-nav{background:#090909!important;border-bottom:1px solid #292b2d!important}
+.ksl-nav a{background:#1b1d1f!important;border-color:#303234!important;color:#f5f5f5!important;border-radius:12px!important}
+.ksl-nav a[aria-current=page]{background:#302a14!important;border-color:#f3c621!important;color:#f3c621!important}
+.ksl-shell h1{color:#f5f5f5!important}
+.ksl-shell h2,.ksl-shell h3{color:#f3c621}
+.ksl-shell .ksl-panel,.ksl-shell #ksl-accuracy,.ksl-shell #ksl-research-root,.ksl-shell #nfl-full-results,.ksl-shell #nfl-full-slate-dashboard{background:#18191b!important;border:1px solid #303234!important;border-radius:16px!important;color:#f5f5f5!important}
+.ksl-shell :is(#nfl-qb-unders,#nfl-moneyline-tab,#nfl-sgp-stack-finder,#nfl-sgp-readiness-policy,#nfl-full-results,#nfl-full-slate-dashboard,#nfl-sunday-readiness){border-color:#303234!important}
+.ksl-shell .ksl-unified-sections a{background:#18191b!important;color:#f5f5f5!important;border-color:#353638!important}
+.ksl-shell .ksl-unified-sections a:hover,.ksl-shell .ksl-unified-sections a:focus-visible{border-color:#f3c621!important;color:#f3c621!important}
+.ksl-shell :is(input,select,button){background:#1c1e20!important;color:#f5f5f5!important;border:1px solid #353638!important;border-radius:12px!important}
+.ksl-shell :is(input,select,button):focus-visible{outline:2px solid #f3c621!important;outline-offset:2px}
+.ksl-shell table{color:#f5f5f5;background:#18191b}
+.ksl-shell th{background:#202123!important;color:#f3c621!important}
+.ksl-shell td{background:#18191b!important;color:#f5f5f5}
+.ksl-shell tr{border-bottom:1px solid #303234}
+.ksl-shell .nfl-sunday-game{background:#202123!important;border-color:#353638!important}
+.ksl-shell .nfl-sunday-game span{color:#d1d1d1!important}
+.ksl-shell .nfl-sunday-game small{color:#a1a1a5!important}
+.ksl-shell a{accent-color:#f3c621}
+.ksl-shell .ksl-frame{background:#090909!important;border-color:#303234!important}
+@media(max-width:650px){.ksl-shell{min-width:0;overflow-x:clip}.ksl-shell .ksl-panel{padding:12px!important}.ksl-shell .nfl-sunday-grid{grid-template-columns:1fr}}
