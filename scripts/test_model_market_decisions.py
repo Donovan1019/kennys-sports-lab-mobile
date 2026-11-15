@@ -8,7 +8,7 @@ QUOTE = (NOW - timedelta(minutes=5)).isoformat()
 
 
 def odds():
-    return {"odds": [{"market": "h2h", "bookmaker": "draftkings", "event_id": "abc",
+    return {"status": "ok", "odds": [{"market": "h2h", "bookmaker": "draftkings", "event_id": "abc",
                       "event": "Away @ Home", "selection": "Home", "price": -110,
                       "commence_time": TIP, "updated_at": QUOTE}]}
 
