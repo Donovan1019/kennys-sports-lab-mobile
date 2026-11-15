@@ -72,6 +72,8 @@ jobs:
       - name: Verify NFL moneyline archive before publishing
         if: ${{ env.ODDS_SPORT == 'americanfootball_nfl' }}
         run: python scripts/verify_nfl_archive_write.py odds
+      - name: Rebuild independent model-vs-market decision feed
+        run: python -m scripts.build_model_market_decisions
       - name: Publish snapshot
         run: |
           git config user.name "github-actions[bot]"
