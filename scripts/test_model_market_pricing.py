@@ -1,6 +1,6 @@
 import unittest
 from datetime import datetime, timezone, timedelta
-from scripts.model_market_pricing import decimal_odds, implied_probability, no_vig_probabilities, expected_value, evaluate
+from scripts.model_market_pricing import decimal_odds, implied_probability, no_vig_probabilities, expected_value, evaluate, evaluate_uncertainty
 
 
 NOW = datetime(2026, 11, 15, 15, tzinfo=timezone.utc)
@@ -48,6 +48,33 @@ class MarketPricingTests(unittest.TestCase):
             r = evaluate(.6, odds, independent_model=True, model_verified=True,
                          event_verified=True, price_verified=True, odds_timestamp=STAMP, now=NOW)
             self.assertEqual(r["bet_status"], "PROVISIONAL")
+
+    def test_robust_edge_when_lower_probability_still_profitable(self):
+        r = evaluate_uncertainty(.65, .60, .70, -110, independent_model=True,
+                                 model_verified=True, event_verified=True,
+                                 price_verified=True, odds_timestamp=STAMP, now=NOW)
+        self.assertEqual(r["bet_status"], "BETTING_READY")
+        self.assertGreater(r["ev_interval"][0], 0)
+
+    def test_point_edge_not_robust(self):
+        r = evaluate_uncertainty(.57, .48, .65, -110, independent_model=True,
+                                 model_verified=True, event_verified=True,
+                                 price_verified=True, odds_timestamp=STAMP, now=NOW)
+        self.assertEqual(r["bet_status"], "NO_ROBUST_EDGE")
+        self.assertEqual(r["model_status"], "READY")
+
+    def test_uncertainty_interval_not_invented(self):
+        r = evaluate_uncertainty(.60, None, None, -110, independent_model=True,
+                                 model_verified=True, event_verified=True,
+                                 price_verified=True, odds_timestamp=STAMP, now=NOW)
+        self.assertEqual(r["bet_status"], "PROVISIONAL")
+        self.assertNotIn("ev_interval", r)
+
+    def test_invalid_interval_fails_closed(self):
+        r = evaluate_uncertainty(.60, .7, .8, -110, independent_model=True,
+                                 model_verified=True, event_verified=True,
+                                 price_verified=True, odds_timestamp=STAMP, now=NOW)
+        self.assertEqual(r["bet_status"], "PROVISIONAL")
 
     def test_event_unverified_does_not_claim_ev(self):
         r = evaluate(.6, -110, independent_model=True, model_verified=True,
