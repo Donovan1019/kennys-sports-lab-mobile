@@ -2,13 +2,13 @@
   "schema": 1,
   "sport": "UFC",
   "model_version": "ufc-elo-baseline-v1",
-  "historical_bouts_used": 1009,
+  "historical_bouts_used": 1013,
   "excluded_ambiguous_date_events": 0,
   "pre_update_evaluated_fights": 0,
-  "all_pre_update_evaluated_fights": 1009,
-  "all_pre_update_brier": 0.24814226227527755,
-  "all_pre_update_log_loss": 0.6894268131288087,
-  "all_pre_update_brier_skill_vs_50pct": 0.007430950898889788,
+  "all_pre_update_evaluated_fights": 1013,
+  "all_pre_update_brier": 0.24798683763259075,
+  "all_pre_update_log_loss": 0.6891130657990656,
+  "all_pre_update_brier_skill_vs_50pct": 0.008052649469637019,
   "brier": null,
   "log_loss": null,
   "baseline_brier": null,
@@ -10186,6 +10186,46 @@
       "loser_prior_bouts": 0,
       "winner_days_since_last_fight": 112,
       "loser_days_since_last_fight": null
+    },
+    {
+      "fight_id": "401922645",
+      "event_id": "600061400",
+      "start_time": "2026-11-14T22:00:00+00:00",
+      "winner_probability": 0.5635005725973656,
+      "winner_prior_bouts": 3,
+      "loser_prior_bouts": 3,
+      "winner_days_since_last_fight": 147,
+      "loser_days_since_last_fight": 259
+    },
+    {
+      "fight_id": "401931774",
+      "event_id": "600061400",
+      "start_time": "2026-11-14T22:00:00+00:00",
+      "winner_probability": 0.5988273545271479,
+      "winner_prior_bouts": 4,
+      "loser_prior_bouts": 4,
+      "winner_days_since_last_fight": 546,
+      "loser_days_since_last_fight": 189
+    },
+    {
+      "fight_id": "401932013",
+      "event_id": "600061400",
+      "start_time": "2026-11-14T22:00:00+00:00",
+      "winner_probability": 0.5338905057245472,
+      "winner_prior_bouts": 2,
+      "loser_prior_bouts": 0,
+      "winner_days_since_last_fight": 567,
+      "loser_days_since_last_fight": null
+    },
+    {
+      "fight_id": "401933936",
+      "event_id": "600061400",
+      "start_time": "2026-11-14T22:00:00+00:00",
+      "winner_probability": 0.48386573083433393,
+      "winner_prior_bouts": 0,
+      "loser_prior_bouts": 3,
+      "winner_days_since_last_fight": null,
+      "loser_days_since_last_fight": 49
     }
   ],
   "ratings": {
@@ -10258,8 +10298,8 @@
       "historical_bouts": 1
     },
     "Alatengheili": {
-      "elo": 1511.22,
-      "historical_bouts": 3
+      "elo": 1498.83,
+      "historical_bouts": 4
     },
     "Alden Coria": {
       "elo": 1520.41,
@@ -10590,8 +10630,8 @@
       "historical_bouts": 2
     },
     "Bia Mesquita": {
-      "elo": 1533.99,
-      "historical_bouts": 3
+      "elo": 1544.46,
+      "historical_bouts": 4
     },
     "Bilal Hasan": {
       "elo": 1523.59,
@@ -11302,8 +11342,8 @@
       "historical_bouts": 2
     },
     "Evan Elder": {
-      "elo": 1523.59,
-      "historical_bouts": 2
+      "elo": 1534.77,
+      "historical_bouts": 3
     },
     "Ezra Elliott": {
       "elo": 1512.0,
@@ -11750,8 +11790,8 @@
       "historical_bouts": 1
     },
     "Jared Gordon": {
-      "elo": 1476.8,
-      "historical_bouts": 4
+      "elo": 1467.17,
+      "historical_bouts": 5
     },
     "Jarno Errens": {
       "elo": 1499.59,
@@ -12011,6 +12051,10 @@
     },
     "Jovan Leka": {
       "elo": 1512.0,
+      "historical_bouts": 1
+    },
+    "Juan Diaz": {
+      "elo": 1512.39,
       "historical_bouts": 1
     },
     "Julia Avila": {
@@ -12390,8 +12434,8 @@
       "historical_bouts": 1
     },
     "Macy Chiasson": {
-      "elo": 1489.62,
-      "historical_bouts": 3
+      "elo": 1479.15,
+      "historical_bouts": 4
     },
     "Magomed Ankalaev": {
       "elo": 1524.79,
@@ -12634,8 +12678,8 @@
       "historical_bouts": 4
     },
     "Melquizael Costa": {
-      "elo": 1546.39,
-      "historical_bouts": 4
+      "elo": 1556.01,
+      "historical_bouts": 5
     },
     "Merab Dvalishvili": {
       "elo": 1488.85,
@@ -13333,6 +13377,10 @@
       "elo": 1533.65,
       "historical_bouts": 5
     },
+    "Samuel Sanches": {
+      "elo": 1488.81,
+      "historical_bouts": 1
+    },
     "Sangwook Kim": {
       "elo": 1488.0,
       "historical_bouts": 1
@@ -13906,9 +13954,9 @@
     "Inactivity adjustment evaluated as research only; no age, weight class, injuries, or style adjustments in live predictions",
     "Chronological holdout is descriptive only; no independent external validation or archived odds"
   ],
-  "input_sha256": "5c87d4479be94e45b6054cf6c634515cefb1cb5d8840b1d43727e31d2ed8748b",
+  "input_sha256": "250c7bfb7bde84e4767c8ca1eebb9713146d1a95979f05164adc30925c8ea27d",
   "input_path": "feed/ufc_historical_backfill.json",
-  "input_record_count": 1009,
-  "input_verified_winner_count": 1009,
+  "input_record_count": 1013,
+  "input_verified_winner_count": 1013,
   "input_rejected_count": 0
 }

@@ -11101,6 +11101,50 @@
       "method_verified": false,
       "winner_verified": true,
       "source_url": "https://site.api.espn.com/apis/site/v2/sports/mma/ufc/scoreboard?dates=20261107"
+    },
+    {
+      "event_id": "600061400",
+      "fight_id": "401922645",
+      "event_date": "2026-11-14T22:00:00+00:00",
+      "winner": "Bia Mesquita",
+      "loser": "Macy Chiasson",
+      "method": null,
+      "method_verified": false,
+      "winner_verified": true,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/mma/ufc/scoreboard?dates=20261114"
+    },
+    {
+      "event_id": "600061400",
+      "fight_id": "401931774",
+      "event_date": "2026-11-14T22:00:00+00:00",
+      "winner": "Melquizael Costa",
+      "loser": "Jared Gordon",
+      "method": null,
+      "method_verified": false,
+      "winner_verified": true,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/mma/ufc/scoreboard?dates=20261114"
+    },
+    {
+      "event_id": "600061400",
+      "fight_id": "401932013",
+      "event_date": "2026-11-14T22:00:00+00:00",
+      "winner": "Evan Elder",
+      "loser": "Samuel Sanches",
+      "method": null,
+      "method_verified": false,
+      "winner_verified": true,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/mma/ufc/scoreboard?dates=20261114"
+    },
+    {
+      "event_id": "600061400",
+      "fight_id": "401933936",
+      "event_date": "2026-11-14T22:00:00+00:00",
+      "winner": "Juan Diaz",
+      "loser": "Alatengheili",
+      "method": null,
+      "method_verified": false,
+      "winner_verified": true,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/mma/ufc/scoreboard?dates=20261114"
     }
   ],
   "successful_days": [
@@ -12151,11 +12195,12 @@
     "2026-11-10",
     "2026-11-11",
     "2026-11-12",
-    "2026-11-13"
+    "2026-11-13",
+    "2026-11-14"
   ],
   "failed_days": [],
   "newly_queried_days": 1,
-  "verified_fights": 1009,
+  "verified_fights": 1013,
   "bet_eligible": false,
   "limitations": [
     "Public scoreboard may omit events and incomplete methods",
