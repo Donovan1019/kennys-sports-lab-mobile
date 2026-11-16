@@ -59,8 +59,22 @@ jobs:
             echo "fetch=false" >> "$GITHUB_OUTPUT"
             echo "Odds API disabled to conserve credits; rebuilding decision feed from available data"
           fi
+      - name: Fetch SportsGameOdds DK/FD snapshot
+        id: sgo
+        env:
+          SPORTSGAMEODDS_API_KEY: ${{ secrets.SPORTSGAMEODDS_API_KEY }}
+        run: |
+          if [ -z "$SPORTSGAMEODDS_API_KEY" ]; then
+            echo "No SportsGameOdds key configured; skipping"
+            echo "fetched=false" >> "$GITHUB_OUTPUT"
+          elif python scripts/fetch_sportsgameodds.py; then
+            echo "fetched=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "SportsGameOdds unavailable; retaining prior verified snapshot"
+            echo "fetched=false" >> "$GITHUB_OUTPUT"
+          fi
       - name: Fetch authorized sportsbook odds
-        if: steps.quota.outputs.fetch == 'true'
+        if: steps.quota.outputs.fetch == 'true' && steps.sgo.outputs.fetched != 'true'
         env:
           THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
           ODDSPAPI_API_KEY: ${{ secrets.ODDSPAPI_API_KEY }}
@@ -75,20 +89,20 @@ jobs:
             exit 1
           fi
       - name: Rebuild NHL independent moneyline research feed
-        if: ${{ env.ODDS_SPORT == 'icehockey_nhl' && steps.quota.outputs.fetch == 'true' }}
+        if: ${{ env.ODDS_SPORT == 'icehockey_nhl' && (steps.sgo.outputs.fetched == 'true' || steps.quota.outputs.fetch == 'true') }}
         run: |
           python scripts/build_nhl_goal_rates.py
           python scripts/build_nhl_ml_predictions.py
       - name: Rebuild NBA moneyline model and research simulations
-        if: ${{ env.ODDS_SPORT == 'basketball_nba' && steps.quota.outputs.fetch == 'true' }}
+        if: ${{ env.ODDS_SPORT == 'basketball_nba' && (steps.sgo.outputs.fetched == 'true' || steps.quota.outputs.fetch == 'true') }}
         run: |
           python scripts/build_nba_ml_predictions.py
           python scripts/refresh_nba_ml_research_audit.py
       - name: Archive pre-kickoff NFL moneyline prices
-        if: ${{ env.ODDS_SPORT == 'americanfootball_nfl' && steps.quota.outputs.fetch == 'true' }}
+        if: ${{ env.ODDS_SPORT == 'americanfootball_nfl' && (steps.sgo.outputs.fetched == 'true' || steps.quota.outputs.fetch == 'true') }}
         run: python scripts/archive_nfl_moneyline_snapshots.py odds
       - name: Verify NFL moneyline archive before publishing
-        if: ${{ env.ODDS_SPORT == 'americanfootball_nfl' && steps.quota.outputs.fetch == 'true' }}
+        if: ${{ env.ODDS_SPORT == 'americanfootball_nfl' && (steps.sgo.outputs.fetched == 'true' || steps.quota.outputs.fetch == 'true') }}
         run: python scripts/verify_nfl_archive_write.py odds
       - name: Rebuild independent model-vs-market decision feed
         run: python -m scripts.build_model_market_decisions
