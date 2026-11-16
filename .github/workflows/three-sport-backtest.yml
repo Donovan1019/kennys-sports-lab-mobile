@@ -38,6 +38,7 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add backtests/snapshots backtests/reports backtests/results
+          git add feed/nfl_model_predictions.json feed/nba_model_predictions.json feed/nhl_model_predictions.json
           if ! git diff --cached --quiet; then
             git commit -m "audit: archive three-sport pregame snapshots and backtest status"
             git push
