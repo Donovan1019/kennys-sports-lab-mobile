@@ -38,6 +38,19 @@ def collect(sport,date,fetcher=None):
                 'source':'ESPN scoreboard','source_url':url})
     return {'sport':sport,'date':date,'games':games,'source_url':url}
 
+def merge_completed_games(previous, incoming):
+    """Append newly completed games without rewriting archived final scores."""
+    existing={str(g['event_id']):g for g in previous}
+    for game in incoming:
+        key=str(game['event_id'])
+        if key in existing:
+            old=existing[key]
+            if (old.get('home_score'),old.get('away_score')) != (game['home_score'],game['away_score']):
+                raise ValueError('Final score changed for archived event '+key)
+        else:
+            existing[key]=game
+    return list(existing.values())
+
 def main():
     parser=argparse.ArgumentParser()
     parser.add_argument('--date',required=True)
@@ -50,16 +63,7 @@ def main():
         result=collect(sport,args.date)
         if path.exists():
             prior=json.loads(path.read_text())
-            existing={str(g['event_id']):g for g in prior.get('games',[])}
-            for game in result['games']:
-                key=str(game['event_id'])
-                if key in existing:
-                    old=existing[key]
-                    if (old.get('home_score'),old.get('away_score')) != (game['home_score'],game['away_score']):
-                        raise ValueError('Final score changed for archived event '+key)
-                else:
-                    existing[key]=game
-            result['games']=list(existing.values())
+            result['games']=merge_completed_games(prior.get('games',[]),result['games'])
             if len(result['games'])==len(prior.get('games',[])):
                 print(sport,'no new completed games; archive preserved')
                 continue
