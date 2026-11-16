@@ -4,7 +4,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from scripts.model_market_pricing import evaluate
 
-SPORTS = {
+SPORTS = {\n    "americanfootball_nfl": ("nfl_ml_predictions.json", "NFL"),
     "basketball_nba": ("nba_ml_predictions.json", "NBA"),
     "basketball_ncaab": ("ncaab_ml_predictions.json", "NCAAB"),
     "icehockey_nhl": ("nhl_ml_predictions.json", "NHL"),
