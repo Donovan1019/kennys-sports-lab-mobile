@@ -59,7 +59,7 @@ def normalize(payload, sport, now=None):
         if not all((event_id, away, home, kickoff)):
             continue
         for odd in (event.get("odds") or {}).values():
-            if not isinstance(odd, dict) or odd.get("periodID") != "game" or odd.get("statID") != "points":
+            if not isinstance(odd, dict) or odd.get("periodID") != "game" or odd.get("statID") != ("goals" if sport == "icehockey_nhl" else "points"):
                 continue
             bet_type, side = odd.get("betTypeID"), odd.get("sideID")
             if bet_type == "ml" and side in ("home", "away"):
