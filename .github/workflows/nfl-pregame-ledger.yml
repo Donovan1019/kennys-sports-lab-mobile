@@ -42,7 +42,8 @@ jobs:
         shell: bash
         run: |
           if [[ -f feed/nfl_pregame_snapshots.json && -f feed/nfl_settled_player_results.json ]]; then
-            python -m scripts.grade_nfl_pregame_ledger feed/nfl_pregame_snapshots.json feed/nfl_settled_player_results.json > nfl_pregame_ledger_report.json\n            cat nfl_pregame_ledger_report.json
+            python -m scripts.grade_nfl_pregame_ledger feed/nfl_pregame_snapshots.json feed/nfl_settled_player_results.json > nfl_pregame_ledger_report.json
+            cat nfl_pregame_ledger_report.json
           else
             echo '{"status":"BLOCKED","reason":"Real pregame snapshots and/or settled player results are not supplied","bet_eligibility":"BLOCKED"}' > nfl_pregame_ledger_report.json
             cat nfl_pregame_ledger_report.json
