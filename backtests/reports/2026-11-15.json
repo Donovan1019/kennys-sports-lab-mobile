@@ -1,6 +1,6 @@
 {
   "date": "2026-11-15",
-  "generated_at": "2026-11-16T02:08:30.136219+00:00",
+  "generated_at": "2026-11-16T08:42:19.407392+00:00",
   "sports": {
     "NFL": {
       "status": "NO_VERIFIED_PREGAME_PREDICTIONS",
@@ -25,23 +25,132 @@
       "pending": 28
     },
     "NHL": {
-      "status": "OUTCOMES_UNVERIFIED",
+      "status": "PARTIALLY_SETTLED_MONEYLINES",
       "saved_quotes": 0,
       "eligible_predictions": 196,
       "research_only_predictions": 196,
       "bet_eligible_predictions": 0,
       "blocked_predictions": [],
-      "graded": 0,
-      "settled": [],
-      "pending": 196
+      "graded": 18,
+      "settled": [
+        {
+          "event": "Edmonton Oilers @ Philadelphia Flyers",
+          "market": "h2h",
+          "selection": "Philadelphia Flyers",
+          "outcome": "loss"
+        },
+        {
+          "event": "Edmonton Oilers @ Philadelphia Flyers",
+          "market": "h2h",
+          "selection": "Edmonton Oilers",
+          "outcome": "win"
+        },
+        {
+          "event": "Florida Panthers @ Dallas Stars",
+          "market": "h2h",
+          "selection": "Dallas Stars",
+          "outcome": "win"
+        },
+        {
+          "event": "Florida Panthers @ Dallas Stars",
+          "market": "h2h",
+          "selection": "Florida Panthers",
+          "outcome": "loss"
+        },
+        {
+          "event": "Calgary Flames @ Anaheim Ducks",
+          "market": "h2h",
+          "selection": "Anaheim Ducks",
+          "outcome": "win"
+        },
+        {
+          "event": "Calgary Flames @ Anaheim Ducks",
+          "market": "h2h",
+          "selection": "Calgary Flames",
+          "outcome": "loss"
+        },
+        {
+          "event": "Vancouver Canucks @ Vegas Golden Knights",
+          "market": "h2h",
+          "selection": "Vegas Golden Knights",
+          "outcome": "loss"
+        },
+        {
+          "event": "Vancouver Canucks @ Vegas Golden Knights",
+          "market": "h2h",
+          "selection": "Vancouver Canucks",
+          "outcome": "win"
+        },
+        {
+          "event": "Nashville Predators @ San Jose Sharks",
+          "market": "h2h",
+          "selection": "San Jose Sharks",
+          "outcome": "win"
+        },
+        {
+          "event": "Nashville Predators @ San Jose Sharks",
+          "market": "h2h",
+          "selection": "Nashville Predators",
+          "outcome": "loss"
+        },
+        {
+          "event": "Edmonton Oilers @ Philadelphia Flyers",
+          "market": "h2h",
+          "selection": "Philadelphia Flyers",
+          "outcome": "loss"
+        },
+        {
+          "event": "Edmonton Oilers @ Philadelphia Flyers",
+          "market": "h2h",
+          "selection": "Edmonton Oilers",
+          "outcome": "win"
+        },
+        {
+          "event": "Florida Panthers @ Dallas Stars",
+          "market": "h2h",
+          "selection": "Dallas Stars",
+          "outcome": "win"
+        },
+        {
+          "event": "Florida Panthers @ Dallas Stars",
+          "market": "h2h",
+          "selection": "Florida Panthers",
+          "outcome": "loss"
+        },
+        {
+          "event": "Calgary Flames @ Anaheim Ducks",
+          "market": "h2h",
+          "selection": "Anaheim Ducks",
+          "outcome": "win"
+        },
+        {
+          "event": "Calgary Flames @ Anaheim Ducks",
+          "market": "h2h",
+          "selection": "Calgary Flames",
+          "outcome": "loss"
+        },
+        {
+          "event": "Nashville Predators @ San Jose Sharks",
+          "market": "h2h",
+          "selection": "San Jose Sharks",
+          "outcome": "win"
+        },
+        {
+          "event": "Nashville Predators @ San Jose Sharks",
+          "market": "h2h",
+          "selection": "Nashville Predators",
+          "outcome": "loss"
+        }
+      ],
+      "pending": 178
     }
   },
   "summary": {
-    "verified_picks": 0,
-    "wins": 0,
-    "losses": 0,
+    "verified_picks": 18,
+    "wins": 9,
+    "losses": 9,
     "pushes": 0,
     "roi": null,
-    "hit_rate": null
+    "hit_rate": 0.5
   }
 }
