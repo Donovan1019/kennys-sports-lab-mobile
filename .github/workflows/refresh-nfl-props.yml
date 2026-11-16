@@ -53,6 +53,8 @@ jobs:
           node scripts/test_nfl_prop_archive.cjs
           node scripts/test_nfl_sgp_research_audit.cjs
       - name: Fetch capped NFL player prop odds
+        id: provider_refresh
+        continue-on-error: true
         env:
           THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
           MAX_EVENTS: ${{ inputs.max_events || '16' }}
@@ -64,6 +66,9 @@ jobs:
             echo "Monday game-date priority: $TARGET_DATE"
           fi
           python scripts/fetch_nfl_props.py
+      - name: Report provider credit exhaustion without suppressing archive health
+        if: steps.provider_refresh.outcome == 'failure'
+        run: echo 'NFL_PROP_PROVIDER_BLOCKED — source fetch failed or free API credits exhausted. Stale odds must remain ineligible.'
       - name: Export and archive genuine pregame forecasts immediately after refresh
         shell: bash
         run: |
@@ -89,6 +94,11 @@ jobs:
               d=json.loads(p.read_text())
               print(name,'timestamp',d.get('fetched_at') or d.get('generated_at'),'rows',len(d.get('odds',[])),'status',d.get('status'),'errors',len(d.get('errors',[])))
           PY
+      - name: Enforce provider failure after archive diagnostics
+        if: steps.provider_refresh.outcome == 'failure'
+        run: |
+          echo 'Provider refresh unavailable; audit and archive steps were attempted but no fresh odds are claimed.'
+          exit 1
       - name: Publish verified prop snapshot
         run: |
           git config user.name "github-actions[bot]"
