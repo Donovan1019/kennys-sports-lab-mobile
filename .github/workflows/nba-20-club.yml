@@ -5,6 +5,8 @@ on:
       - 'nba.html'
       - 'nba_20_club.js'
       - '.github/workflows/nba-20-club.yml'
+      - 'scripts/fetch_nba_sgo_props.py'
+      - 'tests/test_nba_sgo_props.py'
   push:
     paths:
       - 'nba.html'
@@ -18,6 +20,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test SportsGameOdds NBA props adapter
+        run: python tests/test_nba_sgo_props.py
       - name: Validate syntax, navigation, and safe odds gates
         run: |
           node --check nba_20_club.js
