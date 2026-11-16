@@ -53,6 +53,31 @@ class TestSportsGameOdds(unittest.TestCase):
         payload["data"][0]["status"]["started"] = False
         self.assertEqual(len(normalize(payload, "basketball_nba", NOW)), 1)
 
+    def test_ncaab_moneyline_and_totals(self):
+        payload = sample()
+        payload["data"][0]["leagueID"] = "NCAAB"
+        rows = normalize(payload, "basketball_ncaab", NOW)
+        self.assertEqual(len(rows), 2)
+        self.assertEqual({r["market"] for r in rows}, {"h2h", "totals"})
+        self.assertEqual({r["sport"] for r in rows}, {"basketball_ncaab"})
+        self.assertEqual(normalize(payload, "basketball_nba", NOW), [])
+
+    def test_spread_and_total_point_and_bookmaker_mapping(self):
+        payload = sample()
+        payload["data"][0]["odds"]["spread-away"] = {
+            "statID": "points", "periodID": "game", "betTypeID": "sp",
+            "sideID": "away", "byBookmaker": {
+                "draftkings": {"odds": "-108", "spread": "+4.5", "available": True, "lastUpdatedAt": NOW.isoformat()},
+                "fanduel": {"odds": "-110", "spread": "+5.5", "available": True, "lastUpdatedAt": NOW.isoformat()}
+            }
+        }
+        rows = normalize(payload, "basketball_nba", NOW)
+        spreads = [r for r in rows if r["market"] == "spreads"]
+        self.assertEqual(len(spreads), 2)
+        self.assertEqual({r["point"] for r in spreads}, {4.5, 5.5})
+        self.assertEqual({r["selection"] for r in spreads}, {"New York Knicks"})
+        self.assertEqual({r["bookmaker"] for r in spreads}, {"draftkings", "fanduel"})
+
     def test_nhl_goals_market(self):
         payload = sample()
         payload["data"][0]["leagueID"] = "NHL"
