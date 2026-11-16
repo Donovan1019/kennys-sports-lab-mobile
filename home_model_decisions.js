@@ -9,7 +9,27 @@ const stamp=Date.parse(feed.generated_at),age=Date.now()-stamp;
 if(feed.status!=='ok'||!Number.isFinite(stamp)||age<0||age>24*3600000){root.querySelector('#kmd-status').textContent='Decision feed outdated or unavailable; no current recommendations.';return;}
 const rows=(feed.decisions||[]).filter(r=>Number.isFinite(Date.parse(r.start_time))&&Date.parse(r.start_time)>Date.now()&&Number.isFinite(r.model_probability)&&r.model_probability>0&&r.model_probability<1);
 root.querySelector('#kmd-status').textContent=rows.length?rows.length+' independent projections · feed '+new Date(stamp).toLocaleString():'No upcoming verified model projections in the published feed.';
-rows.sort((a,b)=>(a.bet_status==='BETTING_READY'?-1:0)-(b.bet_status==='BETTING_READY'?-1:0));
-root.querySelector('#kmd-rows').innerHTML=rows.slice(0,20).map(r=>'<article class="kmd-card"><div><strong>'+esc(r.sport.replace('basketball_','').replace('icehockey_','').toUpperCase())+' · '+esc(r.selection)+'</strong><div class="kmd-muted">'+esc(r.event)+' · '+esc(r.bookmaker)+'</div></div><div><span class="kmd-state">'+esc(status(r.bet_status))+'</span><div>Model '+pct(r.model_probability)+' · Fair '+esc(r.fair_odds??'—')+'</div><div class="kmd-muted">'+(r.bet_status==='BETTING_READY'&&Number.isFinite(r.expected_value)?'EV '+pct(r.expected_value):esc(r.reason||'Price not certified'))+'</div></div></article>').join('');
+const games=new Map();
+for(const r of rows){
+  const key=[r.sport,r.event_id||r.event,r.start_time].join('|');
+  if(!games.has(key))games.set(key,{sport:r.sport,event:r.event,start:r.start_time,rows:[]});
+  games.get(key).rows.push(r);
+}
+const priority=r=>r.bet_status==='BETTING_READY'?0:r.bet_status==='PROVISIONAL'?1:r.bet_status==='NO_VALUE'?2:3;
+const gameList=[...games.values()].sort((a,b)=>Math.min(...a.rows.map(priority))-Math.min(...b.rows.map(priority))||Date.parse(a.start)-Date.parse(b.start));
+root.querySelector('#kmd-status').textContent=gameList.length?gameList.length+' games · '+rows.length+' sportsbook comparisons · feed '+new Date(stamp).toLocaleString():'No upcoming verified model projections in the published feed.';
+root.querySelector('#kmd-rows').innerHTML=gameList.slice(0,20).map(g=>{
+  const teams=new Map();
+  for(const r of g.rows){if(!teams.has(r.selection))teams.set(r.selection,[]);teams.get(r.selection).push(r);}
+  const league=g.sport.replace('basketball_','').replace('icehockey_','').toUpperCase();
+  const teamRows=[...teams.entries()].map(([team,quotes])=>{
+    quotes.sort((a,b)=>String(a.bookmaker).localeCompare(String(b.bookmaker)));
+    const base=quotes[0];
+    const bookPrices=quotes.map(q=>'<span class="kmd-book">'+esc(q.bookmaker==='draftkings'?'DK':q.bookmaker==='fanduel'?'FD':q.bookmaker)+' <b>'+esc(q.offered_odds??'—')+'</b> <small>'+esc(status(q.bet_status))+'</small></span>').join('');
+    return '<div class="kmd-team"><div class="kmd-team-info"><strong>'+esc(team)+'</strong><span>Model '+pct(base.model_probability)+' · Fair '+esc(base.fair_odds??'—')+'</span></div><div class="kmd-books">'+bookPrices+'</div></div>';
+  }).join('');
+  return '<article class="kmd-game"><div class="kmd-game-header"><strong>'+esc(league)+' · '+esc(g.event)+'</strong><span>'+esc(new Date(g.start).toLocaleString([], {month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}))+'</span></div>'+teamRows+'</article>';
+}).join('');
+
 }).catch(()=>{root.querySelector('#kmd-status').textContent='Decision feed unavailable; no picks can be verified.'});
 })();
