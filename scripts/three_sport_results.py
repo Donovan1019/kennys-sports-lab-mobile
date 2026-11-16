@@ -47,10 +47,22 @@ def main():
     folder.mkdir(parents=True,exist_ok=True)
     for sport in LEAGUES:
         path=folder/(sport.lower()+'.json')
-        if path.exists():
-            print(sport,'immutable result already exists; skipping')
-            continue
         result=collect(sport,args.date)
+        if path.exists():
+            prior=json.loads(path.read_text())
+            existing={str(g['event_id']):g for g in prior.get('games',[])}
+            for game in result['games']:
+                key=str(game['event_id'])
+                if key in existing:
+                    old=existing[key]
+                    if (old.get('home_score'),old.get('away_score')) != (game['home_score'],game['away_score']):
+                        raise ValueError('Final score changed for archived event '+key)
+                else:
+                    existing[key]=game
+            result['games']=list(existing.values())
+            if len(result['games'])==len(prior.get('games',[])):
+                print(sport,'no new completed games; archive preserved')
+                continue
         if not result['games']:
             print(sport,'no completed games: no empty result file written')
             continue
