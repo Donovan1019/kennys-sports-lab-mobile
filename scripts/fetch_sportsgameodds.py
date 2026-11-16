@@ -42,14 +42,16 @@ def team_name(event, side):
     return names.get("long") or names.get("medium") or obj.get("teamID")
 
 
-def normalize(payload, sport, now=None):
+def normalize(payload, sport, now=None, diagnostics=None):
     now = now or datetime.now(timezone.utc)
     if not isinstance(payload, dict) or payload.get("success") is not True or not isinstance(payload.get("data"), list):
         raise ValueError("Invalid SportsGameOdds response")
+    counts = {"events_returned": len(payload["data"]), "matching_league": 0, "upcoming_with_teams": 0, "matching_market": 0, "available_book_quotes": 0, "valid_price_quotes": 0, "eligible_after_time_checks": 0}
     rows = []
     for event in payload["data"]:
         if not isinstance(event, dict) or event.get("leagueID") != LEAGUES[sport]:
             continue
+        counts["matching_league"] += 1
         status = event.get("status") or {}
         if status.get("started") or status.get("ended") or status.get("cancelled") or status.get("completed"):
             continue
@@ -58,6 +60,7 @@ def normalize(payload, sport, now=None):
         kickoff = status.get("startsAt")
         if not all((event_id, away, home, kickoff)):
             continue
+        counts["upcoming_with_teams"] += 1
         for odd in (event.get("odds") or {}).values():
             if not isinstance(odd, dict) or odd.get("periodID") != "game" or odd.get("statID") != ("goals" if sport == "icehockey_nhl" else "points"):
                 continue
@@ -70,10 +73,12 @@ def normalize(payload, sport, now=None):
                 market, selection, point_field = "totals", side.title(), "overUnder"
             else:
                 continue
+            counts["matching_market"] += 1
             for book in BOOKS:
                 quote = (odd.get("byBookmaker") or {}).get(book)
                 if not isinstance(quote, dict) or quote.get("available") is not True:
                     continue
+                counts["available_book_quotes"] += 1
                 price = american(quote.get("odds"))
                 if price is None:
                     continue
@@ -85,6 +90,7 @@ def normalize(payload, sport, now=None):
                         continue
                     if not -10000 < point < 10000:
                         continue
+                counts["valid_price_quotes"] += 1
                 rows.append({
                     "event": away + " @ " + home, "event_id": str(event_id),
                     "commence_time": kickoff, "sport": sport, "market": market,
@@ -93,6 +99,9 @@ def normalize(payload, sport, now=None):
                     "updated_at": quote.get("lastUpdatedAt"),
                 })
     rows = fresh_rows(upcoming_rows(rows, now), now)
+    counts["eligible_after_time_checks"] = len(rows)
+    if diagnostics is not None:
+        diagnostics.update(counts)
     return rows
 
 
@@ -124,7 +133,9 @@ def main():
         print("SportsGameOdds request failed:", type(error).__name__)
         return 1
     try:
-        rows = [row for row in normalize(payload, sport, now) if row["market"] in requested]
+        diagnostics = {}
+        rows = [row for row in normalize(payload, sport, now, diagnostics) if row["market"] in requested]
+        print("SportsGameOdds diagnostic counts:", json.dumps(diagnostics, sort_keys=True), "requested_market_rows:", len(rows))
     except (ValueError, TypeError, KeyError) as error:
         print("SportsGameOdds normalization rejected:", type(error).__name__)
         return 1

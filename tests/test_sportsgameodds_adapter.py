@@ -63,6 +63,18 @@ class TestSportsGameOdds(unittest.TestCase):
         self.assertEqual({r["market"] for r in rows}, {"h2h", "totals"})
         self.assertEqual(normalize(payload, "basketball_nba", NOW), [])
 
+    def test_diagnostics_are_counts_only(self):
+        counts = {}
+        rows = normalize(sample(), "basketball_nba", NOW, counts)
+        self.assertEqual(counts["events_returned"], 1)
+        self.assertEqual(counts["matching_league"], 1)
+        self.assertEqual(counts["upcoming_with_teams"], 1)
+        self.assertEqual(counts["matching_market"], 2)
+        self.assertEqual(counts["available_book_quotes"], 2)
+        self.assertEqual(counts["valid_price_quotes"], 2)
+        self.assertEqual(counts["eligible_after_time_checks"], len(rows))
+        self.assertTrue(all(isinstance(value, int) for value in counts.values()))
+
     def test_wrong_league_rejected(self):
         self.assertEqual(normalize(sample(), "icehockey_nhl", NOW), [])
 
