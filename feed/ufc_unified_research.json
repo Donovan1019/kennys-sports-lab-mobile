@@ -8,10 +8,10 @@
     "scheduled_rounds_verified": 0,
     "fighter_status_verified": 0,
     "odds_verified": 0,
-    "paired_historical_round_rows": 12,
+    "paired_historical_round_rows": 13,
     "paired_elo_available": 10,
     "count_simulations_available": 0,
-    "historical_per_round_available": 25,
+    "historical_per_round_available": 26,
     "point_in_time_calibration_certified": false,
     "model_ev_verified": 0,
     "bet_eligible": false
@@ -26,11 +26,11 @@
         "verified_strength_of_schedule": false
       },
       "sparse_data_probability": {
-        "red": 0.4904,
-        "blue": 0.5096,
+        "red": 0.486,
+        "blue": 0.514,
         "red_uncertainty_interval": [
-          0.1307,
-          0.8501
+          0.1375,
+          0.8345
         ],
         "status": "UNCALIBRATED_RESEARCH"
       },
@@ -39,30 +39,30 @@
           "status": "UNAVAILABLE",
           "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
           "historical_per_round": {
-            "sig_landed": 14.41,
-            "sig_attempted": 31.29,
-            "td_landed": 0.56,
-            "td_attempted": 1.56
+            "sig_landed": 14.03,
+            "sig_attempted": 30.66,
+            "td_landed": 0.54,
+            "td_attempted": 1.51
           },
           "duration_scenarios": {
             "3": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 36.33,
-                "sig_attempted": 78.22,
-                "takedowns_landed": 1.5,
-                "takedowns_attempted": 4.0
+                "sig_landed": 34.94,
+                "sig_attempted": 75.97,
+                "takedowns_landed": 1.37,
+                "takedowns_attempted": 3.75
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  31.41,
-                  39.97
+                  30.4,
+                  39.0
                 ],
                 "takedowns_landed_mean_range": [
-                  1.31,
-                  1.61
+                  1.17,
+                  1.51
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -70,21 +70,21 @@
             "5": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 51.01,
-                "sig_attempted": 109.89,
-                "takedowns_landed": 1.99,
-                "takedowns_attempted": 5.47
+                "sig_landed": 47.64,
+                "sig_attempted": 103.8,
+                "takedowns_landed": 1.9,
+                "takedowns_attempted": 5.18
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  40.06,
-                  62.0
+                  37.63,
+                  60.72
                 ],
                 "takedowns_landed_mean_range": [
-                  1.6,
-                  2.45
+                  1.49,
+                  2.37
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -96,30 +96,30 @@
           "status": "UNAVAILABLE",
           "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
           "historical_per_round": {
-            "sig_landed": 14.25,
+            "sig_landed": 15.0,
             "sig_attempted": 25.0,
-            "td_landed": 0.75,
-            "td_attempted": 1.0
+            "td_landed": 0.8,
+            "td_attempted": 1.2
           },
           "duration_scenarios": {
             "3": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 36.04,
-                "sig_attempted": 62.85,
-                "takedowns_landed": 1.81,
-                "takedowns_attempted": 2.41
+                "sig_landed": 37.28,
+                "sig_attempted": 61.95,
+                "takedowns_landed": 2.02,
+                "takedowns_attempted": 2.97
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  31.55,
-                  39.77
+                  32.9,
+                  41.45
                 ],
                 "takedowns_landed_mean_range": [
-                  1.65,
-                  2.17
+                  1.74,
+                  2.23
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -127,21 +127,21 @@
             "5": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 50.51,
-                "sig_attempted": 88.73,
-                "takedowns_landed": 2.66,
-                "takedowns_attempted": 3.52
+                "sig_landed": 52.55,
+                "sig_attempted": 87.28,
+                "takedowns_landed": 2.74,
+                "takedowns_attempted": 4.15
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  38.79,
-                  60.04
+                  41.5,
+                  64.39
                 ],
                 "takedowns_landed_mean_range": [
-                  2.04,
-                  3.11
+                  2.25,
+                  3.34
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -154,7 +154,7 @@
         "scheduled_rounds_verified": false,
         "fighter_status_verified": false,
         "odds_verified": false,
-        "paired_historical_round_rows": 4,
+        "paired_historical_round_rows": 5,
         "opponent_quality_verified": false
       },
       "calibration": {
@@ -179,11 +179,11 @@
         "verified_strength_of_schedule": false
       },
       "sparse_data_probability": {
-        "red": 0.4977,
-        "blue": 0.5023,
+        "red": 0.4979,
+        "blue": 0.5021,
         "red_uncertainty_interval": [
-          0.2737,
-          0.7217
+          0.285,
+          0.7107
         ],
         "status": "UNCALIBRATED_RESEARCH"
       },
@@ -192,30 +192,30 @@
           "status": "UNAVAILABLE",
           "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
           "historical_per_round": {
-            "sig_landed": 25.34,
-            "sig_attempted": 48.64,
-            "td_landed": 0.57,
-            "td_attempted": 1.64
+            "sig_landed": 24.15,
+            "sig_attempted": 46.55,
+            "td_landed": 0.62,
+            "td_attempted": 1.79
           },
           "duration_scenarios": {
             "3": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 63.36,
-                "sig_attempted": 121.22,
-                "takedowns_landed": 1.5,
-                "takedowns_attempted": 4.16
+                "sig_landed": 59.67,
+                "sig_attempted": 114.53,
+                "takedowns_landed": 1.48,
+                "takedowns_attempted": 4.39
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  55.31,
-                  70.5
+                  52.03,
+                  67.36
                 ],
                 "takedowns_landed_mean_range": [
-                  1.22,
-                  1.66
+                  1.28,
+                  1.71
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -223,21 +223,21 @@
             "5": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 88.87,
-                "sig_attempted": 170.37,
-                "takedowns_landed": 2.0,
-                "takedowns_attempted": 5.74
+                "sig_landed": 83.31,
+                "sig_attempted": 160.07,
+                "takedowns_landed": 2.02,
+                "takedowns_attempted": 6.07
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  68.9,
-                  109.34
+                  65.48,
+                  102.1
                 ],
                 "takedowns_landed_mean_range": [
-                  1.57,
-                  2.47
+                  1.66,
+                  2.65
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -249,30 +249,30 @@
           "status": "UNAVAILABLE",
           "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
           "historical_per_round": {
-            "sig_landed": 19.25,
-            "sig_attempted": 40.96,
-            "td_landed": 0.46,
-            "td_attempted": 1.29
+            "sig_landed": 19.11,
+            "sig_attempted": 41.11,
+            "td_landed": 0.41,
+            "td_attempted": 1.15
           },
           "duration_scenarios": {
             "3": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 47.09,
-                "sig_attempted": 99.67,
-                "takedowns_landed": 1.16,
-                "takedowns_attempted": 3.2
+                "sig_landed": 46.86,
+                "sig_attempted": 100.58,
+                "takedowns_landed": 0.92,
+                "takedowns_attempted": 2.78
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  41.66,
-                  53.96
+                  41.53,
+                  52.44
                 ],
                 "takedowns_landed_mean_range": [
-                  1.02,
-                  1.29
+                  0.91,
+                  1.14
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -280,21 +280,21 @@
             "5": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 69.25,
-                "sig_attempted": 146.52,
-                "takedowns_landed": 1.63,
-                "takedowns_attempted": 4.58
+                "sig_landed": 64.29,
+                "sig_attempted": 137.79,
+                "takedowns_landed": 1.36,
+                "takedowns_attempted": 3.92
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  53.2,
-                  83.23
+                  51.19,
+                  82.03
                 ],
                 "takedowns_landed_mean_range": [
-                  1.28,
-                  2.05
+                  1.13,
+                  1.78
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -307,7 +307,7 @@
         "scheduled_rounds_verified": false,
         "fighter_status_verified": false,
         "odds_verified": false,
-        "paired_historical_round_rows": 24,
+        "paired_historical_round_rows": 27,
         "opponent_quality_verified": false
       },
       "calibration": {
@@ -332,43 +332,43 @@
         "verified_strength_of_schedule": false
       },
       "sparse_data_probability": {
-        "red": 0.5,
-        "blue": 0.5,
+        "red": 0.5045,
+        "blue": 0.4955,
         "red_uncertainty_interval": [
-          0.01,
-          0.99
+          0.0567,
+          0.9522
         ],
-        "status": "NEUTRAL_PRIOR"
+        "status": "UNCALIBRATED_RESEARCH"
       },
       "count_simulation": {
         "Evan Elder": {
           "status": "UNAVAILABLE",
           "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
           "historical_per_round": {
-            "sig_landed": 25.21,
-            "sig_attempted": 49.5,
-            "td_landed": 0.14,
-            "td_attempted": 0.93
+            "sig_landed": 26.94,
+            "sig_attempted": 50.71,
+            "td_landed": 0.47,
+            "td_attempted": 1.35
           },
           "duration_scenarios": {
             "3": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 63.94,
-                "sig_attempted": 124.86,
-                "takedowns_landed": 0.37,
-                "takedowns_attempted": 2.39
+                "sig_landed": 66.7,
+                "sig_attempted": 125.47,
+                "takedowns_landed": 1.17,
+                "takedowns_attempted": 3.32
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  54.86,
-                  69.93
+                  58.88,
+                  74.56
                 ],
                 "takedowns_landed_mean_range": [
-                  0.32,
-                  0.43
+                  1.0,
+                  1.32
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -376,21 +376,21 @@
             "5": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 88.18,
-                "sig_attempted": 172.82,
-                "takedowns_landed": 0.5,
-                "takedowns_attempted": 3.24
+                "sig_landed": 94.52,
+                "sig_attempted": 177.71,
+                "takedowns_landed": 1.73,
+                "takedowns_attempted": 4.88
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  69.26,
-                  106.48
+                  73.92,
+                  114.68
                 ],
                 "takedowns_landed_mean_range": [
-                  0.37,
-                  0.62
+                  1.32,
+                  1.94
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -400,14 +400,67 @@
         },
         "Samuel Sanches": {
           "status": "UNAVAILABLE",
-          "reason": "Verified scheduled rounds or historical count rates missing"
+          "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
+          "historical_per_round": {
+            "sig_landed": 24.33,
+            "sig_attempted": 58.0,
+            "td_landed": 0.0,
+            "td_attempted": 0.0
+          },
+          "duration_scenarios": {
+            "3": {
+              "status": "HYPOTHETICAL_RESEARCH_ONLY",
+              "count_means": {
+                "sig_landed": 61.98,
+                "sig_attempted": 146.46,
+                "takedowns_landed": 0.0,
+                "takedowns_attempted": 0.0
+              },
+              "hazard_sensitivity": {
+                "low_finish_hazard": 0.08,
+                "high_finish_hazard": 0.3,
+                "sig_landed_mean_range": [
+                  54.25,
+                  67.35
+                ],
+                "takedowns_landed_mean_range": [
+                  0.0,
+                  0.0
+                ]
+              },
+              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
+            },
+            "5": {
+              "status": "HYPOTHETICAL_RESEARCH_ONLY",
+              "count_means": {
+                "sig_landed": 85.84,
+                "sig_attempted": 204.19,
+                "takedowns_landed": 0.0,
+                "takedowns_attempted": 0.0
+              },
+              "hazard_sensitivity": {
+                "low_finish_hazard": 0.08,
+                "high_finish_hazard": 0.3,
+                "sig_landed_mean_range": [
+                  66.9,
+                  104.77
+                ],
+                "takedowns_landed_mean_range": [
+                  0.0,
+                  0.0
+                ]
+              },
+              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
+            }
+          },
+          "scenario_warning": "Unverified fight length; hypothetical 3/5-round counts are not predictions or bet-eligible"
         }
       },
       "input_evidence": {
         "scheduled_rounds_verified": false,
         "fighter_status_verified": false,
         "odds_verified": false,
-        "paired_historical_round_rows": 0,
+        "paired_historical_round_rows": 3,
         "opponent_quality_verified": false
       },
       "calibration": {
@@ -432,11 +485,11 @@
         "verified_strength_of_schedule": false
       },
       "sparse_data_probability": {
-        "red": 0.5059,
-        "blue": 0.4941,
+        "red": 0.4753,
+        "blue": 0.5247,
         "red_uncertainty_interval": [
-          0.1211,
-          0.8906
+          0.1268,
+          0.8238
         ],
         "status": "UNCALIBRATED_RESEARCH"
       },
@@ -445,30 +498,30 @@
           "status": "UNAVAILABLE",
           "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
           "historical_per_round": {
-            "sig_landed": 13.14,
-            "sig_attempted": 41.21,
-            "td_landed": 0.61,
-            "td_attempted": 1.43
+            "sig_landed": 13.42,
+            "sig_attempted": 42.39,
+            "td_landed": 0.55,
+            "td_attempted": 1.35
           },
           "duration_scenarios": {
             "3": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 32.64,
-                "sig_attempted": 101.81,
-                "takedowns_landed": 1.47,
-                "takedowns_attempted": 3.41
+                "sig_landed": 33.16,
+                "sig_attempted": 104.71,
+                "takedowns_landed": 1.39,
+                "takedowns_attempted": 3.31
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  28.92,
-                  36.16
+                  29.34,
+                  37.12
                 ],
                 "takedowns_landed_mean_range": [
-                  1.34,
-                  1.69
+                  1.2,
+                  1.46
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -476,21 +529,21 @@
             "5": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 45.96,
-                "sig_attempted": 143.5,
-                "takedowns_landed": 2.1,
-                "takedowns_attempted": 4.9
+                "sig_landed": 46.62,
+                "sig_attempted": 146.15,
+                "takedowns_landed": 1.84,
+                "takedowns_attempted": 4.6
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  35.64,
-                  56.7
+                  36.54,
+                  57.38
                 ],
                 "takedowns_landed_mean_range": [
-                  1.66,
-                  2.68
+                  1.42,
+                  2.37
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -502,30 +555,30 @@
           "status": "UNAVAILABLE",
           "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
           "historical_per_round": {
-            "sig_landed": 6.5,
-            "sig_attempted": 12.5,
-            "td_landed": 2.5,
-            "td_attempted": 4.0
+            "sig_landed": 24.2,
+            "sig_attempted": 53.0,
+            "td_landed": 1.0,
+            "td_attempted": 1.8
           },
           "duration_scenarios": {
             "3": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 16.27,
-                "sig_attempted": 31.19,
-                "takedowns_landed": 6.17,
-                "takedowns_attempted": 9.84
+                "sig_landed": 60.2,
+                "sig_attempted": 130.78,
+                "takedowns_landed": 2.44,
+                "takedowns_attempted": 4.43
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  14.1,
-                  17.99
+                  52.61,
+                  66.99
                 ],
                 "takedowns_landed_mean_range": [
-                  5.4,
-                  6.9
+                  2.18,
+                  2.79
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -533,21 +586,21 @@
             "5": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 22.72,
-                "sig_attempted": 43.42,
-                "takedowns_landed": 8.56,
-                "takedowns_attempted": 13.69
+                "sig_landed": 85.61,
+                "sig_attempted": 186.76,
+                "takedowns_landed": 3.55,
+                "takedowns_attempted": 6.41
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  17.76,
-                  27.81
+                  66.45,
+                  102.27
                 ],
                 "takedowns_landed_mean_range": [
-                  6.9,
-                  10.52
+                  2.77,
+                  4.34
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -560,7 +613,7 @@
         "scheduled_rounds_verified": false,
         "fighter_status_verified": false,
         "odds_verified": false,
-        "paired_historical_round_rows": 2,
+        "paired_historical_round_rows": 5,
         "opponent_quality_verified": false
       },
       "calibration": {
@@ -585,11 +638,11 @@
         "verified_strength_of_schedule": false
       },
       "sparse_data_probability": {
-        "red": 0.5182,
-        "blue": 0.4818,
+        "red": 0.526,
+        "blue": 0.474,
         "red_uncertainty_interval": [
-          0.2442,
-          0.7922
+          0.2696,
+          0.7825
         ],
         "status": "UNCALIBRATED_RESEARCH"
       },
@@ -598,30 +651,30 @@
           "status": "UNAVAILABLE",
           "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
           "historical_per_round": {
-            "sig_landed": 19.59,
-            "sig_attempted": 42.58,
-            "td_landed": 0.08,
-            "td_attempted": 0.21
+            "sig_landed": 19.71,
+            "sig_attempted": 42.49,
+            "td_landed": 0.07,
+            "td_attempted": 0.2
           },
           "duration_scenarios": {
             "3": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 49.57,
-                "sig_attempted": 106.9,
-                "takedowns_landed": 0.18,
-                "takedowns_attempted": 0.55
+                "sig_landed": 49.01,
+                "sig_attempted": 105.29,
+                "takedowns_landed": 0.17,
+                "takedowns_attempted": 0.47
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  43.08,
-                  54.26
+                  43.37,
+                  54.46
                 ],
                 "takedowns_landed_mean_range": [
-                  0.16,
-                  0.22
+                  0.15,
+                  0.21
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -629,21 +682,21 @@
             "5": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 67.98,
-                "sig_attempted": 146.52,
-                "takedowns_landed": 0.26,
+                "sig_landed": 70.14,
+                "sig_attempted": 150.28,
+                "takedowns_landed": 0.25,
                 "takedowns_attempted": 0.7
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  53.74,
-                  83.06
+                  54.39,
+                  85.35
                 ],
                 "takedowns_landed_mean_range": [
-                  0.18,
-                  0.3
+                  0.2,
+                  0.32
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -655,30 +708,30 @@
           "status": "UNAVAILABLE",
           "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
           "historical_per_round": {
-            "sig_landed": 10.79,
-            "sig_attempted": 20.0,
-            "td_landed": 0.57,
-            "td_attempted": 1.29
+            "sig_landed": 9.53,
+            "sig_attempted": 18.82,
+            "td_landed": 0.59,
+            "td_attempted": 1.47
           },
           "duration_scenarios": {
             "3": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 27.09,
-                "sig_attempted": 49.75,
-                "takedowns_landed": 1.42,
-                "takedowns_attempted": 3.14
+                "sig_landed": 23.83,
+                "sig_attempted": 46.94,
+                "takedowns_landed": 1.52,
+                "takedowns_attempted": 3.65
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  23.52,
-                  30.27
+                  21.11,
+                  26.55
                 ],
                 "takedowns_landed_mean_range": [
-                  1.26,
-                  1.6
+                  1.25,
+                  1.64
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -686,21 +739,21 @@
             "5": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 37.94,
-                "sig_attempted": 70.29,
-                "takedowns_landed": 2.08,
-                "takedowns_attempted": 4.45
+                "sig_landed": 32.37,
+                "sig_attempted": 63.64,
+                "takedowns_landed": 2.0,
+                "takedowns_attempted": 5.0
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  31.07,
-                  45.35
+                  26.79,
+                  40.4
                 ],
                 "takedowns_landed_mean_range": [
-                  1.62,
-                  2.45
+                  1.69,
+                  2.46
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -713,7 +766,7 @@
         "scheduled_rounds_verified": false,
         "fighter_status_verified": false,
         "odds_verified": false,
-        "paired_historical_round_rows": 14,
+        "paired_historical_round_rows": 17,
         "opponent_quality_verified": false
       },
       "calibration": {
@@ -738,11 +791,11 @@
         "verified_strength_of_schedule": false
       },
       "sparse_data_probability": {
-        "red": 0.4713,
-        "blue": 0.5287,
+        "red": 0.4702,
+        "blue": 0.5298,
         "red_uncertainty_interval": [
-          0.2093,
-          0.7333
+          0.2241,
+          0.7163
         ],
         "status": "UNCALIBRATED_RESEARCH"
       },
@@ -751,30 +804,30 @@
           "status": "UNAVAILABLE",
           "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
           "historical_per_round": {
-            "sig_landed": 18.07,
-            "sig_attempted": 44.05,
+            "sig_landed": 17.98,
+            "sig_attempted": 43.93,
             "td_landed": 0.16,
-            "td_attempted": 0.96
+            "td_attempted": 0.91
           },
           "duration_scenarios": {
             "3": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 44.66,
-                "sig_attempted": 108.23,
+                "sig_landed": 45.4,
+                "sig_attempted": 110.21,
                 "takedowns_landed": 0.39,
-                "takedowns_attempted": 2.34
+                "takedowns_attempted": 2.3
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  38.77,
-                  49.95
+                  39.59,
+                  50.07
                 ],
                 "takedowns_landed_mean_range": [
-                  0.38,
-                  0.41
+                  0.35,
+                  0.42
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -782,21 +835,21 @@
             "5": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 62.86,
-                "sig_attempted": 152.85,
-                "takedowns_landed": 0.58,
-                "takedowns_attempted": 3.38
+                "sig_landed": 60.79,
+                "sig_attempted": 147.82,
+                "takedowns_landed": 0.55,
+                "takedowns_attempted": 3.1
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  49.22,
-                  76.75
+                  51.07,
+                  76.8
                 ],
                 "takedowns_landed_mean_range": [
                   0.4,
-                  0.71
+                  0.63
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -808,30 +861,30 @@
           "status": "UNAVAILABLE",
           "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
           "historical_per_round": {
-            "sig_landed": 20.06,
-            "sig_attempted": 43.44,
-            "td_landed": 0.81,
+            "sig_landed": 20.11,
+            "sig_attempted": 43.0,
+            "td_landed": 0.74,
             "td_attempted": 2.0
           },
           "duration_scenarios": {
             "3": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 50.28,
-                "sig_attempted": 108.06,
-                "takedowns_landed": 1.99,
-                "takedowns_attempted": 4.9
+                "sig_landed": 50.75,
+                "sig_attempted": 108.13,
+                "takedowns_landed": 1.88,
+                "takedowns_attempted": 5.0
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
                   44.42,
-                  56.06
+                  56.23
                 ],
                 "takedowns_landed_mean_range": [
-                  1.8,
-                  2.26
+                  1.61,
+                  2.03
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -839,21 +892,21 @@
             "5": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 70.5,
-                "sig_attempted": 151.89,
-                "takedowns_landed": 2.86,
-                "takedowns_attempted": 7.07
+                "sig_landed": 69.5,
+                "sig_attempted": 147.49,
+                "takedowns_landed": 2.51,
+                "takedowns_attempted": 6.75
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  56.91,
-                  87.15
+                  55.36,
+                  85.17
                 ],
                 "takedowns_landed_mean_range": [
-                  2.33,
-                  3.41
+                  2.08,
+                  3.14
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -866,7 +919,7 @@
         "scheduled_rounds_verified": false,
         "fighter_status_verified": false,
         "odds_verified": false,
-        "paired_historical_round_rows": 16,
+        "paired_historical_round_rows": 19,
         "opponent_quality_verified": false
       },
       "calibration": {
@@ -891,11 +944,11 @@
         "verified_strength_of_schedule": false
       },
       "sparse_data_probability": {
-        "red": 0.4965,
-        "blue": 0.5035,
+        "red": 0.4968,
+        "blue": 0.5032,
         "red_uncertainty_interval": [
-          0.2345,
-          0.7585
+          0.2404,
+          0.7533
         ],
         "status": "UNCALIBRATED_RESEARCH"
       },
@@ -904,30 +957,30 @@
           "status": "UNAVAILABLE",
           "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
           "historical_per_round": {
-            "sig_landed": 12.71,
-            "sig_attempted": 30.16,
+            "sig_landed": 12.74,
+            "sig_attempted": 30.12,
             "td_landed": 0.43,
-            "td_attempted": 0.96
+            "td_attempted": 0.95
           },
           "duration_scenarios": {
             "3": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 31.53,
-                "sig_attempted": 74.59,
-                "takedowns_landed": 1.05,
-                "takedowns_attempted": 2.35
+                "sig_landed": 31.33,
+                "sig_attempted": 73.91,
+                "takedowns_landed": 1.08,
+                "takedowns_attempted": 2.31
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  27.9,
-                  35.29
+                  27.44,
+                  35.5
                 ],
                 "takedowns_landed_mean_range": [
-                  0.95,
-                  1.21
+                  0.92,
+                  1.19
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -935,21 +988,21 @@
             "5": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 45.65,
-                "sig_attempted": 107.78,
-                "takedowns_landed": 1.53,
-                "takedowns_attempted": 3.43
+                "sig_landed": 44.67,
+                "sig_attempted": 104.98,
+                "takedowns_landed": 1.48,
+                "takedowns_attempted": 3.26
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  36.49,
-                  53.98
+                  33.71,
+                  54.12
                 ],
                 "takedowns_landed_mean_range": [
-                  1.28,
-                  1.8
+                  1.14,
+                  1.79
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -961,30 +1014,30 @@
           "status": "UNAVAILABLE",
           "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
           "historical_per_round": {
-            "sig_landed": 17.12,
-            "sig_attempted": 30.69,
-            "td_landed": 0.44,
-            "td_attempted": 0.94
+            "sig_landed": 17.24,
+            "sig_attempted": 31.47,
+            "td_landed": 0.41,
+            "td_attempted": 0.88
           },
           "duration_scenarios": {
             "3": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 42.4,
-                "sig_attempted": 75.96,
-                "takedowns_landed": 1.17,
-                "takedowns_attempted": 2.39
+                "sig_landed": 42.56,
+                "sig_attempted": 77.42,
+                "takedowns_landed": 0.97,
+                "takedowns_attempted": 2.1
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  37.26,
-                  47.0
+                  37.23,
+                  47.18
                 ],
                 "takedowns_landed_mean_range": [
-                  0.99,
-                  1.2
+                  0.88,
+                  1.16
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -992,21 +1045,21 @@
             "5": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 60.08,
-                "sig_attempted": 107.28,
-                "takedowns_landed": 1.53,
-                "takedowns_attempted": 3.24
+                "sig_landed": 60.53,
+                "sig_attempted": 110.19,
+                "takedowns_landed": 1.43,
+                "takedowns_attempted": 3.08
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  47.04,
-                  73.29
+                  46.97,
+                  72.54
                 ],
                 "takedowns_landed_mean_range": [
-                  1.18,
-                  1.84
+                  1.19,
+                  1.77
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -1019,7 +1072,7 @@
         "scheduled_rounds_verified": false,
         "fighter_status_verified": false,
         "odds_verified": false,
-        "paired_historical_round_rows": 16,
+        "paired_historical_round_rows": 17,
         "opponent_quality_verified": false
       },
       "calibration": {
@@ -1044,11 +1097,11 @@
         "verified_strength_of_schedule": false
       },
       "sparse_data_probability": {
-        "red": 0.4996,
-        "blue": 0.5004,
+        "red": 0.5027,
+        "blue": 0.4973,
         "red_uncertainty_interval": [
-          0.1616,
-          0.8376
+          0.1745,
+          0.8309
         ],
         "status": "UNCALIBRATED_RESEARCH"
       },
@@ -1057,30 +1110,30 @@
           "status": "UNAVAILABLE",
           "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
           "historical_per_round": {
-            "sig_landed": 16.38,
-            "sig_attempted": 27.31,
-            "td_landed": 0.08,
-            "td_attempted": 0.23
+            "sig_landed": 17.21,
+            "sig_attempted": 28.71,
+            "td_landed": 0.14,
+            "td_attempted": 0.29
           },
           "duration_scenarios": {
             "3": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 40.8,
-                "sig_attempted": 67.59,
-                "takedowns_landed": 0.19,
-                "takedowns_attempted": 0.58
+                "sig_landed": 42.75,
+                "sig_attempted": 71.08,
+                "takedowns_landed": 0.35,
+                "takedowns_attempted": 0.73
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  36.27,
-                  45.72
+                  37.51,
+                  47.43
                 ],
                 "takedowns_landed_mean_range": [
-                  0.19,
-                  0.21
+                  0.33,
+                  0.37
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -1088,21 +1141,21 @@
             "5": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 57.2,
-                "sig_attempted": 95.04,
-                "takedowns_landed": 0.27,
-                "takedowns_attempted": 0.81
+                "sig_landed": 58.94,
+                "sig_attempted": 98.55,
+                "takedowns_landed": 0.48,
+                "takedowns_attempted": 0.95
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  45.93,
-                  69.93
+                  48.0,
+                  73.15
                 ],
                 "takedowns_landed_mean_range": [
-                  0.21,
-                  0.33
+                  0.37,
+                  0.62
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -1114,30 +1167,30 @@
           "status": "UNAVAILABLE",
           "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
           "historical_per_round": {
-            "sig_landed": 11.0,
-            "sig_attempted": 25.83,
-            "td_landed": 0.5,
-            "td_attempted": 0.5
+            "sig_landed": 11.71,
+            "sig_attempted": 28.14,
+            "td_landed": 0.43,
+            "td_attempted": 0.43
           },
           "duration_scenarios": {
             "3": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 28.01,
-                "sig_attempted": 64.76,
-                "takedowns_landed": 1.24,
-                "takedowns_attempted": 1.24
+                "sig_landed": 28.79,
+                "sig_attempted": 68.97,
+                "takedowns_landed": 1.12,
+                "takedowns_attempted": 1.12
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  24.4,
-                  30.65
+                  25.59,
+                  32.42
                 ],
                 "takedowns_landed_mean_range": [
-                  1.09,
-                  1.41
+                  0.91,
+                  1.16
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -1145,21 +1198,21 @@
             "5": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 37.73,
-                "sig_attempted": 88.2,
-                "takedowns_landed": 1.69,
-                "takedowns_attempted": 1.69
+                "sig_landed": 42.03,
+                "sig_attempted": 100.42,
+                "takedowns_landed": 1.46,
+                "takedowns_attempted": 1.46
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  30.03,
-                  46.74
+                  32.0,
+                  49.42
                 ],
                 "takedowns_landed_mean_range": [
-                  1.36,
-                  2.13
+                  1.19,
+                  1.78
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -1172,7 +1225,7 @@
         "scheduled_rounds_verified": false,
         "fighter_status_verified": false,
         "odds_verified": false,
-        "paired_historical_round_rows": 6,
+        "paired_historical_round_rows": 7,
         "opponent_quality_verified": false
       },
       "calibration": {
@@ -1197,11 +1250,11 @@
         "verified_strength_of_schedule": false
       },
       "sparse_data_probability": {
-        "red": 0.5034,
-        "blue": 0.4966,
+        "red": 0.4933,
+        "blue": 0.5067,
         "red_uncertainty_interval": [
-          0.1753,
-          0.8316
+          0.2059,
+          0.7806
         ],
         "status": "UNCALIBRATED_RESEARCH"
       },
@@ -1210,30 +1263,30 @@
           "status": "UNAVAILABLE",
           "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
           "historical_per_round": {
-            "sig_landed": 44.14,
-            "sig_attempted": 69.14,
-            "td_landed": 0.43,
-            "td_attempted": 0.86
+            "sig_landed": 37.92,
+            "sig_attempted": 63.92,
+            "td_landed": 0.5,
+            "td_attempted": 3.0
           },
           "duration_scenarios": {
             "3": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 109.84,
-                "sig_attempted": 171.41,
-                "takedowns_landed": 1.08,
-                "takedowns_attempted": 2.16
+                "sig_landed": 95.39,
+                "sig_attempted": 159.99,
+                "takedowns_landed": 1.2,
+                "takedowns_attempted": 7.38
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  96.56,
-                  121.29
+                  82.55,
+                  104.97
                 ],
                 "takedowns_landed_mean_range": [
-                  0.99,
-                  1.17
+                  1.08,
+                  1.32
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -1241,21 +1294,21 @@
             "5": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 151.92,
-                "sig_attempted": 237.29,
-                "takedowns_landed": 1.51,
-                "takedowns_attempted": 2.95
+                "sig_landed": 134.08,
+                "sig_attempted": 225.58,
+                "takedowns_landed": 1.74,
+                "takedowns_attempted": 10.55
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  122.71,
-                  189.29
+                  104.27,
+                  162.58
                 ],
                 "takedowns_landed_mean_range": [
-                  1.21,
-                  1.83
+                  1.38,
+                  2.2
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -1267,30 +1320,30 @@
           "status": "UNAVAILABLE",
           "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
           "historical_per_round": {
-            "sig_landed": 25.21,
-            "sig_attempted": 40.85,
-            "td_landed": 0.21,
-            "td_attempted": 0.87
+            "sig_landed": 27.73,
+            "sig_attempted": 44.0,
+            "td_landed": 0.18,
+            "td_attempted": 0.77
           },
           "duration_scenarios": {
             "3": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 62.71,
-                "sig_attempted": 101.12,
-                "takedowns_landed": 0.54,
-                "takedowns_attempted": 2.09
+                "sig_landed": 70.09,
+                "sig_attempted": 110.65,
+                "takedowns_landed": 0.42,
+                "takedowns_attempted": 1.98
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  52.43,
-                  69.4
+                  61.04,
+                  76.07
                 ],
                 "takedowns_landed_mean_range": [
-                  0.44,
-                  0.56
+                  0.39,
+                  0.5
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -1298,21 +1351,21 @@
             "5": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 86.8,
-                "sig_attempted": 140.66,
-                "takedowns_landed": 0.71,
-                "takedowns_attempted": 2.95
+                "sig_landed": 98.7,
+                "sig_attempted": 156.07,
+                "takedowns_landed": 0.66,
+                "takedowns_attempted": 2.67
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  69.75,
-                  108.82
+                  78.02,
+                  117.41
                 ],
                 "takedowns_landed_mean_range": [
-                  0.59,
-                  0.83
+                  0.49,
+                  0.8
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -1325,7 +1378,7 @@
         "scheduled_rounds_verified": false,
         "fighter_status_verified": false,
         "odds_verified": false,
-        "paired_historical_round_rows": 7,
+        "paired_historical_round_rows": 12,
         "opponent_quality_verified": false
       },
       "calibration": {
@@ -1350,11 +1403,11 @@
         "verified_strength_of_schedule": false
       },
       "sparse_data_probability": {
-        "red": 0.5332,
-        "blue": 0.4668,
+        "red": 0.5516,
+        "blue": 0.4484,
         "red_uncertainty_interval": [
-          0.205,
-          0.8614
+          0.2571,
+          0.8462
         ],
         "status": "UNCALIBRATED_RESEARCH"
       },
@@ -1363,30 +1416,30 @@
           "status": "UNAVAILABLE",
           "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
           "historical_per_round": {
-            "sig_landed": 19.74,
-            "sig_attempted": 37.96,
-            "td_landed": 0.81,
-            "td_attempted": 1.43
+            "sig_landed": 18.8,
+            "sig_attempted": 36.2,
+            "td_landed": 0.78,
+            "td_attempted": 1.45
           },
           "duration_scenarios": {
             "3": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 48.99,
-                "sig_attempted": 93.96,
-                "takedowns_landed": 1.92,
-                "takedowns_attempted": 3.44
+                "sig_landed": 46.62,
+                "sig_attempted": 89.54,
+                "takedowns_landed": 1.94,
+                "takedowns_attempted": 3.55
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  43.07,
-                  54.63
+                  40.97,
+                  51.92
                 ],
                 "takedowns_landed_mean_range": [
-                  1.73,
-                  2.23
+                  1.68,
+                  2.17
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -1394,21 +1447,21 @@
             "5": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 69.06,
-                "sig_attempted": 132.12,
-                "takedowns_landed": 2.86,
-                "takedowns_attempted": 4.96
+                "sig_landed": 65.72,
+                "sig_attempted": 125.66,
+                "takedowns_landed": 2.68,
+                "takedowns_attempted": 4.98
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  56.07,
-                  83.72
+                  52.57,
+                  78.97
                 ],
                 "takedowns_landed_mean_range": [
-                  2.23,
-                  3.39
+                  2.19,
+                  3.28
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -1420,30 +1473,30 @@
           "status": "UNAVAILABLE",
           "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
           "historical_per_round": {
-            "sig_landed": 19.43,
-            "sig_attempted": 31.29,
-            "td_landed": 0.86,
-            "td_attempted": 2.29
+            "sig_landed": 14.64,
+            "sig_attempted": 23.64,
+            "td_landed": 0.82,
+            "td_attempted": 2.27
           },
           "duration_scenarios": {
             "3": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 48.06,
-                "sig_attempted": 77.17,
-                "takedowns_landed": 2.11,
-                "takedowns_attempted": 5.59
+                "sig_landed": 36.33,
+                "sig_attempted": 58.52,
+                "takedowns_landed": 2.02,
+                "takedowns_attempted": 5.61
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  42.15,
-                  53.56
+                  31.79,
+                  40.87
                 ],
                 "takedowns_landed_mean_range": [
-                  1.84,
-                  2.33
+                  1.75,
+                  2.34
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -1451,21 +1504,21 @@
             "5": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 65.71,
-                "sig_attempted": 105.88,
-                "takedowns_landed": 2.9,
-                "takedowns_attempted": 7.81
+                "sig_landed": 50.3,
+                "sig_attempted": 80.92,
+                "takedowns_landed": 2.82,
+                "takedowns_attempted": 7.84
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  53.23,
-                  82.5
+                  40.85,
+                  62.75
                 ],
                 "takedowns_landed_mean_range": [
-                  2.39,
-                  3.67
+                  2.29,
+                  3.33
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -1478,7 +1531,7 @@
         "scheduled_rounds_verified": false,
         "fighter_status_verified": false,
         "odds_verified": false,
-        "paired_historical_round_rows": 7,
+        "paired_historical_round_rows": 11,
         "opponent_quality_verified": false
       },
       "calibration": {
@@ -1503,11 +1556,11 @@
         "verified_strength_of_schedule": false
       },
       "sparse_data_probability": {
-        "red": 0.4937,
-        "blue": 0.5063,
+        "red": 0.5072,
+        "blue": 0.4928,
         "red_uncertainty_interval": [
-          0.1655,
-          0.8219
+          0.205,
+          0.8094
         ],
         "status": "UNCALIBRATED_RESEARCH"
       },
@@ -1516,30 +1569,30 @@
           "status": "UNAVAILABLE",
           "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
           "historical_per_round": {
-            "sig_landed": 15.83,
-            "sig_attempted": 28.72,
-            "td_landed": 0.34,
-            "td_attempted": 0.76
+            "sig_landed": 14.97,
+            "sig_attempted": 27.19,
+            "td_landed": 0.47,
+            "td_attempted": 1.09
           },
           "duration_scenarios": {
             "3": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 39.1,
-                "sig_attempted": 70.72,
-                "takedowns_landed": 0.86,
-                "takedowns_attempted": 1.89
+                "sig_landed": 36.94,
+                "sig_attempted": 66.81,
+                "takedowns_landed": 1.12,
+                "takedowns_attempted": 2.72
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  34.02,
-                  43.06
+                  33.05,
+                  40.84
                 ],
                 "takedowns_landed_mean_range": [
-                  0.78,
-                  0.96
+                  1.03,
+                  1.3
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -1547,21 +1600,21 @@
             "5": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 56.31,
-                "sig_attempted": 101.65,
-                "takedowns_landed": 1.2,
-                "takedowns_attempted": 2.58
+                "sig_landed": 54.43,
+                "sig_attempted": 99.06,
+                "takedowns_landed": 1.58,
+                "takedowns_attempted": 3.92
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  44.53,
-                  67.77
+                  40.19,
+                  64.01
                 ],
                 "takedowns_landed_mean_range": [
-                  0.97,
-                  1.51
+                  1.21,
+                  1.97
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -1573,30 +1626,30 @@
           "status": "UNAVAILABLE",
           "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
           "historical_per_round": {
-            "sig_landed": 34.57,
-            "sig_attempted": 53.57,
-            "td_landed": 0.14,
-            "td_attempted": 0.14
+            "sig_landed": 27.0,
+            "sig_attempted": 42.5,
+            "td_landed": 0.1,
+            "td_attempted": 0.1
           },
           "duration_scenarios": {
             "3": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 85.72,
-                "sig_attempted": 132.55,
-                "takedowns_landed": 0.36,
-                "takedowns_attempted": 0.36
+                "sig_landed": 67.76,
+                "sig_attempted": 106.36,
+                "takedowns_landed": 0.21,
+                "takedowns_attempted": 0.21
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  74.44,
-                  96.46
+                  58.7,
+                  73.94
                 ],
                 "takedowns_landed_mean_range": [
-                  0.29,
-                  0.39
+                  0.22,
+                  0.27
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -1604,21 +1657,21 @@
             "5": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 122.71,
-                "sig_attempted": 189.46,
-                "takedowns_landed": 0.53,
-                "takedowns_attempted": 0.53
+                "sig_landed": 93.6,
+                "sig_attempted": 146.63,
+                "takedowns_landed": 0.33,
+                "takedowns_attempted": 0.33
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  94.62,
-                  148.73
+                  75.81,
+                  116.01
                 ],
                 "takedowns_landed_mean_range": [
-                  0.41,
-                  0.61
+                  0.3,
+                  0.44
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -1631,7 +1684,7 @@
         "scheduled_rounds_verified": false,
         "fighter_status_verified": false,
         "odds_verified": false,
-        "paired_historical_round_rows": 7,
+        "paired_historical_round_rows": 10,
         "opponent_quality_verified": false
       },
       "calibration": {
@@ -1656,11 +1709,11 @@
         "verified_strength_of_schedule": false
       },
       "sparse_data_probability": {
-        "red": 0.5146,
-        "blue": 0.4854,
+        "red": 0.5184,
+        "blue": 0.4816,
         "red_uncertainty_interval": [
-          0.1708,
-          0.8585
+          0.1913,
+          0.8456
         ],
         "status": "UNCALIBRATED_RESEARCH"
       },
@@ -1669,30 +1722,30 @@
           "status": "UNAVAILABLE",
           "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
           "historical_per_round": {
-            "sig_landed": 19.65,
-            "sig_attempted": 40.54,
-            "td_landed": 0.24,
-            "td_attempted": 0.62
+            "sig_landed": 19.57,
+            "sig_attempted": 40.32,
+            "td_landed": 0.25,
+            "td_attempted": 0.72
           },
           "duration_scenarios": {
             "3": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 48.35,
-                "sig_attempted": 99.46,
-                "takedowns_landed": 0.6,
-                "takedowns_attempted": 1.52
+                "sig_landed": 49.26,
+                "sig_attempted": 100.83,
+                "takedowns_landed": 0.66,
+                "takedowns_attempted": 1.81
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  42.23,
-                  54.3
+                  42.41,
+                  54.32
                 ],
                 "takedowns_landed_mean_range": [
-                  0.53,
-                  0.64
+                  0.54,
+                  0.71
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -1700,21 +1753,21 @@
             "5": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 67.96,
-                "sig_attempted": 139.21,
-                "takedowns_landed": 0.81,
-                "takedowns_attempted": 2.19
+                "sig_landed": 68.1,
+                "sig_attempted": 139.63,
+                "takedowns_landed": 0.89,
+                "takedowns_attempted": 2.49
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  54.91,
-                  84.51
+                  53.98,
+                  82.56
                 ],
                 "takedowns_landed_mean_range": [
-                  0.69,
-                  0.98
+                  0.67,
+                  1.05
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -1726,30 +1779,30 @@
           "status": "UNAVAILABLE",
           "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
           "historical_per_round": {
-            "sig_landed": 14.93,
-            "sig_attempted": 25.67,
-            "td_landed": 0.07,
-            "td_attempted": 0.13
+            "sig_landed": 14.39,
+            "sig_attempted": 24.72,
+            "td_landed": 0.06,
+            "td_attempted": 0.11
           },
           "duration_scenarios": {
             "3": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 37.33,
-                "sig_attempted": 63.88,
-                "takedowns_landed": 0.16,
-                "takedowns_attempted": 0.34
+                "sig_landed": 36.26,
+                "sig_attempted": 62.14,
+                "takedowns_landed": 0.15,
+                "takedowns_attempted": 0.31
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  32.14,
-                  41.6
+                  31.65,
+                  39.64
                 ],
                 "takedowns_landed_mean_range": [
-                  0.14,
-                  0.19
+                  0.13,
+                  0.13
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -1757,21 +1810,21 @@
             "5": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 51.93,
-                "sig_attempted": 89.43,
-                "takedowns_landed": 0.22,
-                "takedowns_attempted": 0.45
+                "sig_landed": 50.34,
+                "sig_attempted": 86.33,
+                "takedowns_landed": 0.17,
+                "takedowns_attempted": 0.38
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  40.16,
-                  62.32
+                  40.76,
+                  61.09
                 ],
                 "takedowns_landed_mean_range": [
-                  0.18,
-                  0.29
+                  0.15,
+                  0.24
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -1784,7 +1837,7 @@
         "scheduled_rounds_verified": false,
         "fighter_status_verified": false,
         "odds_verified": false,
-        "paired_historical_round_rows": 15,
+        "paired_historical_round_rows": 18,
         "opponent_quality_verified": false
       },
       "calibration": {
@@ -1809,11 +1862,11 @@
         "verified_strength_of_schedule": false
       },
       "sparse_data_probability": {
-        "red": 0.4976,
-        "blue": 0.5024,
+        "red": 0.501,
+        "blue": 0.499,
         "red_uncertainty_interval": [
-          0.0368,
-          0.9584
+          0.0765,
+          0.9254
         ],
         "status": "UNCALIBRATED_RESEARCH"
       },
@@ -1822,30 +1875,30 @@
           "status": "UNAVAILABLE",
           "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
           "historical_per_round": {
-            "sig_landed": 22.8,
-            "sig_attempted": 57.13,
-            "td_landed": 0.2,
-            "td_attempted": 1.47
+            "sig_landed": 21.17,
+            "sig_attempted": 52.94,
+            "td_landed": 0.28,
+            "td_attempted": 1.5
           },
           "duration_scenarios": {
             "3": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 57.74,
-                "sig_attempted": 143.39,
-                "takedowns_landed": 0.49,
-                "takedowns_attempted": 3.65
+                "sig_landed": 52.48,
+                "sig_attempted": 130.72,
+                "takedowns_landed": 0.67,
+                "takedowns_attempted": 3.72
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  49.14,
-                  62.69
+                  46.51,
+                  59.0
                 ],
                 "takedowns_landed_mean_range": [
-                  0.4,
-                  0.61
+                  0.57,
+                  0.76
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -1853,21 +1906,21 @@
             "5": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 80.59,
-                "sig_attempted": 201.33,
-                "takedowns_landed": 0.74,
-                "takedowns_attempted": 5.21
+                "sig_landed": 73.14,
+                "sig_attempted": 181.73,
+                "takedowns_landed": 0.91,
+                "takedowns_attempted": 5.18
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  61.37,
-                  96.9
+                  59.04,
+                  89.33
                 ],
                 "takedowns_landed_mean_range": [
-                  0.53,
-                  0.83
+                  0.74,
+                  1.16
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -1879,30 +1932,30 @@
           "status": "UNAVAILABLE",
           "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
           "historical_per_round": {
-            "sig_landed": 26.5,
-            "sig_attempted": 64.5,
-            "td_landed": 0.5,
-            "td_attempted": 0.5
+            "sig_landed": 21.0,
+            "sig_attempted": 47.6,
+            "td_landed": 0.2,
+            "td_attempted": 0.4
           },
           "duration_scenarios": {
             "3": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 67.07,
-                "sig_attempted": 162.56,
-                "takedowns_landed": 1.31,
-                "takedowns_attempted": 1.31
+                "sig_landed": 53.36,
+                "sig_attempted": 120.15,
+                "takedowns_landed": 0.49,
+                "takedowns_attempted": 0.98
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  57.62,
-                  73.95
+                  46.45,
+                  58.32
                 ],
                 "takedowns_landed_mean_range": [
-                  1.07,
-                  1.39
+                  0.45,
+                  0.55
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -1910,21 +1963,21 @@
             "5": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 91.93,
-                "sig_attempted": 223.24,
-                "takedowns_landed": 1.7,
-                "takedowns_attempted": 1.7
+                "sig_landed": 72.18,
+                "sig_attempted": 163.81,
+                "takedowns_landed": 0.69,
+                "takedowns_attempted": 1.4
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  72.74,
-                  112.75
+                  57.94,
+                  88.77
                 ],
                 "takedowns_landed_mean_range": [
-                  1.39,
-                  2.13
+                  0.53,
+                  0.86
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -1937,7 +1990,7 @@
         "scheduled_rounds_verified": false,
         "fighter_status_verified": false,
         "odds_verified": false,
-        "paired_historical_round_rows": 2,
+        "paired_historical_round_rows": 5,
         "opponent_quality_verified": false
       },
       "calibration": {
