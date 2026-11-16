@@ -101,6 +101,9 @@ jobs:
         run: |
           python scripts/build_nba_ml_predictions.py
           python scripts/refresh_nba_ml_research_audit.py
+      - name: Refresh independent NFL ESPN pregame history
+        if: ${{ env.ODDS_SPORT == 'americanfootball_nfl' && (steps.sgo.outputs.fetched == 'true' || steps.quota.outputs.fetch == 'true') }}
+        run: python scripts/refresh_nfl_moneyline_inputs.py
       - name: Rebuild NFL independent moneyline research feed
         if: ${{ env.ODDS_SPORT == 'americanfootball_nfl' && (steps.sgo.outputs.fetched == 'true' || steps.quota.outputs.fetch == 'true') }}
         run: python scripts/build_nfl_ml_predictions.py
