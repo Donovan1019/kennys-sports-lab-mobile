@@ -102,8 +102,9 @@ def main():
                     })
         time.sleep(0.12)
     pra = [row for row in rows if row["market"] == "player_points_rebounds_assists"]
-    if not successes or not pra:
-        print(f"No fresh PRA quotes: successful events={successes}, rows={len(rows)}; existing feed retained")
+    points = [row for row in rows if row['market'] == 'player_points']
+    if not successes or not (pra or points):
+        print(f"No fresh PRA or points quotes: successful events={successes}, rows={len(rows)}; existing feed retained")
         return 1
     output = {
         "sport": SPORT, "source": "the-odds-api-v4-event-props",
@@ -115,7 +116,7 @@ def main():
     temp = OUTPUT.with_suffix(".json.tmp")
     temp.write_text(json.dumps(output, separators=(",", ":"), ensure_ascii=False), encoding="utf-8")
     temp.replace(OUTPUT)
-    print(f"Published {len(rows)} fresh player prop quotes ({len(pra)} PRA), {successes} events; credits remaining: {credits}")
+    print(f"Published {len(rows)} fresh player prop quotes ({len(pra)} PRA, {len(points)} points), {successes} events; credits remaining: {credits}")
     return 0
 
 

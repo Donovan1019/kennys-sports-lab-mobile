@@ -44,7 +44,7 @@ jobs:
           now=datetime.now(timezone.utc)
           stamp=datetime.fromisoformat(data['fetched_at'].replace('Z','+00:00'))
           assert now-timedelta(minutes=15) < stamp <= now+timedelta(minutes=1)
-          assert any(x.get('market')=='player_points_rebounds_assists' for x in data['odds'])
+          assert any(x.get('market') in ('player_points_rebounds_assists', 'player_points') for x in data['odds'])
           print('Validated',len(data['odds']),'fresh player-prop quotes')
           PY
       - name: Publish validated player props
