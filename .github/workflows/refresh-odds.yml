@@ -88,6 +88,9 @@ jobs:
             echo 'Primary odds provider failed; no compatible fallback for this sport/market'
             exit 1
           fi
+      - name: Rebuild NCAAB independent moneyline research feed
+        if: ${{ env.ODDS_SPORT == 'basketball_ncaab' && (steps.sgo.outputs.fetched == 'true' || steps.quota.outputs.fetch == 'true') }}
+        run: python scripts/build_ncaab_ml_predictions.py
       - name: Rebuild NHL independent moneyline research feed
         if: ${{ env.ODDS_SPORT == 'icehockey_nhl' && (steps.sgo.outputs.fetched == 'true' || steps.quota.outputs.fetch == 'true') }}
         run: |
