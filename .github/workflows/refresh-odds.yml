@@ -21,6 +21,11 @@ on:
           - icehockey_nhl
           - mma_mixed_martial_arts
           - soccer_epl
+      attempt_odds:
+        description: Attempt quota-limited odds API request (off while credits exhausted)
+        required: false
+        default: false
+        type: boolean
       markets:
         description: Featured markets (availability and credits vary)
         required: true
@@ -37,12 +42,25 @@ jobs:
     env:
       ODDS_SPORT: ${{ inputs.sport || (github.event.schedule == '10 11 * * *' && 'basketball_ncaab') || (github.event.schedule == '10 14 * * *' && 'americanfootball_nfl') || (github.event.schedule == '10 17 * * *' && 'icehockey_nhl') || (github.event.schedule == '10 20 * * *' && 'basketball_nba') || 'americanfootball_nfl' }}
       ODDS_MARKETS: ${{ inputs.markets || 'h2h' }}
+      ODDS_API_ENABLED: ${{ vars.ODDS_API_ENABLED || 'false' }}
+      ATTEMPT_ODDS: ${{ inputs.attempt_odds || false }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Decide whether to use quota-limited odds provider
+        id: quota
+        run: |
+          if [ "$ATTEMPT_ODDS" = "true" ] || [ "$ODDS_API_ENABLED" = "true" ]; then
+            echo "fetch=true" >> "$GITHUB_OUTPUT"
+            echo "Authorized odds attempt enabled"
+          else
+            echo "fetch=false" >> "$GITHUB_OUTPUT"
+            echo "Odds API disabled to conserve credits; rebuilding decision feed from available data"
+          fi
       - name: Fetch authorized sportsbook odds
+        if: steps.quota.outputs.fetch == 'true'
         env:
           THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
           ODDSPAPI_API_KEY: ${{ secrets.ODDSPAPI_API_KEY }}
@@ -57,20 +75,20 @@ jobs:
             exit 1
           fi
       - name: Rebuild NHL independent moneyline research feed
-        if: ${{ env.ODDS_SPORT == 'icehockey_nhl' }}
+        if: ${{ env.ODDS_SPORT == 'icehockey_nhl' && steps.quota.outputs.fetch == 'true' }}
         run: |
           python scripts/build_nhl_goal_rates.py
           python scripts/build_nhl_ml_predictions.py
       - name: Rebuild NBA moneyline model and research simulations
-        if: ${{ env.ODDS_SPORT == 'basketball_nba' }}
+        if: ${{ env.ODDS_SPORT == 'basketball_nba' && steps.quota.outputs.fetch == 'true' }}
         run: |
           python scripts/build_nba_ml_predictions.py
           python scripts/refresh_nba_ml_research_audit.py
       - name: Archive pre-kickoff NFL moneyline prices
-        if: ${{ env.ODDS_SPORT == 'americanfootball_nfl' }}
+        if: ${{ env.ODDS_SPORT == 'americanfootball_nfl' && steps.quota.outputs.fetch == 'true' }}
         run: python scripts/archive_nfl_moneyline_snapshots.py odds
       - name: Verify NFL moneyline archive before publishing
-        if: ${{ env.ODDS_SPORT == 'americanfootball_nfl' }}
+        if: ${{ env.ODDS_SPORT == 'americanfootball_nfl' && steps.quota.outputs.fetch == 'true' }}
         run: python scripts/verify_nfl_archive_write.py odds
       - name: Rebuild independent model-vs-market decision feed
         run: python -m scripts.build_model_market_decisions
