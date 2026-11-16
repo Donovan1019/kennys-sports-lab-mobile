@@ -18,8 +18,9 @@ class DecisionFeedTests(unittest.TestCase):
         model = {"status": "validated", "calibration_passed": True,
                  "predictions": [{"event_id": "abc", "team": "Home", "win_probability": .60}]}
         result = build({"basketball_nba": (odds(), model)}, NOW)["decisions"][0]
-        self.assertEqual(result["bet_status"], "BETTING_READY")
-        self.assertGreater(result["expected_value"], 0)
+        self.assertEqual(result["bet_status"], "PROVISIONAL")
+        self.assertNotIn("expected_value", result)
+        self.assertEqual(result["model_status"], "READY")
 
     def test_ncaab_research_is_visible_but_not_betting_ready(self):
         model = {"status": "RESEARCH_ONLY",
@@ -28,6 +29,20 @@ class DecisionFeedTests(unittest.TestCase):
         self.assertEqual(result["model_status"], "READY")
         self.assertEqual(result["bet_status"], "PROVISIONAL")
         self.assertNotIn("expected_value", result)
+
+    def test_stale_model_snapshot_is_excluded(self):
+        model = {"status": "validated", "calibration_passed": True,
+                 "generated_at": (NOW - timedelta(days=2)).isoformat(),
+                 "predictions": [{"event_id": "abc", "team": "Home", "win_probability": .60}]}
+        result = build({"basketball_nba": (odds(), model)}, NOW)
+        self.assertEqual(result["status"], "unavailable")
+        self.assertEqual(result["decisions"], [])
+
+    def test_future_model_snapshot_is_excluded(self):
+        model = {"status": "validated", "calibration_passed": True,
+                 "generated_at": (NOW + timedelta(hours=1)).isoformat(),
+                 "predictions": [{"event_id": "abc", "team": "Home", "win_probability": .60}]}
+        self.assertEqual(build({"basketball_nba": (odds(), model)}, NOW)["decisions"], [])
 
     def test_empty_feed_reports_unavailable(self):
         result = build({}, NOW)
