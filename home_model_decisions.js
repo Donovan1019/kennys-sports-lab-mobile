@@ -3,7 +3,7 @@ const main=document.querySelector('main'),anchor=document.getElementById('ksl-ma
 const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const pct=x=>Number.isFinite(x)?(x*100).toFixed(1)+'%':'—';
 const status=x=>x==='BETTING_READY'?'BETTING READY':x==='NO_VALUE'?'NO VALUE':x==='NO_ROBUST_EDGE'?'UNCERTAIN EDGE':x==='PROVISIONAL'?'PROJECTION ONLY':'BLOCKED';
-root.innerHTML='<h2>Independent Model · Market Decisions</h2><p>NBA · NHL · NCAA basketball | Model projections shown separately from price-qualified bets.</p><p id="kmd-status" role="status">Loading published decisions…</p><div id="kmd-rows"></div>';
+root.innerHTML='<h2>Independent Model · Market Decisions</h2><p>NFL · NBA · NHL · NCAA basketball | Model projections shown separately from price-qualified bets.</p><p id="kmd-status" role="status">Loading published decisions…</p><div id="kmd-rows"></div>';
 fetch('./feed/model_market_decisions.json?ts='+Date.now(),{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Feed unavailable');return r.json()}).then(feed=>{
 const stamp=Date.parse(feed.generated_at),age=Date.now()-stamp;
 if(feed.status!=='ok'||!Number.isFinite(stamp)||age<0||age>24*3600000){root.querySelector('#kmd-status').textContent='Decision feed outdated or unavailable; no current recommendations.';return;}
@@ -18,7 +18,7 @@ for(const r of rows){
 const priority=r=>r.bet_status==='BETTING_READY'?0:r.bet_status==='PROVISIONAL'?1:r.bet_status==='NO_VALUE'?2:3;
 const gameList=[...games.values()].sort((a,b)=>Date.parse(a.start)-Date.parse(b.start)||Math.min(...a.rows.map(priority))-Math.min(...b.rows.map(priority)));
 root.querySelector('#kmd-status').textContent=gameList.length?gameList.length+' games · '+rows.length+' sportsbook comparisons · feed '+new Date(stamp).toLocaleString():'No upcoming verified model projections in the published feed.';
-const sportOrder=[['basketball_nba','NBA'],['icehockey_nhl','NHL'],['basketball_ncaab','NCAA Basketball']];
+const sportOrder=[['americanfootball_nfl','NFL'],['basketball_nba','NBA'],['icehockey_nhl','NHL'],['basketball_ncaab','NCAA Basketball']];
 const renderGame=g=>{
   const teams=new Map();
   for(const r of g.rows){if(!teams.has(r.selection))teams.set(r.selection,[]);teams.get(r.selection).push(r);}
@@ -33,7 +33,8 @@ const renderGame=g=>{
 };
 root.querySelector('#kmd-rows').innerHTML=sportOrder.map(([sport,label])=>{
   const sportGames=gameList.filter(g=>g.sport===sport);
-  if(!sportGames.length)return '';
+  if(!sportGames.length&&sport!=='americanfootball_nfl')return '';
+  if(!sportGames.length)return '<section class="kmd-sport-section" aria-label="NFL market comparisons"><h3 class="kmd-sport-heading">NFL <span>0 verified games</span></h3><p class="kmd-empty">No fresh, independently verified NFL moneyline comparisons. NFL picks are withheld until the odds and model feeds are current.</p></section>';
   return '<section class="kmd-sport-section" aria-label="'+esc(label)+' market comparisons"><h3 class="kmd-sport-heading">'+esc(label)+' <span>'+sportGames.length+' games</span></h3>'+sportGames.map(renderGame).join('')+'</section>';
 }).join('');
 
