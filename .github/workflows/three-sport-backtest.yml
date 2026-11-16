@@ -8,6 +8,8 @@ on:
     paths:
       - 'scripts/three_sport_backtest.py'
       - 'tests/test_three_sport_quote_freshness.py'
+      - 'scripts/three_sport_results.py'
+      - 'tests/test_three_sport_results_incremental.py'
       - '.github/workflows/three-sport-backtest.yml'
   workflow_dispatch:
 permissions:
@@ -26,7 +28,9 @@ jobs:
         with:
           python-version: '3.11'
       - name: Verify stale sportsbook quote rejection
-        run: python -m unittest discover -s tests -p test_three_sport_quote_freshness.py -v
+        run: |
+          python -m unittest discover -s tests -p test_three_sport_quote_freshness.py -v
+          python -m unittest discover -s tests -p test_three_sport_results_incremental.py -v
       - name: Refresh cached NHL scoring history from public results
         run: python scripts/nhl_team_history.py
       - name: Generate pregame baseline forecasts locally (no API requests)
