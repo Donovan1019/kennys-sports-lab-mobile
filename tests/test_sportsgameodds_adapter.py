@@ -56,8 +56,6 @@ class TestSportsGameOdds(unittest.TestCase):
     def test_nhl_goals_market(self):
         payload = sample()
         payload["data"][0]["leagueID"] = "NHL"
-        for odd in payload["data"][0]["odds"].values():
-            odd["statID"] = "goals"
         rows = normalize(payload, "icehockey_nhl", NOW)
         self.assertEqual(len(rows), 2)
         self.assertEqual({r["market"] for r in rows}, {"h2h", "totals"})
