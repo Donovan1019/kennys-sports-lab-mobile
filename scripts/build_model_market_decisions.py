@@ -45,6 +45,15 @@ def build(snapshots, now=None):
                     continue
             except (ValueError, TypeError, AttributeError):
                 continue
+        fetched_at = odds.get("fetched_at")
+        if fetched_at:
+            try:
+                fetched_time = datetime.fromisoformat(fetched_at.replace("Z", "+00:00"))
+                age_seconds = (now - fetched_time).total_seconds()
+                if fetched_time.tzinfo is None or age_seconds < 0 or age_seconds > 86400:
+                    continue
+            except (ValueError, TypeError, AttributeError):
+                continue
         mapping = predictions_for(sport, model)
         for row in odds.get("odds", []):
             if row.get("market") != "h2h" or row.get("bookmaker") not in ("draftkings", "fanduel"):

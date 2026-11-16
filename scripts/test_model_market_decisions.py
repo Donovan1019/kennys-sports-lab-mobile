@@ -30,6 +30,15 @@ class DecisionFeedTests(unittest.TestCase):
         self.assertEqual(result["bet_status"], "PROVISIONAL")
         self.assertNotIn("expected_value", result)
 
+    def test_stale_odds_snapshot_is_excluded(self):
+        snapshot = odds()
+        snapshot["fetched_at"] = (NOW - timedelta(days=2)).isoformat()
+        model = {"status": "validated", "calibration_passed": True,
+                 "predictions": [{"event_id": "abc", "team": "Home", "win_probability": .60}]}
+        result = build({"basketball_nba": (snapshot, model)}, NOW)
+        self.assertEqual(result["status"], "unavailable")
+        self.assertEqual(result["decisions"], [])
+
     def test_stale_model_snapshot_is_excluded(self):
         model = {"status": "validated", "calibration_passed": True,
                  "generated_at": (NOW - timedelta(days=2)).isoformat(),
