@@ -14,8 +14,8 @@ function simulate(hist,seed){let s=seed>>>0,hits=0;const out=[];for(let i=0;i<20
 function add(parent,tag,text,cls){const e=document.createElement(tag);e.textContent=text;if(cls)e.className=cls;parent.append(e);return e}
 async function run(){try{const [stats,props]=await Promise.all([feed('nba_player_stats.json'),feed('nba_props.json')]);if(!Array.isArray(stats.players)||!Array.isArray(props.odds))throw Error('NBA player-statistics or props feed missing required players/odds arrays');
 const now=Date.now(),quotes=new Map();for(const q of props.odds){const market=norm(q.market),selection=norm(q.selection||q.outcome||q.name),point=Number(q.point),price=Number(q.price),t=Date.parse(q.updated_at),tip=Date.parse(q.commence_time);
-if(!['playerpoints','playerpointsalternate','playerpointsalts'].includes(market)||selection!=='over'||point!==19.5||!Number.isFinite(price)||!['draftkings','fanduel'].includes(norm(q.bookmaker))||!Number.isFinite(t)||now-t>3600000||t>now||tip<=now||!q.event_id)continue;
-const name=norm(q.player||q.player_name||q.description),key=name+'|'+q.event_id,old=quotes.get(key);if(name&&(!old||oddsProb(price)<oddsProb(Number(old.price))))quotes.set(key,q)}
+if(!['playerpoints','playerpointsalternate','playerpointsalts'].includes(market)||selection!=='over'||point!==19.5||!Number.isFinite(price)||price===0||price===-100||!['draftkings','fanduel'].includes(norm(q.bookmaker))||!Number.isFinite(t)||now-t>3600000||t>now||tip<=now||!q.event_id)continue;
+const name=norm(q.player||q.player_name||q.description),key=name+'|'+q.event_id+'|'+norm(q.bookmaker),old=quotes.get(key);if(name&&(!old||Date.parse(q.updated_at)>Date.parse(old.updated_at)))quotes.set(key,q)}
 const rows=[];for(const p of stats.players){const logs=(p.games||[]).filter(g=>{const d=Date.parse(g.date);return Number.isFinite(d)&&d>=Date.parse('2026-10-01')&&d<now}).sort((a,b)=>Date.parse(b.date)-Date.parse(a.date)).map(pts).filter(v=>v!==null).slice(0,20);if(logs.length<10)continue;
 for(const q of quotes.values()){if(norm(p.name)!==norm(q.player||q.player_name||q.description))continue;
 const seed=[...norm(p.name)].reduce((s,c)=>(Math.imul(s,31)+c.charCodeAt(0))>>>0,12345),sim=simulate(logs,seed),l5=logs.slice(0,5),l10=logs.slice(0,10);
@@ -34,7 +34,7 @@ for(let depth=1;depth<=8;depth++){
 const next=[];for(const state of beam){const last=state.picks.length?group.indexOf(state.picks[state.picks.length-1]):-1;
 for(let idx=last+1;idx<group.length;idx++){const r=group[idx],player=norm(r.p.name),game=String(r.q.event_id);
 if(state.usedPlayers.has(player)||state.usedGames.has(game))continue;
-const d=state.d*decimal(Number(r.q.price));if(d>2.000001)continue;
+const d=state.d*decimal(Number(r.q.price));if(!Number.isFinite(d)||d>2.000001)continue;
 const joint=state.joint*r.sim.prob,usedPlayers=new Set(state.usedPlayers),usedGames=new Set(state.usedGames);usedPlayers.add(player);usedGames.add(game);
 const candidate={picks:[...state.picks,r],d,joint,usedPlayers,usedGames};
 if(depth>=2&&d>=1.90){const ev=joint*d-1;if(!best||joint>best.joint||(joint===best.joint&&ev>best.ev))best={...candidate,ev}}
