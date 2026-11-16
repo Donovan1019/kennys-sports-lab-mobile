@@ -101,7 +101,7 @@ jobs:
         run: |
           python scripts/build_nba_ml_predictions.py
           python scripts/refresh_nba_ml_research_audit.py
-      - name: Archive pre-kickoff NFL moneyline prices
+      - name: Rebuild NFL independent moneyline research feed\n        if: ${{ env.ODDS_SPORT == 'americanfootball_nfl' && (steps.sgo.outputs.fetched == 'true' || steps.quota.outputs.fetch == 'true') }}\n        run: python scripts/build_nfl_ml_predictions.py\n      - name: Archive pre-kickoff NFL moneyline prices
         if: ${{ env.ODDS_SPORT == 'americanfootball_nfl' && (steps.sgo.outputs.fetched == 'true' || steps.quota.outputs.fetch == 'true') }}
         run: python scripts/archive_nfl_moneyline_snapshots.py odds
       - name: Verify NFL moneyline archive before publishing
