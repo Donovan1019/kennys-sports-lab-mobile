@@ -1,7 +1,8 @@
 name: Three-sport backtest audit
 on:
   schedule:
-    - cron: '15 16,22 * * *'
+    - cron: '15 12,16,22 * * *'
+    - cron: '15 14,18,20 * * 0'
   workflow_dispatch:
 permissions:
   contents: write
