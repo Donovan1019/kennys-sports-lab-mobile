@@ -29,8 +29,8 @@ def build(odds, history, now):
             if not all(math.isfinite(x) for x in (hp,ap)):continue
             for t,margin in ((home,hp-ap),(away,ap-hp)):
                 names={t.get('team',{}).get(k) for k in ('displayName','shortDisplayName')}
-                for name in names:
-                    if name:scores[normalize(name)].append((event.get('date',''),margin))
+                for key in {normalize(name) for name in names if name}:
+                    if key:scores[key].append((event.get('date',''),margin))
         except (KeyError,ValueError,TypeError,StopIteration):continue
     predictions=[];seen=set()
     for q in odds.get('odds',[]):
