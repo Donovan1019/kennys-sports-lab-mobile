@@ -36,6 +36,15 @@ def build(snapshots, now=None):
     for sport, (odds, model) in snapshots.items():
         if odds.get("status") != "ok":
             continue
+        model_stamp = model.get("generated_at")
+        if model_stamp:
+            try:
+                model_time = datetime.fromisoformat(model_stamp.replace("Z", "+00:00"))
+                age_seconds = (now - model_time).total_seconds()
+                if model_time.tzinfo is None or age_seconds < 0 or age_seconds > 86400:
+                    continue
+            except (ValueError, TypeError, AttributeError):
+                continue
         mapping = predictions_for(sport, model)
         for row in odds.get("odds", []):
             if row.get("market") != "h2h" or row.get("bookmaker") not in ("draftkings", "fanduel"):
@@ -55,6 +64,12 @@ def build(snapshots, now=None):
                               model_verified=True, event_verified=True,
                               price_verified=bool(row.get("updated_at")),
                               odds_timestamp=row.get("updated_at"), now=now)
+            if validated and result["bet_status"] == "BETTING_READY":
+                # A positive point estimate is not a validated robust edge.
+                result["bet_status"] = "PROVISIONAL"
+                result["reason"] = "Model uncertainty and lineup certification unavailable"
+                result.pop("expected_value", None)
+                result.pop("edge_probability_points", None)
             if not validated and result["model_status"] == "READY":
                 result["bet_status"] = "PROVISIONAL"
                 result["reason"] = "Independent research projection is not calibrated for betting"
