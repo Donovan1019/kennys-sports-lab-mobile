@@ -34,7 +34,7 @@ jobs:
           assert.match(js,/d>2\.000001/);
           assert.match(js,/usedGames\.has\(game\)/);
           assert.match(js,/usedPlayers\.has\(player\)/);
-          assert.match(js,/now-t>3600000/);
+          assert.match(js,/now-t>7200000/);
           assert.match(js,/No invented picks/);
           console.log('20 Club static integration gates PASS');
           NODE
