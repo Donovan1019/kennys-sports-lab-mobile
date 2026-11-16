@@ -94,8 +94,8 @@ def main():
             return 2
         print("LIVE_PROVIDER_CREDITS_REMAINING",remaining)
         if int(remaining)<=20:
-            print("FREE_PLAN_BUDGET_GUARD: live balance",remaining,"<= reserve 20; no paid event requests")
-            return 0
+            print("FREE_PLAN_BUDGET_GUARD: live balance",remaining,"<= reserve 20; no paid event requests; refresh BLOCKED")
+            return 2
         now=datetime.now(timezone.utc)
         upcoming=eligible_events(events,now)
         print("Provider events",len(events),"eligible future events",len(upcoming))
