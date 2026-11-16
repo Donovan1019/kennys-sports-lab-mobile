@@ -62,7 +62,7 @@ def normalize(payload, sport, now=None, diagnostics=None):
             continue
         counts["upcoming_with_teams"] += 1
         for odd in (event.get("odds") or {}).values():
-            if not isinstance(odd, dict) or odd.get("periodID") != "game" or odd.get("statID") != ("goals" if sport == "icehockey_nhl" else "points"):
+            if not isinstance(odd, dict) or odd.get("periodID") != "game" or odd.get("statID") != "points":
                 continue
             bet_type, side = odd.get("betTypeID"), odd.get("sideID")
             if bet_type == "ml" and side in ("home", "away"):
