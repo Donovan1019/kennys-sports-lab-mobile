@@ -53,6 +53,7 @@ def capture(now):
             if not isinstance(q.get('price'),(int,float)):reasons.append('missing_price')
             if observed and fetched and observed>fetched:reasons.append('quote_after_feed_fetch')
             if fetched and (now-fetched).total_seconds()>86400:reasons.append('stale_feed_over_24h')
+            if observed and (now-observed).total_seconds()>86400:reasons.append('stale_quote_over_24h')
             item=dict(q)
             item['audit_flags']=reasons
             (invalid if reasons else good).append(item)
