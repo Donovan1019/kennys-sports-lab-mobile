@@ -1,6 +1,8 @@
 name: NBA PRA Event Odds Refresh
 on:
   workflow_dispatch:
+  schedule:
+    - cron: '10 20,21,23,0 * * *'
 permissions:
   contents: write
 concurrency:
@@ -17,12 +19,23 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Gate scheduled runs to 4 PM and 7 PM Eastern
+        id: eastern
+        run: |
+          hour=$(TZ=America/New_York date +%H)
+          if [ "${{ github.event_name }}" != 'schedule' ] || [ "$hour" = '16' ] || [ "$hour" = '19' ]; then
+            echo 'run=true' >> "$GITHUB_OUTPUT"
+          else
+            echo 'run=false' >> "$GITHUB_OUTPUT"
+          fi
       - name: Collect fresh NBA event player props
+        if: steps.eastern.outputs.run == 'true'
         env:
           THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
-          NBA_PROPS_MAX_EVENTS: '12'
+          NBA_PROPS_MAX_EVENTS: '3'
         run: python scripts/fetch_nba_event_props.py
       - name: Validate current PRA market
+        if: steps.eastern.outputs.run == 'true'
         run: |
           python - <<'PY'
           import json
@@ -35,6 +48,7 @@ jobs:
           print('Validated',len(data['odds']),'fresh player-prop quotes')
           PY
       - name: Publish validated player props
+        if: steps.eastern.outputs.run == 'true'
         run: |
           set -euo pipefail
           cp feed/nba_props.json /tmp/nba_props.json
