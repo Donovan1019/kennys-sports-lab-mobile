@@ -3,7 +3,8 @@
 const css=document.createElement('style');css.textContent='#ksl-20-club .club-card{background:#191a1d;border:1px solid #35383e;border-radius:12px;padding:12px;margin:9px 0}#ksl-20-club .club-metrics{display:flex;flex-wrap:wrap;gap:12px;color:#d1d9df;font-size:12px}#ksl-20-club strong{color:#f3c621}#ksl-20-club .club-green{color:#36c985}#ksl-20-club button{background:#173a35;color:#fff;border:1px solid #36c985;border-radius:8px;padding:9px}';document.head.append(css);
 root.innerHTML='<h2>🏀 20 Club · Daily 20+ Points</h2><p>Current-season scoring trends, 20,000-draw historical Monte Carlo, verified 19.5-point quotes, and a near-even-money parlay target (-111 to +100). Historical simulations are not injury-adjusted forecasts.</p><p id="club-status" role="status">Loading current NBA feeds…</p><div id="club-parlay"></div><div id="club-cards"></div>';
 const status=root.querySelector('#club-status'),cards=root.querySelector('#club-cards'),parlay=root.querySelector('#club-parlay');
-const norm=s=>String(s||'').toLowerCase().replace(/[^a-z0-9]/g,'');
+const norm=s=>String(s||'').normalize('NFD').replace(/[\\u0300-\\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]/g,'');
+const aliases={'alexandresarr':'alexsarr','herbjones':'herbertjones'};const playerKey=s=>aliases[norm(s)]||norm(s);
 const oddsProb=o=>o<0?-o/(100-o):100/(100+o);
 const decimal=o=>o<0?1+100/-o:1+o/100;
 const american=d=>d>=2?'+'+Math.round(100*(d-1)):String(Math.round(-100/(d-1)));
@@ -18,7 +19,7 @@ if(!['playerpoints','playerpointsalternate','playerpointsalts'].includes(market)
 const name=norm(q.player||q.player_name||q.description),key=name+'|'+q.event_id+'|'+norm(q.bookmaker),old=quotes.get(key);if(name&&(!old||Date.parse(q.updated_at)>Date.parse(old.updated_at)))quotes.set(key,q)}
 const rows=[],watch=[];for(const p of stats.players){const logs=(p.games||[]).filter(g=>{const d=Date.parse(g.date);return Number.isFinite(d)&&d>=Date.parse('2026-10-01')&&d<now}).sort((a,b)=>Date.parse(b.date)-Date.parse(a.date)).map(pts).filter(v=>v!==null).slice(0,20);if(logs.length<10)continue;
 const seed=[...norm(p.name)].reduce((acc,c)=>(Math.imul(acc,31)+c.charCodeAt(0))>>>0,12345),history=simulate(logs,seed),last5=logs.slice(0,5),last10=logs.slice(0,10),projected=.5*mean(last5)+.3*mean(last10)+.2*mean(logs);if(projected>=20&&history.prob>=.60)watch.push({p,history,projected,l5:last5.filter(x=>x>=20).length,l10:last10.filter(x=>x>=20).length,l20:logs.filter(x=>x>=20).length,n:logs.length});
-for(const q of quotes.values()){if(norm(p.name)!==norm(q.player||q.player_name||q.description))continue;
+for(const q of quotes.values()){if(playerKey(p.name)!==playerKey(q.player||q.player_name||q.description))continue;
 const sim=history,l5=last5,l10=last10;
 const proj=.5*mean(l5)+.3*mean(l10)+.2*mean(logs),breakEven=oddsProb(Number(q.price)),edge=sim.prob-breakEven;
 rows.push({p,q,sim,proj,edge,breakEven,l5:l5.filter(x=>x>=20).length,l10:l10.filter(x=>x>=20).length,l20:logs.filter(x=>x>=20).length,n:logs.length,eligible:proj>=23&&sim.prob>=.75&&edge>=.025})}}
