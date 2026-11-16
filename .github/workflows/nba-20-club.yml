@@ -1,0 +1,40 @@
+name: NBA 20 Club Integration
+on:
+  pull_request:
+    paths:
+      - 'nba.html'
+      - 'nba_20_club.js'
+      - '.github/workflows/nba-20-club.yml'
+  push:
+    paths:
+      - 'nba.html'
+      - 'nba_20_club.js'
+      - '.github/workflows/nba-20-club.yml'
+jobs:
+  integration:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate syntax, navigation, and safe odds gates
+        run: |
+          node --check nba_20_club.js
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          const html=fs.readFileSync('nba.html','utf8');
+          const js=fs.readFileSync('nba_20_club.js','utf8');
+          assert.match(html,/href="#club"/);
+          assert.match(html,/id="ksl-20-club"/);
+          assert.match(html,/nba_20_club\.js/);
+          assert.match(js,/depth<=8/);
+          assert.match(js,/d>=1\.90/);
+          assert.match(js,/d>2\.000001/);
+          assert.match(js,/usedGames\.has\(game\)/);
+          assert.match(js,/usedPlayers\.has\(player\)/);
+          assert.match(js,/now-t>3600000/);
+          assert.match(js,/No invented picks/);
+          console.log('20 Club static integration gates PASS');
+          NODE
