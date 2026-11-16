@@ -31,6 +31,32 @@ def validate_rows(rows, sport, now=None):
             continue
     return False
 
+def fresh_rows(rows, now=None, max_age_hours=8):
+    """Retain only valid recent pregame DK/FD sportsbook quotes."""
+    now = now or datetime.now(timezone.utc)
+    fresh = []
+    for row in rows:
+        if row.get("bookmaker") not in ("fanduel", "draftkings"):
+            continue
+        try:
+            kickoff = datetime.fromisoformat(str(row["commence_time"]).replace("Z", "+00:00"))
+            quote = datetime.fromisoformat(str(row["updated_at"]).replace("Z", "+00:00"))
+            if kickoff.tzinfo is None or quote.tzinfo is None:
+                continue
+            if kickoff <= now or quote > now + timedelta(minutes=2):
+                continue
+            if now - quote > timedelta(hours=max_age_hours):
+                continue
+            price = row.get("price")
+            if isinstance(price, bool) or not isinstance(price, (int, float)):
+                continue
+            if not (-100000 < price <= -100 or 100 <= price < 100000):
+                continue
+            fresh.append(row)
+        except (ValueError, TypeError, AttributeError, KeyError, OverflowError):
+            continue
+    return fresh
+
 def upcoming_rows(rows, now=None):
     """Keep only selections for future events with timezone-aware kickoff times."""
     now = now or datetime.now(timezone.utc)
@@ -89,6 +115,10 @@ def main():
     rows = upcoming_rows(rows)
     if not rows:
         print("Odds response has no upcoming events; existing snapshot retained")
+        return 1
+    rows = fresh_rows(rows)
+    if not rows:
+        print("Odds response has no fresh valid pregame DK/FD quotes; existing snapshot retained")
         return 1
     if not validate_rows(rows, sport):
         print("NFL odds response has no fresh pregame DK/FD moneylines; existing snapshot retained")
