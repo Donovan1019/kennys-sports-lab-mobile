@@ -25,8 +25,24 @@ rows.sort((a,b)=>Number(b.eligible)-Number(a.eligible)||b.sim.prob-a.sim.prob);
 status.textContent=rows.length+' verified current-game 19.5 lines · '+rows.filter(r=>r.eligible).length+' screen candidates · Monte Carlo: 20,000 historical draws per player · No injury/minutes adjustment';
 cards.replaceChildren();parlay.replaceChildren();if(!rows.length){add(cards,'p','UNAVAILABLE — No matching current-season logs and fresh 19.5-point sportsbook quotes. Check NBA feed pipelines. No invented picks.');return}
 for(const r of rows.slice(0,20)){const c=add(cards,'article','', 'club-card');add(c,'h3',r.p.name+' · '+(r.p.team||'NBA')+' · 20+ points');add(c,'p',r.q.bookmaker.toUpperCase()+' · Over 19.5 '+(Number(r.q.price)>0?'+':'')+r.q.price+' · '+(r.eligible?'HISTORICAL CANDIDATE':'PASS'));add(c,'div','L5 '+r.l5+'/5 · L10 '+r.l10+'/10 · L20 '+r.l20+'/'+r.n+' · Projected proxy '+r.proj.toFixed(1)+' · MC '+(r.sim.prob*100).toFixed(1)+'% · 80% range '+r.sim.low+'–'+r.sim.high+' · Proxy edge '+(r.edge*100).toFixed(1)+'pp','club-metrics')}
-let best=null;const eligible=rows.filter(r=>r.eligible);for(let i=0;i<eligible.length;i++)for(let j=i+1;j<eligible.length;j++)for(let k=j;k<eligible.length;k++){const picks=k===j?[eligible[i],eligible[j]]:[eligible[i],eligible[j],eligible[k]];if(new Set(picks.map(r=>norm(r.p.name))).size!==picks.length||new Set(picks.map(r=>String(r.q.event_id))).size!==picks.length||new Set(picks.map(r=>norm(r.q.bookmaker))).size!==1)continue;const d=picks.reduce((v,r)=>v*decimal(Number(r.q.price)),1);if(d<2||d>3)continue;const joint=picks.reduce((v,r)=>v*r.sim.prob,1);const ev=joint*d-1;if(!best||ev>best.ev)best={picks,d,joint,ev}}
-add(parlay,'h3','20 Club · Target parlay (-100 to +100)');if(!best){add(parlay,'p','PASS — No qualifying same-book, distinct-game 2–3 leg combination in the requested odds range.');return}
+let best=null;const eligible=rows.filter(r=>r.eligible).slice(0,32);
+const byBook=new Map();for(const r of eligible){const book=norm(r.q.bookmaker);if(!byBook.has(book))byBook.set(book,[]);byBook.get(book).push(r)}
+// Bounded beam search avoids O(n^8) combinations while exploring 2–8 legs.
+for(const group of byBook.values()){
+let beam=[{picks:[],d:1,joint:1,usedPlayers:new Set(),usedGames:new Set()}];
+for(let depth=1;depth<=8;depth++){
+const next=[];for(const state of beam){const last=state.picks.length?group.indexOf(state.picks[state.picks.length-1]):-1;
+for(let idx=last+1;idx<group.length;idx++){const r=group[idx],player=norm(r.p.name),game=String(r.q.event_id);
+if(state.usedPlayers.has(player)||state.usedGames.has(game))continue;
+const d=state.d*decimal(Number(r.q.price));if(d>2.000001)continue;
+const joint=state.joint*r.sim.prob,usedPlayers=new Set(state.usedPlayers),usedGames=new Set(state.usedGames);usedPlayers.add(player);usedGames.add(game);
+const candidate={picks:[...state.picks,r],d,joint,usedPlayers,usedGames};
+if(depth>=2&&d>=1.999999){const ev=joint*d-1;if(!best||joint>best.joint||(joint===best.joint&&ev>best.ev))best={...candidate,ev}}
+if(depth<8)next.push(candidate)
+}}
+next.sort((a,b)=>b.d-a.d||b.joint-a.joint);beam=next.slice(0,1200);if(!beam.length)break
+}}
+add(parlay,'h3','20 Club · Target parlay (-100 to +100)');if(!best){add(parlay,'p','PASS — No qualifying same-book, distinct-game 2–8 leg combination in the requested odds range.');return}
 const box=add(parlay,'div','', 'club-card');for(const r of best.picks)add(box,'p',r.p.name+' 20+ · '+r.q.bookmaker.toUpperCase()+' '+(Number(r.q.price)>0?'+':'')+r.q.price);
 add(box,'p','Reference combined odds '+american(best.d)+' · Independence-only probability '+(best.joint*100).toFixed(1)+'% · Break-even '+(100/best.d).toFixed(1)+'%');
 add(box,'p','RESEARCH ONLY — Historical resampling does not adjust for injuries, expected minutes, matchup or cross-game dependence. Not a calibrated or verified betting-ready recommendation.');
