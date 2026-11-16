@@ -16,9 +16,10 @@ for(const r of rows){
   games.get(key).rows.push(r);
 }
 const priority=r=>r.bet_status==='BETTING_READY'?0:r.bet_status==='PROVISIONAL'?1:r.bet_status==='NO_VALUE'?2:3;
-const gameList=[...games.values()].sort((a,b)=>Math.min(...a.rows.map(priority))-Math.min(...b.rows.map(priority))||Date.parse(a.start)-Date.parse(b.start));
+const gameList=[...games.values()].sort((a,b)=>Date.parse(a.start)-Date.parse(b.start)||Math.min(...a.rows.map(priority))-Math.min(...b.rows.map(priority)));
 root.querySelector('#kmd-status').textContent=gameList.length?gameList.length+' games · '+rows.length+' sportsbook comparisons · feed '+new Date(stamp).toLocaleString():'No upcoming verified model projections in the published feed.';
-root.querySelector('#kmd-rows').innerHTML=gameList.slice(0,20).map(g=>{
+const sportOrder=[['basketball_nba','NBA'],['icehockey_nhl','NHL'],['basketball_ncaab','NCAA Basketball']];
+const renderGame=g=>{
   const teams=new Map();
   for(const r of g.rows){if(!teams.has(r.selection))teams.set(r.selection,[]);teams.get(r.selection).push(r);}
   const league=g.sport.replace('basketball_','').replace('icehockey_','').toUpperCase();
@@ -29,6 +30,11 @@ root.querySelector('#kmd-rows').innerHTML=gameList.slice(0,20).map(g=>{
     return '<div class="kmd-team"><div class="kmd-team-info"><strong>'+esc(team)+'</strong><span>Model '+pct(base.model_probability)+' · Fair '+esc(base.fair_odds??'—')+'</span></div><div class="kmd-books">'+bookPrices+'</div></div>';
   }).join('');
   return '<article class="kmd-game"><div class="kmd-game-header"><strong>'+esc(league)+' · '+esc(g.event)+'</strong><span>'+esc(new Date(g.start).toLocaleString([], {month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}))+'</span></div>'+teamRows+'</article>';
+};
+root.querySelector('#kmd-rows').innerHTML=sportOrder.map(([sport,label])=>{
+  const sportGames=gameList.filter(g=>g.sport===sport);
+  if(!sportGames.length)return '';
+  return '<section class="kmd-sport-section" aria-label="'+esc(label)+' market comparisons"><h3 class="kmd-sport-heading">'+esc(label)+' <span>'+sportGames.length+' games</span></h3>'+sportGames.map(renderGame).join('')+'</section>';
 }).join('');
 
 }).catch(()=>{root.querySelector('#kmd-status').textContent='Decision feed unavailable; no picks can be verified.'});
