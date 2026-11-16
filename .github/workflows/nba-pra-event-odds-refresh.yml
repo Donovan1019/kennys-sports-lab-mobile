@@ -31,9 +31,16 @@ jobs:
       - name: Collect fresh NBA event player props
         if: steps.eastern.outputs.run == 'true'
         env:
+          SPORTSGAMEODDS_API_KEY: ${{ secrets.SPORTSGAMEODDS_API_KEY }}
           THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
           NBA_PROPS_MAX_EVENTS: '3'
-        run: python scripts/fetch_nba_event_props.py
+        run: |
+          if python scripts/fetch_nba_sgo_props.py; then
+            echo 'SportsGameOdds NBA props collected'
+          else
+            echo 'SportsGameOdds unavailable; attempting legacy Odds API fallback'
+            python scripts/fetch_nba_event_props.py
+          fi
       - name: Validate current PRA market
         if: steps.eastern.outputs.run == 'true'
         run: |
