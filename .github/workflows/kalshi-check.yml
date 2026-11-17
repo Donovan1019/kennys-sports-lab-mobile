@@ -37,5 +37,7 @@ jobs:
           assert(js.includes('selectedMarket'), 'Selected market state missing');
           assert(js.includes('ksl-kalshi-favorites'), 'Favorites persistence missing');
           assert(js.includes('findIndex(x=>x.ticker===m.ticker)'), 'Duplicate market guard missing');
+          assert(js.includes('request!==latestRequest'), 'Stale request protection missing');
+          assert(js.includes('queued=true'), 'Queued refresh protection missing');
           console.log('Kalshi static checks passed');
           NODE
