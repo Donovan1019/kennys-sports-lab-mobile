@@ -18,6 +18,8 @@ jobs:
         with:
           python-version: '3.12'
       - name: Fetch read-only public sports quotes
+        id: market_fetch
+        continue-on-error: true
         run: python scripts/collect_kalshi.py
       - name: Archive pregame model forecasts (append only)
         run: python scripts/archive_kalshi_forecasts.py
@@ -40,12 +42,13 @@ jobs:
               data=json.loads(p.read_text())
               print(f'{p}: {p.stat().st_size} bytes, fields={list(data)[:8]}')
           PY
-      - name: Commit fresh snapshot
+      - name: Commit fresh snapshot and audit evidence
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add data/kalshi-markets.json data/kalshi-integrity.json data/kalshi-pregame-forecasts.json data/kalshi-settlements.json
           if ! git diff --cached --quiet; then
             git commit -m 'data: refresh Kalshi public sports snapshot'
-            git push
+            git pull --rebase origin main
+            git push origin HEAD:main
           fi
