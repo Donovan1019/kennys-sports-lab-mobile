@@ -25,6 +25,7 @@ def audit(now=None):
     # Calibration needs immutable, timestamped pregame forecasts joined to independently
     # verified final outcomes. A current projections feed is NOT historical evidence.
     archive=read('data/kalshi-pregame-forecasts.json') or {}
+    game_results_verified=sum(1 for r in archive.get('observations',[]) if isinstance(r,dict) and r.get('game_result_verified') is True and r.get('game_result_source') and r.get('game_result_event_id'))
     valid_history=[]
     unique=set()
     for r in archive.get('observations',[]):
@@ -49,9 +50,9 @@ def audit(now=None):
     return {'generated_at':now.isoformat(),'status':'BLOCKED' if not calibrated else 'REVIEW_REQUIRED',
       'kalshi_snapshot_fresh':market_fresh,'model_feed_fresh':model_fresh,
       'market_count':len(markets.get('markets') or []),'model_decision_count':len(model_rows),
-      'research_only_decisions':research_only,'verified_historical_outcomes':len(valid_history),'archived_pregame_forecasts':len(archive.get('observations',[])),
+      'research_only_decisions':research_only,'verified_historical_outcomes':len(valid_history),'archived_pregame_forecasts':len(archive.get('observations',[])),'independent_game_results_verified':game_results_verified,
       'historical_brier_score':brier,'calibration_passed':calibrated,
-      'settlement_verification':'UNAVAILABLE' if not valid_history else 'HISTORICAL_VERIFIED_ONLY',
+      'settlement_verification':'UNAVAILABLE — independent game results do not establish Kalshi contract settlement' if not valid_history else 'HISTORICAL_VERIFIED_ONLY',
       'contract_fee_validation':'UNAVAILABLE — series-specific fee/order preview not verified',
       'end_to_end_live_test':'UNVERIFIED — CI audit is not a live browser test',
       'diamond_issuance':'BLOCKED',
