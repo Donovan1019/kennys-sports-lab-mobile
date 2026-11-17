@@ -35,5 +35,7 @@ jobs:
           assert(js.includes('data-calc='), 'Market-to-calculator button missing');
           assert(!js.includes('lastSeen.set('), 'Undefined lastSeen tracking regression');
           assert(js.includes('selectedMarket'), 'Selected market state missing');
+          assert(js.includes('ksl-kalshi-favorites'), 'Favorites persistence missing');
+          assert(js.includes('findIndex(x=>x.ticker===m.ticker)'), 'Duplicate market guard missing');
           console.log('Kalshi static checks passed');
           NODE
