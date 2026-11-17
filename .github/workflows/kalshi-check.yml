@@ -1,0 +1,36 @@
+name: Kalshi module checks
+on:
+  pull_request:
+    paths:
+      - 'kalshi.js'
+      - 'kalshi.html'
+      - '.github/workflows/kalshi-check.yml'
+  push:
+    paths:
+      - 'kalshi.js'
+      - 'kalshi.html'
+      - '.github/workflows/kalshi-check.yml'
+jobs:
+  static-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: JavaScript syntax
+        run: node --check kalshi.js
+      - name: HTML and safety checks
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const assert = require('assert');
+          const html = fs.readFileSync('kalshi.html','utf8');
+          const js = fs.readFileSync('kalshi.js','utf8');
+          for (const id of ['sport','refresh','status','markets','ticker','search','sort','favoritesOnly','count']) assert(html.includes('id="'+id+'"'), 'Missing '+id);
+          assert(js.includes('external-api.kalshi.com'), 'Kalshi feed missing');
+          assert(!/\/portfolio\/orders|\/portfolio\/positions|createOrder/i.test(js), 'Trading endpoint detected');
+          assert(js.includes('UNVERIFIED') && js.includes('UNAVAILABLE'), 'Unverified safeguards missing');
+          assert(html.includes('kalshi.js'), 'Script not loaded');
+          console.log('Kalshi static checks passed');
+          NODE
