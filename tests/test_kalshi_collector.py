@@ -11,7 +11,7 @@ import collect_kalshi as collector
 class CollectorTests(unittest.TestCase):
  def test_partial_failure_preserves_successful_series(self):
   with tempfile.TemporaryDirectory() as tmp:
-   market={'ticker':'KXNBAGAME-26NOV20TEST-AAA','event_ticker':'KXNBAGAME-26NOV20TEST','title':'Example wins','status':'active','close_time':'2026-11-25T22:00:00Z','yes_ask_dollars':'0.55'}
+   market={'ticker':'KXNBAGAME-26NOV20TEST-AAA','event_ticker':'KXNBAGAME-26NOV20TEST','title':'Example wins','status':'active','close_time':(datetime.now(timezone.utc)+timedelta(days=7)).isoformat(),'yes_ask_dollars':'0.55'}
    def fetch(series):
     if series=='KXNHLGAME':raise RuntimeError('temporary outage')
     return [market] if series=='KXNBAGAME' else []
