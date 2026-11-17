@@ -29,12 +29,31 @@ function best(rows){
  groups.length=0;groups.push(...limited);visit(0,[],1,1);return winner;
 }
 function simulate(legs,n=50000){let wins=0;for(let i=0;i<n;i++){let hit=true;for(const r of legs){if(Math.random()>=r.model_probability){hit=false;break}}if(hit)wins++}return {wins,n,p:wins/n}}
+async function pipelineDiagnostics(){
+ try{
+  const response=await fetch('./feed/model_market_decisions.json?ts='+Date.now(),{cache:'no-store'});
+  if(!response.ok)return 'Independent projection feed unavailable';
+  const feed=await response.json();
+  const stamp=Date.parse(feed.generated_at);
+  if(!Number.isFinite(stamp)||Date.now()-stamp>6*3600000||stamp>Date.now())return 'Independent projection feed stale; no current certification';
+  const all=(Array.isArray(feed.decisions)?feed.decisions:[]).filter(r=>todayGame(r)&&r.model_probability>0&&r.model_probability<1);
+  const games=new Set(all.map(r=>r.sport+'|'+(r.event_id||r.event)));
+  const leagues=[...new Set(all.map(r=>leagueName(r.sport)))].join(', ');
+  const reasons=new Map();
+  for(const r of all){
+   const reason=r.reason||r.bet_status||'Not certified';
+   reasons.set(reason,(reasons.get(reason)||0)+1);
+  }
+  const top=[...reasons.entries()].sort((a,b)=>b[1]-a[1]).slice(0,3).map(([reason,count])=>count+' '+reason).join('; ');
+  return games.size+' games / '+all.length+' quotes on today’s slate ('+(leagues||'none')+'). '+(top||'No independent model projections for today')+'. Research comparisons are not betting-certified.';
+ }catch{return 'Independent projection diagnostics unavailable'}
+}
 async function refresh(){
  button.disabled=true;status.textContent='Today · '+todayET()+' ET · loading verified Kenny’s model feed…';ticket.replaceChildren();
  try{const response=await fetch('./data/market_edges.json?ts='+Date.now(),{cache:'no-store'});if(!response.ok)throw Error('Verified feed unavailable');const payload=await response.json(),rows=Array.isArray(payload)?payload:payload.edges;
  if(!Array.isArray(rows))throw Error('Invalid verified market feed');
  const eligible=rows.filter(verified),pick=best(eligible);
- if(!pick){status.textContent='TODAY '+todayET()+' ET · NO VERIFIED PARLAY — '+esc(payload.reason||'No qualifying +100 moneyline combination for today with independently validated projections, lineups and prices')+'.';ticket.innerHTML='<p class="kml-note">No speculative underdogs or duplicate sportsbook selections are substituted for verified Kenny’s picks. Recheck after model validation and market refresh.</p>';return}
+ if(!pick){status.textContent='TODAY '+todayET()+' ET · NO VERIFIED PARLAY — '+esc(payload.reason||'No qualifying +100 moneyline combination for today with independently validated projections, lineups and prices')+'.';ticket.innerHTML='<p class="kml-note">'+esc(await pipelineDiagnostics())+'</p>';return}
  const mc=simulate(pick.legs),simEV=mc.p*pick.d-1;
  status.textContent='TODAY '+todayET()+' ET · COMPLETE · '+mc.n.toLocaleString()+' Monte Carlo trials · '+pick.legs.length+' verified legs';
  ticket.innerHTML='<div class="kml-summary"><strong>'+american(pick.d)+'</strong><span>Simulated win '+(mc.p*100).toFixed(1)+'%</span><span>Model fair '+american(1/pick.p)+'</span><span>Simulated EV '+(simEV*100).toFixed(1)+'%</span></div>'+
