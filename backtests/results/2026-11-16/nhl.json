@@ -14,6 +14,19 @@
       "completed": true,
       "source": "ESPN scoreboard",
       "source_url": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261116&limit=100"
+    },
+    {
+      "event_id": "401892727",
+      "event": "Vancouver Canucks at Utah Mammoth",
+      "commence_time": "2026-11-17T02:30Z",
+      "home": "Utah Mammoth",
+      "away": "Vancouver Canucks",
+      "home_score": 2,
+      "away_score": 3,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261116&limit=100"
     }
   ],
   "source_url": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261116&limit=100"

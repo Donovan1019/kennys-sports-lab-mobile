@@ -1,6 +1,6 @@
 {
   "date": "2026-11-16",
-  "generated_at": "2026-11-17T04:28:16.601447+00:00",
+  "generated_at": "2026-11-17T20:50:16.646700+00:00",
   "sports": {
     "NFL": {
       "status": "OUTCOMES_UNVERIFIED",
@@ -31,7 +31,7 @@
       "research_only_predictions": 158,
       "bet_eligible_predictions": 0,
       "blocked_predictions": [],
-      "graded": 2,
+      "graded": 6,
       "settled": [
         {
           "event": "Montreal Canadiens @ New York Rangers",
@@ -44,15 +44,39 @@
           "market": "h2h",
           "selection": "Montreal Canadiens",
           "outcome": "loss"
+        },
+        {
+          "event": "Vancouver Canucks @ Utah Mammoth",
+          "market": "h2h",
+          "selection": "Utah Mammoth",
+          "outcome": "loss"
+        },
+        {
+          "event": "Vancouver Canucks @ Utah Mammoth",
+          "market": "h2h",
+          "selection": "Vancouver Canucks",
+          "outcome": "win"
+        },
+        {
+          "event": "Vancouver Canucks @ Utah Mammoth",
+          "market": "h2h",
+          "selection": "Utah Mammoth",
+          "outcome": "loss"
+        },
+        {
+          "event": "Vancouver Canucks @ Utah Mammoth",
+          "market": "h2h",
+          "selection": "Vancouver Canucks",
+          "outcome": "win"
         }
       ],
-      "pending": 156
+      "pending": 152
     }
   },
   "summary": {
-    "verified_picks": 2,
-    "wins": 1,
-    "losses": 1,
+    "verified_picks": 6,
+    "wins": 3,
+    "losses": 3,
     "pushes": 0,
     "roi": null,
     "hit_rate": 0.5
