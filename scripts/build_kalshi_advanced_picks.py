@@ -54,7 +54,14 @@ def build(now=None):
             if dt(d['start_time']).astimezone(ZoneInfo('America/New_York')).date().isoformat()!=day:continue
             selected=next((i for i,n in enumerate(names) if team_match(d.get('selection'),n)),None)
             if selected is None:continue
-            # Model probability is attached to its own selected winner; opposite side is derived, never inferred from market price.
+            # Preserve canonical team names from the independent fixture, never truncated contract titles.
+            canonical=[]
+            for name in names:
+                matches=[t for t in teams if team_match(t,name)]
+                if len(matches)!=1:break
+                canonical.append(matches[0])
+            if len(canonical)!=2 or len(set(canonical))!=2:continue
+            # The selected model team has probability p; its opponent has 1-p.
             p=float(d['model_probability'])
             for index,c in enumerate(contracts):
                 for side,prob in (('YES',p if index==selected else 1-p),('NO',1-p if index==selected else p)):
@@ -64,7 +71,7 @@ def build(now=None):
                     try:ask=float(raw)
                     except (TypeError,ValueError):continue
                     if not 0<ask<1:continue
-                    winner=names[index] if side=='YES' else names[1-index]
+                    winner=canonical[index] if side=='YES' else canonical[1-index]
                     # No advanced certification without verified sport-specific simulation, lineup and matchup evidence.
                     calibrated=sport=='nba' and nba.get('calibration_passed') is True
                     tier='VALIDATED_BASELINE' if calibrated else 'RESEARCH_BASELINE'
