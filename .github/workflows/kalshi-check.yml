@@ -20,6 +20,8 @@ jobs:
           node-version: '22'
       - name: JavaScript syntax
         run: node --check kalshi.js
+      - name: Snapshot collector syntax
+        run: python3 -m py_compile scripts/collect_kalshi.py
       - name: HTML and safety checks
         run: |
           node - <<'NODE'
@@ -34,6 +36,8 @@ jobs:
           assert(html.includes('kalshi.js'), 'Script not loaded');
           assert(js.includes('Use YES ask in calculator'), 'Visible market-to-calculator button missing');
           assert(js.includes('const movements=new Map()'), 'Movement history state missing');
+          assert(js.includes('./data/kalshi-markets.json'), 'CORS-safe snapshot fallback missing');
+          assert(js.includes('STALE'), 'Stale snapshot warning missing');
           assert(js.includes('movements.set(m.ticker,p-old)'), 'Movement refresh calculation missing');
           assert(!js.includes('lastSeen.set('), 'Undefined lastSeen tracking regression');
           assert(js.includes('selectedMarket'), 'Selected market state missing');
