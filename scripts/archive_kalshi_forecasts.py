@@ -45,7 +45,7 @@ def collect(now=None):
         day=start.astimezone(ZoneInfo('America/New_York')).date().isoformat()
         candidates=[m for m in market_rows if m.get('sport')==sport_map.get(r.get('sport')) and m.get('game_date_et')==day and norm(str(m.get('title','')).removesuffix(' wins'))==norm(r['selection'])]
         # A ticker alone cannot establish the correct opponent or event.
-        event_teams=[norm(t) for t in re.split(r'\\s+@\\s+',str(r.get('event') or ''))]
+        event_teams=[norm(t) for t in re.split(r'\s+@\s+',str(r.get('event') or ''))]
         if len(event_teams)!=2 or norm(r['selection']) not in event_teams:
             candidates=[]
         else:
