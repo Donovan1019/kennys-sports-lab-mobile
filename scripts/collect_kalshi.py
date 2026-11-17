@@ -38,7 +38,7 @@ def fetch(ticker):
     return rows
 
 MONTHS = {name: index for index, name in enumerate(("JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"), 1)}
-GAME_DATE = re.compile(r"-(\\d{2})(JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)(\\d{1,2})(?:[A-Z]|$)")
+GAME_DATE = re.compile(r"-(\d{2})(JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)(\d{1,2})(?:[A-Z]|$)")
 
 def game_date_from_ticker(market):
     """Conservative day-level extraction; not a confirmed tipoff time."""
