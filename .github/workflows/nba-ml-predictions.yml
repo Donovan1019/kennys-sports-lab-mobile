@@ -18,12 +18,12 @@ jobs:
           python-version: '3.11'
       - name: Run prediction tests
         run: python -m unittest discover -s tests -p 'test_nba_ml_*.py'
-      - name: Refresh NBA sportsbook odds (free API quota applies)
+      - name: Refresh NBA sportsbook odds via working SportsGameOdds API
         env:
-          THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
+          SPORTSGAMEODDS_API_KEY: ${{ secrets.SPORTSGAMEODDS_API_KEY }}
           ODDS_SPORT: basketball_nba
           ODDS_MARKETS: h2h
-        run: python scripts/fetch_odds.py
+        run: python scripts/fetch_sportsgameodds.py
       - name: Build historical team ratings
         run: python scripts/build_nba_ml_ratings.py
       - name: Generate fail-closed prediction feed
