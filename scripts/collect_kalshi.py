@@ -53,11 +53,13 @@ def game_date_from_ticker(market):
 
 def main():
     markets, failures = {}, []
+    successful_series = []
     for sport, tickers in SERIES.items():
         for ticker in tickers:
             try:
                 rows = fetch(ticker)
                 print(f"{ticker}: {len(rows)} markets")
+                successful_series.append(ticker)
                 for market in rows:
                     if market.get("ticker") and market.get("status") in ("open", "active"):
                         markets[market["ticker"]] = {**{key: market[key] for key in FIELDS if key in market}, "sport": sport}
@@ -66,7 +68,8 @@ def main():
     if failures:
         for failure in failures:
             print(failure, file=sys.stderr)
-        raise SystemExit("Feed incomplete: preserving previous snapshot.")
+        if not successful_series:
+            raise SystemExit("All market series failed: preserving previous snapshot.")
     now = datetime.now(timezone.utc)
     upcoming = []
     today_et = now.astimezone(ZoneInfo('America/New_York')).date()
@@ -92,7 +95,7 @@ def main():
         if per_sport[sport] < 500:
             selected.append(market)
             per_sport[sport] += 1
-    snapshot = {"source": "Kalshi public REST API", "fetched_at": now.isoformat(), "series_checked": sum(map(len, SERIES.values())), "market_counts": per_sport, "excluded_past_game_dates": excluded_past_games, "markets": selected}
+    snapshot = {"source": "Kalshi public REST API", "fetched_at": now.isoformat(), "series_checked": len(successful_series), "series_successful": successful_series, "series_failed": failures, "partial_failure": bool(failures), "market_counts": per_sport, "excluded_past_game_dates": excluded_past_games, "markets": selected}
     target = Path("data/kalshi-markets.json")
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(json.dumps(snapshot, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
