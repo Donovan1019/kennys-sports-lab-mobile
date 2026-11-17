@@ -49,7 +49,7 @@ def audit(now=None):
     brier=sum((r['predicted_probability']-r['actual_outcome'])**2 for r in valid_history)/len(valid_history) if valid_history else None
     # A small history is descriptive only; do not promote to calibrated status.
     calibrated=len(valid_history)>=200 and brier is not None and brier<0.25
-    return {'generated_at':now.isoformat(),'status':'BLOCKED' if not calibrated else 'REVIEW_REQUIRED',
+    return {'generated_at':now.isoformat(),'status':'PREDICTIONS_AVAILABLE' if market_fresh and model_fresh and model_rows else 'DATA_REFRESH_REQUIRED',
       'kalshi_snapshot_fresh':market_fresh,'model_feed_fresh':model_fresh,
       'market_count':len(markets.get('markets') or []),'model_decision_count':len(model_rows),
       'research_only_decisions':research_only,'verified_historical_outcomes':len(valid_history),'archived_pregame_forecasts':len(archive.get('observations',[])),'independent_game_results_verified':game_results_verified,'kalshi_settled_contracts_collected':kalshi_settled_count,
@@ -58,7 +58,10 @@ def audit(now=None):
       'contract_fee_validation':'UNAVAILABLE — series-specific fee/order preview not verified',
       'end_to_end_live_test':'UNVERIFIED — CI audit is not a live browser test',
       'diamond_issuance':'BLOCKED',
-      'reasons':['Require 200+ independently verified timestamped historical observations and calibration evaluation',
+      'prediction_engine':'AVAILABLE' if model_fresh and model_rows else 'REFRESH_REQUIRED',
+      'market_quote_engine':'AVAILABLE' if market_fresh and markets.get('markets') else 'REFRESH_REQUIRED',
+      'value_engine':'PROVISIONAL' if market_fresh and model_fresh and model_rows else 'REFRESH_REQUIRED',
+      'reasons':['Historical calibration is required for Diamond classification, not for provisional probability predictions',
                  'Require event settlement and order-specific fee validation before any actionable pick',
                  'Require successful live mobile browser and quote-matching test']}
 if __name__=='__main__':
