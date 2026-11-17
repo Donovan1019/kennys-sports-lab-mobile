@@ -26,4 +26,12 @@ class Tests(unittest.TestCase):
     record['forecast_at']='2026-11-17T04:00:00Z'
     path.write_text(json.dumps({'observations':[record]}))
     self.assertEqual(audit.audit(datetime(2026,11,17,12,tzinfo=timezone.utc))['verified_historical_outcomes'],0)
+ def test_archive_initializes_when_model_missing(self):
+  import archive_kalshi_forecasts as arch
+  with tempfile.TemporaryDirectory() as tmp:
+   root=Path(tmp)
+   with patch.object(arch,'MODEL',root/'missing.json'),patch.object(arch,'OUT',root/'data/kalshi-pregame-forecasts.json'):
+    arch.collect(datetime(2026,11,17,12,tzinfo=timezone.utc))
+    data=json.loads((root/'data/kalshi-pregame-forecasts.json').read_text())
+    self.assertEqual(data['observations'],[])
 if __name__=='__main__':unittest.main()
