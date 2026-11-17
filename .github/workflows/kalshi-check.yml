@@ -4,6 +4,8 @@ on:
     paths:
       - 'scripts/audit_kalshi_integrity.py'
       - 'scripts/archive_kalshi_forecasts.py'
+      - 'scripts/collect_kalshi_game_results.py'
+      - 'scripts/collect_kalshi_settlements.py'
       - 'tests/test_kalshi_integrity.py'
       - 'kalshi.js'
       - 'kalshi.html'
@@ -24,7 +26,7 @@ jobs:
       - name: JavaScript syntax
         run: node --check kalshi.js
       - name: Snapshot collector syntax
-        run: python3 -m py_compile scripts/collect_kalshi.py scripts/audit_kalshi_integrity.py scripts/archive_kalshi_forecasts.py
+        run: python3 -m py_compile scripts/collect_kalshi.py scripts/audit_kalshi_integrity.py scripts/archive_kalshi_forecasts.py scripts/collect_kalshi_game_results.py scripts/collect_kalshi_settlements.py
       - name: Calibration evidence regression tests
         run: python3 -m unittest discover -s tests -p 'test_kalshi_integrity.py'
       - name: Kalshi integrity audit smoke test
