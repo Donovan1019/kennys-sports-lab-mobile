@@ -3,6 +3,7 @@ on:
   pull_request:
     paths:
       - 'scripts/audit_kalshi_integrity.py'
+      - 'scripts/archive_kalshi_forecasts.py'
       - 'kalshi.js'
       - 'kalshi.html'
       - '.github/workflows/kalshi-check.yml'
@@ -22,9 +23,10 @@ jobs:
       - name: JavaScript syntax
         run: node --check kalshi.js
       - name: Snapshot collector syntax
-        run: python3 -m py_compile scripts/collect_kalshi.py scripts/audit_kalshi_integrity.py
+        run: python3 -m py_compile scripts/collect_kalshi.py scripts/audit_kalshi_integrity.py scripts/archive_kalshi_forecasts.py
       - name: Kalshi integrity audit smoke test
         run: |
+          python3 scripts/archive_kalshi_forecasts.py
           python3 scripts/audit_kalshi_integrity.py
           python3 - <<'PY'
           import json
