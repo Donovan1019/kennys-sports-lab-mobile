@@ -24,22 +24,32 @@ def audit(now=None):
     research_only=sum(1 for r in model_rows if r.get('research_only') or r.get('bet_status')!='BETTING_READY')
     # Calibration needs immutable, timestamped pregame forecasts joined to independently
     # verified final outcomes. A current projections feed is NOT historical evidence.
-    archive=read('feed/kalshi_calibration_history.json')
+    archive=read('data/kalshi-pregame-forecasts.json') or {}
     valid_history=[]
-    if isinstance(archive,dict):
-        for r in archive.get('observations',[]):
-            if (isinstance(r,dict) and isinstance(r.get('predicted_probability'),(float,int))
-                and 0<r['predicted_probability']<1 and r.get('actual_outcome') in (0,1)
-                and r.get('settlement_verified') is True and r.get('pregame_timestamp_verified') is True
-                and r.get('unique_event_match_verified') is True):
-                valid_history.append(r)
+    unique=set()
+    for r in archive.get('observations',[]):
+        if not isinstance(r,dict):continue
+        forecast_at=timestamp(r.get('forecast_at'))
+        start_at=timestamp(r.get('game_start_at'))
+        key=(r.get('event_id'),r.get('selection'),r.get('model_source'),r.get('forecast_at'))
+        if (key in unique or not forecast_at or not start_at or not forecast_at<start_at
+            or not isinstance(r.get('predicted_probability'),(float,int))
+            or isinstance(r.get('predicted_probability'),bool)
+            or not 0<r['predicted_probability']<1
+            or r.get('actual_outcome') not in (0,1)
+            or r.get('settlement_verified') is not True
+            or not r.get('settlement_source')
+            or not r.get('event_id') or not r.get('selection')):
+            continue
+        unique.add(key)
+        valid_history.append(r)
     brier=sum((r['predicted_probability']-r['actual_outcome'])**2 for r in valid_history)/len(valid_history) if valid_history else None
     # A small history is descriptive only; do not promote to calibrated status.
     calibrated=len(valid_history)>=200 and brier is not None and brier<0.25
     return {'generated_at':now.isoformat(),'status':'BLOCKED' if not calibrated else 'REVIEW_REQUIRED',
       'kalshi_snapshot_fresh':market_fresh,'model_feed_fresh':model_fresh,
       'market_count':len(markets.get('markets') or []),'model_decision_count':len(model_rows),
-      'research_only_decisions':research_only,'verified_historical_outcomes':len(valid_history),
+      'research_only_decisions':research_only,'verified_historical_outcomes':len(valid_history),'archived_pregame_forecasts':len(archive.get('observations',[])),
       'historical_brier_score':brier,'calibration_passed':calibrated,
       'settlement_verification':'UNAVAILABLE' if not valid_history else 'HISTORICAL_VERIFIED_ONLY',
       'contract_fee_validation':'UNAVAILABLE — series-specific fee/order preview not verified',
