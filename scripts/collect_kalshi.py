@@ -51,7 +51,24 @@ def main():
         for failure in failures:
             print(failure, file=sys.stderr)
         raise SystemExit("Feed incomplete: preserving previous snapshot.")
-    snapshot = {"source": "Kalshi public REST API", "fetched_at": datetime.now(timezone.utc).isoformat(), "series_checked": sum(map(len, SERIES.values())), "markets": sorted(markets.values(), key=lambda m: (m.get("close_time") or "", m["ticker"]))[:500]}
+    now = datetime.now(timezone.utc)
+    upcoming = []
+    for market in markets.values():
+        try:
+            close = datetime.fromisoformat(market["close_time"].replace("Z", "+00:00"))
+        except (KeyError, ValueError, AttributeError):
+            continue
+        if close > now:
+            upcoming.append(market)
+    upcoming.sort(key=lambda m: (m["close_time"], m["ticker"]))
+    per_sport = {sport: 0 for sport in SERIES}
+    selected = []
+    for market in upcoming:
+        sport = market["sport"]
+        if per_sport[sport] < 500:
+            selected.append(market)
+            per_sport[sport] += 1
+    snapshot = {"source": "Kalshi public REST API", "fetched_at": now.isoformat(), "series_checked": sum(map(len, SERIES.values())), "market_counts": per_sport, "markets": selected}
     target = Path("data/kalshi-markets.json")
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(json.dumps(snapshot, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
