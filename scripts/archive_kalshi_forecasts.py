@@ -17,7 +17,8 @@ def collect(now=None):
     model=json.loads(MODEL.read_text())
     generated=utc(model.get('generated_at'))
     if model.get('status')!='ok' or not generated or not (0<=(now-generated).total_seconds()<=86400):
-        raise ValueError('Model feed not fresh: preserving archive')
+        print('Model feed stale/unavailable: preserving archive without adding forecasts')
+        return
     archive={'schema_version':1,'observations':[]}
     if OUT.exists(): archive=json.loads(OUT.read_text())
     rows=archive.get('observations',[])
