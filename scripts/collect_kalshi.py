@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """Read-only public Kalshi market snapshot for GitHub Pages."""
 import json
+import re
 import sys
 import time
 from datetime import datetime, timezone
+from zoneinfo import ZoneInfo
 from pathlib import Path
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode
@@ -35,6 +37,20 @@ def fetch(ticker):
             break
     return rows
 
+MONTHS = {name: index for index, name in enumerate(("JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"), 1)}
+GAME_DATE = re.compile(r"-(\\d{2})(JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)(\\d{1,2})(?:[A-Z]|$)")
+
+def game_date_from_ticker(market):
+    """Conservative day-level extraction; not a confirmed tipoff time."""
+    ticker = market.get("event_ticker") or market.get("ticker") or ""
+    match = GAME_DATE.search(ticker)
+    if not match:
+        return None
+    try:
+        return datetime(2000 + int(match.group(1)), MONTHS[match.group(2)], int(match.group(3))).date()
+    except ValueError:
+        return None
+
 def main():
     markets, failures = {}, []
     for sport, tickers in SERIES.items():
@@ -53,7 +69,15 @@ def main():
         raise SystemExit("Feed incomplete: preserving previous snapshot.")
     now = datetime.now(timezone.utc)
     upcoming = []
+    today_et = now.astimezone(ZoneInfo('America/New_York')).date()
+    excluded_past_games = 0
     for market in markets.values():
+        game_day = game_date_from_ticker(market)
+        if game_day is not None and game_day < today_et:
+            excluded_past_games += 1
+            continue
+        if game_day is not None:
+            market['game_date_et'] = game_day.isoformat()
         try:
             close = datetime.fromisoformat(market["close_time"].replace("Z", "+00:00"))
         except (KeyError, ValueError, AttributeError):
@@ -68,7 +92,7 @@ def main():
         if per_sport[sport] < 500:
             selected.append(market)
             per_sport[sport] += 1
-    snapshot = {"source": "Kalshi public REST API", "fetched_at": now.isoformat(), "series_checked": sum(map(len, SERIES.values())), "market_counts": per_sport, "markets": selected}
+    snapshot = {"source": "Kalshi public REST API", "fetched_at": now.isoformat(), "series_checked": sum(map(len, SERIES.values())), "market_counts": per_sport, "excluded_past_game_dates": excluded_past_games, "markets": selected}
     target = Path("data/kalshi-markets.json")
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(json.dumps(snapshot, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
