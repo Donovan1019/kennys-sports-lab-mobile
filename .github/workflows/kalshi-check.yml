@@ -8,6 +8,7 @@ on:
       - 'scripts/collect_kalshi_settlements.py'
       - 'scripts/join_kalshi_settlements.py'
       - 'tests/test_kalshi_integrity.py'
+      - '.github/workflows/kalshi-snapshot.yml'
       - 'kalshi.js'
       - 'kalshi.html'
       - '.github/workflows/kalshi-check.yml'
@@ -47,6 +48,18 @@ jobs:
           assert data['contract_fee_validation'].startswith('UNAVAILABLE')
           print('Fail-closed audit passed')
           PY
+      - name: Kalshi fee rounding regression
+        run: |
+          node - <<'NODE'
+          const fs=require('fs'),assert=require('assert');
+          const js=fs.readFileSync('kalshi.js','utf8');
+          assert(js.includes('Math.ceil((.07*price*(1-price))*100-1e-9)'), 'Standard fee must round UP to whole cents');
+          for(const [price,expected] of [[.6,2],[.5,2],[.9,1]]){
+            const cents=Math.ceil(.07*price*(1-price)*100-1e-9);
+            assert.strictEqual(cents,expected);
+          }
+          console.log('Fee rounding regression passed');
+          NODE
       - name: HTML and safety checks
         run: |
           node - <<'NODE'
