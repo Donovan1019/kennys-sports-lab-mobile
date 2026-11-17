@@ -34,4 +34,9 @@ class Tests(unittest.TestCase):
     arch.collect(datetime(2026,11,17,12,tzinfo=timezone.utc))
     data=json.loads((root/'data/kalshi-pregame-forecasts.json').read_text())
     self.assertEqual(data['observations'],[])
+ def test_team_separator_is_parsed(self):
+  import re
+  self.assertEqual(re.split(r'\s+@\s+','Boston Celtics @ New York Knicks'),['Boston Celtics','New York Knicks'])
+  source=(Path(__file__).resolve().parents[1]/'scripts/archive_kalshi_forecasts.py').read_text()
+  self.assertIn("re.split(r'\\s+@\\s+',",source)
 if __name__=='__main__':unittest.main()
