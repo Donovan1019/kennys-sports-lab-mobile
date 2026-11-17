@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-17T00:46:30.970454+00:00",
+  "generated_at": "2026-11-17T22:59:24.539708+00:00",
   "model": "independent-poisson-research-baseline",
   "status": "RESEARCH_ONLY",
   "predictions": [
@@ -8,20 +8,20 @@
       "event": "Vancouver Canucks @ Utah Mammoth",
       "commence_time": "2026-11-17T02:30:00.000Z",
       "status": "RESEARCH_ONLY",
-      "home_win_probability": 0.4988490445220766,
-      "away_win_probability": 0.5011509554779234,
+      "home_win_probability": 0.48908281314513635,
+      "away_win_probability": 0.5109171868548636,
       "goalie_status": "UNVERIFIED",
       "simulation_status": "RESEARCH_ONLY",
-      "simulation_home_probability": 0.5023,
-      "simulation_standard_error": 0.0035354964997861334,
+      "simulation_home_probability": 0.4937,
+      "simulation_standard_error": 0.0035352532441113747,
       "simulation_iterations": 20000,
-      "simulation_model_gap": 0.0034509554779233453,
+      "simulation_model_gap": 0.004617186854863675,
       "calibration_status": "UNVERIFIED",
       "goalie_impact_status": "UNAVAILABLE",
       "source": "ESPN completed game scores; 23-day lookback; shrinkage to 3.0 goals/game; NOT shot-quality xG",
       "data_quality": "RESEARCH_ONLY_GOALS_PER_GAME",
-      "away_sample_games": 10,
-      "home_sample_games": 9
+      "away_sample_games": 11,
+      "home_sample_games": 10
     },
     {
       "event_id": "Iji7fMAyoKIc7XOIy1oO",
