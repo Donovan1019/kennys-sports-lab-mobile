@@ -9,6 +9,7 @@ on:
       - 'scripts/collect_kalshi_settlements.py'
       - 'scripts/join_kalshi_settlements.py'
       - 'scripts/audit_kalshi_integrity.py'
+      - 'scripts/build_kalshi_advanced_picks.py'
       - '.github/workflows/kalshi-snapshot.yml'
   workflow_dispatch:
   schedule:
@@ -47,12 +48,14 @@ jobs:
         run: python scripts/join_kalshi_settlements.py
       - name: Audit calibration, settlement and fees (fail closed)
         run: python scripts/audit_kalshi_integrity.py
+      - name: Generate evidence-checked advanced picks feed
+        run: python scripts/build_kalshi_advanced_picks.py
       - name: Show generated data and enforce output contract
         run: |
           python - <<'PY'
           import json
           from pathlib import Path
-          for name in ('kalshi-markets.json','kalshi-integrity.json','kalshi-pregame-forecasts.json','kalshi-settlements.json'):
+          for name in ('kalshi-markets.json','kalshi-integrity.json','kalshi-pregame-forecasts.json','kalshi-settlements.json','kalshi-advanced-picks.json'):
               p=Path('data')/name
               assert p.exists(), f'Missing required output: {p}'
               data=json.loads(p.read_text())
@@ -62,7 +65,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/kalshi-markets.json data/kalshi-integrity.json data/kalshi-pregame-forecasts.json data/kalshi-settlements.json
+          git add data/kalshi-markets.json data/kalshi-integrity.json data/kalshi-pregame-forecasts.json data/kalshi-settlements.json data/kalshi-advanced-picks.json
           if ! git diff --cached --quiet; then
             git commit -m 'data: refresh Kalshi public sports snapshot'
             for attempt in 1 2 3 4; do
