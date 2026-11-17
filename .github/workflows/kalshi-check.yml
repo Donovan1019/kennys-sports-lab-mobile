@@ -32,5 +32,8 @@ jobs:
           assert(!/\/portfolio\/orders|\/portfolio\/positions|createOrder/i.test(js), 'Trading endpoint detected');
           assert(js.includes('UNVERIFIED') && js.includes('UNAVAILABLE'), 'Unverified safeguards missing');
           assert(html.includes('kalshi.js'), 'Script not loaded');
+          assert(js.includes('data-calc='), 'Market-to-calculator button missing');
+          assert(!js.includes('lastSeen.set('), 'Undefined lastSeen tracking regression');
+          assert(js.includes('selectedMarket'), 'Selected market state missing');
           console.log('Kalshi static checks passed');
           NODE
