@@ -34,5 +34,5 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/ncaab_odds.json
           git commit -m "data: refresh verified NCAAB odds"
-          git pull --rebase origin main
+          # SportsGameOdds also generates feed/*.json; keep those uncommitted files out of this publication.\n          git restore --worktree -- feed/basketball_ncaab.json feed/latest.json 2>/dev/null || true\n          git pull --rebase origin main
           git push origin HEAD:main
