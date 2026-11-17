@@ -1,64 +1,112 @@
 {
   "status": "validated",
   "sport": "basketball_nba",
-  "generated_at": "2026-11-17T02:54:22.388720+00:00",
+  "generated_at": "2026-11-17T23:37:31.538419+00:00",
   "calibration_passed": true,
   "model_version": "elo-walkforward-v1-holdout-audit",
   "validation_report": {
-    "walk_forward_games": 1253,
-    "brier": 0.20919,
-    "ece": 0.03954,
+    "walk_forward_games": 1275,
+    "brier": 0.20895,
+    "ece": 0.03786,
     "method": "chronological Elo, 200-game burn-in, no odds inputs",
     "holdout": {
-      "games": 291,
-      "start": "2026-04-05T19:30Z",
-      "end": "2026-11-14T03:30Z",
-      "brier": 0.198468,
-      "ece": 0.023148,
-      "constant_baseline_brier": 0.244541,
+      "games": 295,
+      "start": "2026-04-07T23:30Z",
+      "end": "2026-11-17T02:00Z",
+      "brier": 0.199891,
+      "ece": 0.044412,
+      "constant_baseline_brier": 0.245171,
       "beats_constant_baseline": true,
       "method": "untouched chronological final 20%; pregame Elo; descriptive only"
     },
     "holdout_promotion_approved": false,
     "holdout_review_reason": "Holdout metrics are descriptive; independent sportsbook price validation and injury availability remain unverified"
   },
-  "training_cutoff": "2026-11-14T03:30Z",
+  "training_cutoff": "2026-11-17T02:00Z",
   "predictions": [
     {
       "event_id": "V5acJrxsETpR7gK33aYo",
       "team": "Toronto Raptors",
       "date_et": "2026-11-17",
-      "win_probability": 0.453865
+      "win_probability": 0.428109
     },
     {
       "event_id": "V5acJrxsETpR7gK33aYo",
       "team": "New York Knicks",
       "date_et": "2026-11-17",
-      "win_probability": 0.546135
+      "win_probability": 0.571891
+    },
+    {
+      "event_id": "6hxgqVxD1ORXp37yOT2H",
+      "team": "Minnesota Timberwolves",
+      "date_et": "2026-11-17",
+      "win_probability": 0.622404
+    },
+    {
+      "event_id": "6hxgqVxD1ORXp37yOT2H",
+      "team": "Portland Trail Blazers",
+      "date_et": "2026-11-17",
+      "win_probability": 0.377596
     },
     {
       "event_id": "TeNnxcd68WiO1wNW4Fhy",
       "team": "San Antonio Spurs",
       "date_et": "2026-11-17",
-      "win_probability": 0.677038
+      "win_probability": 0.694552
     },
     {
       "event_id": "TeNnxcd68WiO1wNW4Fhy",
       "team": "Detroit Pistons",
       "date_et": "2026-11-17",
-      "win_probability": 0.322962
+      "win_probability": 0.305448
     },
     {
       "event_id": "jc3XOiVKBZeBqyGu2xXV",
       "team": "Los Angeles Lakers",
       "date_et": "2026-11-17",
-      "win_probability": 0.73842
+      "win_probability": 0.756354
     },
     {
       "event_id": "jc3XOiVKBZeBqyGu2xXV",
       "team": "Charlotte Hornets",
       "date_et": "2026-11-17",
-      "win_probability": 0.26158
+      "win_probability": 0.243646
+    },
+    {
+      "event_id": "CAP9fEQevONdESUaleN1",
+      "team": "Miami Heat",
+      "date_et": "2026-11-18",
+      "win_probability": 0.814397
+    },
+    {
+      "event_id": "CAP9fEQevONdESUaleN1",
+      "team": "Milwaukee Bucks",
+      "date_et": "2026-11-18",
+      "win_probability": 0.185603
+    },
+    {
+      "event_id": "j0nltZe9grJvJRq0DZSH",
+      "team": "Orlando Magic",
+      "date_et": "2026-11-18",
+      "win_probability": 0.482993
+    },
+    {
+      "event_id": "j0nltZe9grJvJRq0DZSH",
+      "team": "Philadelphia 76ers",
+      "date_et": "2026-11-18",
+      "win_probability": 0.517007
+    },
+    {
+      "event_id": "cuEG6mOMNUNF5Tt8av9o",
+      "team": "Brooklyn Nets",
+      "date_et": "2026-11-18",
+      "win_probability": 0.495138
+    },
+    {
+      "event_id": "cuEG6mOMNUNF5Tt8av9o",
+      "team": "Chicago Bulls",
+      "date_et": "2026-11-18",
+      "win_probability": 0.504862
     }
   ]
 }
