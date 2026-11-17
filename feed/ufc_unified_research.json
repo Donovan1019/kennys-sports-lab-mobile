@@ -4,122 +4,275 @@
   "research_only": true,
   "bet_eligible": false,
   "coverage": {
-    "fights": 13,
+    "fights": 11,
     "scheduled_rounds_verified": 0,
     "fighter_status_verified": 0,
     "odds_verified": 0,
-    "paired_historical_round_rows": 13,
-    "paired_elo_available": 10,
+    "paired_historical_round_rows": 10,
+    "paired_elo_available": 9,
     "count_simulations_available": 0,
-    "historical_per_round_available": 26,
+    "historical_per_round_available": 21,
     "point_in_time_calibration_certified": false,
     "model_ev_verified": 0,
     "bet_eligible": false
   },
   "fights": [
     {
-      "fight_id": "401922645",
-      "red": "Macy Chiasson",
-      "blue": "Bia Mesquita",
+      "fight_id": "401927852",
+      "red": "Shamil Gaziev",
+      "blue": "Tallison Teixeira",
       "opponent_adjustment": {
         "elo_available": true,
         "verified_strength_of_schedule": false
       },
       "sparse_data_probability": {
-        "red": 0.486,
-        "blue": 0.514,
+        "red": 0.4995,
+        "blue": 0.5005,
         "red_uncertainty_interval": [
-          0.1375,
-          0.8345
+          0.1615,
+          0.8375
         ],
         "status": "UNCALIBRATED_RESEARCH"
       },
       "count_simulation": {
-        "Macy Chiasson": {
+        "Shamil Gaziev": {
           "status": "UNAVAILABLE",
           "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
           "historical_per_round": {
-            "sig_landed": 14.03,
-            "sig_attempted": 30.66,
-            "td_landed": 0.54,
-            "td_attempted": 1.51
+            "sig_landed": 11.79,
+            "sig_attempted": 26.0,
+            "td_landed": 0.29,
+            "td_attempted": 0.86
           },
           "duration_scenarios": {
             "3": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 34.94,
-                "sig_attempted": 75.97,
-                "takedowns_landed": 1.37,
-                "takedowns_attempted": 3.75
+                "sig_landed": 29.44,
+                "sig_attempted": 64.26,
+                "takedowns_landed": 0.77,
+                "takedowns_attempted": 2.13
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  30.4,
-                  39.0
+                  25.48,
+                  32.5
+                ],
+                "takedowns_landed_mean_range": [
+                  0.61,
+                  0.8
+                ]
+              },
+              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
+            },
+            "5": {
+              "status": "HYPOTHETICAL_RESEARCH_ONLY",
+              "count_means": {
+                "sig_landed": 40.5,
+                "sig_attempted": 88.99,
+                "takedowns_landed": 0.98,
+                "takedowns_attempted": 2.85
+              },
+              "hazard_sensitivity": {
+                "low_finish_hazard": 0.08,
+                "high_finish_hazard": 0.3,
+                "sig_landed_mean_range": [
+                  33.8,
+                  50.57
+                ],
+                "takedowns_landed_mean_range": [
+                  0.84,
+                  1.18
+                ]
+              },
+              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
+            }
+          },
+          "scenario_warning": "Unverified fight length; hypothetical 3/5-round counts are not predictions or bet-eligible"
+        },
+        "Tallison Teixeira": {
+          "status": "UNAVAILABLE",
+          "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
+          "historical_per_round": {
+            "sig_landed": 10.33,
+            "sig_attempted": 15.33,
+            "td_landed": 0.5,
+            "td_attempted": 1.67
+          },
+          "duration_scenarios": {
+            "3": {
+              "status": "HYPOTHETICAL_RESEARCH_ONLY",
+              "count_means": {
+                "sig_landed": 25.36,
+                "sig_attempted": 37.78,
+                "takedowns_landed": 1.25,
+                "takedowns_attempted": 4.16
+              },
+              "hazard_sensitivity": {
+                "low_finish_hazard": 0.08,
+                "high_finish_hazard": 0.3,
+                "sig_landed_mean_range": [
+                  22.63,
+                  28.78
+                ],
+                "takedowns_landed_mean_range": [
+                  1.16,
+                  1.42
+                ]
+              },
+              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
+            },
+            "5": {
+              "status": "HYPOTHETICAL_RESEARCH_ONLY",
+              "count_means": {
+                "sig_landed": 34.96,
+                "sig_attempted": 52.0,
+                "takedowns_landed": 1.66,
+                "takedowns_attempted": 5.61
+              },
+              "hazard_sensitivity": {
+                "low_finish_hazard": 0.08,
+                "high_finish_hazard": 0.3,
+                "sig_landed_mean_range": [
+                  27.97,
+                  44.15
+                ],
+                "takedowns_landed_mean_range": [
+                  1.39,
+                  2.14
+                ]
+              },
+              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
+            }
+          },
+          "scenario_warning": "Unverified fight length; hypothetical 3/5-round counts are not predictions or bet-eligible"
+        }
+      },
+      "input_evidence": {
+        "scheduled_rounds_verified": false,
+        "fighter_status_verified": false,
+        "odds_verified": false,
+        "paired_historical_round_rows": 6,
+        "opponent_quality_verified": false
+      },
+      "calibration": {
+        "status": "UNVERIFIED",
+        "point_in_time_validated": false,
+        "evaluated_fights": 0,
+        "brier": null,
+        "log_loss": null
+      },
+      "betting": {
+        "status": "NOT_ELIGIBLE",
+        "model_ev": null,
+        "reason": "No calibrated independent live probability and verified executable price"
+      }
+    },
+    {
+      "fight_id": "401927853",
+      "red": "Jake Matthews",
+      "blue": "Tahir Abdullayev",
+      "opponent_adjustment": {
+        "elo_available": true,
+        "verified_strength_of_schedule": false
+      },
+      "sparse_data_probability": {
+        "red": 0.5195,
+        "blue": 0.4805,
+        "red_uncertainty_interval": [
+          0.1477,
+          0.8913
+        ],
+        "status": "UNCALIBRATED_RESEARCH"
+      },
+      "count_simulation": {
+        "Jake Matthews": {
+          "status": "UNAVAILABLE",
+          "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
+          "historical_per_round": {
+            "sig_landed": 15.42,
+            "sig_attempted": 34.65,
+            "td_landed": 0.42,
+            "td_attempted": 1.0
+          },
+          "duration_scenarios": {
+            "3": {
+              "status": "HYPOTHETICAL_RESEARCH_ONLY",
+              "count_means": {
+                "sig_landed": 38.62,
+                "sig_attempted": 85.98,
+                "takedowns_landed": 1.01,
+                "takedowns_attempted": 2.48
+              },
+              "hazard_sensitivity": {
+                "low_finish_hazard": 0.08,
+                "high_finish_hazard": 0.3,
+                "sig_landed_mean_range": [
+                  33.12,
+                  42.09
+                ],
+                "takedowns_landed_mean_range": [
+                  0.9,
+                  1.13
+                ]
+              },
+              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
+            },
+            "5": {
+              "status": "HYPOTHETICAL_RESEARCH_ONLY",
+              "count_means": {
+                "sig_landed": 53.91,
+                "sig_attempted": 120.6,
+                "takedowns_landed": 1.48,
+                "takedowns_attempted": 3.5
+              },
+              "hazard_sensitivity": {
+                "low_finish_hazard": 0.08,
+                "high_finish_hazard": 0.3,
+                "sig_landed_mean_range": [
+                  42.64,
+                  65.85
                 ],
                 "takedowns_landed_mean_range": [
                   1.17,
-                  1.51
+                  1.84
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
-            },
-            "5": {
+            }
+          },
+          "scenario_warning": "Unverified fight length; hypothetical 3/5-round counts are not predictions or bet-eligible"
+        },
+        "Tahir Abdullayev": {
+          "status": "UNAVAILABLE",
+          "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
+          "historical_per_round": {
+            "sig_landed": 12.33,
+            "sig_attempted": 29.0,
+            "td_landed": 0.67,
+            "td_attempted": 2.0
+          },
+          "duration_scenarios": {
+            "3": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 47.64,
-                "sig_attempted": 103.8,
-                "takedowns_landed": 1.9,
-                "takedowns_attempted": 5.18
+                "sig_landed": 31.55,
+                "sig_attempted": 73.35,
+                "takedowns_landed": 1.73,
+                "takedowns_attempted": 5.15
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  37.63,
-                  60.72
+                  27.17,
+                  34.37
                 ],
                 "takedowns_landed_mean_range": [
                   1.49,
-                  2.37
-                ]
-              },
-              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
-            }
-          },
-          "scenario_warning": "Unverified fight length; hypothetical 3/5-round counts are not predictions or bet-eligible"
-        },
-        "Bia Mesquita": {
-          "status": "UNAVAILABLE",
-          "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
-          "historical_per_round": {
-            "sig_landed": 15.0,
-            "sig_attempted": 25.0,
-            "td_landed": 0.8,
-            "td_attempted": 1.2
-          },
-          "duration_scenarios": {
-            "3": {
-              "status": "HYPOTHETICAL_RESEARCH_ONLY",
-              "count_means": {
-                "sig_landed": 37.28,
-                "sig_attempted": 61.95,
-                "takedowns_landed": 2.02,
-                "takedowns_attempted": 2.97
-              },
-              "hazard_sensitivity": {
-                "low_finish_hazard": 0.08,
-                "high_finish_hazard": 0.3,
-                "sig_landed_mean_range": [
-                  32.9,
-                  41.45
-                ],
-                "takedowns_landed_mean_range": [
-                  1.74,
-                  2.23
+                  1.89
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -127,327 +280,21 @@
             "5": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 52.55,
-                "sig_attempted": 87.28,
-                "takedowns_landed": 2.74,
-                "takedowns_attempted": 4.15
+                "sig_landed": 43.46,
+                "sig_attempted": 101.38,
+                "takedowns_landed": 2.31,
+                "takedowns_attempted": 7.03
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  41.5,
-                  64.39
+                  34.63,
+                  52.73
                 ],
                 "takedowns_landed_mean_range": [
-                  2.25,
-                  3.34
-                ]
-              },
-              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
-            }
-          },
-          "scenario_warning": "Unverified fight length; hypothetical 3/5-round counts are not predictions or bet-eligible"
-        }
-      },
-      "input_evidence": {
-        "scheduled_rounds_verified": false,
-        "fighter_status_verified": false,
-        "odds_verified": false,
-        "paired_historical_round_rows": 5,
-        "opponent_quality_verified": false
-      },
-      "calibration": {
-        "status": "UNVERIFIED",
-        "point_in_time_validated": false,
-        "evaluated_fights": 0,
-        "brier": null,
-        "log_loss": null
-      },
-      "betting": {
-        "status": "NOT_ELIGIBLE",
-        "model_ev": null,
-        "reason": "No calibrated independent live probability and verified executable price"
-      }
-    },
-    {
-      "fight_id": "401931774",
-      "red": "Jared Gordon",
-      "blue": "Melquizael Costa",
-      "opponent_adjustment": {
-        "elo_available": true,
-        "verified_strength_of_schedule": false
-      },
-      "sparse_data_probability": {
-        "red": 0.4979,
-        "blue": 0.5021,
-        "red_uncertainty_interval": [
-          0.285,
-          0.7107
-        ],
-        "status": "UNCALIBRATED_RESEARCH"
-      },
-      "count_simulation": {
-        "Jared Gordon": {
-          "status": "UNAVAILABLE",
-          "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
-          "historical_per_round": {
-            "sig_landed": 24.15,
-            "sig_attempted": 46.55,
-            "td_landed": 0.62,
-            "td_attempted": 1.79
-          },
-          "duration_scenarios": {
-            "3": {
-              "status": "HYPOTHETICAL_RESEARCH_ONLY",
-              "count_means": {
-                "sig_landed": 59.67,
-                "sig_attempted": 114.53,
-                "takedowns_landed": 1.48,
-                "takedowns_attempted": 4.39
-              },
-              "hazard_sensitivity": {
-                "low_finish_hazard": 0.08,
-                "high_finish_hazard": 0.3,
-                "sig_landed_mean_range": [
-                  52.03,
-                  67.36
-                ],
-                "takedowns_landed_mean_range": [
-                  1.28,
-                  1.71
-                ]
-              },
-              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
-            },
-            "5": {
-              "status": "HYPOTHETICAL_RESEARCH_ONLY",
-              "count_means": {
-                "sig_landed": 83.31,
-                "sig_attempted": 160.07,
-                "takedowns_landed": 2.02,
-                "takedowns_attempted": 6.07
-              },
-              "hazard_sensitivity": {
-                "low_finish_hazard": 0.08,
-                "high_finish_hazard": 0.3,
-                "sig_landed_mean_range": [
-                  65.48,
-                  102.1
-                ],
-                "takedowns_landed_mean_range": [
-                  1.66,
-                  2.65
-                ]
-              },
-              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
-            }
-          },
-          "scenario_warning": "Unverified fight length; hypothetical 3/5-round counts are not predictions or bet-eligible"
-        },
-        "Melquizael Costa": {
-          "status": "UNAVAILABLE",
-          "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
-          "historical_per_round": {
-            "sig_landed": 19.11,
-            "sig_attempted": 41.11,
-            "td_landed": 0.41,
-            "td_attempted": 1.15
-          },
-          "duration_scenarios": {
-            "3": {
-              "status": "HYPOTHETICAL_RESEARCH_ONLY",
-              "count_means": {
-                "sig_landed": 46.86,
-                "sig_attempted": 100.58,
-                "takedowns_landed": 0.92,
-                "takedowns_attempted": 2.78
-              },
-              "hazard_sensitivity": {
-                "low_finish_hazard": 0.08,
-                "high_finish_hazard": 0.3,
-                "sig_landed_mean_range": [
-                  41.53,
-                  52.44
-                ],
-                "takedowns_landed_mean_range": [
-                  0.91,
-                  1.14
-                ]
-              },
-              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
-            },
-            "5": {
-              "status": "HYPOTHETICAL_RESEARCH_ONLY",
-              "count_means": {
-                "sig_landed": 64.29,
-                "sig_attempted": 137.79,
-                "takedowns_landed": 1.36,
-                "takedowns_attempted": 3.92
-              },
-              "hazard_sensitivity": {
-                "low_finish_hazard": 0.08,
-                "high_finish_hazard": 0.3,
-                "sig_landed_mean_range": [
-                  51.19,
-                  82.03
-                ],
-                "takedowns_landed_mean_range": [
-                  1.13,
-                  1.78
-                ]
-              },
-              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
-            }
-          },
-          "scenario_warning": "Unverified fight length; hypothetical 3/5-round counts are not predictions or bet-eligible"
-        }
-      },
-      "input_evidence": {
-        "scheduled_rounds_verified": false,
-        "fighter_status_verified": false,
-        "odds_verified": false,
-        "paired_historical_round_rows": 27,
-        "opponent_quality_verified": false
-      },
-      "calibration": {
-        "status": "UNVERIFIED",
-        "point_in_time_validated": false,
-        "evaluated_fights": 0,
-        "brier": null,
-        "log_loss": null
-      },
-      "betting": {
-        "status": "NOT_ELIGIBLE",
-        "model_ev": null,
-        "reason": "No calibrated independent live probability and verified executable price"
-      }
-    },
-    {
-      "fight_id": "401932013",
-      "red": "Evan Elder",
-      "blue": "Samuel Sanches",
-      "opponent_adjustment": {
-        "elo_available": false,
-        "verified_strength_of_schedule": false
-      },
-      "sparse_data_probability": {
-        "red": 0.5045,
-        "blue": 0.4955,
-        "red_uncertainty_interval": [
-          0.0567,
-          0.9522
-        ],
-        "status": "UNCALIBRATED_RESEARCH"
-      },
-      "count_simulation": {
-        "Evan Elder": {
-          "status": "UNAVAILABLE",
-          "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
-          "historical_per_round": {
-            "sig_landed": 26.94,
-            "sig_attempted": 50.71,
-            "td_landed": 0.47,
-            "td_attempted": 1.35
-          },
-          "duration_scenarios": {
-            "3": {
-              "status": "HYPOTHETICAL_RESEARCH_ONLY",
-              "count_means": {
-                "sig_landed": 66.7,
-                "sig_attempted": 125.47,
-                "takedowns_landed": 1.17,
-                "takedowns_attempted": 3.32
-              },
-              "hazard_sensitivity": {
-                "low_finish_hazard": 0.08,
-                "high_finish_hazard": 0.3,
-                "sig_landed_mean_range": [
-                  58.88,
-                  74.56
-                ],
-                "takedowns_landed_mean_range": [
-                  1.0,
-                  1.32
-                ]
-              },
-              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
-            },
-            "5": {
-              "status": "HYPOTHETICAL_RESEARCH_ONLY",
-              "count_means": {
-                "sig_landed": 94.52,
-                "sig_attempted": 177.71,
-                "takedowns_landed": 1.73,
-                "takedowns_attempted": 4.88
-              },
-              "hazard_sensitivity": {
-                "low_finish_hazard": 0.08,
-                "high_finish_hazard": 0.3,
-                "sig_landed_mean_range": [
-                  73.92,
-                  114.68
-                ],
-                "takedowns_landed_mean_range": [
-                  1.32,
-                  1.94
-                ]
-              },
-              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
-            }
-          },
-          "scenario_warning": "Unverified fight length; hypothetical 3/5-round counts are not predictions or bet-eligible"
-        },
-        "Samuel Sanches": {
-          "status": "UNAVAILABLE",
-          "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
-          "historical_per_round": {
-            "sig_landed": 24.33,
-            "sig_attempted": 58.0,
-            "td_landed": 0.0,
-            "td_attempted": 0.0
-          },
-          "duration_scenarios": {
-            "3": {
-              "status": "HYPOTHETICAL_RESEARCH_ONLY",
-              "count_means": {
-                "sig_landed": 61.98,
-                "sig_attempted": 146.46,
-                "takedowns_landed": 0.0,
-                "takedowns_attempted": 0.0
-              },
-              "hazard_sensitivity": {
-                "low_finish_hazard": 0.08,
-                "high_finish_hazard": 0.3,
-                "sig_landed_mean_range": [
-                  54.25,
-                  67.35
-                ],
-                "takedowns_landed_mean_range": [
-                  0.0,
-                  0.0
-                ]
-              },
-              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
-            },
-            "5": {
-              "status": "HYPOTHETICAL_RESEARCH_ONLY",
-              "count_means": {
-                "sig_landed": 85.84,
-                "sig_attempted": 204.19,
-                "takedowns_landed": 0.0,
-                "takedowns_attempted": 0.0
-              },
-              "hazard_sensitivity": {
-                "low_finish_hazard": 0.08,
-                "high_finish_hazard": 0.3,
-                "sig_landed_mean_range": [
-                  66.9,
-                  104.77
-                ],
-                "takedowns_landed_mean_range": [
-                  0.0,
-                  0.0
+                  1.82,
+                  2.9
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -477,51 +324,51 @@
       }
     },
     {
-      "fight_id": "401933936",
-      "red": "Alatengheili",
-      "blue": "Juan Diaz",
+      "fight_id": "401927854",
+      "red": "Aleksandre Topuria",
+      "blue": "Santiago Luna",
       "opponent_adjustment": {
         "elo_available": true,
         "verified_strength_of_schedule": false
       },
       "sparse_data_probability": {
-        "red": 0.4753,
-        "blue": 0.5247,
+        "red": 0.488,
+        "blue": 0.512,
         "red_uncertainty_interval": [
-          0.1268,
-          0.8238
+          0.15,
+          0.826
         ],
         "status": "UNCALIBRATED_RESEARCH"
       },
       "count_simulation": {
-        "Alatengheili": {
+        "Aleksandre Topuria": {
           "status": "UNAVAILABLE",
           "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
           "historical_per_round": {
-            "sig_landed": 13.42,
-            "sig_attempted": 42.39,
-            "td_landed": 0.55,
-            "td_attempted": 1.35
+            "sig_landed": 14.67,
+            "sig_attempted": 26.67,
+            "td_landed": 0.5,
+            "td_attempted": 1.5
           },
           "duration_scenarios": {
             "3": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 33.16,
-                "sig_attempted": 104.71,
-                "takedowns_landed": 1.39,
-                "takedowns_attempted": 3.31
+                "sig_landed": 37.03,
+                "sig_attempted": 66.94,
+                "takedowns_landed": 1.29,
+                "takedowns_attempted": 3.71
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  29.34,
-                  37.12
+                  31.91,
+                  40.77
                 ],
                 "takedowns_landed_mean_range": [
-                  1.2,
-                  1.46
+                  1.15,
+                  1.43
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -529,21 +376,21 @@
             "5": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 46.62,
-                "sig_attempted": 146.15,
-                "takedowns_landed": 1.84,
-                "takedowns_attempted": 4.6
+                "sig_landed": 51.07,
+                "sig_attempted": 92.34,
+                "takedowns_landed": 1.75,
+                "takedowns_attempted": 5.24
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  36.54,
-                  57.38
+                  39.16,
+                  63.53
                 ],
                 "takedowns_landed_mean_range": [
-                  1.42,
-                  2.37
+                  1.41,
+                  2.16
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -551,34 +398,34 @@
           },
           "scenario_warning": "Unverified fight length; hypothetical 3/5-round counts are not predictions or bet-eligible"
         },
-        "Juan Diaz": {
+        "Santiago Luna": {
           "status": "UNAVAILABLE",
           "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
           "historical_per_round": {
-            "sig_landed": 24.2,
-            "sig_attempted": 53.0,
-            "td_landed": 1.0,
-            "td_attempted": 1.8
+            "sig_landed": 21.25,
+            "sig_attempted": 41.5,
+            "td_landed": 0.62,
+            "td_attempted": 1.0
           },
           "duration_scenarios": {
             "3": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 60.2,
-                "sig_attempted": 130.78,
-                "takedowns_landed": 2.44,
-                "takedowns_attempted": 4.43
+                "sig_landed": 52.16,
+                "sig_attempted": 101.7,
+                "takedowns_landed": 1.42,
+                "takedowns_attempted": 2.34
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  52.61,
-                  66.99
+                  47.45,
+                  58.61
                 ],
                 "takedowns_landed_mean_range": [
-                  2.18,
-                  2.79
+                  1.34,
+                  1.68
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -586,21 +433,21 @@
             "5": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 85.61,
-                "sig_attempted": 186.76,
-                "takedowns_landed": 3.55,
-                "takedowns_attempted": 6.41
+                "sig_landed": 75.04,
+                "sig_attempted": 146.16,
+                "takedowns_landed": 2.2,
+                "takedowns_attempted": 3.57
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  66.45,
-                  102.27
+                  58.91,
+                  90.98
                 ],
                 "takedowns_landed_mean_range": [
-                  2.77,
-                  4.34
+                  1.71,
+                  2.66
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -613,7 +460,7 @@
         "scheduled_rounds_verified": false,
         "fighter_status_verified": false,
         "odds_verified": false,
-        "paired_historical_round_rows": 5,
+        "paired_historical_round_rows": 6,
         "opponent_quality_verified": false
       },
       "calibration": {
@@ -630,51 +477,51 @@
       }
     },
     {
-      "fight_id": "401913647",
-      "red": "Stephen Thompson",
-      "blue": "Charles Radtke",
+      "fight_id": "401927856",
+      "red": "Amir Albazi",
+      "blue": "Alessandro Costa",
       "opponent_adjustment": {
         "elo_available": true,
         "verified_strength_of_schedule": false
       },
       "sparse_data_probability": {
-        "red": 0.526,
-        "blue": 0.474,
+        "red": 0.5096,
+        "blue": 0.4904,
         "red_uncertainty_interval": [
-          0.2696,
-          0.7825
+          0.2729,
+          0.7463
         ],
         "status": "UNCALIBRATED_RESEARCH"
       },
       "count_simulation": {
-        "Stephen Thompson": {
+        "Amir Albazi": {
           "status": "UNAVAILABLE",
           "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
           "historical_per_round": {
-            "sig_landed": 19.71,
-            "sig_attempted": 42.49,
-            "td_landed": 0.07,
-            "td_attempted": 0.2
+            "sig_landed": 11.95,
+            "sig_attempted": 35.38,
+            "td_landed": 0.38,
+            "td_attempted": 1.52
           },
           "duration_scenarios": {
             "3": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 49.01,
-                "sig_attempted": 105.29,
-                "takedowns_landed": 0.17,
-                "takedowns_attempted": 0.47
+                "sig_landed": 29.58,
+                "sig_attempted": 86.94,
+                "takedowns_landed": 0.91,
+                "takedowns_attempted": 3.75
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  43.37,
-                  54.46
+                  26.55,
+                  32.88
                 ],
                 "takedowns_landed_mean_range": [
-                  0.15,
-                  0.21
+                  0.86,
+                  1.03
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -682,21 +529,21 @@
             "5": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 70.14,
-                "sig_attempted": 150.28,
-                "takedowns_landed": 0.25,
-                "takedowns_attempted": 0.7
+                "sig_landed": 41.69,
+                "sig_attempted": 123.1,
+                "takedowns_landed": 1.32,
+                "takedowns_attempted": 5.24
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  54.39,
-                  85.35
+                  33.74,
+                  50.44
                 ],
                 "takedowns_landed_mean_range": [
-                  0.2,
-                  0.32
+                  1.06,
+                  1.65
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -704,34 +551,34 @@
           },
           "scenario_warning": "Unverified fight length; hypothetical 3/5-round counts are not predictions or bet-eligible"
         },
-        "Charles Radtke": {
+        "Alessandro Costa": {
           "status": "UNAVAILABLE",
           "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
           "historical_per_round": {
-            "sig_landed": 9.53,
-            "sig_attempted": 18.82,
-            "td_landed": 0.59,
-            "td_attempted": 1.47
+            "sig_landed": 13.76,
+            "sig_attempted": 29.43,
+            "td_landed": 0.24,
+            "td_attempted": 0.9
           },
           "duration_scenarios": {
             "3": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 23.83,
-                "sig_attempted": 46.94,
-                "takedowns_landed": 1.52,
-                "takedowns_attempted": 3.65
+                "sig_landed": 33.95,
+                "sig_attempted": 72.02,
+                "takedowns_landed": 0.59,
+                "takedowns_attempted": 2.22
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  21.11,
-                  26.55
+                  30.35,
+                  37.91
                 ],
                 "takedowns_landed_mean_range": [
-                  1.25,
-                  1.64
+                  0.54,
+                  0.68
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -739,21 +586,21 @@
             "5": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 32.37,
-                "sig_attempted": 63.64,
-                "takedowns_landed": 2.0,
-                "takedowns_attempted": 5.0
+                "sig_landed": 48.69,
+                "sig_attempted": 103.36,
+                "takedowns_landed": 0.84,
+                "takedowns_attempted": 3.16
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  26.79,
-                  40.4
+                  37.91,
+                  58.63
                 ],
                 "takedowns_landed_mean_range": [
-                  1.69,
-                  2.46
+                  0.66,
+                  1.04
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -766,7 +613,7 @@
         "scheduled_rounds_verified": false,
         "fighter_status_verified": false,
         "odds_verified": false,
-        "paired_historical_round_rows": 17,
+        "paired_historical_round_rows": 21,
         "opponent_quality_verified": false
       },
       "calibration": {
@@ -783,108 +630,51 @@
       }
     },
     {
-      "fight_id": "401922642",
-      "red": "Drew Dober",
-      "blue": "Chris Duncan",
+      "fight_id": "401934355",
+      "red": "Nikolas Motta",
+      "blue": "Dom Mar Fan",
       "opponent_adjustment": {
         "elo_available": true,
         "verified_strength_of_schedule": false
       },
       "sparse_data_probability": {
-        "red": 0.4702,
-        "blue": 0.5298,
+        "red": 0.4843,
+        "blue": 0.5157,
         "red_uncertainty_interval": [
-          0.2241,
-          0.7163
+          0.1246,
+          0.844
         ],
         "status": "UNCALIBRATED_RESEARCH"
       },
       "count_simulation": {
-        "Drew Dober": {
+        "Nikolas Motta": {
           "status": "UNAVAILABLE",
           "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
           "historical_per_round": {
-            "sig_landed": 17.98,
-            "sig_attempted": 43.93,
-            "td_landed": 0.16,
-            "td_attempted": 0.91
-          },
-          "duration_scenarios": {
-            "3": {
-              "status": "HYPOTHETICAL_RESEARCH_ONLY",
-              "count_means": {
-                "sig_landed": 45.4,
-                "sig_attempted": 110.21,
-                "takedowns_landed": 0.39,
-                "takedowns_attempted": 2.3
-              },
-              "hazard_sensitivity": {
-                "low_finish_hazard": 0.08,
-                "high_finish_hazard": 0.3,
-                "sig_landed_mean_range": [
-                  39.59,
-                  50.07
-                ],
-                "takedowns_landed_mean_range": [
-                  0.35,
-                  0.42
-                ]
-              },
-              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
-            },
-            "5": {
-              "status": "HYPOTHETICAL_RESEARCH_ONLY",
-              "count_means": {
-                "sig_landed": 60.79,
-                "sig_attempted": 147.82,
-                "takedowns_landed": 0.55,
-                "takedowns_attempted": 3.1
-              },
-              "hazard_sensitivity": {
-                "low_finish_hazard": 0.08,
-                "high_finish_hazard": 0.3,
-                "sig_landed_mean_range": [
-                  51.07,
-                  76.8
-                ],
-                "takedowns_landed_mean_range": [
-                  0.4,
-                  0.63
-                ]
-              },
-              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
-            }
-          },
-          "scenario_warning": "Unverified fight length; hypothetical 3/5-round counts are not predictions or bet-eligible"
-        },
-        "Chris Duncan": {
-          "status": "UNAVAILABLE",
-          "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
-          "historical_per_round": {
-            "sig_landed": 20.11,
+            "sig_landed": 17.77,
             "sig_attempted": 43.0,
-            "td_landed": 0.74,
-            "td_attempted": 2.0
+            "td_landed": 0.0,
+            "td_attempted": 0.0
           },
           "duration_scenarios": {
             "3": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 50.75,
-                "sig_attempted": 108.13,
-                "takedowns_landed": 1.88,
-                "takedowns_attempted": 5.0
+                "sig_landed": 44.15,
+                "sig_attempted": 106.36,
+                "takedowns_landed": 0.0,
+                "takedowns_attempted": 0.0
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  44.42,
-                  56.23
+                  39.57,
+                  49.08
                 ],
                 "takedowns_landed_mean_range": [
-                  1.61,
-                  2.03
+                  0.0,
+                  0.0
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -892,21 +682,78 @@
             "5": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 69.5,
-                "sig_attempted": 147.49,
-                "takedowns_landed": 2.51,
-                "takedowns_attempted": 6.75
+                "sig_landed": 63.66,
+                "sig_attempted": 152.66,
+                "takedowns_landed": 0.0,
+                "takedowns_attempted": 0.0
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  55.36,
-                  85.17
+                  47.13,
+                  77.27
                 ],
                 "takedowns_landed_mean_range": [
-                  2.08,
-                  3.14
+                  0.0,
+                  0.0
+                ]
+              },
+              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
+            }
+          },
+          "scenario_warning": "Unverified fight length; hypothetical 3/5-round counts are not predictions or bet-eligible"
+        },
+        "Dom Mar Fan": {
+          "status": "UNAVAILABLE",
+          "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
+          "historical_per_round": {
+            "sig_landed": 25.0,
+            "sig_attempted": 43.75,
+            "td_landed": 0.25,
+            "td_attempted": 1.0
+          },
+          "duration_scenarios": {
+            "3": {
+              "status": "HYPOTHETICAL_RESEARCH_ONLY",
+              "count_means": {
+                "sig_landed": 62.14,
+                "sig_attempted": 108.31,
+                "takedowns_landed": 0.65,
+                "takedowns_attempted": 2.51
+              },
+              "hazard_sensitivity": {
+                "low_finish_hazard": 0.08,
+                "high_finish_hazard": 0.3,
+                "sig_landed_mean_range": [
+                  53.99,
+                  69.45
+                ],
+                "takedowns_landed_mean_range": [
+                  0.56,
+                  0.69
+                ]
+              },
+              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
+            },
+            "5": {
+              "status": "HYPOTHETICAL_RESEARCH_ONLY",
+              "count_means": {
+                "sig_landed": 86.61,
+                "sig_attempted": 151.57,
+                "takedowns_landed": 0.84,
+                "takedowns_attempted": 3.34
+              },
+              "hazard_sensitivity": {
+                "low_finish_hazard": 0.08,
+                "high_finish_hazard": 0.3,
+                "sig_landed_mean_range": [
+                  70.41,
+                  105.54
+                ],
+                "takedowns_landed_mean_range": [
+                  0.69,
+                  1.07
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -919,7 +766,7 @@
         "scheduled_rounds_verified": false,
         "fighter_status_verified": false,
         "odds_verified": false,
-        "paired_historical_round_rows": 19,
+        "paired_historical_round_rows": 4,
         "opponent_quality_verified": false
       },
       "calibration": {
@@ -936,51 +783,51 @@
       }
     },
     {
-      "fight_id": "401922643",
-      "red": "Jim Miller",
-      "blue": "Terrance McKinney",
+      "fight_id": "401934356",
+      "red": "Diyar Nurgozhay",
+      "blue": "Alik Lorenz",
       "opponent_adjustment": {
-        "elo_available": true,
+        "elo_available": false,
         "verified_strength_of_schedule": false
       },
       "sparse_data_probability": {
-        "red": 0.4968,
-        "blue": 0.5032,
+        "red": 0.5,
+        "blue": 0.5,
         "red_uncertainty_interval": [
-          0.2404,
-          0.7533
+          0.01,
+          0.99
         ],
-        "status": "UNCALIBRATED_RESEARCH"
+        "status": "NEUTRAL_PRIOR"
       },
       "count_simulation": {
-        "Jim Miller": {
+        "Diyar Nurgozhay": {
           "status": "UNAVAILABLE",
           "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
           "historical_per_round": {
-            "sig_landed": 12.74,
-            "sig_attempted": 30.12,
+            "sig_landed": 23.71,
+            "sig_attempted": 37.57,
             "td_landed": 0.43,
-            "td_attempted": 0.95
+            "td_attempted": 0.57
           },
           "duration_scenarios": {
             "3": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 31.33,
-                "sig_attempted": 73.91,
-                "takedowns_landed": 1.08,
-                "takedowns_attempted": 2.31
+                "sig_landed": 59.53,
+                "sig_attempted": 93.79,
+                "takedowns_landed": 1.03,
+                "takedowns_attempted": 1.38
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  27.44,
-                  35.5
+                  51.75,
+                  65.66
                 ],
                 "takedowns_landed_mean_range": [
-                  0.92,
-                  1.19
+                  0.97,
+                  1.16
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -988,17 +835,17 @@
             "5": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 44.67,
-                "sig_attempted": 104.98,
-                "takedowns_landed": 1.48,
-                "takedowns_attempted": 3.26
+                "sig_landed": 83.43,
+                "sig_attempted": 131.77,
+                "takedowns_landed": 1.49,
+                "takedowns_attempted": 1.99
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  33.71,
-                  54.12
+                  63.25,
+                  101.21
                 ],
                 "takedowns_landed_mean_range": [
                   1.14,
@@ -1010,69 +857,16 @@
           },
           "scenario_warning": "Unverified fight length; hypothetical 3/5-round counts are not predictions or bet-eligible"
         },
-        "Terrance McKinney": {
+        "Alik Lorenz": {
           "status": "UNAVAILABLE",
-          "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
-          "historical_per_round": {
-            "sig_landed": 17.24,
-            "sig_attempted": 31.47,
-            "td_landed": 0.41,
-            "td_attempted": 0.88
-          },
-          "duration_scenarios": {
-            "3": {
-              "status": "HYPOTHETICAL_RESEARCH_ONLY",
-              "count_means": {
-                "sig_landed": 42.56,
-                "sig_attempted": 77.42,
-                "takedowns_landed": 0.97,
-                "takedowns_attempted": 2.1
-              },
-              "hazard_sensitivity": {
-                "low_finish_hazard": 0.08,
-                "high_finish_hazard": 0.3,
-                "sig_landed_mean_range": [
-                  37.23,
-                  47.18
-                ],
-                "takedowns_landed_mean_range": [
-                  0.88,
-                  1.16
-                ]
-              },
-              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
-            },
-            "5": {
-              "status": "HYPOTHETICAL_RESEARCH_ONLY",
-              "count_means": {
-                "sig_landed": 60.53,
-                "sig_attempted": 110.19,
-                "takedowns_landed": 1.43,
-                "takedowns_attempted": 3.08
-              },
-              "hazard_sensitivity": {
-                "low_finish_hazard": 0.08,
-                "high_finish_hazard": 0.3,
-                "sig_landed_mean_range": [
-                  46.97,
-                  72.54
-                ],
-                "takedowns_landed_mean_range": [
-                  1.19,
-                  1.77
-                ]
-              },
-              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
-            }
-          },
-          "scenario_warning": "Unverified fight length; hypothetical 3/5-round counts are not predictions or bet-eligible"
+          "reason": "Verified scheduled rounds or historical count rates missing"
         }
       },
       "input_evidence": {
         "scheduled_rounds_verified": false,
         "fighter_status_verified": false,
         "odds_verified": false,
-        "paired_historical_round_rows": 17,
+        "paired_historical_round_rows": 0,
         "opponent_quality_verified": false
       },
       "calibration": {
@@ -1089,51 +883,51 @@
       }
     },
     {
-      "fight_id": "401931773",
-      "red": "Cesar Almeida",
-      "blue": "Donte Johnson",
+      "fight_id": "401922277",
+      "red": "Ji\u0159\u00ed Proch\u00e1zka",
+      "blue": "Navajo Stirling",
       "opponent_adjustment": {
-        "elo_available": true,
+        "elo_available": false,
         "verified_strength_of_schedule": false
       },
       "sparse_data_probability": {
-        "red": 0.5027,
-        "blue": 0.4973,
+        "red": 0.4895,
+        "blue": 0.5105,
         "red_uncertainty_interval": [
-          0.1745,
-          0.8309
+          0.1395,
+          0.8395
         ],
         "status": "UNCALIBRATED_RESEARCH"
       },
       "count_simulation": {
-        "Cesar Almeida": {
+        "Ji\u0159\u00ed Proch\u00e1zka": {
           "status": "UNAVAILABLE",
           "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
           "historical_per_round": {
-            "sig_landed": 17.21,
-            "sig_attempted": 28.71,
+            "sig_landed": 24.67,
+            "sig_attempted": 44.43,
             "td_landed": 0.14,
-            "td_attempted": 0.29
+            "td_attempted": 0.24
           },
           "duration_scenarios": {
             "3": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 42.75,
-                "sig_attempted": 71.08,
-                "takedowns_landed": 0.35,
-                "takedowns_attempted": 0.73
+                "sig_landed": 60.55,
+                "sig_attempted": 108.8,
+                "takedowns_landed": 0.36,
+                "takedowns_attempted": 0.6
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  37.51,
-                  47.43
+                  53.64,
+                  68.08
                 ],
                 "takedowns_landed_mean_range": [
-                  0.33,
-                  0.37
+                  0.34,
+                  0.42
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -1141,20 +935,20 @@
             "5": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 58.94,
-                "sig_attempted": 98.55,
-                "takedowns_landed": 0.48,
-                "takedowns_attempted": 0.95
+                "sig_landed": 85.48,
+                "sig_attempted": 153.55,
+                "takedowns_landed": 0.52,
+                "takedowns_attempted": 0.86
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  48.0,
-                  73.15
+                  70.03,
+                  105.85
                 ],
                 "takedowns_landed_mean_range": [
-                  0.37,
+                  0.36,
                   0.62
                 ]
               },
@@ -1163,34 +957,34 @@
           },
           "scenario_warning": "Unverified fight length; hypothetical 3/5-round counts are not predictions or bet-eligible"
         },
-        "Donte Johnson": {
+        "Navajo Stirling": {
           "status": "UNAVAILABLE",
           "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
           "historical_per_round": {
-            "sig_landed": 11.71,
-            "sig_attempted": 28.14,
-            "td_landed": 0.43,
-            "td_attempted": 0.43
+            "sig_landed": 29.93,
+            "sig_attempted": 55.21,
+            "td_landed": 0.29,
+            "td_attempted": 0.79
           },
           "duration_scenarios": {
             "3": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 28.79,
-                "sig_attempted": 68.97,
-                "takedowns_landed": 1.12,
-                "takedowns_attempted": 1.12
+                "sig_landed": 75.39,
+                "sig_attempted": 138.78,
+                "takedowns_landed": 0.73,
+                "takedowns_attempted": 2.01
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  25.59,
-                  32.42
+                  66.23,
+                  84.47
                 ],
                 "takedowns_landed_mean_range": [
-                  0.91,
-                  1.16
+                  0.66,
+                  0.82
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -1198,21 +992,327 @@
             "5": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 42.03,
-                "sig_attempted": 100.42,
-                "takedowns_landed": 1.46,
-                "takedowns_attempted": 1.46
+                "sig_landed": 104.01,
+                "sig_attempted": 191.7,
+                "takedowns_landed": 1.04,
+                "takedowns_attempted": 2.79
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  32.0,
-                  49.42
+                  84.95,
+                  127.39
                 ],
                 "takedowns_landed_mean_range": [
-                  1.19,
-                  1.78
+                  0.8,
+                  1.16
+                ]
+              },
+              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
+            }
+          },
+          "scenario_warning": "Unverified fight length; hypothetical 3/5-round counts are not predictions or bet-eligible"
+        }
+      },
+      "input_evidence": {
+        "scheduled_rounds_verified": false,
+        "fighter_status_verified": false,
+        "odds_verified": false,
+        "paired_historical_round_rows": 14,
+        "opponent_quality_verified": false
+      },
+      "calibration": {
+        "status": "UNVERIFIED",
+        "point_in_time_validated": false,
+        "evaluated_fights": 0,
+        "brier": null,
+        "log_loss": null
+      },
+      "betting": {
+        "status": "NOT_ELIGIBLE",
+        "model_ev": null,
+        "reason": "No calibrated independent live probability and verified executable price"
+      }
+    },
+    {
+      "fight_id": "401922278",
+      "red": "Brian Ortega",
+      "blue": "Dan Hooker",
+      "opponent_adjustment": {
+        "elo_available": true,
+        "verified_strength_of_schedule": false
+      },
+      "sparse_data_probability": {
+        "red": 0.4886,
+        "blue": 0.5114,
+        "red_uncertainty_interval": [
+          0.3026,
+          0.6746
+        ],
+        "status": "UNCALIBRATED_RESEARCH"
+      },
+      "count_simulation": {
+        "Brian Ortega": {
+          "status": "UNAVAILABLE",
+          "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
+          "historical_per_round": {
+            "sig_landed": 17.67,
+            "sig_attempted": 47.31,
+            "td_landed": 0.29,
+            "td_attempted": 1.14
+          },
+          "duration_scenarios": {
+            "3": {
+              "status": "HYPOTHETICAL_RESEARCH_ONLY",
+              "count_means": {
+                "sig_landed": 44.53,
+                "sig_attempted": 117.99,
+                "takedowns_landed": 0.68,
+                "takedowns_attempted": 2.83
+              },
+              "hazard_sensitivity": {
+                "low_finish_hazard": 0.08,
+                "high_finish_hazard": 0.3,
+                "sig_landed_mean_range": [
+                  39.01,
+                  48.43
+                ],
+                "takedowns_landed_mean_range": [
+                  0.62,
+                  0.85
+                ]
+              },
+              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
+            },
+            "5": {
+              "status": "HYPOTHETICAL_RESEARCH_ONLY",
+              "count_means": {
+                "sig_landed": 62.88,
+                "sig_attempted": 167.49,
+                "takedowns_landed": 1.03,
+                "takedowns_attempted": 4.01
+              },
+              "hazard_sensitivity": {
+                "low_finish_hazard": 0.08,
+                "high_finish_hazard": 0.3,
+                "sig_landed_mean_range": [
+                  49.95,
+                  75.45
+                ],
+                "takedowns_landed_mean_range": [
+                  0.77,
+                  1.16
+                ]
+              },
+              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
+            }
+          },
+          "scenario_warning": "Unverified fight length; hypothetical 3/5-round counts are not predictions or bet-eligible"
+        },
+        "Dan Hooker": {
+          "status": "UNAVAILABLE",
+          "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
+          "historical_per_round": {
+            "sig_landed": 21.16,
+            "sig_attempted": 43.5,
+            "td_landed": 0.2,
+            "td_attempted": 0.59
+          },
+          "duration_scenarios": {
+            "3": {
+              "status": "HYPOTHETICAL_RESEARCH_ONLY",
+              "count_means": {
+                "sig_landed": 53.71,
+                "sig_attempted": 109.49,
+                "takedowns_landed": 0.47,
+                "takedowns_attempted": 1.44
+              },
+              "hazard_sensitivity": {
+                "low_finish_hazard": 0.08,
+                "high_finish_hazard": 0.3,
+                "sig_landed_mean_range": [
+                  46.27,
+                  59.09
+                ],
+                "takedowns_landed_mean_range": [
+                  0.45,
+                  0.54
+                ]
+              },
+              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
+            },
+            "5": {
+              "status": "HYPOTHETICAL_RESEARCH_ONLY",
+              "count_means": {
+                "sig_landed": 72.77,
+                "sig_attempted": 148.41,
+                "takedowns_landed": 0.67,
+                "takedowns_attempted": 1.99
+              },
+              "hazard_sensitivity": {
+                "low_finish_hazard": 0.08,
+                "high_finish_hazard": 0.3,
+                "sig_landed_mean_range": [
+                  60.08,
+                  91.4
+                ],
+                "takedowns_landed_mean_range": [
+                  0.56,
+                  0.84
+                ]
+              },
+              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
+            }
+          },
+          "scenario_warning": "Unverified fight length; hypothetical 3/5-round counts are not predictions or bet-eligible"
+        }
+      },
+      "input_evidence": {
+        "scheduled_rounds_verified": false,
+        "fighter_status_verified": false,
+        "odds_verified": false,
+        "paired_historical_round_rows": 42,
+        "opponent_quality_verified": false
+      },
+      "calibration": {
+        "status": "UNVERIFIED",
+        "point_in_time_validated": false,
+        "evaluated_fights": 0,
+        "brier": null,
+        "log_loss": null
+      },
+      "betting": {
+        "status": "NOT_ELIGIBLE",
+        "model_ev": null,
+        "reason": "No calibrated independent live probability and verified executable price"
+      }
+    },
+    {
+      "fight_id": "401927850",
+      "red": "Aljamain Sterling",
+      "blue": "Kevin Vallejos",
+      "opponent_adjustment": {
+        "elo_available": true,
+        "verified_strength_of_schedule": false
+      },
+      "sparse_data_probability": {
+        "red": 0.5374,
+        "blue": 0.4626,
+        "red_uncertainty_interval": [
+          0.2092,
+          0.8656
+        ],
+        "status": "UNCALIBRATED_RESEARCH"
+      },
+      "count_simulation": {
+        "Aljamain Sterling": {
+          "status": "UNAVAILABLE",
+          "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
+          "historical_per_round": {
+            "sig_landed": 20.1,
+            "sig_attempted": 38.21,
+            "td_landed": 0.8,
+            "td_attempted": 2.49
+          },
+          "duration_scenarios": {
+            "3": {
+              "status": "HYPOTHETICAL_RESEARCH_ONLY",
+              "count_means": {
+                "sig_landed": 50.17,
+                "sig_attempted": 94.8,
+                "takedowns_landed": 1.97,
+                "takedowns_attempted": 6.19
+              },
+              "hazard_sensitivity": {
+                "low_finish_hazard": 0.08,
+                "high_finish_hazard": 0.3,
+                "sig_landed_mean_range": [
+                  43.78,
+                  55.8
+                ],
+                "takedowns_landed_mean_range": [
+                  1.79,
+                  2.19
+                ]
+              },
+              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
+            },
+            "5": {
+              "status": "HYPOTHETICAL_RESEARCH_ONLY",
+              "count_means": {
+                "sig_landed": 71.48,
+                "sig_attempted": 135.11,
+                "takedowns_landed": 2.83,
+                "takedowns_attempted": 8.86
+              },
+              "hazard_sensitivity": {
+                "low_finish_hazard": 0.08,
+                "high_finish_hazard": 0.3,
+                "sig_landed_mean_range": [
+                  54.27,
+                  85.56
+                ],
+                "takedowns_landed_mean_range": [
+                  2.12,
+                  3.45
+                ]
+              },
+              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
+            }
+          },
+          "scenario_warning": "Unverified fight length; hypothetical 3/5-round counts are not predictions or bet-eligible"
+        },
+        "Kevin Vallejos": {
+          "status": "UNAVAILABLE",
+          "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
+          "historical_per_round": {
+            "sig_landed": 22.86,
+            "sig_attempted": 49.0,
+            "td_landed": 0.29,
+            "td_attempted": 0.86
+          },
+          "duration_scenarios": {
+            "3": {
+              "status": "HYPOTHETICAL_RESEARCH_ONLY",
+              "count_means": {
+                "sig_landed": 56.13,
+                "sig_attempted": 120.0,
+                "takedowns_landed": 0.76,
+                "takedowns_attempted": 2.2
+              },
+              "hazard_sensitivity": {
+                "low_finish_hazard": 0.08,
+                "high_finish_hazard": 0.3,
+                "sig_landed_mean_range": [
+                  50.71,
+                  63.24
+                ],
+                "takedowns_landed_mean_range": [
+                  0.66,
+                  0.8
+                ]
+              },
+              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
+            },
+            "5": {
+              "status": "HYPOTHETICAL_RESEARCH_ONLY",
+              "count_means": {
+                "sig_landed": 80.24,
+                "sig_attempted": 171.61,
+                "takedowns_landed": 0.97,
+                "takedowns_attempted": 2.98
+              },
+              "hazard_sensitivity": {
+                "low_finish_hazard": 0.08,
+                "high_finish_hazard": 0.3,
+                "sig_landed_mean_range": [
+                  64.13,
+                  98.62
+                ],
+                "takedowns_landed_mean_range": [
+                  0.83,
+                  1.22
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -1242,51 +1342,51 @@
       }
     },
     {
-      "fight_id": "401913646",
-      "red": "Josh Hokit",
-      "blue": "Ciryl Gane",
+      "fight_id": "401927851",
+      "red": "Jared Cannonier",
+      "blue": "Ikram Aliskerov",
       "opponent_adjustment": {
         "elo_available": true,
         "verified_strength_of_schedule": false
       },
       "sparse_data_probability": {
-        "red": 0.4933,
-        "blue": 0.5067,
+        "red": 0.4712,
+        "blue": 0.5288,
         "red_uncertainty_interval": [
-          0.2059,
-          0.7806
+          0.1689,
+          0.7734
         ],
         "status": "UNCALIBRATED_RESEARCH"
       },
       "count_simulation": {
-        "Josh Hokit": {
+        "Jared Cannonier": {
           "status": "UNAVAILABLE",
           "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
           "historical_per_round": {
-            "sig_landed": 37.92,
-            "sig_attempted": 63.92,
-            "td_landed": 0.5,
-            "td_attempted": 3.0
+            "sig_landed": 19.45,
+            "sig_attempted": 39.41,
+            "td_landed": 0.23,
+            "td_attempted": 0.52
           },
           "duration_scenarios": {
             "3": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 95.39,
-                "sig_attempted": 159.99,
-                "takedowns_landed": 1.2,
-                "takedowns_attempted": 7.38
+                "sig_landed": 48.42,
+                "sig_attempted": 97.7,
+                "takedowns_landed": 0.56,
+                "takedowns_attempted": 1.26
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  82.55,
-                  104.97
+                  42.69,
+                  54.06
                 ],
                 "takedowns_landed_mean_range": [
-                  1.08,
-                  1.32
+                  0.5,
+                  0.62
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -1294,21 +1394,21 @@
             "5": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 134.08,
-                "sig_attempted": 225.58,
-                "takedowns_landed": 1.74,
-                "takedowns_attempted": 10.55
+                "sig_landed": 68.45,
+                "sig_attempted": 137.77,
+                "takedowns_landed": 0.84,
+                "takedowns_attempted": 1.78
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  104.27,
-                  162.58
+                  55.56,
+                  83.33
                 ],
                 "takedowns_landed_mean_range": [
-                  1.38,
-                  2.2
+                  0.73,
+                  1.07
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -1316,34 +1416,34 @@
           },
           "scenario_warning": "Unverified fight length; hypothetical 3/5-round counts are not predictions or bet-eligible"
         },
-        "Ciryl Gane": {
+        "Ikram Aliskerov": {
           "status": "UNAVAILABLE",
           "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
           "historical_per_round": {
-            "sig_landed": 27.73,
-            "sig_attempted": 44.0,
-            "td_landed": 0.18,
-            "td_attempted": 0.77
+            "sig_landed": 23.3,
+            "sig_attempted": 38.4,
+            "td_landed": 1.0,
+            "td_attempted": 1.3
           },
           "duration_scenarios": {
             "3": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 70.09,
-                "sig_attempted": 110.65,
-                "takedowns_landed": 0.42,
-                "takedowns_attempted": 1.98
+                "sig_landed": 58.83,
+                "sig_attempted": 96.63,
+                "takedowns_landed": 2.52,
+                "takedowns_attempted": 3.3
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  61.04,
-                  76.07
+                  50.51,
+                  64.33
                 ],
                 "takedowns_landed_mean_range": [
-                  0.39,
-                  0.5
+                  2.16,
+                  2.77
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -1351,327 +1451,21 @@
             "5": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 98.7,
-                "sig_attempted": 156.07,
-                "takedowns_landed": 0.66,
-                "takedowns_attempted": 2.67
+                "sig_landed": 82.23,
+                "sig_attempted": 135.04,
+                "takedowns_landed": 3.55,
+                "takedowns_attempted": 4.66
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  78.02,
-                  117.41
+                  64.77,
+                  100.32
                 ],
                 "takedowns_landed_mean_range": [
-                  0.49,
-                  0.8
-                ]
-              },
-              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
-            }
-          },
-          "scenario_warning": "Unverified fight length; hypothetical 3/5-round counts are not predictions or bet-eligible"
-        }
-      },
-      "input_evidence": {
-        "scheduled_rounds_verified": false,
-        "fighter_status_verified": false,
-        "odds_verified": false,
-        "paired_historical_round_rows": 12,
-        "opponent_quality_verified": false
-      },
-      "calibration": {
-        "status": "UNVERIFIED",
-        "point_in_time_validated": false,
-        "evaluated_fights": 0,
-        "brier": null,
-        "log_loss": null
-      },
-      "betting": {
-        "status": "NOT_ELIGIBLE",
-        "model_ev": null,
-        "reason": "No calibrated independent live probability and verified executable price"
-      }
-    },
-    {
-      "fight_id": "401922638",
-      "red": "Amanda Nunes",
-      "blue": "Kayla Harrison",
-      "opponent_adjustment": {
-        "elo_available": true,
-        "verified_strength_of_schedule": false
-      },
-      "sparse_data_probability": {
-        "red": 0.5516,
-        "blue": 0.4484,
-        "red_uncertainty_interval": [
-          0.2571,
-          0.8462
-        ],
-        "status": "UNCALIBRATED_RESEARCH"
-      },
-      "count_simulation": {
-        "Amanda Nunes": {
-          "status": "UNAVAILABLE",
-          "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
-          "historical_per_round": {
-            "sig_landed": 18.8,
-            "sig_attempted": 36.2,
-            "td_landed": 0.78,
-            "td_attempted": 1.45
-          },
-          "duration_scenarios": {
-            "3": {
-              "status": "HYPOTHETICAL_RESEARCH_ONLY",
-              "count_means": {
-                "sig_landed": 46.62,
-                "sig_attempted": 89.54,
-                "takedowns_landed": 1.94,
-                "takedowns_attempted": 3.55
-              },
-              "hazard_sensitivity": {
-                "low_finish_hazard": 0.08,
-                "high_finish_hazard": 0.3,
-                "sig_landed_mean_range": [
-                  40.97,
-                  51.92
-                ],
-                "takedowns_landed_mean_range": [
-                  1.68,
-                  2.17
-                ]
-              },
-              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
-            },
-            "5": {
-              "status": "HYPOTHETICAL_RESEARCH_ONLY",
-              "count_means": {
-                "sig_landed": 65.72,
-                "sig_attempted": 125.66,
-                "takedowns_landed": 2.68,
-                "takedowns_attempted": 4.98
-              },
-              "hazard_sensitivity": {
-                "low_finish_hazard": 0.08,
-                "high_finish_hazard": 0.3,
-                "sig_landed_mean_range": [
-                  52.57,
-                  78.97
-                ],
-                "takedowns_landed_mean_range": [
-                  2.19,
-                  3.28
-                ]
-              },
-              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
-            }
-          },
-          "scenario_warning": "Unverified fight length; hypothetical 3/5-round counts are not predictions or bet-eligible"
-        },
-        "Kayla Harrison": {
-          "status": "UNAVAILABLE",
-          "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
-          "historical_per_round": {
-            "sig_landed": 14.64,
-            "sig_attempted": 23.64,
-            "td_landed": 0.82,
-            "td_attempted": 2.27
-          },
-          "duration_scenarios": {
-            "3": {
-              "status": "HYPOTHETICAL_RESEARCH_ONLY",
-              "count_means": {
-                "sig_landed": 36.33,
-                "sig_attempted": 58.52,
-                "takedowns_landed": 2.02,
-                "takedowns_attempted": 5.61
-              },
-              "hazard_sensitivity": {
-                "low_finish_hazard": 0.08,
-                "high_finish_hazard": 0.3,
-                "sig_landed_mean_range": [
-                  31.79,
-                  40.87
-                ],
-                "takedowns_landed_mean_range": [
-                  1.75,
-                  2.34
-                ]
-              },
-              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
-            },
-            "5": {
-              "status": "HYPOTHETICAL_RESEARCH_ONLY",
-              "count_means": {
-                "sig_landed": 50.3,
-                "sig_attempted": 80.92,
-                "takedowns_landed": 2.82,
-                "takedowns_attempted": 7.84
-              },
-              "hazard_sensitivity": {
-                "low_finish_hazard": 0.08,
-                "high_finish_hazard": 0.3,
-                "sig_landed_mean_range": [
-                  40.85,
-                  62.75
-                ],
-                "takedowns_landed_mean_range": [
-                  2.29,
-                  3.33
-                ]
-              },
-              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
-            }
-          },
-          "scenario_warning": "Unverified fight length; hypothetical 3/5-round counts are not predictions or bet-eligible"
-        }
-      },
-      "input_evidence": {
-        "scheduled_rounds_verified": false,
-        "fighter_status_verified": false,
-        "odds_verified": false,
-        "paired_historical_round_rows": 11,
-        "opponent_quality_verified": false
-      },
-      "calibration": {
-        "status": "UNVERIFIED",
-        "point_in_time_validated": false,
-        "evaluated_fights": 0,
-        "brier": null,
-        "log_loss": null
-      },
-      "betting": {
-        "status": "NOT_ELIGIBLE",
-        "model_ev": null,
-        "reason": "No calibrated independent live probability and verified executable price"
-      }
-    },
-    {
-      "fight_id": "401922639",
-      "red": "Caio Borralho",
-      "blue": "Yousri Belgaroui",
-      "opponent_adjustment": {
-        "elo_available": true,
-        "verified_strength_of_schedule": false
-      },
-      "sparse_data_probability": {
-        "red": 0.5072,
-        "blue": 0.4928,
-        "red_uncertainty_interval": [
-          0.205,
-          0.8094
-        ],
-        "status": "UNCALIBRATED_RESEARCH"
-      },
-      "count_simulation": {
-        "Caio Borralho": {
-          "status": "UNAVAILABLE",
-          "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
-          "historical_per_round": {
-            "sig_landed": 14.97,
-            "sig_attempted": 27.19,
-            "td_landed": 0.47,
-            "td_attempted": 1.09
-          },
-          "duration_scenarios": {
-            "3": {
-              "status": "HYPOTHETICAL_RESEARCH_ONLY",
-              "count_means": {
-                "sig_landed": 36.94,
-                "sig_attempted": 66.81,
-                "takedowns_landed": 1.12,
-                "takedowns_attempted": 2.72
-              },
-              "hazard_sensitivity": {
-                "low_finish_hazard": 0.08,
-                "high_finish_hazard": 0.3,
-                "sig_landed_mean_range": [
-                  33.05,
-                  40.84
-                ],
-                "takedowns_landed_mean_range": [
-                  1.03,
-                  1.3
-                ]
-              },
-              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
-            },
-            "5": {
-              "status": "HYPOTHETICAL_RESEARCH_ONLY",
-              "count_means": {
-                "sig_landed": 54.43,
-                "sig_attempted": 99.06,
-                "takedowns_landed": 1.58,
-                "takedowns_attempted": 3.92
-              },
-              "hazard_sensitivity": {
-                "low_finish_hazard": 0.08,
-                "high_finish_hazard": 0.3,
-                "sig_landed_mean_range": [
-                  40.19,
-                  64.01
-                ],
-                "takedowns_landed_mean_range": [
-                  1.21,
-                  1.97
-                ]
-              },
-              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
-            }
-          },
-          "scenario_warning": "Unverified fight length; hypothetical 3/5-round counts are not predictions or bet-eligible"
-        },
-        "Yousri Belgaroui": {
-          "status": "UNAVAILABLE",
-          "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
-          "historical_per_round": {
-            "sig_landed": 27.0,
-            "sig_attempted": 42.5,
-            "td_landed": 0.1,
-            "td_attempted": 0.1
-          },
-          "duration_scenarios": {
-            "3": {
-              "status": "HYPOTHETICAL_RESEARCH_ONLY",
-              "count_means": {
-                "sig_landed": 67.76,
-                "sig_attempted": 106.36,
-                "takedowns_landed": 0.21,
-                "takedowns_attempted": 0.21
-              },
-              "hazard_sensitivity": {
-                "low_finish_hazard": 0.08,
-                "high_finish_hazard": 0.3,
-                "sig_landed_mean_range": [
-                  58.7,
-                  73.94
-                ],
-                "takedowns_landed_mean_range": [
-                  0.22,
-                  0.27
-                ]
-              },
-              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
-            },
-            "5": {
-              "status": "HYPOTHETICAL_RESEARCH_ONLY",
-              "count_means": {
-                "sig_landed": 93.6,
-                "sig_attempted": 146.63,
-                "takedowns_landed": 0.33,
-                "takedowns_attempted": 0.33
-              },
-              "hazard_sensitivity": {
-                "low_finish_hazard": 0.08,
-                "high_finish_hazard": 0.3,
-                "sig_landed_mean_range": [
-                  75.81,
-                  116.01
-                ],
-                "takedowns_landed_mean_range": [
-                  0.3,
-                  0.44
+                  2.75,
+                  4.33
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -1701,51 +1495,51 @@
       }
     },
     {
-      "fight_id": "401922640",
-      "red": "Kevin Holland",
-      "blue": "Uro\u0161 Medi\u0107",
+      "fight_id": "401927855",
+      "red": "Kyoji Horiguchi",
+      "blue": "Asu Almabayev",
       "opponent_adjustment": {
-        "elo_available": false,
+        "elo_available": true,
         "verified_strength_of_schedule": false
       },
       "sparse_data_probability": {
-        "red": 0.5184,
-        "blue": 0.4816,
+        "red": 0.5161,
+        "blue": 0.4839,
         "red_uncertainty_interval": [
-          0.1913,
-          0.8456
+          0.2881,
+          0.7442
         ],
         "status": "UNCALIBRATED_RESEARCH"
       },
       "count_simulation": {
-        "Kevin Holland": {
+        "Kyoji Horiguchi": {
           "status": "UNAVAILABLE",
           "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
           "historical_per_round": {
-            "sig_landed": 19.57,
-            "sig_attempted": 40.32,
-            "td_landed": 0.25,
-            "td_attempted": 0.72
+            "sig_landed": 17.34,
+            "sig_attempted": 36.44,
+            "td_landed": 0.53,
+            "td_attempted": 1.31
           },
           "duration_scenarios": {
             "3": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 49.26,
-                "sig_attempted": 100.83,
-                "takedowns_landed": 0.66,
-                "takedowns_attempted": 1.81
+                "sig_landed": 42.36,
+                "sig_attempted": 88.91,
+                "takedowns_landed": 1.27,
+                "takedowns_attempted": 3.1
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  42.41,
-                  54.32
+                  36.93,
+                  48.44
                 ],
                 "takedowns_landed_mean_range": [
-                  0.54,
-                  0.71
+                  1.19,
+                  1.51
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -1753,21 +1547,21 @@
             "5": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 68.1,
-                "sig_attempted": 139.63,
-                "takedowns_landed": 0.89,
-                "takedowns_attempted": 2.49
+                "sig_landed": 59.71,
+                "sig_attempted": 124.9,
+                "takedowns_landed": 1.86,
+                "takedowns_attempted": 4.46
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  53.98,
-                  82.56
+                  47.04,
+                  73.87
                 ],
                 "takedowns_landed_mean_range": [
-                  0.67,
-                  1.05
+                  1.44,
+                  2.31
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -1775,34 +1569,34 @@
           },
           "scenario_warning": "Unverified fight length; hypothetical 3/5-round counts are not predictions or bet-eligible"
         },
-        "Uro\u0161 Medi\u0107": {
+        "Asu Almabayev": {
           "status": "UNAVAILABLE",
           "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
           "historical_per_round": {
-            "sig_landed": 14.39,
-            "sig_attempted": 24.72,
-            "td_landed": 0.06,
-            "td_attempted": 0.11
+            "sig_landed": 10.35,
+            "sig_attempted": 20.13,
+            "td_landed": 1.43,
+            "td_attempted": 3.13
           },
           "duration_scenarios": {
             "3": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 36.26,
-                "sig_attempted": 62.14,
-                "takedowns_landed": 0.15,
-                "takedowns_attempted": 0.31
+                "sig_landed": 26.91,
+                "sig_attempted": 51.81,
+                "takedowns_landed": 3.65,
+                "takedowns_attempted": 8.03
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  31.65,
-                  39.64
+                  22.86,
+                  28.97
                 ],
                 "takedowns_landed_mean_range": [
-                  0.13,
-                  0.13
+                  3.11,
+                  3.97
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -1810,21 +1604,21 @@
             "5": {
               "status": "HYPOTHETICAL_RESEARCH_ONLY",
               "count_means": {
-                "sig_landed": 50.34,
-                "sig_attempted": 86.33,
-                "takedowns_landed": 0.17,
-                "takedowns_attempted": 0.38
+                "sig_landed": 35.9,
+                "sig_attempted": 69.6,
+                "takedowns_landed": 4.97,
+                "takedowns_attempted": 10.73
               },
               "hazard_sensitivity": {
                 "low_finish_hazard": 0.08,
                 "high_finish_hazard": 0.3,
                 "sig_landed_mean_range": [
-                  40.76,
-                  61.09
+                  28.22,
+                  44.29
                 ],
                 "takedowns_landed_mean_range": [
-                  0.15,
-                  0.24
+                  3.92,
+                  6.15
                 ]
               },
               "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
@@ -1837,160 +1631,7 @@
         "scheduled_rounds_verified": false,
         "fighter_status_verified": false,
         "odds_verified": false,
-        "paired_historical_round_rows": 18,
-        "opponent_quality_verified": false
-      },
-      "calibration": {
-        "status": "UNVERIFIED",
-        "point_in_time_validated": false,
-        "evaluated_fights": 0,
-        "brier": null,
-        "log_loss": null
-      },
-      "betting": {
-        "status": "NOT_ELIGIBLE",
-        "model_ev": null,
-        "reason": "No calibrated independent live probability and verified executable price"
-      }
-    },
-    {
-      "fight_id": "401922641",
-      "red": "Luis Gurule",
-      "blue": "Bilal Hasan",
-      "opponent_adjustment": {
-        "elo_available": false,
-        "verified_strength_of_schedule": false
-      },
-      "sparse_data_probability": {
-        "red": 0.501,
-        "blue": 0.499,
-        "red_uncertainty_interval": [
-          0.0765,
-          0.9254
-        ],
-        "status": "UNCALIBRATED_RESEARCH"
-      },
-      "count_simulation": {
-        "Luis Gurule": {
-          "status": "UNAVAILABLE",
-          "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
-          "historical_per_round": {
-            "sig_landed": 21.17,
-            "sig_attempted": 52.94,
-            "td_landed": 0.28,
-            "td_attempted": 1.5
-          },
-          "duration_scenarios": {
-            "3": {
-              "status": "HYPOTHETICAL_RESEARCH_ONLY",
-              "count_means": {
-                "sig_landed": 52.48,
-                "sig_attempted": 130.72,
-                "takedowns_landed": 0.67,
-                "takedowns_attempted": 3.72
-              },
-              "hazard_sensitivity": {
-                "low_finish_hazard": 0.08,
-                "high_finish_hazard": 0.3,
-                "sig_landed_mean_range": [
-                  46.51,
-                  59.0
-                ],
-                "takedowns_landed_mean_range": [
-                  0.57,
-                  0.76
-                ]
-              },
-              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
-            },
-            "5": {
-              "status": "HYPOTHETICAL_RESEARCH_ONLY",
-              "count_means": {
-                "sig_landed": 73.14,
-                "sig_attempted": 181.73,
-                "takedowns_landed": 0.91,
-                "takedowns_attempted": 5.18
-              },
-              "hazard_sensitivity": {
-                "low_finish_hazard": 0.08,
-                "high_finish_hazard": 0.3,
-                "sig_landed_mean_range": [
-                  59.04,
-                  89.33
-                ],
-                "takedowns_landed_mean_range": [
-                  0.74,
-                  1.16
-                ]
-              },
-              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
-            }
-          },
-          "scenario_warning": "Unverified fight length; hypothetical 3/5-round counts are not predictions or bet-eligible"
-        },
-        "Bilal Hasan": {
-          "status": "UNAVAILABLE",
-          "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
-          "historical_per_round": {
-            "sig_landed": 21.0,
-            "sig_attempted": 47.6,
-            "td_landed": 0.2,
-            "td_attempted": 0.4
-          },
-          "duration_scenarios": {
-            "3": {
-              "status": "HYPOTHETICAL_RESEARCH_ONLY",
-              "count_means": {
-                "sig_landed": 53.36,
-                "sig_attempted": 120.15,
-                "takedowns_landed": 0.49,
-                "takedowns_attempted": 0.98
-              },
-              "hazard_sensitivity": {
-                "low_finish_hazard": 0.08,
-                "high_finish_hazard": 0.3,
-                "sig_landed_mean_range": [
-                  46.45,
-                  58.32
-                ],
-                "takedowns_landed_mean_range": [
-                  0.45,
-                  0.55
-                ]
-              },
-              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
-            },
-            "5": {
-              "status": "HYPOTHETICAL_RESEARCH_ONLY",
-              "count_means": {
-                "sig_landed": 72.18,
-                "sig_attempted": 163.81,
-                "takedowns_landed": 0.69,
-                "takedowns_attempted": 1.4
-              },
-              "hazard_sensitivity": {
-                "low_finish_hazard": 0.08,
-                "high_finish_hazard": 0.3,
-                "sig_landed_mean_range": [
-                  57.94,
-                  88.77
-                ],
-                "takedowns_landed_mean_range": [
-                  0.53,
-                  0.86
-                ]
-              },
-              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
-            }
-          },
-          "scenario_warning": "Unverified fight length; hypothetical 3/5-round counts are not predictions or bet-eligible"
-        }
-      },
-      "input_evidence": {
-        "scheduled_rounds_verified": false,
-        "fighter_status_verified": false,
-        "odds_verified": false,
-        "paired_historical_round_rows": 5,
+        "paired_historical_round_rows": 23,
         "opponent_quality_verified": false
       },
       "calibration": {
