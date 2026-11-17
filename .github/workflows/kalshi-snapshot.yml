@@ -29,6 +29,17 @@ jobs:
         run: python scripts/join_kalshi_settlements.py
       - name: Audit calibration, settlement and fees (fail closed)
         run: python scripts/audit_kalshi_integrity.py
+      - name: Show generated data and enforce output contract
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          for name in ('kalshi-markets.json','kalshi-integrity.json','kalshi-pregame-forecasts.json','kalshi-settlements.json'):
+              p=Path('data')/name
+              assert p.exists(), f'Missing required output: {p}'
+              data=json.loads(p.read_text())
+              print(f'{p}: {p.stat().st_size} bytes, fields={list(data)[:8]}')
+          PY
       - name: Commit fresh snapshot
         run: |
           git config user.name 'github-actions[bot]'
