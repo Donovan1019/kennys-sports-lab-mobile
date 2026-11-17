@@ -23,13 +23,15 @@ jobs:
         run: python scripts/archive_kalshi_forecasts.py
       - name: Match completed games to independent ESPN final scores
         run: python scripts/collect_kalshi_game_results.py
+      - name: Collect actual Kalshi settled contract outcomes
+        run: python scripts/collect_kalshi_settlements.py
       - name: Audit calibration, settlement and fees (fail closed)
         run: python scripts/audit_kalshi_integrity.py
       - name: Commit fresh snapshot
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/kalshi-markets.json data/kalshi-integrity.json data/kalshi-pregame-forecasts.json
+          git add data/kalshi-markets.json data/kalshi-integrity.json data/kalshi-pregame-forecasts.json data/kalshi-settlements.json
           if ! git diff --cached --quiet; then
             git commit -m 'data: refresh Kalshi public sports snapshot'
             git push
