@@ -1,70 +1,10 @@
 {
-  "generated_at": "2026-11-17T00:46:31.275606+00:00",
+  "generated_at": "2026-11-17T02:54:22.472593+00:00",
   "status": "ok",
   "reason": null,
   "decisions": [
     {
       "sport": "americanfootball_nfl",
-      "event_id": "11Axnn7DOibA4F5G47GU",
-      "event": "Los Angeles Chargers @ Baltimore Ravens",
-      "start_time": "2026-11-17T01:15:00.000Z",
-      "selection": "Baltimore Ravens",
-      "bookmaker": "draftkings",
-      "model_source": "nfl-score-margin-shrink-v1",
-      "research_only": true,
-      "model_status": "READY",
-      "bet_status": "PROVISIONAL",
-      "model_probability": 0.604679,
-      "fair_odds": -153,
-      "reason": "Independent research projection is not calibrated for betting"
-    },
-    {
-      "sport": "americanfootball_nfl",
-      "event_id": "11Axnn7DOibA4F5G47GU",
-      "event": "Los Angeles Chargers @ Baltimore Ravens",
-      "start_time": "2026-11-17T01:15:00.000Z",
-      "selection": "Baltimore Ravens",
-      "bookmaker": "fanduel",
-      "model_source": "nfl-score-margin-shrink-v1",
-      "research_only": true,
-      "model_status": "READY",
-      "bet_status": "PROVISIONAL",
-      "model_probability": 0.604679,
-      "fair_odds": -153,
-      "reason": "Independent research projection is not calibrated for betting"
-    },
-    {
-      "sport": "americanfootball_nfl",
-      "event_id": "11Axnn7DOibA4F5G47GU",
-      "event": "Los Angeles Chargers @ Baltimore Ravens",
-      "start_time": "2026-11-17T01:15:00.000Z",
-      "selection": "Los Angeles Chargers",
-      "bookmaker": "draftkings",
-      "model_source": "nfl-score-margin-shrink-v1",
-      "research_only": true,
-      "model_status": "READY",
-      "bet_status": "PROVISIONAL",
-      "model_probability": 0.395321,
-      "fair_odds": 153,
-      "reason": "Independent research projection is not calibrated for betting"
-    },
-    {
-      "sport": "americanfootball_nfl",
-      "event_id": "11Axnn7DOibA4F5G47GU",
-      "event": "Los Angeles Chargers @ Baltimore Ravens",
-      "start_time": "2026-11-17T01:15:00.000Z",
-      "selection": "Los Angeles Chargers",
-      "bookmaker": "fanduel",
-      "model_source": "nfl-score-margin-shrink-v1",
-      "research_only": true,
-      "model_status": "READY",
-      "bet_status": "PROVISIONAL",
-      "model_probability": 0.395321,
-      "fair_odds": 153,
-      "reason": "Independent research projection is not calibrated for betting"
-    },
-    {
-      "sport": "americanfootball_nfl",
       "event_id": "YlZBEbhTgV80ZeTIIyqm",
       "event": "Indianapolis Colts @ Houston Texans",
       "start_time": "2026-11-20T01:15:00.000Z",
@@ -785,303 +725,231 @@
     },
     {
       "sport": "basketball_nba",
-      "event_id": "NTuuG5Ck7md8MCDj9VaS",
-      "event": "Golden State Warriors @ New Orleans Pelicans",
-      "start_time": "2026-11-17T01:00:00.000Z",
-      "selection": "Golden State Warriors",
+      "event_id": "V5acJrxsETpR7gK33aYo",
+      "event": "New York Knicks @ Toronto Raptors",
+      "start_time": "2026-11-18T00:30:00.000Z",
+      "selection": "New York Knicks",
+      "bookmaker": "draftkings",
+      "model_source": "elo-walkforward-v1-holdout-audit",
+      "research_only": false,
+      "model_status": "READY",
+      "bet_status": "NO_VALUE",
+      "model_probability": 0.546135,
+      "fair_odds": -120,
+      "offered_odds": -152,
+      "break_even_probability": 0.6031746031746031,
+      "edge_probability_points": -5.703960317460311,
+      "expected_value": -0.09456565789473681,
+      "price_age_minutes": 0.11195988333333333,
+      "reason": "No positive edge at offered price"
+    },
+    {
+      "sport": "basketball_nba",
+      "event_id": "V5acJrxsETpR7gK33aYo",
+      "event": "New York Knicks @ Toronto Raptors",
+      "start_time": "2026-11-18T00:30:00.000Z",
+      "selection": "New York Knicks",
+      "bookmaker": "fanduel",
+      "model_source": "elo-walkforward-v1-holdout-audit",
+      "research_only": false,
+      "model_status": "READY",
+      "bet_status": "NO_VALUE",
+      "model_probability": 0.546135,
+      "fair_odds": -120,
+      "offered_odds": -156,
+      "break_even_probability": 0.609375,
+      "edge_probability_points": -6.323999999999996,
+      "expected_value": -0.10377846153846149,
+      "price_age_minutes": 0.3256432166666666,
+      "reason": "No positive edge at offered price"
+    },
+    {
+      "sport": "basketball_nba",
+      "event_id": "V5acJrxsETpR7gK33aYo",
+      "event": "New York Knicks @ Toronto Raptors",
+      "start_time": "2026-11-18T00:30:00.000Z",
+      "selection": "Toronto Raptors",
       "bookmaker": "draftkings",
       "model_source": "elo-walkforward-v1-holdout-audit",
       "research_only": false,
       "model_status": "READY",
       "bet_status": "PROVISIONAL",
-      "model_probability": 0.572798,
-      "fair_odds": -134,
-      "reason": "Price timestamp stale or invalid"
+      "model_probability": 0.453865,
+      "fair_odds": 120,
+      "offered_odds": 128,
+      "break_even_probability": 0.43859649122807015,
+      "price_age_minutes": 0.11195988333333333,
+      "reason": "Model uncertainty and lineup certification unavailable"
     },
     {
       "sport": "basketball_nba",
-      "event_id": "NTuuG5Ck7md8MCDj9VaS",
-      "event": "Golden State Warriors @ New Orleans Pelicans",
-      "start_time": "2026-11-17T01:00:00.000Z",
-      "selection": "Golden State Warriors",
+      "event_id": "V5acJrxsETpR7gK33aYo",
+      "event": "New York Knicks @ Toronto Raptors",
+      "start_time": "2026-11-18T00:30:00.000Z",
+      "selection": "Toronto Raptors",
       "bookmaker": "fanduel",
       "model_source": "elo-walkforward-v1-holdout-audit",
       "research_only": false,
       "model_status": "READY",
       "bet_status": "PROVISIONAL",
-      "model_probability": 0.572798,
-      "fair_odds": -134,
-      "reason": "Price timestamp stale or invalid"
+      "model_probability": 0.453865,
+      "fair_odds": 120,
+      "offered_odds": 132,
+      "break_even_probability": 0.43103448275862066,
+      "price_age_minutes": 0.3256432166666666,
+      "reason": "Model uncertainty and lineup certification unavailable"
     },
     {
       "sport": "basketball_nba",
-      "event_id": "NTuuG5Ck7md8MCDj9VaS",
-      "event": "Golden State Warriors @ New Orleans Pelicans",
-      "start_time": "2026-11-17T01:00:00.000Z",
-      "selection": "New Orleans Pelicans",
+      "event_id": "TeNnxcd68WiO1wNW4Fhy",
+      "event": "Detroit Pistons @ San Antonio Spurs",
+      "start_time": "2026-11-18T01:00:00.000Z",
+      "selection": "Detroit Pistons",
       "bookmaker": "draftkings",
       "model_source": "elo-walkforward-v1-holdout-audit",
       "research_only": false,
       "model_status": "READY",
       "bet_status": "PROVISIONAL",
-      "model_probability": 0.427202,
-      "fair_odds": 134,
-      "reason": "Price timestamp stale or invalid"
+      "model_probability": 0.322962,
+      "fair_odds": 210,
+      "offered_odds": 277,
+      "break_even_probability": 0.26525198938992045,
+      "price_age_minutes": 0.11195988333333333,
+      "reason": "Model uncertainty and lineup certification unavailable"
     },
     {
       "sport": "basketball_nba",
-      "event_id": "NTuuG5Ck7md8MCDj9VaS",
-      "event": "Golden State Warriors @ New Orleans Pelicans",
-      "start_time": "2026-11-17T01:00:00.000Z",
-      "selection": "New Orleans Pelicans",
+      "event_id": "TeNnxcd68WiO1wNW4Fhy",
+      "event": "Detroit Pistons @ San Antonio Spurs",
+      "start_time": "2026-11-18T01:00:00.000Z",
+      "selection": "Detroit Pistons",
       "bookmaker": "fanduel",
       "model_source": "elo-walkforward-v1-holdout-audit",
       "research_only": false,
       "model_status": "READY",
       "bet_status": "PROVISIONAL",
-      "model_probability": 0.427202,
-      "fair_odds": 134,
-      "reason": "Price timestamp stale or invalid"
+      "model_probability": 0.322962,
+      "fair_odds": 210,
+      "offered_odds": 290,
+      "break_even_probability": 0.25641025641025644,
+      "price_age_minutes": 0.3256432166666666,
+      "reason": "Model uncertainty and lineup certification unavailable"
     },
     {
       "sport": "basketball_nba",
-      "event_id": "gOVhXsbclMGshS40i3o0",
-      "event": "Portland Trail Blazers @ Minnesota Timberwolves",
-      "start_time": "2026-11-17T01:00:00.000Z",
-      "selection": "Portland Trail Blazers",
+      "event_id": "TeNnxcd68WiO1wNW4Fhy",
+      "event": "Detroit Pistons @ San Antonio Spurs",
+      "start_time": "2026-11-18T01:00:00.000Z",
+      "selection": "San Antonio Spurs",
+      "bookmaker": "draftkings",
+      "model_source": "elo-walkforward-v1-holdout-audit",
+      "research_only": false,
+      "model_status": "READY",
+      "bet_status": "NO_VALUE",
+      "model_probability": 0.677038,
+      "fair_odds": -210,
+      "offered_odds": -345,
+      "break_even_probability": 0.7752808988764045,
+      "edge_probability_points": -9.824289887640447,
+      "expected_value": -0.12671910144927534,
+      "price_age_minutes": 0.11195988333333333,
+      "reason": "No positive edge at offered price"
+    },
+    {
+      "sport": "basketball_nba",
+      "event_id": "TeNnxcd68WiO1wNW4Fhy",
+      "event": "Detroit Pistons @ San Antonio Spurs",
+      "start_time": "2026-11-18T01:00:00.000Z",
+      "selection": "San Antonio Spurs",
+      "bookmaker": "fanduel",
+      "model_source": "elo-walkforward-v1-holdout-audit",
+      "research_only": false,
+      "model_status": "READY",
+      "bet_status": "NO_VALUE",
+      "model_probability": 0.677038,
+      "fair_odds": -210,
+      "offered_odds": -360,
+      "break_even_probability": 0.782608695652174,
+      "edge_probability_points": -10.557069565217391,
+      "expected_value": -0.13489588888888893,
+      "price_age_minutes": 0.3256432166666666,
+      "reason": "No positive edge at offered price"
+    },
+    {
+      "sport": "basketball_nba",
+      "event_id": "jc3XOiVKBZeBqyGu2xXV",
+      "event": "Charlotte Hornets @ Los Angeles Lakers",
+      "start_time": "2026-11-18T04:00:00.000Z",
+      "selection": "Charlotte Hornets",
       "bookmaker": "draftkings",
       "model_source": "elo-walkforward-v1-holdout-audit",
       "research_only": false,
       "model_status": "READY",
       "bet_status": "PROVISIONAL",
-      "model_probability": 0.375782,
-      "fair_odds": 166,
-      "reason": "Price timestamp stale or invalid"
+      "model_probability": 0.26158,
+      "fair_odds": 282,
+      "offered_odds": 302,
+      "break_even_probability": 0.24875621890547267,
+      "price_age_minutes": 0.09040988333333333,
+      "reason": "Model uncertainty and lineup certification unavailable"
     },
     {
       "sport": "basketball_nba",
-      "event_id": "gOVhXsbclMGshS40i3o0",
-      "event": "Portland Trail Blazers @ Minnesota Timberwolves",
-      "start_time": "2026-11-17T01:00:00.000Z",
-      "selection": "Portland Trail Blazers",
+      "event_id": "jc3XOiVKBZeBqyGu2xXV",
+      "event": "Charlotte Hornets @ Los Angeles Lakers",
+      "start_time": "2026-11-18T04:00:00.000Z",
+      "selection": "Charlotte Hornets",
       "bookmaker": "fanduel",
       "model_source": "elo-walkforward-v1-holdout-audit",
       "research_only": false,
       "model_status": "READY",
       "bet_status": "PROVISIONAL",
-      "model_probability": 0.375782,
-      "fair_odds": 166,
-      "reason": "Price timestamp stale or invalid"
+      "model_probability": 0.26158,
+      "fair_odds": 282,
+      "offered_odds": 320,
+      "break_even_probability": 0.23809523809523808,
+      "price_age_minutes": 0.3256432166666666,
+      "reason": "Model uncertainty and lineup certification unavailable"
     },
     {
       "sport": "basketball_nba",
-      "event_id": "gOVhXsbclMGshS40i3o0",
-      "event": "Portland Trail Blazers @ Minnesota Timberwolves",
-      "start_time": "2026-11-17T01:00:00.000Z",
-      "selection": "Minnesota Timberwolves",
+      "event_id": "jc3XOiVKBZeBqyGu2xXV",
+      "event": "Charlotte Hornets @ Los Angeles Lakers",
+      "start_time": "2026-11-18T04:00:00.000Z",
+      "selection": "Los Angeles Lakers",
       "bookmaker": "draftkings",
       "model_source": "elo-walkforward-v1-holdout-audit",
       "research_only": false,
       "model_status": "READY",
-      "bet_status": "PROVISIONAL",
-      "model_probability": 0.624218,
-      "fair_odds": -166,
-      "reason": "Price timestamp stale or invalid"
+      "bet_status": "NO_VALUE",
+      "model_probability": 0.73842,
+      "fair_odds": -282,
+      "offered_odds": -381,
+      "break_even_probability": 0.7920997920997921,
+      "edge_probability_points": -5.367979209979213,
+      "expected_value": -0.06776897637795276,
+      "price_age_minutes": 0.09040988333333333,
+      "reason": "No positive edge at offered price"
     },
     {
       "sport": "basketball_nba",
-      "event_id": "gOVhXsbclMGshS40i3o0",
-      "event": "Portland Trail Blazers @ Minnesota Timberwolves",
-      "start_time": "2026-11-17T01:00:00.000Z",
-      "selection": "Minnesota Timberwolves",
+      "event_id": "jc3XOiVKBZeBqyGu2xXV",
+      "event": "Charlotte Hornets @ Los Angeles Lakers",
+      "start_time": "2026-11-18T04:00:00.000Z",
+      "selection": "Los Angeles Lakers",
       "bookmaker": "fanduel",
       "model_source": "elo-walkforward-v1-holdout-audit",
       "research_only": false,
       "model_status": "READY",
-      "bet_status": "PROVISIONAL",
-      "model_probability": 0.624218,
-      "fair_odds": -166,
-      "reason": "Price timestamp stale or invalid"
-    },
-    {
-      "sport": "basketball_nba",
-      "event_id": "NyU46vv1s4hEIHRthin6",
-      "event": "Phoenix Suns @ Denver Nuggets",
-      "start_time": "2026-11-17T02:00:00.000Z",
-      "selection": "Phoenix Suns",
-      "bookmaker": "draftkings",
-      "model_source": "elo-walkforward-v1-holdout-audit",
-      "research_only": false,
-      "model_status": "READY",
-      "bet_status": "PROVISIONAL",
-      "model_probability": 0.294675,
-      "fair_odds": 239,
-      "reason": "Price timestamp stale or invalid"
-    },
-    {
-      "sport": "basketball_nba",
-      "event_id": "NyU46vv1s4hEIHRthin6",
-      "event": "Phoenix Suns @ Denver Nuggets",
-      "start_time": "2026-11-17T02:00:00.000Z",
-      "selection": "Phoenix Suns",
-      "bookmaker": "fanduel",
-      "model_source": "elo-walkforward-v1-holdout-audit",
-      "research_only": false,
-      "model_status": "READY",
-      "bet_status": "PROVISIONAL",
-      "model_probability": 0.294675,
-      "fair_odds": 239,
-      "reason": "Price timestamp stale or invalid"
-    },
-    {
-      "sport": "basketball_nba",
-      "event_id": "NyU46vv1s4hEIHRthin6",
-      "event": "Phoenix Suns @ Denver Nuggets",
-      "start_time": "2026-11-17T02:00:00.000Z",
-      "selection": "Denver Nuggets",
-      "bookmaker": "draftkings",
-      "model_source": "elo-walkforward-v1-holdout-audit",
-      "research_only": false,
-      "model_status": "READY",
-      "bet_status": "PROVISIONAL",
-      "model_probability": 0.705325,
-      "fair_odds": -239,
-      "reason": "Price timestamp stale or invalid"
-    },
-    {
-      "sport": "basketball_nba",
-      "event_id": "NyU46vv1s4hEIHRthin6",
-      "event": "Phoenix Suns @ Denver Nuggets",
-      "start_time": "2026-11-17T02:00:00.000Z",
-      "selection": "Denver Nuggets",
-      "bookmaker": "fanduel",
-      "model_source": "elo-walkforward-v1-holdout-audit",
-      "research_only": false,
-      "model_status": "READY",
-      "bet_status": "PROVISIONAL",
-      "model_probability": 0.705325,
-      "fair_odds": -239,
-      "reason": "Price timestamp stale or invalid"
-    },
-    {
-      "sport": "basketball_ncaab",
-      "event_id": "XVqz8N1kRSt2F3GqeIea",
-      "event": "Columbia Lions @ Northwestern Wildcats",
-      "start_time": "2026-11-17T01:00:00.000Z",
-      "selection": "Columbia Lions",
-      "bookmaker": "draftkings",
-      "model_source": "independent-score-margin-shrinkage-baseline",
-      "research_only": true,
-      "model_status": "READY",
-      "bet_status": "PROVISIONAL",
-      "model_probability": 0.536394,
-      "fair_odds": -116,
-      "reason": "Independent research projection is not calibrated for betting"
-    },
-    {
-      "sport": "basketball_ncaab",
-      "event_id": "XVqz8N1kRSt2F3GqeIea",
-      "event": "Columbia Lions @ Northwestern Wildcats",
-      "start_time": "2026-11-17T01:00:00.000Z",
-      "selection": "Columbia Lions",
-      "bookmaker": "fanduel",
-      "model_source": "independent-score-margin-shrinkage-baseline",
-      "research_only": true,
-      "model_status": "READY",
-      "bet_status": "PROVISIONAL",
-      "model_probability": 0.536394,
-      "fair_odds": -116,
-      "reason": "Independent research projection is not calibrated for betting"
-    },
-    {
-      "sport": "basketball_ncaab",
-      "event_id": "XVqz8N1kRSt2F3GqeIea",
-      "event": "Columbia Lions @ Northwestern Wildcats",
-      "start_time": "2026-11-17T01:00:00.000Z",
-      "selection": "Northwestern Wildcats",
-      "bookmaker": "draftkings",
-      "model_source": "independent-score-margin-shrinkage-baseline",
-      "research_only": true,
-      "model_status": "READY",
-      "bet_status": "PROVISIONAL",
-      "model_probability": 0.463606,
-      "fair_odds": 116,
-      "reason": "Independent research projection is not calibrated for betting"
-    },
-    {
-      "sport": "basketball_ncaab",
-      "event_id": "XVqz8N1kRSt2F3GqeIea",
-      "event": "Columbia Lions @ Northwestern Wildcats",
-      "start_time": "2026-11-17T01:00:00.000Z",
-      "selection": "Northwestern Wildcats",
-      "bookmaker": "fanduel",
-      "model_source": "independent-score-margin-shrinkage-baseline",
-      "research_only": true,
-      "model_status": "READY",
-      "bet_status": "PROVISIONAL",
-      "model_probability": 0.463606,
-      "fair_odds": 116,
-      "reason": "Independent research projection is not calibrated for betting"
-    },
-    {
-      "sport": "basketball_ncaab",
-      "event_id": "XYsxvwA21A5IryaFOlsS",
-      "event": "Central Arkansas Bears @ Oklahoma State Cowboys",
-      "start_time": "2026-11-17T01:00:00.000Z",
-      "selection": "Central Arkansas Bears",
-      "bookmaker": "draftkings",
-      "model_source": "independent-score-margin-shrinkage-baseline",
-      "research_only": true,
-      "model_status": "READY",
-      "bet_status": "PROVISIONAL",
-      "model_probability": 0.431618,
-      "fair_odds": 132,
-      "reason": "Independent research projection is not calibrated for betting"
-    },
-    {
-      "sport": "basketball_ncaab",
-      "event_id": "XYsxvwA21A5IryaFOlsS",
-      "event": "Central Arkansas Bears @ Oklahoma State Cowboys",
-      "start_time": "2026-11-17T01:00:00.000Z",
-      "selection": "Central Arkansas Bears",
-      "bookmaker": "fanduel",
-      "model_source": "independent-score-margin-shrinkage-baseline",
-      "research_only": true,
-      "model_status": "READY",
-      "bet_status": "PROVISIONAL",
-      "model_probability": 0.431618,
-      "fair_odds": 132,
-      "reason": "Independent research projection is not calibrated for betting"
-    },
-    {
-      "sport": "basketball_ncaab",
-      "event_id": "XYsxvwA21A5IryaFOlsS",
-      "event": "Central Arkansas Bears @ Oklahoma State Cowboys",
-      "start_time": "2026-11-17T01:00:00.000Z",
-      "selection": "Oklahoma State Cowboys",
-      "bookmaker": "draftkings",
-      "model_source": "independent-score-margin-shrinkage-baseline",
-      "research_only": true,
-      "model_status": "READY",
-      "bet_status": "PROVISIONAL",
-      "model_probability": 0.568382,
-      "fair_odds": -132,
-      "reason": "Independent research projection is not calibrated for betting"
-    },
-    {
-      "sport": "basketball_ncaab",
-      "event_id": "XYsxvwA21A5IryaFOlsS",
-      "event": "Central Arkansas Bears @ Oklahoma State Cowboys",
-      "start_time": "2026-11-17T01:00:00.000Z",
-      "selection": "Oklahoma State Cowboys",
-      "bookmaker": "fanduel",
-      "model_source": "independent-score-margin-shrinkage-baseline",
-      "research_only": true,
-      "model_status": "READY",
-      "bet_status": "PROVISIONAL",
-      "model_probability": 0.568382,
-      "fair_odds": -132,
-      "reason": "Independent research projection is not calibrated for betting"
+      "bet_status": "NO_VALUE",
+      "model_probability": 0.73842,
+      "fair_odds": -282,
+      "offered_odds": -405,
+      "break_even_probability": 0.801980198019802,
+      "edge_probability_points": -6.3560198019802066,
+      "expected_value": -0.07925407407407414,
+      "price_age_minutes": 0.3256432166666666,
+      "reason": "No positive edge at offered price"
     },
     {
       "sport": "basketball_ncaab",
@@ -1475,78 +1343,6 @@
     },
     {
       "sport": "icehockey_nhl",
-      "event_id": "1zPBxiVhVBMEjr0JbkcI",
-      "event": "Vancouver Canucks @ Utah Mammoth",
-      "start_time": "2026-11-17T02:30:00.000Z",
-      "selection": "Vancouver Canucks",
-      "bookmaker": "draftkings",
-      "model_source": "independent-poisson-research-baseline",
-      "research_only": true,
-      "model_status": "READY",
-      "bet_status": "PROVISIONAL",
-      "model_probability": 0.5011509554779234,
-      "fair_odds": -100,
-      "offered_odds": 270,
-      "break_even_probability": 0.27027027027027023,
-      "price_age_minutes": 0.25846009999999997,
-      "reason": "Independent research projection is not calibrated for betting"
-    },
-    {
-      "sport": "icehockey_nhl",
-      "event_id": "1zPBxiVhVBMEjr0JbkcI",
-      "event": "Vancouver Canucks @ Utah Mammoth",
-      "start_time": "2026-11-17T02:30:00.000Z",
-      "selection": "Vancouver Canucks",
-      "bookmaker": "fanduel",
-      "model_source": "independent-poisson-research-baseline",
-      "research_only": true,
-      "model_status": "READY",
-      "bet_status": "PROVISIONAL",
-      "model_probability": 0.5011509554779234,
-      "fair_odds": -100,
-      "offered_odds": 255,
-      "break_even_probability": 0.28169014084507044,
-      "price_age_minutes": 0.42162676666666665,
-      "reason": "Independent research projection is not calibrated for betting"
-    },
-    {
-      "sport": "icehockey_nhl",
-      "event_id": "1zPBxiVhVBMEjr0JbkcI",
-      "event": "Vancouver Canucks @ Utah Mammoth",
-      "start_time": "2026-11-17T02:30:00.000Z",
-      "selection": "Utah Mammoth",
-      "bookmaker": "draftkings",
-      "model_source": "independent-poisson-research-baseline",
-      "research_only": true,
-      "model_status": "READY",
-      "bet_status": "PROVISIONAL",
-      "model_probability": 0.4988490445220766,
-      "fair_odds": 100,
-      "offered_odds": -340,
-      "break_even_probability": 0.7727272727272727,
-      "price_age_minutes": 0.25846009999999997,
-      "reason": "Independent research projection is not calibrated for betting"
-    },
-    {
-      "sport": "icehockey_nhl",
-      "event_id": "1zPBxiVhVBMEjr0JbkcI",
-      "event": "Vancouver Canucks @ Utah Mammoth",
-      "start_time": "2026-11-17T02:30:00.000Z",
-      "selection": "Utah Mammoth",
-      "bookmaker": "fanduel",
-      "model_source": "independent-poisson-research-baseline",
-      "research_only": true,
-      "model_status": "READY",
-      "bet_status": "PROVISIONAL",
-      "model_probability": 0.4988490445220766,
-      "fair_odds": 100,
-      "offered_odds": -320,
-      "break_even_probability": 0.7619047619047619,
-      "price_age_minutes": 0.42162676666666665,
-      "reason": "Independent research projection is not calibrated for betting"
-    },
-    {
-      "sport": "icehockey_nhl",
       "event_id": "Iji7fMAyoKIc7XOIy1oO",
       "event": "Ottawa Senators @ Winnipeg Jets",
       "start_time": "2026-11-18T00:00:00.000Z",
@@ -1558,9 +1354,6 @@
       "bet_status": "PROVISIONAL",
       "model_probability": 0.4683600164587526,
       "fair_odds": 114,
-      "offered_odds": -130,
-      "break_even_probability": 0.5652173913043479,
-      "price_age_minutes": 0.1960601,
       "reason": "Independent research projection is not calibrated for betting"
     },
     {
@@ -1576,9 +1369,6 @@
       "bet_status": "PROVISIONAL",
       "model_probability": 0.4683600164587526,
       "fair_odds": 114,
-      "offered_odds": -130,
-      "break_even_probability": 0.5652173913043479,
-      "price_age_minutes": 1.3724934333333332,
       "reason": "Independent research projection is not calibrated for betting"
     },
     {
@@ -1594,9 +1384,6 @@
       "bet_status": "PROVISIONAL",
       "model_probability": 0.5316399835412474,
       "fair_odds": -114,
-      "offered_odds": 110,
-      "break_even_probability": 0.47619047619047616,
-      "price_age_minutes": 0.1960601,
       "reason": "Independent research projection is not calibrated for betting"
     },
     {
@@ -1612,9 +1399,6 @@
       "bet_status": "PROVISIONAL",
       "model_probability": 0.5316399835412474,
       "fair_odds": -114,
-      "offered_odds": 108,
-      "break_even_probability": 0.4807692307692307,
-      "price_age_minutes": 1.3724934333333332,
       "reason": "Independent research projection is not calibrated for betting"
     },
     {
@@ -1630,9 +1414,6 @@
       "bet_status": "PROVISIONAL",
       "model_probability": 0.4189677718559379,
       "fair_odds": 139,
-      "offered_odds": 120,
-      "break_even_probability": 0.45454545454545453,
-      "price_age_minutes": 0.25846009999999997,
       "reason": "Independent research projection is not calibrated for betting"
     },
     {
@@ -1648,9 +1429,6 @@
       "bet_status": "PROVISIONAL",
       "model_probability": 0.4189677718559379,
       "fair_odds": 139,
-      "offered_odds": 120,
-      "break_even_probability": 0.45454545454545453,
-      "price_age_minutes": 1.3724934333333332,
       "reason": "Independent research projection is not calibrated for betting"
     },
     {
@@ -1666,9 +1444,6 @@
       "bet_status": "PROVISIONAL",
       "model_probability": 0.5810322281440621,
       "fair_odds": -139,
-      "offered_odds": -142,
-      "break_even_probability": 0.5867768595041323,
-      "price_age_minutes": 0.25846009999999997,
       "reason": "Independent research projection is not calibrated for betting"
     },
     {
@@ -1684,9 +1459,6 @@
       "bet_status": "PROVISIONAL",
       "model_probability": 0.5810322281440621,
       "fair_odds": -139,
-      "offered_odds": -144,
-      "break_even_probability": 0.5901639344262295,
-      "price_age_minutes": 1.3724934333333332,
       "reason": "Independent research projection is not calibrated for betting"
     },
     {
@@ -1702,9 +1474,6 @@
       "bet_status": "PROVISIONAL",
       "model_probability": 0.5101301397341436,
       "fair_odds": -104,
-      "offered_odds": 130,
-      "break_even_probability": 0.4347826086956522,
-      "price_age_minutes": 0.1960601,
       "reason": "Independent research projection is not calibrated for betting"
     },
     {
@@ -1720,9 +1489,6 @@
       "bet_status": "PROVISIONAL",
       "model_probability": 0.5101301397341436,
       "fair_odds": -104,
-      "offered_odds": 130,
-      "break_even_probability": 0.4347826086956522,
-      "price_age_minutes": 1.3724934333333332,
       "reason": "Independent research projection is not calibrated for betting"
     },
     {
@@ -1738,9 +1504,6 @@
       "bet_status": "PROVISIONAL",
       "model_probability": 0.48986986026585644,
       "fair_odds": 104,
-      "offered_odds": -155,
-      "break_even_probability": 0.607843137254902,
-      "price_age_minutes": 0.1960601,
       "reason": "Independent research projection is not calibrated for betting"
     },
     {
@@ -1756,9 +1519,6 @@
       "bet_status": "PROVISIONAL",
       "model_probability": 0.48986986026585644,
       "fair_odds": 104,
-      "offered_odds": -156,
-      "break_even_probability": 0.609375,
-      "price_age_minutes": 1.3724934333333332,
       "reason": "Independent research projection is not calibrated for betting"
     },
     {
@@ -1774,9 +1534,6 @@
       "bet_status": "PROVISIONAL",
       "model_probability": 0.4913450069649504,
       "fair_odds": 104,
-      "offered_odds": 100,
-      "break_even_probability": 0.5,
-      "price_age_minutes": 0.25846009999999997,
       "reason": "Independent research projection is not calibrated for betting"
     },
     {
@@ -1792,9 +1549,6 @@
       "bet_status": "PROVISIONAL",
       "model_probability": 0.4913450069649504,
       "fair_odds": 104,
-      "offered_odds": 100,
-      "break_even_probability": 0.5,
-      "price_age_minutes": 1.3724934333333332,
       "reason": "Independent research projection is not calibrated for betting"
     },
     {
@@ -1810,9 +1564,6 @@
       "bet_status": "PROVISIONAL",
       "model_probability": 0.5086549930350496,
       "fair_odds": -104,
-      "offered_odds": -120,
-      "break_even_probability": 0.5454545454545454,
-      "price_age_minutes": 0.25846009999999997,
       "reason": "Independent research projection is not calibrated for betting"
     },
     {
@@ -1828,9 +1579,6 @@
       "bet_status": "PROVISIONAL",
       "model_probability": 0.5086549930350496,
       "fair_odds": -104,
-      "offered_odds": -120,
-      "break_even_probability": 0.5454545454545454,
-      "price_age_minutes": 1.3724934333333332,
       "reason": "Independent research projection is not calibrated for betting"
     },
     {
@@ -1846,9 +1594,6 @@
       "bet_status": "PROVISIONAL",
       "model_probability": 0.4785940644232709,
       "fair_odds": 109,
-      "offered_odds": -125,
-      "break_even_probability": 0.5555555555555556,
-      "price_age_minutes": 0.25846009999999997,
       "reason": "Independent research projection is not calibrated for betting"
     },
     {
@@ -1864,9 +1609,6 @@
       "bet_status": "PROVISIONAL",
       "model_probability": 0.4785940644232709,
       "fair_odds": 109,
-      "offered_odds": -125,
-      "break_even_probability": 0.5555555555555556,
-      "price_age_minutes": 1.3724934333333332,
       "reason": "Independent research projection is not calibrated for betting"
     },
     {
@@ -1882,9 +1624,6 @@
       "bet_status": "PROVISIONAL",
       "model_probability": 0.5214059355767291,
       "fair_odds": -109,
-      "offered_odds": 105,
-      "break_even_probability": 0.48780487804878053,
-      "price_age_minutes": 0.25846009999999997,
       "reason": "Independent research projection is not calibrated for betting"
     },
     {
@@ -1900,9 +1639,6 @@
       "bet_status": "PROVISIONAL",
       "model_probability": 0.5214059355767291,
       "fair_odds": -109,
-      "offered_odds": 104,
-      "break_even_probability": 0.49019607843137253,
-      "price_age_minutes": 1.3724934333333332,
       "reason": "Independent research projection is not calibrated for betting"
     },
     {
@@ -1918,9 +1654,6 @@
       "bet_status": "PROVISIONAL",
       "model_probability": 0.4548688534402989,
       "fair_odds": 120,
-      "offered_odds": 142,
-      "break_even_probability": 0.4132231404958678,
-      "price_age_minutes": 0.25846009999999997,
       "reason": "Independent research projection is not calibrated for betting"
     },
     {
@@ -1936,9 +1669,6 @@
       "bet_status": "PROVISIONAL",
       "model_probability": 0.4548688534402989,
       "fair_odds": 120,
-      "offered_odds": 138,
-      "break_even_probability": 0.42016806722689076,
-      "price_age_minutes": 1.3724934333333332,
       "reason": "Independent research projection is not calibrated for betting"
     },
     {
@@ -1954,9 +1684,6 @@
       "bet_status": "PROVISIONAL",
       "model_probability": 0.5451311465597011,
       "fair_odds": -120,
-      "offered_odds": -170,
-      "break_even_probability": 0.6296296296296295,
-      "price_age_minutes": 0.25846009999999997,
       "reason": "Independent research projection is not calibrated for betting"
     },
     {
@@ -1972,9 +1699,6 @@
       "bet_status": "PROVISIONAL",
       "model_probability": 0.5451311465597011,
       "fair_odds": -120,
-      "offered_odds": -166,
-      "break_even_probability": 0.6240601503759399,
-      "price_age_minutes": 1.3724934333333332,
       "reason": "Independent research projection is not calibrated for betting"
     },
     {
@@ -1990,9 +1714,6 @@
       "bet_status": "PROVISIONAL",
       "model_probability": 0.4742126028295648,
       "fair_odds": 111,
-      "offered_odds": -148,
-      "break_even_probability": 0.5967741935483871,
-      "price_age_minutes": 0.25846009999999997,
       "reason": "Independent research projection is not calibrated for betting"
     },
     {
@@ -2008,9 +1729,6 @@
       "bet_status": "PROVISIONAL",
       "model_probability": 0.4742126028295648,
       "fair_odds": 111,
-      "offered_odds": -152,
-      "break_even_probability": 0.6031746031746031,
-      "price_age_minutes": 1.3724934333333332,
       "reason": "Independent research projection is not calibrated for betting"
     },
     {
@@ -2026,9 +1744,6 @@
       "bet_status": "PROVISIONAL",
       "model_probability": 0.5257873971704352,
       "fair_odds": -111,
-      "offered_odds": 124,
-      "break_even_probability": 0.4464285714285714,
-      "price_age_minutes": 0.25846009999999997,
       "reason": "Independent research projection is not calibrated for betting"
     },
     {
@@ -2044,9 +1759,6 @@
       "bet_status": "PROVISIONAL",
       "model_probability": 0.5257873971704352,
       "fair_odds": -111,
-      "offered_odds": 126,
-      "break_even_probability": 0.4424778761061947,
-      "price_age_minutes": 1.3724934333333332,
       "reason": "Independent research projection is not calibrated for betting"
     },
     {
@@ -2062,9 +1774,6 @@
       "bet_status": "PROVISIONAL",
       "model_probability": 0.7139635889913675,
       "fair_odds": -250,
-      "offered_odds": 120,
-      "break_even_probability": 0.45454545454545453,
-      "price_age_minutes": 0.25846009999999997,
       "reason": "Independent research projection is not calibrated for betting"
     },
     {
@@ -2080,9 +1789,6 @@
       "bet_status": "PROVISIONAL",
       "model_probability": 0.7139635889913675,
       "fair_odds": -250,
-      "offered_odds": 122,
-      "break_even_probability": 0.4504504504504505,
-      "price_age_minutes": 1.3724934333333332,
       "reason": "Independent research projection is not calibrated for betting"
     },
     {
@@ -2098,9 +1804,6 @@
       "bet_status": "PROVISIONAL",
       "model_probability": 0.28603641100863253,
       "fair_odds": 250,
-      "offered_odds": -142,
-      "break_even_probability": 0.5867768595041323,
-      "price_age_minutes": 0.25846009999999997,
       "reason": "Independent research projection is not calibrated for betting"
     },
     {
@@ -2116,9 +1819,6 @@
       "bet_status": "PROVISIONAL",
       "model_probability": 0.28603641100863253,
       "fair_odds": 250,
-      "offered_odds": -146,
-      "break_even_probability": 0.5934959349593496,
-      "price_age_minutes": 1.3724934333333332,
       "reason": "Independent research projection is not calibrated for betting"
     },
     {
@@ -2134,9 +1834,6 @@
       "bet_status": "PROVISIONAL",
       "model_probability": 0.47030240870141504,
       "fair_odds": 113,
-      "offered_odds": 170,
-      "break_even_probability": 0.37037037037037035,
-      "price_age_minutes": 0.25846009999999997,
       "reason": "Independent research projection is not calibrated for betting"
     },
     {
@@ -2152,9 +1849,6 @@
       "bet_status": "PROVISIONAL",
       "model_probability": 0.47030240870141504,
       "fair_odds": 113,
-      "offered_odds": 172,
-      "break_even_probability": 0.36764705882352944,
-      "price_age_minutes": 1.3724934333333332,
       "reason": "Independent research projection is not calibrated for betting"
     },
     {
@@ -2170,9 +1864,6 @@
       "bet_status": "PROVISIONAL",
       "model_probability": 0.529697591298585,
       "fair_odds": -113,
-      "offered_odds": -205,
-      "break_even_probability": 0.6721311475409836,
-      "price_age_minutes": 0.25846009999999997,
       "reason": "Independent research projection is not calibrated for betting"
     },
     {
@@ -2188,9 +1879,6 @@
       "bet_status": "PROVISIONAL",
       "model_probability": 0.529697591298585,
       "fair_odds": -113,
-      "offered_odds": -210,
-      "break_even_probability": 0.6774193548387096,
-      "price_age_minutes": 1.3724934333333332,
       "reason": "Independent research projection is not calibrated for betting"
     },
     {
@@ -2206,9 +1894,6 @@
       "bet_status": "PROVISIONAL",
       "model_probability": 0.5,
       "fair_odds": -100,
-      "offered_odds": 114,
-      "break_even_probability": 0.4672897196261683,
-      "price_age_minutes": 0.25846009999999997,
       "reason": "Independent research projection is not calibrated for betting"
     },
     {
@@ -2224,9 +1909,6 @@
       "bet_status": "PROVISIONAL",
       "model_probability": 0.5,
       "fair_odds": -100,
-      "offered_odds": 114,
-      "break_even_probability": 0.4672897196261683,
-      "price_age_minutes": 1.3724934333333332,
       "reason": "Independent research projection is not calibrated for betting"
     },
     {
@@ -2242,9 +1924,6 @@
       "bet_status": "PROVISIONAL",
       "model_probability": 0.5,
       "fair_odds": -100,
-      "offered_odds": -135,
-      "break_even_probability": 0.574468085106383,
-      "price_age_minutes": 0.25846009999999997,
       "reason": "Independent research projection is not calibrated for betting"
     },
     {
@@ -2260,9 +1939,6 @@
       "bet_status": "PROVISIONAL",
       "model_probability": 0.5,
       "fair_odds": -100,
-      "offered_odds": -137,
-      "break_even_probability": 0.5780590717299579,
-      "price_age_minutes": 1.3724934333333332,
       "reason": "Independent research projection is not calibrated for betting"
     },
     {
@@ -2278,9 +1954,6 @@
       "bet_status": "PROVISIONAL",
       "model_probability": 0.5193998507087559,
       "fair_odds": -108,
-      "offered_odds": 105,
-      "break_even_probability": 0.48780487804878053,
-      "price_age_minutes": 0.25846009999999997,
       "reason": "Independent research projection is not calibrated for betting"
     },
     {
@@ -2296,9 +1969,6 @@
       "bet_status": "PROVISIONAL",
       "model_probability": 0.5193998507087559,
       "fair_odds": -108,
-      "offered_odds": 104,
-      "break_even_probability": 0.49019607843137253,
-      "price_age_minutes": 1.3724934333333332,
       "reason": "Independent research projection is not calibrated for betting"
     },
     {
@@ -2314,9 +1984,6 @@
       "bet_status": "PROVISIONAL",
       "model_probability": 0.48060014929124406,
       "fair_odds": 108,
-      "offered_odds": -125,
-      "break_even_probability": 0.5555555555555556,
-      "price_age_minutes": 0.25846009999999997,
       "reason": "Independent research projection is not calibrated for betting"
     },
     {
@@ -2332,9 +1999,6 @@
       "bet_status": "PROVISIONAL",
       "model_probability": 0.48060014929124406,
       "fair_odds": 108,
-      "offered_odds": -125,
-      "break_even_probability": 0.5555555555555556,
-      "price_age_minutes": 1.3724934333333332,
       "reason": "Independent research projection is not calibrated for betting"
     }
   ]
