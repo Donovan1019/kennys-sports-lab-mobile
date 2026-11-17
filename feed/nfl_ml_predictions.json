@@ -1,23 +1,11 @@
 {
   "status": "research_only",
   "sport": "americanfootball_nfl",
-  "generated_at": "2026-11-16T23:22:45.400510+00:00",
+  "generated_at": "2026-11-17T22:17:20.267799+00:00",
   "model_version": "nfl-score-margin-shrink-v1",
   "calibration_passed": false,
   "lineups_verified": false,
   "predictions": [
-    {
-      "event_id": "11Axnn7DOibA4F5G47GU",
-      "team": "Baltimore Ravens",
-      "win_probability": 0.604679,
-      "sample_games": 8
-    },
-    {
-      "event_id": "11Axnn7DOibA4F5G47GU",
-      "team": "Los Angeles Chargers",
-      "win_probability": 0.395321,
-      "sample_games": 8
-    },
     {
       "event_id": "YlZBEbhTgV80ZeTIIyqm",
       "team": "Houston Texans",
@@ -45,13 +33,13 @@
     {
       "event_id": "Dm300hoqVZu3fZiQV0qK",
       "team": "Carolina Panthers",
-      "win_probability": 0.675536,
+      "win_probability": 0.668188,
       "sample_games": 8
     },
     {
       "event_id": "Dm300hoqVZu3fZiQV0qK",
       "team": "Baltimore Ravens",
-      "win_probability": 0.324464,
+      "win_probability": 0.331812,
       "sample_games": 8
     },
     {
@@ -117,13 +105,13 @@
     {
       "event_id": "LIwWw5CEzKCgbA3PxC0f",
       "team": "Los Angeles Chargers",
-      "win_probability": 0.479179,
+      "win_probability": 0.510415,
       "sample_games": 8
     },
     {
       "event_id": "LIwWw5CEzKCgbA3PxC0f",
       "team": "New York Jets",
-      "win_probability": 0.520821,
+      "win_probability": 0.489585,
       "sample_games": 8
     },
     {
@@ -160,6 +148,18 @@
       "event_id": "5qVWLlWGJim0fOVwUm2T",
       "team": "Minnesota Vikings",
       "win_probability": 0.397315,
+      "sample_games": 8
+    },
+    {
+      "event_id": "avhtHb36ro0H50HWjaoq",
+      "team": "Washington Commanders",
+      "win_probability": 0.328127,
+      "sample_games": 8
+    },
+    {
+      "event_id": "avhtHb36ro0H50HWjaoq",
+      "team": "Cincinnati Bengals",
+      "win_probability": 0.671873,
       "sample_games": 8
     }
   ]
