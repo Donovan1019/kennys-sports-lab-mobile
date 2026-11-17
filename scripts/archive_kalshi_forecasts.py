@@ -44,6 +44,16 @@ def collect(now=None):
         if key in existing:continue
         day=start.astimezone(ZoneInfo('America/New_York')).date().isoformat()
         candidates=[m for m in market_rows if m.get('sport')==sport_map.get(r.get('sport')) and m.get('game_date_et')==day and norm(str(m.get('title','')).removesuffix(' wins'))==norm(r['selection'])]
+        # A ticker alone cannot establish the correct opponent or event.
+        event_teams=[norm(t) for t in re.split(r'\\s+@\\s+',str(r.get('event') or ''))]
+        if len(event_teams)!=2 or norm(r['selection']) not in event_teams:
+            candidates=[]
+        else:
+            opponent=next((t for t in event_teams if t!=norm(r['selection'])),None)
+            candidates=[m for m in candidates if opponent and any(
+                norm(str(other.get('title','')).removesuffix(' wins'))==opponent
+                for other in market_rows if other.get('event_ticker')==m.get('event_ticker')
+                and other.get('ticker')!=m.get('ticker'))]
         # A selection can play only once on the same date; never silently resolve duplicate markets.
         # Require exact sport, date and selection, and a single event ticker.
         tickers={m.get('ticker') for m in candidates if m.get('ticker')}
