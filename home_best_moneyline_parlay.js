@@ -88,25 +88,12 @@ async function researchPreview(){
   '<p class="kml-note"><strong>NOT BET-ELIGIBLE.</strong> NBA holdout, injury and lineup checks and NHL goalie and calibration checks remain unverified. Historical NBA paper ROI was negative. Research-only EV is not a validated edge.</p>';
  return true;
 }
-async function decisionPreview(){
- try{
-  const response=await fetch('./feed/model_market_decisions.json?ts='+Date.now(),{cache:'no-store'});
-  if(!response.ok)return false;
-  const data=await response.json(),stamp=Date.parse(data.generated_at);
-  if(!Number.isFinite(stamp)||Date.now()-stamp>6*3600000||stamp>Date.now()||!Array.isArray(data.decisions))return false;
-  const rows=data.decisions.filter(r=>r.research_only===true&&r.model_probability>0&&r.model_probability<1&&Number.isFinite(r.offered_odds)&&Date.parse(r.start_time)>Date.now()).sort((a,b)=>(b.model_probability*decimal(b.offered_odds))-(a.model_probability*decimal(a.offered_odds))).slice(0,5);
-  if(!rows.length)return false;
-  status.textContent='RESEARCH ONLY — '+rows.length+' independent model/market comparisons · not betting-approved';
-  ticket.innerHTML=rows.map(r=>'<div class="kml-leg"><b>'+esc(r.selection)+'</b><span>'+esc(r.sport)+' · '+esc(r.event)+'</span><span>'+esc(r.bookmaker)+' '+esc(r.offered_odds>0?'+'+r.offered_odds:r.offered_odds)+' · Model '+(r.model_probability*100).toFixed(1)+'% · EV '+((r.model_probability*decimal(r.offered_odds)-1)*100).toFixed(1)+'%</span></div>').join('')+'<p class="kml-note">Independent projections shown for transparency. These are NOT verified picks or a parlay: calibration, lineup and other eligibility checks remain required.</p>';
-  return true;
- }catch{return false}
-}
 async function refresh(){
  button.disabled=true;status.textContent='Loading verified Kenny’s model feed…';ticket.replaceChildren();
  try{const response=await fetch('./data/market_edges.json?ts='+Date.now(),{cache:'no-store'});if(!response.ok)throw Error('Verified feed unavailable');const payload=await response.json(),rows=Array.isArray(payload)?payload:payload.edges;
  if(!Array.isArray(rows))throw Error('Invalid verified market feed');
  const eligible=rows.filter(verified),pick=best(eligible);
- if(!pick){if(await researchPreview().catch(()=>false))return;if(await decisionPreview())return;status.textContent='UNAVAILABLE — '+esc(payload.reason||'No qualified +100 parlay with verified inputs')+'; no fresh research alternative.';return}
+ if(!pick){status.textContent='NO VERIFIED PARLAY — '+esc(payload.reason||'No qualifying +100 moneyline combination with current independently validated projections, lineups and prices')+'.';ticket.innerHTML='<p class="kml-note">No speculative underdogs or duplicate sportsbook selections are substituted for verified Kenny’s picks. Recheck after model validation and market refresh.</p>';return}
  const mc=simulate(pick.legs),simEV=mc.p*pick.d-1;
  status.textContent='COMPLETE · '+mc.n.toLocaleString()+' Monte Carlo trials · '+pick.legs.length+' verified legs';
  ticket.innerHTML='<div class="kml-summary"><strong>'+american(pick.d)+'</strong><span>Simulated win '+(mc.p*100).toFixed(1)+'%</span><span>Model fair '+american(1/pick.p)+'</span><span>Simulated EV '+(simEV*100).toFixed(1)+'%</span></div>'+
