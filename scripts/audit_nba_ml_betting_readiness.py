@@ -63,6 +63,24 @@ def audit(odds, model, now, schedule=None, archive=None, evidence=None):
             "paper_selected_events": sample,
             "reason": "Retrospective paper returns are not executed bets or a validated forward test; investigate negative performance before certification."
         }
+    # Quantify archived historical selection evidence without converting research into certification.
+    if market.get("status") == "research_only":
+        n = market.get("paper_selected_events")
+        roi = market.get("paper_roi")
+        report["historical_selection_diagnostic"] = {
+            "status": "RESEARCH_ONLY",
+            "selected_games": n if isinstance(n, int) and not isinstance(n, bool) else None,
+            "paper_roi": roi if isinstance(roi, (int, float)) and not isinstance(roi, bool) else None,
+            "joined_selection_rows": market.get("joined_selection_rows"),
+            "near_tipoff_paired_rows": market.get("near_tipoff_paired_rows"),
+            "selection_policy": market.get("paper_policy"),
+            "warning": "Retrospective selection at reference quotes is not an executable or independently precommitted betting backtest.",
+        }
+        if isinstance(roi, (int, float)) and not isinstance(roi, bool) and roi < 0:
+            report["historical_selection_diagnostic"]["negative_roi_warning"] = True
+            details["historical_pregame_odds_backtest"]["reason"] = (
+                "Unverified selection-time provenance; retrospective paper policy has negative ROI"
+            )
     report["check_details"] = details
     missing = [name for name, passed in checks.items() if not passed]
     report["outstanding_checks"] = missing
