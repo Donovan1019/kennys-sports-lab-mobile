@@ -16,13 +16,19 @@ def utc(value):
     except (TypeError,ValueError): return None
 def collect(now=None):
     now=now or datetime.now(timezone.utc)
+    archive={'schema_version':1,'observations':[]}
+    if OUT.exists(): archive=json.loads(OUT.read_text())
+    else:
+        OUT.parent.mkdir(parents=True,exist_ok=True)
+        OUT.write_text(json.dumps(archive,indent=2)+'\n')
+    if not MODEL.exists():
+        print('Model feed missing: empty archive initialized, no forecasts invented')
+        return
     model=json.loads(MODEL.read_text())
     generated=utc(model.get('generated_at'))
     if model.get('status')!='ok' or not generated or not (0<=(now-generated).total_seconds()<=86400):
         print('Model feed stale/unavailable: preserving archive without adding forecasts')
         return
-    archive={'schema_version':1,'observations':[]}
-    if OUT.exists(): archive=json.loads(OUT.read_text())
     rows=archive.get('observations',[])
     market_path=ROOT/'data/kalshi-markets.json'
     market_rows=json.loads(market_path.read_text()).get('markets',[]) if market_path.exists() else []
