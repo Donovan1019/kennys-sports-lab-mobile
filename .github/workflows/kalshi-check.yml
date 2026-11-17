@@ -18,6 +18,9 @@ on:
       - 'scripts/archive_kalshi_forecasts.py'
       - 'scripts/collect_kalshi_game_results.py'
       - 'scripts/collect_kalshi_settlements.py'
+      - 'scripts/join_kalshi_settlements.py'
+      - 'scripts/collect_kalshi.py'
+      - '.github/workflows/kalshi-snapshot.yml'
       - 'tests/test_kalshi_integrity.py'
       - 'kalshi.js'
       - 'kalshi.html'
@@ -83,7 +86,7 @@ jobs:
           assert(js.includes('findIndex(x=>x.ticker===m.ticker)'), 'Duplicate market guard missing');
           assert(js.includes('request!==latestRequest'), 'Stale request protection missing');
           assert(js.includes('queued=true'), 'Queued refresh protection missing');
-          assert(html.includes('diagnostic-20261117'), 'Mobile initialization diagnostic missing');
+          assert(html.includes('prediction-first-20261117'), 'Current Kalshi build marker missing');
           assert(html.includes('prop_research_theme.css'), 'Shared research theme stylesheet missing');
           assert(html.includes('id="ksl-global-nav"'), 'Unified navigation styling hook missing');
           console.log('Kalshi static checks passed');
