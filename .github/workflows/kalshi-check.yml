@@ -2,6 +2,7 @@ name: Kalshi module checks
 on:
   pull_request:
     paths:
+      - 'scripts/audit_kalshi_integrity.py'
       - 'kalshi.js'
       - 'kalshi.html'
       - '.github/workflows/kalshi-check.yml'
@@ -21,7 +22,18 @@ jobs:
       - name: JavaScript syntax
         run: node --check kalshi.js
       - name: Snapshot collector syntax
-        run: python3 -m py_compile scripts/collect_kalshi.py
+        run: python3 -m py_compile scripts/collect_kalshi.py scripts/audit_kalshi_integrity.py
+      - name: Kalshi integrity audit smoke test
+        run: |
+          python3 scripts/audit_kalshi_integrity.py
+          python3 - <<'PY'
+          import json
+          data=json.load(open('data/kalshi-integrity.json'))
+          assert data['diamond_issuance']=='BLOCKED'
+          assert data['verified_historical_outcomes']>=0
+          assert data['contract_fee_validation'].startswith('UNAVAILABLE')
+          print('Fail-closed audit passed')
+          PY
       - name: HTML and safety checks
         run: |
           node - <<'NODE'
