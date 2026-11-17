@@ -10,6 +10,7 @@ on:
       - 'scripts/join_kalshi_settlements.py'
       - 'scripts/audit_kalshi_integrity.py'
       - 'scripts/build_kalshi_advanced_picks.py'
+      - 'scripts/test_kalshi_advanced_picks.py'
       - '.github/workflows/kalshi-snapshot.yml'
   workflow_dispatch:
   schedule:
@@ -48,6 +49,8 @@ jobs:
         run: python scripts/join_kalshi_settlements.py
       - name: Audit calibration, settlement and fees (fail closed)
         run: python scripts/audit_kalshi_integrity.py
+      - name: Validate Kalshi team identity and pricing regression checks
+        run: python -m unittest scripts.test_kalshi_advanced_picks
       - name: Generate evidence-checked advanced picks feed
         run: python scripts/build_kalshi_advanced_picks.py
       - name: Show generated data and enforce output contract
