@@ -1,5 +1,15 @@
 name: Kalshi public market snapshot
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/collect_kalshi.py'
+      - 'scripts/archive_kalshi_forecasts.py'
+      - 'scripts/collect_kalshi_game_results.py'
+      - 'scripts/collect_kalshi_settlements.py'
+      - 'scripts/join_kalshi_settlements.py'
+      - 'scripts/audit_kalshi_integrity.py'
+      - '.github/workflows/kalshi-snapshot.yml'
   workflow_dispatch:
   schedule:
     - cron: '7,37 * * * *'
@@ -55,6 +65,14 @@ jobs:
           git add data/kalshi-markets.json data/kalshi-integrity.json data/kalshi-pregame-forecasts.json data/kalshi-settlements.json
           if ! git diff --cached --quiet; then
             git commit -m 'data: refresh Kalshi public sports snapshot'
-            git pull --rebase origin main
-            git push origin HEAD:main
+            for attempt in 1 2 3 4; do
+              if git pull --rebase origin main && git push origin HEAD:main; then
+                echo 'Kalshi snapshot published successfully'
+                exit 0
+              fi
+              git rebase --abort || true
+              sleep $((attempt * 3))
+            done
+            echo 'Kalshi snapshot publication failed after four attempts' >&2
+            exit 1
           fi
