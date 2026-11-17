@@ -12,6 +12,11 @@ on:
       - '.github/workflows/kalshi-check.yml'
   push:
     paths:
+      - 'scripts/audit_kalshi_integrity.py'
+      - 'scripts/archive_kalshi_forecasts.py'
+      - 'scripts/collect_kalshi_game_results.py'
+      - 'scripts/collect_kalshi_settlements.py'
+      - 'tests/test_kalshi_integrity.py'
       - 'kalshi.js'
       - 'kalshi.html'
       - '.github/workflows/kalshi-check.yml'
