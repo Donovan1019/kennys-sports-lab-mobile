@@ -44,7 +44,7 @@ def evaluate(archives, games):
             event=f'{g["away"]} @ {g["home"]}'
             for (label,book,selection),values in by_event.items():
                 if label!=event or selection!=team:continue
-                valid=sorted((v for v in values if abs((v[1]-tip).total_seconds())<=900 and v[3].get("event_id")),key=lambda v:v[0])
+                valid=sorted((v for v in values if 0 <= (tip-v[0]).total_seconds() <= 7*86400 and abs((v[1]-tip).total_seconds())<=900 and v[3].get("event_id")),key=lambda v:v[0])
                 if not valid:continue
                 first=valid[0];close_candidates=[v for v in valid if 0<=(tip-v[0]).total_seconds()<=900]
                 key=(str(g.get("id","")),book,team)
@@ -54,7 +54,7 @@ def evaluate(archives, games):
                      "opening_reference_implied":round(first[2],6),
                      "opening_reference_brier":round((first[2]-won)**2,6),
                      "snapshots":len({v[0] for v in valid}),
-                     "opening_reference_price":first[3]["price"],
+                     "opening_reference_price":first[3]["price"],\n                     "opening_quote_hours_before_tip":round((tip-first[0]).total_seconds()/3600,3),
                      "opening_unit_paper_return":round(unit_return(first[3]["price"],won),6),
                      "opening_model_probability":first[3].get("model_probability"),
                      "verified_near_tipoff_quote":bool(close_candidates)}
@@ -78,13 +78,13 @@ def evaluate(archives, games):
         selected.append(sorted(candidates,key=lambda x:(-x[0],x[1]["book"],x[1]["selection"]))[0][1])
     paper_return=sum(r["opening_unit_paper_return"] for r in selected)
     return {"status":"research_only","joined_selection_rows":len(rows),
-            "paper_policy":"one highest model-minus-implied edge per event, deterministic book/selection tie break; descriptive hindsight analysis, not precommitted or executed",
+            "paper_policy":"one highest model-minus-implied edge per event from earliest valid archived pregame quote (up to 7 days), deterministic book/selection tie break; descriptive hindsight analysis, not precommitted or executed",
             "paper_selected_events":len(selected),
             "paper_unit_stake_net":round(paper_return,6),
             "paper_roi":round(paper_return/len(selected),6) if selected else None,
             "unique_joined_events":len({r["event_id"] for r in rows}),
             "mean_reference_brier":round(sum(r["opening_reference_brier"] for r in rows)/len(rows),6) if rows else None,
-            "near_tipoff_paired_rows":len(paired),
+            "near_tipoff_paired_rows":len(paired),\n            "opening_quotes_over_15min_before_tip":sum(r["opening_quote_hours_before_tip"]>0.25 for r in rows),\n            "opening_quotes_over_1h_before_tip":sum(r["opening_quote_hours_before_tip"]>=1 for r in rows),
             "historical_pregame_odds_backtest_verified":False,"closing_line_value_verified":False,
             "warning":"Market reference odds are not executed bets; near-tipoff quotes are not official closing lines. Selection-time model provenance, Onyx prices, and independently verified outcomes are required before betting promotion.",
             "sample_rows":rows[:25]}
