@@ -1,6 +1,6 @@
 {
   "date": "2026-11-16",
-  "generated_at": "2026-11-16T21:57:13.229182+00:00",
+  "generated_at": "2026-11-17T04:28:16.601447+00:00",
   "sports": {
     "NFL": {
       "status": "OUTCOMES_UNVERIFIED",
@@ -15,7 +15,7 @@
     },
     "NBA": {
       "status": "OUTCOMES_UNVERIFIED",
-      "saved_quotes": 0,
+      "saved_quotes": 2910,
       "eligible_predictions": 28,
       "research_only_predictions": 28,
       "bet_eligible_predictions": 0,
@@ -25,23 +25,36 @@
       "pending": 28
     },
     "NHL": {
-      "status": "OUTCOMES_UNVERIFIED",
+      "status": "PARTIALLY_SETTLED_MONEYLINES",
       "saved_quotes": 0,
       "eligible_predictions": 158,
       "research_only_predictions": 158,
       "bet_eligible_predictions": 0,
       "blocked_predictions": [],
-      "graded": 0,
-      "settled": [],
-      "pending": 158
+      "graded": 2,
+      "settled": [
+        {
+          "event": "Montreal Canadiens @ New York Rangers",
+          "market": "h2h",
+          "selection": "New York Rangers",
+          "outcome": "win"
+        },
+        {
+          "event": "Montreal Canadiens @ New York Rangers",
+          "market": "h2h",
+          "selection": "Montreal Canadiens",
+          "outcome": "loss"
+        }
+      ],
+      "pending": 156
     }
   },
   "summary": {
-    "verified_picks": 0,
-    "wins": 0,
-    "losses": 0,
+    "verified_picks": 2,
+    "wins": 1,
+    "losses": 1,
     "pushes": 0,
     "roi": null,
-    "hit_rate": null
+    "hit_rate": 0.5
   }
 }
