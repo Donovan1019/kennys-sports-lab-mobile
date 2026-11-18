@@ -54,7 +54,8 @@ def evaluate(archives, games):
                      "opening_reference_implied":round(first[2],6),
                      "opening_reference_brier":round((first[2]-won)**2,6),
                      "snapshots":len({v[0] for v in valid}),
-                     "opening_reference_price":first[3]["price"],\n                     "opening_quote_hours_before_tip":round((tip-first[0]).total_seconds()/3600,3),
+                     "opening_reference_price":first[3]["price"],
+                     "opening_quote_hours_before_tip":round((tip-first[0]).total_seconds()/3600,3),
                      "opening_unit_paper_return":round(unit_return(first[3]["price"],won),6),
                      "opening_model_probability":first[3].get("model_probability"),
                      "verified_near_tipoff_quote":bool(close_candidates)}
@@ -84,7 +85,9 @@ def evaluate(archives, games):
             "paper_roi":round(paper_return/len(selected),6) if selected else None,
             "unique_joined_events":len({r["event_id"] for r in rows}),
             "mean_reference_brier":round(sum(r["opening_reference_brier"] for r in rows)/len(rows),6) if rows else None,
-            "near_tipoff_paired_rows":len(paired),\n            "opening_quotes_over_15min_before_tip":sum(r["opening_quote_hours_before_tip"]>0.25 for r in rows),\n            "opening_quotes_over_1h_before_tip":sum(r["opening_quote_hours_before_tip"]>=1 for r in rows),
+            "near_tipoff_paired_rows":len(paired),
+            "opening_quotes_over_15min_before_tip":sum(r["opening_quote_hours_before_tip"]>0.25 for r in rows),
+            "opening_quotes_over_1h_before_tip":sum(r["opening_quote_hours_before_tip"]>=1 for r in rows),
             "historical_pregame_odds_backtest_verified":False,"closing_line_value_verified":False,
             "warning":"Market reference odds are not executed bets; near-tipoff quotes are not official closing lines. Selection-time model provenance, Onyx prices, and independently verified outcomes are required before betting promotion.",
             "sample_rows":rows[:25]}
@@ -113,6 +116,7 @@ def main():
     except (OSError,ValueError,TypeError):pass
     report=evaluate(archives,games)
     OUT.parent.mkdir(parents=True,exist_ok=True)
-    OUT.write_text(json.dumps(report,indent=2)+"\n")
+    OUT.write_text(json.dumps(report,indent=2)+"
+")
     print("NBA outcome/market audit:",report["joined_selection_rows"],"rows,",report["near_tipoff_paired_rows"],"near-tipoff pairs")
 if __name__=="__main__":main()
