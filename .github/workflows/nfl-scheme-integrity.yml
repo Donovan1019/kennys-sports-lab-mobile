@@ -1,0 +1,30 @@
+name: NFL Scheme Feed Integrity
+on:
+  pull_request:
+    paths:
+      - 'scripts/validate_nfl_scheme_feed.py'
+      - 'scripts/test_nfl_scheme_feed.py'
+      - 'feed/nfl_verified_scheme.json'
+      - '.github/workflows/nfl-scheme-integrity.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/validate_nfl_scheme_feed.py'
+      - 'scripts/test_nfl_scheme_feed.py'
+      - 'feed/nfl_verified_scheme.json'
+      - '.github/workflows/nfl-scheme-integrity.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test charting feed contract
+        run: python -m unittest scripts.test_nfl_scheme_feed -v
+      - name: Validate published charting snapshot
+        run: python -c "import json; from scripts.validate_nfl_scheme_feed import validate; validate(json.load(open('feed/nfl_verified_scheme.json')))"

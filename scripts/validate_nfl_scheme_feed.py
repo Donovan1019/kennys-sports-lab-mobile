@@ -25,6 +25,8 @@ def validate(payload):
     stamp = dt.datetime.fromisoformat(payload["generated_at"].replace("Z", "+00:00"))
     if stamp.tzinfo is None:
         raise ValueError("generated_at must include timezone")
+    if payload.get("source") == "not-connected" and payload["rows"]:
+        raise ValueError("unconnected source cannot publish verified rows")
     seen = set()
     for row in payload["rows"]:
         if not isinstance(row, dict):
@@ -44,6 +46,8 @@ def validate(payload):
                 raise ValueError(key + " must be integer")
         if row["opportunities"] <= 0 or not 0 <= row["snaps"] <= row["opportunities"]:
             raise ValueError("invalid snap denominator")
+        if row.get("team") != row["team"].strip():
+            raise ValueError("team must be normalized")
         identity = (row["event_id"], row["side"], row["coverage"])
         if identity in seen:
             raise ValueError("duplicate scheme row")
