@@ -116,7 +116,6 @@ def main():
     except (OSError,ValueError,TypeError):pass
     report=evaluate(archives,games)
     OUT.parent.mkdir(parents=True,exist_ok=True)
-    OUT.write_text(json.dumps(report,indent=2)+"
-")
+    OUT.write_text(json.dumps(report,indent=2)+"\n")
     print("NBA outcome/market audit:",report["joined_selection_rows"],"rows,",report["near_tipoff_paired_rows"],"near-tipoff pairs")
 if __name__=="__main__":main()
