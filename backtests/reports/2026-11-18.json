@@ -1,6 +1,6 @@
 {
   "date": "2026-11-18",
-  "generated_at": "2026-11-18T03:42:08.299879+00:00",
+  "generated_at": "2026-11-18T20:26:36.444743+00:00",
   "sports": {
     "NFL": {
       "status": "OUTCOMES_UNVERIFIED",
@@ -27,11 +27,11 @@
     "NHL": {
       "status": "PARTIALLY_SETTLED_MONEYLINES",
       "saved_quotes": 0,
-      "eligible_predictions": 190,
-      "research_only_predictions": 190,
+      "eligible_predictions": 248,
+      "research_only_predictions": 248,
       "bet_eligible_predictions": 0,
       "blocked_predictions": [],
-      "graded": 14,
+      "graded": 22,
       "settled": [
         {
           "event": "Los Angeles Kings @ Boston Bruins",
@@ -116,15 +116,63 @@
           "market": "h2h",
           "selection": "Toronto Maple Leafs",
           "outcome": "loss"
+        },
+        {
+          "event": "Anaheim Ducks @ St. Louis Blues",
+          "market": "h2h",
+          "selection": "St. Louis Blues",
+          "outcome": "win"
+        },
+        {
+          "event": "Anaheim Ducks @ St. Louis Blues",
+          "market": "h2h",
+          "selection": "Anaheim Ducks",
+          "outcome": "loss"
+        },
+        {
+          "event": "Nashville Predators @ Minnesota Wild",
+          "market": "h2h",
+          "selection": "Minnesota Wild",
+          "outcome": "win"
+        },
+        {
+          "event": "Nashville Predators @ Minnesota Wild",
+          "market": "h2h",
+          "selection": "Nashville Predators",
+          "outcome": "loss"
+        },
+        {
+          "event": "Dallas Stars @ Vegas Golden Knights",
+          "market": "h2h",
+          "selection": "Vegas Golden Knights",
+          "outcome": "loss"
+        },
+        {
+          "event": "Dallas Stars @ Vegas Golden Knights",
+          "market": "h2h",
+          "selection": "Dallas Stars",
+          "outcome": "win"
+        },
+        {
+          "event": "Calgary Flames @ San Jose Sharks",
+          "market": "h2h",
+          "selection": "San Jose Sharks",
+          "outcome": "loss"
+        },
+        {
+          "event": "Calgary Flames @ San Jose Sharks",
+          "market": "h2h",
+          "selection": "Calgary Flames",
+          "outcome": "win"
         }
       ],
-      "pending": 176
+      "pending": 226
     }
   },
   "summary": {
-    "verified_picks": 14,
-    "wins": 7,
-    "losses": 7,
+    "verified_picks": 22,
+    "wins": 11,
+    "losses": 11,
     "pushes": 0,
     "roi": null,
     "hit_rate": 0.5

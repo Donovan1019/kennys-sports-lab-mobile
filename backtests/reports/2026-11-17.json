@@ -1,6 +1,6 @@
 {
   "date": "2026-11-17",
-  "generated_at": "2026-11-18T03:42:08.071680+00:00",
+  "generated_at": "2026-11-18T20:26:36.287677+00:00",
   "sports": {
     "NFL": {
       "status": "OUTCOMES_UNVERIFIED",
@@ -31,7 +31,7 @@
       "research_only_predictions": 150,
       "bet_eligible_predictions": 0,
       "blocked_predictions": [],
-      "graded": 22,
+      "graded": 30,
       "settled": [
         {
           "event": "Montreal Canadiens @ New York Rangers",
@@ -142,6 +142,54 @@
           "outcome": "loss"
         },
         {
+          "event": "Anaheim Ducks @ St. Louis Blues",
+          "market": "h2h",
+          "selection": "St. Louis Blues",
+          "outcome": "win"
+        },
+        {
+          "event": "Anaheim Ducks @ St. Louis Blues",
+          "market": "h2h",
+          "selection": "Anaheim Ducks",
+          "outcome": "loss"
+        },
+        {
+          "event": "Nashville Predators @ Minnesota Wild",
+          "market": "h2h",
+          "selection": "Minnesota Wild",
+          "outcome": "win"
+        },
+        {
+          "event": "Nashville Predators @ Minnesota Wild",
+          "market": "h2h",
+          "selection": "Nashville Predators",
+          "outcome": "loss"
+        },
+        {
+          "event": "Dallas Stars @ Vegas Golden Knights",
+          "market": "h2h",
+          "selection": "Vegas Golden Knights",
+          "outcome": "loss"
+        },
+        {
+          "event": "Dallas Stars @ Vegas Golden Knights",
+          "market": "h2h",
+          "selection": "Dallas Stars",
+          "outcome": "win"
+        },
+        {
+          "event": "Calgary Flames @ San Jose Sharks",
+          "market": "h2h",
+          "selection": "San Jose Sharks",
+          "outcome": "loss"
+        },
+        {
+          "event": "Calgary Flames @ San Jose Sharks",
+          "market": "h2h",
+          "selection": "Calgary Flames",
+          "outcome": "win"
+        },
+        {
           "event": "Washington Capitals @ Tampa Bay Lightning",
           "market": "h2h",
           "selection": "Tampa Bay Lightning",
@@ -166,13 +214,13 @@
           "outcome": "loss"
         }
       ],
-      "pending": 128
+      "pending": 120
     }
   },
   "summary": {
-    "verified_picks": 22,
-    "wins": 11,
-    "losses": 11,
+    "verified_picks": 30,
+    "wins": 15,
+    "losses": 15,
     "pushes": 0,
     "roi": null,
     "hit_rate": 0.5
