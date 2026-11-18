@@ -1,0 +1,32 @@
+name: NFL QB Unders Integrity
+on:
+  pull_request:
+    paths:
+      - 'nfl_qb_unders.js'
+      - 'nfl.html'
+      - '.github/workflows/nfl-qb-unders-integrity.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  qb-unders:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify QB Unders JavaScript syntax
+        run: node --check nfl_qb_unders.js
+      - name: Verify required integrity controls
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          s=Path('nfl_qb_unders.js').read_text()
+          h=Path('nfl.html').read_text()
+          for token in ['sample=games.slice(0,required)', 'sample.length!==required', 'baseline.some(v=>v===null)', 'No verified opponent', 'CHECK BEFORE BETTING']:
+              assert token in s, token
+          for token in ['id="nfl-qb-unders"', 'id="nfl-qb-unders-refresh"', 'nfl_qb_unders.js']:
+              assert token in h, token
+          print('QB trend window and fail-closed checks passed')
+          PY
