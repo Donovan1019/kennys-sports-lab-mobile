@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-17T19:46:44.034461+00:00",
+  "generated_at": "2026-11-18T19:22:29.655747+00:00",
   "status": "RESEARCH_ONLY",
   "model": "independent-score-margin-shrinkage-baseline",
   "source": "ESPN completed NCAA MBB scores, 30-day historical lookback; no bookmaker prices in probability inputs",
@@ -8,342 +8,414 @@
   "bet_eligible": false,
   "predictions": [
     {
-      "event_id": "qxy2E95ECkinSD2LvM7K",
+      "event_id": "wOFTZEYIMEVfLlkgujkN",
+      "team": "Houston Cougars",
+      "win_probability": 0.610461,
+      "sample_games": 4
+    },
+    {
+      "event_id": "wOFTZEYIMEVfLlkgujkN",
       "team": "Florida Gators",
-      "win_probability": 0.527749,
-      "sample_games": 4
-    },
-    {
-      "event_id": "qxy2E95ECkinSD2LvM7K",
-      "team": "Notre Dame",
-      "win_probability": 0.472251,
-      "sample_games": 4
-    },
-    {
-      "event_id": "z9Z6ERmiKZOwPd8Uswue",
-      "team": "Army Black Knights",
-      "win_probability": 0.62409,
-      "sample_games": 4
-    },
-    {
-      "event_id": "z9Z6ERmiKZOwPd8Uswue",
-      "team": "Marist Red Foxes",
-      "win_probability": 0.37591,
-      "sample_games": 4
-    },
-    {
-      "event_id": "vhV8774s8Ukaclwkbrm7",
-      "team": "Purdue Boilermakers",
-      "win_probability": 0.6083,
-      "sample_games": 4
-    },
-    {
-      "event_id": "vhV8774s8Ukaclwkbrm7",
-      "team": "Lipscomb",
-      "win_probability": 0.3917,
+      "win_probability": 0.389539,
       "sample_games": 5
     },
     {
-      "event_id": "7CGdSpyWHhuPHNmXKSmp",
-      "team": "Wake Forest Demon Deacons",
-      "win_probability": 0.690622,
+      "event_id": "4HZ7BtDUWc6brBP6sW9R",
+      "team": "Georgetown",
+      "win_probability": 0.603197,
       "sample_games": 4
     },
     {
-      "event_id": "7CGdSpyWHhuPHNmXKSmp",
-      "team": "Monmouth",
-      "win_probability": 0.309378,
-      "sample_games": 3
-    },
-    {
-      "event_id": "8kq1Jm73BKUmnr6FAbmJ",
-      "team": "Davidson Wildcats",
-      "win_probability": 0.606006,
-      "sample_games": 4
-    },
-    {
-      "event_id": "8kq1Jm73BKUmnr6FAbmJ",
-      "team": "Charlotte",
-      "win_probability": 0.393994,
-      "sample_games": 4
-    },
-    {
-      "event_id": "9O2eDiHC0P4Re6b7pzT2",
-      "team": "Butler",
-      "win_probability": 0.513885,
-      "sample_games": 4
-    },
-    {
-      "event_id": "9O2eDiHC0P4Re6b7pzT2",
-      "team": "Western Carolina Catamounts",
-      "win_probability": 0.486115,
-      "sample_games": 4
-    },
-    {
-      "event_id": "D3vtEAaM0GkwGr1i0Djw",
-      "team": "Saint Josephs Hawks",
-      "win_probability": 0.645021,
-      "sample_games": 4
-    },
-    {
-      "event_id": "D3vtEAaM0GkwGr1i0Djw",
-      "team": "Wagner Seahawks",
-      "win_probability": 0.354979,
-      "sample_games": 4
-    },
-    {
-      "event_id": "GyDBv9XZV6DkzazsnstJ",
-      "team": "Bucknell Bison",
-      "win_probability": 0.273308,
-      "sample_games": 4
-    },
-    {
-      "event_id": "GyDBv9XZV6DkzazsnstJ",
-      "team": "Akron Zips",
-      "win_probability": 0.726692,
-      "sample_games": 3
-    },
-    {
-      "event_id": "Pqnw2Hc3jQq0T7AjGFHf",
-      "team": "Duke Blue Devils",
-      "win_probability": 0.550178,
-      "sample_games": 4
-    },
-    {
-      "event_id": "Pqnw2Hc3jQq0T7AjGFHf",
-      "team": "Illinois Fighting Illini",
-      "win_probability": 0.449822,
-      "sample_games": 4
-    },
-    {
-      "event_id": "ToQ8j9qos3tRHz1wnuBh",
-      "team": "Mount St Mary's Mountaineers",
-      "win_probability": 0.489743,
-      "sample_games": 3
-    },
-    {
-      "event_id": "ToQ8j9qos3tRHz1wnuBh",
-      "team": "Lehigh Mountain Hawks",
-      "win_probability": 0.510257,
-      "sample_games": 4
-    },
-    {
-      "event_id": "UX2DBMNWdqzzGh5He5eJ",
-      "team": "South Florida Bulls",
-      "win_probability": 0.467062,
-      "sample_games": 4
-    },
-    {
-      "event_id": "UX2DBMNWdqzzGh5He5eJ",
-      "team": "Tennessee State Tigers",
-      "win_probability": 0.532938,
-      "sample_games": 4
-    },
-    {
-      "event_id": "b4ATYLyGHHguZpikwmAv",
-      "team": "UCF Knights",
-      "win_probability": 0.473982,
-      "sample_games": 4
-    },
-    {
-      "event_id": "b4ATYLyGHHguZpikwmAv",
-      "team": "Mississippi State Bulldogs",
-      "win_probability": 0.526018,
-      "sample_games": 4
-    },
-    {
-      "event_id": "c3oEebXebMGnJxbMbR8k",
-      "team": "Dayton Flyers",
-      "win_probability": 0.415742,
-      "sample_games": 4
-    },
-    {
-      "event_id": "c3oEebXebMGnJxbMbR8k",
-      "team": "Central Michigan Chippewas",
-      "win_probability": 0.584258,
-      "sample_games": 4
-    },
-    {
-      "event_id": "gKqKLdFHiGUBVPWK7Wpt",
-      "team": "Manhattan Jaspers",
-      "win_probability": 0.451541,
-      "sample_games": 4
-    },
-    {
-      "event_id": "gKqKLdFHiGUBVPWK7Wpt",
-      "team": "Fordham Rams",
-      "win_probability": 0.548459,
-      "sample_games": 4
-    },
-    {
-      "event_id": "uAaVzd4vzLkLZH683NVh",
-      "team": "Providence",
-      "win_probability": 0.532938,
-      "sample_games": 4
-    },
-    {
-      "event_id": "uAaVzd4vzLkLZH683NVh",
-      "team": "Sacred Heart Pioneers",
-      "win_probability": 0.467062,
-      "sample_games": 4
-    },
-    {
-      "event_id": "1QL51hSj4z43iyrIZ5s6",
-      "team": "Alabama Crimson Tide",
-      "win_probability": 0.48438,
-      "sample_games": 4
-    },
-    {
-      "event_id": "1QL51hSj4z43iyrIZ5s6",
-      "team": "Kennesaw State Owls",
-      "win_probability": 0.51562,
-      "sample_games": 4
-    },
-    {
-      "event_id": "JYF3Kjw5jjqjlvDAhST5",
-      "team": "Louisiana Tech Bulldogs",
-      "win_probability": 0.565592,
-      "sample_games": 4
-    },
-    {
-      "event_id": "JYF3Kjw5jjqjlvDAhST5",
-      "team": "Jacksonville State Gamecocks",
-      "win_probability": 0.434408,
-      "sample_games": 4
-    },
-    {
-      "event_id": "OGUdixnnVFP0EuhL2eCL",
-      "team": "Arkansas Razorbacks",
-      "win_probability": 0.513885,
-      "sample_games": 4
-    },
-    {
-      "event_id": "OGUdixnnVFP0EuhL2eCL",
-      "team": "Indiana",
-      "win_probability": 0.486115,
-      "sample_games": 4
-    },
-    {
-      "event_id": "AiTlXuYouePvJWGKOpWB",
-      "team": "Northern Iowa Panthers",
-      "win_probability": 0.448104,
+      "event_id": "4HZ7BtDUWc6brBP6sW9R",
+      "team": "Navy Midshipmen",
+      "win_probability": 0.396803,
       "sample_games": 5
     },
     {
-      "event_id": "AiTlXuYouePvJWGKOpWB",
-      "team": "Lindenwood Lions",
-      "win_probability": 0.551896,
+      "event_id": "bGYwYxZjBNq0i3U9Gccg",
+      "team": "Winthrop",
+      "win_probability": 0.482646,
+      "sample_games": 4
+    },
+    {
+      "event_id": "bGYwYxZjBNq0i3U9Gccg",
+      "team": "Chattanooga Mocs",
+      "win_probability": 0.517354,
+      "sample_games": 4
+    },
+    {
+      "event_id": "cSPAcwThzM4a7SPoq3EA",
+      "team": "South Carolina Upstate Spartans",
+      "win_probability": 0.573545,
       "sample_games": 5
     },
     {
-      "event_id": "Ns7bbUpCIoSrXRgJWoLk",
-      "team": "Evansville Purple Aces",
-      "win_probability": 0.526018,
-      "sample_games": 4
-    },
-    {
-      "event_id": "Ns7bbUpCIoSrXRgJWoLk",
-      "team": "Le Moyne Dolphins",
-      "win_probability": 0.473982,
-      "sample_games": 4
-    },
-    {
-      "event_id": "WucFUurRBdjVPDnQ5xsU",
-      "team": "Rice Owls",
-      "win_probability": 0.5758,
-      "sample_games": 4
-    },
-    {
-      "event_id": "WucFUurRBdjVPDnQ5xsU",
-      "team": "Texas A&M-Corpus Christi Islanders",
-      "win_probability": 0.4242,
-      "sample_games": 4
-    },
-    {
-      "event_id": "jQKMjt9cbXpwAnPXUSgD",
-      "team": "Illinois State Redbirds",
-      "win_probability": 0.68796,
-      "sample_games": 4
-    },
-    {
-      "event_id": "jQKMjt9cbXpwAnPXUSgD",
-      "team": "Bellarmine Knights",
-      "win_probability": 0.31204,
-      "sample_games": 5
-    },
-    {
-      "event_id": "1EyfaOMBUDMVygnx9dTF",
-      "team": "Utah Utes",
-      "win_probability": 0.63396,
+      "event_id": "cSPAcwThzM4a7SPoq3EA",
+      "team": "Samford Bulldogs",
+      "win_probability": 0.426455,
       "sample_games": 3
     },
     {
-      "event_id": "1EyfaOMBUDMVygnx9dTF",
-      "team": "Eastern Washington Eagles",
-      "win_probability": 0.36604,
-      "sample_games": 4
-    },
-    {
-      "event_id": "T9YjsSMhbnnMhv3AsWCq",
-      "team": "UC Davis Aggies",
-      "win_probability": 0.68069,
-      "sample_games": 4
-    },
-    {
-      "event_id": "T9YjsSMhbnnMhv3AsWCq",
-      "team": "Alabama State Hornets",
-      "win_probability": 0.31931,
-      "sample_games": 4
-    },
-    {
-      "event_id": "dKk9WDCcEOPIexcEX3gV",
-      "team": "Tennessee Volunteers",
-      "win_probability": 0.478076,
-      "sample_games": 3
-    },
-    {
-      "event_id": "dKk9WDCcEOPIexcEX3gV",
-      "team": "Michigan State Spartans",
-      "win_probability": 0.521924,
-      "sample_games": 4
-    },
-    {
-      "event_id": "h5xto8HT0JZXZo3E5kwL",
-      "team": "Virginia Cavaliers",
-      "win_probability": 0.58023,
+      "event_id": "xTkLU1nnvHJEv4Utn34h",
+      "team": "UNC Asheville",
+      "win_probability": 0.429166,
       "sample_games": 5
     },
     {
-      "event_id": "h5xto8HT0JZXZo3E5kwL",
-      "team": "Old Dominion Monarchs",
-      "win_probability": 0.41977,
+      "event_id": "xTkLU1nnvHJEv4Utn34h",
+      "team": "Tennessee Tech Golden Eagles",
+      "win_probability": 0.570834,
       "sample_games": 5
     },
     {
-      "event_id": "EZCRxoDvrbxzJIT6wWtO",
-      "team": "Stanford",
-      "win_probability": 0.449822,
+      "event_id": "1wTuKiL1S8inewk7lN7d",
+      "team": "Yale Bulldogs",
+      "win_probability": 0.464935,
+      "sample_games": 5
+    },
+    {
+      "event_id": "1wTuKiL1S8inewk7lN7d",
+      "team": "Vermont Catamounts",
+      "win_probability": 0.535065,
       "sample_games": 4
     },
     {
-      "event_id": "EZCRxoDvrbxzJIT6wWtO",
-      "team": "UC Irvine Anteaters",
-      "win_probability": 0.550178,
+      "event_id": "4MfQWWLwUu82GmMcarJT",
+      "team": "North Carolina A&T Aggies",
+      "win_probability": 0.512551,
+      "sample_games": 4
+    },
+    {
+      "event_id": "4MfQWWLwUu82GmMcarJT",
+      "team": "Morgan State Bears",
+      "win_probability": 0.487449,
+      "sample_games": 5
+    },
+    {
+      "event_id": "FEymesbn5fn3tGpgw11N",
+      "team": "La Salle",
+      "win_probability": 0.480912,
+      "sample_games": 4
+    },
+    {
+      "event_id": "FEymesbn5fn3tGpgw11N",
+      "team": "Coppin State Eagles",
+      "win_probability": 0.519088,
+      "sample_games": 5
+    },
+    {
+      "event_id": "Fkxfb327hfADxkNbbwZX",
+      "team": "Towson",
+      "win_probability": 0.623087,
+      "sample_games": 5
+    },
+    {
+      "event_id": "Fkxfb327hfADxkNbbwZX",
+      "team": "James Madison Dukes",
+      "win_probability": 0.376913,
+      "sample_games": 4
+    },
+    {
+      "event_id": "Rno9jjZh11rBaYN2dM1j",
+      "team": "South Carolina",
+      "win_probability": 0.70144,
+      "sample_games": 4
+    },
+    {
+      "event_id": "Rno9jjZh11rBaYN2dM1j",
+      "team": "Elon",
+      "win_probability": 0.29856,
+      "sample_games": 4
+    },
+    {
+      "event_id": "U8varUW56ibn2tqu9mcr",
+      "team": "Fairleigh Dickinson Knights",
+      "win_probability": 0.609136,
+      "sample_games": 5
+    },
+    {
+      "event_id": "U8varUW56ibn2tqu9mcr",
+      "team": "NJIT Highlanders",
+      "win_probability": 0.390864,
+      "sample_games": 6
+    },
+    {
+      "event_id": "V3dZD8AA0ZENPxtvTGqq",
+      "team": "Florida Atlantic Owls",
+      "win_probability": 0.450748,
+      "sample_games": 4
+    },
+    {
+      "event_id": "V3dZD8AA0ZENPxtvTGqq",
+      "team": "Florida Gulf Coast Eagles",
+      "win_probability": 0.549252,
+      "sample_games": 5
+    },
+    {
+      "event_id": "WPQwrxX9858nlTiPos6f",
+      "team": "Merrimack Warriors",
+      "win_probability": 0.423939,
+      "sample_games": 4
+    },
+    {
+      "event_id": "WPQwrxX9858nlTiPos6f",
+      "team": "Boston University Terriers",
+      "win_probability": 0.576061,
+      "sample_games": 5
+    },
+    {
+      "event_id": "YIQ1ype0Z5bkM94jEjMA",
+      "team": "Holy Cross",
+      "win_probability": 0.414575,
+      "sample_games": 4
+    },
+    {
+      "event_id": "YIQ1ype0Z5bkM94jEjMA",
+      "team": "Brown Bears",
+      "win_probability": 0.585425,
+      "sample_games": 5
+    },
+    {
+      "event_id": "hFLXOa3HpNCSyeBuTFeu",
+      "team": "Radford Highlanders",
+      "win_probability": 0.379803,
+      "sample_games": 4
+    },
+    {
+      "event_id": "hFLXOa3HpNCSyeBuTFeu",
+      "team": "Furman Paladins",
+      "win_probability": 0.620197,
+      "sample_games": 5
+    },
+    {
+      "event_id": "hbE2Zdlg1xzK2s9aJSbd",
+      "team": "Presbyterian",
+      "win_probability": 0.463425,
       "sample_games": 3
     },
     {
-      "event_id": "lK0BzbPJgtUKhiTmNFpS",
+      "event_id": "hbE2Zdlg1xzK2s9aJSbd",
+      "team": "Mercer Bears",
+      "win_probability": 0.536575,
+      "sample_games": 5
+    },
+    {
+      "event_id": "jLrsHSOyMrhCf5Ot0aXD",
+      "team": "St. John's Red Storm",
+      "win_probability": 0.679179,
+      "sample_games": 4
+    },
+    {
+      "event_id": "jLrsHSOyMrhCf5Ot0aXD",
+      "team": "Siena Saints",
+      "win_probability": 0.320821,
+      "sample_games": 4
+    },
+    {
+      "event_id": "ljRVkaWBiWcqWtoi2PvZ",
+      "team": "George Mason Patriots",
+      "win_probability": 0.634185,
+      "sample_games": 4
+    },
+    {
+      "event_id": "ljRVkaWBiWcqWtoi2PvZ",
+      "team": "North Carolina Central Eagles",
+      "win_probability": 0.365815,
+      "sample_games": 5
+    },
+    {
+      "event_id": "mnim184lISL97mbQV9GT",
+      "team": "Duquesne",
+      "win_probability": 0.593569,
+      "sample_games": 4
+    },
+    {
+      "event_id": "mnim184lISL97mbQV9GT",
+      "team": "Howard Bison",
+      "win_probability": 0.406431,
+      "sample_games": 5
+    },
+    {
+      "event_id": "oI4eH18sPR0kaXQuR9De",
+      "team": "Charleston Southern Buccaneers",
+      "win_probability": 0.576061,
+      "sample_games": 4
+    },
+    {
+      "event_id": "oI4eH18sPR0kaXQuR9De",
+      "team": "Wofford Terriers",
+      "win_probability": 0.423939,
+      "sample_games": 5
+    },
+    {
+      "event_id": "Mwav6CgTn83yPUwVMIrN",
+      "team": "Kansas Jayhawks",
+      "win_probability": 0.579189,
+      "sample_games": 4
+    },
+    {
+      "event_id": "Mwav6CgTn83yPUwVMIrN",
       "team": "West Virginia",
-      "win_probability": 0.647906,
-      "sample_games": 3
+      "win_probability": 0.420811,
+      "sample_games": 4
     },
     {
-      "event_id": "lK0BzbPJgtUKhiTmNFpS",
-      "team": "Auburn Tigers",
-      "win_probability": 0.352094,
+      "event_id": "cs5aE1M8zpMlXGYKH4yb",
+      "team": "Marquette",
+      "win_probability": 0.632821,
+      "sample_games": 4
+    },
+    {
+      "event_id": "cs5aE1M8zpMlXGYKH4yb",
+      "team": "Northern Illinois Huskies",
+      "win_probability": 0.367179,
+      "sample_games": 5
+    },
+    {
+      "event_id": "1YG2anNbbJUx9EbhwP8t",
+      "team": "Syracuse",
+      "win_probability": 0.617551,
+      "sample_games": 4
+    },
+    {
+      "event_id": "1YG2anNbbJUx9EbhwP8t",
+      "team": "Cornell Big Red",
+      "win_probability": 0.382449,
+      "sample_games": 4
+    },
+    {
+      "event_id": "OFMOG0YxnP0igROH5A1B",
+      "team": "Stonehill Skyhawks",
+      "win_probability": 0.355591,
+      "sample_games": 4
+    },
+    {
+      "event_id": "OFMOG0YxnP0igROH5A1B",
+      "team": "New Hampshire Wildcats",
+      "win_probability": 0.644409,
+      "sample_games": 5
+    },
+    {
+      "event_id": "YFUfhTGIvqfgOjWWSpQW",
+      "team": "Loyola Chicago",
+      "win_probability": 0.50868,
+      "sample_games": 4
+    },
+    {
+      "event_id": "YFUfhTGIvqfgOjWWSpQW",
+      "team": "Wichita State Shockers",
+      "win_probability": 0.49132,
+      "sample_games": 4
+    },
+    {
+      "event_id": "mBtEmjVR4IM4aW3YlaeR",
+      "team": "Harvard Crimson",
+      "win_probability": 0.42003,
+      "sample_games": 5
+    },
+    {
+      "event_id": "mBtEmjVR4IM4aW3YlaeR",
+      "team": "Boston College",
+      "win_probability": 0.57997,
+      "sample_games": 4
+    },
+    {
+      "event_id": "qGw3VyArXn61Nnwj08XN",
+      "team": "Texas State Bobcats",
+      "win_probability": 0.823862,
+      "sample_games": 5
+    },
+    {
+      "event_id": "qGw3VyArXn61Nnwj08XN",
+      "team": "Incarnate Word",
+      "win_probability": 0.176138,
+      "sample_games": 4
+    },
+    {
+      "event_id": "vyEHQG4DpqMpYJo3Jg6X",
+      "team": "Oklahoma",
+      "win_probability": 0.685201,
+      "sample_games": 4
+    },
+    {
+      "event_id": "vyEHQG4DpqMpYJo3Jg6X",
+      "team": "Campbell",
+      "win_probability": 0.314799,
+      "sample_games": 4
+    },
+    {
+      "event_id": "wo9m1yEybsyamGTzYS0e",
+      "team": "Bradley Braves",
+      "win_probability": 0.545944,
+      "sample_games": 5
+    },
+    {
+      "event_id": "wo9m1yEybsyamGTzYS0e",
+      "team": "Purdue Fort Wayne Mastodons",
+      "win_probability": 0.454056,
+      "sample_games": 4
+    },
+    {
+      "event_id": "HepQoO7FwAEcK7BcMPey",
+      "team": "Colorado",
+      "win_probability": 0.400389,
+      "sample_games": 4
+    },
+    {
+      "event_id": "HepQoO7FwAEcK7BcMPey",
+      "team": "Portland",
+      "win_probability": 0.599611,
+      "sample_games": 5
+    },
+    {
+      "event_id": "j0Z2QeIzU3c7ayfjc4gL",
+      "team": "Utah State Aggies",
+      "win_probability": 0.818608,
+      "sample_games": 4
+    },
+    {
+      "event_id": "j0Z2QeIzU3c7ayfjc4gL",
+      "team": "Weber State Wildcats",
+      "win_probability": 0.181392,
+      "sample_games": 4
+    },
+    {
+      "event_id": "tkr9BS5Luhan8QEA6iBW",
+      "team": "Colorado State Rams",
+      "win_probability": 0.635883,
+      "sample_games": 4
+    },
+    {
+      "event_id": "tkr9BS5Luhan8QEA6iBW",
+      "team": "North Dakota State Bison",
+      "win_probability": 0.364117,
+      "sample_games": 6
+    },
+    {
+      "event_id": "eN24vsLVIBtdIRohF337",
+      "team": "Nevada Wolf Pack",
+      "win_probability": 0.48785,
+      "sample_games": 4
+    },
+    {
+      "event_id": "eN24vsLVIBtdIRohF337",
+      "team": "Idaho Vandals",
+      "win_probability": 0.51215,
+      "sample_games": 4
+    },
+    {
+      "event_id": "encakOzIylCc8R21Rado",
+      "team": "UCLA Bruins",
+      "win_probability": 0.788247,
+      "sample_games": 4
+    },
+    {
+      "event_id": "encakOzIylCc8R21Rado",
+      "team": "Cal State Fullerton Titans",
+      "win_probability": 0.211753,
       "sample_games": 3
     }
   ],
-  "history_events": 897,
+  "history_events": 965,
   "failed_days": 0
 }
