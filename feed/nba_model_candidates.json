@@ -1,18 +1,23 @@
 {
   "schema_version": 2,
-  "generated_at": "2026-11-18T03:08:12.437825+00:00",
+  "generated_at": "2026-11-18T22:18:32.946540+00:00",
   "model_status": "research_only_not_bet_eligible",
   "prediction_type": "single_leg_empirical_history_not_sgp",
   "predictions": [],
   "rejections": {
-    "stale_feed": 1
+    "unverified_matchup": 509,
+    "unsupported_market": 7241,
+    "player_not_matched": 12
   },
   "feed_freshness": {
-    "status": "stale",
-    "fetched_at": "2026-11-16T22:37:28.419623+00:00",
-    "age_seconds": 102644.0,
-    "max_age_seconds": 5400,
-    "recovery_workflow": "refresh-nba-nhl-props.yml",
-    "recovery_note": "Refresh verified sportsbook quotes; never change fetched_at without fetching fresh quotes."
-  }
+    "status": "fresh",
+    "fetched_at": "2026-11-18T21:46:47.292286+00:00",
+    "age_seconds": 1905.7,
+    "max_age_seconds": 5400
+  },
+  "unmatched_player_names": [
+    "Alexandre Sarr",
+    "Herb Jones",
+    "P.J. Washington Jr."
+  ]
 }
