@@ -3,7 +3,7 @@
 const css=document.createElement('style');css.textContent='#ksl-20-club .club-card{background:#191a1d;border:1px solid #35383e;border-radius:12px;padding:12px;margin:9px 0}#ksl-20-club .club-metrics{display:flex;flex-wrap:wrap;gap:12px;color:#d1d9df;font-size:12px}#ksl-20-club strong{color:#f3c621}#ksl-20-club .club-green{color:#36c985}#ksl-20-club button{background:#173a35;color:#fff;border:1px solid #36c985;border-radius:8px;padding:9px}';document.head.append(css);
 root.innerHTML='<h2>🏀 20 Club · Daily 20+ Points</h2><p>Current-season scoring trends, 20,000-draw historical Monte Carlo, verified 19.5-point quotes, and a near-even-money parlay target (-111 to +100). Historical simulations are not injury-adjusted forecasts.</p><p id="club-status" role="status">Loading current NBA feeds…</p><div id="club-diamond-audit"></div><div id="club-parlay"></div><div id="club-cards"></div>';
 const status=root.querySelector('#club-status'),cards=root.querySelector('#club-cards'),parlay=root.querySelector('#club-parlay'),diamondAudit=root.querySelector('#club-diamond-audit');
-const norm=s=>String(s||'').normalize('NFD').replace(/[\\u0300-\\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]/g,'');
+const norm=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]/g,'');
 const aliases={'alexandresarr':'alexsarr','herbjones':'herbertjones'};const playerKey=s=>aliases[norm(s)]||norm(s);
 const oddsProb=o=>o<0?-o/(100-o):100/(100+o);
 const decimal=o=>o<0?1+100/-o:1+o/100;
