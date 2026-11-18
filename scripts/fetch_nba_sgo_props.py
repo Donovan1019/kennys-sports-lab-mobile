@@ -45,7 +45,11 @@ def normalize(payload, now):
         if not event_id:
             continue
         for odd in (event.get("odds") or {}).values():
-            if not isinstance(odd, dict) or odd.get("statID") != "points" or odd.get("periodID") != "game" or odd.get("betTypeID") != "ou" or odd.get("sideID") not in ("over", "under"):
+            if not isinstance(odd, dict) or odd.get("periodID") != "game" or odd.get("betTypeID") != "ou" or odd.get("sideID") not in ("over", "under"):
+                continue
+            stat = str(odd.get("statID") or "").lower().replace("_", "").replace("-", "").replace("+", "")
+            market = {"points": "player_points", "pointsreboundsassists": "player_points_rebounds_assists", "pra": "player_points_rebounds_assists"}.get(stat)
+            if market is None:
                 continue
             entity = odd.get("statEntityID")
             if not entity or entity in ("all", "home", "away"):
@@ -68,7 +72,7 @@ def normalize(payload, now):
                     p = price(quote.get("odds"))
                     if p is None or not 0 < point < 100:
                         continue
-                    rows.append({"event_id": str(event_id), "event": str(event_id), "commence_time": start.isoformat(), "market": "player_points_alternate" if quote is not q else "player_points", "player": name, "selection": odd["sideID"].title(), "point": point, "price": p, "bookmaker": book, "updated_at": updated.isoformat()})
+                    rows.append({"event_id": str(event_id), "event": str(event_id), "commence_time": start.isoformat(), "market": "player_points_alternate" if market == "player_points" and quote is not q else market, "player": name, "selection": odd["sideID"].title(), "point": point, "price": p, "bookmaker": book, "updated_at": updated.isoformat()})
     return rows
 
 def main():
@@ -89,7 +93,7 @@ def main():
     if not rows:
         print("SportsGameOdds returned no available fresh DK/FD player points props; existing feed retained")
         return 1
-    data = {"sport": "basketball_nba", "source": "sportsgameodds-v2-player-props", "fetched_at": now.isoformat(), "markets_requested": ["player_points", "player_points_alternate"], "books": list(BOOKS), "odds": rows}
+    data = {"sport": "basketball_nba", "source": "sportsgameodds-v2-player-props", "fetched_at": now.isoformat(), "markets_requested": ["player_points", "player_points_alternate", "player_points_rebounds_assists"], "books": list(BOOKS), "odds": rows}
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     tmp = OUTPUT.with_suffix(".json.tmp")
     tmp.write_text(json.dumps(data, separators=(",", ":")), encoding="utf-8")
