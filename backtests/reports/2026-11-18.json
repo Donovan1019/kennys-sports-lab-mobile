@@ -1,6 +1,6 @@
 {
   "date": "2026-11-18",
-  "generated_at": "2026-11-18T20:26:36.444743+00:00",
+  "generated_at": "2026-11-19T03:20:09.875739+00:00",
   "sports": {
     "NFL": {
       "status": "OUTCOMES_UNVERIFIED",
@@ -15,7 +15,7 @@
     },
     "NBA": {
       "status": "OUTCOMES_UNVERIFIED",
-      "saved_quotes": 0,
+      "saved_quotes": 7762,
       "eligible_predictions": 28,
       "research_only_predictions": 28,
       "bet_eligible_predictions": 0,
@@ -31,7 +31,7 @@
       "research_only_predictions": 248,
       "bet_eligible_predictions": 0,
       "blocked_predictions": [],
-      "graded": 22,
+      "graded": 30,
       "settled": [
         {
           "event": "Los Angeles Kings @ Boston Bruins",
@@ -164,15 +164,63 @@
           "market": "h2h",
           "selection": "Calgary Flames",
           "outcome": "win"
+        },
+        {
+          "event": "Boston Bruins @ Detroit Red Wings",
+          "market": "h2h",
+          "selection": "Detroit Red Wings",
+          "outcome": "loss"
+        },
+        {
+          "event": "Boston Bruins @ Detroit Red Wings",
+          "market": "h2h",
+          "selection": "Boston Bruins",
+          "outcome": "win"
+        },
+        {
+          "event": "Montreal Canadiens @ New Jersey Devils",
+          "market": "h2h",
+          "selection": "New Jersey Devils",
+          "outcome": "loss"
+        },
+        {
+          "event": "Montreal Canadiens @ New Jersey Devils",
+          "market": "h2h",
+          "selection": "Montreal Canadiens",
+          "outcome": "win"
+        },
+        {
+          "event": "Boston Bruins @ Detroit Red Wings",
+          "market": "h2h",
+          "selection": "Detroit Red Wings",
+          "outcome": "loss"
+        },
+        {
+          "event": "Boston Bruins @ Detroit Red Wings",
+          "market": "h2h",
+          "selection": "Boston Bruins",
+          "outcome": "win"
+        },
+        {
+          "event": "Montreal Canadiens @ New Jersey Devils",
+          "market": "h2h",
+          "selection": "New Jersey Devils",
+          "outcome": "loss"
+        },
+        {
+          "event": "Montreal Canadiens @ New Jersey Devils",
+          "market": "h2h",
+          "selection": "Montreal Canadiens",
+          "outcome": "win"
         }
       ],
-      "pending": 226
+      "pending": 218
     }
   },
   "summary": {
-    "verified_picks": 22,
-    "wins": 11,
-    "losses": 11,
+    "verified_picks": 30,
+    "wins": 15,
+    "losses": 15,
     "pushes": 0,
     "roi": null,
     "hit_rate": 0.5
