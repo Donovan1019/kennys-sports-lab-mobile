@@ -2,7 +2,7 @@
   "schema": 1,
   "sport": "UFC",
   "source": "Greco1899/scrape_ufc_stats public CSV mirror",
-  "retrieved_at": "2026-11-18T22:34:27.526271+00:00",
+  "retrieved_at": "2026-11-19T22:39:06.403721+00:00",
   "source_files": [
     "ufc_fighter_details.csv",
     "ufc_fighter_tott.csv",
@@ -322,6 +322,19 @@
       "bet_eligible": false
     },
     {
+      "name": "John Mitchell",
+      "status": "INSUFFICIENT_OR_AMBIGUOUS",
+      "source_profile": null,
+      "height": null,
+      "weight": null,
+      "reach": null,
+      "stance": null,
+      "career_round_totals": null,
+      "fighter_status_verified": false,
+      "stats_asof_verified": false,
+      "bet_eligible": false
+    },
+    {
       "name": "Kevin Vallejos",
       "status": "MATCHED_HISTORICAL_STATS",
       "source_profile": "http://ufcstats.com/fighter-details/239d8e5359022f3b",
@@ -455,6 +468,19 @@
         "knockdowns": 0,
         "control_seconds": 1345
       },
+      "fighter_status_verified": false,
+      "stats_asof_verified": false,
+      "bet_eligible": false
+    },
+    {
+      "name": "Shoaib Yousaf",
+      "status": "INSUFFICIENT_OR_AMBIGUOUS",
+      "source_profile": "http://ufcstats.com/fighter-details/5f183a54b8875e61",
+      "height": "--",
+      "weight": "155 lbs.",
+      "reach": "--",
+      "stance": "Orthodox",
+      "career_round_totals": null,
       "fighter_status_verified": false,
       "stats_asof_verified": false,
       "bet_eligible": false
