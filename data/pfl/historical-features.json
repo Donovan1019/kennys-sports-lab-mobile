@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "source": "pfl-historical-features",
-  "generatedAt": "2026-11-18T22:57:34.352Z",
-  "asOf": "2026-11-18T22:57:34.352Z",
+  "generatedAt": "2026-11-19T13:19:52.311Z",
+  "asOf": "2026-11-19T13:19:52.311Z",
   "featureReadyBouts": 0,
   "bouts": [
     {
@@ -99,6 +99,37 @@
       ]
     },
     {
+      "boutId": "pfl-401935633",
+      "eventId": "pfl-lyon-lapilus-vs-mckee",
+      "fighters": [
+        {
+          "slug": "oualy-tandia",
+          "verifiedFights": 1,
+          "wins": 1,
+          "losses": 0,
+          "winRate": 1,
+          "lastVerifiedFight": "2026-10-16"
+        },
+        {
+          "slug": "alex-lohore",
+          "verifiedFights": 1,
+          "wins": 0,
+          "losses": 1,
+          "winRate": 0,
+          "lastVerifiedFight": "2026-04-16"
+        }
+      ],
+      "featureReady": false,
+      "modelCalibrated": false,
+      "bettingReady": false,
+      "blockedReasons": [
+        "LIVE_ODDS_UNVERIFIED",
+        "MODEL_CALIBRATION_UNVERIFIED",
+        "MONTE_CARLO_UNVERIFIED",
+        "INSUFFICIENT_VERIFIED_HISTORICAL_SAMPLE"
+      ]
+    },
+    {
       "boutId": "pfl-401924504",
       "eventId": "pfl-lyon-lapilus-vs-mckee",
       "fighters": [
@@ -130,37 +161,6 @@
       ]
     },
     {
-      "boutId": "pfl-401914116",
-      "eventId": "pfl-lyon-lapilus-vs-mckee",
-      "fighters": [
-        {
-          "slug": "baris-adiguzel",
-          "verifiedFights": 2,
-          "wins": 1,
-          "losses": 1,
-          "winRate": 0.5,
-          "lastVerifiedFight": "2026-05-23"
-        },
-        {
-          "slug": "liam-gittins",
-          "verifiedFights": 2,
-          "wins": 0,
-          "losses": 2,
-          "winRate": 0,
-          "lastVerifiedFight": "2026-04-16"
-        }
-      ],
-      "featureReady": false,
-      "modelCalibrated": false,
-      "bettingReady": false,
-      "blockedReasons": [
-        "LIVE_ODDS_UNVERIFIED",
-        "MODEL_CALIBRATION_UNVERIFIED",
-        "MONTE_CARLO_UNVERIFIED",
-        "INSUFFICIENT_VERIFIED_HISTORICAL_SAMPLE"
-      ]
-    },
-    {
       "boutId": "pfl-401931775",
       "eventId": "pfl-lyon-lapilus-vs-mckee",
       "fighters": [
@@ -179,6 +179,37 @@
           "losses": 0,
           "winRate": 1,
           "lastVerifiedFight": "2026-07-26"
+        }
+      ],
+      "featureReady": false,
+      "modelCalibrated": false,
+      "bettingReady": false,
+      "blockedReasons": [
+        "LIVE_ODDS_UNVERIFIED",
+        "MODEL_CALIBRATION_UNVERIFIED",
+        "MONTE_CARLO_UNVERIFIED",
+        "INSUFFICIENT_VERIFIED_HISTORICAL_SAMPLE"
+      ]
+    },
+    {
+      "boutId": "pfl-401914116",
+      "eventId": "pfl-lyon-lapilus-vs-mckee",
+      "fighters": [
+        {
+          "slug": "baris-adiguzel",
+          "verifiedFights": 2,
+          "wins": 1,
+          "losses": 1,
+          "winRate": 0.5,
+          "lastVerifiedFight": "2026-05-23"
+        },
+        {
+          "slug": "jack-cartwright",
+          "verifiedFights": 2,
+          "wins": 2,
+          "losses": 0,
+          "winRate": 1,
+          "lastVerifiedFight": "2026-03-28"
         }
       ],
       "featureReady": false,
@@ -236,6 +267,130 @@
         },
         {
           "slug": "shelda-chipito",
+          "verifiedFights": 0,
+          "wins": 0,
+          "losses": 0,
+          "winRate": null,
+          "lastVerifiedFight": null
+        }
+      ],
+      "featureReady": false,
+      "modelCalibrated": false,
+      "bettingReady": false,
+      "blockedReasons": [
+        "LIVE_ODDS_UNVERIFIED",
+        "MODEL_CALIBRATION_UNVERIFIED",
+        "MONTE_CARLO_UNVERIFIED",
+        "INSUFFICIENT_VERIFIED_HISTORICAL_SAMPLE"
+      ]
+    },
+    {
+      "boutId": "pfl-401935636",
+      "eventId": "pfl-lyon-lapilus-vs-mckee",
+      "fighters": [
+        {
+          "slug": "dean-garnett",
+          "verifiedFights": 2,
+          "wins": 1,
+          "losses": 1,
+          "winRate": 0.5,
+          "lastVerifiedFight": "2026-04-16"
+        },
+        {
+          "slug": "bryce-meredith",
+          "verifiedFights": 3,
+          "wins": 2,
+          "losses": 1,
+          "winRate": 0.6666666666666666,
+          "lastVerifiedFight": "2026-07-26"
+        }
+      ],
+      "featureReady": false,
+      "modelCalibrated": false,
+      "bettingReady": false,
+      "blockedReasons": [
+        "LIVE_ODDS_UNVERIFIED",
+        "MODEL_CALIBRATION_UNVERIFIED",
+        "MONTE_CARLO_UNVERIFIED",
+        "INSUFFICIENT_VERIFIED_HISTORICAL_SAMPLE"
+      ]
+    },
+    {
+      "boutId": "pfl-401935637",
+      "eventId": "pfl-lyon-lapilus-vs-mckee",
+      "fighters": [
+        {
+          "slug": "mauricio-partida",
+          "verifiedFights": 0,
+          "wins": 0,
+          "losses": 0,
+          "winRate": null,
+          "lastVerifiedFight": null
+        },
+        {
+          "slug": "jan-cieplowski",
+          "verifiedFights": 0,
+          "wins": 0,
+          "losses": 0,
+          "winRate": null,
+          "lastVerifiedFight": null
+        }
+      ],
+      "featureReady": false,
+      "modelCalibrated": false,
+      "bettingReady": false,
+      "blockedReasons": [
+        "LIVE_ODDS_UNVERIFIED",
+        "MODEL_CALIBRATION_UNVERIFIED",
+        "MONTE_CARLO_UNVERIFIED",
+        "INSUFFICIENT_VERIFIED_HISTORICAL_SAMPLE"
+      ]
+    },
+    {
+      "boutId": "pfl-401935638",
+      "eventId": "pfl-lyon-lapilus-vs-mckee",
+      "fighters": [
+        {
+          "slug": "zakaria-hamou",
+          "verifiedFights": 0,
+          "wins": 0,
+          "losses": 0,
+          "winRate": null,
+          "lastVerifiedFight": null
+        },
+        {
+          "slug": "amin-bouazza",
+          "verifiedFights": 0,
+          "wins": 0,
+          "losses": 0,
+          "winRate": null,
+          "lastVerifiedFight": null
+        }
+      ],
+      "featureReady": false,
+      "modelCalibrated": false,
+      "bettingReady": false,
+      "blockedReasons": [
+        "LIVE_ODDS_UNVERIFIED",
+        "MODEL_CALIBRATION_UNVERIFIED",
+        "MONTE_CARLO_UNVERIFIED",
+        "INSUFFICIENT_VERIFIED_HISTORICAL_SAMPLE"
+      ]
+    },
+    {
+      "boutId": "pfl-401935639",
+      "eventId": "pfl-lyon-lapilus-vs-mckee",
+      "fighters": [
+        {
+          "slug": "lorenzo-parente",
+          "verifiedFights": 0,
+          "wins": 0,
+          "losses": 0,
+          "winRate": null,
+          "lastVerifiedFight": null
+        },
+        {
+          "slug": "stiven-shehu",
           "verifiedFights": 0,
           "wins": 0,
           "losses": 0,

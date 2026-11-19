@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "source": "ufcalendar-consensus-matched",
-  "generatedAt": "2026-11-18T22:57:30.235Z",
+  "generatedAt": "2026-11-19T13:19:48.079Z",
   "matched": 0,
-  "unmatched": 25,
+  "unmatched": 27,
   "rows": [],
   "exceptions": [
     {
@@ -92,19 +92,27 @@
     },
     {
       "fightId": 93720,
-      "reason": "NO_EXACT_MATCH"
+      "reason": "NO_VALID_MONEYLINE"
     },
     {
       "fightId": 93743,
-      "reason": "NO_EXACT_MATCH"
+      "reason": "NO_VALID_MONEYLINE"
     },
     {
       "fightId": 93785,
-      "reason": "NO_EXACT_MATCH"
+      "reason": "NO_VALID_MONEYLINE"
     },
     {
       "fightId": 93786,
-      "reason": "NO_EXACT_MATCH"
+      "reason": "NO_VALID_MONEYLINE"
+    },
+    {
+      "fightId": 93872,
+      "reason": "NO_VALID_MONEYLINE"
+    },
+    {
+      "fightId": 93873,
+      "reason": "NO_VALID_MONEYLINE"
     }
   ],
   "bettingReady": false

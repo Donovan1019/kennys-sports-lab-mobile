@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "source": "pfl-bout-readiness",
-  "generatedAt": "2026-11-18T22:57:33.884Z",
-  "scheduledBouts": 8,
-  "identityAndHistoryVerified": 8,
+  "generatedAt": "2026-11-19T13:19:51.991Z",
+  "scheduledBouts": 13,
+  "identityAndHistoryVerified": 13,
   "bettingReadyBouts": 0,
   "bouts": [
     {
@@ -53,6 +53,21 @@
     },
     {
       "eventId": "pfl-lyon-lapilus-vs-mckee",
+      "boutId": "pfl-401935633",
+      "fighters": [
+        "oualy-tandia",
+        "alex-lohore"
+      ],
+      "identityAndHistoryVerified": true,
+      "bettingReady": false,
+      "blockedReasons": [
+        "LIVE_ODDS_UNVERIFIED",
+        "MODEL_CALIBRATION_UNVERIFIED",
+        "MONTE_CARLO_UNVERIFIED"
+      ]
+    },
+    {
+      "eventId": "pfl-lyon-lapilus-vs-mckee",
       "boutId": "pfl-401924504",
       "fighters": [
         "fabian-edwards",
@@ -68,10 +83,10 @@
     },
     {
       "eventId": "pfl-lyon-lapilus-vs-mckee",
-      "boutId": "pfl-401914116",
+      "boutId": "pfl-401931775",
       "fighters": [
-        "baris-adiguzel",
-        "liam-gittins"
+        "bafode-gassama",
+        "coby-bradford"
       ],
       "identityAndHistoryVerified": true,
       "bettingReady": false,
@@ -83,10 +98,10 @@
     },
     {
       "eventId": "pfl-lyon-lapilus-vs-mckee",
-      "boutId": "pfl-401931775",
+      "boutId": "pfl-401914116",
       "fighters": [
-        "bafode-gassama",
-        "coby-bradford"
+        "baris-adiguzel",
+        "jack-cartwright"
       ],
       "identityAndHistoryVerified": true,
       "bettingReady": false,
@@ -117,6 +132,66 @@
       "fighters": [
         "mathilde-aschenbrenner",
         "shelda-chipito"
+      ],
+      "identityAndHistoryVerified": true,
+      "bettingReady": false,
+      "blockedReasons": [
+        "LIVE_ODDS_UNVERIFIED",
+        "MODEL_CALIBRATION_UNVERIFIED",
+        "MONTE_CARLO_UNVERIFIED"
+      ]
+    },
+    {
+      "eventId": "pfl-lyon-lapilus-vs-mckee",
+      "boutId": "pfl-401935636",
+      "fighters": [
+        "dean-garnett",
+        "bryce-meredith"
+      ],
+      "identityAndHistoryVerified": true,
+      "bettingReady": false,
+      "blockedReasons": [
+        "LIVE_ODDS_UNVERIFIED",
+        "MODEL_CALIBRATION_UNVERIFIED",
+        "MONTE_CARLO_UNVERIFIED"
+      ]
+    },
+    {
+      "eventId": "pfl-lyon-lapilus-vs-mckee",
+      "boutId": "pfl-401935637",
+      "fighters": [
+        "mauricio-partida",
+        "jan-cieplowski"
+      ],
+      "identityAndHistoryVerified": true,
+      "bettingReady": false,
+      "blockedReasons": [
+        "LIVE_ODDS_UNVERIFIED",
+        "MODEL_CALIBRATION_UNVERIFIED",
+        "MONTE_CARLO_UNVERIFIED"
+      ]
+    },
+    {
+      "eventId": "pfl-lyon-lapilus-vs-mckee",
+      "boutId": "pfl-401935638",
+      "fighters": [
+        "zakaria-hamou",
+        "amin-bouazza"
+      ],
+      "identityAndHistoryVerified": true,
+      "bettingReady": false,
+      "blockedReasons": [
+        "LIVE_ODDS_UNVERIFIED",
+        "MODEL_CALIBRATION_UNVERIFIED",
+        "MONTE_CARLO_UNVERIFIED"
+      ]
+    },
+    {
+      "eventId": "pfl-lyon-lapilus-vs-mckee",
+      "boutId": "pfl-401935639",
+      "fighters": [
+        "lorenzo-parente",
+        "stiven-shehu"
       ],
       "identityAndHistoryVerified": true,
       "bettingReady": false,
