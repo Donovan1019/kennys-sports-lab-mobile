@@ -1,6 +1,6 @@
 {
   "date": "2026-11-18",
-  "generated_at": "2026-11-19T03:20:09.875739+00:00",
+  "generated_at": "2026-11-19T20:29:25.077859+00:00",
   "sports": {
     "NFL": {
       "status": "OUTCOMES_UNVERIFIED",
@@ -31,7 +31,7 @@
       "research_only_predictions": 248,
       "bet_eligible_predictions": 0,
       "blocked_predictions": [],
-      "graded": 30,
+      "graded": 34,
       "settled": [
         {
           "event": "Los Angeles Kings @ Boston Bruins",
@@ -190,6 +190,18 @@
           "outcome": "win"
         },
         {
+          "event": "Colorado Avalanche @ Utah Mammoth",
+          "market": "h2h",
+          "selection": "Utah Mammoth",
+          "outcome": "win"
+        },
+        {
+          "event": "Colorado Avalanche @ Utah Mammoth",
+          "market": "h2h",
+          "selection": "Colorado Avalanche",
+          "outcome": "loss"
+        },
+        {
           "event": "Boston Bruins @ Detroit Red Wings",
           "market": "h2h",
           "selection": "Detroit Red Wings",
@@ -212,15 +224,27 @@
           "market": "h2h",
           "selection": "Montreal Canadiens",
           "outcome": "win"
+        },
+        {
+          "event": "Colorado Avalanche @ Utah Mammoth",
+          "market": "h2h",
+          "selection": "Utah Mammoth",
+          "outcome": "win"
+        },
+        {
+          "event": "Colorado Avalanche @ Utah Mammoth",
+          "market": "h2h",
+          "selection": "Colorado Avalanche",
+          "outcome": "loss"
         }
       ],
-      "pending": 218
+      "pending": 214
     }
   },
   "summary": {
-    "verified_picks": 30,
-    "wins": 15,
-    "losses": 15,
+    "verified_picks": 34,
+    "wins": 17,
+    "losses": 17,
     "pushes": 0,
     "roi": null,
     "hit_rate": 0.5

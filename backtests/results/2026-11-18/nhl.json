@@ -27,6 +27,19 @@
       "completed": true,
       "source": "ESPN scoreboard",
       "source_url": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261118&limit=100"
+    },
+    {
+      "event_id": "401892741",
+      "event": "Colorado Avalanche at Utah Mammoth",
+      "commence_time": "2026-11-19T03:00Z",
+      "home": "Utah Mammoth",
+      "away": "Colorado Avalanche",
+      "home_score": 4,
+      "away_score": 1,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261118&limit=100"
     }
   ],
   "source_url": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261118&limit=100"
