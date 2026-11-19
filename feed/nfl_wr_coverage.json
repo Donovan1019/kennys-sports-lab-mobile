@@ -1,70 +1,1806 @@
 {
   "season": 2026,
   "source": "supplied verified weekly CSV; charted fields only when present",
-  "player_games": 2724,
+  "player_games": 3007,
   "metrics": {
     "targets": {
-      "available": 2724,
-      "total": 2724,
+      "available": 3007,
+      "total": 3007,
       "pct": 100.0
     },
     "team_targets": {
-      "available": 2713,
-      "total": 2724,
+      "available": 2996,
+      "total": 3007,
       "pct": 99.6
     },
     "receptions": {
-      "available": 2724,
-      "total": 2724,
+      "available": 3007,
+      "total": 3007,
       "pct": 100.0
     },
     "receiving_yards": {
-      "available": 2688,
-      "total": 2724,
+      "available": 2968,
+      "total": 3007,
       "pct": 98.7
     },
     "receiving_tds": {
-      "available": 2724,
-      "total": 2724,
+      "available": 3007,
+      "total": 3007,
       "pct": 100.0
     },
     "offensive_snaps": {
-      "available": 2716,
-      "total": 2724,
+      "available": 2997,
+      "total": 3007,
       "pct": 99.7
     },
     "routes_run": {
       "available": 0,
-      "total": 2724,
+      "total": 3007,
       "pct": 0.0
     },
     "team_dropbacks": {
       "available": 0,
-      "total": 2724,
+      "total": 3007,
       "pct": 0.0
     },
     "first_read_targets": {
-      "available": 2724,
-      "total": 2724,
+      "available": 3007,
+      "total": 3007,
       "pct": 100.0
     },
     "team_first_read_targets": {
-      "available": 2724,
-      "total": 2724,
+      "available": 3007,
+      "total": 3007,
       "pct": 100.0
     },
     "end_zone_targets": {
-      "available": 2275,
-      "total": 2724,
-      "pct": 83.5
+      "available": 2472,
+      "total": 3007,
+      "pct": 82.2
     },
     "team_end_zone_targets": {
-      "available": 2275,
-      "total": 2724,
-      "pct": 83.5
+      "available": 2472,
+      "total": 3007,
+      "pct": 82.2
     }
   },
   "team_weeks": {
+    "10|ARI": {
+      "targets": {
+        "available": 8,
+        "total": 8,
+        "pct": 100.0
+      },
+      "team_targets": {
+        "available": 8,
+        "total": 8,
+        "pct": 100.0
+      },
+      "receptions": {
+        "available": 8,
+        "total": 8,
+        "pct": 100.0
+      },
+      "receiving_yards": {
+        "available": 8,
+        "total": 8,
+        "pct": 100.0
+      },
+      "receiving_tds": {
+        "available": 8,
+        "total": 8,
+        "pct": 100.0
+      },
+      "offensive_snaps": {
+        "available": 8,
+        "total": 8,
+        "pct": 100.0
+      },
+      "routes_run": {
+        "available": 0,
+        "total": 8,
+        "pct": 0.0
+      },
+      "team_dropbacks": {
+        "available": 0,
+        "total": 8,
+        "pct": 0.0
+      },
+      "first_read_targets": {
+        "available": 8,
+        "total": 8,
+        "pct": 100.0
+      },
+      "team_first_read_targets": {
+        "available": 8,
+        "total": 8,
+        "pct": 100.0
+      },
+      "end_zone_targets": {
+        "available": 0,
+        "total": 8,
+        "pct": 0.0
+      },
+      "team_end_zone_targets": {
+        "available": 0,
+        "total": 8,
+        "pct": 0.0
+      }
+    },
+    "10|ATL": {
+      "targets": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "team_targets": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "receptions": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "receiving_yards": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "receiving_tds": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "offensive_snaps": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "routes_run": {
+        "available": 0,
+        "total": 10,
+        "pct": 0.0
+      },
+      "team_dropbacks": {
+        "available": 0,
+        "total": 10,
+        "pct": 0.0
+      },
+      "first_read_targets": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "team_first_read_targets": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "end_zone_targets": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "team_end_zone_targets": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      }
+    },
+    "10|BAL": {
+      "targets": {
+        "available": 9,
+        "total": 9,
+        "pct": 100.0
+      },
+      "team_targets": {
+        "available": 9,
+        "total": 9,
+        "pct": 100.0
+      },
+      "receptions": {
+        "available": 9,
+        "total": 9,
+        "pct": 100.0
+      },
+      "receiving_yards": {
+        "available": 9,
+        "total": 9,
+        "pct": 100.0
+      },
+      "receiving_tds": {
+        "available": 9,
+        "total": 9,
+        "pct": 100.0
+      },
+      "offensive_snaps": {
+        "available": 9,
+        "total": 9,
+        "pct": 100.0
+      },
+      "routes_run": {
+        "available": 0,
+        "total": 9,
+        "pct": 0.0
+      },
+      "team_dropbacks": {
+        "available": 0,
+        "total": 9,
+        "pct": 0.0
+      },
+      "first_read_targets": {
+        "available": 9,
+        "total": 9,
+        "pct": 100.0
+      },
+      "team_first_read_targets": {
+        "available": 9,
+        "total": 9,
+        "pct": 100.0
+      },
+      "end_zone_targets": {
+        "available": 9,
+        "total": 9,
+        "pct": 100.0
+      },
+      "team_end_zone_targets": {
+        "available": 9,
+        "total": 9,
+        "pct": 100.0
+      }
+    },
+    "10|BUF": {
+      "targets": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "team_targets": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "receptions": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "receiving_yards": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "receiving_tds": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "offensive_snaps": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "routes_run": {
+        "available": 0,
+        "total": 11,
+        "pct": 0.0
+      },
+      "team_dropbacks": {
+        "available": 0,
+        "total": 11,
+        "pct": 0.0
+      },
+      "first_read_targets": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "team_first_read_targets": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "end_zone_targets": {
+        "available": 0,
+        "total": 11,
+        "pct": 0.0
+      },
+      "team_end_zone_targets": {
+        "available": 0,
+        "total": 11,
+        "pct": 0.0
+      }
+    },
+    "10|CAR": {
+      "targets": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "team_targets": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "receptions": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "receiving_yards": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "receiving_tds": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "offensive_snaps": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "routes_run": {
+        "available": 0,
+        "total": 11,
+        "pct": 0.0
+      },
+      "team_dropbacks": {
+        "available": 0,
+        "total": 11,
+        "pct": 0.0
+      },
+      "first_read_targets": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "team_first_read_targets": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "end_zone_targets": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "team_end_zone_targets": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      }
+    },
+    "10|CIN": {
+      "targets": {
+        "available": 9,
+        "total": 9,
+        "pct": 100.0
+      },
+      "team_targets": {
+        "available": 9,
+        "total": 9,
+        "pct": 100.0
+      },
+      "receptions": {
+        "available": 9,
+        "total": 9,
+        "pct": 100.0
+      },
+      "receiving_yards": {
+        "available": 9,
+        "total": 9,
+        "pct": 100.0
+      },
+      "receiving_tds": {
+        "available": 9,
+        "total": 9,
+        "pct": 100.0
+      },
+      "offensive_snaps": {
+        "available": 9,
+        "total": 9,
+        "pct": 100.0
+      },
+      "routes_run": {
+        "available": 0,
+        "total": 9,
+        "pct": 0.0
+      },
+      "team_dropbacks": {
+        "available": 0,
+        "total": 9,
+        "pct": 0.0
+      },
+      "first_read_targets": {
+        "available": 9,
+        "total": 9,
+        "pct": 100.0
+      },
+      "team_first_read_targets": {
+        "available": 9,
+        "total": 9,
+        "pct": 100.0
+      },
+      "end_zone_targets": {
+        "available": 9,
+        "total": 9,
+        "pct": 100.0
+      },
+      "team_end_zone_targets": {
+        "available": 9,
+        "total": 9,
+        "pct": 100.0
+      }
+    },
+    "10|CLE": {
+      "targets": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "team_targets": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "receptions": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "receiving_yards": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "receiving_tds": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "offensive_snaps": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "routes_run": {
+        "available": 0,
+        "total": 11,
+        "pct": 0.0
+      },
+      "team_dropbacks": {
+        "available": 0,
+        "total": 11,
+        "pct": 0.0
+      },
+      "first_read_targets": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "team_first_read_targets": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "end_zone_targets": {
+        "available": 0,
+        "total": 11,
+        "pct": 0.0
+      },
+      "team_end_zone_targets": {
+        "available": 0,
+        "total": 11,
+        "pct": 0.0
+      }
+    },
+    "10|DAL": {
+      "targets": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "team_targets": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "receptions": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "receiving_yards": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "receiving_tds": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "offensive_snaps": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "routes_run": {
+        "available": 0,
+        "total": 10,
+        "pct": 0.0
+      },
+      "team_dropbacks": {
+        "available": 0,
+        "total": 10,
+        "pct": 0.0
+      },
+      "first_read_targets": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "team_first_read_targets": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "end_zone_targets": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "team_end_zone_targets": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      }
+    },
+    "10|DET": {
+      "targets": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "team_targets": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "receptions": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "receiving_yards": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "receiving_tds": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "offensive_snaps": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "routes_run": {
+        "available": 0,
+        "total": 10,
+        "pct": 0.0
+      },
+      "team_dropbacks": {
+        "available": 0,
+        "total": 10,
+        "pct": 0.0
+      },
+      "first_read_targets": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "team_first_read_targets": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "end_zone_targets": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "team_end_zone_targets": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      }
+    },
+    "10|GB": {
+      "targets": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "team_targets": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "receptions": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "receiving_yards": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "receiving_tds": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "offensive_snaps": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "routes_run": {
+        "available": 0,
+        "total": 11,
+        "pct": 0.0
+      },
+      "team_dropbacks": {
+        "available": 0,
+        "total": 11,
+        "pct": 0.0
+      },
+      "first_read_targets": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "team_first_read_targets": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "end_zone_targets": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "team_end_zone_targets": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      }
+    },
+    "10|HOU": {
+      "targets": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "team_targets": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "receptions": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "receiving_yards": {
+        "available": 9,
+        "total": 10,
+        "pct": 90.0
+      },
+      "receiving_tds": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "offensive_snaps": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "routes_run": {
+        "available": 0,
+        "total": 10,
+        "pct": 0.0
+      },
+      "team_dropbacks": {
+        "available": 0,
+        "total": 10,
+        "pct": 0.0
+      },
+      "first_read_targets": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "team_first_read_targets": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "end_zone_targets": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "team_end_zone_targets": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      }
+    },
+    "10|IND": {
+      "targets": {
+        "available": 9,
+        "total": 9,
+        "pct": 100.0
+      },
+      "team_targets": {
+        "available": 9,
+        "total": 9,
+        "pct": 100.0
+      },
+      "receptions": {
+        "available": 9,
+        "total": 9,
+        "pct": 100.0
+      },
+      "receiving_yards": {
+        "available": 9,
+        "total": 9,
+        "pct": 100.0
+      },
+      "receiving_tds": {
+        "available": 9,
+        "total": 9,
+        "pct": 100.0
+      },
+      "offensive_snaps": {
+        "available": 9,
+        "total": 9,
+        "pct": 100.0
+      },
+      "routes_run": {
+        "available": 0,
+        "total": 9,
+        "pct": 0.0
+      },
+      "team_dropbacks": {
+        "available": 0,
+        "total": 9,
+        "pct": 0.0
+      },
+      "first_read_targets": {
+        "available": 9,
+        "total": 9,
+        "pct": 100.0
+      },
+      "team_first_read_targets": {
+        "available": 9,
+        "total": 9,
+        "pct": 100.0
+      },
+      "end_zone_targets": {
+        "available": 0,
+        "total": 9,
+        "pct": 0.0
+      },
+      "team_end_zone_targets": {
+        "available": 0,
+        "total": 9,
+        "pct": 0.0
+      }
+    },
+    "10|JAX": {
+      "targets": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "team_targets": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "receptions": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "receiving_yards": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "receiving_tds": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "offensive_snaps": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "routes_run": {
+        "available": 0,
+        "total": 11,
+        "pct": 0.0
+      },
+      "team_dropbacks": {
+        "available": 0,
+        "total": 11,
+        "pct": 0.0
+      },
+      "first_read_targets": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "team_first_read_targets": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "end_zone_targets": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "team_end_zone_targets": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      }
+    },
+    "10|KC": {
+      "targets": {
+        "available": 12,
+        "total": 12,
+        "pct": 100.0
+      },
+      "team_targets": {
+        "available": 12,
+        "total": 12,
+        "pct": 100.0
+      },
+      "receptions": {
+        "available": 12,
+        "total": 12,
+        "pct": 100.0
+      },
+      "receiving_yards": {
+        "available": 12,
+        "total": 12,
+        "pct": 100.0
+      },
+      "receiving_tds": {
+        "available": 12,
+        "total": 12,
+        "pct": 100.0
+      },
+      "offensive_snaps": {
+        "available": 11,
+        "total": 12,
+        "pct": 91.7
+      },
+      "routes_run": {
+        "available": 0,
+        "total": 12,
+        "pct": 0.0
+      },
+      "team_dropbacks": {
+        "available": 0,
+        "total": 12,
+        "pct": 0.0
+      },
+      "first_read_targets": {
+        "available": 12,
+        "total": 12,
+        "pct": 100.0
+      },
+      "team_first_read_targets": {
+        "available": 12,
+        "total": 12,
+        "pct": 100.0
+      },
+      "end_zone_targets": {
+        "available": 12,
+        "total": 12,
+        "pct": 100.0
+      },
+      "team_end_zone_targets": {
+        "available": 12,
+        "total": 12,
+        "pct": 100.0
+      }
+    },
+    "10|LA": {
+      "targets": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "team_targets": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "receptions": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "receiving_yards": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "receiving_tds": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "offensive_snaps": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "routes_run": {
+        "available": 0,
+        "total": 11,
+        "pct": 0.0
+      },
+      "team_dropbacks": {
+        "available": 0,
+        "total": 11,
+        "pct": 0.0
+      },
+      "first_read_targets": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "team_first_read_targets": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "end_zone_targets": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "team_end_zone_targets": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      }
+    },
+    "10|LAC": {
+      "targets": {
+        "available": 9,
+        "total": 9,
+        "pct": 100.0
+      },
+      "team_targets": {
+        "available": 9,
+        "total": 9,
+        "pct": 100.0
+      },
+      "receptions": {
+        "available": 9,
+        "total": 9,
+        "pct": 100.0
+      },
+      "receiving_yards": {
+        "available": 9,
+        "total": 9,
+        "pct": 100.0
+      },
+      "receiving_tds": {
+        "available": 9,
+        "total": 9,
+        "pct": 100.0
+      },
+      "offensive_snaps": {
+        "available": 9,
+        "total": 9,
+        "pct": 100.0
+      },
+      "routes_run": {
+        "available": 0,
+        "total": 9,
+        "pct": 0.0
+      },
+      "team_dropbacks": {
+        "available": 0,
+        "total": 9,
+        "pct": 0.0
+      },
+      "first_read_targets": {
+        "available": 9,
+        "total": 9,
+        "pct": 100.0
+      },
+      "team_first_read_targets": {
+        "available": 9,
+        "total": 9,
+        "pct": 100.0
+      },
+      "end_zone_targets": {
+        "available": 0,
+        "total": 9,
+        "pct": 0.0
+      },
+      "team_end_zone_targets": {
+        "available": 0,
+        "total": 9,
+        "pct": 0.0
+      }
+    },
+    "10|LV": {
+      "targets": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "team_targets": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "receptions": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "receiving_yards": {
+        "available": 10,
+        "total": 11,
+        "pct": 90.9
+      },
+      "receiving_tds": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "offensive_snaps": {
+        "available": 10,
+        "total": 11,
+        "pct": 90.9
+      },
+      "routes_run": {
+        "available": 0,
+        "total": 11,
+        "pct": 0.0
+      },
+      "team_dropbacks": {
+        "available": 0,
+        "total": 11,
+        "pct": 0.0
+      },
+      "first_read_targets": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "team_first_read_targets": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "end_zone_targets": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "team_end_zone_targets": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      }
+    },
+    "10|MIA": {
+      "targets": {
+        "available": 12,
+        "total": 12,
+        "pct": 100.0
+      },
+      "team_targets": {
+        "available": 12,
+        "total": 12,
+        "pct": 100.0
+      },
+      "receptions": {
+        "available": 12,
+        "total": 12,
+        "pct": 100.0
+      },
+      "receiving_yards": {
+        "available": 11,
+        "total": 12,
+        "pct": 91.7
+      },
+      "receiving_tds": {
+        "available": 12,
+        "total": 12,
+        "pct": 100.0
+      },
+      "offensive_snaps": {
+        "available": 12,
+        "total": 12,
+        "pct": 100.0
+      },
+      "routes_run": {
+        "available": 0,
+        "total": 12,
+        "pct": 0.0
+      },
+      "team_dropbacks": {
+        "available": 0,
+        "total": 12,
+        "pct": 0.0
+      },
+      "first_read_targets": {
+        "available": 12,
+        "total": 12,
+        "pct": 100.0
+      },
+      "team_first_read_targets": {
+        "available": 12,
+        "total": 12,
+        "pct": 100.0
+      },
+      "end_zone_targets": {
+        "available": 12,
+        "total": 12,
+        "pct": 100.0
+      },
+      "team_end_zone_targets": {
+        "available": 12,
+        "total": 12,
+        "pct": 100.0
+      }
+    },
+    "10|MIN": {
+      "targets": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "team_targets": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "receptions": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "receiving_yards": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "receiving_tds": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "offensive_snaps": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "routes_run": {
+        "available": 0,
+        "total": 10,
+        "pct": 0.0
+      },
+      "team_dropbacks": {
+        "available": 0,
+        "total": 10,
+        "pct": 0.0
+      },
+      "first_read_targets": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "team_first_read_targets": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "end_zone_targets": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "team_end_zone_targets": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      }
+    },
+    "10|NE": {
+      "targets": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "team_targets": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "receptions": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "receiving_yards": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "receiving_tds": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "offensive_snaps": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "routes_run": {
+        "available": 0,
+        "total": 11,
+        "pct": 0.0
+      },
+      "team_dropbacks": {
+        "available": 0,
+        "total": 11,
+        "pct": 0.0
+      },
+      "first_read_targets": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "team_first_read_targets": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "end_zone_targets": {
+        "available": 0,
+        "total": 11,
+        "pct": 0.0
+      },
+      "team_end_zone_targets": {
+        "available": 0,
+        "total": 11,
+        "pct": 0.0
+      }
+    },
+    "10|NO": {
+      "targets": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "team_targets": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "receptions": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "receiving_yards": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "receiving_tds": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "offensive_snaps": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "routes_run": {
+        "available": 0,
+        "total": 10,
+        "pct": 0.0
+      },
+      "team_dropbacks": {
+        "available": 0,
+        "total": 10,
+        "pct": 0.0
+      },
+      "first_read_targets": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "team_first_read_targets": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "end_zone_targets": {
+        "available": 0,
+        "total": 10,
+        "pct": 0.0
+      },
+      "team_end_zone_targets": {
+        "available": 0,
+        "total": 10,
+        "pct": 0.0
+      }
+    },
+    "10|NYG": {
+      "targets": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "team_targets": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "receptions": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "receiving_yards": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "receiving_tds": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "offensive_snaps": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "routes_run": {
+        "available": 0,
+        "total": 10,
+        "pct": 0.0
+      },
+      "team_dropbacks": {
+        "available": 0,
+        "total": 10,
+        "pct": 0.0
+      },
+      "first_read_targets": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "team_first_read_targets": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "end_zone_targets": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "team_end_zone_targets": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      }
+    },
+    "10|NYJ": {
+      "targets": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "team_targets": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "receptions": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "receiving_yards": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "receiving_tds": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "offensive_snaps": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "routes_run": {
+        "available": 0,
+        "total": 11,
+        "pct": 0.0
+      },
+      "team_dropbacks": {
+        "available": 0,
+        "total": 11,
+        "pct": 0.0
+      },
+      "first_read_targets": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "team_first_read_targets": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "end_zone_targets": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      },
+      "team_end_zone_targets": {
+        "available": 11,
+        "total": 11,
+        "pct": 100.0
+      }
+    },
+    "10|PIT": {
+      "targets": {
+        "available": 12,
+        "total": 12,
+        "pct": 100.0
+      },
+      "team_targets": {
+        "available": 12,
+        "total": 12,
+        "pct": 100.0
+      },
+      "receptions": {
+        "available": 12,
+        "total": 12,
+        "pct": 100.0
+      },
+      "receiving_yards": {
+        "available": 12,
+        "total": 12,
+        "pct": 100.0
+      },
+      "receiving_tds": {
+        "available": 12,
+        "total": 12,
+        "pct": 100.0
+      },
+      "offensive_snaps": {
+        "available": 12,
+        "total": 12,
+        "pct": 100.0
+      },
+      "routes_run": {
+        "available": 0,
+        "total": 12,
+        "pct": 0.0
+      },
+      "team_dropbacks": {
+        "available": 0,
+        "total": 12,
+        "pct": 0.0
+      },
+      "first_read_targets": {
+        "available": 12,
+        "total": 12,
+        "pct": 100.0
+      },
+      "team_first_read_targets": {
+        "available": 12,
+        "total": 12,
+        "pct": 100.0
+      },
+      "end_zone_targets": {
+        "available": 12,
+        "total": 12,
+        "pct": 100.0
+      },
+      "team_end_zone_targets": {
+        "available": 12,
+        "total": 12,
+        "pct": 100.0
+      }
+    },
+    "10|SEA": {
+      "targets": {
+        "available": 7,
+        "total": 7,
+        "pct": 100.0
+      },
+      "team_targets": {
+        "available": 7,
+        "total": 7,
+        "pct": 100.0
+      },
+      "receptions": {
+        "available": 7,
+        "total": 7,
+        "pct": 100.0
+      },
+      "receiving_yards": {
+        "available": 7,
+        "total": 7,
+        "pct": 100.0
+      },
+      "receiving_tds": {
+        "available": 7,
+        "total": 7,
+        "pct": 100.0
+      },
+      "offensive_snaps": {
+        "available": 7,
+        "total": 7,
+        "pct": 100.0
+      },
+      "routes_run": {
+        "available": 0,
+        "total": 7,
+        "pct": 0.0
+      },
+      "team_dropbacks": {
+        "available": 0,
+        "total": 7,
+        "pct": 0.0
+      },
+      "first_read_targets": {
+        "available": 7,
+        "total": 7,
+        "pct": 100.0
+      },
+      "team_first_read_targets": {
+        "available": 7,
+        "total": 7,
+        "pct": 100.0
+      },
+      "end_zone_targets": {
+        "available": 7,
+        "total": 7,
+        "pct": 100.0
+      },
+      "team_end_zone_targets": {
+        "available": 7,
+        "total": 7,
+        "pct": 100.0
+      }
+    },
+    "10|SF": {
+      "targets": {
+        "available": 9,
+        "total": 9,
+        "pct": 100.0
+      },
+      "team_targets": {
+        "available": 9,
+        "total": 9,
+        "pct": 100.0
+      },
+      "receptions": {
+        "available": 9,
+        "total": 9,
+        "pct": 100.0
+      },
+      "receiving_yards": {
+        "available": 9,
+        "total": 9,
+        "pct": 100.0
+      },
+      "receiving_tds": {
+        "available": 9,
+        "total": 9,
+        "pct": 100.0
+      },
+      "offensive_snaps": {
+        "available": 9,
+        "total": 9,
+        "pct": 100.0
+      },
+      "routes_run": {
+        "available": 0,
+        "total": 9,
+        "pct": 0.0
+      },
+      "team_dropbacks": {
+        "available": 0,
+        "total": 9,
+        "pct": 0.0
+      },
+      "first_read_targets": {
+        "available": 9,
+        "total": 9,
+        "pct": 100.0
+      },
+      "team_first_read_targets": {
+        "available": 9,
+        "total": 9,
+        "pct": 100.0
+      },
+      "end_zone_targets": {
+        "available": 0,
+        "total": 9,
+        "pct": 0.0
+      },
+      "team_end_zone_targets": {
+        "available": 0,
+        "total": 9,
+        "pct": 0.0
+      }
+    },
+    "10|TEN": {
+      "targets": {
+        "available": 8,
+        "total": 8,
+        "pct": 100.0
+      },
+      "team_targets": {
+        "available": 8,
+        "total": 8,
+        "pct": 100.0
+      },
+      "receptions": {
+        "available": 8,
+        "total": 8,
+        "pct": 100.0
+      },
+      "receiving_yards": {
+        "available": 8,
+        "total": 8,
+        "pct": 100.0
+      },
+      "receiving_tds": {
+        "available": 8,
+        "total": 8,
+        "pct": 100.0
+      },
+      "offensive_snaps": {
+        "available": 8,
+        "total": 8,
+        "pct": 100.0
+      },
+      "routes_run": {
+        "available": 0,
+        "total": 8,
+        "pct": 0.0
+      },
+      "team_dropbacks": {
+        "available": 0,
+        "total": 8,
+        "pct": 0.0
+      },
+      "first_read_targets": {
+        "available": 8,
+        "total": 8,
+        "pct": 100.0
+      },
+      "team_first_read_targets": {
+        "available": 8,
+        "total": 8,
+        "pct": 100.0
+      },
+      "end_zone_targets": {
+        "available": 0,
+        "total": 8,
+        "pct": 0.0
+      },
+      "team_end_zone_targets": {
+        "available": 0,
+        "total": 8,
+        "pct": 0.0
+      }
+    },
+    "10|WAS": {
+      "targets": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "team_targets": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "receptions": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "receiving_yards": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "receiving_tds": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "offensive_snaps": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "routes_run": {
+        "available": 0,
+        "total": 10,
+        "pct": 0.0
+      },
+      "team_dropbacks": {
+        "available": 0,
+        "total": 10,
+        "pct": 0.0
+      },
+      "first_read_targets": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "team_first_read_targets": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "end_zone_targets": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      },
+      "team_end_zone_targets": {
+        "available": 10,
+        "total": 10,
+        "pct": 100.0
+      }
+    },
     "1|ARI": {
       "targets": {
         "available": 9,
