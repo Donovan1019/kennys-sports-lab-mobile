@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "source": "cito-pfl",
-  "retrievedAt": "2026-11-19T23:04:57.921Z",
+  "retrievedAt": "2026-11-20T12:58:27.445Z",
   "dataScope": "event cards, bout results and fighter identities only; no strike statistics or verified odds",
   "coverageWarning": "API plan history windows may limit completeness",
   "events": [
@@ -154,34 +154,6 @@
           "source": "cito-pfl"
         },
         {
-          "id": "pfl-401931775",
-          "eventId": "",
-          "status": "scheduled",
-          "scheduledRounds": 3,
-          "weightClass": "Light Heavyweight",
-          "method": null,
-          "resultRound": null,
-          "resultTime": null,
-          "winnerFighterSlug": null,
-          "fighters": [
-            {
-              "slug": "bafode-gassama",
-              "name": "Bafode Gassama",
-              "ufcSlug": null,
-              "corner": "red"
-            },
-            {
-              "slug": "coby-bradford",
-              "name": "Coby Bradford",
-              "ufcSlug": null,
-              "corner": "blue"
-            }
-          ],
-          "officialStats": false,
-          "strikeStats": null,
-          "source": "cito-pfl"
-        },
-        {
           "id": "pfl-401914116",
           "eventId": "",
           "status": "scheduled",
@@ -210,53 +182,25 @@
           "source": "cito-pfl"
         },
         {
-          "id": "pfl-401929424",
+          "id": "pfl-401931775",
           "eventId": "",
           "status": "scheduled",
           "scheduledRounds": 3,
-          "weightClass": "Featherweight",
+          "weightClass": "Light Heavyweight",
           "method": null,
           "resultRound": null,
           "resultTime": null,
           "winnerFighterSlug": null,
           "fighters": [
             {
-              "slug": "brandon-brachet",
-              "name": "Brandon Brachet",
+              "slug": "bafode-gassama",
+              "name": "Bafode Gassama",
               "ufcSlug": null,
               "corner": "red"
             },
             {
-              "slug": "adam-meskini",
-              "name": "Adam Meskini",
-              "ufcSlug": null,
-              "corner": "blue"
-            }
-          ],
-          "officialStats": false,
-          "strikeStats": null,
-          "source": "cito-pfl"
-        },
-        {
-          "id": "pfl-401931803",
-          "eventId": "",
-          "status": "scheduled",
-          "scheduledRounds": 3,
-          "weightClass": "Women's Strawweight",
-          "method": null,
-          "resultRound": null,
-          "resultTime": null,
-          "winnerFighterSlug": null,
-          "fighters": [
-            {
-              "slug": "mathilde-aschenbrenner",
-              "name": "Mathilde Aschenbrenner",
-              "ufcSlug": null,
-              "corner": "red"
-            },
-            {
-              "slug": "shelda-chipito",
-              "name": "Shelda Chipito",
+              "slug": "coby-bradford",
+              "name": "Coby Bradford",
               "ufcSlug": null,
               "corner": "blue"
             }
@@ -322,6 +266,34 @@
           "source": "cito-pfl"
         },
         {
+          "id": "pfl-401929424",
+          "eventId": "",
+          "status": "scheduled",
+          "scheduledRounds": 3,
+          "weightClass": "Featherweight",
+          "method": null,
+          "resultRound": null,
+          "resultTime": null,
+          "winnerFighterSlug": null,
+          "fighters": [
+            {
+              "slug": "brandon-brachet",
+              "name": "Brandon Brachet",
+              "ufcSlug": null,
+              "corner": "red"
+            },
+            {
+              "slug": "adam-meskini",
+              "name": "Adam Meskini",
+              "ufcSlug": null,
+              "corner": "blue"
+            }
+          ],
+          "officialStats": false,
+          "strikeStats": null,
+          "source": "cito-pfl"
+        },
+        {
           "id": "pfl-401935638",
           "eventId": "",
           "status": "scheduled",
@@ -369,6 +341,34 @@
             {
               "slug": "stiven-shehu",
               "name": "Stiven Shehu",
+              "ufcSlug": null,
+              "corner": "blue"
+            }
+          ],
+          "officialStats": false,
+          "strikeStats": null,
+          "source": "cito-pfl"
+        },
+        {
+          "id": "pfl-401931803",
+          "eventId": "",
+          "status": "scheduled",
+          "scheduledRounds": 3,
+          "weightClass": "Women's Strawweight",
+          "method": null,
+          "resultRound": null,
+          "resultTime": null,
+          "winnerFighterSlug": null,
+          "fighters": [
+            {
+              "slug": "mathilde-aschenbrenner",
+              "name": "Mathilde Aschenbrenner",
+              "ufcSlug": null,
+              "corner": "red"
+            },
+            {
+              "slug": "shelda-chipito",
+              "name": "Shelda Chipito",
               "ufcSlug": null,
               "corner": "blue"
             }
