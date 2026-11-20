@@ -1,5 +1,9 @@
 name: Refresh public odds snapshot
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/fetch_sportsgameodds.py'
   schedule:
     - cron: '10 11 * * *' # NCAAB
     - cron: '10 14 * * *' # NFL
@@ -41,7 +45,7 @@ jobs:
   refresh:
     runs-on: ubuntu-latest
     env:
-      ODDS_SPORT: ${{ inputs.sport || (github.event.schedule == '10 11 * * *' && 'basketball_ncaab') || (github.event.schedule == '10 14 * * *' && 'americanfootball_nfl') || (github.event.schedule == '10 17 * * *' && 'icehockey_nhl') || (github.event.schedule == '10 20 * * *' && 'basketball_nba') || (github.event.schedule == '15 15 * * 5,6' && 'mma_mixed_martial_arts') || 'americanfootball_nfl' }}
+      ODDS_SPORT: ${{ inputs.sport || (github.event.schedule == '10 11 * * *' && 'basketball_ncaab') || (github.event.schedule == '10 14 * * *' && 'americanfootball_nfl') || (github.event.schedule == '10 17 * * *' && 'icehockey_nhl') || (github.event.schedule == '10 20 * * *' && 'basketball_nba') || (github.event.schedule == '15 15 * * 5,6' && 'mma_mixed_martial_arts') || (github.event_name == 'push' && 'mma_mixed_martial_arts') || 'americanfootball_nfl' }}
       ODDS_MARKETS: ${{ inputs.markets || 'h2h' }}
       ODDS_API_ENABLED: ${{ vars.ODDS_API_ENABLED || 'false' }}
       ATTEMPT_ODDS: ${{ inputs.attempt_odds || false }}
