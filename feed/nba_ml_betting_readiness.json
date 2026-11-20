@@ -1,6 +1,6 @@
 {
   "status": "not_bet_eligible",
-  "checked_at": "2026-11-20T03:16:11.728848+00:00",
+  "checked_at": "2026-11-20T12:54:10.165185+00:00",
   "checks": {
     "odds_fresh": true,
     "model_fresh_and_calibrated": true,
@@ -14,15 +14,15 @@
   },
   "research_warning": {
     "status": "RESEARCH_ONLY",
-    "paper_roi": -0.07559,
-    "paper_selected_events": 120,
+    "paper_roi": -0.098136,
+    "paper_selected_events": 123,
     "reason": "Retrospective paper returns are not executed bets or a validated forward test; investigate negative performance before certification."
   },
   "historical_selection_diagnostic": {
     "status": "RESEARCH_ONLY",
-    "selected_games": 120,
-    "paper_roi": -0.07559,
-    "joined_selection_rows": 536,
+    "selected_games": 123,
+    "paper_roi": -0.098136,
+    "joined_selection_rows": 548,
     "near_tipoff_paired_rows": 68,
     "selection_policy": "one highest model-minus-implied edge per event from earliest valid archived pregame quote (up to 7 days), deterministic book/selection tie break; descriptive hindsight analysis, not precommitted or executed",
     "warning": "Retrospective selection at reference quotes is not an executable or independently precommitted betting backtest.",
