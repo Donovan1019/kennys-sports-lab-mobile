@@ -61,7 +61,7 @@ jobs:
             echo "Odds API disabled to conserve credits; rebuilding decision feed from available data"
           fi
       - name: Fetch SportsGameOdds DK/FD snapshot
-        if: env.ODDS_SPORT != 'mma_mixed_martial_arts' # Current SportsGameOdds adapter supports team leagues only
+        if: always() # SportsGameOdds supports UFC and team sports; independent of quota-limited fallback
         id: sgo
         env:
           SPORTSGAMEODDS_API_KEY: ${{ secrets.SPORTSGAMEODDS_API_KEY }}
