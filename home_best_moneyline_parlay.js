@@ -5,6 +5,7 @@ const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const decimal=o=>o>0?1+o/100:1+100/(-o);
 const american=d=>d>=2?'+'+Math.round((d-1)*100):'-'+Math.round(100/(d-1));
 const age=t=>Date.now()-Date.parse(t);
+const fresh=t=>Number.isFinite(Date.parse(t))&&age(t)>=0&&age(t)<=6*3600000;
 const etDate=t=>new Intl.DateTimeFormat('en-CA',{timeZone:'America/New_York',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(t));
 const todayET=()=>etDate(Date.now());
 const todayGame=r=>Number.isFinite(Date.parse(r.start_time))&&Date.parse(r.start_time)>Date.now()&&etDate(r.start_time)===todayET();
@@ -45,15 +46,16 @@ async function pipelineDiagnostics(){
    reasons.set(reason,(reasons.get(reason)||0)+1);
   }
   const top=[...reasons.entries()].sort((a,b)=>b[1]-a[1]).slice(0,3).map(([reason,count])=>count+' '+reason).join('; ');
-  return games.size+' games / '+all.length+' quotes on today’s slate ('+(leagues||'none')+'). '+(top||'No independent model projections for today')+'. Research comparisons are not betting-certified.';
+  return 'Model snapshot '+new Date(stamp).toLocaleTimeString('en-US',{timeZone:'America/New_York',hour:'numeric',minute:'2-digit'})+' ET · '+games.size+' games / '+all.length+' quotes on today’s slate ('+(leagues||'none')+'). '+(top||'No independent model projections for today')+'. Research comparisons are not betting-certified.';
  }catch{return 'Independent projection diagnostics unavailable'}
 }
 async function refresh(){
  button.disabled=true;status.textContent='Today · '+todayET()+' ET · loading verified Kenny’s model feed…';ticket.replaceChildren();
  try{const response=await fetch('./data/market_edges.json?ts='+Date.now(),{cache:'no-store'});if(!response.ok)throw Error('Verified feed unavailable');const payload=await response.json(),rows=Array.isArray(payload)?payload:payload.edges;
+ if(!Array.isArray(payload)&&!fresh(payload.generated_at))throw Error('Verified market feed is stale or has an invalid generation timestamp');
  if(!Array.isArray(rows))throw Error('Invalid verified market feed');
  const eligible=rows.filter(verified),pick=best(eligible);
- if(!pick){status.textContent='TODAY '+todayET()+' ET · NO VERIFIED PARLAY — '+esc(payload.reason||'No qualifying +100 moneyline combination for today with independently validated projections, lineups and prices')+'.';ticket.innerHTML='<p class="kml-note">'+esc(await pipelineDiagnostics())+'</p>';return}
+ if(!pick){status.textContent='TODAY '+todayET()+' ET · NO VERIFIED PARLAY — '+esc(payload.reason||'No qualifying +100 moneyline combination for today with independently validated projections, lineups and prices')+'.';ticket.innerHTML='<p class="kml-note">Verified market feed updated '+esc(new Date(payload.generated_at).toLocaleTimeString('en-US',{timeZone:'America/New_York',hour:'numeric',minute:'2-digit'}))+' ET. '+esc(await pipelineDiagnostics())+'</p>';return}
  const mc=simulate(pick.legs),simEV=mc.p*pick.d-1;
  status.textContent='TODAY '+todayET()+' ET · COMPLETE · '+mc.n.toLocaleString()+' Monte Carlo trials · '+pick.legs.length+' verified legs';
  ticket.innerHTML='<div class="kml-summary"><strong>'+american(pick.d)+'</strong><span>Simulated win '+(mc.p*100).toFixed(1)+'%</span><span>Model fair '+american(1/pick.p)+'</span><span>Simulated EV '+(simEV*100).toFixed(1)+'%</span></div>'+
