@@ -21042,8 +21042,818 @@
       "status": "finalized",
       "close_time": "2026-11-19T21:37:24Z",
       "source": "Kalshi public settled market API"
+    },
+    "KXNBAGAME-26NOV19LACSAS-SAS": {
+      "ticker": "KXNBAGAME-26NOV19LACSAS-SAS",
+      "event_ticker": "KXNBAGAME-26NOV19LACSAS",
+      "title": "San Antonio wins",
+      "result": "yes",
+      "status": "finalized",
+      "close_time": "2026-11-20T03:31:11Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNBAGAME-26NOV19LACSAS-LAC": {
+      "ticker": "KXNBAGAME-26NOV19LACSAS-LAC",
+      "event_ticker": "KXNBAGAME-26NOV19LACSAS",
+      "title": "Los Angeles C wins",
+      "result": "no",
+      "status": "finalized",
+      "close_time": "2026-11-20T03:31:11Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNBAGAME-26NOV19PORMIL-POR": {
+      "ticker": "KXNBAGAME-26NOV19PORMIL-POR",
+      "event_ticker": "KXNBAGAME-26NOV19PORMIL",
+      "title": "Portland wins",
+      "result": "yes",
+      "status": "finalized",
+      "close_time": "2026-11-20T03:31:11Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNBAGAME-26NOV19PORMIL-MIL": {
+      "ticker": "KXNBAGAME-26NOV19PORMIL-MIL",
+      "event_ticker": "KXNBAGAME-26NOV19PORMIL",
+      "title": "Milwaukee wins",
+      "result": "no",
+      "status": "finalized",
+      "close_time": "2026-11-20T03:31:11Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNBAGAME-26NOV19GSWMEM-MEM": {
+      "ticker": "KXNBAGAME-26NOV19GSWMEM-MEM",
+      "event_ticker": "KXNBAGAME-26NOV19GSWMEM",
+      "title": "Memphis wins",
+      "result": "yes",
+      "status": "finalized",
+      "close_time": "2026-11-20T03:27:56Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNBAGAME-26NOV19GSWMEM-GSW": {
+      "ticker": "KXNBAGAME-26NOV19GSWMEM-GSW",
+      "event_ticker": "KXNBAGAME-26NOV19GSWMEM",
+      "title": "Golden State wins",
+      "result": "no",
+      "status": "finalized",
+      "close_time": "2026-11-20T03:27:56Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNBAGAME-26NOV19NYKMIN-NYK": {
+      "ticker": "KXNBAGAME-26NOV19NYKMIN-NYK",
+      "event_ticker": "KXNBAGAME-26NOV19NYKMIN",
+      "title": "New York wins",
+      "result": "yes",
+      "status": "finalized",
+      "close_time": "2026-11-20T03:21:56Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNBAGAME-26NOV19NYKMIN-MIN": {
+      "ticker": "KXNBAGAME-26NOV19NYKMIN-MIN",
+      "event_ticker": "KXNBAGAME-26NOV19NYKMIN",
+      "title": "Minnesota wins",
+      "result": "no",
+      "status": "finalized",
+      "close_time": "2026-11-20T03:21:56Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNFLGAME-26NOV19INDHOU-IND": {
+      "ticker": "KXNFLGAME-26NOV19INDHOU-IND",
+      "event_ticker": "KXNFLGAME-26NOV19INDHOU",
+      "title": "Indianapolis wins",
+      "result": "no",
+      "status": "finalized",
+      "close_time": "2026-11-20T04:07:25Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNFLGAME-26NOV19INDHOU-HOU": {
+      "ticker": "KXNFLGAME-26NOV19INDHOU-HOU",
+      "event_ticker": "KXNFLGAME-26NOV19INDHOU",
+      "title": "Houston wins",
+      "result": "yes",
+      "status": "finalized",
+      "close_time": "2026-11-20T04:07:25Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNHLGAME-26NOV19DALVGK-VGK": {
+      "ticker": "KXNHLGAME-26NOV19DALVGK-VGK",
+      "event_ticker": "KXNHLGAME-26NOV19DALVGK",
+      "title": "Vegas wins",
+      "result": "no",
+      "status": "finalized",
+      "close_time": "2026-11-20T05:51:42Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNHLGAME-26NOV19DALVGK-DAL": {
+      "ticker": "KXNHLGAME-26NOV19DALVGK-DAL",
+      "event_ticker": "KXNHLGAME-26NOV19DALVGK",
+      "title": "Dallas wins",
+      "result": "yes",
+      "status": "finalized",
+      "close_time": "2026-11-20T05:51:42Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNHLGAME-26NOV19VANSEA-VAN": {
+      "ticker": "KXNHLGAME-26NOV19VANSEA-VAN",
+      "event_ticker": "KXNHLGAME-26NOV19VANSEA",
+      "title": "Vancouver wins",
+      "result": "no",
+      "status": "finalized",
+      "close_time": "2026-11-20T05:29:47Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNHLGAME-26NOV19VANSEA-SEA": {
+      "ticker": "KXNHLGAME-26NOV19VANSEA-SEA",
+      "event_ticker": "KXNHLGAME-26NOV19VANSEA",
+      "title": "Seattle wins",
+      "result": "yes",
+      "status": "finalized",
+      "close_time": "2026-11-20T05:29:47Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNHLGAME-26NOV19ANACOL-COL": {
+      "ticker": "KXNHLGAME-26NOV19ANACOL-COL",
+      "event_ticker": "KXNHLGAME-26NOV19ANACOL",
+      "title": "Colorado wins",
+      "result": "yes",
+      "status": "finalized",
+      "close_time": "2026-11-20T04:35:34Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNHLGAME-26NOV19ANACOL-ANA": {
+      "ticker": "KXNHLGAME-26NOV19ANACOL-ANA",
+      "event_ticker": "KXNHLGAME-26NOV19ANACOL",
+      "title": "Anaheim wins",
+      "result": "no",
+      "status": "finalized",
+      "close_time": "2026-11-20T04:35:34Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNHLGAME-26NOV19MINCGY-MIN": {
+      "ticker": "KXNHLGAME-26NOV19MINCGY-MIN",
+      "event_ticker": "KXNHLGAME-26NOV19MINCGY",
+      "title": "Minnesota wins",
+      "result": "yes",
+      "status": "finalized",
+      "close_time": "2026-11-20T03:41:21Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNHLGAME-26NOV19MINCGY-CGY": {
+      "ticker": "KXNHLGAME-26NOV19MINCGY-CGY",
+      "event_ticker": "KXNHLGAME-26NOV19MINCGY",
+      "title": "Calgary wins",
+      "result": "no",
+      "status": "finalized",
+      "close_time": "2026-11-20T03:41:21Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNHLGAME-26NOV19NYIWPG-WPG": {
+      "ticker": "KXNHLGAME-26NOV19NYIWPG-WPG",
+      "event_ticker": "KXNHLGAME-26NOV19NYIWPG",
+      "title": "Winnipeg wins",
+      "result": "yes",
+      "status": "finalized",
+      "close_time": "2026-11-20T02:37:19Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNHLGAME-26NOV19NYIWPG-NYI": {
+      "ticker": "KXNHLGAME-26NOV19NYIWPG-NYI",
+      "event_ticker": "KXNHLGAME-26NOV19NYIWPG",
+      "title": "New York I wins",
+      "result": "no",
+      "status": "finalized",
+      "close_time": "2026-11-20T02:37:19Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNHLGAME-26NOV19CBJCHI-CHI": {
+      "ticker": "KXNHLGAME-26NOV19CBJCHI-CHI",
+      "event_ticker": "KXNHLGAME-26NOV19CBJCHI",
+      "title": "Chicago wins",
+      "result": "no",
+      "status": "finalized",
+      "close_time": "2026-11-20T03:33:46Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNHLGAME-26NOV19CBJCHI-CBJ": {
+      "ticker": "KXNHLGAME-26NOV19CBJCHI-CBJ",
+      "event_ticker": "KXNHLGAME-26NOV19CBJCHI",
+      "title": "Columbus wins",
+      "result": "yes",
+      "status": "finalized",
+      "close_time": "2026-11-20T03:33:46Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNHLGAME-26NOV19BUFWSH-WSH": {
+      "ticker": "KXNHLGAME-26NOV19BUFWSH-WSH",
+      "event_ticker": "KXNHLGAME-26NOV19BUFWSH",
+      "title": "Washington wins",
+      "result": "no",
+      "status": "finalized",
+      "close_time": "2026-11-20T02:47:22Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNHLGAME-26NOV19BUFWSH-BUF": {
+      "ticker": "KXNHLGAME-26NOV19BUFWSH-BUF",
+      "event_ticker": "KXNHLGAME-26NOV19BUFWSH",
+      "title": "Buffalo wins",
+      "result": "yes",
+      "status": "finalized",
+      "close_time": "2026-11-20T02:47:22Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNHLGAME-26NOV19MTLCAR-MTL": {
+      "ticker": "KXNHLGAME-26NOV19MTLCAR-MTL",
+      "event_ticker": "KXNHLGAME-26NOV19MTLCAR",
+      "title": "Montreal wins",
+      "result": "yes",
+      "status": "finalized",
+      "close_time": "2026-11-20T02:45:22Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNHLGAME-26NOV19MTLCAR-CAR": {
+      "ticker": "KXNHLGAME-26NOV19MTLCAR-CAR",
+      "event_ticker": "KXNHLGAME-26NOV19MTLCAR",
+      "title": "Carolina wins",
+      "result": "no",
+      "status": "finalized",
+      "close_time": "2026-11-20T02:45:22Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNHLGAME-26NOV19STLPIT-STL": {
+      "ticker": "KXNHLGAME-26NOV19STLPIT-STL",
+      "event_ticker": "KXNHLGAME-26NOV19STLPIT",
+      "title": "St. Louis wins",
+      "result": "yes",
+      "status": "finalized",
+      "close_time": "2026-11-20T02:43:22Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNHLGAME-26NOV19STLPIT-PIT": {
+      "ticker": "KXNHLGAME-26NOV19STLPIT-PIT",
+      "event_ticker": "KXNHLGAME-26NOV19STLPIT",
+      "title": "Pittsburgh wins",
+      "result": "no",
+      "status": "finalized",
+      "close_time": "2026-11-20T02:43:22Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNHLGAME-26NOV19PHIOTT-PHI": {
+      "ticker": "KXNHLGAME-26NOV19PHIOTT-PHI",
+      "event_ticker": "KXNHLGAME-26NOV19PHIOTT",
+      "title": "Philadelphia wins",
+      "result": "yes",
+      "status": "finalized",
+      "close_time": "2026-11-20T02:47:23Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNHLGAME-26NOV19PHIOTT-OTT": {
+      "ticker": "KXNHLGAME-26NOV19PHIOTT-OTT",
+      "event_ticker": "KXNHLGAME-26NOV19PHIOTT",
+      "title": "Ottawa wins",
+      "result": "no",
+      "status": "finalized",
+      "close_time": "2026-11-20T02:47:23Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNHLGAME-26NOV19LATOR-TOR": {
+      "ticker": "KXNHLGAME-26NOV19LATOR-TOR",
+      "event_ticker": "KXNHLGAME-26NOV19LATOR",
+      "title": "Toronto wins",
+      "result": "no",
+      "status": "finalized",
+      "close_time": "2026-11-20T02:57:24Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNHLGAME-26NOV19LATOR-LA": {
+      "ticker": "KXNHLGAME-26NOV19LATOR-LA",
+      "event_ticker": "KXNHLGAME-26NOV19LATOR",
+      "title": "Los Angeles wins",
+      "result": "yes",
+      "status": "finalized",
+      "close_time": "2026-11-20T02:57:24Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNHLGAME-26NOV19EDMTB-TB": {
+      "ticker": "KXNHLGAME-26NOV19EDMTB-TB",
+      "event_ticker": "KXNHLGAME-26NOV19EDMTB",
+      "title": "Tampa Bay wins",
+      "result": "yes",
+      "status": "finalized",
+      "close_time": "2026-11-20T03:03:25Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNHLGAME-26NOV19EDMTB-EDM": {
+      "ticker": "KXNHLGAME-26NOV19EDMTB-EDM",
+      "event_ticker": "KXNHLGAME-26NOV19EDMTB",
+      "title": "Edmonton wins",
+      "result": "no",
+      "status": "finalized",
+      "close_time": "2026-11-20T03:03:25Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19UTEPNMSU-UTEP": {
+      "ticker": "KXNCAAMBGAME-26NOV19UTEPNMSU-UTEP",
+      "event_ticker": "KXNCAAMBGAME-26NOV19UTEPNMSU",
+      "title": "UTEP wins",
+      "result": "yes",
+      "status": "finalized",
+      "close_time": "2026-11-20T04:29:37Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19UTEPNMSU-NMSU": {
+      "ticker": "KXNCAAMBGAME-26NOV19UTEPNMSU-NMSU",
+      "event_ticker": "KXNCAAMBGAME-26NOV19UTEPNMSU",
+      "title": "New Mexico St. wins",
+      "result": "no",
+      "status": "finalized",
+      "close_time": "2026-11-20T04:29:37Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19RUTGUNLV-UNLV": {
+      "ticker": "KXNCAAMBGAME-26NOV19RUTGUNLV-UNLV",
+      "event_ticker": "KXNCAAMBGAME-26NOV19RUTGUNLV",
+      "title": "UNLV wins",
+      "result": "no",
+      "status": "finalized",
+      "close_time": "2026-11-20T03:41:23Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19RUTGUNLV-RUTG": {
+      "ticker": "KXNCAAMBGAME-26NOV19RUTGUNLV-RUTG",
+      "event_ticker": "KXNCAAMBGAME-26NOV19RUTGUNLV",
+      "title": "Rutgers wins",
+      "result": "yes",
+      "status": "finalized",
+      "close_time": "2026-11-20T03:41:23Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19NDAUB-ND": {
+      "ticker": "KXNCAAMBGAME-26NOV19NDAUB-ND",
+      "event_ticker": "KXNCAAMBGAME-26NOV19NDAUB",
+      "title": "Notre Dame wins",
+      "result": "yes",
+      "status": "finalized",
+      "close_time": "2026-11-20T00:27:29Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19NDAUB-AUB": {
+      "ticker": "KXNCAAMBGAME-26NOV19NDAUB-AUB",
+      "event_ticker": "KXNCAAMBGAME-26NOV19NDAUB",
+      "title": "Auburn wins",
+      "result": "no",
+      "status": "finalized",
+      "close_time": "2026-11-20T00:27:29Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19HOUKU-KU": {
+      "ticker": "KXNCAAMBGAME-26NOV19HOUKU-KU",
+      "event_ticker": "KXNCAAMBGAME-26NOV19HOUKU",
+      "title": "Kansas wins",
+      "result": "no",
+      "status": "finalized",
+      "close_time": "2026-11-20T06:35:19Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19HOUKU-HOU": {
+      "ticker": "KXNCAAMBGAME-26NOV19HOUKU-HOU",
+      "event_ticker": "KXNCAAMBGAME-26NOV19HOUKU",
+      "title": "Houston wins",
+      "result": "yes",
+      "status": "finalized",
+      "close_time": "2026-11-20T06:35:19Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19TARLUSC-USC": {
+      "ticker": "KXNCAAMBGAME-26NOV19TARLUSC-USC",
+      "event_ticker": "KXNCAAMBGAME-26NOV19TARLUSC",
+      "title": "USC wins",
+      "result": "yes",
+      "status": "finalized",
+      "close_time": "2026-11-20T06:07:22Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19TARLUSC-TARL": {
+      "ticker": "KXNCAAMBGAME-26NOV19TARLUSC-TARL",
+      "event_ticker": "KXNCAAMBGAME-26NOV19TARLUSC",
+      "title": "Tarleton St. wins",
+      "result": "no",
+      "status": "finalized",
+      "close_time": "2026-11-20T06:07:22Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19VCUSCU-VCU": {
+      "ticker": "KXNCAAMBGAME-26NOV19VCUSCU-VCU",
+      "event_ticker": "KXNCAAMBGAME-26NOV19VCUSCU",
+      "title": "VCU wins",
+      "result": "yes",
+      "status": "finalized",
+      "close_time": "2026-11-20T06:07:21Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19VCUSCU-SCU": {
+      "ticker": "KXNCAAMBGAME-26NOV19VCUSCU-SCU",
+      "event_ticker": "KXNCAAMBGAME-26NOV19VCUSCU",
+      "title": "Santa Clara wins",
+      "result": "no",
+      "status": "finalized",
+      "close_time": "2026-11-20T06:07:21Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19ETAMCAL-ETAM": {
+      "ticker": "KXNCAAMBGAME-26NOV19ETAMCAL-ETAM",
+      "event_ticker": "KXNCAAMBGAME-26NOV19ETAMCAL",
+      "title": "East Texas A&M wins",
+      "result": "no",
+      "status": "finalized",
+      "close_time": "2026-11-20T04:55:30Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19ETAMCAL-CAL": {
+      "ticker": "KXNCAAMBGAME-26NOV19ETAMCAL-CAL",
+      "event_ticker": "KXNCAAMBGAME-26NOV19ETAMCAL",
+      "title": "California wins",
+      "result": "yes",
+      "status": "finalized",
+      "close_time": "2026-11-20T04:55:30Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19SACSTAN-STAN": {
+      "ticker": "KXNCAAMBGAME-26NOV19SACSTAN-STAN",
+      "event_ticker": "KXNCAAMBGAME-26NOV19SACSTAN",
+      "title": "Stanford wins",
+      "result": "yes",
+      "status": "finalized",
+      "close_time": "2026-11-20T05:01:26Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19SACSTAN-SAC": {
+      "ticker": "KXNCAAMBGAME-26NOV19SACSTAN-SAC",
+      "event_ticker": "KXNCAAMBGAME-26NOV19SACSTAN",
+      "title": "Sacramento St. wins",
+      "result": "no",
+      "status": "finalized",
+      "close_time": "2026-11-20T05:01:26Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19UCSBPEPP-UCSB": {
+      "ticker": "KXNCAAMBGAME-26NOV19UCSBPEPP-UCSB",
+      "event_ticker": "KXNCAAMBGAME-26NOV19UCSBPEPP",
+      "title": "UC Santa Barbara wins",
+      "result": "yes",
+      "status": "finalized",
+      "close_time": "2026-11-20T04:31:28Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19UCSBPEPP-PEPP": {
+      "ticker": "KXNCAAMBGAME-26NOV19UCSBPEPP-PEPP",
+      "event_ticker": "KXNCAAMBGAME-26NOV19UCSBPEPP",
+      "title": "Pepperdine wins",
+      "result": "no",
+      "status": "finalized",
+      "close_time": "2026-11-20T04:31:28Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19UTUWASH-WASH": {
+      "ticker": "KXNCAAMBGAME-26NOV19UTUWASH-WASH",
+      "event_ticker": "KXNCAAMBGAME-26NOV19UTUWASH",
+      "title": "Washington wins",
+      "result": "yes",
+      "status": "finalized",
+      "close_time": "2026-11-20T03:57:22Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19UTUWASH-UTU": {
+      "ticker": "KXNCAAMBGAME-26NOV19UTUWASH-UTU",
+      "event_ticker": "KXNCAAMBGAME-26NOV19UTUWASH",
+      "title": "Utah Tech wins",
+      "result": "no",
+      "status": "finalized",
+      "close_time": "2026-11-20T03:57:22Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19OREORST-ORST": {
+      "ticker": "KXNCAAMBGAME-26NOV19OREORST-ORST",
+      "event_ticker": "KXNCAAMBGAME-26NOV19OREORST",
+      "title": "Oregon St. wins",
+      "result": "yes",
+      "status": "finalized",
+      "close_time": "2026-11-20T04:11:21Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19OREORST-ORE": {
+      "ticker": "KXNCAAMBGAME-26NOV19OREORST-ORE",
+      "event_ticker": "KXNCAAMBGAME-26NOV19OREORST",
+      "title": "Oregon wins",
+      "result": "no",
+      "status": "finalized",
+      "close_time": "2026-11-20T04:11:21Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19WISHALL-WIS": {
+      "ticker": "KXNCAAMBGAME-26NOV19WISHALL-WIS",
+      "event_ticker": "KXNCAAMBGAME-26NOV19WISHALL",
+      "title": "Wisconsin wins",
+      "result": "no",
+      "status": "finalized",
+      "close_time": "2026-11-20T04:03:25Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19WISHALL-HALL": {
+      "ticker": "KXNCAAMBGAME-26NOV19WISHALL-HALL",
+      "event_ticker": "KXNCAAMBGAME-26NOV19WISHALL",
+      "title": "Seton Hall wins",
+      "result": "yes",
+      "status": "finalized",
+      "close_time": "2026-11-20T04:03:25Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19SEMOUST-UST": {
+      "ticker": "KXNCAAMBGAME-26NOV19SEMOUST-UST",
+      "event_ticker": "KXNCAAMBGAME-26NOV19SEMOUST",
+      "title": "St. Thomas wins",
+      "result": "yes",
+      "status": "finalized",
+      "close_time": "2026-11-20T03:03:29Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19SEMOUST-SEMO": {
+      "ticker": "KXNCAAMBGAME-26NOV19SEMOUST-SEMO",
+      "event_ticker": "KXNCAAMBGAME-26NOV19SEMOUST",
+      "title": "Southeast Missouri St. wins",
+      "result": "no",
+      "status": "finalized",
+      "close_time": "2026-11-20T03:03:29Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19STETLOU-STET": {
+      "ticker": "KXNCAAMBGAME-26NOV19STETLOU-STET",
+      "event_ticker": "KXNCAAMBGAME-26NOV19STETLOU",
+      "title": "Stetson wins",
+      "result": "no",
+      "status": "finalized",
+      "close_time": "2026-11-20T03:10:04Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19STETLOU-LOU": {
+      "ticker": "KXNCAAMBGAME-26NOV19STETLOU-LOU",
+      "event_ticker": "KXNCAAMBGAME-26NOV19STETLOU",
+      "title": "Louisville wins",
+      "result": "yes",
+      "status": "finalized",
+      "close_time": "2026-11-20T03:10:04Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19GASOHCU-HCU": {
+      "ticker": "KXNCAAMBGAME-26NOV19GASOHCU-HCU",
+      "event_ticker": "KXNCAAMBGAME-26NOV19GASOHCU",
+      "title": "Houston Christian wins",
+      "result": "no",
+      "status": "finalized",
+      "close_time": "2026-11-20T03:11:26Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19GASOHCU-GASO": {
+      "ticker": "KXNCAAMBGAME-26NOV19GASOHCU-GASO",
+      "event_ticker": "KXNCAAMBGAME-26NOV19GASOHCU",
+      "title": "Georgia Southern wins",
+      "result": "yes",
+      "status": "finalized",
+      "close_time": "2026-11-20T03:11:26Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19SUUTEX-TEX": {
+      "ticker": "KXNCAAMBGAME-26NOV19SUUTEX-TEX",
+      "event_ticker": "KXNCAAMBGAME-26NOV19SUUTEX",
+      "title": "Texas wins",
+      "result": "yes",
+      "status": "finalized",
+      "close_time": "2026-11-20T03:05:19Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19SUUTEX-SUU": {
+      "ticker": "KXNCAAMBGAME-26NOV19SUUTEX-SUU",
+      "event_ticker": "KXNCAAMBGAME-26NOV19SUUTEX",
+      "title": "Southern Utah wins",
+      "result": "no",
+      "status": "finalized",
+      "close_time": "2026-11-20T03:05:19Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19TXAMTCU-TXAM": {
+      "ticker": "KXNCAAMBGAME-26NOV19TXAMTCU-TXAM",
+      "event_ticker": "KXNCAAMBGAME-26NOV19TXAMTCU",
+      "title": "Texas A&M wins",
+      "result": "yes",
+      "status": "finalized",
+      "close_time": "2026-11-20T03:41:23Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19TXAMTCU-TCU": {
+      "ticker": "KXNCAAMBGAME-26NOV19TXAMTCU-TCU",
+      "event_ticker": "KXNCAAMBGAME-26NOV19TXAMTCU",
+      "title": "TCU wins",
+      "result": "no",
+      "status": "finalized",
+      "close_time": "2026-11-20T03:41:23Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19COFCDRKE-DRKE": {
+      "ticker": "KXNCAAMBGAME-26NOV19COFCDRKE-DRKE",
+      "event_ticker": "KXNCAAMBGAME-26NOV19COFCDRKE",
+      "title": "Drake wins",
+      "result": "yes",
+      "status": "finalized",
+      "close_time": "2026-11-20T02:27:25Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19COFCDRKE-COFC": {
+      "ticker": "KXNCAAMBGAME-26NOV19COFCDRKE-COFC",
+      "event_ticker": "KXNCAAMBGAME-26NOV19COFCDRKE",
+      "title": "Charleston wins",
+      "result": "no",
+      "status": "finalized",
+      "close_time": "2026-11-20T02:27:25Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19TULNLT-TULN": {
+      "ticker": "KXNCAAMBGAME-26NOV19TULNLT-TULN",
+      "event_ticker": "KXNCAAMBGAME-26NOV19TULNLT",
+      "title": "Tulane wins",
+      "result": "no",
+      "status": "finalized",
+      "close_time": "2026-11-20T02:30:01Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19TULNLT-LT": {
+      "ticker": "KXNCAAMBGAME-26NOV19TULNLT-LT",
+      "event_ticker": "KXNCAAMBGAME-26NOV19TULNLT",
+      "title": "Louisiana Tech wins",
+      "result": "yes",
+      "status": "finalized",
+      "close_time": "2026-11-20T02:30:01Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19USMGRAM-USM": {
+      "ticker": "KXNCAAMBGAME-26NOV19USMGRAM-USM",
+      "event_ticker": "KXNCAAMBGAME-26NOV19USMGRAM",
+      "title": "Southern Miss wins",
+      "result": "yes",
+      "status": "finalized",
+      "close_time": "2026-11-20T05:33:23Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19USMGRAM-GRAM": {
+      "ticker": "KXNCAAMBGAME-26NOV19USMGRAM-GRAM",
+      "event_ticker": "KXNCAAMBGAME-26NOV19USMGRAM",
+      "title": "Grambling St. wins",
+      "result": "no",
+      "status": "finalized",
+      "close_time": "2026-11-20T05:33:23Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19RMUTOL-TOL": {
+      "ticker": "KXNCAAMBGAME-26NOV19RMUTOL-TOL",
+      "event_ticker": "KXNCAAMBGAME-26NOV19RMUTOL",
+      "title": "Toledo wins",
+      "result": "yes",
+      "status": "finalized",
+      "close_time": "2026-11-20T01:55:29Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19RMUTOL-RMU": {
+      "ticker": "KXNCAAMBGAME-26NOV19RMUTOL-RMU",
+      "event_ticker": "KXNCAAMBGAME-26NOV19RMUTOL",
+      "title": "Robert Morris wins",
+      "result": "no",
+      "status": "finalized",
+      "close_time": "2026-11-20T01:55:29Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19MTSTHP-MTST": {
+      "ticker": "KXNCAAMBGAME-26NOV19MTSTHP-MTST",
+      "event_ticker": "KXNCAAMBGAME-26NOV19MTSTHP",
+      "title": "Montana St. wins",
+      "result": "no",
+      "status": "finalized",
+      "close_time": "2026-11-20T02:17:28Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19MTSTHP-HP": {
+      "ticker": "KXNCAAMBGAME-26NOV19MTSTHP-HP",
+      "event_ticker": "KXNCAAMBGAME-26NOV19MTSTHP",
+      "title": "High Point wins",
+      "result": "yes",
+      "status": "finalized",
+      "close_time": "2026-11-20T02:17:28Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19UALRJAC-UALR": {
+      "ticker": "KXNCAAMBGAME-26NOV19UALRJAC-UALR",
+      "event_ticker": "KXNCAAMBGAME-26NOV19UALRJAC",
+      "title": "Little Rock wins",
+      "result": "yes",
+      "status": "finalized",
+      "close_time": "2026-11-20T02:17:28Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19UALRJAC-JAC": {
+      "ticker": "KXNCAAMBGAME-26NOV19UALRJAC-JAC",
+      "event_ticker": "KXNCAAMBGAME-26NOV19UALRJAC",
+      "title": "Jacksonville wins",
+      "result": "no",
+      "status": "finalized",
+      "close_time": "2026-11-20T02:17:28Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19MEQUIN-QUIN": {
+      "ticker": "KXNCAAMBGAME-26NOV19MEQUIN-QUIN",
+      "event_ticker": "KXNCAAMBGAME-26NOV19MEQUIN",
+      "title": "Quinnipiac wins",
+      "result": "no",
+      "status": "finalized",
+      "close_time": "2026-11-20T02:25:27Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19MEQUIN-ME": {
+      "ticker": "KXNCAAMBGAME-26NOV19MEQUIN-ME",
+      "event_ticker": "KXNCAAMBGAME-26NOV19MEQUIN",
+      "title": "Maine wins",
+      "result": "yes",
+      "status": "finalized",
+      "close_time": "2026-11-20T02:25:27Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19UMBCOSU-UMBC": {
+      "ticker": "KXNCAAMBGAME-26NOV19UMBCOSU-UMBC",
+      "event_ticker": "KXNCAAMBGAME-26NOV19UMBCOSU",
+      "title": "UMBC wins",
+      "result": "no",
+      "status": "finalized",
+      "close_time": "2026-11-20T01:47:31Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19UMBCOSU-OSU": {
+      "ticker": "KXNCAAMBGAME-26NOV19UMBCOSU-OSU",
+      "event_ticker": "KXNCAAMBGAME-26NOV19UMBCOSU",
+      "title": "Ohio St. wins",
+      "result": "yes",
+      "status": "finalized",
+      "close_time": "2026-11-20T01:47:31Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19BUFFSBON-SBON": {
+      "ticker": "KXNCAAMBGAME-26NOV19BUFFSBON-SBON",
+      "event_ticker": "KXNCAAMBGAME-26NOV19BUFFSBON",
+      "title": "St. Bonaventure wins",
+      "result": "yes",
+      "status": "finalized",
+      "close_time": "2026-11-20T02:11:29Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19BUFFSBON-BUFF": {
+      "ticker": "KXNCAAMBGAME-26NOV19BUFFSBON-BUFF",
+      "event_ticker": "KXNCAAMBGAME-26NOV19BUFFSBON",
+      "title": "Buffalo wins",
+      "result": "no",
+      "status": "finalized",
+      "close_time": "2026-11-20T02:11:29Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19NEBUT-NE": {
+      "ticker": "KXNCAAMBGAME-26NOV19NEBUT-NE",
+      "event_ticker": "KXNCAAMBGAME-26NOV19NEBUT",
+      "title": "Northeastern wins",
+      "result": "no",
+      "status": "finalized",
+      "close_time": "2026-11-20T02:20:16Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19NEBUT-BUT": {
+      "ticker": "KXNCAAMBGAME-26NOV19NEBUT-BUT",
+      "event_ticker": "KXNCAAMBGAME-26NOV19NEBUT",
+      "title": "Butler wins",
+      "result": "yes",
+      "status": "finalized",
+      "close_time": "2026-11-20T02:20:16Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19NCSTMURR-NCST": {
+      "ticker": "KXNCAAMBGAME-26NOV19NCSTMURR-NCST",
+      "event_ticker": "KXNCAAMBGAME-26NOV19NCSTMURR",
+      "title": "NC St. wins",
+      "result": "yes",
+      "status": "finalized",
+      "close_time": "2026-11-20T01:21:31Z",
+      "source": "Kalshi public settled market API"
+    },
+    "KXNCAAMBGAME-26NOV19NCSTMURR-MURR": {
+      "ticker": "KXNCAAMBGAME-26NOV19NCSTMURR-MURR",
+      "event_ticker": "KXNCAAMBGAME-26NOV19NCSTMURR",
+      "title": "Murray St. wins",
+      "result": "no",
+      "status": "finalized",
+      "close_time": "2026-11-20T01:21:31Z",
+      "source": "Kalshi public settled market API"
     }
   },
   "partial_failure": false,
-  "last_checked_at": "2026-11-19T23:47:16.854677+00:00"
+  "last_checked_at": "2026-11-20T07:02:10.963135+00:00"
 }
