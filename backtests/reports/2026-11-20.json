@@ -1,17 +1,17 @@
 {
   "date": "2026-11-20",
-  "generated_at": "2026-11-20T03:07:11.403776+00:00",
+  "generated_at": "2026-11-20T20:06:19.278992+00:00",
   "sports": {
     "NFL": {
       "status": "OUTCOMES_UNVERIFIED",
       "saved_quotes": 0,
-      "eligible_predictions": 4,
-      "research_only_predictions": 4,
+      "eligible_predictions": 6,
+      "research_only_predictions": 6,
       "bet_eligible_predictions": 0,
       "blocked_predictions": [],
       "graded": 0,
       "settled": [],
-      "pending": 4
+      "pending": 6
     },
     "NBA": {
       "status": "OUTCOMES_UNVERIFIED",
@@ -27,11 +27,11 @@
     "NHL": {
       "status": "PARTIALLY_SETTLED_MONEYLINES",
       "saved_quotes": 0,
-      "eligible_predictions": 164,
-      "research_only_predictions": 164,
+      "eligible_predictions": 236,
+      "research_only_predictions": 236,
       "bet_eligible_predictions": 0,
       "blocked_predictions": [],
-      "graded": 14,
+      "graded": 24,
       "settled": [
         {
           "event": "Los Angeles Kings @ Toronto Maple Leafs",
@@ -116,15 +116,75 @@
           "market": "h2h",
           "selection": "Edmonton Oilers",
           "outcome": "loss"
+        },
+        {
+          "event": "Columbus Blue Jackets @ Chicago Blackhawks",
+          "market": "h2h",
+          "selection": "Chicago Blackhawks",
+          "outcome": "loss"
+        },
+        {
+          "event": "Columbus Blue Jackets @ Chicago Blackhawks",
+          "market": "h2h",
+          "selection": "Columbus Blue Jackets",
+          "outcome": "win"
+        },
+        {
+          "event": "Minnesota Wild @ Calgary Flames",
+          "market": "h2h",
+          "selection": "Calgary Flames",
+          "outcome": "loss"
+        },
+        {
+          "event": "Minnesota Wild @ Calgary Flames",
+          "market": "h2h",
+          "selection": "Minnesota Wild",
+          "outcome": "win"
+        },
+        {
+          "event": "Anaheim Ducks @ Colorado Avalanche",
+          "market": "h2h",
+          "selection": "Colorado Avalanche",
+          "outcome": "win"
+        },
+        {
+          "event": "Anaheim Ducks @ Colorado Avalanche",
+          "market": "h2h",
+          "selection": "Anaheim Ducks",
+          "outcome": "loss"
+        },
+        {
+          "event": "Vancouver Canucks @ Seattle Kraken",
+          "market": "h2h",
+          "selection": "Seattle Kraken",
+          "outcome": "win"
+        },
+        {
+          "event": "Vancouver Canucks @ Seattle Kraken",
+          "market": "h2h",
+          "selection": "Vancouver Canucks",
+          "outcome": "loss"
+        },
+        {
+          "event": "Dallas Stars @ Vegas Golden Knights",
+          "market": "h2h",
+          "selection": "Vegas Golden Knights",
+          "outcome": "loss"
+        },
+        {
+          "event": "Dallas Stars @ Vegas Golden Knights",
+          "market": "h2h",
+          "selection": "Dallas Stars",
+          "outcome": "win"
         }
       ],
-      "pending": 150
+      "pending": 212
     }
   },
   "summary": {
-    "verified_picks": 14,
-    "wins": 7,
-    "losses": 7,
+    "verified_picks": 24,
+    "wins": 12,
+    "losses": 12,
     "pushes": 0,
     "roi": null,
     "hit_rate": 0.5
