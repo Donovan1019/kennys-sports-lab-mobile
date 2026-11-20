@@ -23,5 +23,14 @@ const pair=rows.filter(q=>q.commence_time===rows[0].commence_time);if(pair.lengt
 for(const side of pair){saved.push({book:side.bookmaker,name:side.selection,price:side.price,novig:implied(side.price)/sum,eventId:side.event_id,fightId:fight.id})}}
 status.textContent='Snapshot '+stamp(feed.fetched_at)+' · '+saved.length+' validated-format fighter-side quotes · research only. Fighter status and model calibration NOT VERIFIED.';draw();
 }catch(e){oddsBlocked=true;status.textContent='UNAVAILABLE — '+e.message+' · no parlay recommendations';draw()}finally{btn.disabled=false}}
-btn.addEventListener('click',load);legs.addEventListener('change',draw);load();
+btn.addEventListener('click',load);legs.addEventListener('change',draw);
+// Refresh automatically when the page returns to the foreground. Never carry a
+// previous event's saved picks into a new refresh attempt.
+let lastRefresh=0;
+const originalLoad=load;
+async function autoRefresh(){if(document.hidden||Date.now()-lastRefresh<60000)return;lastRefresh=Date.now();await originalLoad()}
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)autoRefresh()});
+window.addEventListener('pageshow',()=>autoRefresh());
+setInterval(()=>{if(!document.hidden)autoRefresh()},300000);
+autoRefresh();
 })();
