@@ -1,23 +1,11 @@
 {
   "status": "research_only",
   "sport": "americanfootball_nfl",
-  "generated_at": "2026-11-19T22:08:23.584553+00:00",
+  "generated_at": "2026-11-20T21:47:24.782681+00:00",
   "model_version": "nfl-score-margin-shrink-v1",
   "calibration_passed": false,
   "lineups_verified": false,
   "predictions": [
-    {
-      "event_id": "YlZBEbhTgV80ZeTIIyqm",
-      "team": "Houston Texans",
-      "win_probability": 0.658886,
-      "sample_games": 8
-    },
-    {
-      "event_id": "YlZBEbhTgV80ZeTIIyqm",
-      "team": "Indianapolis Colts",
-      "win_probability": 0.341114,
-      "sample_games": 8
-    },
     {
       "event_id": "6Gfje0CU0lNBNJInVzHW",
       "team": "Buffalo Bills",
@@ -196,6 +184,30 @@
       "event_id": "4lFqVZxsg5zKpbD8rJKW",
       "team": "Philadelphia Eagles",
       "win_probability": 0.324464,
+      "sample_games": 8
+    },
+    {
+      "event_id": "4BqA9r4LZNAnWph1F0eO",
+      "team": "Buffalo Bills",
+      "win_probability": 0.584595,
+      "sample_games": 8
+    },
+    {
+      "event_id": "4BqA9r4LZNAnWph1F0eO",
+      "team": "Kansas City Chiefs",
+      "win_probability": 0.415405,
+      "sample_games": 8
+    },
+    {
+      "event_id": "AQLsUBdnZNJ6PBBHLUWr",
+      "team": "Pittsburgh Steelers",
+      "win_probability": 0.487503,
+      "sample_games": 8
+    },
+    {
+      "event_id": "AQLsUBdnZNJ6PBBHLUWr",
+      "team": "Denver Broncos",
+      "win_probability": 0.512497,
       "sample_games": 8
     }
   ]
