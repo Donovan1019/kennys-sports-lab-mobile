@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """SportsGameOdds v2 -> Kenny's canonical pregame DK/FD odds feed.
 
-One page per invocation to conserve event-object credits. Fail closed on absent
+One page per invocation to conserve event-object credits; UFC deployment trigger. Fail closed on absent
 or stale quotes; never use consensus/fair odds as sportsbook prices.
 """
 import json
