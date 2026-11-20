@@ -70,6 +70,19 @@ def upcoming_rows(rows, now=None):
             continue
     return filtered
 
+def validate_mma_pairs(rows, now=None):
+    """Require a complete same-book, two-fighter pre-fight MMA moneyline market."""
+    if not rows:
+        return False
+    now = now or datetime.now(timezone.utc)
+    groups = {}
+    for row in fresh_rows(upcoming_rows(rows, now), now, max_age_hours=0.25):
+        if row.get("market") != "h2h" or not row.get("event_id"):
+            continue
+        key = (str(row["event_id"]), row["bookmaker"])
+        groups.setdefault(key, set()).add(str(row.get("selection") or "").strip().casefold())
+    return any(len(selections) == 2 and "" not in selections for selections in groups.values())
+
 def main():
     key=os.environ.get("THE_ODDS_API_KEY")
     if not key:
@@ -119,6 +132,9 @@ def main():
     rows = fresh_rows(rows)
     if not rows:
         print("Odds response has no fresh valid pregame DK/FD quotes; existing snapshot retained")
+        return 1
+    if sport == "mma_mixed_martial_arts" and not validate_mma_pairs(rows):
+        print("MMA odds response lacks a fresh complete same-book two-fighter moneyline; existing snapshot retained")
         return 1
     if not validate_rows(rows, sport):
         print("NFL odds response has no fresh pregame DK/FD moneylines; existing snapshot retained")
