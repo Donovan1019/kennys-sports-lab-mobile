@@ -2,146 +2,11 @@
   "source": "ESPN public scoreboard",
   "source_detail": "Scheduled games and completed scoring history only; no verified injuries, starters or sportsbook prices.",
   "generated_from_saved_feeds": false,
-  "source_games_fetched_at": "2026-11-19T22:08:16.669732+00:00",
+  "source_games_fetched_at": "2026-11-20T19:07:04.478329+00:00",
   "market_schedule_source": "espn-scoreboard",
   "history_season_filter": "espn-season-type-2-only",
   "market_prices_not_verified_live": true,
   "games": [
-    {
-      "event_id": "401873066",
-      "event": "Indianapolis Colts @ Houston Texans",
-      "commence_time": "2026-11-20T01:15Z",
-      "away": "Indianapolis Colts",
-      "home": "Houston Texans",
-      "teams": [
-        {
-          "team": "Indianapolis Colts",
-          "sample_size": 10,
-          "score_history": [
-            {
-              "date": "2026-11-15T18:00Z",
-              "season_type": 2,
-              "scored": 24,
-              "allowed": 22
-            },
-            {
-              "date": "2026-11-08T18:00Z",
-              "season_type": 2,
-              "scored": 23,
-              "allowed": 27
-            },
-            {
-              "date": "2026-11-01T18:00Z",
-              "season_type": 2,
-              "scored": 7,
-              "allowed": 42
-            },
-            {
-              "date": "2026-10-25T17:00Z",
-              "season_type": 2,
-              "scored": 10,
-              "allowed": 16
-            },
-            {
-              "date": "2026-10-18T17:00Z",
-              "season_type": 2,
-              "scored": 20,
-              "allowed": 26
-            },
-            {
-              "date": "2026-10-11T17:00Z",
-              "season_type": 2,
-              "scored": 22,
-              "allowed": 34
-            },
-            {
-              "date": "2026-10-04T13:30Z",
-              "season_type": 2,
-              "scored": 30,
-              "allowed": 13
-            },
-            {
-              "date": "2026-09-27T17:00Z",
-              "season_type": 2,
-              "scored": 19,
-              "allowed": 17
-            },
-            {
-              "date": "2026-09-21T00:20Z",
-              "season_type": 2,
-              "scored": 30,
-              "allowed": 33
-            },
-            {
-              "date": "2026-09-13T17:00Z",
-              "season_type": 2,
-              "scored": 23,
-              "allowed": 41
-            }
-          ]
-        },
-        {
-          "team": "Houston Texans",
-          "sample_size": 9,
-          "score_history": [
-            {
-              "date": "2026-11-15T18:00Z",
-              "season_type": 2,
-              "scored": 24,
-              "allowed": 27
-            },
-            {
-              "date": "2026-11-08T21:05Z",
-              "season_type": 2,
-              "scored": 44,
-              "allowed": 22
-            },
-            {
-              "date": "2026-10-25T17:00Z",
-              "season_type": 2,
-              "scored": 21,
-              "allowed": 27
-            },
-            {
-              "date": "2026-10-18T13:30Z",
-              "season_type": 2,
-              "scored": 34,
-              "allowed": 31
-            },
-            {
-              "date": "2026-10-11T17:00Z",
-              "season_type": 2,
-              "scored": 26,
-              "allowed": 3
-            },
-            {
-              "date": "2026-10-04T17:00Z",
-              "season_type": 2,
-              "scored": 30,
-              "allowed": 34
-            },
-            {
-              "date": "2026-09-27T17:00Z",
-              "season_type": 2,
-              "scored": 17,
-              "allowed": 19
-            },
-            {
-              "date": "2026-09-20T17:00Z",
-              "season_type": 2,
-              "scored": 6,
-              "allowed": 20
-            },
-            {
-              "date": "2026-09-13T17:00Z",
-              "season_type": 2,
-              "scored": 31,
-              "allowed": 36
-            }
-          ]
-        }
-      ]
-    },
     {
       "event_id": "401873067",
       "event": "Arizona Cardinals @ Kansas City Chiefs",
@@ -2593,8 +2458,14 @@
         },
         {
           "team": "Houston Texans",
-          "sample_size": 9,
+          "sample_size": 10,
           "score_history": [
+            {
+              "date": "2026-11-20T01:15Z",
+              "season_type": 2,
+              "scored": 26,
+              "allowed": 3
+            },
             {
               "date": "2026-11-15T18:00Z",
               "season_type": 2,
@@ -2851,8 +2722,14 @@
         },
         {
           "team": "Indianapolis Colts",
-          "sample_size": 10,
+          "sample_size": 11,
           "score_history": [
+            {
+              "date": "2026-11-20T01:15Z",
+              "season_type": 2,
+              "scored": 3,
+              "allowed": 26
+            },
             {
               "date": "2026-11-15T18:00Z",
               "season_type": 2,
@@ -5431,8 +5308,14 @@
       "teams": [
         {
           "team": "Houston Texans",
-          "sample_size": 9,
+          "sample_size": 10,
           "score_history": [
+            {
+              "date": "2026-11-20T01:15Z",
+              "season_type": 2,
+              "scored": 26,
+              "allowed": 3
+            },
             {
               "date": "2026-11-15T18:00Z",
               "season_type": 2,
@@ -5681,6 +5564,135 @@
               "season_type": 2,
               "scored": 31,
               "allowed": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "event_id": "401873109",
+      "event": "Minnesota Vikings @ New England Patriots",
+      "commence_time": "2026-12-11T01:15Z",
+      "away": "Minnesota Vikings",
+      "home": "New England Patriots",
+      "teams": [
+        {
+          "team": "Minnesota Vikings",
+          "sample_size": 9,
+          "score_history": [
+            {
+              "date": "2026-11-15T18:00Z",
+              "season_type": 2,
+              "scored": 30,
+              "allowed": 10
+            },
+            {
+              "date": "2026-11-10T01:15Z",
+              "season_type": 2,
+              "scored": 6,
+              "allowed": 23
+            },
+            {
+              "date": "2026-11-01T18:00Z",
+              "season_type": 2,
+              "scored": 15,
+              "allowed": 19
+            },
+            {
+              "date": "2026-10-25T17:00Z",
+              "season_type": 2,
+              "scored": 16,
+              "allowed": 10
+            },
+            {
+              "date": "2026-10-11T17:00Z",
+              "season_type": 2,
+              "scored": 23,
+              "allowed": 13
+            },
+            {
+              "date": "2026-10-04T20:05Z",
+              "season_type": 2,
+              "scored": 15,
+              "allowed": 10
+            },
+            {
+              "date": "2026-09-27T20:05Z",
+              "season_type": 2,
+              "scored": 23,
+              "allowed": 16
+            },
+            {
+              "date": "2026-09-20T17:00Z",
+              "season_type": 2,
+              "scored": 9,
+              "allowed": 3
+            },
+            {
+              "date": "2026-09-13T20:25Z",
+              "season_type": 2,
+              "scored": 39,
+              "allowed": 22
+            }
+          ]
+        },
+        {
+          "team": "New England Patriots",
+          "sample_size": 9,
+          "score_history": [
+            {
+              "date": "2026-11-15T14:30Z",
+              "season_type": 2,
+              "scored": 10,
+              "allowed": 35
+            },
+            {
+              "date": "2026-11-08T21:25Z",
+              "season_type": 2,
+              "scored": 27,
+              "allowed": 45
+            },
+            {
+              "date": "2026-11-01T21:25Z",
+              "season_type": 2,
+              "scored": 24,
+              "allowed": 19
+            },
+            {
+              "date": "2026-10-23T00:15Z",
+              "season_type": 2,
+              "scored": 24,
+              "allowed": 30
+            },
+            {
+              "date": "2026-10-18T17:00Z",
+              "season_type": 2,
+              "scored": 26,
+              "allowed": 19
+            },
+            {
+              "date": "2026-10-11T17:00Z",
+              "season_type": 2,
+              "scored": 45,
+              "allowed": 17
+            },
+            {
+              "date": "2026-10-04T17:00Z",
+              "season_type": 2,
+              "scored": 29,
+              "allowed": 26
+            },
+            {
+              "date": "2026-09-27T17:00Z",
+              "season_type": 2,
+              "scored": 6,
+              "allowed": 35
+            },
+            {
+              "date": "2026-09-20T17:00Z",
+              "season_type": 2,
+              "scored": 20,
+              "allowed": 3
             }
           ]
         }
