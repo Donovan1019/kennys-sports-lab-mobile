@@ -13,7 +13,7 @@ import urllib.request
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-from fetch_odds import fresh_rows, upcoming_rows, validate_rows
+from fetch_odds import fresh_rows, upcoming_rows, validate_rows, validate_mma_pairs
 
 LEAGUES = {
     "americanfootball_nfl": "NFL",
@@ -22,6 +22,7 @@ LEAGUES = {
     "basketball_ncaab": "NCAAB",
     "baseball_mlb": "MLB",
     "icehockey_nhl": "NHL",
+    "mma_mixed_martial_arts": "UFC",
 }
 BOOKS = ("draftkings", "fanduel")
 
@@ -62,11 +63,13 @@ def normalize(payload, sport, now=None, diagnostics=None):
             continue
         counts["upcoming_with_teams"] += 1
         for odd in (event.get("odds") or {}).values():
-            if not isinstance(odd, dict) or odd.get("periodID") != "game" or odd.get("statID") != "points":
+            if not isinstance(odd, dict) or odd.get("periodID") not in ("game", "match", "fight") or (sport != "mma_mixed_martial_arts" and odd.get("statID") != "points"):
                 continue
             bet_type, side = odd.get("betTypeID"), odd.get("sideID")
             if bet_type == "ml" and side in ("home", "away"):
                 market, selection, point_field = "h2h", home if side == "home" else away, None
+            elif sport == "mma_mixed_martial_arts":
+                continue  # Do not infer totals/props from unverified UFC market identifiers.
             elif bet_type == "sp" and side in ("home", "away"):
                 market, selection, point_field = "spreads", home if side == "home" else away, "spread"
             elif bet_type == "ou" and side in ("over", "under") and odd.get("statEntityID") == "all":
@@ -109,6 +112,9 @@ def main():
     key = os.getenv("SPORTSGAMEODDS_API_KEY")
     sport = os.getenv("ODDS_SPORT", "basketball_nba")
     requested = set(os.getenv("ODDS_MARKETS", "h2h").split(","))
+    if sport == "mma_mixed_martial_arts" and requested != {"h2h"}:
+        print("SportsGameOdds UFC: only verified two-fighter h2h supported")
+        return 2
     if not key or sport not in LEAGUES or not requested or not requested <= {"h2h", "spreads", "totals"}:
         print("SportsGameOdds: missing key, unsupported league or markets")
         return 2
@@ -139,7 +145,7 @@ def main():
     except (ValueError, TypeError, KeyError) as error:
         print("SportsGameOdds normalization rejected:", type(error).__name__)
         return 1
-    if not rows or not validate_rows(rows, sport, now):
+    if not rows or not validate_rows(rows, sport, now) or (sport == "mma_mixed_martial_arts" and not validate_mma_pairs(rows, now)):
         print("SportsGameOdds: no eligible fresh pregame DK/FD quotes; existing snapshot retained")
         return 1
     output = {
