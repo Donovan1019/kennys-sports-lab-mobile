@@ -1,0 +1,132 @@
+{
+  "date": "2026-11-20",
+  "generated_at": "2026-11-20T03:07:11.403776+00:00",
+  "sports": {
+    "NFL": {
+      "status": "OUTCOMES_UNVERIFIED",
+      "saved_quotes": 0,
+      "eligible_predictions": 4,
+      "research_only_predictions": 4,
+      "bet_eligible_predictions": 0,
+      "blocked_predictions": [],
+      "graded": 0,
+      "settled": [],
+      "pending": 4
+    },
+    "NBA": {
+      "status": "OUTCOMES_UNVERIFIED",
+      "saved_quotes": 0,
+      "eligible_predictions": 28,
+      "research_only_predictions": 28,
+      "bet_eligible_predictions": 0,
+      "blocked_predictions": [],
+      "graded": 0,
+      "settled": [],
+      "pending": 28
+    },
+    "NHL": {
+      "status": "PARTIALLY_SETTLED_MONEYLINES",
+      "saved_quotes": 0,
+      "eligible_predictions": 164,
+      "research_only_predictions": 164,
+      "bet_eligible_predictions": 0,
+      "blocked_predictions": [],
+      "graded": 14,
+      "settled": [
+        {
+          "event": "Los Angeles Kings @ Toronto Maple Leafs",
+          "market": "h2h",
+          "selection": "Toronto Maple Leafs",
+          "outcome": "loss"
+        },
+        {
+          "event": "Los Angeles Kings @ Toronto Maple Leafs",
+          "market": "h2h",
+          "selection": "Los Angeles Kings",
+          "outcome": "win"
+        },
+        {
+          "event": "Philadelphia Flyers @ Ottawa Senators",
+          "market": "h2h",
+          "selection": "Ottawa Senators",
+          "outcome": "loss"
+        },
+        {
+          "event": "Philadelphia Flyers @ Ottawa Senators",
+          "market": "h2h",
+          "selection": "Philadelphia Flyers",
+          "outcome": "win"
+        },
+        {
+          "event": "St. Louis Blues @ Pittsburgh Penguins",
+          "market": "h2h",
+          "selection": "Pittsburgh Penguins",
+          "outcome": "loss"
+        },
+        {
+          "event": "St. Louis Blues @ Pittsburgh Penguins",
+          "market": "h2h",
+          "selection": "St. Louis Blues",
+          "outcome": "win"
+        },
+        {
+          "event": "Buffalo Sabres @ Washington Capitals",
+          "market": "h2h",
+          "selection": "Washington Capitals",
+          "outcome": "loss"
+        },
+        {
+          "event": "Buffalo Sabres @ Washington Capitals",
+          "market": "h2h",
+          "selection": "Buffalo Sabres",
+          "outcome": "win"
+        },
+        {
+          "event": "Montreal Canadiens @ Carolina Hurricanes",
+          "market": "h2h",
+          "selection": "Carolina Hurricanes",
+          "outcome": "loss"
+        },
+        {
+          "event": "Montreal Canadiens @ Carolina Hurricanes",
+          "market": "h2h",
+          "selection": "Montreal Canadiens",
+          "outcome": "win"
+        },
+        {
+          "event": "New York Islanders @ Winnipeg Jets",
+          "market": "h2h",
+          "selection": "Winnipeg Jets",
+          "outcome": "win"
+        },
+        {
+          "event": "New York Islanders @ Winnipeg Jets",
+          "market": "h2h",
+          "selection": "New York Islanders",
+          "outcome": "loss"
+        },
+        {
+          "event": "Edmonton Oilers @ Tampa Bay Lightning",
+          "market": "h2h",
+          "selection": "Tampa Bay Lightning",
+          "outcome": "win"
+        },
+        {
+          "event": "Edmonton Oilers @ Tampa Bay Lightning",
+          "market": "h2h",
+          "selection": "Edmonton Oilers",
+          "outcome": "loss"
+        }
+      ],
+      "pending": 150
+    }
+  },
+  "summary": {
+    "verified_picks": 14,
+    "wins": 7,
+    "losses": 7,
+    "pushes": 0,
+    "roi": null,
+    "hit_rate": 0.5
+  }
+}
