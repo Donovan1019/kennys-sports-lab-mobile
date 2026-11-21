@@ -1,15 +1,15 @@
 {
   "status": "descriptive_only",
-  "evaluated_games": 1263,
+  "evaluated_games": 1272,
   "minimum_holdout_games": 100,
   "betting_eligible": false,
   "blockers": [
     "overtime_approximation_unvalidated",
     "historical_validation_unverified"
   ],
-  "brier": 0.22235,
-  "log_loss": 0.636058,
-  "accuracy": 0.650831,
+  "brier": 0.222262,
+  "log_loss": 0.635873,
+  "accuracy": 0.650157,
   "calibration_bins": [
     {
       "range": [
@@ -29,12 +29,12 @@
         0.3,
         0.4
       ],
-      "count": 184,
-      "mean_predicted": 0.358293,
-      "observed_win_rate": 0.298913,
+      "count": 185,
+      "mean_predicted": 0.358508,
+      "observed_win_rate": 0.297297,
       "observed_wilson_95": [
-        0.23743,
-        0.368621
+        0.236099,
+        0.366742
       ]
     },
     {
@@ -42,12 +42,12 @@
         0.4,
         0.5
       ],
-      "count": 401,
-      "mean_predicted": 0.449377,
-      "observed_win_rate": 0.473815,
+      "count": 404,
+      "mean_predicted": 0.449436,
+      "observed_win_rate": 0.475248,
       "observed_wilson_95": [
-        0.425424,
-        0.522704
+        0.427013,
+        0.523948
       ]
     },
     {
@@ -55,12 +55,12 @@
         0.5,
         0.6
       ],
-      "count": 389,
-      "mean_predicted": 0.546067,
-      "observed_win_rate": 0.66581,
+      "count": 392,
+      "mean_predicted": 0.546179,
+      "observed_win_rate": 0.663265,
       "observed_wilson_95": [
-        0.617514,
-        0.710863
+        0.615097,
+        0.708265
       ]
     },
     {
@@ -68,12 +68,12 @@
         0.6,
         0.7
       ],
-      "count": 207,
-      "mean_predicted": 0.63942,
-      "observed_win_rate": 0.724638,
+      "count": 209,
+      "mean_predicted": 0.639761,
+      "observed_win_rate": 0.727273,
       "observed_wilson_95": [
-        0.66011,
-        0.78098
+        0.663197,
+        0.783144
       ]
     },
     {
@@ -91,13 +91,13 @@
     }
   ],
   "baseline": {
-    "constant_home_win_rate": 0.546318,
-    "constant_brier": 0.247855,
+    "constant_home_win_rate": 0.546384,
+    "constant_brier": 0.247849,
     "warning": "In-sample constant-rate comparator, not a point-in-time bookmaker or independent out-of-sample baseline."
   },
   "calibration_coverage": {
-    "total_evaluated": 1263,
-    "binned_games": 1263,
+    "total_evaluated": 1272,
+    "binned_games": 1272,
     "excluded_games": 0,
     "small_sample_bins": [
       [
@@ -114,11 +114,11 @@
   "forward_baseline": {
     "status": "descriptive_only",
     "warmup_games": 100,
-    "evaluated_games": 1163,
-    "model_brier": 0.222596,
-    "baseline_brier": 0.248427,
-    "model_log_loss": 0.636479,
-    "baseline_log_loss": 0.690004,
+    "evaluated_games": 1172,
+    "model_brier": 0.222499,
+    "baseline_brier": 0.248418,
+    "model_log_loss": 0.636274,
+    "baseline_log_loss": 0.689985,
     "warning": "Sequential past-only constant-rate baseline; neither independently frozen model validation nor bookmaker comparison."
   },
   "calibration_warning": "Chronological diagnostic only; Wilson intervals reflect binomial sampling uncertainty, not time dependence or model uncertainty. No independent market baseline, executed odds, or validated forward performance."

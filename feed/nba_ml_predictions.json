@@ -1,28 +1,28 @@
 {
   "status": "validated",
   "sport": "basketball_nba",
-  "generated_at": "2026-11-21T03:13:35.983421+00:00",
+  "generated_at": "2026-11-21T12:40:05.044349+00:00",
   "calibration_passed": true,
   "model_version": "elo-walkforward-v1-holdout-audit",
   "validation_report": {
-    "walk_forward_games": 1296,
-    "brier": 0.21041,
-    "ece": 0.03918,
+    "walk_forward_games": 1305,
+    "brier": 0.21021,
+    "ece": 0.03975,
     "method": "chronological Elo, 200-game burn-in, no odds inputs",
     "holdout": {
-      "games": 300,
-      "start": "2026-04-09T23:00Z",
-      "end": "2026-11-20T01:00Z",
-      "brier": 0.210977,
-      "ece": 0.058553,
-      "constant_baseline_brier": 0.2484,
+      "games": 301,
+      "start": "2026-04-10T23:30Z",
+      "end": "2026-11-21T03:00Z",
+      "brier": 0.210381,
+      "ece": 0.065208,
+      "constant_baseline_brier": 0.247988,
       "beats_constant_baseline": true,
       "method": "untouched chronological final 20%; pregame Elo; descriptive only"
     },
     "holdout_promotion_approved": false,
     "holdout_review_reason": "Holdout metrics are descriptive; independent sportsbook price validation and injury availability remain unverified"
   },
-  "training_cutoff": "2026-11-20T01:00Z",
+  "training_cutoff": "2026-11-21T03:00Z",
   "predictions": [
     {
       "event_id": "FpAfajwEIdliK1vgERiO",
@@ -52,13 +52,13 @@
       "event_id": "B8Kg6YVbG0LphWhTRzMe",
       "team": "San Antonio Spurs",
       "date_et": "2026-11-21",
-      "win_probability": 0.911266
+      "win_probability": 0.912222
     },
     {
       "event_id": "B8Kg6YVbG0LphWhTRzMe",
       "team": "New Orleans Pelicans",
       "date_et": "2026-11-21",
-      "win_probability": 0.088734
+      "win_probability": 0.087778
     },
     {
       "event_id": "VFOvtNU5AbIejhb6XSaT",
@@ -71,6 +71,18 @@
       "team": "Memphis Grizzlies",
       "date_et": "2026-11-21",
       "win_probability": 0.192502
+    },
+    {
+      "event_id": "C8msr3REC7p9Unntf9Ql",
+      "team": "Sacramento Kings",
+      "date_et": "2026-11-21",
+      "win_probability": 0.15446
+    },
+    {
+      "event_id": "C8msr3REC7p9Unntf9Ql",
+      "team": "Boston Celtics",
+      "date_et": "2026-11-21",
+      "win_probability": 0.84554
     }
   ]
 }
