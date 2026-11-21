@@ -1,7 +1,7 @@
 {
   "status": "validated",
   "sport": "basketball_nba",
-  "generated_at": "2026-11-21T01:26:45.166951+00:00",
+  "generated_at": "2026-11-21T03:13:35.983421+00:00",
   "calibration_passed": true,
   "model_version": "elo-walkforward-v1-holdout-audit",
   "validation_report": {
@@ -24,42 +24,6 @@
   },
   "training_cutoff": "2026-11-20T01:00Z",
   "predictions": [
-    {
-      "event_id": "UNDR4rNd350uVPOj5lsc",
-      "team": "Utah Jazz",
-      "date_et": "2026-11-20",
-      "win_probability": 0.281868
-    },
-    {
-      "event_id": "UNDR4rNd350uVPOj5lsc",
-      "team": "Phoenix Suns",
-      "date_et": "2026-11-20",
-      "win_probability": 0.718132
-    },
-    {
-      "event_id": "ellMVxZg9L84npHrtWFF",
-      "team": "Los Angeles Lakers",
-      "date_et": "2026-11-20",
-      "win_probability": 0.905497
-    },
-    {
-      "event_id": "ellMVxZg9L84npHrtWFF",
-      "team": "Sacramento Kings",
-      "date_et": "2026-11-20",
-      "win_probability": 0.094503
-    },
-    {
-      "event_id": "tVlXBFL8nkNbJC9HXfwu",
-      "team": "Denver Nuggets",
-      "date_et": "2026-11-20",
-      "win_probability": 0.55926
-    },
-    {
-      "event_id": "tVlXBFL8nkNbJC9HXfwu",
-      "team": "Houston Rockets",
-      "date_et": "2026-11-20",
-      "win_probability": 0.44074
-    },
     {
       "event_id": "FpAfajwEIdliK1vgERiO",
       "team": "Philadelphia 76ers",
