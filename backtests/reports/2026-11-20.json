@@ -1,6 +1,6 @@
 {
   "date": "2026-11-20",
-  "generated_at": "2026-11-20T20:06:19.278992+00:00",
+  "generated_at": "2026-11-21T03:11:23.493858+00:00",
   "sports": {
     "NFL": {
       "status": "OUTCOMES_UNVERIFIED",
@@ -14,15 +14,28 @@
       "pending": 6
     },
     "NBA": {
-      "status": "OUTCOMES_UNVERIFIED",
+      "status": "PARTIALLY_SETTLED_MONEYLINES",
       "saved_quotes": 0,
       "eligible_predictions": 28,
       "research_only_predictions": 28,
       "bet_eligible_predictions": 0,
       "blocked_predictions": [],
-      "graded": 0,
-      "settled": [],
-      "pending": 28
+      "graded": 2,
+      "settled": [
+        {
+          "event": "Toronto Raptors @ Detroit Pistons",
+          "market": "h2h",
+          "selection": "Detroit Pistons",
+          "outcome": "loss"
+        },
+        {
+          "event": "Toronto Raptors @ Detroit Pistons",
+          "market": "h2h",
+          "selection": "Toronto Raptors",
+          "outcome": "win"
+        }
+      ],
+      "pending": 26
     },
     "NHL": {
       "status": "PARTIALLY_SETTLED_MONEYLINES",
@@ -182,9 +195,9 @@
     }
   },
   "summary": {
-    "verified_picks": 24,
-    "wins": 12,
-    "losses": 12,
+    "verified_picks": 26,
+    "wins": 13,
+    "losses": 13,
     "pushes": 0,
     "roi": null,
     "hit_rate": 0.5
