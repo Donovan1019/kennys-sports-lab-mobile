@@ -1,6 +1,6 @@
 {
   "date": "2026-11-21",
-  "generated_at": "2026-11-21T03:11:23.834974+00:00",
+  "generated_at": "2026-11-21T19:09:23.171024+00:00",
   "sports": {
     "NFL": {
       "status": "OUTCOMES_UNVERIFIED",
@@ -20,7 +20,7 @@
       "research_only_predictions": 28,
       "bet_eligible_predictions": 0,
       "blocked_predictions": [],
-      "graded": 2,
+      "graded": 4,
       "settled": [
         {
           "event": "Toronto Raptors @ Detroit Pistons",
@@ -33,26 +33,38 @@
           "market": "h2h",
           "selection": "Toronto Raptors",
           "outcome": "win"
+        },
+        {
+          "event": "Houston Rockets @ Denver Nuggets",
+          "market": "h2h",
+          "selection": "Denver Nuggets",
+          "outcome": "win"
+        },
+        {
+          "event": "Houston Rockets @ Denver Nuggets",
+          "market": "h2h",
+          "selection": "Houston Rockets",
+          "outcome": "loss"
         }
       ],
-      "pending": 26
+      "pending": 24
     },
     "NHL": {
       "status": "OUTCOMES_UNVERIFIED",
       "saved_quotes": 0,
-      "eligible_predictions": 220,
-      "research_only_predictions": 220,
+      "eligible_predictions": 246,
+      "research_only_predictions": 246,
       "bet_eligible_predictions": 0,
       "blocked_predictions": [],
       "graded": 0,
       "settled": [],
-      "pending": 220
+      "pending": 246
     }
   },
   "summary": {
-    "verified_picks": 2,
-    "wins": 1,
-    "losses": 1,
+    "verified_picks": 4,
+    "wins": 2,
+    "losses": 2,
     "pushes": 0,
     "roi": null,
     "hit_rate": 0.5
