@@ -1,7 +1,7 @@
 {
   "status": "validated",
   "sport": "basketball_nba",
-  "generated_at": "2026-11-21T12:40:05.044349+00:00",
+  "generated_at": "2026-11-21T20:32:00.683539+00:00",
   "calibration_passed": true,
   "model_version": "elo-walkforward-v1-holdout-audit",
   "validation_report": {
@@ -24,18 +24,6 @@
   },
   "training_cutoff": "2026-11-21T03:00Z",
   "predictions": [
-    {
-      "event_id": "FpAfajwEIdliK1vgERiO",
-      "team": "Philadelphia 76ers",
-      "date_et": "2026-11-21",
-      "win_probability": 0.888301
-    },
-    {
-      "event_id": "FpAfajwEIdliK1vgERiO",
-      "team": "Milwaukee Bucks",
-      "date_et": "2026-11-21",
-      "win_probability": 0.111699
-    },
     {
       "event_id": "ddTPQ1KzgsIpJQhcowLX",
       "team": "New York Knicks",
