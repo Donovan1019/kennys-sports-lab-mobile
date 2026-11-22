@@ -36,3 +36,6 @@ assert.ok(js.includes("byName.get(String(p.name||'').trim().toLowerCase())"),'op
 assert.ok(js.includes("x!==''&&Number.isFinite(Number(x))&&Number(x)>=0"),'invalid opportunity counts are excluded');
 assert.ok(js.includes('Number(x.targets)<=Number(x.team_targets)'),'impossible target-share observations excluded');
 assert.ok(js.includes('paired.length>=3?100*paired.reduce'),'target share uses at least three paired game observations');
+
+assert.ok(js.includes("!gameWeek&&Number.isFinite(Date.parse(x.game_date||x.date||''))"),'missing game week requires a dated pre-kickoff record');
+assert.ok(js.includes('Date.parse(x.game_date||x.date)<kickoff'),'player and opportunity observations cannot leak post-kickoff');
