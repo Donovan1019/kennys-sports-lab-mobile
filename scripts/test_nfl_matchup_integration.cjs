@@ -4,7 +4,7 @@ const js=fs.readFileSync('nfl_matchup_integrated_breakdown.js','utf8');
 const must=(v,label)=>assert.ok(js.includes(v),label);
 assert.ok(html.includes('nfl_matchup_integrated_breakdown.js'),'script mounted');
 assert.ok(html.includes('id="game"'),'game selector retained');
-for(const x of ['heatMap(g,rec,windowName)','hm-table','hm-soft','hm-middle','hm-tough','hm-possession','WHAT TO KNOW','QUARTERBACK','SKILL PLAYERS','TGT SHARE','EZ TGT/G','PPR AWAY','QB FANTASY PPR','shot-market','contextPanel(g,rec,windowName)','String(x.event_id)===String(g.id)','player_id','sample_size','defenseFresh'])must(x,x);
+for(const x of ['heatMap(g,rec,windowName)','hm-table','hm-soft','hm-middle','hm-tough','hm-possession','WHAT TO KNOW','QUARTERBACK','SKILL PLAYERS','TGT SHARE','EZ TGT/G','PPR AWAY','QB FANTASY PPR','shot-market','contextPanel(g,rec,windowName)','injuryPanel(g)','String(x.event_id)===String(g.id)','player_id','sample_size','defenseFresh'])must(x,x);
 assert.ok(!js.includes("label.includes(selected.away)"),'no fragile selector-label match');
 assert.ok(js.includes("Number(x.season)===season"),'current-season player logs only');
 assert.ok(js.includes("'Pass Attempts'"),'actual feed key for attempts');
