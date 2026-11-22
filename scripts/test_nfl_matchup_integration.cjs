@@ -17,4 +17,7 @@ must(js,'updated_at','sportsbook freshness gating');
 must(js,'defenseFresh','defensive source freshness gating');
 for(const market of ['h2h','spreads','totals','team_totals'])must(js,market,'market '+market+' retained');
 for(const stat of ['passing_yards_allowed','rushing_yards_allowed','receiving_yards_allowed'])must(js,stat,'defensive '+stat);
+must(js,"const g=selected&&label.includes(selected.away)&&label.includes(selected.home)?selected:null;","must never fall back to a different game");
+must(js,"hasRank=sample>=3","rank requires sufficient defensive sample");
+assert.ok(!js.includes("games.find(x=>label.includes"),"ambiguous game-name fallback prohibited");
 console.log('NFL matchup integration static contract checks passed');
