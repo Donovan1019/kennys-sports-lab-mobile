@@ -1,0 +1,38 @@
+name: NFL Defensive Feed Rebuild Verification
+on:
+  pull_request:
+    paths:
+      - 'scripts/build_nfl_defensive_comparison.py'
+      - 'scripts/test_nfl_defensive_boxscore.py'
+      - 'scripts/audit_nfl_defensive_feed.cjs'
+      - '.github/workflows/nfl-defensive-feed-rebuild.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate signed-yardage boxscore behavior
+        run: python scripts/test_nfl_defensive_boxscore.py
+      - name: Rebuild ESPN defensive comparisons from completed games
+        run: python scripts/build_nfl_defensive_comparison.py
+      - name: Audit regenerated feed and reject incomplete ingestion
+        run: node scripts/audit_nfl_defensive_feed.cjs
+      - name: Validate regenerated defensive matchup snapshot
+        run: python scripts/test_nfl_defensive_matchup_feed.py
+      - name: Upload regenerated feed for reviewed promotion
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nfl-defensive-rebuilt-feed
+          path: feed/americanfootball_nfl_defensive_comparison.json
+          retention-days: 7
