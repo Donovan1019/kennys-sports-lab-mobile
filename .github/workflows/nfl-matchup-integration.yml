@@ -5,6 +5,7 @@ on:
       - 'nfl_matchup_integrated_breakdown.js'
       - 'nfl-matchup-lab.html'
       - 'scripts/test_nfl_matchup_integration.cjs'
+      - 'scripts/test_nfl_matchup_runtime.cjs'
       - '.github/workflows/nfl-matchup-integration.yml'
   workflow_dispatch:
 jobs:
@@ -19,5 +20,5 @@ jobs:
         run: node --check nfl_matchup_integrated_breakdown.js
       - name: Run NFL matchup integration contract tests
         run: node scripts/test_nfl_matchup_integration.cjs
-         - name: Smoke-test NFL matchup runtime render
-           run: node scripts/test_nfl_matchup_runtime.cjs
+      - name: Smoke-test NFL matchup runtime render
+        run: node scripts/test_nfl_matchup_runtime.cjs
