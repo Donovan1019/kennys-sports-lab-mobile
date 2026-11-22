@@ -15,6 +15,9 @@ jobs:
     timeout-minutes: 35
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -41,6 +44,8 @@ jobs:
             echo 'Validated snapshot already current'
           else
             git commit -m 'Refresh validated NFL defensive matchup feed'
+            git fetch origin "$HEAD_REF"
+            git rebase "origin/$HEAD_REF"
             git push origin HEAD:"$HEAD_REF"
           fi
       - name: Upload regenerated feed for reviewed promotion
