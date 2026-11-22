@@ -10,7 +10,7 @@ assert.ok(js.includes("Number(x.season)===season"),'current-season player logs o
 assert.ok(js.includes("'Pass Attempts'"),'actual feed key for attempts');
 assert.ok(js.includes("player_id"),'stable opportunity player joins');
 assert.ok(js.includes("awayPpr(logs"),'away splits calculated');
-assert.ok(js.includes("byTeam.size")||js.includes("values.length<16"),'ranking requires minimum comparison-pool coverage');
+assert.ok(js.includes("values.length!==32"),'ranking requires minimum comparison-pool coverage');
 assert.ok(js.includes('data-ready'),'original fallback retained');
 must('HOW IT COULD PLAY OUT','scenarios');
 console.log('NFL screenshot heat-map static contract checks passed');
