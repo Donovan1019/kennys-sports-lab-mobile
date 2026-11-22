@@ -29,3 +29,6 @@ assert.ok(js.includes('Date.parse(x.game_date)<kickoff'),'opportunity rows dated
 
 assert.ok(js.includes("-2*sum(v,['Interceptions','Fumbles lost'])"),'standard PPR scoring subtracts turnovers');
 assert.ok(js.includes("!Number.isFinite(Number(v))?'—'"),'non-numeric heatmap values display unavailable');
+
+assert.ok(js.includes('const keys=[x.player_id,x.player_name]'),'opportunity rows index stable IDs and display names');
+assert.ok(js.includes("byName.get(String(p.name||'').trim().toLowerCase())"),'opportunity lookup falls back to player name');
