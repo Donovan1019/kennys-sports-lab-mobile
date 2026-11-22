@@ -13,7 +13,7 @@ assert.match(rendered.innerHTML,/Buffalo Bills/,'selected matchup renders even w
 assert.match(rendered.innerHTML,/QUARTERBACK/,'QB table section');
 assert.match(rendered.innerHTML,/SKILL PLAYERS/,'skill-player section');
 assert.match(rendered.innerHTML,/WHAT TO KNOW/,'insights section');
-assert.match(rendered.innerHTML,/UNVERIFIED/,'missing data remains marked');
+assert.match(rendered.innerHTML,/THE BOTTOM LINE/,'source-grounded summary');
 assert.match(rendered.innerHTML,/shot-market/,'market strip');
 assert.match(rendered.innerHTML,/hm-possession/,'orange possession banner');
 assert.match(rendered.innerHTML,/hm-table/,'unified screenshot heat-map tables');
