@@ -1,45 +1,9 @@
 {
   "status": "diagnostic_only",
-  "generated_at": "2026-11-22T09:50:40.552433+00:00",
+  "generated_at": "2026-11-22T23:36:48.361752+00:00",
   "source": "historical team box-score possessions, not Elo or bookmaker odds",
   "qualified_teams": 30,
   "games": [
-    {
-      "event_id": "JAmMvOI9cXWrPV42meXv",
-      "status": "diagnostic_only",
-      "home": "Atlanta Hawks",
-      "away": "Detroit Pistons",
-      "draws": 10000,
-      "estimated_possessions": 101.81,
-      "home_offense_ppp": 1.0849,
-      "away_offense_ppp": 1.1298,
-      "home_regulation_win_probability": 0.4003,
-      "regulation_tie_probability": 0.0221,
-      "home_full_game_win_probability": 0.4003,
-      "overtime_periods_simulated": 245,
-      "overtime_unmodeled": false,
-      "injuries_rest_unmodeled": true,
-      "historical_calibration_unverified": true,
-      "betting_eligible": false
-    },
-    {
-      "event_id": "mPJ2zIZJxG854MfndGyH",
-      "status": "diagnostic_only",
-      "home": "Miami Heat",
-      "away": "Oklahoma City Thunder",
-      "draws": 10000,
-      "estimated_possessions": 102.51,
-      "home_offense_ppp": 1.1307,
-      "away_offense_ppp": 1.1731,
-      "home_regulation_win_probability": 0.3999,
-      "regulation_tie_probability": 0.0252,
-      "home_full_game_win_probability": 0.3999,
-      "overtime_periods_simulated": 280,
-      "overtime_unmodeled": false,
-      "injuries_rest_unmodeled": true,
-      "historical_calibration_unverified": true,
-      "betting_eligible": false
-    },
     {
       "event_id": "2QOip6CJrTjvFMvu2SzP",
       "status": "diagnostic_only",
@@ -129,6 +93,29 @@
       "injuries_rest_unmodeled": true,
       "historical_calibration_unverified": true,
       "betting_eligible": false
+    },
+    {
+      "event_id": "weMZ23BXVXUF7C5zfsbe",
+      "status": "diagnostic_only",
+      "home": "Philadelphia 76ers",
+      "away": "Portland Trail Blazers",
+      "draws": 10000,
+      "estimated_possessions": 100.13,
+      "home_offense_ppp": 1.1038,
+      "away_offense_ppp": 1.1153,
+      "home_regulation_win_probability": 0.467,
+      "regulation_tie_probability": 0.0238,
+      "home_full_game_win_probability": 0.467,
+      "overtime_periods_simulated": 261,
+      "overtime_unmodeled": false,
+      "injuries_rest_unmodeled": true,
+      "historical_calibration_unverified": true,
+      "betting_eligible": false
+    },
+    {
+      "event_id": "SHvnat0tA70LqQ9tHYvT",
+      "status": "unavailable",
+      "reason": "historical_box_score_possessions_missing"
     }
   ],
   "betting_eligible": false,

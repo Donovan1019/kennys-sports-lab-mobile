@@ -1,7 +1,7 @@
 {
   "status": "validated",
   "sport": "basketball_nba",
-  "generated_at": "2026-11-22T09:50:37.894893+00:00",
+  "generated_at": "2026-11-22T23:36:47.460627+00:00",
   "calibration_passed": true,
   "model_version": "elo-walkforward-v1-holdout-audit",
   "validation_report": {
@@ -24,30 +24,6 @@
   },
   "training_cutoff": "2026-11-22T03:00Z",
   "predictions": [
-    {
-      "event_id": "JAmMvOI9cXWrPV42meXv",
-      "team": "Atlanta Hawks",
-      "date_et": "2026-11-22",
-      "win_probability": 0.485077
-    },
-    {
-      "event_id": "JAmMvOI9cXWrPV42meXv",
-      "team": "Detroit Pistons",
-      "date_et": "2026-11-22",
-      "win_probability": 0.514923
-    },
-    {
-      "event_id": "mPJ2zIZJxG854MfndGyH",
-      "team": "Miami Heat",
-      "date_et": "2026-11-22",
-      "win_probability": 0.380433
-    },
-    {
-      "event_id": "mPJ2zIZJxG854MfndGyH",
-      "team": "Oklahoma City Thunder",
-      "date_et": "2026-11-22",
-      "win_probability": 0.619567
-    },
     {
       "event_id": "2QOip6CJrTjvFMvu2SzP",
       "team": "Chicago Bulls",
@@ -107,6 +83,18 @@
       "team": "Boston Celtics",
       "date_et": "2026-11-22",
       "win_probability": 0.687634
+    },
+    {
+      "event_id": "weMZ23BXVXUF7C5zfsbe",
+      "team": "Philadelphia 76ers",
+      "date_et": "2026-11-23",
+      "win_probability": 0.659836
+    },
+    {
+      "event_id": "weMZ23BXVXUF7C5zfsbe",
+      "team": "Portland Trail Blazers",
+      "date_et": "2026-11-23",
+      "win_probability": 0.340164
     }
   ]
 }
