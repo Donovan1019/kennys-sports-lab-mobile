@@ -25,6 +25,12 @@ jobs:
           test -s gameday.html
           test -s nfl_matchup_advanced.js
           test -s nfl_prediction_engine.js
+      - name: Validate NFL GameDay data and prediction pipeline
+        run: |
+          node scripts/audit_nfl_defensive_feed.cjs
+          python3 scripts/test_nfl_defensive_boxscore.py
+          python3 scripts/test_nfl_defensive_matchup_feed.py
+          node scripts/test_nfl_prediction_lab.cjs
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:
@@ -32,3 +38,14 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+      - name: Verify published GameDay URL
+        env:
+          PAGE_URL: ${{ steps.deployment.outputs.page_url }}
+        run: |
+          set -euo pipefail
+          base="${PAGE_URL%/}"
+          for path in index.html nfl.html gameday.html nfl_matchup_advanced.js nfl_prediction_engine.js; do
+            url="$base/$path"
+            echo "Checking $url"
+            curl --fail --location --silent --show-error --retry 5 --retry-delay 5 --retry-all-errors --max-time 30 --output /dev/null "$url"
+          done
