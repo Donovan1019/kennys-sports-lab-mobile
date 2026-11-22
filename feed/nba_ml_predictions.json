@@ -1,7 +1,7 @@
 {
   "status": "validated",
   "sport": "basketball_nba",
-  "generated_at": "2026-11-22T00:17:41.106531+00:00",
+  "generated_at": "2026-11-22T02:14:27.032387+00:00",
   "calibration_passed": true,
   "model_version": "elo-walkforward-v1-holdout-audit",
   "validation_report": {
@@ -24,42 +24,6 @@
   },
   "training_cutoff": "2026-11-21T03:00Z",
   "predictions": [
-    {
-      "event_id": "ddTPQ1KzgsIpJQhcowLX",
-      "team": "New York Knicks",
-      "date_et": "2026-11-21",
-      "win_probability": 0.638986
-    },
-    {
-      "event_id": "ddTPQ1KzgsIpJQhcowLX",
-      "team": "Portland Trail Blazers",
-      "date_et": "2026-11-21",
-      "win_probability": 0.361014
-    },
-    {
-      "event_id": "B8Kg6YVbG0LphWhTRzMe",
-      "team": "San Antonio Spurs",
-      "date_et": "2026-11-21",
-      "win_probability": 0.912222
-    },
-    {
-      "event_id": "B8Kg6YVbG0LphWhTRzMe",
-      "team": "New Orleans Pelicans",
-      "date_et": "2026-11-21",
-      "win_probability": 0.087778
-    },
-    {
-      "event_id": "VFOvtNU5AbIejhb6XSaT",
-      "team": "Minnesota Timberwolves",
-      "date_et": "2026-11-21",
-      "win_probability": 0.807498
-    },
-    {
-      "event_id": "VFOvtNU5AbIejhb6XSaT",
-      "team": "Memphis Grizzlies",
-      "date_et": "2026-11-21",
-      "win_probability": 0.192502
-    },
     {
       "event_id": "C8msr3REC7p9Unntf9Ql",
       "team": "Sacramento Kings",
@@ -119,6 +83,18 @@
       "team": "Orlando Magic",
       "date_et": "2026-11-22",
       "win_probability": 0.725379
+    },
+    {
+      "event_id": "GdMLvvjBUrZuWw8DP7Yd",
+      "team": "Golden State Warriors",
+      "date_et": "2026-11-22",
+      "win_probability": 0.291848
+    },
+    {
+      "event_id": "GdMLvvjBUrZuWw8DP7Yd",
+      "team": "Boston Celtics",
+      "date_et": "2026-11-22",
+      "win_probability": 0.708152
     }
   ]
 }
