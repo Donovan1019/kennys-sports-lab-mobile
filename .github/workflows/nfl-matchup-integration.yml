@@ -1,0 +1,21 @@
+name: NFL Matchup Integration Validation
+on:
+  pull_request:
+    paths:
+      - 'nfl_matchup_integrated_breakdown.js'
+      - 'nfl-matchup-lab.html'
+      - 'scripts/test_nfl_matchup_integration.cjs'
+      - '.github/workflows/nfl-matchup-integration.yml'
+  workflow_dispatch:
+jobs:
+  integration:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate NFL matchup JavaScript syntax
+        run: node --check nfl_matchup_integrated_breakdown.js
+      - name: Run NFL matchup integration contract tests
+        run: node scripts/test_nfl_matchup_integration.cjs
