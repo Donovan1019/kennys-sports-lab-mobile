@@ -14,3 +14,7 @@ assert.ok(js.includes("byTeam.size")||js.includes("values.length<16"),'ranking r
 assert.ok(js.includes('data-ready'),'original fallback retained');
 must('HOW IT COULD PLAY OUT','scenarios');
 console.log('NFL screenshot heat-map static contract checks passed');
+
+assert.ok(js.includes('kickoffDate.getUTCMonth()<2?1:0'),'January and February games retain preceding NFL season');
+assert.ok(js.includes('upstream ingestion must be repaired'),'empty player feeds surface actionable diagnostics');
+assert.ok(js.includes('target shares and end-zone usage cannot be calculated'),'empty opportunity feeds never imply verified usage');
