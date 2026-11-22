@@ -1,6 +1,6 @@
 {
   "date": "2026-11-21",
-  "generated_at": "2026-11-21T19:09:23.171024+00:00",
+  "generated_at": "2026-11-22T02:10:47.535700+00:00",
   "sports": {
     "NFL": {
       "status": "OUTCOMES_UNVERIFIED",
@@ -50,21 +50,118 @@
       "pending": 24
     },
     "NHL": {
-      "status": "OUTCOMES_UNVERIFIED",
+      "status": "PARTIALLY_SETTLED_MONEYLINES",
       "saved_quotes": 0,
       "eligible_predictions": 246,
       "research_only_predictions": 246,
       "bet_eligible_predictions": 0,
       "blocked_predictions": [],
-      "graded": 0,
-      "settled": [],
-      "pending": 246
+      "graded": 16,
+      "settled": [
+        {
+          "event": "Edmonton Oilers @ Carolina Hurricanes",
+          "market": "h2h",
+          "selection": "Carolina Hurricanes",
+          "outcome": "win"
+        },
+        {
+          "event": "Edmonton Oilers @ Carolina Hurricanes",
+          "market": "h2h",
+          "selection": "Edmonton Oilers",
+          "outcome": "loss"
+        },
+        {
+          "event": "Chicago Blackhawks @ Calgary Flames",
+          "market": "h2h",
+          "selection": "Calgary Flames",
+          "outcome": "loss"
+        },
+        {
+          "event": "Chicago Blackhawks @ Calgary Flames",
+          "market": "h2h",
+          "selection": "Chicago Blackhawks",
+          "outcome": "win"
+        },
+        {
+          "event": "Buffalo Sabres @ Florida Panthers",
+          "market": "h2h",
+          "selection": "Florida Panthers",
+          "outcome": "win"
+        },
+        {
+          "event": "Buffalo Sabres @ Florida Panthers",
+          "market": "h2h",
+          "selection": "Buffalo Sabres",
+          "outcome": "loss"
+        },
+        {
+          "event": "Pittsburgh Penguins @ Nashville Predators",
+          "market": "h2h",
+          "selection": "Nashville Predators",
+          "outcome": "win"
+        },
+        {
+          "event": "Pittsburgh Penguins @ Nashville Predators",
+          "market": "h2h",
+          "selection": "Pittsburgh Penguins",
+          "outcome": "loss"
+        },
+        {
+          "event": "Edmonton Oilers @ Carolina Hurricanes",
+          "market": "h2h",
+          "selection": "Carolina Hurricanes",
+          "outcome": "win"
+        },
+        {
+          "event": "Edmonton Oilers @ Carolina Hurricanes",
+          "market": "h2h",
+          "selection": "Edmonton Oilers",
+          "outcome": "loss"
+        },
+        {
+          "event": "Chicago Blackhawks @ Calgary Flames",
+          "market": "h2h",
+          "selection": "Calgary Flames",
+          "outcome": "loss"
+        },
+        {
+          "event": "Chicago Blackhawks @ Calgary Flames",
+          "market": "h2h",
+          "selection": "Chicago Blackhawks",
+          "outcome": "win"
+        },
+        {
+          "event": "Buffalo Sabres @ Florida Panthers",
+          "market": "h2h",
+          "selection": "Florida Panthers",
+          "outcome": "win"
+        },
+        {
+          "event": "Buffalo Sabres @ Florida Panthers",
+          "market": "h2h",
+          "selection": "Buffalo Sabres",
+          "outcome": "loss"
+        },
+        {
+          "event": "Pittsburgh Penguins @ Nashville Predators",
+          "market": "h2h",
+          "selection": "Nashville Predators",
+          "outcome": "win"
+        },
+        {
+          "event": "Pittsburgh Penguins @ Nashville Predators",
+          "market": "h2h",
+          "selection": "Pittsburgh Penguins",
+          "outcome": "loss"
+        }
+      ],
+      "pending": 230
     }
   },
   "summary": {
-    "verified_picks": 4,
-    "wins": 2,
-    "losses": 2,
+    "verified_picks": 20,
+    "wins": 10,
+    "losses": 10,
     "pushes": 0,
     "roi": null,
     "hit_rate": 0.5

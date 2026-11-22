@@ -1,0 +1,20 @@
+{
+  "sport": "NBA",
+  "date": "2026-11-21",
+  "games": [
+    {
+      "event_id": "401910023",
+      "event": "Milwaukee Bucks at Philadelphia 76ers",
+      "commence_time": "2026-11-21T18:00Z",
+      "home": "Philadelphia 76ers",
+      "away": "Milwaukee Bucks",
+      "home_score": 132,
+      "away_score": 129,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261121&limit=100"
+    }
+  ],
+  "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261121&limit=100"
+}

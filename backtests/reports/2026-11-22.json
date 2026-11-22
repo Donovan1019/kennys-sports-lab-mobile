@@ -1,0 +1,84 @@
+{
+  "date": "2026-11-22",
+  "generated_at": "2026-11-22T02:10:47.942058+00:00",
+  "sports": {
+    "NFL": {
+      "status": "OUTCOMES_UNVERIFIED",
+      "saved_quotes": 0,
+      "eligible_predictions": 6,
+      "research_only_predictions": 6,
+      "bet_eligible_predictions": 0,
+      "blocked_predictions": [],
+      "graded": 0,
+      "settled": [],
+      "pending": 6
+    },
+    "NBA": {
+      "status": "OUTCOMES_UNVERIFIED",
+      "saved_quotes": 8468,
+      "eligible_predictions": 24,
+      "research_only_predictions": 24,
+      "bet_eligible_predictions": 0,
+      "blocked_predictions": [],
+      "graded": 0,
+      "settled": [],
+      "pending": 24
+    },
+    "NHL": {
+      "status": "PARTIALLY_SETTLED_MONEYLINES",
+      "saved_quotes": 0,
+      "eligible_predictions": 214,
+      "research_only_predictions": 214,
+      "bet_eligible_predictions": 0,
+      "blocked_predictions": [],
+      "graded": 6,
+      "settled": [
+        {
+          "event": "Chicago Blackhawks @ Calgary Flames",
+          "market": "h2h",
+          "selection": "Calgary Flames",
+          "outcome": "loss"
+        },
+        {
+          "event": "Chicago Blackhawks @ Calgary Flames",
+          "market": "h2h",
+          "selection": "Chicago Blackhawks",
+          "outcome": "win"
+        },
+        {
+          "event": "Buffalo Sabres @ Florida Panthers",
+          "market": "h2h",
+          "selection": "Florida Panthers",
+          "outcome": "win"
+        },
+        {
+          "event": "Buffalo Sabres @ Florida Panthers",
+          "market": "h2h",
+          "selection": "Buffalo Sabres",
+          "outcome": "loss"
+        },
+        {
+          "event": "Pittsburgh Penguins @ Nashville Predators",
+          "market": "h2h",
+          "selection": "Nashville Predators",
+          "outcome": "win"
+        },
+        {
+          "event": "Pittsburgh Penguins @ Nashville Predators",
+          "market": "h2h",
+          "selection": "Pittsburgh Penguins",
+          "outcome": "loss"
+        }
+      ],
+      "pending": 208
+    }
+  },
+  "summary": {
+    "verified_picks": 6,
+    "wins": 3,
+    "losses": 3,
+    "pushes": 0,
+    "roi": null,
+    "hit_rate": 0.5
+  }
+}
