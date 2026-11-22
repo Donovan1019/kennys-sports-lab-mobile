@@ -1,23 +1,18 @@
 {
   "schema_version": 2,
-  "generated_at": "2026-11-22T01:34:08.644368+00:00",
+  "generated_at": "2026-11-22T20:49:13.304705+00:00",
   "model_status": "research_only_not_bet_eligible",
   "prediction_type": "single_leg_empirical_history_not_sgp",
   "predictions": [],
   "rejections": {
-    "unsupported_market": 3912,
-    "quote_timestamp": 219,
-    "player_not_matched": 6,
-    "unverified_matchup": 97
+    "stale_feed": 1
   },
   "feed_freshness": {
-    "status": "fresh",
+    "status": "stale",
     "fetched_at": "2026-11-22T00:17:04.605695+00:00",
-    "age_seconds": 4624.0,
-    "max_age_seconds": 5400
-  },
-  "unmatched_player_names": [
-    "Alexandre Sarr",
-    "Darius Acuff"
-  ]
+    "age_seconds": 73928.7,
+    "max_age_seconds": 5400,
+    "recovery_workflow": "refresh-nba-nhl-props.yml",
+    "recovery_note": "Refresh verified sportsbook quotes; never change fetched_at without fetching fresh quotes."
+  }
 }
