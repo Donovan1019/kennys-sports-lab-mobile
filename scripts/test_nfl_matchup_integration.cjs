@@ -34,4 +34,5 @@ assert.ok(js.includes('const keys=[x.player_id,x.player_name]'),'opportunity row
 assert.ok(js.includes("byName.get(String(p.name||'').trim().toLowerCase())"),'opportunity lookup falls back to player name');
 
 assert.ok(js.includes("x!==''&&Number.isFinite(Number(x))&&Number(x)>=0"),'invalid opportunity counts are excluded');
-assert.ok(js.includes("usage('targets')<=usage('team_targets')"),'impossible target share is not displayed');
+assert.ok(js.includes('Number(x.targets)<=Number(x.team_targets)'),'impossible target-share observations excluded');
+assert.ok(js.includes('paired.length>=3?100*paired.reduce'),'target share uses at least three paired game observations');
