@@ -5,7 +5,7 @@ const must=(source,fragment,label)=>assert.ok(source.includes(fragment),label);
 must(html,'nfl_matchup_integrated_breakdown.js','matchup script mounted');
 must(html,'id="game"','game selector retained');
 must(html,'id="advancedtabs"','existing advanced tabs retained');
-must(js,"x.event_id===g.id",'event id joins');
+must(js,"String(x.event_id)===String(g.id)",'event id joins');
 must(js,'matchup_stats','defensive matchup source');
 must(js,'quotePanel(g)','sportsbook quote panel');
 must(js,'playerPanel(g)','QB and skill player panel');
@@ -24,6 +24,8 @@ assert.ok(!js.includes("games.find(x=>label.includes"),"ambiguous game-name fall
 must(js,"x.date&&Number.isFinite(Date.parse(x.date))&&Date.parse(x.date)<kickoff","player history must have verifiable pregame date");
 assert.ok(!js.includes("Number(x.season)<new Date(kickoff).getUTCFullYear()"),"undated historical rows cannot be treated as verified");
 must(js,"Date.parse(x.updated_at)<=Date.now()+300000","insight quote timestamps cannot be in the future");
+assert.ok(!js.includes("rank<=11?'bd-good'"),'defensive rank direction must not be assumed');
+must(js,"data-ready",'fallback page preserved without a valid matchup');
 must(js,'QUARTERBACK BREAKDOWN','quarterback table');
 must(js,'SKILL PLAYER BREAKDOWN','skill player table');
 must(js,'shot-market','compact screenshot market strip');
