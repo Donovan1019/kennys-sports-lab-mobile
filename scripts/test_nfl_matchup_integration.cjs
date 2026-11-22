@@ -32,3 +32,6 @@ assert.ok(js.includes("!Number.isFinite(Number(v))?'—'"),'non-numeric heatmap 
 
 assert.ok(js.includes('const keys=[x.player_id,x.player_name]'),'opportunity rows index stable IDs and display names');
 assert.ok(js.includes("byName.get(String(p.name||'').trim().toLowerCase())"),'opportunity lookup falls back to player name');
+
+assert.ok(js.includes("x!==''&&Number.isFinite(Number(x))&&Number(x)>=0"),'invalid opportunity counts are excluded');
+assert.ok(js.includes("usage('targets')<=usage('team_targets')"),'impossible target share is not displayed');
