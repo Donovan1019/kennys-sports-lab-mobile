@@ -1,5 +1,5 @@
 const fs=require('node:fs');const assert=require('node:assert/strict');
-const html=fs.readFileSync('nfl-matchup-lab.html','utf8');
+const html=fs.readFileSync('gameday.html','utf8');
 const js=fs.readFileSync('nfl_matchup_integrated_breakdown.js','utf8');
 const must=(v,label)=>assert.ok(js.includes(v),label);
 assert.ok(html.includes('nfl_matchup_integrated_breakdown.js'),'script mounted');
@@ -18,3 +18,8 @@ console.log('NFL screenshot heat-map static contract checks passed');
 assert.ok(js.includes('kickoffDate.getUTCMonth()<2?1:0'),'January and February games retain preceding NFL season');
 assert.ok(js.includes('upstream ingestion must be repaired'),'empty player feeds surface actionable diagnostics');
 assert.ok(js.includes('target shares and end-zone usage cannot be calculated'),'empty opportunity feeds never imply verified usage');
+
+const nflNav=fs.readFileSync('nfl.html','utf8');
+assert.ok(nflNav.includes('href="./gameday.html">GameDay</a>'),'NFL navigation exposes dedicated GameDay tab');
+assert.ok(!nflNav.includes('href="./nfl-matchup-lab.html">Player Breakdown</a>'),'legacy placement removed');
+assert.ok(fs.readFileSync('nfl-matchup-lab.html','utf8').includes('gameday.html'),'old page redirects to GameDay');
