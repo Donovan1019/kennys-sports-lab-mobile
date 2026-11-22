@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 // Dependency-free predeployment integrity checks for the NFL prediction lab.
-const fs=require('fs'),vm=require('vm'),assert=require('assert');
+const fs=require('fs'),vm=require('vm'),assert=require('assert'),{spawnSync}=require('child_process');
+const python=spawnSync('python3',['scripts/test_nfl_defensive_boxscore.py'],{encoding:'utf8'});
+assert.strictEqual(python.status,0,'NFL defensive boxscore regressions failed: '+(python.stderr||python.stdout||python.error));
 const html=fs.readFileSync('gameday.html','utf8');
 const scripts=['nfl_matchup_advanced.js','nfl_prediction_engine.js'];
 for(const file of scripts)new vm.Script(fs.readFileSync(file,'utf8'),{filename:file});
