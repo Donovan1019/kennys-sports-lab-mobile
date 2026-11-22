@@ -8,7 +8,7 @@ on:
       - '.github/workflows/nfl-defensive-feed-rebuild.yml'
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
 jobs:
   rebuild:
     runs-on: ubuntu-latest
@@ -29,6 +29,20 @@ jobs:
         run: node scripts/audit_nfl_defensive_feed.cjs
       - name: Validate regenerated defensive matchup snapshot
         run: python scripts/test_nfl_defensive_matchup_feed.py
+      - name: Promote validated snapshot to PR branch
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          HEAD_REF: ${{ github.head_ref }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add feed/americanfootball_nfl_defensive_comparison.json
+          if git diff --cached --quiet; then
+            echo 'Validated snapshot already current'
+          else
+            git commit -m 'Refresh validated NFL defensive matchup feed'
+            git push origin HEAD:"$HEAD_REF"
+          fi
       - name: Upload regenerated feed for reviewed promotion
         if: always()
         uses: actions/upload-artifact@v4
