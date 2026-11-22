@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 POSITIONS = ("overall", "qb", "rb", "wr", "te")
 WINDOWS = ("season", "last4", "previous")
 SIDES = ("home", "away")
-SIGNED = {"rushing_yards_allowed", "receiving_yards_allowed"}
+SIGNED = {"passing_yards_allowed", "rushing_yards_allowed", "receiving_yards_allowed"}
 
 def validate(data):
     stamp = datetime.fromisoformat(data["generated_at"].replace("Z", "+00:00"))
