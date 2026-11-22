@@ -84,7 +84,7 @@ def parse_box(payload, team_rosters=None):
                             for bucket in buckets:bucket[key]=bucket.get(key,0)+v
         out[team]=values
     return out
-SIGNED_FIELDS={'rushing_yards_allowed','receiving_yards_allowed'}
+# Individual passers can have negative yardage (including trick-play passers).\n# A QB subtotal can therefore exceed the sum of all passers without an aggregation error.\nSIGNED_FIELDS={'passing_yards_allowed','rushing_yards_allowed','receiving_yards_allowed'}
 def validate_box(box):
     for team,positions in box.items():
         overall=positions['overall']
