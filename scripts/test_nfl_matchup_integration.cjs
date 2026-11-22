@@ -23,4 +23,8 @@ assert.ok(!js.includes("games.find(x=>label.includes"),"ambiguous game-name fall
 must(js,"x.date&&Number.isFinite(Date.parse(x.date))&&Date.parse(x.date)<kickoff","player history must have verifiable pregame date");
 assert.ok(!js.includes("Number(x.season)<new Date(kickoff).getUTCFullYear()"),"undated historical rows cannot be treated as verified");
 must(js,"Date.parse(x.updated_at)<=Date.now()+300000","insight quote timestamps cannot be in the future");
+must(js,'QUARTERBACK BREAKDOWN','quarterback table');
+must(js,'SKILL PLAYER BREAKDOWN','skill player table');
+must(js,'shot-market','compact screenshot market strip');
+must(js,'grid-template-columns:repeat(6','six defensive tiles per row');
 console.log('NFL matchup integration static contract checks passed');
