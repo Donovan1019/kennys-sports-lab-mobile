@@ -1,0 +1,18 @@
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+const source=fs.readFileSync('nfl_matchup_integrated_breakdown.js','utf8');
+const nodes=new Map;
+const node=id=>{if(!nodes.has(id))nodes.set(id,{id,style:{setProperty(){}},dataset:{},innerHTML:'',value:'0',selectedOptions:[{textContent:'Different display label'}],addEventListener(){},setAttribute(){},append(){},parentNode:{insertBefore(){}},querySelector(){return null}});return nodes.get(id)};
+const document={head:{append(){}},createElement(){return node('dynamic'+nodes.size)},querySelector(selector){return selector==='.prediction-banner'?node('banner'):null},getElementById:node};
+const event={id:'event-1',away:'Buffalo Bills',home:'Miami Dolphins',time:'2026-11-29T18:00:00Z'};
+const fetch=()=>Promise.resolve({ok:true,json:async()=>({players:[],games:[]})});
+const context={document,fetch,console,Date,Number,String,Array,Map,JSON,Math,Error,Promise,queueMicrotask,MutationObserver:class{observe(){}},setTimeout,window:{},games:[event],odds:[],comparison:{generated_at:new Date().toISOString(),events:[{event_id:'event-1',matchup_stats:{season:{}}}]},state:{window:'season'}};
+vm.runInNewContext(source,context,{timeout:3000});
+const rendered=[...nodes.values()].find(x=>x.id==='ksl-game-breakdown');
+assert.ok(rendered,'breakdown mounted');
+assert.match(rendered.innerHTML,/Buffalo Bills/,'selected matchup renders even with abbreviated selector label');
+assert.match(rendered.innerHTML,/QUARTERBACK BREAKDOWN/,'QB table section');
+assert.match(rendered.innerHTML,/SKILL PLAYER BREAKDOWN/,'skill-player section');
+assert.match(rendered.innerHTML,/WHAT TO KNOW/,'insights section');
+assert.match(rendered.innerHTML,/UNVERIFIED/,'missing data remains marked');
+assert.match(rendered.innerHTML,/shot-market/,'market strip');
+console.log('NFL matchup runtime smoke test passed');
