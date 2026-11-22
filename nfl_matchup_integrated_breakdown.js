@@ -25,10 +25,10 @@ const games=p=>(p.games||[]).filter(x=>x.season_type==='REG'&&Number(x.season)==
 const fieldAlias={'Passing attempts':'Pass Attempts','Rushing attempts':'Rush Attempts','Passing completions':'Completions','Targets':'Targets'};
 const avg=(rows,key)=>{const nums=rows.map(x=>x.values?.[fieldAlias[key]||key]).filter(x=>x!==null&&x!==undefined&&x!==''&&Number.isFinite(Number(x))).map(Number);return nums.length>=3?nums.reduce((a,b)=>a+b,0)/nums.length:null};
 const sum=(v,keys)=>keys.reduce((t,k)=>t+Number(v?.[k]||0),0);
-const scorePpr=v=>sum(v,['Rushing yards','Receiving yards'])/10+Number(v['Passing yards']||0)/25+4*Number(v['Passing touchdowns']||0)+6*sum(v,['Rushing touchdowns','Receiving touchdowns'])+Number(v.Receptions||0);
+const scorePpr=v=>sum(v,['Rushing yards','Receiving yards'])/10+Number(v['Passing yards']||0)/25+4*Number(v['Passing touchdowns']||0)+6*sum(v,['Rushing touchdowns','Receiving touchdowns'])+Number(v.Receptions||0)-2*sum(v,['Interceptions','Fumbles lost']);
 const ppr=logs=>logs.length>=3?logs.reduce((t,x)=>t+scorePpr(x.values||{}),0)/logs.length:null;
 const awayPpr=(logs,team)=>{const away=logs.filter(x=>{const parts=String(x.game_id||'').split('_');return parts.length>=4&&parts[2]===team});return away.length>=3?ppr(away):null};
-const number=v=>v===null?'—':v.toFixed(1);const group=raw.filter(p=>codes.some(c=>(alias[c]||[c]).includes(String(p.team||'').toUpperCase()))&&['QB','RB','WR','TE'].includes(String(p.position||'').toUpperCase()));
+const number=v=>v===null||v===undefined||!Number.isFinite(Number(v))?'—':Number(v).toFixed(1);const group=raw.filter(p=>codes.some(c=>(alias[c]||[c]).includes(String(p.team||'').toUpperCase()))&&['QB','RB','WR','TE'].includes(String(p.position||'').toUpperCase()));
 const offenseSide=activeSide==='away'?g.away:g.home;const defenseSide=activeSide==='away'?'home':'away';const offenseCode=names[offenseSide];const defenseStats=pos=>{const d=metrics?.[pos]?.[defenseSide]||{};return Object.fromEntries(Object.entries(d).map(([key,m])=>[key,m&&typeof m==='object'&&'value'in m?ranked(m,pos,key):m]))};
 const chosen=group.filter(p=>(alias[offenseCode]||[offenseCode]).includes(String(p.team||'').toUpperCase()));
 const qbs=chosen.filter(p=>p.position==='QB').map(p=>({p,logs:games(p)})).filter(x=>x.logs.length>=3).sort((a,b)=>(avg(b.logs,'Passing attempts')||0)-(avg(a.logs,'Passing attempts')||0)).slice(0,2);
