@@ -20,4 +20,7 @@ for(const stat of ['passing_yards_allowed','rushing_yards_allowed','receiving_ya
 must(js,"const g=selected&&label.includes(selected.away)&&label.includes(selected.home)?selected:null;","must never fall back to a different game");
 must(js,"hasRank=sample>=3","rank requires sufficient defensive sample");
 assert.ok(!js.includes("games.find(x=>label.includes"),"ambiguous game-name fallback prohibited");
+must(js,"x.date&&Number.isFinite(Date.parse(x.date))&&Date.parse(x.date)<kickoff","player history must have verifiable pregame date");
+assert.ok(!js.includes("Number(x.season)<new Date(kickoff).getUTCFullYear()"),"undated historical rows cannot be treated as verified");
+must(js,"Date.parse(x.updated_at)<=Date.now()+300000","insight quote timestamps cannot be in the future");
 console.log('NFL matchup integration static contract checks passed');
