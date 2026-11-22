@@ -27,4 +27,7 @@ must(js,'QUARTERBACK BREAKDOWN','quarterback table');
 must(js,'SKILL PLAYER BREAKDOWN','skill player table');
 must(js,'shot-market','compact screenshot market strip');
 must(js,'grid-template-columns:repeat(6','six defensive tiles per row');
+must(js,'shot-insights','four screenshot-style insights');
+must(js,'contextPanel()','pressure/red-zone context cards');
+must(js,'shot-alerts','dedicated alerts layout');
 console.log('NFL matchup integration static contract checks passed');
