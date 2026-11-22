@@ -1,19 +1,21 @@
 #!/usr/bin/env node
 // Dependency-free predeployment integrity checks for the NFL prediction lab.
-const fs=require('fs'),vm=require('vm'),assert=require('assert');
-const html=fs.readFileSync('nfl-matchup-lab.html','utf8');
+const fs=require('fs'),vm=require('vm'),assert=require('assert'),{spawnSync}=require('child_process');
+const python=spawnSync('python3',['scripts/test_nfl_defensive_boxscore.py'],{encoding:'utf8'});
+assert.strictEqual(python.status,0,'NFL defensive boxscore regressions failed: '+(python.stderr||python.stdout||python.error));
+const html=fs.readFileSync('gameday.html','utf8');
 const scripts=['nfl_matchup_advanced.js','nfl_prediction_engine.js'];
 for(const file of scripts)new vm.Script(fs.readFileSync(file,'utf8'),{filename:file});
 const inline=[...html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)].map(m=>m[1]).filter(x=>x.trim());
-for(const [i,script] of inline.entries())new vm.Script(script,{filename:'nfl-matchup-lab.html:inline:'+i});
+for(const [i,script] of inline.entries())new vm.Script(script,{filename:'gameday.html:inline:'+i});
 for(const id of ['game','advancedtabs','advancedcontent','nfl-data-health'])assert(html.includes('id="'+id+'"'),'Missing DOM '+id);
 for(const file of scripts)assert(html.includes('src="./'+file+'"'),'Missing script '+file);
 const game=JSON.parse(fs.readFileSync('feed/americanfootball_nfl.json','utf8'));
 const defense=JSON.parse(fs.readFileSync('feed/americanfootball_nfl_defensive_comparison.json','utf8'));
 assert(Array.isArray(game.odds)&&game.odds.length>0,'Missing NFL odds feed');
 assert(Array.isArray(defense.events)&&defense.events.length>0,'Missing defensive comparison feed');
-assert(defense.games_failed===0,'NFL defensive feed still has rejected historical games');
-assert(defense.position_coverage&&['qb','rb','wr','te'].every(p=>defense.position_coverage[p]===defense.events.length),'Incomplete NFL positional matchup coverage');
+assert(Number.isInteger(defense.games_failed)&&defense.games_failed===0,`NFL defensive feed rejected ${defense.games_failed??'unknown'} historical games; repair the upstream defensive feed rather than bypassing this integrity gate`);
+assert(defense.position_coverage&&['qb','rb','wr','te'].every(p=>defense.position_coverage[p]===defense.events.length),`Incomplete NFL positional matchup coverage: expected ${defense.events.length} events per position; observed ${JSON.stringify(defense.position_coverage||{})}`);
 const e=defense.events[0];
 for(const position of ['overall','qb','rb','wr','te'])assert(e.matchup_stats?.season?.[position],'Missing position '+position);
 const engine=fs.readFileSync('nfl_prediction_engine.js','utf8');

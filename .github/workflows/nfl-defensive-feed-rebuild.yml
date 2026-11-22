@@ -1,0 +1,57 @@
+name: NFL Defensive Feed Rebuild Verification
+on:
+  pull_request:
+    paths:
+      - 'scripts/build_nfl_defensive_comparison.py'
+      - 'scripts/test_nfl_defensive_boxscore.py'
+      - 'scripts/audit_nfl_defensive_feed.cjs'
+      - '.github/workflows/nfl-defensive-feed-rebuild.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate signed-yardage boxscore behavior
+        run: python scripts/test_nfl_defensive_boxscore.py
+      - name: Rebuild ESPN defensive comparisons from completed games
+        run: python scripts/build_nfl_defensive_comparison.py
+      - name: Audit regenerated feed and reject incomplete ingestion
+        run: node scripts/audit_nfl_defensive_feed.cjs
+      - name: Validate regenerated defensive matchup snapshot
+        run: python scripts/test_nfl_defensive_matchup_feed.py
+      - name: Promote validated snapshot to PR branch
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          HEAD_REF: ${{ github.head_ref }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add feed/americanfootball_nfl_defensive_comparison.json
+          if git diff --cached --quiet; then
+            echo 'Validated snapshot already current'
+          else
+            git commit -m 'Refresh validated NFL defensive matchup feed'
+            git fetch origin "$HEAD_REF"
+            git rebase "origin/$HEAD_REF"
+            git push origin HEAD:"$HEAD_REF"
+          fi
+      - name: Upload regenerated feed for reviewed promotion
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nfl-defensive-rebuilt-feed
+          path: feed/americanfootball_nfl_defensive_comparison.json
+          retention-days: 7

@@ -1,36 +1,41 @@
 const fs=require('node:fs');const assert=require('node:assert/strict');
-const html=fs.readFileSync('nfl-matchup-lab.html','utf8');
+const html=fs.readFileSync('gameday.html','utf8');
 const js=fs.readFileSync('nfl_matchup_integrated_breakdown.js','utf8');
-const must=(source,fragment,label)=>assert.ok(source.includes(fragment),label);
-must(html,'nfl_matchup_integrated_breakdown.js','matchup script mounted');
-must(html,'id="game"','game selector retained');
-must(html,'id="advancedtabs"','existing advanced tabs retained');
-must(js,"String(x.event_id)===String(g.id)",'event id joins');
-must(js,'matchup_stats','defensive matchup source');
-must(js,'quotePanel(g)','sportsbook quote panel');
-must(js,'playerPanel(g)','QB and skill player panel');
-must(js,'wrPanel(g)','WR and TE opportunity panel');
-must(js,'insightPanel(g,rec,windowName)','what to know panel');
-must(js,'sample_size','defensive minimum sample gating');
-must(js,'game_date','WR usage date gating');
-must(js,'updated_at','sportsbook freshness gating');
-must(js,'defenseFresh','defensive source freshness gating');
-for(const market of ['h2h','spreads','totals','team_totals'])must(js,market,'market '+market+' retained');
-for(const stat of ['passing_yards_allowed','rushing_yards_allowed','receiving_yards_allowed'])must(js,stat,'defensive '+stat);
-must(js,"const g=selected&&selected.id&&selected.away&&selected.home?selected:null;","selected event must have an id and both teams");
-assert.ok(!js.includes("label.includes(selected.away)"),"selector text must not block verified event rendering");
-must(js,"hasRank=sample>=3","rank requires sufficient defensive sample");
-assert.ok(!js.includes("games.find(x=>label.includes"),"ambiguous game-name fallback prohibited");
-must(js,"x.date&&Number.isFinite(Date.parse(x.date))&&Date.parse(x.date)<kickoff","player history must have verifiable pregame date");
-assert.ok(!js.includes("Number(x.season)<new Date(kickoff).getUTCFullYear()"),"undated historical rows cannot be treated as verified");
-must(js,"Date.parse(x.updated_at)<=Date.now()+300000","insight quote timestamps cannot be in the future");
-assert.ok(!js.includes("rank<=11?'bd-good'"),'defensive rank direction must not be assumed');
-must(js,"data-ready",'fallback page preserved without a valid matchup');
-must(js,'QUARTERBACK BREAKDOWN','quarterback table');
-must(js,'SKILL PLAYER BREAKDOWN','skill player table');
-must(js,'shot-market','compact screenshot market strip');
-must(js,'grid-template-columns:repeat(6','six defensive tiles per row');
-must(js,'shot-insights','four screenshot-style insights');
-must(js,'contextPanel()','pressure/red-zone context cards');
-must(js,'shot-alerts','dedicated alerts layout');
-console.log('NFL matchup integration static contract checks passed');
+const must=(v,label)=>assert.ok(js.includes(v),label);
+assert.ok(html.includes('nfl_matchup_integrated_breakdown.js'),'script mounted');
+assert.ok(html.includes('id="game"'),'game selector retained');
+for(const x of ['heatMap(g,rec,windowName)','hm-table','hm-soft','hm-middle','hm-tough','hm-possession','WHAT TO KNOW','QUARTERBACK','SKILL PLAYERS','TGT SHARE','EZ TGT/G','PPR AWAY','QB FANTASY PPR','shot-market','contextPanel(g,rec,windowName)','injuryPanel(g)','teamCards(g)','String(x.event_id)===String(g.id)','player_id','sample_size','defenseFresh'])must(x,x);
+assert.ok(!js.includes("label.includes(selected.away)"),'no fragile selector-label match');
+assert.ok(js.includes("Number(x.season)===season"),'current-season player logs only');
+assert.ok(js.includes("'Pass Attempts'"),'actual feed key for attempts');
+assert.ok(js.includes("player_id"),'stable opportunity player joins');
+assert.ok(js.includes("awayPpr(logs"),'away splits calculated');
+assert.ok(js.includes("values.length!==32"),'ranking requires minimum comparison-pool coverage');
+assert.ok(js.includes('data-ready'),'original fallback retained');
+must('HOW IT COULD PLAY OUT','scenarios');
+console.log('NFL screenshot heat-map static contract checks passed');
+
+assert.ok(js.includes('kickoffDate.getUTCMonth()<2?1:0'),'January and February games retain preceding NFL season');
+assert.ok(js.includes('upstream ingestion must be repaired'),'empty player feeds surface actionable diagnostics');
+assert.ok(js.includes('target shares and end-zone usage cannot be calculated'),'empty opportunity feeds never imply verified usage');
+
+const nflNav=fs.readFileSync('nfl.html','utf8');
+assert.ok(nflNav.includes('href="./gameday.html">GameDay</a>'),'NFL navigation exposes dedicated GameDay tab');
+assert.ok(!nflNav.includes('href="./nfl-matchup-lab.html">Player Breakdown</a>'),'legacy placement removed');
+assert.ok(fs.readFileSync('nfl-matchup-lab.html','utf8').includes('gameday.html'),'old page redirects to GameDay');
+
+assert.ok(js.includes("['RB','WR','TE'].includes(String(x.position"),'opportunity rows include running backs');
+assert.ok(js.includes('Date.parse(x.game_date)<kickoff'),'opportunity rows dated after kickoff are excluded');
+
+assert.ok(js.includes("-2*sum(v,['Interceptions','Fumbles lost'])"),'standard PPR scoring subtracts turnovers');
+assert.ok(js.includes("!Number.isFinite(Number(v))?'—'"),'non-numeric heatmap values display unavailable');
+
+assert.ok(js.includes('const keys=[x.player_id,x.player_name]'),'opportunity rows index stable IDs and display names');
+assert.ok(js.includes("byName.get(String(p.name||'').trim().toLowerCase())"),'opportunity lookup falls back to player name');
+
+assert.ok(js.includes("x!==''&&Number.isFinite(Number(x))&&Number(x)>=0"),'invalid opportunity counts are excluded');
+assert.ok(js.includes('Number(x.targets)<=Number(x.team_targets)'),'impossible target-share observations excluded');
+assert.ok(js.includes('paired.length>=3?100*paired.reduce'),'target share uses at least three paired game observations');
+
+assert.ok(js.includes("!gameWeek&&Number.isFinite(Date.parse(x.game_date||x.date||''))"),'missing game week requires a dated pre-kickoff record');
+assert.ok(js.includes('Date.parse(x.game_date||x.date)<kickoff'),'player and opportunity observations cannot leak post-kickoff');
