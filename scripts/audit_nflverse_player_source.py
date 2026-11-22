@@ -3,6 +3,7 @@
 Read-only; never overwrite model projections or silently substitute metrics.
 """
 import csv, io, json, sys, urllib.request
+from datetime import datetime, timezone
 from collections import defaultdict
 from pathlib import Path
 
@@ -31,6 +32,7 @@ def main():
     counts=defaultdict(int)
     for r in rows:counts[int(r['week'])]+=1
     out={'source':'nflverse/nflverse-data:stats_player','url':SOURCE,'season':2026,
+         'checked_at':datetime.now(timezone.utc).isoformat(),
          'latest_week':latest,'player_week_rows':len(rows),
          'weeks':dict(sorted(counts.items())),'status':'source_verified',
          'integration':'audit_only_no_model_substitution'}
