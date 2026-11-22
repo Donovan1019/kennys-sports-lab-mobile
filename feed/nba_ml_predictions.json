@@ -1,41 +1,29 @@
 {
   "status": "validated",
   "sport": "basketball_nba",
-  "generated_at": "2026-11-22T02:14:27.032387+00:00",
+  "generated_at": "2026-11-22T09:50:37.894893+00:00",
   "calibration_passed": true,
   "model_version": "elo-walkforward-v1-holdout-audit",
   "validation_report": {
-    "walk_forward_games": 1305,
-    "brier": 0.21021,
-    "ece": 0.03975,
+    "walk_forward_games": 1311,
+    "brier": 0.21015,
+    "ece": 0.03808,
     "method": "chronological Elo, 200-game burn-in, no odds inputs",
     "holdout": {
-      "games": 301,
-      "start": "2026-04-10T23:30Z",
-      "end": "2026-11-21T03:00Z",
-      "brier": 0.210381,
-      "ece": 0.065208,
-      "constant_baseline_brier": 0.247988,
+      "games": 303,
+      "start": "2026-04-11T00:00Z",
+      "end": "2026-11-22T03:00Z",
+      "brier": 0.211725,
+      "ece": 0.06101,
+      "constant_baseline_brier": 0.247035,
       "beats_constant_baseline": true,
       "method": "untouched chronological final 20%; pregame Elo; descriptive only"
     },
     "holdout_promotion_approved": false,
     "holdout_review_reason": "Holdout metrics are descriptive; independent sportsbook price validation and injury availability remain unverified"
   },
-  "training_cutoff": "2026-11-21T03:00Z",
+  "training_cutoff": "2026-11-22T03:00Z",
   "predictions": [
-    {
-      "event_id": "C8msr3REC7p9Unntf9Ql",
-      "team": "Sacramento Kings",
-      "date_et": "2026-11-21",
-      "win_probability": 0.15446
-    },
-    {
-      "event_id": "C8msr3REC7p9Unntf9Ql",
-      "team": "Boston Celtics",
-      "date_et": "2026-11-21",
-      "win_probability": 0.84554
-    },
     {
       "event_id": "JAmMvOI9cXWrPV42meXv",
       "team": "Atlanta Hawks",
@@ -73,6 +61,18 @@
       "win_probability": 0.742495
     },
     {
+      "event_id": "7nudLtebdZwJQTykoZp0",
+      "team": "Utah Jazz",
+      "date_et": "2026-11-22",
+      "win_probability": 0.390018
+    },
+    {
+      "event_id": "7nudLtebdZwJQTykoZp0",
+      "team": "Dallas Mavericks",
+      "date_et": "2026-11-22",
+      "win_probability": 0.609982
+    },
+    {
       "event_id": "Issu2jy5OkvrgKhn5IV0",
       "team": "Washington Wizards",
       "date_et": "2026-11-22",
@@ -85,16 +85,28 @@
       "win_probability": 0.725379
     },
     {
+      "event_id": "UN8dz5pgcgxaEzArW5Q8",
+      "team": "New York Knicks",
+      "date_et": "2026-11-22",
+      "win_probability": 0.891164
+    },
+    {
+      "event_id": "UN8dz5pgcgxaEzArW5Q8",
+      "team": "Indiana Pacers",
+      "date_et": "2026-11-22",
+      "win_probability": 0.108836
+    },
+    {
       "event_id": "GdMLvvjBUrZuWw8DP7Yd",
       "team": "Golden State Warriors",
       "date_et": "2026-11-22",
-      "win_probability": 0.291848
+      "win_probability": 0.312366
     },
     {
       "event_id": "GdMLvvjBUrZuWw8DP7Yd",
       "team": "Boston Celtics",
       "date_et": "2026-11-22",
-      "win_probability": 0.708152
+      "win_probability": 0.687634
     }
   ]
 }
