@@ -23,3 +23,6 @@ const nflNav=fs.readFileSync('nfl.html','utf8');
 assert.ok(nflNav.includes('href="./gameday.html">GameDay</a>'),'NFL navigation exposes dedicated GameDay tab');
 assert.ok(!nflNav.includes('href="./nfl-matchup-lab.html">Player Breakdown</a>'),'legacy placement removed');
 assert.ok(fs.readFileSync('nfl-matchup-lab.html','utf8').includes('gameday.html'),'old page redirects to GameDay');
+
+assert.ok(js.includes("['RB','WR','TE'].includes(String(x.position"),'opportunity rows include running backs');
+assert.ok(js.includes('Date.parse(x.game_date)<kickoff'),'opportunity rows dated after kickoff are excluded');
