@@ -66,6 +66,32 @@
       "completed": true,
       "source": "ESPN scoreboard",
       "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261122&limit=100"
+    },
+    {
+      "event_id": "401910034",
+      "event": "Indiana Pacers at New York Knicks",
+      "commence_time": "2026-11-23T01:00Z",
+      "home": "New York Knicks",
+      "away": "Indiana Pacers",
+      "home_score": 113,
+      "away_score": 106,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261122&limit=100"
+    },
+    {
+      "event_id": "401910035",
+      "event": "Boston Celtics at Golden State Warriors",
+      "commence_time": "2026-11-23T01:30Z",
+      "home": "Golden State Warriors",
+      "away": "Boston Celtics",
+      "home_score": 88,
+      "away_score": 87,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261122&limit=100"
     }
   ],
   "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261122&limit=100"

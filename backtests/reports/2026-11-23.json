@@ -1,21 +1,21 @@
 {
   "date": "2026-11-23",
-  "generated_at": "2026-11-23T02:42:35.995295+00:00",
+  "generated_at": "2026-11-23T23:49:31.548509+00:00",
   "sports": {
     "NFL": {
       "status": "OUTCOMES_UNVERIFIED",
       "saved_quotes": 0,
-      "eligible_predictions": 8,
-      "research_only_predictions": 8,
+      "eligible_predictions": 68,
+      "research_only_predictions": 68,
       "bet_eligible_predictions": 0,
       "blocked_predictions": [],
       "graded": 0,
       "settled": [],
-      "pending": 8
+      "pending": 68
     },
     "NBA": {
       "status": "OUTCOMES_UNVERIFIED",
-      "saved_quotes": 3684,
+      "saved_quotes": 5526,
       "eligible_predictions": 24,
       "research_only_predictions": 24,
       "bet_eligible_predictions": 0,
@@ -27,11 +27,11 @@
     "NHL": {
       "status": "PARTIALLY_SETTLED_MONEYLINES",
       "saved_quotes": 0,
-      "eligible_predictions": 204,
-      "research_only_predictions": 204,
+      "eligible_predictions": 240,
+      "research_only_predictions": 240,
       "bet_eligible_predictions": 0,
       "blocked_predictions": [],
-      "graded": 4,
+      "graded": 8,
       "settled": [
         {
           "event": "Buffalo Sabres @ Tampa Bay Lightning",
@@ -46,6 +46,18 @@
           "outcome": "win"
         },
         {
+          "event": "Edmonton Oilers @ St. Louis Blues",
+          "market": "h2h",
+          "selection": "St. Louis Blues",
+          "outcome": "win"
+        },
+        {
+          "event": "Edmonton Oilers @ St. Louis Blues",
+          "market": "h2h",
+          "selection": "Edmonton Oilers",
+          "outcome": "loss"
+        },
+        {
           "event": "Pittsburgh Penguins @ Dallas Stars",
           "market": "h2h",
           "selection": "Dallas Stars",
@@ -56,15 +68,27 @@
           "market": "h2h",
           "selection": "Pittsburgh Penguins",
           "outcome": "loss"
+        },
+        {
+          "event": "Chicago Blackhawks @ Vancouver Canucks",
+          "market": "h2h",
+          "selection": "Vancouver Canucks",
+          "outcome": "loss"
+        },
+        {
+          "event": "Chicago Blackhawks @ Vancouver Canucks",
+          "market": "h2h",
+          "selection": "Chicago Blackhawks",
+          "outcome": "win"
         }
       ],
-      "pending": 200
+      "pending": 232
     }
   },
   "summary": {
-    "verified_picks": 4,
-    "wins": 2,
-    "losses": 2,
+    "verified_picks": 8,
+    "wins": 4,
+    "losses": 4,
     "pushes": 0,
     "roi": null,
     "hit_rate": 0.5

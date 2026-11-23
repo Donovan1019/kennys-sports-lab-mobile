@@ -131,6 +131,19 @@
       "completed": true,
       "source": "ESPN scoreboard",
       "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=20261122&limit=100"
+    },
+    {
+      "event_id": "401873077",
+      "event": "Minnesota Vikings at San Francisco 49ers",
+      "commence_time": "2026-11-23T01:20Z",
+      "home": "San Francisco 49ers",
+      "away": "Minnesota Vikings",
+      "home_score": 35,
+      "away_score": 10,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=20261122&limit=100"
     }
   ],
   "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=20261122&limit=100"
