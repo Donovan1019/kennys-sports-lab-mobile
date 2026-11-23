@@ -178,7 +178,7 @@ def build():
                     if agg:agg['summary']=str(len(samples))+' eligible '+str(year)+' games · '+position.upper()+' · metric sample counts vary'
                     sides[side]=agg
                 matchup[period][position]=sides
-        events.append({'event_id':g['event_id'],'matchup_stats':matchup})
+        events.append({'event_id':g['event_id'],'away':g['away'],'home':g['home'],'commence_time':g['time'],'matchup_stats':matchup})
     if not histories:raise SystemExit('No valid boxscore history fetched; refusing to replace existing snapshot')
     if errors:
         print('ESPN boxscore fetch errors:',len(errors),'of',len(completed))
