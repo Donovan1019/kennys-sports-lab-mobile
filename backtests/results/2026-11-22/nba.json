@@ -1,0 +1,72 @@
+{
+  "sport": "NBA",
+  "date": "2026-11-22",
+  "games": [
+    {
+      "event_id": "401910029",
+      "event": "Detroit Pistons at Atlanta Hawks",
+      "commence_time": "2026-11-22T20:30Z",
+      "home": "Atlanta Hawks",
+      "away": "Detroit Pistons",
+      "home_score": 107,
+      "away_score": 97,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261122&limit=100"
+    },
+    {
+      "event_id": "401910030",
+      "event": "Oklahoma City Thunder at Miami Heat",
+      "commence_time": "2026-11-22T23:00Z",
+      "home": "Miami Heat",
+      "away": "Oklahoma City Thunder",
+      "home_score": 123,
+      "away_score": 113,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261122&limit=100"
+    },
+    {
+      "event_id": "401910031",
+      "event": "Orlando Magic at Washington Wizards",
+      "commence_time": "2026-11-23T00:00Z",
+      "home": "Washington Wizards",
+      "away": "Orlando Magic",
+      "home_score": 116,
+      "away_score": 96,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261122&limit=100"
+    },
+    {
+      "event_id": "401910032",
+      "event": "Denver Nuggets at Chicago Bulls",
+      "commence_time": "2026-11-23T00:00Z",
+      "home": "Chicago Bulls",
+      "away": "Denver Nuggets",
+      "home_score": 145,
+      "away_score": 151,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261122&limit=100"
+    },
+    {
+      "event_id": "401910033",
+      "event": "Dallas Mavericks at Utah Jazz",
+      "commence_time": "2026-11-23T00:00Z",
+      "home": "Utah Jazz",
+      "away": "Dallas Mavericks",
+      "home_score": 114,
+      "away_score": 116,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261122&limit=100"
+    }
+  ],
+  "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261122&limit=100"
+}

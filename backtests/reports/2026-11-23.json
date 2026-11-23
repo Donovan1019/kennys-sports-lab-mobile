@@ -1,0 +1,72 @@
+{
+  "date": "2026-11-23",
+  "generated_at": "2026-11-23T02:42:35.995295+00:00",
+  "sports": {
+    "NFL": {
+      "status": "OUTCOMES_UNVERIFIED",
+      "saved_quotes": 0,
+      "eligible_predictions": 8,
+      "research_only_predictions": 8,
+      "bet_eligible_predictions": 0,
+      "blocked_predictions": [],
+      "graded": 0,
+      "settled": [],
+      "pending": 8
+    },
+    "NBA": {
+      "status": "OUTCOMES_UNVERIFIED",
+      "saved_quotes": 3684,
+      "eligible_predictions": 24,
+      "research_only_predictions": 24,
+      "bet_eligible_predictions": 0,
+      "blocked_predictions": [],
+      "graded": 0,
+      "settled": [],
+      "pending": 24
+    },
+    "NHL": {
+      "status": "PARTIALLY_SETTLED_MONEYLINES",
+      "saved_quotes": 0,
+      "eligible_predictions": 204,
+      "research_only_predictions": 204,
+      "bet_eligible_predictions": 0,
+      "blocked_predictions": [],
+      "graded": 4,
+      "settled": [
+        {
+          "event": "Buffalo Sabres @ Tampa Bay Lightning",
+          "market": "h2h",
+          "selection": "Tampa Bay Lightning",
+          "outcome": "loss"
+        },
+        {
+          "event": "Buffalo Sabres @ Tampa Bay Lightning",
+          "market": "h2h",
+          "selection": "Buffalo Sabres",
+          "outcome": "win"
+        },
+        {
+          "event": "Pittsburgh Penguins @ Dallas Stars",
+          "market": "h2h",
+          "selection": "Dallas Stars",
+          "outcome": "win"
+        },
+        {
+          "event": "Pittsburgh Penguins @ Dallas Stars",
+          "market": "h2h",
+          "selection": "Pittsburgh Penguins",
+          "outcome": "loss"
+        }
+      ],
+      "pending": 200
+    }
+  },
+  "summary": {
+    "verified_picks": 4,
+    "wins": 2,
+    "losses": 2,
+    "pushes": 0,
+    "roi": null,
+    "hit_rate": 0.5
+  }
+}

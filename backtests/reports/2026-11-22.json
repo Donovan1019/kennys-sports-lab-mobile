@@ -1,6 +1,6 @@
 {
   "date": "2026-11-22",
-  "generated_at": "2026-11-22T19:30:57.617183+00:00",
+  "generated_at": "2026-11-23T02:42:35.742302+00:00",
   "sports": {
     "NFL": {
       "status": "OUTCOMES_UNVERIFIED",
@@ -15,7 +15,7 @@
     },
     "NBA": {
       "status": "OUTCOMES_UNVERIFIED",
-      "saved_quotes": 12702,
+      "saved_quotes": 16936,
       "eligible_predictions": 24,
       "research_only_predictions": 24,
       "bet_eligible_predictions": 0,
@@ -31,7 +31,7 @@
       "research_only_predictions": 306,
       "bet_eligible_predictions": 0,
       "blocked_predictions": [],
-      "graded": 28,
+      "graded": 40,
       "settled": [
         {
           "event": "Chicago Blackhawks @ Calgary Flames",
@@ -190,6 +190,42 @@
           "outcome": "loss"
         },
         {
+          "event": "Carolina Hurricanes @ New York Rangers",
+          "market": "h2h",
+          "selection": "New York Rangers",
+          "outcome": "loss"
+        },
+        {
+          "event": "Carolina Hurricanes @ New York Rangers",
+          "market": "h2h",
+          "selection": "Carolina Hurricanes",
+          "outcome": "win"
+        },
+        {
+          "event": "Buffalo Sabres @ Tampa Bay Lightning",
+          "market": "h2h",
+          "selection": "Tampa Bay Lightning",
+          "outcome": "loss"
+        },
+        {
+          "event": "Buffalo Sabres @ Tampa Bay Lightning",
+          "market": "h2h",
+          "selection": "Buffalo Sabres",
+          "outcome": "win"
+        },
+        {
+          "event": "Pittsburgh Penguins @ Dallas Stars",
+          "market": "h2h",
+          "selection": "Dallas Stars",
+          "outcome": "win"
+        },
+        {
+          "event": "Pittsburgh Penguins @ Dallas Stars",
+          "market": "h2h",
+          "selection": "Pittsburgh Penguins",
+          "outcome": "loss"
+        },
+        {
           "event": "Seattle Kraken @ San Jose Sharks",
           "market": "h2h",
           "selection": "San Jose Sharks",
@@ -200,15 +236,51 @@
           "market": "h2h",
           "selection": "Seattle Kraken",
           "outcome": "loss"
+        },
+        {
+          "event": "Carolina Hurricanes @ New York Rangers",
+          "market": "h2h",
+          "selection": "New York Rangers",
+          "outcome": "loss"
+        },
+        {
+          "event": "Carolina Hurricanes @ New York Rangers",
+          "market": "h2h",
+          "selection": "Carolina Hurricanes",
+          "outcome": "win"
+        },
+        {
+          "event": "Buffalo Sabres @ Tampa Bay Lightning",
+          "market": "h2h",
+          "selection": "Tampa Bay Lightning",
+          "outcome": "loss"
+        },
+        {
+          "event": "Buffalo Sabres @ Tampa Bay Lightning",
+          "market": "h2h",
+          "selection": "Buffalo Sabres",
+          "outcome": "win"
+        },
+        {
+          "event": "Pittsburgh Penguins @ Dallas Stars",
+          "market": "h2h",
+          "selection": "Dallas Stars",
+          "outcome": "win"
+        },
+        {
+          "event": "Pittsburgh Penguins @ Dallas Stars",
+          "market": "h2h",
+          "selection": "Pittsburgh Penguins",
+          "outcome": "loss"
         }
       ],
-      "pending": 278
+      "pending": 266
     }
   },
   "summary": {
-    "verified_picks": 28,
-    "wins": 14,
-    "losses": 14,
+    "verified_picks": 40,
+    "wins": 20,
+    "losses": 20,
     "pushes": 0,
     "roi": null,
     "hit_rate": 0.5
