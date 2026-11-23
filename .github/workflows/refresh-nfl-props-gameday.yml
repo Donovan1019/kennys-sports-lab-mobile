@@ -1,0 +1,65 @@
+name: Refresh NFL GameDay Player Props
+on:
+  schedule:
+    - cron: '15 15 * * 0,1,4'
+    - cron: '15 20 * * 0,1,4'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: nfl-gameday-props
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Refresh current NFL event props with free-credit guard
+        id: refresh
+        env:
+          THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
+          MAX_EVENTS: '2'
+        run: |
+          if [ -z "$THE_ODDS_API_KEY" ]; then
+            echo "Odds API secret unavailable; retain prior snapshot without mislabeling it fresh"
+            exit 0
+          fi
+          python3 scripts/fetch_nfl_props.py
+      - name: Validate event quote timestamps and coverage
+        run: |
+          python3 - <<'PY'
+          import json
+          from datetime import datetime,timezone
+          from pathlib import Path
+          path=Path('feed/nfl_props.json')
+          if not path.exists(): raise SystemExit('Missing NFL props feed')
+          data=json.loads(path.read_text())
+          rows=data.get('odds',[])
+          if not isinstance(rows,list): raise SystemExit('Invalid NFL props schema')
+          now=datetime.now(timezone.utc)
+          valid=0
+          for row in rows:
+              try:
+                  t=datetime.fromisoformat(row['updated_at'].replace('Z','+00:00'))
+                  kickoff=datetime.fromisoformat(row['commence_time'].replace('Z','+00:00'))
+                  if t.tzinfo and kickoff.tzinfo and t<=now and t<kickoff and (now-t).total_seconds()<=21600:
+                      valid+=1
+              except (KeyError,ValueError,TypeError,AttributeError): pass
+          print(f'Current NFL prop quotes: {valid}; total saved: {len(rows)}')
+          PY
+      - name: Publish refreshed snapshots
+        run: |
+          if git diff --quiet -- feed/nfl_props.json feed/nfl_prop_capture_coverage.json; then
+            echo "No new snapshot to commit"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add feed/nfl_props.json feed/nfl_prop_capture_coverage.json
+          git commit -m "Refresh NFL GameDay player prop snapshots"
+          git push
