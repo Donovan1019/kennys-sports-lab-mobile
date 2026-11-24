@@ -92,6 +92,34 @@ def benchmark(report):
     b=min((i/4 for i in range(-16,17)),key=lambda x:score(train,x))
     report["predictive_benchmark"]={"status":"RESEARCH_ONLY","train_events":len(train),"holdout_events":len(test),"holdout_start":split,"movement_coefficient":b,"market_brier":score(test,0),"movement_brier":score(test,b),"first_observed_brier":sum((r["first_home_probability"]-(r["outcome"]=="home"))**2 for r in test)/len(test),"bet_eligible":False}
 
+def enrich(report, core, forecasts):
+    import random
+    groups=defaultdict(list)
+    for q in core.get("quotes",[]):
+        t,s=parse(q.get("captured_at")),parse(q.get("event_start"))
+        if t and s and t<s and t<=datetime.now(timezone.utc):
+            groups[(q["event_id"],q["bookmaker"],q["market"],q["home"],q["away"],s)].append(q)
+    report["core_market_movements"]=[]
+    for (eid,book,market,home,away,start),rs in groups.items():
+        if market not in ("spreads","totals"):continue
+        rs.sort(key=lambda q:parse(q["captured_at"]))
+        if len({q["captured_at"] for q in rs})<2:continue
+        if any(len({(q["point"],q["home_no_vig"]) for q in rs if q["captured_at"]==t})>1 for t in {q["captured_at"] for q in rs}):continue
+        a,b=rs[0],rs[-1]
+        report["core_market_movements"].append(dict(event_id=eid,bookmaker=book,market=market,home=home,away=away,event_start=start.isoformat(),first_point=a["point"],latest_point=b["point"],point_change=b["point"]-a["point"],first_captured_at=a["captured_at"],latest_captured_at=b["captured_at"]))
+    matched=[]
+    for r in report["event_consensus"]:
+        cutoff=min(parse(q["latest_captured_at"]) for q in report["series"] if q["event_id"]==r["event_id"])
+        fs=[f for f in forecasts.get("forecasts",[]) if f.get("event_id")==r["event_id"] and f.get("home")==r["home"] and f.get("away")==r["away"] and parse(f.get("event_start"))==parse(r["event_start"]) and parse(f.get("forecast_at")) and parse(f["forecast_at"])<=cutoff and type(f.get("home_probability")) in (int,float) and 0<f["home_probability"]<1]
+        if not fs:continue
+        p=max(fs,key=lambda f:parse(f["forecast_at"]))["home_probability"]
+        r["independent_research_probability"]=p
+        rng=random.Random(r["event_id"])
+        n=10000
+        r["independent_monte_carlo"]={"trials":n,"home_fraction":sum(rng.random()<p for _ in range(n))/n,"status":"RESEARCH_ONLY_BERNOULLI_NOT_SCORE_SIMULATION"}
+        if r.get("outcome") in ("home","away"):matched.append(r)
+    report["independent_comparison"]={"status":"DESCRIPTIVE_ONLY" if matched else "UNAVAILABLE","matched_settled_events":len(matched),"independent_brier":sum((r["independent_research_probability"]-(r["outcome"]=="home"))**2 for r in matched)/len(matched) if matched else None,"market_brier":sum((r["latest_home_probability"]-(r["outcome"]=="home"))**2 for r in matched)/len(matched) if matched else None}
+
 def main():
     for src in sorted(Path("feed").glob("*_paired_moneyline_archive.json")):
         sport=src.name.removesuffix("_paired_moneyline_archive.json")
@@ -105,6 +133,9 @@ def main():
             games.extend(json.loads(result.read_text()).get("games",[]))
         settle(report,games)
         benchmark(report)
+        core=Path(f"feed/{sport}_core_movement_archive.json")
+        forecasts=Path(f"feed/{sport}_forecast_ledger.json")
+        enrich(report,json.loads(core.read_text()) if core.exists() else {},json.loads(forecasts.read_text()) if forecasts.exists() else {})
         Path(f"feed/{sport}_line_movement.json").write_text(json.dumps(report,indent=2)+"\n")
         print(sport,"multi-snapshot bookmaker series:",report["paired_bookmaker_series"])
 if __name__=="__main__":main()
