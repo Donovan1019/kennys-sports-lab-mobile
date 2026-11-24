@@ -38,7 +38,7 @@ jobs:
           p=Check();p.feed(page)
           assert p.sections==['ksl-refresh-all','ksl-best-ml-parlay','ksl-market-edge'],p.sections
           assert 'home_refresh_all.js' in page
-          assert 'home_refresh_all.js?v=20261115-compact-1019' in page
+          assert 'home_refresh_all.js?v=20261117-ncaab-verified-snapshot' in page
           refresh=Path('home_refresh_all.js').read_text()
           assert "results.style.display='none'" in refresh
           assert "results.style.display=expanded?'grid':'none'" in refresh
