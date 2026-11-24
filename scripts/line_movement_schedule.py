@@ -39,12 +39,20 @@ def college_scoreboard_history(now):
 def schedule(sport,now):
     if sport not in LEAGUES:return [],"UNSUPPORTED"
     day=now.astimezone(ZoneInfo("America/New_York")).date()
-    end=day+timedelta(days=7)
-    url="https://site.api.espn.com/apis/site/v2/sports/"+LEAGUES[sport]+"/scoreboard?dates="+day.strftime("%Y%m%d")+"-"+end.strftime("%Y%m%d")+"&limit=1000&groups=50"
-    try:
-        with urlopen(Request(url,headers={"User-Agent":"KSL research"}),timeout=25) as r:data=json.load(r)
-        if not isinstance(data.get("events"),list):raise ValueError("Missing events")
-    except Exception as e:return [],"UNAVAILABLE: "+type(e).__name__
+    events={}
+    failures=[]
+    for offset in range(8):
+        date=(day+timedelta(days=offset)).strftime("%Y%m%d")
+        url="https://site.api.espn.com/apis/site/v2/sports/"+LEAGUES[sport]+"/scoreboard?dates="+date+"&limit=500"
+        if sport=="basketball_ncaab":url+="&groups=50"
+        try:
+            with urlopen(Request(url,headers={"User-Agent":"KSL-Backtest/1.0"}),timeout=15) as r:data=json.load(r)
+            if not isinstance(data.get("events"),list):raise ValueError("Missing events")
+            for e in data["events"]:events[str(e["id"])]=e
+        except Exception as e:
+            failures.append(str(getattr(e,"code",type(e).__name__)))
+    if failures:return [],"UNAVAILABLE: incomplete daily schedule "+",".join(failures)
+    data={"events":list(events.values())}
     out=[]
     for e in data["events"]:
         t=parse(e.get("date"))
