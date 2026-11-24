@@ -132,6 +132,10 @@ def main():
         for result in Path("backtests/results").glob(f"*/{league}.json"):
             games.extend(json.loads(result.read_text()).get("games",[]))
         settle(report,games)
+        from scripts.line_movement_simulation import simulate
+        for row in report["event_consensus"]:
+            cutoff=min(parse(q["latest_captured_at"]) for q in report["series"] if q["event_id"]==row["event_id"])
+            row["score_simulation"]=simulate(sport,row,games,cutoff)
         benchmark(report)
         core=Path(f"feed/{sport}_core_movement_archive.json")
         forecasts=Path(f"feed/{sport}_forecast_ledger.json")
