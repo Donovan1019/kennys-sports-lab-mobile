@@ -1,6 +1,6 @@
 {
   "status": "not_bet_eligible",
-  "checked_at": "2026-11-24T04:48:51.201244+00:00",
+  "checked_at": "2026-11-24T17:45:38.340533+00:00",
   "checks": {
     "odds_fresh": true,
     "model_fresh_and_calibrated": true,
@@ -14,25 +14,24 @@
   },
   "research_warning": {
     "status": "RESEARCH_ONLY",
-    "paper_roi": -0.013522,
-    "paper_selected_events": 140,
+    "paper_roi": 0.019172,
+    "paper_selected_events": 149,
     "reason": "Retrospective paper returns are not executed bets or a validated forward test; investigate negative performance before certification."
   },
   "historical_selection_diagnostic": {
     "status": "RESEARCH_ONLY",
-    "selected_games": 140,
-    "paper_roi": -0.013522,
-    "joined_selection_rows": 632,
+    "selected_games": 149,
+    "paper_roi": 0.019172,
+    "joined_selection_rows": 668,
     "near_tipoff_paired_rows": 68,
     "selection_policy": "one highest model-minus-implied edge per event from earliest valid archived pregame quote (up to 7 days), deterministic book/selection tie break; descriptive hindsight analysis, not precommitted or executed",
-    "warning": "Retrospective selection at reference quotes is not an executable or independently precommitted betting backtest.",
-    "negative_roi_warning": true
+    "warning": "Retrospective selection at reference quotes is not an executable or independently precommitted betting backtest."
   },
   "check_details": {
     "historical_pregame_odds_backtest": {
       "status": "UNVERIFIED",
       "source": "outcome_market",
-      "reason": "Unverified selection-time provenance; retrospective paper policy has negative ROI"
+      "reason": "Research-only evidence is not certification"
     },
     "closing_line_value_verified": {
       "status": "UNVERIFIED",
