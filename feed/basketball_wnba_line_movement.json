@@ -11,7 +11,7 @@
     "status": "descriptive_not_out_of_sample"
   },
   "current_slate": [],
-  "schedule_status": "UNAVAILABLE: HTTPError",
+  "schedule_status": "OK",
   "predictive_benchmark": {
     "status": "UNAVAILABLE",
     "reason": "At least 100 settled events required",
@@ -28,5 +28,12 @@
     "matched_settled_events": 0,
     "independent_brier": null,
     "market_brier": null
+  },
+  "coverage": {
+    "fixtures": 0,
+    "with_odds": 0,
+    "with_score_simulation": 0,
+    "with_existing_projection": 0,
+    "with_movement": 0
   }
 }
