@@ -139,12 +139,20 @@ def combined_benchmark(report):
     report["combined_benchmark"]={"status":"RESEARCH_ONLY","train_events":len(train),"holdout_events":len(test),"independent_weight":w,"movement_coefficient":b,"combined_brier":score(test,w,b),"market_brier":score(test,0,0),"independent_brier":score(test,1,0),"bet_eligible":False}
 
 def main():
-    for src in sorted(Path("feed").glob("*_paired_moneyline_archive.json")):
-        sport=src.name.removesuffix("_paired_moneyline_archive.json")
+    sports={p.name.removesuffix("_paired_moneyline_archive.json") for p in Path("feed").glob("*_paired_moneyline_archive.json")} | {p.name.removesuffix("_core_movement_archive.json") for p in Path("feed").glob("*_core_movement_archive.json")}
+    for sport in sorted(sports):
         src=Path(f"feed/{sport}_paired_moneyline_archive.json")
-        if not src.exists():continue
         ledger=Path(f"feed/{sport}_market_baseline_ledger.json")
-        report=movement(json.loads(src.read_text()),json.loads(ledger.read_text()) if ledger.exists() else {})
+        archive=json.loads(src.read_text()) if src.exists() else {"quotes":[]}
+        baseline=json.loads(ledger.read_text()) if ledger.exists() else {"baselines":[]}
+        core_path=Path(f"feed/{sport}_core_movement_archive.json")
+        core_data=json.loads(core_path.read_text()) if core_path.exists() else {}
+        # Only collector-validated paired observations carry an explicit start.
+        for q in core_data.get("quotes",[]):
+            if q.get("market")!="h2h":continue
+            archive["quotes"].append(q)
+            baseline["baselines"].append({"event_id":q["event_id"],"event_start":q["event_start"],"forecast_at":q["captured_at"],"quote_at":q["captured_at"],"status":"verified_pregame_quote"})
+        report=movement(archive,baseline)
         games=[]
         league=sport.rsplit("_",1)[-1]
         for result in Path("backtests/results").glob(f"*/{league}.json"):
