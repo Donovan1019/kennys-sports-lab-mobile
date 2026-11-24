@@ -55,6 +55,22 @@ def movement(archive, ledger=None, now=None):
         consensus.append({"event_id":event,"home":series[0]["home"],"away":series[0]["away"],"event_start":series[0]["event_start"],"bookmakers":len(values),"median_change_pp":median(values),"home_support":sum(v>0 for v in values),"away_support":sum(v<0 for v in values),"prediction":None})
     return {"event_consensus":consensus,"status":"research_only_not_closing_line_value","rejected_unverified_or_conflicting":rejected,"paired_bookmaker_series":len(changes),"series":sorted(changes,key=lambda x:(-abs(x["home_probability_change_pp"]),x["event_id"],x["bookmaker"]))}
 
+def settle(report, games):
+    from scripts.three_sport_backtest import normalize_team
+    for row in report["event_consensus"]:
+        start=parse(row["event_start"])
+        matches=[g for g in games if g.get("completed") is True and parse(g.get("commence_time")) and abs((parse(g["commence_time"])-start).total_seconds())<=7200 and normalize_team(g.get("home"))==normalize_team(row["home"]) and normalize_team(g.get("away"))==normalize_team(row["away"])]
+        unique={(str(g.get("event_id")),g.get("home_score"),g.get("away_score")) for g in matches}
+        row["outcome"]=None
+        if len(unique)==1:
+            _,h,a=next(iter(unique))
+            if type(h) is int and type(a) is int:
+                row["outcome"]="home" if h>a else "away" if a>h else "push"
+        d=row["median_change_pp"]
+        row["movement_correct"]=None if not d or row["outcome"] not in ("home","away") else row["outcome"]==("home" if d>0 else "away")
+    graded=[r for r in report["event_consensus"] if r["movement_correct"] is not None]
+    report["outcome_audit"]={"graded_events":len(graded),"correct":sum(r["movement_correct"] for r in graded),"hit_rate":sum(r["movement_correct"] for r in graded)/len(graded) if graded else None,"status":"descriptive_not_out_of_sample"}
+
 def main():
     for src in sorted(Path("feed").glob("*_paired_moneyline_archive.json")):
         sport=src.name.removesuffix("_paired_moneyline_archive.json")
@@ -62,6 +78,11 @@ def main():
         if not src.exists():continue
         ledger=Path(f"feed/{sport}_market_baseline_ledger.json")
         report=movement(json.loads(src.read_text()),json.loads(ledger.read_text()) if ledger.exists() else {})
+        games=[]
+        league=sport.rsplit("_",1)[-1]
+        for result in Path("backtests/results").glob(f"*/{league}.json"):
+            games.extend(json.loads(result.read_text()).get("games",[]))
+        settle(report,games)
         Path(f"feed/{sport}_line_movement.json").write_text(json.dumps(report,indent=2)+"\n")
         print(sport,"multi-snapshot bookmaker series:",report["paired_bookmaker_series"])
 if __name__=="__main__":main()
