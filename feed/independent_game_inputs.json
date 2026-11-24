@@ -2,140 +2,11 @@
   "source": "ESPN public scoreboard",
   "source_detail": "Scheduled games and completed scoring history only; no verified injuries, starters or sportsbook prices.",
   "generated_from_saved_feeds": false,
-  "source_games_fetched_at": "2026-11-23T22:39:31.271201+00:00",
+  "source_games_fetched_at": "2026-11-24T01:38:50.977966+00:00",
   "market_schedule_source": "espn-scoreboard",
   "history_season_filter": "espn-season-type-2-only",
   "market_prices_not_verified_live": true,
   "games": [
-    {
-      "event_id": "401873078",
-      "event": "Cincinnati Bengals @ Washington Commanders",
-      "commence_time": "2026-11-24T01:15Z",
-      "away": "Cincinnati Bengals",
-      "home": "Washington Commanders",
-      "teams": [
-        {
-          "team": "Cincinnati Bengals",
-          "sample_size": 9,
-          "score_history": [
-            {
-              "date": "2026-11-16T01:20Z",
-              "season_type": 2,
-              "scored": 38,
-              "allowed": 18
-            },
-            {
-              "date": "2026-11-08T14:30Z",
-              "season_type": 2,
-              "scored": 34,
-              "allowed": 17
-            },
-            {
-              "date": "2026-11-01T18:00Z",
-              "season_type": 2,
-              "scored": 43,
-              "allowed": 36
-            },
-            {
-              "date": "2026-10-25T17:00Z",
-              "season_type": 2,
-              "scored": 35,
-              "allowed": 13
-            },
-            {
-              "date": "2026-10-11T17:00Z",
-              "season_type": 2,
-              "scored": 31,
-              "allowed": 24
-            },
-            {
-              "date": "2026-10-04T17:00Z",
-              "season_type": 2,
-              "scored": 17,
-              "allowed": 22
-            },
-            {
-              "date": "2026-09-27T17:00Z",
-              "season_type": 2,
-              "scored": 27,
-              "allowed": 30
-            },
-            {
-              "date": "2026-09-20T17:00Z",
-              "season_type": 2,
-              "scored": 20,
-              "allowed": 6
-            },
-            {
-              "date": "2026-09-13T17:00Z",
-              "season_type": 2,
-              "scored": 33,
-              "allowed": 27
-            }
-          ]
-        },
-        {
-          "team": "Washington Commanders",
-          "sample_size": 9,
-          "score_history": [
-            {
-              "date": "2026-11-13T01:15Z",
-              "season_type": 2,
-              "scored": 24,
-              "allowed": 21
-            },
-            {
-              "date": "2026-11-08T18:00Z",
-              "season_type": 2,
-              "scored": 13,
-              "allowed": 20
-            },
-            {
-              "date": "2026-11-02T01:20Z",
-              "season_type": 2,
-              "scored": 27,
-              "allowed": 10
-            },
-            {
-              "date": "2026-10-20T00:15Z",
-              "season_type": 2,
-              "scored": 17,
-              "allowed": 23
-            },
-            {
-              "date": "2026-10-11T17:00Z",
-              "season_type": 2,
-              "scored": 27,
-              "allowed": 27
-            },
-            {
-              "date": "2026-10-04T13:30Z",
-              "season_type": 2,
-              "scored": 13,
-              "allowed": 30
-            },
-            {
-              "date": "2026-09-27T17:00Z",
-              "season_type": 2,
-              "scored": 33,
-              "allowed": 31
-            },
-            {
-              "date": "2026-09-20T20:25Z",
-              "season_type": 2,
-              "scored": 20,
-              "allowed": 37
-            },
-            {
-              "date": "2026-09-13T20:25Z",
-              "season_type": 2,
-              "scored": 22,
-              "allowed": 24
-            }
-          ]
-        }
-      ]
-    },
     {
       "event_id": "401873079",
       "event": "Green Bay Packers @ Los Angeles Rams",
@@ -6335,6 +6206,147 @@
               "season_type": 2,
               "scored": 22,
               "allowed": 39
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "event_id": "401873123",
+      "event": "Pittsburgh Steelers @ Jacksonville Jaguars",
+      "commence_time": "2026-12-15T01:15Z",
+      "away": "Pittsburgh Steelers",
+      "home": "Jacksonville Jaguars",
+      "teams": [
+        {
+          "team": "Pittsburgh Steelers",
+          "sample_size": 10,
+          "score_history": [
+            {
+              "date": "2026-11-22T18:00Z",
+              "season_type": 2,
+              "scored": 16,
+              "allowed": 19
+            },
+            {
+              "date": "2026-11-16T01:20Z",
+              "season_type": 2,
+              "scored": 18,
+              "allowed": 38
+            },
+            {
+              "date": "2026-11-01T18:00Z",
+              "season_type": 2,
+              "scored": 27,
+              "allowed": 6
+            },
+            {
+              "date": "2026-10-25T13:30Z",
+              "season_type": 2,
+              "scored": 16,
+              "allowed": 10
+            },
+            {
+              "date": "2026-10-18T17:00Z",
+              "season_type": 2,
+              "scored": 26,
+              "allowed": 19
+            },
+            {
+              "date": "2026-10-11T17:00Z",
+              "season_type": 2,
+              "scored": 34,
+              "allowed": 22
+            },
+            {
+              "date": "2026-10-02T00:15Z",
+              "season_type": 2,
+              "scored": 24,
+              "allowed": 27
+            },
+            {
+              "date": "2026-09-27T17:00Z",
+              "season_type": 2,
+              "scored": 30,
+              "allowed": 27
+            },
+            {
+              "date": "2026-09-20T17:00Z",
+              "season_type": 2,
+              "scored": 3,
+              "allowed": 20
+            },
+            {
+              "date": "2026-09-13T17:00Z",
+              "season_type": 2,
+              "scored": 20,
+              "allowed": 13
+            }
+          ]
+        },
+        {
+          "team": "Jacksonville Jaguars",
+          "sample_size": 10,
+          "score_history": [
+            {
+              "date": "2026-11-22T21:25Z",
+              "season_type": 2,
+              "scored": 18,
+              "allowed": 23
+            },
+            {
+              "date": "2026-11-15T18:00Z",
+              "season_type": 2,
+              "scored": 40,
+              "allowed": 23
+            },
+            {
+              "date": "2026-11-06T01:15Z",
+              "season_type": 2,
+              "scored": 33,
+              "allowed": 10
+            },
+            {
+              "date": "2026-11-01T18:00Z",
+              "season_type": 2,
+              "scored": 42,
+              "allowed": 7
+            },
+            {
+              "date": "2026-10-18T13:30Z",
+              "season_type": 2,
+              "scored": 31,
+              "allowed": 34
+            },
+            {
+              "date": "2026-10-11T13:30Z",
+              "season_type": 2,
+              "scored": 19,
+              "allowed": 17
+            },
+            {
+              "date": "2026-10-04T17:00Z",
+              "season_type": 2,
+              "scored": 22,
+              "allowed": 17
+            },
+            {
+              "date": "2026-09-27T17:00Z",
+              "season_type": 2,
+              "scored": 35,
+              "allowed": 6
+            },
+            {
+              "date": "2026-09-20T20:05Z",
+              "season_type": 2,
+              "scored": 13,
+              "allowed": 20
+            },
+            {
+              "date": "2026-09-13T17:00Z",
+              "season_type": 2,
+              "scored": 34,
+              "allowed": 10
             }
           ]
         }

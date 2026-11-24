@@ -1,71 +1,11 @@
 {
   "status": "research_only",
   "sport": "americanfootball_nfl",
-  "generated_at": "2026-11-22T20:43:05.333430+00:00",
+  "generated_at": "2026-11-24T01:38:57.405528+00:00",
   "model_version": "nfl-score-margin-shrink-v1",
   "calibration_passed": false,
   "lineups_verified": false,
   "predictions": [
-    {
-      "event_id": "LIwWw5CEzKCgbA3PxC0f",
-      "team": "Los Angeles Chargers",
-      "win_probability": 0.510415,
-      "sample_games": 8
-    },
-    {
-      "event_id": "LIwWw5CEzKCgbA3PxC0f",
-      "team": "New York Jets",
-      "win_probability": 0.489585,
-      "sample_games": 8
-    },
-    {
-      "event_id": "gzc9rMaCWJPKhSCN2mTz",
-      "team": "Denver Broncos",
-      "win_probability": 0.722788,
-      "sample_games": 8
-    },
-    {
-      "event_id": "gzc9rMaCWJPKhSCN2mTz",
-      "team": "Las Vegas Raiders",
-      "win_probability": 0.277212,
-      "sample_games": 8
-    },
-    {
-      "event_id": "kYt26vF1J3Rg4RKPcseO",
-      "team": "New York Giants",
-      "win_probability": 0.331812,
-      "sample_games": 8
-    },
-    {
-      "event_id": "kYt26vF1J3Rg4RKPcseO",
-      "team": "Jacksonville Jaguars",
-      "win_probability": 0.668188,
-      "sample_games": 8
-    },
-    {
-      "event_id": "5qVWLlWGJim0fOVwUm2T",
-      "team": "San Francisco 49ers",
-      "win_probability": 0.602685,
-      "sample_games": 8
-    },
-    {
-      "event_id": "5qVWLlWGJim0fOVwUm2T",
-      "team": "Minnesota Vikings",
-      "win_probability": 0.397315,
-      "sample_games": 8
-    },
-    {
-      "event_id": "avhtHb36ro0H50HWjaoq",
-      "team": "Washington Commanders",
-      "win_probability": 0.328127,
-      "sample_games": 8
-    },
-    {
-      "event_id": "avhtHb36ro0H50HWjaoq",
-      "team": "Cincinnati Bengals",
-      "win_probability": 0.671873,
-      "sample_games": 8
-    },
     {
       "event_id": "3jqq9Zo76JZfGk0xdPa6",
       "team": "Los Angeles Rams",
@@ -76,6 +16,162 @@
       "event_id": "3jqq9Zo76JZfGk0xdPa6",
       "team": "Green Bay Packers",
       "win_probability": 0.381465,
+      "sample_games": 8
+    },
+    {
+      "event_id": "V0LXADVRzlSh8elq65us",
+      "team": "Detroit Lions",
+      "win_probability": 0.594677,
+      "sample_games": 8
+    },
+    {
+      "event_id": "V0LXADVRzlSh8elq65us",
+      "team": "Chicago Bears",
+      "win_probability": 0.405323,
+      "sample_games": 8
+    },
+    {
+      "event_id": "4lFqVZxsg5zKpbD8rJKW",
+      "team": "Dallas Cowboys",
+      "win_probability": 0.719436,
+      "sample_games": 8
+    },
+    {
+      "event_id": "4lFqVZxsg5zKpbD8rJKW",
+      "team": "Philadelphia Eagles",
+      "win_probability": 0.280564,
+      "sample_games": 8
+    },
+    {
+      "event_id": "4BqA9r4LZNAnWph1F0eO",
+      "team": "Buffalo Bills",
+      "win_probability": 0.549834,
+      "sample_games": 8
+    },
+    {
+      "event_id": "4BqA9r4LZNAnWph1F0eO",
+      "team": "Kansas City Chiefs",
+      "win_probability": 0.450166,
+      "sample_games": 8
+    },
+    {
+      "event_id": "AQLsUBdnZNJ6PBBHLUWr",
+      "team": "Pittsburgh Steelers",
+      "win_probability": 0.502083,
+      "sample_games": 8
+    },
+    {
+      "event_id": "AQLsUBdnZNJ6PBBHLUWr",
+      "team": "Denver Broncos",
+      "win_probability": 0.497917,
+      "sample_games": 8
+    },
+    {
+      "event_id": "57RRhuEq9kVsyBG5B1oD",
+      "team": "Houston Texans",
+      "win_probability": 0.762542,
+      "sample_games": 8
+    },
+    {
+      "event_id": "57RRhuEq9kVsyBG5B1oD",
+      "team": "Baltimore Ravens",
+      "win_probability": 0.237458,
+      "sample_games": 8
+    },
+    {
+      "event_id": "ewSulamJJiD0uly56yMe",
+      "team": "Jacksonville Jaguars",
+      "win_probability": 0.837762,
+      "sample_games": 8
+    },
+    {
+      "event_id": "ewSulamJJiD0uly56yMe",
+      "team": "Tennessee Titans",
+      "win_probability": 0.162238,
+      "sample_games": 8
+    },
+    {
+      "event_id": "iVLSzaxGEEbpH1d7Occh",
+      "team": "Minnesota Vikings",
+      "win_probability": 0.580542,
+      "sample_games": 8
+    },
+    {
+      "event_id": "iVLSzaxGEEbpH1d7Occh",
+      "team": "Atlanta Falcons",
+      "win_probability": 0.419458,
+      "sample_games": 8
+    },
+    {
+      "event_id": "qq04D5nYNcizlIDcwATw",
+      "team": "Miami Dolphins",
+      "win_probability": 0.543639,
+      "sample_games": 8
+    },
+    {
+      "event_id": "qq04D5nYNcizlIDcwATw",
+      "team": "New York Jets",
+      "win_probability": 0.456361,
+      "sample_games": 8
+    },
+    {
+      "event_id": "szII4SJPRf0n9MDFbYHs",
+      "team": "Indianapolis Colts",
+      "win_probability": 0.348645,
+      "sample_games": 8
+    },
+    {
+      "event_id": "szII4SJPRf0n9MDFbYHs",
+      "team": "New York Giants",
+      "win_probability": 0.651355,
+      "sample_games": 8
+    },
+    {
+      "event_id": "7mAwYdjF9JdhAkgiVaNC",
+      "team": "Los Angeles Chargers",
+      "win_probability": 0.456361,
+      "sample_games": 8
+    },
+    {
+      "event_id": "7mAwYdjF9JdhAkgiVaNC",
+      "team": "New England Patriots",
+      "win_probability": 0.543639,
+      "sample_games": 8
+    },
+    {
+      "event_id": "1ACxFrJOrpEmAvOMQySL",
+      "team": "San Francisco 49ers",
+      "win_probability": 0.6322,
+      "sample_games": 8
+    },
+    {
+      "event_id": "1ACxFrJOrpEmAvOMQySL",
+      "team": "Seattle Seahawks",
+      "win_probability": 0.3678,
+      "sample_games": 8
+    },
+    {
+      "event_id": "CSgAMAmkmcdhFTLCtqZT",
+      "team": "Cleveland Browns",
+      "win_probability": 0.682799,
+      "sample_games": 8
+    },
+    {
+      "event_id": "CSgAMAmkmcdhFTLCtqZT",
+      "team": "Las Vegas Raiders",
+      "win_probability": 0.317201,
+      "sample_games": 8
+    },
+    {
+      "event_id": "Ux36DHBCYx78wv6CwQ1g",
+      "team": "Tampa Bay Buccaneers",
+      "win_probability": 0.634136,
+      "sample_games": 8
+    },
+    {
+      "event_id": "Ux36DHBCYx78wv6CwQ1g",
+      "team": "Carolina Panthers",
+      "win_probability": 0.365864,
       "sample_games": 8
     }
   ]
