@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-11-24T04:51:14.092040+00:00",
+  "generated_at": "2026-11-24T21:06:29.931317+00:00",
   "status": "UNAVAILABLE",
   "sports": {
     "NBA": {
-      "status": "PARTIAL",
-      "age_minutes": 2.4,
+      "status": "STALE",
+      "age_minutes": 200.9,
       "missing_markets": [
         "spreads",
         "totals"
       ],
-      "events_with_quotes": 3
+      "events_with_quotes": 7
     },
     "NHL": {
       "status": "STALE",
-      "age_minutes": 93.1,
+      "age_minutes": 1068.4,
       "missing_markets": [
         "spreads",
         "totals"
@@ -22,7 +22,7 @@
     },
     "NFL": {
       "status": "STALE",
-      "age_minutes": 192.4,
+      "age_minutes": 1167.7,
       "missing_markets": [
         "spreads",
         "totals"
@@ -30,13 +30,13 @@
       "events_with_quotes": 14
     },
     "NCAAB": {
-      "status": "STALE",
-      "age_minutes": 377.1,
+      "status": "PARTIAL",
+      "age_minutes": 0.5,
       "missing_markets": [
         "spreads",
         "totals"
       ],
-      "events_with_quotes": 29
+      "events_with_quotes": 71
     }
   },
   "note": "Read-only coverage audit; no additional Odds API requests or credits used"
