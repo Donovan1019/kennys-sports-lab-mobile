@@ -52,7 +52,7 @@ def movement(archive, ledger=None, now=None):
     for event, series in events.items():
         if len({r["bookmaker"] for r in series})!=len(series) or len({(r["home"],r["away"]) for r in series})!=1:continue
         values=[r["home_probability_change_pp"] for r in series]
-        consensus.append({"event_id":event,"home":series[0]["home"],"away":series[0]["away"],"event_start":series[0]["event_start"],"bookmakers":len(values),"median_change_pp":median(values),"home_support":sum(v>0 for v in values),"away_support":sum(v<0 for v in values),"prediction":None})
+        consensus.append({"event_id":event,"home":series[0]["home"],"away":series[0]["away"],"event_start":series[0]["event_start"],"bookmakers":len(values),"median_change_pp":median(values),"first_home_probability":median(r["first_home_no_vig"] for r in series),"latest_home_probability":median(r["latest_home_no_vig"] for r in series),"home_support":sum(v>0 for v in values),"away_support":sum(v<0 for v in values),"prediction":None})
     return {"event_consensus":consensus,"status":"research_only_not_closing_line_value","rejected_unverified_or_conflicting":rejected,"paired_bookmaker_series":len(changes),"series":sorted(changes,key=lambda x:(-abs(x["home_probability_change_pp"]),x["event_id"],x["bookmaker"]))}
 
 def settle(report, games):
@@ -71,6 +71,27 @@ def settle(report, games):
     graded=[r for r in report["event_consensus"] if r["movement_correct"] is not None]
     report["outcome_audit"]={"graded_events":len(graded),"correct":sum(r["movement_correct"] for r in graded),"hit_rate":sum(r["movement_correct"] for r in graded)/len(graded) if graded else None,"status":"descriptive_not_out_of_sample"}
 
+def benchmark(report):
+    import math
+    rows=sorted((r for r in report["event_consensus"] if r.get("outcome") in ("home","away")),key=lambda r:r["event_start"])
+    if len(rows)<100:
+        report["predictive_benchmark"]={"status":"UNAVAILABLE","reason":"At least 100 settled events required","settled_events":len(rows)}
+        return
+    split=rows[int(len(rows)*.7)]["event_start"]
+    train=[r for r in rows if r["event_start"]<split]
+    test=[r for r in rows if r["event_start"]>=split]
+    if len(train)<50 or len(test)<30:
+        report["predictive_benchmark"]={"status":"UNAVAILABLE","reason":"Insufficient chronological partition"}
+        return
+    def prob(r,b):
+        p=r["latest_home_probability"]
+        z=math.log(p/(1-p))+b*r["median_change_pp"]/100
+        return 1/(1+math.exp(-max(-30,min(30,z))))
+    def score(rs,b):
+        return sum((prob(r,b)-(r["outcome"]=="home"))**2 for r in rs)/len(rs)
+    b=min((i/4 for i in range(-16,17)),key=lambda x:score(train,x))
+    report["predictive_benchmark"]={"status":"RESEARCH_ONLY","train_events":len(train),"holdout_events":len(test),"holdout_start":split,"movement_coefficient":b,"market_brier":score(test,0),"movement_brier":score(test,b),"first_observed_brier":sum((r["first_home_probability"]-(r["outcome"]=="home"))**2 for r in test)/len(test),"bet_eligible":False}
+
 def main():
     for src in sorted(Path("feed").glob("*_paired_moneyline_archive.json")):
         sport=src.name.removesuffix("_paired_moneyline_archive.json")
@@ -83,6 +104,7 @@ def main():
         for result in Path("backtests/results").glob(f"*/{league}.json"):
             games.extend(json.loads(result.read_text()).get("games",[]))
         settle(report,games)
+        benchmark(report)
         Path(f"feed/{sport}_line_movement.json").write_text(json.dumps(report,indent=2)+"\n")
         print(sport,"multi-snapshot bookmaker series:",report["paired_bookmaker_series"])
 if __name__=="__main__":main()
