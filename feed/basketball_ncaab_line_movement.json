@@ -1,0 +1,30 @@
+{
+  "event_consensus": [],
+  "status": "research_only_not_closing_line_value",
+  "rejected_unverified_or_conflicting": 0,
+  "paired_bookmaker_series": 0,
+  "series": [],
+  "outcome_audit": {
+    "graded_events": 0,
+    "correct": 0,
+    "hit_rate": null,
+    "status": "descriptive_not_out_of_sample"
+  },
+  "predictive_benchmark": {
+    "status": "UNAVAILABLE",
+    "reason": "At least 100 settled events required",
+    "settled_events": 0
+  },
+  "combined_benchmark": {
+    "status": "UNAVAILABLE",
+    "matched_events": 0,
+    "reason": "100 settled independent score simulations required"
+  },
+  "core_market_movements": [],
+  "independent_comparison": {
+    "status": "UNAVAILABLE",
+    "matched_settled_events": 0,
+    "independent_brier": null,
+    "market_brier": null
+  }
+}

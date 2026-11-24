@@ -1,5 +1,62 @@
 {
+  "event_consensus": [
+    {
+      "event_id": "0b4bab4d663e04a571655ec7477eb10a",
+      "home": "Buffalo Sabres",
+      "away": "Philadelphia Flyers",
+      "event_start": "2026-10-21T23:40:00+00:00",
+      "bookmakers": 9,
+      "median_change_pp": 0.0,
+      "first_home_probability": 0.622478,
+      "latest_home_probability": 0.622478,
+      "home_support": 0,
+      "away_support": 1,
+      "prediction": null,
+      "outcome": null,
+      "movement_correct": null,
+      "score_simulation": {
+        "status": "UNAVAILABLE",
+        "reason": "Fewer than 12 prior completed games per team",
+        "away_games": 0,
+        "home_games": 0
+      },
+      "independent_research_probability": 0.547766,
+      "independent_monte_carlo": {
+        "trials": 10000,
+        "home_fraction": 0.5412,
+        "status": "RESEARCH_ONLY_BERNOULLI_NOT_SCORE_SIMULATION"
+      }
+    },
+    {
+      "event_id": "5736c2282f978bfdf849f4b10876080e",
+      "home": "Ottawa Senators",
+      "away": "Florida Panthers",
+      "event_start": "2026-10-21T23:40:00+00:00",
+      "bookmakers": 9,
+      "median_change_pp": 0.0,
+      "first_home_probability": 0.5,
+      "latest_home_probability": 0.497742,
+      "home_support": 0,
+      "away_support": 2,
+      "prediction": null,
+      "outcome": null,
+      "movement_correct": null,
+      "score_simulation": {
+        "status": "UNAVAILABLE",
+        "reason": "Fewer than 12 prior completed games per team",
+        "away_games": 0,
+        "home_games": 0
+      },
+      "independent_research_probability": 0.607863,
+      "independent_monte_carlo": {
+        "trials": 10000,
+        "home_fraction": 0.6075,
+        "status": "RESEARCH_ONLY_BERNOULLI_NOT_SCORE_SIMULATION"
+      }
+    }
+  ],
   "status": "research_only_not_closing_line_value",
+  "rejected_unverified_or_conflicting": 120,
   "paired_bookmaker_series": 18,
   "series": [
     {
@@ -12,6 +69,11 @@
       "first_home_no_vig": 0.515184,
       "latest_home_no_vig": 0.491215,
       "home_probability_change_pp": -2.397,
+      "event_start": "2026-10-21T23:40:00+00:00",
+      "observations": 9,
+      "direction": "away",
+      "reversals": 1,
+      "minutes_before_start": 744.31,
       "is_verified_closing_line": false
     },
     {
@@ -24,6 +86,11 @@
       "first_home_no_vig": 0.5,
       "latest_home_no_vig": 0.49567,
       "home_probability_change_pp": -0.433,
+      "event_start": "2026-10-21T23:40:00+00:00",
+      "observations": 9,
+      "direction": "away",
+      "reversals": 1,
+      "minutes_before_start": 744.31,
       "is_verified_closing_line": false
     },
     {
@@ -36,6 +103,11 @@
       "first_home_no_vig": 0.613086,
       "latest_home_no_vig": 0.611177,
       "home_probability_change_pp": -0.191,
+      "event_start": "2026-10-21T23:40:00+00:00",
+      "observations": 9,
+      "direction": "away",
+      "reversals": 0,
+      "minutes_before_start": 744.31,
       "is_verified_closing_line": false
     },
     {
@@ -48,6 +120,11 @@
       "first_home_no_vig": 0.624644,
       "latest_home_no_vig": 0.624644,
       "home_probability_change_pp": 0.0,
+      "event_start": "2026-10-21T23:40:00+00:00",
+      "observations": 9,
+      "direction": "flat",
+      "reversals": 1,
+      "minutes_before_start": 744.31,
       "is_verified_closing_line": false
     },
     {
@@ -60,6 +137,11 @@
       "first_home_no_vig": 0.622478,
       "latest_home_no_vig": 0.622478,
       "home_probability_change_pp": 0.0,
+      "event_start": "2026-10-21T23:40:00+00:00",
+      "observations": 9,
+      "direction": "flat",
+      "reversals": 0,
+      "minutes_before_start": 744.31,
       "is_verified_closing_line": false
     },
     {
@@ -72,6 +154,11 @@
       "first_home_no_vig": 0.625565,
       "latest_home_no_vig": 0.625565,
       "home_probability_change_pp": 0.0,
+      "event_start": "2026-10-21T23:40:00+00:00",
+      "observations": 9,
+      "direction": "flat",
+      "reversals": 0,
+      "minutes_before_start": 744.31,
       "is_verified_closing_line": false
     },
     {
@@ -84,6 +171,11 @@
       "first_home_no_vig": 0.627037,
       "latest_home_no_vig": 0.627037,
       "home_probability_change_pp": 0.0,
+      "event_start": "2026-10-21T23:40:00+00:00",
+      "observations": 9,
+      "direction": "flat",
+      "reversals": 0,
+      "minutes_before_start": 744.31,
       "is_verified_closing_line": false
     },
     {
@@ -96,6 +188,11 @@
       "first_home_no_vig": 0.625235,
       "latest_home_no_vig": 0.625235,
       "home_probability_change_pp": 0.0,
+      "event_start": "2026-10-21T23:40:00+00:00",
+      "observations": 9,
+      "direction": "flat",
+      "reversals": 2,
+      "minutes_before_start": 744.31,
       "is_verified_closing_line": false
     },
     {
@@ -108,6 +205,11 @@
       "first_home_no_vig": 0.622467,
       "latest_home_no_vig": 0.622467,
       "home_probability_change_pp": 0.0,
+      "event_start": "2026-10-21T23:40:00+00:00",
+      "observations": 9,
+      "direction": "flat",
+      "reversals": 0,
+      "minutes_before_start": 744.31,
       "is_verified_closing_line": false
     },
     {
@@ -120,6 +222,11 @@
       "first_home_no_vig": 0.617368,
       "latest_home_no_vig": 0.617368,
       "home_probability_change_pp": 0.0,
+      "event_start": "2026-10-21T23:40:00+00:00",
+      "observations": 9,
+      "direction": "flat",
+      "reversals": 0,
+      "minutes_before_start": 744.31,
       "is_verified_closing_line": false
     },
     {
@@ -132,6 +239,11 @@
       "first_home_no_vig": 0.622478,
       "latest_home_no_vig": 0.622478,
       "home_probability_change_pp": 0.0,
+      "event_start": "2026-10-21T23:40:00+00:00",
+      "observations": 9,
+      "direction": "flat",
+      "reversals": 0,
+      "minutes_before_start": 744.31,
       "is_verified_closing_line": false
     },
     {
@@ -144,6 +256,11 @@
       "first_home_no_vig": 0.5,
       "latest_home_no_vig": 0.5,
       "home_probability_change_pp": 0.0,
+      "event_start": "2026-10-21T23:40:00+00:00",
+      "observations": 9,
+      "direction": "flat",
+      "reversals": 0,
+      "minutes_before_start": 744.31,
       "is_verified_closing_line": false
     },
     {
@@ -156,6 +273,11 @@
       "first_home_no_vig": 0.497742,
       "latest_home_no_vig": 0.497742,
       "home_probability_change_pp": 0.0,
+      "event_start": "2026-10-21T23:40:00+00:00",
+      "observations": 9,
+      "direction": "flat",
+      "reversals": 0,
+      "minutes_before_start": 744.31,
       "is_verified_closing_line": false
     },
     {
@@ -168,6 +290,11 @@
       "first_home_no_vig": 0.5,
       "latest_home_no_vig": 0.5,
       "home_probability_change_pp": 0.0,
+      "event_start": "2026-10-21T23:40:00+00:00",
+      "observations": 9,
+      "direction": "flat",
+      "reversals": 0,
+      "minutes_before_start": 744.31,
       "is_verified_closing_line": false
     },
     {
@@ -180,6 +307,11 @@
       "first_home_no_vig": 0.49567,
       "latest_home_no_vig": 0.49567,
       "home_probability_change_pp": 0.0,
+      "event_start": "2026-10-21T23:40:00+00:00",
+      "observations": 9,
+      "direction": "flat",
+      "reversals": 0,
+      "minutes_before_start": 744.31,
       "is_verified_closing_line": false
     },
     {
@@ -192,6 +324,11 @@
       "first_home_no_vig": 0.49673,
       "latest_home_no_vig": 0.49673,
       "home_probability_change_pp": 0.0,
+      "event_start": "2026-10-21T23:40:00+00:00",
+      "observations": 9,
+      "direction": "flat",
+      "reversals": 0,
+      "minutes_before_start": 744.31,
       "is_verified_closing_line": false
     },
     {
@@ -204,6 +341,11 @@
       "first_home_no_vig": 0.497742,
       "latest_home_no_vig": 0.497742,
       "home_probability_change_pp": 0.0,
+      "event_start": "2026-10-21T23:40:00+00:00",
+      "observations": 9,
+      "direction": "flat",
+      "reversals": 0,
+      "minutes_before_start": 744.31,
       "is_verified_closing_line": false
     },
     {
@@ -216,7 +358,35 @@
       "first_home_no_vig": 0.503225,
       "latest_home_no_vig": 0.503225,
       "home_probability_change_pp": 0.0,
+      "event_start": "2026-10-21T23:40:00+00:00",
+      "observations": 9,
+      "direction": "flat",
+      "reversals": 0,
+      "minutes_before_start": 744.31,
       "is_verified_closing_line": false
     }
-  ]
+  ],
+  "outcome_audit": {
+    "graded_events": 0,
+    "correct": 0,
+    "hit_rate": null,
+    "status": "descriptive_not_out_of_sample"
+  },
+  "predictive_benchmark": {
+    "status": "UNAVAILABLE",
+    "reason": "At least 100 settled events required",
+    "settled_events": 0
+  },
+  "combined_benchmark": {
+    "status": "UNAVAILABLE",
+    "matched_events": 0,
+    "reason": "100 settled independent score simulations required"
+  },
+  "core_market_movements": [],
+  "independent_comparison": {
+    "status": "UNAVAILABLE",
+    "matched_settled_events": 0,
+    "independent_brier": null,
+    "market_brier": null
+  }
 }
