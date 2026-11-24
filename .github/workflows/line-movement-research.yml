@@ -1,0 +1,26 @@
+name: Line Movement Research
+on:
+  pull_request:
+    paths:
+      - 'scripts/*line_movement*'
+      - '.github/workflows/line-movement-research.yml'
+  workflow_dispatch:
+  schedule:
+    - cron: '15 15,22 * * *'
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest scripts.test_line_movement_research
+      - run: python -m scripts.line_movement_research
+      - uses: actions/upload-artifact@v4
+        with:
+          name: line-movement-research
+          path: feed/*_line_movement.json
+          if-no-files-found: error

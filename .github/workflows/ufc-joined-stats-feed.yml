@@ -10,6 +10,7 @@ on:
       - 'feed/ufc_unified_research.json'
       - 'feed/ufc_simulations.json'
       - 'scripts/ufc_join_all_stats.py'
+      - 'scripts/ufc_sync_research_card.py'
       - 'tests/test_ufc_joined_feed_integrity.py'
       - 'tests/test_ufc_join_all_stats.py'
   pull_request:
@@ -25,6 +26,7 @@ jobs:
         with:
           python-version: '3.11'
       - run: python -m unittest discover -s tests -p test_ufc_join_all_stats.py -v
+      - run: python -m scripts.ufc_sync_research_card
       - run: python -m scripts.ufc_join_all_stats
       - name: Cross-feed integrity and eligibility gates
         run: python -m unittest discover -s tests -p test_ufc_joined_feed_integrity.py -v
@@ -47,7 +49,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add feed/ufc_joined_stats.json
+          git add feed/ufc_joined_stats.json feed/ufc_unified_research.json feed/ufc_fighter_stats_mirror.json
           if ! git diff --cached --quiet; then
             git commit -m 'Refresh UFC joined stats feed'
             for attempt in 1 2 3 4 5; do
