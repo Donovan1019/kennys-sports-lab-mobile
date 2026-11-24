@@ -7,6 +7,7 @@ import json
 from collections import defaultdict
 from datetime import datetime,timezone
 from pathlib import Path
+from statistics import median
 
 def parse(value):
     try:
@@ -42,11 +43,21 @@ def movement(archive, ledger=None, now=None):
         rows=sorted(set(rows))
         if len({t for t,_ in rows})<2:continue
         first,last=rows[0],rows[-1]
-        changes.append({"event_id":event,"bookmaker":book,"away":away,"home":home,"first_captured_at":first[0].isoformat(),"latest_captured_at":last[0].isoformat(),"first_home_no_vig":first[1],"latest_home_no_vig":last[1],"home_probability_change_pp":round(100*(last[1]-first[1]),3),"is_verified_closing_line":False})
-    return {"status":"research_only_not_closing_line_value","rejected_unverified_or_conflicting":rejected,"paired_bookmaker_series":len(changes),"series":sorted(changes,key=lambda x:(-abs(x["home_probability_change_pp"]),x["event_id"],x["bookmaker"]))}
+        delta=last[1]-first[1]
+        steps=[b[1]-a[1] for a,b in zip(rows,rows[1:]) if a[1]!=b[1]]
+        changes.append({"event_id":event,"bookmaker":book,"away":away,"home":home,"first_captured_at":first[0].isoformat(),"latest_captured_at":last[0].isoformat(),"first_home_no_vig":first[1],"latest_home_no_vig":last[1],"home_probability_change_pp":round(100*(last[1]-first[1]),3),"event_start":next(iter(starts[event])).isoformat(),"observations":len(rows),"direction":"home" if delta>0 else "away" if delta<0 else "flat","reversals":sum(a*b<0 for a,b in zip(steps,steps[1:])),"minutes_before_start":round((next(iter(starts[event]))-last[0]).total_seconds()/60,2),"is_verified_closing_line":False})
+    events=defaultdict(list)
+    for row in changes:events[row["event_id"]].append(row)
+    consensus=[]
+    for event, series in events.items():
+        if len({r["bookmaker"] for r in series})!=len(series) or len({(r["home"],r["away"]) for r in series})!=1:continue
+        values=[r["home_probability_change_pp"] for r in series]
+        consensus.append({"event_id":event,"home":series[0]["home"],"away":series[0]["away"],"event_start":series[0]["event_start"],"bookmakers":len(values),"median_change_pp":median(values),"home_support":sum(v>0 for v in values),"away_support":sum(v<0 for v in values),"prediction":None})
+    return {"event_consensus":consensus,"status":"research_only_not_closing_line_value","rejected_unverified_or_conflicting":rejected,"paired_bookmaker_series":len(changes),"series":sorted(changes,key=lambda x:(-abs(x["home_probability_change_pp"]),x["event_id"],x["bookmaker"]))}
 
 def main():
-    for sport in ("basketball_nba","icehockey_nhl","americanfootball_nfl"):
+    for src in sorted(Path("feed").glob("*_paired_moneyline_archive.json")):
+        sport=src.name.removesuffix("_paired_moneyline_archive.json")
         src=Path(f"feed/{sport}_paired_moneyline_archive.json")
         if not src.exists():continue
         ledger=Path(f"feed/{sport}_market_baseline_ledger.json")
