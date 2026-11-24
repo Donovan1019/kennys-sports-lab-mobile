@@ -9,13 +9,32 @@ LEAGUES={"basketball_nba":"basketball/nba","americanfootball_nfl":"football/nfl"
 def college_history():
     p=Path("data/ncaab_espn_history.json")
     out=[]
-    if not p.exists():return out
+    if not p.exists() or not p.stat().st_size:return out
     for g in json.loads(p.read_text()).get("games",[]):
         teams={t.get("homeAway"):t for t in g.get("teams",[])}
         if not all(k in teams for k in ("home","away")):continue
         h,a=teams["home"],teams["away"]
         if not all(type(t.get("points")) in (int,float) and t["points"]>=0 and int(t["points"])==t["points"] and t.get("name") for t in (h,a)):continue
         out.append(dict(event_id=g["event_id"],commence_time=g["date"]+"T12:00:00-05:00",home=h["name"],away=a["name"],home_score=int(h["points"]),away_score=int(a["points"]),completed=True))
+    return out
+def college_scoreboard_history(now):
+    from urllib.parse import urlencode
+    out=[]
+    # Completed scores only; no expensive per-game boxscore calls.
+    for start,end in [(now.date()-timedelta(days=35),now.date()-timedelta(days=1)),(now.date()-timedelta(days=365),now.date()-timedelta(days=330))]:
+        for i in range((end-start).days+1):
+            day=start+timedelta(days=i)
+            url="https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard?"+urlencode({"dates":day.strftime("%Y%m%d"),"groups":50,"limit":500})
+            try:
+                with urlopen(Request(url,headers={"User-Agent":"KSL research"}),timeout=10) as r:data=json.load(r)
+                for e in data.get("events",[]):
+                    if e.get("status",{}).get("type",{}).get("completed") is not True:continue
+                    cs=e.get("competitions") or []
+                    if not cs:continue
+                    sides={x.get("homeAway"):x for x in cs[0].get("competitors",[])}
+                    h,a=sides["home"],sides["away"]
+                    out.append(dict(event_id=str(e["id"]),commence_time=e["date"],home=h["team"]["displayName"],away=a["team"]["displayName"],home_score=int(h["score"]),away_score=int(a["score"]),completed=True))
+            except (OSError,ValueError,KeyError,TypeError):continue
     return out
 def schedule(sport,now):
     if sport not in LEAGUES:return [],"UNSUPPORTED"
