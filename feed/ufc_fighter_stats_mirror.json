@@ -2,7 +2,7 @@
   "schema": 1,
   "sport": "UFC",
   "source": "Greco1899/scrape_ufc_stats public CSV mirror",
-  "retrieved_at": "2026-11-24T02:09:31.979867+00:00",
+  "retrieved_at": "2026-11-24T23:51:50.407880+00:00",
   "source_files": [
     "ufc_fighter_details.csv",
     "ufc_fighter_tott.csv",
@@ -60,10 +60,25 @@
     },
     {
       "name": "Elves Brener",
-      "status": "INSUFFICIENT_OR_AMBIGUOUS",
-      "career_round_totals": null,
-      "stats_asof_verified": false,
+      "status": "MATCHED_HISTORICAL_STATS",
+      "source_profile": "http://ufcstats.com/fighter-details/48a9a128784d53d1",
+      "height": "5' 10\"",
+      "weight": "155 lbs.",
+      "reach": "72\"",
+      "stance": "Orthodox",
+      "career_round_totals": {
+        "round_rows": 17,
+        "sig_landed": 386,
+        "sig_attempted": 796,
+        "total_landed": 466,
+        "td_landed": 5,
+        "td_attempted": 30,
+        "submission_attempts": 0,
+        "knockdowns": 0,
+        "control_seconds": 373
+      },
       "fighter_status_verified": false,
+      "stats_asof_verified": false,
       "bet_eligible": false
     },
     {
@@ -402,11 +417,26 @@
       "bet_eligible": false
     },
     {
-      "name": "Mateusz Rębecki",
-      "status": "INSUFFICIENT_OR_AMBIGUOUS",
-      "career_round_totals": null,
-      "stats_asof_verified": false,
+      "name": "Mateusz R\u0119becki",
+      "status": "MATCHED_HISTORICAL_STATS",
+      "source_profile": "http://ufcstats.com/fighter-details/849c5d9979df5357",
+      "height": "5' 7\"",
+      "weight": "155 lbs.",
+      "reach": "66\"",
+      "stance": "Southpaw",
+      "career_round_totals": {
+        "round_rows": 22,
+        "sig_landed": 570,
+        "sig_attempted": 1153,
+        "total_landed": 792,
+        "td_landed": 20,
+        "td_attempted": 40,
+        "submission_attempts": 0,
+        "knockdowns": 0,
+        "control_seconds": 1820
+      },
       "fighter_status_verified": false,
+      "stats_asof_verified": false,
       "bet_eligible": false
     },
     {
