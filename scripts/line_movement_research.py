@@ -120,6 +120,24 @@ def enrich(report, core, forecasts):
         if r.get("outcome") in ("home","away"):matched.append(r)
     report["independent_comparison"]={"status":"DESCRIPTIVE_ONLY" if matched else "UNAVAILABLE","matched_settled_events":len(matched),"independent_brier":sum((r["independent_research_probability"]-(r["outcome"]=="home"))**2 for r in matched)/len(matched) if matched else None,"market_brier":sum((r["latest_home_probability"]-(r["outcome"]=="home"))**2 for r in matched)/len(matched) if matched else None}
 
+def combined_benchmark(report):
+    rows=sorted([r for r in report["event_consensus"] if r.get("outcome") in ("home","away") and r.get("score_simulation",{}).get("trials") and r["score_simulation"].get("tie_probability")==0],key=lambda r:r["event_start"])
+    if len(rows)<100:
+        report["combined_benchmark"]={"status":"UNAVAILABLE","matched_events":len(rows),"reason":"100 settled independent score simulations required"}
+        return
+    split=rows[int(.7*len(rows))]["event_start"]
+    train=[r for r in rows if r["event_start"]<split]
+    test=[r for r in rows if r["event_start"]>=split]
+    if len(train)<50 or len(test)<30:
+        report["combined_benchmark"]={"status":"UNAVAILABLE","reason":"Insufficient chronological partition"}
+        return
+    def p(r,w,b):
+        return max(.001,min(.999,w*r["score_simulation"]["home_win_probability"]+(1-w)*r["latest_home_probability"]+b*r["median_change_pp"]/100))
+    def score(rs,w,b):
+        return sum((p(r,w,b)-(r["outcome"]=="home"))**2 for r in rs)/len(rs)
+    w,b=min(((i/10,j/4) for i in range(11) for j in range(-8,9)),key=lambda x:score(train,*x))
+    report["combined_benchmark"]={"status":"RESEARCH_ONLY","train_events":len(train),"holdout_events":len(test),"independent_weight":w,"movement_coefficient":b,"combined_brier":score(test,w,b),"market_brier":score(test,0,0),"independent_brier":score(test,1,0),"bet_eligible":False}
+
 def main():
     for src in sorted(Path("feed").glob("*_paired_moneyline_archive.json")):
         sport=src.name.removesuffix("_paired_moneyline_archive.json")
@@ -137,6 +155,7 @@ def main():
             cutoff=min(parse(q["latest_captured_at"]) for q in report["series"] if q["event_id"]==row["event_id"])
             row["score_simulation"]=simulate(sport,row,games,cutoff)
         benchmark(report)
+        combined_benchmark(report)
         core=Path(f"feed/{sport}_core_movement_archive.json")
         forecasts=Path(f"feed/{sport}_forecast_ledger.json")
         enrich(report,json.loads(core.read_text()) if core.exists() else {},json.loads(forecasts.read_text()) if forecasts.exists() else {})
