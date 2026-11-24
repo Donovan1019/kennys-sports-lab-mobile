@@ -196,7 +196,18 @@ def main():
         combined_benchmark(report)
         core=Path(f"feed/{sport}_core_movement_archive.json")
         forecasts=Path(f"feed/{sport}_forecast_ledger.json")
-        enrich(report,json.loads(core.read_text()) if core.exists() else {},json.loads(forecasts.read_text()) if forecasts.exists() else {})
+        forecast_data=json.loads(forecasts.read_text()) if forecasts.exists() else {}
+        enrich(report,json.loads(core.read_text()) if core.exists() else {},forecast_data)
+        # Reuse immutable independent forecasts, including single-snapshot fixtures.
+        from scripts.three_sport_backtest import normalize_team
+        for row in report["current_slate"]:
+            start=parse(row["event_start"])
+            eligible=[f for f in forecast_data.get("forecasts",[]) if parse(f.get("forecast_at")) and parse(f["forecast_at"])<=now and parse(f["forecast_at"])<start and parse(f.get("event_start"))==start and all(normalize_team(f.get(k))==normalize_team(row[k]) for k in ("home","away")) and type(f.get("home_probability")) in (int,float) and 0<f["home_probability"]<1]
+            if eligible:
+                f=max(eligible,key=lambda x:parse(x["forecast_at"]))
+                row["existing_model_projection"]={"home_probability":f["home_probability"],"away_probability":1-f["home_probability"],"forecast_at":f["forecast_at"],"source":"immutable independent forecast ledger","status":f.get("status"),"bet_eligible":False}
+        report["coverage"]={"fixtures":len(report["current_slate"]),"with_odds":sum(r.get("bookmakers",0)>0 for r in report["current_slate"]),"with_score_simulation":sum(bool(r.get("score_simulation",{}).get("trials")) for r in report["current_slate"]),"with_existing_projection":sum("existing_model_projection" in r for r in report["current_slate"]),"with_movement":sum(r.get("median_change_pp") is not None for r in report["current_slate"])}
+
         Path(f"feed/{sport}_line_movement.json").write_text(json.dumps(report,indent=2)+"\n")
         print(sport,"multi-snapshot bookmaker series:",report["paired_bookmaker_series"])
 if __name__=="__main__":main()
