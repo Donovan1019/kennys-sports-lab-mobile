@@ -140,7 +140,7 @@ def combined_benchmark(report):
 
 def main():
     sports={p.name.removesuffix("_paired_moneyline_archive.json") for p in Path("feed").glob("*_paired_moneyline_archive.json")} | {p.name.removesuffix("_core_movement_archive.json") for p in Path("feed").glob("*_core_movement_archive.json")}
-    from scripts.line_movement_schedule import LEAGUES, college_history, schedule, join_schedule
+    from scripts.line_movement_schedule import LEAGUES, college_history, college_scoreboard_history, schedule, join_schedule
     sports.update(LEAGUES)
     for sport in sorted(sports):
         src=Path(f"feed/{sport}_paired_moneyline_archive.json")
@@ -165,7 +165,9 @@ def main():
                 a,h=g.get("away_score"),g.get("home_score")
                 if type(a) in (int,float) and type(h) in (int,float) and a>=0 and h>=0 and int(a)==a and int(h)==h:
                     games.append(dict(g,completed=True,commence_time=g.get("date"),away_score=int(a),home_score=int(h)))
-        if league=="ncaab":games.extend(college_history())
+        if league=="ncaab":
+            history=college_history()
+            games.extend(history or college_scoreboard_history(datetime.now(timezone.utc)))
         settle(report,games)
         from scripts.line_movement_simulation import simulate
         for row in report["event_consensus"]:
