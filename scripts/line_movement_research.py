@@ -157,11 +157,32 @@ def main():
         league=sport.rsplit("_",1)[-1]
         for result in Path("backtests/results").glob(f"*/{league}.json"):
             games.extend(json.loads(result.read_text()).get("games",[]))
+        completed=Path(f"feed/{league}_completed_games.json")
+        if completed.exists():
+            for g in json.loads(completed.read_text()).get("games",[]):
+                a,h=g.get("away_score"),g.get("home_score")
+                if type(a) in (int,float) and type(h) in (int,float) and a>=0 and h>=0 and int(a)==a and int(h)==h:
+                    games.append(dict(g,completed=True,commence_time=g.get("date"),away_score=int(a),home_score=int(h)))
         settle(report,games)
         from scripts.line_movement_simulation import simulate
         for row in report["event_consensus"]:
             cutoff=min(parse(q["latest_captured_at"]) for q in report["series"] if q["event_id"]==row["event_id"])
             row["score_simulation"]=simulate(sport,row,games,cutoff)
+        from scripts.line_movement_capture import capture
+        current=Path(f"feed/{sport}.json")
+        report["current_slate"]=[]
+        if current.exists():
+            latest=capture(json.loads(current.read_text()),datetime.now(timezone.utc))
+            by_event=defaultdict(list)
+            for q in latest:
+                if q["market"]=="h2h":by_event[q["event_id"]].append(q)
+            for eid,qs in by_event.items():
+                q=qs[0]
+                if len({(x["home"],x["away"],x["event_start"]) for x in qs})!=1:continue
+                row=next((r for r in report["event_consensus"] if r["event_id"]==eid and parse(r["event_start"])==parse(q["event_start"])),None)
+                if row is None:
+                    row=dict(event_id=eid,home=q["home"],away=q["away"],event_start=q["event_start"],bookmakers=len(qs),median_change_pp=None,score_simulation=simulate(sport,q,games,parse(q["captured_at"])))
+                report["current_slate"].append(row)
         benchmark(report)
         combined_benchmark(report)
         core=Path(f"feed/{sport}_core_movement_archive.json")
