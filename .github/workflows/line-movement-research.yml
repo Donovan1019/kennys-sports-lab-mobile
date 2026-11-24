@@ -27,14 +27,21 @@ jobs:
           python-version: '3.12'
       - run: python -m unittest scripts.test_line_movement_research
       - name: Refresh core odds using existing SportsGameOdds secret
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         env:
           SPORTSGAMEODDS_API_KEY: ${{ secrets.SPORTSGAMEODDS_API_KEY }}
+          ODDSPAPI_API_KEY: ${{ secrets.ODDSPAPI_API_KEY }}
         run: |
           for sport in basketball_nba americanfootball_nfl icehockey_nhl basketball_ncaab mma_mixed_martial_arts; do
             markets=h2h,spreads,totals
             if [ "$sport" = mma_mixed_martial_arts ]; then markets=h2h; fi
-            ODDS_SPORT="$sport" ODDS_MARKETS="$markets" python scripts/fetch_sportsgameodds.py || echo "::warning::Fresh odds unavailable for $sport; retaining previous snapshot"
+            if ! ODDS_SPORT="$sport" ODDS_MARKETS="$markets" python scripts/fetch_sportsgameodds.py; then
+              if [ "$sport" = americanfootball_nfl ] && [ -n "$ODDSPAPI_API_KEY" ]; then
+                python scripts/fetch_nfl_oddspapi.py || echo "::warning::NFL fallback unavailable"
+              else
+                echo "::warning::Fresh odds unavailable for $sport; retaining previous snapshot"
+              fi
+            fi
           done
       - run: python -m scripts.line_movement_capture
       - run: python -m scripts.line_movement_research
