@@ -9,45 +9,45 @@
       "player_pass_yds": {
         "status": "FAILED_DUAL_METRIC_GATE",
         "development_samples": 272,
-        "holdout_samples": 267,
+        "holdout_samples": 290,
         "frozen_adjustment": -0.021792,
-        "raw_brier": 0.249331,
-        "frozen_brier": 0.250226,
-        "raw_ece": 0.035313,
-        "frozen_ece": 0.046422,
+        "raw_brier": 0.248065,
+        "frozen_brier": 0.249033,
+        "raw_ece": 0.027094,
+        "frozen_ece": 0.046932,
         "eligible_for_live_use": false
       },
       "player_reception_yds": {
         "status": "FAILED_DUAL_METRIC_GATE",
         "development_samples": 2164,
-        "holdout_samples": 1887,
+        "holdout_samples": 2067,
         "frozen_adjustment": -0.029913,
-        "raw_brier": 0.25408,
-        "frozen_brier": 0.253086,
-        "raw_ece": 0.070179,
-        "frozen_ece": 0.080627,
+        "raw_brier": 0.254949,
+        "frozen_brier": 0.253834,
+        "raw_ece": 0.072984,
+        "frozen_ece": 0.084692,
         "eligible_for_live_use": false
       },
       "player_rush_yds": {
         "status": "FAILED_DUAL_METRIC_GATE",
         "development_samples": 906,
-        "holdout_samples": 838,
+        "holdout_samples": 910,
         "frozen_adjustment": -0.022475,
-        "raw_brier": 0.253592,
-        "frozen_brier": 0.252235,
-        "raw_ece": 0.073133,
-        "frozen_ece": 0.07364,
+        "raw_brier": 0.254362,
+        "frozen_brier": 0.253145,
+        "raw_ece": 0.070644,
+        "frozen_ece": 0.078378,
         "eligible_for_live_use": false
       },
       "player_receptions": {
-        "status": "FAILED_DUAL_METRIC_GATE",
+        "status": "BOTH_METRICS_IMPROVED",
         "development_samples": 2164,
-        "holdout_samples": 1887,
+        "holdout_samples": 2067,
         "frozen_adjustment": -0.030396,
-        "raw_brier": 0.250554,
-        "frozen_brier": 0.250627,
-        "raw_ece": 0.064577,
-        "frozen_ece": 0.060899,
+        "raw_brier": 0.250713,
+        "frozen_brier": 0.2507,
+        "raw_ece": 0.068215,
+        "frozen_ece": 0.060822,
         "eligible_for_live_use": false
       }
     },
@@ -55,15 +55,15 @@
   },
   "integrity": {
     "missing_market_stat": 0,
-    "zero_market_stat": 9064,
+    "zero_market_stat": 9325,
     "negative_or_invalid": 0,
-    "position_excluded": 90200,
+    "position_excluded": 92968,
     "duplicate_player_weeks": 0
   },
   "opportunity": {
-    "confirmed": 16794,
+    "confirmed": 17330,
     "unverified": 0,
-    "zero_opportunity": 7522,
+    "zero_opportunity": 7742,
     "invalid": 0
   },
   "participation_status": "OPPORTUNITY_CONFIRMED_ONLY",
@@ -74,12 +74,12 @@
   "baseline_warning": "Chronological rolling baseline uses only prior scored player-market outcomes (up to 10, Laplace-smoothed); constant-rate benchmark uses full evaluation outcomes (in-sample, look-ahead) and is diagnostic only. Both use postgame opportunity-conditioned samples and synthetic thresholds.",
   "method": "chronological five-opportunity-confirmed-game mean threshold and smoothed empirical frequency; position-filtered, retains zero outcomes when attempts/targets/carries > 0; NOT sportsbook-line calibration",
   "leakage_policy": "Each prediction uses only earlier games for the same player and market",
-  "total_samples": 10385,
+  "total_samples": 10840,
   "markets": {
     "player_pass_yds": {
       "status": "RESEARCH_ONLY",
-      "samples": 539,
-      "brier": 0.252925,
+      "samples": 562,
+      "brier": 0.252124,
       "calibration_acceptance_gate": {
         "status": "REJECTED",
         "brier_improved": false,
@@ -87,9 +87,9 @@
         "eligible_for_live_use": false,
         "reason": "Calibration worsened or tied at least one diagnostic metric"
       },
-      "prequential_calibrated_brier": 0.253566,
-      "prequential_calibrated_ece": 0.060534,
-      "prequential_calibration_samples": 431,
+      "prequential_calibrated_brier": 0.25277,
+      "prequential_calibrated_ece": 0.054808,
+      "prequential_calibration_samples": 454,
       "reliability_bins": [
         {
           "lower": 0.2,
@@ -101,16 +101,16 @@
         {
           "lower": 0.4,
           "upper": 0.5,
-          "samples": 232,
+          "samples": 245,
           "predicted": 0.428571,
-          "observed": 0.482759
+          "observed": 0.477551
         },
         {
           "lower": 0.5,
           "upper": 0.6,
-          "samples": 264,
+          "samples": 274,
           "predicted": 0.571429,
-          "observed": 0.511364
+          "observed": 0.518248
         },
         {
           "lower": 0.7,
@@ -120,18 +120,18 @@
           "observed": 0.538462
         }
       ],
-      "expected_calibration_error": 0.06149,
-      "chronological_rolling_brier": 0.280231,
-      "skill_vs_chronological_rolling": 0.097441,
-      "constant_rate_brier_in_sample": 0.249958,
-      "skill_vs_in_sample_constant": -0.01187,
-      "mean_predicted": 0.507819,
-      "observed_rate": 0.493506
+      "expected_calibration_error": 0.055669,
+      "chronological_rolling_brier": 0.280094,
+      "skill_vs_chronological_rolling": 0.099859,
+      "constant_rate_brier_in_sample": 0.249972,
+      "skill_vs_in_sample_constant": -0.008612,
+      "mean_predicted": 0.507117,
+      "observed_rate": 0.494662
     },
     "player_reception_yds": {
       "status": "RESEARCH_ONLY",
-      "samples": 4051,
-      "brier": 0.253281,
+      "samples": 4231,
+      "brier": 0.253739,
       "calibration_acceptance_gate": {
         "status": "REJECTED",
         "brier_improved": true,
@@ -139,51 +139,51 @@
         "eligible_for_live_use": false,
         "reason": "Calibration worsened or tied at least one diagnostic metric"
       },
-      "prequential_calibrated_brier": 0.252382,
-      "prequential_calibrated_ece": 0.075437,
-      "prequential_calibration_samples": 3846,
+      "prequential_calibrated_brier": 0.252776,
+      "prequential_calibrated_ece": 0.077654,
+      "prequential_calibration_samples": 4026,
       "reliability_bins": [
         {
           "lower": 0.2,
           "upper": 0.3,
-          "samples": 538,
+          "samples": 565,
           "predicted": 0.285714,
-          "observed": 0.405204
+          "observed": 0.40708
         },
         {
           "lower": 0.4,
           "upper": 0.5,
-          "samples": 2341,
+          "samples": 2436,
           "predicted": 0.428571,
-          "observed": 0.428022
+          "observed": 0.428571
         },
         {
           "lower": 0.5,
           "upper": 0.6,
-          "samples": 1105,
+          "samples": 1161,
           "predicted": 0.571429,
-          "observed": 0.408145
+          "observed": 0.403962
         },
         {
           "lower": 0.7,
           "upper": 0.8,
-          "samples": 67,
+          "samples": 69,
           "predicted": 0.714286,
-          "observed": 0.522388
+          "observed": 0.507246
         }
       ],
-      "expected_calibration_error": 0.0639,
-      "chronological_rolling_brier": 0.27298,
-      "skill_vs_chronological_rolling": 0.072164,
-      "constant_rate_brier_in_sample": 0.24378,
-      "skill_vs_in_sample_constant": -0.038975,
-      "mean_predicted": 0.453292,
-      "observed_rate": 0.421131
+      "expected_calibration_error": 0.065537,
+      "chronological_rolling_brier": 0.273661,
+      "skill_vs_chronological_rolling": 0.072798,
+      "constant_rate_brier_in_sample": 0.243637,
+      "skill_vs_in_sample_constant": -0.041465,
+      "mean_predicted": 0.453354,
+      "observed_rate": 0.420232
     },
     "player_rush_yds": {
       "status": "RESEARCH_ONLY",
-      "samples": 1744,
-      "brier": 0.250737,
+      "samples": 1816,
+      "brier": 0.251236,
       "calibration_acceptance_gate": {
         "status": "REJECTED",
         "brier_improved": true,
@@ -191,51 +191,51 @@
         "eligible_for_live_use": false,
         "reason": "Calibration worsened or tied at least one diagnostic metric"
       },
-      "prequential_calibrated_brier": 0.250056,
-      "prequential_calibrated_ece": 0.070935,
-      "prequential_calibration_samples": 1608,
+      "prequential_calibrated_brier": 0.250615,
+      "prequential_calibrated_ece": 0.073596,
+      "prequential_calibration_samples": 1680,
       "reliability_bins": [
         {
           "lower": 0.2,
           "upper": 0.3,
-          "samples": 269,
+          "samples": 278,
           "predicted": 0.285714,
-          "observed": 0.386617
+          "observed": 0.388489
         },
         {
           "lower": 0.4,
           "upper": 0.5,
-          "samples": 935,
+          "samples": 982,
           "predicted": 0.428571,
-          "observed": 0.414973
+          "observed": 0.418534
         },
         {
           "lower": 0.5,
           "upper": 0.6,
-          "samples": 509,
+          "samples": 523,
           "predicted": 0.571429,
-          "observed": 0.440079
+          "observed": 0.435946
         },
         {
           "lower": 0.7,
           "upper": 0.8,
-          "samples": 31,
+          "samples": 33,
           "predicted": 0.714286,
-          "observed": 0.483871
+          "observed": 0.484848
         }
       ],
-      "expected_calibration_error": 0.065285,
-      "chronological_rolling_brier": 0.267831,
-      "skill_vs_chronological_rolling": 0.063823,
-      "constant_rate_brier_in_sample": 0.243464,
-      "skill_vs_in_sample_constant": -0.029876,
-      "mean_predicted": 0.453309,
-      "observed_rate": 0.419151
+      "expected_calibration_error": 0.064349,
+      "chronological_rolling_brier": 0.269185,
+      "skill_vs_chronological_rolling": 0.066678,
+      "constant_rate_brier_in_sample": 0.243625,
+      "skill_vs_in_sample_constant": -0.031243,
+      "mean_predicted": 0.453037,
+      "observed_rate": 0.420154
     },
     "player_receptions": {
       "status": "RESEARCH_ONLY",
-      "samples": 4051,
-      "brier": 0.249644,
+      "samples": 4231,
+      "brier": 0.24976,
       "calibration_acceptance_gate": {
         "status": "RESEARCH_CANDIDATE",
         "brier_improved": true,
@@ -243,53 +243,53 @@
         "eligible_for_live_use": false,
         "reason": "Both diagnostic metrics improved; independent future holdout still required"
       },
-      "prequential_calibrated_brier": 0.249251,
-      "prequential_calibrated_ece": 0.061159,
-      "prequential_calibration_samples": 3846,
+      "prequential_calibrated_brier": 0.249348,
+      "prequential_calibrated_ece": 0.062535,
+      "prequential_calibration_samples": 4026,
       "reliability_bins": [
         {
           "lower": 0.1,
           "upper": 0.2,
-          "samples": 32,
+          "samples": 34,
           "predicted": 0.142857,
-          "observed": 0.3125
+          "observed": 0.294118
         },
         {
           "lower": 0.2,
           "upper": 0.3,
-          "samples": 744,
+          "samples": 782,
           "predicted": 0.285714,
-          "observed": 0.38172
+          "observed": 0.386189
         },
         {
           "lower": 0.4,
           "upper": 0.5,
-          "samples": 1968,
+          "samples": 2050,
           "predicted": 0.428571,
-          "observed": 0.415142
+          "observed": 0.413171
         },
         {
           "lower": 0.5,
           "upper": 0.6,
-          "samples": 1147,
+          "samples": 1198,
           "predicted": 0.571429,
-          "observed": 0.466434
+          "observed": 0.465776
         },
         {
           "lower": 0.7,
           "upper": 0.8,
-          "samples": 160,
+          "samples": 167,
           "predicted": 0.714286,
-          "observed": 0.5375
+          "observed": 0.538922
         }
       ],
-      "expected_calibration_error": 0.062207,
-      "chronological_rolling_brier": 0.272895,
-      "skill_vs_chronological_rolling": 0.085201,
-      "constant_rate_brier_in_sample": 0.244751,
-      "skill_vs_in_sample_constant": -0.019991,
-      "mean_predicted": 0.451811,
-      "observed_rate": 0.427549
+      "expected_calibration_error": 0.064085,
+      "chronological_rolling_brier": 0.272833,
+      "skill_vs_chronological_rolling": 0.084567,
+      "constant_rate_brier_in_sample": 0.244684,
+      "skill_vs_in_sample_constant": -0.020747,
+      "mean_predicted": 0.451599,
+      "observed_rate": 0.427086
     }
   },
   "limitations": "Opportunity-confirmed samples condition on observed attempts, targets or carries and exclude games with zero opportunity; this introduces post-game selection bias and is NOT a pregame hit probability. Snaps, routes, injury status and missing weekly rows are unverified. Synthetic thresholds, not posted odds or real SGP prices; no opponent, joint-correlation, or market EV validation"
