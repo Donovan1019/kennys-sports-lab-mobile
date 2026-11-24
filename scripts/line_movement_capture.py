@@ -30,6 +30,25 @@ def capture(data, now):
         pa,pb=implied(a["price"]),implied(b["price"])
         out.append(dict(event_id=eid,home=home,away=away,bookmaker=book,market=market,event_start=start,captured_at=fetched.isoformat(),point=point,home_no_vig=pa/(pa+pb),source=data.get("source"),first_price=a["price"],second_price=b["price"]))
     return out
+def historical(sport):
+    """Replay existing immutable source snapshots at their original observation time."""
+    paths=[]
+    if sport=="basketball_nba":paths=Path("data/nba_ml_odds_archive").glob("*/*.json")
+    elif sport=="americanfootball_nfl":paths=Path("archive/nfl_moneyline/odds").glob("*.json")
+    out=[]
+    for p in paths:
+        try:
+            d=json.loads(p.read_text())
+            stamp=parse(d.get("captured_at") or d.get("source_timestamp"))
+            if not stamp or stamp>datetime.now(timezone.utc):continue
+            if sport=="basketball_nba":
+                if d.get("status")!="ok":continue
+                rows=[dict(r,market="h2h",updated_at=r.get("quote_updated_at")) for r in d.get("rows",[])]
+            else:rows=d.get("odds",[])
+            out.extend(capture(dict(status="ok",fetched_at=stamp.isoformat(),source=d.get("source") or "immutable_repository_archive",odds=rows),stamp))
+        except (OSError,ValueError,TypeError,KeyError):continue
+    return out
+
 def main():
     for sport in ("basketball_nba","americanfootball_nfl","icehockey_nhl","basketball_ncaab","basketball_wnba","mma_mixed_martial_arts"):
         src=Path("feed")/(sport+".json")
@@ -37,7 +56,7 @@ def main():
         dest=Path("feed")/(sport+"_core_movement_archive.json")
         old=json.loads(dest.read_text()).get("quotes",[]) if dest.exists() else []
         new=capture(json.loads(src.read_text()),datetime.now(timezone.utc))
-        rows={json.dumps(r,sort_keys=True):r for r in old+new}
+        rows={json.dumps(r,sort_keys=True):r for r in old+historical(sport)+new}
         dest.write_text(json.dumps({"quotes":list(rows.values())},indent=2)+"\n")
         print(sport,"captured",len(new),"core market pairs")
 if __name__=="__main__":main()
