@@ -31,12 +31,16 @@ jobs:
         env:
           SPORTSGAMEODDS_API_KEY: ${{ secrets.SPORTSGAMEODDS_API_KEY }}
           ODDSPAPI_API_KEY: ${{ secrets.ODDSPAPI_API_KEY }}
+          THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
+          ODDS_API_ENABLED: ${{ vars.ODDS_API_ENABLED || 'false' }}
         run: |
           for sport in basketball_nba americanfootball_nfl icehockey_nhl basketball_ncaab mma_mixed_martial_arts; do
             markets=h2h,spreads,totals
             if [ "$sport" = mma_mixed_martial_arts ]; then markets=h2h; fi
             if ! ODDS_SPORT="$sport" ODDS_MARKETS="$markets" python scripts/fetch_sportsgameodds.py; then
-              if [ "$sport" = americanfootball_nfl ] && [ -n "$ODDSPAPI_API_KEY" ]; then
+              if [ "$ODDS_API_ENABLED" = true ] && [ -n "$THE_ODDS_API_KEY" ] && ODDS_SPORT="$sport" ODDS_MARKETS="$markets" python scripts/fetch_odds.py; then
+                echo "Verified alternate provider snapshot for $sport"
+              elif [ "$sport" = americanfootball_nfl ] && [ -n "$ODDSPAPI_API_KEY" ]; then
                 python scripts/fetch_nfl_oddspapi.py || echo "::warning::NFL fallback unavailable"
               else
                 echo "::warning::Fresh odds unavailable for $sport; retaining previous snapshot"
