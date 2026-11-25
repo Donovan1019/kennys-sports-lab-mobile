@@ -1,7 +1,7 @@
 {
   "status": "validated",
   "sport": "basketball_nba",
-  "generated_at": "2026-11-25T02:30:28.072722+00:00",
+  "generated_at": "2026-11-25T03:31:27.305269+00:00",
   "calibration_passed": true,
   "model_version": "elo-walkforward-v1-holdout-audit",
   "validation_report": {
@@ -24,18 +24,6 @@
   },
   "training_cutoff": "2026-11-24T03:00Z",
   "predictions": [
-    {
-      "event_id": "MkeoQuI6mutTqPUONP8O",
-      "team": "Denver Nuggets",
-      "date_et": "2026-11-24",
-      "win_probability": 0.796462
-    },
-    {
-      "event_id": "MkeoQuI6mutTqPUONP8O",
-      "team": "Dallas Mavericks",
-      "date_et": "2026-11-24",
-      "win_probability": 0.203538
-    },
     {
       "event_id": "kQYH2MSvdDAlxmGqez8o",
       "team": "Philadelphia 76ers",
@@ -107,6 +95,30 @@
       "team": "Phoenix Suns",
       "date_et": "2026-11-25",
       "win_probability": 0.30539
+    },
+    {
+      "event_id": "5OABSZNDOfCQRWAWjOkO",
+      "team": "Golden State Warriors",
+      "date_et": "2026-11-25",
+      "win_probability": 0.760533
+    },
+    {
+      "event_id": "5OABSZNDOfCQRWAWjOkO",
+      "team": "Sacramento Kings",
+      "date_et": "2026-11-25",
+      "win_probability": 0.239467
+    },
+    {
+      "event_id": "F9rzkjzf607738mZZRhm",
+      "team": "Portland Trail Blazers",
+      "date_et": "2026-11-25",
+      "win_probability": 0.407615
+    },
+    {
+      "event_id": "F9rzkjzf607738mZZRhm",
+      "team": "San Antonio Spurs",
+      "date_et": "2026-11-25",
+      "win_probability": 0.592385
     }
   ]
 }
