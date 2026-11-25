@@ -86,8 +86,8 @@
       "home_support": 1,
       "away_support": 1,
       "prediction": null,
-      "outcome": null,
-      "movement_correct": null,
+      "outcome": "away",
+      "movement_correct": false,
       "score_simulation": {
         "status": "INDEPENDENT_SCORE_RESEARCH_ONLY",
         "trials": 10000,
@@ -566,7 +566,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 100.17,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 105,
+      "first_away_price": -125,
+      "latest_home_price": 100,
+      "latest_away_price": -120
     },
     {
       "event_id": "XjvQzm2zOeCUuGvy0UdY",
@@ -583,7 +587,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 100.17,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 100,
+      "first_away_price": -120,
+      "latest_home_price": 102,
+      "latest_away_price": -122
     },
     {
       "event_id": "5736c2282f978bfdf849f4b10876080e",
@@ -770,7 +778,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 1540.17,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -170,
+      "first_away_price": 142,
+      "latest_home_price": -170,
+      "latest_away_price": 142
     },
     {
       "event_id": "1IJjvlOW3h7M2ylmKAut",
@@ -787,7 +799,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 1540.17,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -172,
+      "first_away_price": 142,
+      "latest_home_price": -172,
+      "latest_away_price": 142
     },
     {
       "event_id": "3VUQnKb7FeBiiomaEUsh",
@@ -804,7 +820,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 1630.17,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -125,
+      "first_away_price": 105,
+      "latest_home_price": -125,
+      "latest_away_price": 105
     },
     {
       "event_id": "3VUQnKb7FeBiiomaEUsh",
@@ -821,7 +841,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 1630.17,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -132,
+      "first_away_price": 110,
+      "latest_home_price": -132,
+      "latest_away_price": 110
     },
     {
       "event_id": "5736c2282f978bfdf849f4b10876080e",
@@ -957,7 +981,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 1480.17,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -135,
+      "first_away_price": 114,
+      "latest_home_price": -135,
+      "latest_away_price": 114
     },
     {
       "event_id": "8P9ZDP8vHrnMTOtSvet7",
@@ -974,7 +1002,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 1480.17,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -140,
+      "first_away_price": 116,
+      "latest_home_price": -140,
+      "latest_away_price": 116
     },
     {
       "event_id": "8nyDykfZB5wlzMoXJ2Ie",
@@ -991,7 +1023,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 1480.17,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -120,
+      "first_away_price": 100,
+      "latest_home_price": -120,
+      "latest_away_price": 100
     },
     {
       "event_id": "8nyDykfZB5wlzMoXJ2Ie",
@@ -1008,7 +1044,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 1480.17,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -122,
+      "first_away_price": 102,
+      "latest_home_price": -122,
+      "latest_away_price": 102
     },
     {
       "event_id": "AT8TtotXo9QfrBJdl5yr",
@@ -1025,7 +1065,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 1480.17,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -162,
+      "first_away_price": 136,
+      "latest_home_price": -162,
+      "latest_away_price": 136
     },
     {
       "event_id": "AT8TtotXo9QfrBJdl5yr",
@@ -1042,7 +1086,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 1480.17,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -160,
+      "first_away_price": 132,
+      "latest_home_price": -160,
+      "latest_away_price": 132
     },
     {
       "event_id": "Aw9hvRwohIlKJr2LIKGZ",
@@ -1059,7 +1107,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 1480.17,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -130,
+      "first_away_price": 110,
+      "latest_home_price": -130,
+      "latest_away_price": 110
     },
     {
       "event_id": "Aw9hvRwohIlKJr2LIKGZ",
@@ -1076,7 +1128,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 1480.17,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -130,
+      "first_away_price": 108,
+      "latest_home_price": -130,
+      "latest_away_price": 108
     },
     {
       "event_id": "GEahWoLmrpYTsLX2pdzL",
@@ -1093,7 +1149,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 1480.17,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 130,
+      "first_away_price": -155,
+      "latest_home_price": 130,
+      "latest_away_price": -155
     },
     {
       "event_id": "GEahWoLmrpYTsLX2pdzL",
@@ -1110,7 +1170,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 1480.17,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 128,
+      "first_away_price": -154,
+      "latest_home_price": 128,
+      "latest_away_price": -154
     },
     {
       "event_id": "Ijcd5D65VVrCxjWYelfZ",
@@ -1127,7 +1191,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 1480.17,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -162,
+      "first_away_price": 136,
+      "latest_home_price": -162,
+      "latest_away_price": 136
     },
     {
       "event_id": "Ijcd5D65VVrCxjWYelfZ",
@@ -1144,7 +1212,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 1480.17,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -156,
+      "first_away_price": 130,
+      "latest_home_price": -156,
+      "latest_away_price": 130
     },
     {
       "event_id": "JZAJRKG1nskijXkm3beQ",
@@ -1161,7 +1233,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 1480.17,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -162,
+      "first_away_price": 136,
+      "latest_home_price": -162,
+      "latest_away_price": 136
     },
     {
       "event_id": "JZAJRKG1nskijXkm3beQ",
@@ -1178,7 +1254,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 1480.17,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -162,
+      "first_away_price": 134,
+      "latest_home_price": -162,
+      "latest_away_price": 134
     },
     {
       "event_id": "LYxYD9Nq4BRwxOrbIfCk",
@@ -1195,7 +1275,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 1480.17,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 110,
+      "first_away_price": -130,
+      "latest_home_price": 110,
+      "latest_away_price": -130
     },
     {
       "event_id": "LYxYD9Nq4BRwxOrbIfCk",
@@ -1212,7 +1296,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 1480.17,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 106,
+      "first_away_price": -128,
+      "latest_home_price": 106,
+      "latest_away_price": -128
     },
     {
       "event_id": "Q4UqhYNvbGSLL7zbMO8z",
@@ -1229,7 +1317,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 1660.17,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -148,
+      "first_away_price": 124,
+      "latest_home_price": -148,
+      "latest_away_price": 124
     },
     {
       "event_id": "Q4UqhYNvbGSLL7zbMO8z",
@@ -1246,7 +1338,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 1660.17,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -140,
+      "first_away_price": 116,
+      "latest_home_price": -140,
+      "latest_away_price": 116
     },
     {
       "event_id": "SrtHoosYOTKSt5J8l5Y3",
@@ -1263,7 +1359,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 1510.17,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -218,
+      "first_away_price": 180,
+      "latest_home_price": -218,
+      "latest_away_price": 180
     },
     {
       "event_id": "SrtHoosYOTKSt5J8l5Y3",
@@ -1280,7 +1380,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 1510.17,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -230,
+      "first_away_price": 188,
+      "latest_home_price": -230,
+      "latest_away_price": 188
     },
     {
       "event_id": "d0WfTdIVtD9BDtq0rMl2",
@@ -1297,7 +1401,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 1540.17,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -155,
+      "first_away_price": 130,
+      "latest_home_price": -155,
+      "latest_away_price": 130
     },
     {
       "event_id": "d0WfTdIVtD9BDtq0rMl2",
@@ -1314,7 +1422,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 1540.17,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -150,
+      "first_away_price": 125,
+      "latest_home_price": -150,
+      "latest_away_price": 125
     },
     {
       "event_id": "wXwouBo9EKU6kgrYfQA4",
@@ -1331,7 +1443,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 1640.17,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -166,
+      "first_away_price": 140,
+      "latest_home_price": -166,
+      "latest_away_price": 140
     },
     {
       "event_id": "wXwouBo9EKU6kgrYfQA4",
@@ -1348,378 +1464,305 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 1640.17,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -166,
+      "first_away_price": 138,
+      "latest_home_price": -166,
+      "latest_away_price": 138
     }
   ],
   "outcome_audit": {
-    "graded_events": 0,
+    "graded_events": 1,
     "correct": 0,
-    "hit_rate": null,
+    "hit_rate": 0.0,
     "status": "descriptive_not_out_of_sample"
   },
   "current_slate": [
     {
-      "event_id": "AT8TtotXo9QfrBJdl5yr",
+      "event_id": "espn-401892781",
       "home": "Boston Bruins",
       "away": "Winnipeg Jets",
       "event_start": "2026-11-26T00:00:00+00:00",
-      "bookmakers": 2,
-      "median_change_pp": 0.0,
-      "first_home_probability": 0.590727969601892,
-      "latest_home_probability": 0.590727969601892,
-      "home_support": 0,
-      "away_support": 0,
-      "prediction": null,
-      "outcome": null,
-      "movement_correct": null,
+      "bookmakers": 0,
+      "median_change_pp": null,
+      "schedule_source": "ESPN scoreboard",
+      "odds_status": "UNAVAILABLE",
       "score_simulation": {
         "status": "INDEPENDENT_SCORE_RESEARCH_ONLY",
         "trials": 10000,
         "sample_quality": "STANDARD",
         "history_policy": "Recency weighted prior 550 days, up to 30 games per team",
-        "home_win_probability": 0.5802,
-        "away_win_probability": 0.4198,
+        "home_win_probability": 0.5634,
+        "away_win_probability": 0.4366,
         "tie_probability": 0.0,
-        "projected_away_score": 3.1231,
-        "projected_home_score": 3.6286,
-        "projected_total": 6.7517,
+        "projected_away_score": 3.1646,
+        "projected_home_score": 3.5725,
+        "projected_total": 6.7371,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-24T23:19:49.609836+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
-      },
-      "schedule_source": "ESPN scoreboard",
-      "odds_status": "AVAILABLE"
+      }
     },
     {
-      "event_id": "8P9ZDP8vHrnMTOtSvet7",
+      "event_id": "espn-401892782",
       "home": "Buffalo Sabres",
       "away": "New York Rangers",
       "event_start": "2026-11-26T00:00:00+00:00",
-      "bookmakers": 2,
-      "median_change_pp": 0.0,
-      "first_home_probability": 0.5544816193051771,
-      "latest_home_probability": 0.5544816193051771,
-      "home_support": 0,
-      "away_support": 0,
-      "prediction": null,
-      "outcome": null,
-      "movement_correct": null,
+      "bookmakers": 0,
+      "median_change_pp": null,
+      "schedule_source": "ESPN scoreboard",
+      "odds_status": "UNAVAILABLE",
       "score_simulation": {
         "status": "INDEPENDENT_SCORE_RESEARCH_ONLY",
         "trials": 10000,
         "sample_quality": "STANDARD",
         "history_policy": "Recency weighted prior 550 days, up to 30 games per team",
-        "home_win_probability": 0.4783,
-        "away_win_probability": 0.5217,
+        "home_win_probability": 0.4739,
+        "away_win_probability": 0.5261,
         "tie_probability": 0.0,
-        "projected_away_score": 3.23,
-        "projected_home_score": 3.0817,
-        "projected_total": 6.3117,
+        "projected_away_score": 3.2526,
+        "projected_home_score": 3.0926,
+        "projected_total": 6.3452,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-24T23:19:49.609836+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
-      },
-      "schedule_source": "ESPN scoreboard",
-      "odds_status": "AVAILABLE"
+      }
     },
     {
-      "event_id": "LYxYD9Nq4BRwxOrbIfCk",
+      "event_id": "espn-401892783",
       "home": "Tampa Bay Lightning",
       "away": "Carolina Hurricanes",
       "event_start": "2026-11-26T00:00:00+00:00",
-      "bookmakers": 2,
-      "median_change_pp": 0.0,
-      "first_home_probability": 0.46048634971815705,
-      "latest_home_probability": 0.46048634971815705,
-      "home_support": 0,
-      "away_support": 0,
-      "prediction": null,
-      "outcome": null,
-      "movement_correct": null,
+      "bookmakers": 0,
+      "median_change_pp": null,
+      "schedule_source": "ESPN scoreboard",
+      "odds_status": "UNAVAILABLE",
       "score_simulation": {
         "status": "INDEPENDENT_SCORE_RESEARCH_ONLY",
         "trials": 10000,
         "sample_quality": "STANDARD",
         "history_policy": "Recency weighted prior 550 days, up to 30 games per team",
-        "home_win_probability": 0.3891,
-        "away_win_probability": 0.6109,
+        "home_win_probability": 0.3697,
+        "away_win_probability": 0.6303,
         "tie_probability": 0.0,
-        "projected_away_score": 3.7049,
-        "projected_home_score": 2.9887,
-        "projected_total": 6.6936,
+        "projected_away_score": 3.7328,
+        "projected_home_score": 2.9346,
+        "projected_total": 6.6674,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-24T23:19:49.609836+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
-      },
-      "schedule_source": "ESPN scoreboard",
-      "odds_status": "AVAILABLE"
+      }
     },
     {
-      "event_id": "Aw9hvRwohIlKJr2LIKGZ",
+      "event_id": "espn-401892784",
       "home": "Florida Panthers",
       "away": "Ottawa Senators",
       "event_start": "2026-11-26T00:00:00+00:00",
-      "bookmakers": 2,
-      "median_change_pp": 0.0,
-      "first_home_probability": 0.5415556223013638,
-      "latest_home_probability": 0.5415556223013638,
-      "home_support": 0,
-      "away_support": 0,
-      "prediction": null,
-      "outcome": null,
-      "movement_correct": null,
+      "bookmakers": 0,
+      "median_change_pp": null,
+      "schedule_source": "ESPN scoreboard",
+      "odds_status": "UNAVAILABLE",
       "score_simulation": {
         "status": "INDEPENDENT_SCORE_RESEARCH_ONLY",
         "trials": 10000,
         "sample_quality": "STANDARD",
         "history_policy": "Recency weighted prior 550 days, up to 30 games per team",
-        "home_win_probability": 0.4684,
-        "away_win_probability": 0.5316,
+        "home_win_probability": 0.4692,
+        "away_win_probability": 0.5308,
         "tie_probability": 0.0,
-        "projected_away_score": 3.3333,
-        "projected_home_score": 3.1618,
-        "projected_total": 6.4951,
+        "projected_away_score": 3.2398,
+        "projected_home_score": 3.0672,
+        "projected_total": 6.307,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-24T23:19:49.609836+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
-      },
-      "schedule_source": "ESPN scoreboard",
-      "odds_status": "AVAILABLE"
+      }
     },
     {
-      "event_id": "8nyDykfZB5wlzMoXJ2Ie",
+      "event_id": "espn-401892785",
       "home": "New York Islanders",
       "away": "St. Louis Blues",
       "event_start": "2026-11-26T00:00:00+00:00",
-      "bookmakers": 2,
-      "median_change_pp": 0.0,
-      "first_home_probability": 0.5239128578482511,
-      "latest_home_probability": 0.5239128578482511,
-      "home_support": 0,
-      "away_support": 0,
-      "prediction": null,
-      "outcome": null,
-      "movement_correct": null,
+      "bookmakers": 0,
+      "median_change_pp": null,
+      "schedule_source": "ESPN scoreboard",
+      "odds_status": "UNAVAILABLE",
       "score_simulation": {
         "status": "INDEPENDENT_SCORE_RESEARCH_ONLY",
         "trials": 10000,
         "sample_quality": "STANDARD",
         "history_policy": "Recency weighted prior 550 days, up to 30 games per team",
-        "home_win_probability": 0.4813,
-        "away_win_probability": 0.5187,
+        "home_win_probability": 0.4693,
+        "away_win_probability": 0.5307,
         "tie_probability": 0.0,
-        "projected_away_score": 3.4981,
-        "projected_home_score": 3.379,
-        "projected_total": 6.8771,
+        "projected_away_score": 3.4881,
+        "projected_home_score": 3.2944,
+        "projected_total": 6.7825,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-24T23:19:49.609836+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
-      },
-      "schedule_source": "ESPN scoreboard",
-      "odds_status": "AVAILABLE"
+      }
     },
     {
-      "event_id": "JZAJRKG1nskijXkm3beQ",
+      "event_id": "espn-401892786",
       "home": "Pittsburgh Penguins",
       "away": "Calgary Flames",
       "event_start": "2026-11-26T00:00:00+00:00",
-      "bookmakers": 2,
-      "median_change_pp": 0.0,
-      "first_home_probability": 0.5923422053382756,
-      "latest_home_probability": 0.5923422053382756,
-      "home_support": 0,
-      "away_support": 0,
-      "prediction": null,
-      "outcome": null,
-      "movement_correct": null,
+      "bookmakers": 0,
+      "median_change_pp": null,
+      "schedule_source": "ESPN scoreboard",
+      "odds_status": "UNAVAILABLE",
       "score_simulation": {
         "status": "INDEPENDENT_SCORE_RESEARCH_ONLY",
         "trials": 10000,
         "sample_quality": "STANDARD",
         "history_policy": "Recency weighted prior 550 days, up to 30 games per team",
-        "home_win_probability": 0.4975,
-        "away_win_probability": 0.5025,
+        "home_win_probability": 0.4988,
+        "away_win_probability": 0.5012,
         "tie_probability": 0.0,
-        "projected_away_score": 3.123,
-        "projected_home_score": 3.1256,
-        "projected_total": 6.2486,
+        "projected_away_score": 3.0904,
+        "projected_home_score": 3.0753,
+        "projected_total": 6.1657,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-24T23:19:49.609836+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
-      },
-      "schedule_source": "ESPN scoreboard",
-      "odds_status": "AVAILABLE"
+      }
     },
     {
-      "event_id": "Ijcd5D65VVrCxjWYelfZ",
+      "event_id": "espn-401892787",
       "home": "Washington Capitals",
       "away": "Philadelphia Flyers",
       "event_start": "2026-11-26T00:00:00+00:00",
-      "bookmakers": 2,
-      "median_change_pp": 0.0,
-      "first_home_probability": 0.5884870891812084,
-      "latest_home_probability": 0.5884870891812084,
-      "home_support": 0,
-      "away_support": 0,
-      "prediction": null,
-      "outcome": null,
-      "movement_correct": null,
+      "bookmakers": 0,
+      "median_change_pp": null,
+      "schedule_source": "ESPN scoreboard",
+      "odds_status": "UNAVAILABLE",
       "score_simulation": {
         "status": "INDEPENDENT_SCORE_RESEARCH_ONLY",
         "trials": 10000,
         "sample_quality": "STANDARD",
         "history_policy": "Recency weighted prior 550 days, up to 30 games per team",
-        "home_win_probability": 0.4701,
-        "away_win_probability": 0.5299,
+        "home_win_probability": 0.4741,
+        "away_win_probability": 0.5259,
         "tie_probability": 0.0,
-        "projected_away_score": 3.7038,
-        "projected_home_score": 3.4782,
-        "projected_total": 7.182,
+        "projected_away_score": 3.6779,
+        "projected_home_score": 3.5113,
+        "projected_total": 7.1892,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-24T23:19:49.609836+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
-      },
-      "schedule_source": "ESPN scoreboard",
-      "odds_status": "AVAILABLE"
+      }
     },
     {
-      "event_id": "GEahWoLmrpYTsLX2pdzL",
+      "event_id": "espn-401892788",
       "home": "Columbus Blue Jackets",
       "away": "New Jersey Devils",
       "event_start": "2026-11-26T00:00:00+00:00",
-      "bookmakers": 2,
-      "median_change_pp": 0.0,
-      "first_home_probability": 0.41837940660520007,
-      "latest_home_probability": 0.41837940660520007,
-      "home_support": 0,
-      "away_support": 0,
-      "prediction": null,
-      "outcome": null,
-      "movement_correct": null,
+      "bookmakers": 0,
+      "median_change_pp": null,
+      "schedule_source": "ESPN scoreboard",
+      "odds_status": "UNAVAILABLE",
       "score_simulation": {
         "status": "INDEPENDENT_SCORE_RESEARCH_ONLY",
         "trials": 10000,
         "sample_quality": "STANDARD",
         "history_policy": "Recency weighted prior 550 days, up to 30 games per team",
-        "home_win_probability": 0.3864,
-        "away_win_probability": 0.6136,
+        "home_win_probability": 0.3806,
+        "away_win_probability": 0.6194,
         "tie_probability": 0.0,
-        "projected_away_score": 3.6533,
-        "projected_home_score": 2.9549,
-        "projected_total": 6.6082,
+        "projected_away_score": 3.6627,
+        "projected_home_score": 2.9323,
+        "projected_total": 6.595,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-24T23:19:49.609836+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
-      },
-      "schedule_source": "ESPN scoreboard",
-      "odds_status": "AVAILABLE"
+      }
     },
     {
-      "event_id": "SrtHoosYOTKSt5J8l5Y3",
+      "event_id": "espn-401892789",
       "home": "Detroit Red Wings",
       "away": "Vancouver Canucks",
       "event_start": "2026-11-26T00:30:00+00:00",
-      "bookmakers": 2,
-      "median_change_pp": 0.0,
-      "first_home_probability": 0.6624740097120712,
-      "latest_home_probability": 0.6624740097120712,
-      "home_support": 0,
-      "away_support": 0,
-      "prediction": null,
-      "outcome": null,
-      "movement_correct": null,
+      "bookmakers": 0,
+      "median_change_pp": null,
+      "schedule_source": "ESPN scoreboard",
+      "odds_status": "UNAVAILABLE",
       "score_simulation": {
         "status": "INDEPENDENT_SCORE_RESEARCH_ONLY",
         "trials": 10000,
         "sample_quality": "STANDARD",
         "history_policy": "Recency weighted prior 550 days, up to 30 games per team",
-        "home_win_probability": 0.5609,
-        "away_win_probability": 0.4391,
+        "home_win_probability": 0.5674,
+        "away_win_probability": 0.4326,
         "tie_probability": 0.0,
-        "projected_away_score": 3.0892,
-        "projected_home_score": 3.4986,
-        "projected_total": 6.5878,
+        "projected_away_score": 3.1035,
+        "projected_home_score": 3.5049,
+        "projected_total": 6.6084,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-24T23:19:49.609836+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
-      },
-      "schedule_source": "ESPN scoreboard",
-      "odds_status": "AVAILABLE"
+      }
     },
     {
-      "event_id": "1IJjvlOW3h7M2ylmKAut",
+      "event_id": "espn-401892790",
       "home": "Dallas Stars",
       "away": "Nashville Predators",
       "event_start": "2026-11-26T01:00:00+00:00",
-      "bookmakers": 2,
-      "median_change_pp": 0.0,
-      "first_home_probability": 0.6042729990128767,
-      "latest_home_probability": 0.6042729990128767,
-      "home_support": 0,
-      "away_support": 0,
-      "prediction": null,
-      "outcome": null,
-      "movement_correct": null,
+      "bookmakers": 0,
+      "median_change_pp": null,
+      "schedule_source": "ESPN scoreboard",
+      "odds_status": "UNAVAILABLE",
       "score_simulation": {
         "status": "INDEPENDENT_SCORE_RESEARCH_ONLY",
         "trials": 10000,
         "sample_quality": "STANDARD",
         "history_policy": "Recency weighted prior 550 days, up to 30 games per team",
-        "home_win_probability": 0.5289,
-        "away_win_probability": 0.4711,
+        "home_win_probability": 0.5347,
+        "away_win_probability": 0.4653,
         "tie_probability": 0.0,
-        "projected_away_score": 2.9096,
-        "projected_home_score": 3.0547,
-        "projected_total": 5.9643,
+        "projected_away_score": 2.8848,
+        "projected_home_score": 3.063,
+        "projected_total": 5.9478,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-24T23:19:49.609836+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
-      },
-      "schedule_source": "ESPN scoreboard",
-      "odds_status": "AVAILABLE"
+      }
     },
     {
-      "event_id": "d0WfTdIVtD9BDtq0rMl2",
+      "event_id": "espn-401892791",
       "home": "Minnesota Wild",
       "away": "Utah Mammoth",
       "event_start": "2026-11-26T01:00:00+00:00",
-      "bookmakers": 2,
-      "median_change_pp": 0.0,
-      "first_home_probability": 0.5787303630764948,
-      "latest_home_probability": 0.5787303630764948,
-      "home_support": 0,
-      "away_support": 0,
-      "prediction": null,
-      "outcome": null,
-      "movement_correct": null,
+      "bookmakers": 0,
+      "median_change_pp": null,
+      "schedule_source": "ESPN scoreboard",
+      "odds_status": "UNAVAILABLE",
       "score_simulation": {
         "status": "INDEPENDENT_SCORE_RESEARCH_ONLY",
         "trials": 10000,
         "sample_quality": "STANDARD",
         "history_policy": "Recency weighted prior 550 days, up to 30 games per team",
-        "home_win_probability": 0.6401,
-        "away_win_probability": 0.3599,
+        "home_win_probability": 0.6511,
+        "away_win_probability": 0.3489,
         "tie_probability": 0.0,
-        "projected_away_score": 2.8192,
-        "projected_home_score": 3.6919,
-        "projected_total": 6.5111,
+        "projected_away_score": 2.7858,
+        "projected_home_score": 3.7334,
+        "projected_total": 6.5192,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-24T23:19:49.609836+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
-      },
-      "schedule_source": "ESPN scoreboard",
-      "odds_status": "AVAILABLE"
+      }
     },
     {
       "event_id": "espn-401892792",
@@ -1743,75 +1786,61 @@
         "projected_total": 6.1181,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:11:17.652212+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
       }
     },
     {
-      "event_id": "wXwouBo9EKU6kgrYfQA4",
+      "event_id": "espn-401892794",
       "home": "Seattle Kraken",
       "away": "Chicago Blackhawks",
       "event_start": "2026-11-26T02:40:00+00:00",
-      "bookmakers": 2,
-      "median_change_pp": 0.0,
-      "first_home_probability": 0.5986334477503054,
-      "latest_home_probability": 0.5986334477503054,
-      "home_support": 0,
-      "away_support": 0,
-      "prediction": null,
-      "outcome": null,
-      "movement_correct": null,
+      "bookmakers": 0,
+      "median_change_pp": null,
+      "schedule_source": "ESPN scoreboard",
+      "odds_status": "UNAVAILABLE",
       "score_simulation": {
         "status": "INDEPENDENT_SCORE_RESEARCH_ONLY",
         "trials": 10000,
         "sample_quality": "STANDARD",
         "history_policy": "Recency weighted prior 550 days, up to 30 games per team",
-        "home_win_probability": 0.5209,
-        "away_win_probability": 0.4791,
+        "home_win_probability": 0.5419,
+        "away_win_probability": 0.4581,
         "tie_probability": 0.0,
-        "projected_away_score": 3.3903,
-        "projected_home_score": 3.5384,
-        "projected_total": 6.9287,
+        "projected_away_score": 3.3128,
+        "projected_home_score": 3.5696,
+        "projected_total": 6.8824,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-24T23:19:49.609836+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
-      },
-      "schedule_source": "ESPN scoreboard",
-      "odds_status": "AVAILABLE"
+      }
     },
     {
-      "event_id": "Q4UqhYNvbGSLL7zbMO8z",
+      "event_id": "espn-401892793",
       "home": "Anaheim Ducks",
       "away": "San Jose Sharks",
       "event_start": "2026-11-26T03:00:00+00:00",
-      "bookmakers": 2,
-      "median_change_pp": 0.0,
-      "first_home_probability": 0.5647908797271346,
-      "latest_home_probability": 0.5647908797271346,
-      "home_support": 0,
-      "away_support": 0,
-      "prediction": null,
-      "outcome": null,
-      "movement_correct": null,
+      "bookmakers": 0,
+      "median_change_pp": null,
+      "schedule_source": "ESPN scoreboard",
+      "odds_status": "UNAVAILABLE",
       "score_simulation": {
         "status": "INDEPENDENT_SCORE_RESEARCH_ONLY",
         "trials": 10000,
         "sample_quality": "STANDARD",
         "history_policy": "Recency weighted prior 550 days, up to 30 games per team",
-        "home_win_probability": 0.5295,
-        "away_win_probability": 0.4705,
+        "home_win_probability": 0.5415,
+        "away_win_probability": 0.4585,
         "tie_probability": 0.0,
-        "projected_away_score": 3.4539,
-        "projected_home_score": 3.6643,
-        "projected_total": 7.1182,
+        "projected_away_score": 3.3867,
+        "projected_home_score": 3.6422,
+        "projected_total": 7.0289,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-24T23:19:49.609836+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
-      },
-      "schedule_source": "ESPN scoreboard",
-      "odds_status": "AVAILABLE"
+      }
     },
     {
       "event_id": "espn-401892795",
@@ -1835,7 +1864,7 @@
         "projected_total": 6.653,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:11:17.652212+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
       }
     },
@@ -1861,7 +1890,7 @@
         "projected_total": 6.555,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:11:17.652212+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
       }
     },
@@ -1887,7 +1916,7 @@
         "projected_total": 6.4725,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:11:17.652212+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
       }
     },
@@ -1913,7 +1942,7 @@
         "projected_total": 6.4138,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:11:17.652212+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
       }
     },
@@ -1939,7 +1968,7 @@
         "projected_total": 6.3754,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:11:17.652212+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
       }
     },
@@ -1965,7 +1994,7 @@
         "projected_total": 6.8806,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:11:17.652212+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
       }
     },
@@ -1991,7 +2020,7 @@
         "projected_total": 7.1274,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:11:17.652212+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
       }
     },
@@ -2017,7 +2046,7 @@
         "projected_total": 5.9421,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:11:17.652212+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
       }
     },
@@ -2043,7 +2072,7 @@
         "projected_total": 6.3437,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:11:17.652212+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
       }
     },
@@ -2069,7 +2098,7 @@
         "projected_total": 6.72,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:11:17.652212+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
       }
     },
@@ -2095,7 +2124,7 @@
         "projected_total": 6.6198,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:11:17.652212+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
       }
     },
@@ -2121,7 +2150,7 @@
         "projected_total": 6.5191,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:11:17.652212+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
       }
     },
@@ -2147,7 +2176,7 @@
         "projected_total": 6.6079,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:11:17.652212+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
       }
     },
@@ -2173,7 +2202,7 @@
         "projected_total": 6.6603,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:11:17.652212+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
       }
     },
@@ -2199,7 +2228,7 @@
         "projected_total": 6.721,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:11:17.652212+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
       }
     },
@@ -2225,7 +2254,7 @@
         "projected_total": 6.203,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:11:17.652212+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
       }
     },
@@ -2251,7 +2280,7 @@
         "projected_total": 6.5245,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:11:17.652212+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
       }
     },
@@ -2277,7 +2306,7 @@
         "projected_total": 6.1587,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:11:17.652212+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
       }
     },
@@ -2303,7 +2332,7 @@
         "projected_total": 7.1602,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:11:17.652212+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
       }
     },
@@ -2329,7 +2358,7 @@
         "projected_total": 5.8483,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:11:17.652212+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
       }
     },
@@ -2355,7 +2384,7 @@
         "projected_total": 6.6405,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:11:17.652212+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
       }
     },
@@ -2381,7 +2410,7 @@
         "projected_total": 6.5165,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:11:17.652212+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
       }
     },
@@ -2407,7 +2436,7 @@
         "projected_total": 7.5303,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:11:17.652212+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
       }
     },
@@ -2433,7 +2462,7 @@
         "projected_total": 6.434,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:11:17.652212+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
       }
     },
@@ -2459,7 +2488,7 @@
         "projected_total": 6.1447,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:11:17.652212+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
       }
     },
@@ -2485,7 +2514,7 @@
         "projected_total": 6.4906,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:11:17.652212+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
       }
     },
@@ -2511,7 +2540,7 @@
         "projected_total": 6.778,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:11:17.652212+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
       }
     },
@@ -2537,7 +2566,7 @@
         "projected_total": 6.6652,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:11:17.652212+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
       }
     },
@@ -2563,7 +2592,7 @@
         "projected_total": 6.6607,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:11:17.652212+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
       }
     },
@@ -2589,7 +2618,7 @@
         "projected_total": 6.7504,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:11:17.652212+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
       }
     },
@@ -2615,7 +2644,7 @@
         "projected_total": 6.2693,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:11:17.652212+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
       }
     },
@@ -2641,7 +2670,7 @@
         "projected_total": 6.3606,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:11:17.652212+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
       }
     },
@@ -2667,7 +2696,7 @@
         "projected_total": 6.1646,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:11:17.652212+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
       }
     },
@@ -2693,7 +2722,7 @@
         "projected_total": 6.6751,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:11:17.652212+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
       }
     },
@@ -2719,7 +2748,7 @@
         "projected_total": 7.0547,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:11:17.652212+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
       }
     },
@@ -2745,7 +2774,7 @@
         "projected_total": 6.3225,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:11:17.652212+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
       }
     },
@@ -2771,7 +2800,7 @@
         "projected_total": 5.87,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:11:17.652212+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
       }
     },
@@ -2797,7 +2826,7 @@
         "projected_total": 6.3314,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:11:17.652212+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
       }
     },
@@ -2823,7 +2852,7 @@
         "projected_total": 7.543,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:11:17.652212+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
       }
     },
@@ -2849,7 +2878,7 @@
         "projected_total": 6.9601,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:11:17.652212+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
       }
     },
@@ -2875,7 +2904,7 @@
         "projected_total": 6.4435,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:11:17.652212+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
       }
     },
@@ -2901,7 +2930,7 @@
         "projected_total": 6.7086,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:11:17.652212+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
       }
     },
@@ -2927,7 +2956,7 @@
         "projected_total": 6.1679,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:11:17.652212+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
       }
     },
@@ -2953,7 +2982,7 @@
         "projected_total": 6.9335,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:11:17.652212+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
       }
     },
@@ -2979,7 +3008,85 @@
         "projected_total": 6.2833,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:11:17.652212+00:00",
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
+        "bet_eligible": false
+      }
+    },
+    {
+      "event_id": "espn-401892840",
+      "home": "Montreal Canadiens",
+      "away": "Tampa Bay Lightning",
+      "event_start": "2026-12-03T00:30:00+00:00",
+      "bookmakers": 0,
+      "median_change_pp": null,
+      "schedule_source": "ESPN scoreboard",
+      "odds_status": "UNAVAILABLE",
+      "score_simulation": {
+        "status": "INDEPENDENT_SCORE_RESEARCH_ONLY",
+        "trials": 10000,
+        "sample_quality": "STANDARD",
+        "history_policy": "Recency weighted prior 550 days, up to 30 games per team",
+        "home_win_probability": 0.4648,
+        "away_win_probability": 0.5352,
+        "tie_probability": 0.0,
+        "projected_away_score": 3.2127,
+        "projected_home_score": 3.0188,
+        "projected_total": 6.2315,
+        "away_games": 30,
+        "home_games": 30,
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
+        "bet_eligible": false
+      }
+    },
+    {
+      "event_id": "espn-401892841",
+      "home": "St. Louis Blues",
+      "away": "Pittsburgh Penguins",
+      "event_start": "2026-12-03T01:00:00+00:00",
+      "bookmakers": 0,
+      "median_change_pp": null,
+      "schedule_source": "ESPN scoreboard",
+      "odds_status": "UNAVAILABLE",
+      "score_simulation": {
+        "status": "INDEPENDENT_SCORE_RESEARCH_ONLY",
+        "trials": 10000,
+        "sample_quality": "STANDARD",
+        "history_policy": "Recency weighted prior 550 days, up to 30 games per team",
+        "home_win_probability": 0.6095,
+        "away_win_probability": 0.3905,
+        "tie_probability": 0.0,
+        "projected_away_score": 3.1193,
+        "projected_home_score": 3.8026,
+        "projected_total": 6.9219,
+        "away_games": 30,
+        "home_games": 30,
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
+        "bet_eligible": false
+      }
+    },
+    {
+      "event_id": "espn-401892842",
+      "home": "Utah Mammoth",
+      "away": "Winnipeg Jets",
+      "event_start": "2026-12-03T02:30:00+00:00",
+      "bookmakers": 0,
+      "median_change_pp": null,
+      "schedule_source": "ESPN scoreboard",
+      "odds_status": "UNAVAILABLE",
+      "score_simulation": {
+        "status": "INDEPENDENT_SCORE_RESEARCH_ONLY",
+        "trials": 10000,
+        "sample_quality": "STANDARD",
+        "history_policy": "Recency weighted prior 550 days, up to 30 games per team",
+        "home_win_probability": 0.4811,
+        "away_win_probability": 0.5189,
+        "tie_probability": 0.0,
+        "projected_away_score": 3.4378,
+        "projected_home_score": 3.3378,
+        "projected_total": 6.7756,
+        "away_games": 30,
+        "home_games": 30,
+        "cutoff": "2026-11-25T20:31:35.675268+00:00",
         "bet_eligible": false
       }
     }
@@ -2988,11 +3095,11 @@
   "predictive_benchmark": {
     "status": "UNAVAILABLE",
     "reason": "At least 100 settled events required",
-    "settled_events": 2
+    "settled_events": 3
   },
   "combined_benchmark": {
     "status": "UNAVAILABLE",
-    "matched_events": 2,
+    "matched_events": 3,
     "reason": "100 settled independent score simulations required"
   },
   "core_market_movements": [
@@ -3784,10 +3891,10 @@
     "market_brier": 0.319870979524
   },
   "coverage": {
-    "fixtures": 59,
-    "with_odds": 13,
-    "with_score_simulation": 59,
+    "fixtures": 62,
+    "with_odds": 0,
+    "with_score_simulation": 62,
     "with_existing_projection": 0,
-    "with_movement": 13
+    "with_movement": 0
   }
 }

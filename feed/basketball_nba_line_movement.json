@@ -1043,7 +1043,7 @@
       "home_support": 0,
       "away_support": 0,
       "prediction": null,
-      "outcome": null,
+      "outcome": "away",
       "movement_correct": null,
       "score_simulation": {
         "status": "INDEPENDENT_SCORE_RESEARCH_ONLY",
@@ -1074,8 +1074,8 @@
       "home_support": 2,
       "away_support": 0,
       "prediction": null,
-      "outcome": null,
-      "movement_correct": null,
+      "outcome": "away",
+      "movement_correct": false,
       "score_simulation": {
         "status": "INDEPENDENT_SCORE_RESEARCH_ONLY",
         "trials": 10000,
@@ -5608,7 +5608,9 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 35.13,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "latest_home_price": 259,
+      "latest_away_price": -321
     },
     {
       "event_id": "c3a424e24d426af94a693e06a33e3037",
@@ -5625,7 +5627,9 @@
       "direction": "home",
       "reversals": 2,
       "minutes_before_start": 47.22,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "latest_home_price": -340,
+      "latest_away_price": 270
     },
     {
       "event_id": "53ad3f78c949e79381b5e90a70293ac6",
@@ -5642,7 +5646,11 @@
       "direction": "away",
       "reversals": 1,
       "minutes_before_start": 225.86,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 152,
+      "first_away_price": -180,
+      "latest_home_price": 330,
+      "latest_away_price": -420
     },
     {
       "event_id": "53ad3f78c949e79381b5e90a70293ac6",
@@ -5659,7 +5667,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 225.86,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 164,
+      "first_away_price": -198,
+      "latest_home_price": 331,
+      "latest_away_price": -423
     },
     {
       "event_id": "ac38449dd3dfbe1c9b48164b6a41aa83",
@@ -5676,7 +5688,11 @@
       "direction": "away",
       "reversals": 1,
       "minutes_before_start": 11.1,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -295,
+      "first_away_price": 240,
+      "latest_home_price": -164,
+      "latest_away_price": 138
     },
     {
       "event_id": "96a166bbd49782dbd9a61c2fb9069787",
@@ -5693,7 +5709,9 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 17.22,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "latest_home_price": 130,
+      "latest_away_price": -155
     },
     {
       "event_id": "182e2b5349fa0ff4ad3c0e8359c1a9a0",
@@ -5710,7 +5728,11 @@
       "direction": "home",
       "reversals": 2,
       "minutes_before_start": 607.91,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -120,
+      "first_away_price": 102,
+      "latest_home_price": -194,
+      "latest_away_price": 162
     },
     {
       "event_id": "ac38449dd3dfbe1c9b48164b6a41aa83",
@@ -5727,7 +5749,11 @@
       "direction": "away",
       "reversals": 1,
       "minutes_before_start": 11.1,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -281,
+      "first_away_price": 230,
+      "latest_home_price": -167,
+      "latest_away_price": 140
     },
     {
       "event_id": "85869b2fdc16ef10d3e2582bf05ead95",
@@ -5744,7 +5770,9 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 107.46,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "latest_home_price": 125,
+      "latest_away_price": -148
     },
     {
       "event_id": "vIL97LMwECNVOMXCwRJ1",
@@ -5761,7 +5789,11 @@
       "direction": "away",
       "reversals": 1,
       "minutes_before_start": 6.36,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -250,
+      "first_away_price": 205,
+      "latest_home_price": -162,
+      "latest_away_price": 136
     },
     {
       "event_id": "kQYH2MSvdDAlxmGqez8o",
@@ -5778,7 +5810,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 1360.25,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -152,
+      "first_away_price": 128,
+      "latest_home_price": -104,
+      "latest_away_price": -112
     },
     {
       "event_id": "d4f288eeb0132970825be17748f2b4f0",
@@ -5795,7 +5831,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 145.53,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -102,
+      "first_away_price": -116,
+      "latest_home_price": -147,
+      "latest_away_price": 124
     },
     {
       "event_id": "vIL97LMwECNVOMXCwRJ1",
@@ -5812,7 +5852,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 6.36,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -265,
+      "first_away_price": 218,
+      "latest_home_price": -176,
+      "latest_away_price": 147
     },
     {
       "event_id": "96a166bbd49782dbd9a61c2fb9069787",
@@ -5829,7 +5873,9 @@
       "direction": "away",
       "reversals": 1,
       "minutes_before_start": 17.22,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "latest_home_price": 126,
+      "latest_away_price": -148
     },
     {
       "event_id": "d4f288eeb0132970825be17748f2b4f0",
@@ -5846,7 +5892,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 145.53,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 102,
+      "first_away_price": -120,
+      "latest_home_price": -136,
+      "latest_away_price": 116
     },
     {
       "event_id": "kQYH2MSvdDAlxmGqez8o",
@@ -5863,7 +5913,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 1360.25,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -162,
+      "first_away_price": 136,
+      "latest_home_price": -116,
+      "latest_away_price": -102
     },
     {
       "event_id": "v5olKpRDigV3AsEYOoYI",
@@ -5880,7 +5934,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 1510.25,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -220,
+      "first_away_price": 184,
+      "latest_home_price": -156,
+      "latest_away_price": 132
     },
     {
       "event_id": "iratTYXaAa01WfPr3h3A",
@@ -5897,7 +5955,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 261.54,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -299,
+      "first_away_price": 243,
+      "latest_home_price": -205,
+      "latest_away_price": 171
     },
     {
       "event_id": "1c60a090180de530cfe273a5d6a381e6",
@@ -5914,7 +5976,11 @@
       "direction": "home",
       "reversals": 3,
       "minutes_before_start": 137.46,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 220,
+      "first_away_price": -270,
+      "latest_home_price": 158,
+      "latest_away_price": -188
     },
     {
       "event_id": "fdf913d713fd5851d418c59872bdf265",
@@ -5931,7 +5997,11 @@
       "direction": "away",
       "reversals": 5,
       "minutes_before_start": 225.86,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 138,
+      "first_away_price": -164,
+      "latest_home_price": 190,
+      "latest_away_price": -230
     },
     {
       "event_id": "761c15cdefb5a94e34f234e11d6e57ad",
@@ -5948,7 +6018,9 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 60.15,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "latest_home_price": 130,
+      "latest_away_price": -155
     },
     {
       "event_id": "e76682ca6c25a37b0a53cec226b91aab",
@@ -5965,7 +6037,11 @@
       "direction": "away",
       "reversals": 2,
       "minutes_before_start": 81.96,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 188,
+      "first_away_price": -225,
+      "latest_home_price": 265,
+      "latest_away_price": -330
     },
     {
       "event_id": "fdf3b77f50b2fad3988193af5ef4b00e",
@@ -5982,7 +6058,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 261.96,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 132,
+      "first_away_price": -156,
+      "latest_home_price": 180,
+      "latest_away_price": -215
     },
     {
       "event_id": "39099dc03208d0771daaab5f7993478a",
@@ -5999,7 +6079,11 @@
       "direction": "home",
       "reversals": 4,
       "minutes_before_start": 23.18,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -215,
+      "first_away_price": 180,
+      "latest_home_price": -310,
+      "latest_away_price": 250
     },
     {
       "event_id": "v5olKpRDigV3AsEYOoYI",
@@ -6016,7 +6100,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 1510.25,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -224,
+      "first_away_price": 186,
+      "latest_home_price": -163,
+      "latest_away_price": 137
     },
     {
       "event_id": "ddTPQ1KzgsIpJQhcowLX",
@@ -6033,7 +6121,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 237.99,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -210,
+      "first_away_price": 176,
+      "latest_home_price": -154,
+      "latest_away_price": 130
     },
     {
       "event_id": "1cb12166c3eda270d40cc65b9b34459a",
@@ -6050,7 +6142,11 @@
       "direction": "away",
       "reversals": 3,
       "minutes_before_start": 103.37,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -1000,
+      "first_away_price": 660,
+      "latest_home_price": -518,
+      "latest_away_price": 394
     },
     {
       "event_id": "9ae108f7a23e86e8102237053dd9e58d",
@@ -6067,7 +6163,9 @@
       "direction": "away",
       "reversals": 1,
       "minutes_before_start": 60.15,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "latest_home_price": 145,
+      "latest_away_price": -175
     },
     {
       "event_id": "fdf913d713fd5851d418c59872bdf265",
@@ -6084,7 +6182,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 225.86,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 145,
+      "first_away_price": -175,
+      "latest_home_price": 196,
+      "latest_away_price": -237
     },
     {
       "event_id": "a7cb6062530bd69eb6caee84a015abd0",
@@ -6101,7 +6203,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 604.4,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -224,
+      "first_away_price": 186,
+      "latest_home_price": -167,
+      "latest_away_price": 140
     },
     {
       "event_id": "27c333f22603d4eda3b9b6a3888476dc",
@@ -6118,7 +6224,11 @@
       "direction": "away",
       "reversals": 1,
       "minutes_before_start": 10.56,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -180,
+      "first_away_price": 150,
+      "latest_home_price": -136,
+      "latest_away_price": 115
     },
     {
       "event_id": "6acd74a2d987fa101c79eaf378fd5891",
@@ -6135,7 +6245,11 @@
       "direction": "home",
       "reversals": 2,
       "minutes_before_start": 225.86,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -120,
+      "first_away_price": 100,
+      "latest_home_price": -155,
+      "latest_away_price": 131
     },
     {
       "event_id": "a0f5d89a4fc51e52edd0e70d1e4cbaf2",
@@ -6152,7 +6266,9 @@
       "direction": "home",
       "reversals": 1,
       "minutes_before_start": 17.22,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "latest_home_price": -205,
+      "latest_away_price": 170
     },
     {
       "event_id": "6acd74a2d987fa101c79eaf378fd5891",
@@ -6169,7 +6285,11 @@
       "direction": "home",
       "reversals": 2,
       "minutes_before_start": 225.86,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -120,
+      "first_away_price": 102,
+      "latest_home_price": -156,
+      "latest_away_price": 132
     },
     {
       "event_id": "e6a37eea1dddcbd0384c81237e81f47f",
@@ -6186,7 +6306,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 25.53,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -186,
+      "first_away_price": 156,
+      "latest_home_price": -142,
+      "latest_away_price": 120
     },
     {
       "event_id": "2cc2c254049b0bd0a6219f70cbb0b69a",
@@ -6203,7 +6327,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 574.4,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -135,
+      "first_away_price": 114,
+      "latest_home_price": -105,
+      "latest_away_price": -113
     },
     {
       "event_id": "27c333f22603d4eda3b9b6a3888476dc",
@@ -6220,7 +6348,11 @@
       "direction": "away",
       "reversals": 1,
       "minutes_before_start": 10.56,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -176,
+      "first_away_price": 148,
+      "latest_home_price": -136,
+      "latest_away_price": 116
     },
     {
       "event_id": "37f4c00ff7ec01d5aa7c33dd1ac84bbc",
@@ -6237,7 +6369,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 376.21,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 235,
+      "first_away_price": -290,
+      "latest_home_price": 180,
+      "latest_away_price": -215
     },
     {
       "event_id": "ddTPQ1KzgsIpJQhcowLX",
@@ -6254,7 +6390,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 237.99,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -201,
+      "first_away_price": 168,
+      "latest_home_price": -156,
+      "latest_away_price": 131
     },
     {
       "event_id": "iratTYXaAa01WfPr3h3A",
@@ -6271,7 +6411,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 261.54,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -295,
+      "first_away_price": 240,
+      "latest_home_price": -220,
+      "latest_away_price": 184
     },
     {
       "event_id": "e6a37eea1dddcbd0384c81237e81f47f",
@@ -6288,7 +6432,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 25.53,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -180,
+      "first_away_price": 152,
+      "latest_home_price": -142,
+      "latest_away_price": 120
     },
     {
       "event_id": "77270837bc694d198c10f42937690d75",
@@ -6305,7 +6453,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 25.53,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 130,
+      "first_away_price": -155,
+      "latest_home_price": 164,
+      "latest_away_price": -198
     },
     {
       "event_id": "cuEG6mOMNUNF5Tt8av9o",
@@ -6322,7 +6474,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 6.36,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -154,
+      "first_away_price": 130,
+      "latest_home_price": -122,
+      "latest_away_price": 104
     },
     {
       "event_id": "a7cb6062530bd69eb6caee84a015abd0",
@@ -6339,7 +6495,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 604.4,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -215,
+      "first_away_price": 180,
+      "latest_home_price": -168,
+      "latest_away_price": 142
     },
     {
       "event_id": "weMZ23BXVXUF7C5zfsbe",
@@ -6356,7 +6516,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 225.62,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -169,
+      "first_away_price": 142,
+      "latest_home_price": -135,
+      "latest_away_price": 114
     },
     {
       "event_id": "e76682ca6c25a37b0a53cec226b91aab",
@@ -6373,7 +6537,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 81.96,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 203,
+      "first_away_price": -246,
+      "latest_home_price": 261,
+      "latest_away_price": -324
     },
     {
       "event_id": "05200821a78e4f6db8131cff1652550f",
@@ -6390,7 +6558,11 @@
       "direction": "away",
       "reversals": 3,
       "minutes_before_start": 73.37,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 105,
+      "first_away_price": -124,
+      "latest_home_price": 130,
+      "latest_away_price": -154
     },
     {
       "event_id": "EL8e5V0RgFacUFGFwt3J",
@@ -6407,7 +6579,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 36.36,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 227,
+      "first_away_price": -277,
+      "latest_home_price": 180,
+      "latest_away_price": -217
     },
     {
       "event_id": "05200821a78e4f6db8131cff1652550f",
@@ -6424,7 +6600,11 @@
       "direction": "away",
       "reversals": 2,
       "minutes_before_start": 73.37,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 108,
+      "first_away_price": -126,
+      "latest_home_price": 132,
+      "latest_away_price": -156
     },
     {
       "event_id": "EL8e5V0RgFacUFGFwt3J",
@@ -6441,7 +6621,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 36.36,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 220,
+      "first_away_price": -270,
+      "latest_home_price": 176,
+      "latest_away_price": -210
     },
     {
       "event_id": "cuEG6mOMNUNF5Tt8av9o",
@@ -6458,7 +6642,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 6.36,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -152,
+      "first_away_price": 128,
+      "latest_home_price": -124,
+      "latest_away_price": 105
     },
     {
       "event_id": "9246c91f746732472c13e94bd8e7be85",
@@ -6475,7 +6663,11 @@
       "direction": "home",
       "reversals": 1,
       "minutes_before_start": 77.46,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -270,
+      "first_away_price": 220,
+      "latest_home_price": -350,
+      "latest_away_price": 280
     },
     {
       "event_id": "1c60a090180de530cfe273a5d6a381e6",
@@ -6492,7 +6684,11 @@
       "direction": "home",
       "reversals": 3,
       "minutes_before_start": 137.46,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 190,
+      "first_away_price": -230,
+      "latest_home_price": 154,
+      "latest_away_price": -184
     },
     {
       "event_id": "39099dc03208d0771daaab5f7993478a",
@@ -6509,7 +6705,11 @@
       "direction": "home",
       "reversals": 2,
       "minutes_before_start": 23.18,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -241,
+      "first_away_price": 199,
+      "latest_home_price": -309,
+      "latest_away_price": 250
     },
     {
       "event_id": "9246c91f746732472c13e94bd8e7be85",
@@ -6526,7 +6726,11 @@
       "direction": "home",
       "reversals": 1,
       "minutes_before_start": 77.46,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -241,
+      "first_away_price": 199,
+      "latest_home_price": -309,
+      "latest_away_price": 250
     },
     {
       "event_id": "2cc2c254049b0bd0a6219f70cbb0b69a",
@@ -6543,7 +6747,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 574.4,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -126,
+      "first_away_price": 108,
+      "latest_home_price": -104,
+      "latest_away_price": -112
     },
     {
       "event_id": "761c15cdefb5a94e34f234e11d6e57ad",
@@ -6560,7 +6768,9 @@
       "direction": "away",
       "reversals": 1,
       "minutes_before_start": 60.15,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "latest_home_price": 126,
+      "latest_away_price": -148
     },
     {
       "event_id": "49daf3d42e20ce4bc70f8a68cf70ce4c",
@@ -6577,7 +6787,11 @@
       "direction": "away",
       "reversals": 2,
       "minutes_before_start": 77.46,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 265,
+      "first_away_price": -330,
+      "latest_home_price": 340,
+      "latest_away_price": -430
     },
     {
       "event_id": "a5d2d9c68b7446860de658aa4bc33c5b",
@@ -6594,7 +6808,11 @@
       "direction": "away",
       "reversals": 2,
       "minutes_before_start": 457.91,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 265,
+      "first_away_price": -330,
+      "latest_home_price": 340,
+      "latest_away_price": -430
     },
     {
       "event_id": "f91d27cc050b1b85073d745372c73833",
@@ -6611,7 +6829,9 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 202.36,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -198,
+      "first_away_price": 164
     },
     {
       "event_id": "b9778d0e3a26167eb49901dcae7eeb98",
@@ -6628,7 +6848,9 @@
       "direction": "away",
       "reversals": 1,
       "minutes_before_start": 47.22,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "latest_home_price": 164,
+      "latest_away_price": -198
     },
     {
       "event_id": "c04e54e9e028676cd8b23259bb4364ff",
@@ -6645,7 +6867,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 25.53,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 431,
+      "first_away_price": -578,
+      "latest_home_price": 599,
+      "latest_away_price": -880
     },
     {
       "event_id": "f5477c781c94e09e85374bbf9149c0f1",
@@ -6662,7 +6888,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 930.3,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 102,
+      "first_away_price": -120,
+      "latest_home_price": 122,
+      "latest_away_price": -144
     },
     {
       "event_id": "UN8dz5pgcgxaEzArW5Q8",
@@ -6679,7 +6909,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 83.21,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -380,
+      "first_away_price": 301,
+      "latest_home_price": -296,
+      "latest_away_price": 240
     },
     {
       "event_id": "weMZ23BXVXUF7C5zfsbe",
@@ -6696,7 +6930,11 @@
       "direction": "away",
       "reversals": 1,
       "minutes_before_start": 225.62,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -162,
+      "first_away_price": 136,
+      "latest_home_price": -134,
+      "latest_away_price": 114
     },
     {
       "event_id": "77270837bc694d198c10f42937690d75",
@@ -6713,7 +6951,11 @@
       "direction": "away",
       "reversals": 2,
       "minutes_before_start": 25.53,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 138,
+      "first_away_price": -164,
+      "latest_home_price": 166,
+      "latest_away_price": -198
     },
     {
       "event_id": "036a93ca33d6261c21d4bfa6e0d02568",
@@ -6730,7 +6972,9 @@
       "direction": "home",
       "reversals": 1,
       "minutes_before_start": 17.22,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "latest_home_price": -850,
+      "latest_away_price": 575
     },
     {
       "event_id": "e8559eaac12af915cfe6597644620c13",
@@ -6747,7 +6991,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 106.24,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 205,
+      "first_away_price": -250,
+      "latest_home_price": 250,
+      "latest_away_price": -310
     },
     {
       "event_id": "c30d3bdf126e98ced5b9389db8617926",
@@ -6764,7 +7012,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 115.53,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -170,
+      "first_away_price": 142,
+      "latest_home_price": -142,
+      "latest_away_price": 120
     },
     {
       "event_id": "7nudLtebdZwJQTykoZp0",
@@ -6781,7 +7033,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 23.21,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 102,
+      "first_away_price": -120,
+      "latest_home_price": 120,
+      "latest_away_price": -142
     },
     {
       "event_id": "863ae1092be42c6b563b2c4f099a3eb3",
@@ -6798,7 +7054,11 @@
       "direction": "away",
       "reversals": 1,
       "minutes_before_start": 85.53,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -450,
+      "first_away_price": 350,
+      "latest_home_price": -350,
+      "latest_away_price": 280
     },
     {
       "event_id": "c30d3bdf126e98ced5b9389db8617926",
@@ -6815,7 +7075,11 @@
       "direction": "away",
       "reversals": 1,
       "minutes_before_start": 115.53,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -174,
+      "first_away_price": 146,
+      "latest_home_price": -146,
+      "latest_away_price": 124
     },
     {
       "event_id": "VAht06ByC7hs5p3qVcC6",
@@ -6832,7 +7096,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 261.54,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 315,
+      "first_away_price": -400,
+      "latest_home_price": 400,
+      "latest_away_price": -520
     },
     {
       "event_id": "37f4c00ff7ec01d5aa7c33dd1ac84bbc",
@@ -6849,7 +7117,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 376.21,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 228,
+      "first_away_price": -279,
+      "latest_home_price": 190,
+      "latest_away_price": -229
     },
     {
       "event_id": "f91d27cc050b1b85073d745372c73833",
@@ -6866,7 +7138,9 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 202.36,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -198,
+      "first_away_price": 164
     },
     {
       "event_id": "7aCkmW1Bas9hKySiqWLL",
@@ -6883,7 +7157,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 255.62,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 160,
+      "first_away_price": -191,
+      "latest_home_price": 189,
+      "latest_away_price": -228
     },
     {
       "event_id": "f5477c781c94e09e85374bbf9149c0f1",
@@ -6900,7 +7178,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 930.3,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 103,
+      "first_away_price": -122,
+      "latest_home_price": 120,
+      "latest_away_price": -142
     },
     {
       "event_id": "VFOvtNU5AbIejhb6XSaT",
@@ -6917,7 +7199,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 267.99,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -201,
+      "first_away_price": 168,
+      "latest_home_price": -237,
+      "latest_away_price": 196
     },
     {
       "event_id": "1e3ca91e27ded6e4b4bb35aabb67b505",
@@ -6934,7 +7220,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 28.05,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 184,
+      "first_away_price": -220,
+      "latest_home_price": 158,
+      "latest_away_price": -188
     },
     {
       "event_id": "iYk6LNf95xVdkjW53MEz",
@@ -6951,7 +7241,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 36.36,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -220,
+      "first_away_price": 184,
+      "latest_home_price": -188,
+      "latest_away_price": 158
     },
     {
       "event_id": "fe9664deb3e21a28b10a3de39adfb82a",
@@ -6968,7 +7262,11 @@
       "direction": "home",
       "reversals": 1,
       "minutes_before_start": 24.58,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -800,
+      "first_away_price": 550,
+      "latest_home_price": -1180,
+      "latest_away_price": 740
     },
     {
       "event_id": "shgGHQY1b2mp1kRSxMIf",
@@ -6985,7 +7283,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 255.62,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -670,
+      "first_away_price": 490,
+      "latest_home_price": -510,
+      "latest_away_price": 390
     },
     {
       "event_id": "6579d9162df09172d12f48eecc5220fb",
@@ -7002,7 +7304,11 @@
       "direction": "away",
       "reversals": 2,
       "minutes_before_start": 255.86,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -230,
+      "first_away_price": 190,
+      "latest_home_price": -196,
+      "latest_away_price": 164
     },
     {
       "event_id": "GdMLvvjBUrZuWw8DP7Yd",
@@ -7019,7 +7325,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 113.21,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 312,
+      "first_away_price": -395,
+      "latest_home_price": 261,
+      "latest_away_price": -324
     },
     {
       "event_id": "49daf3d42e20ce4bc70f8a68cf70ce4c",
@@ -7036,7 +7346,11 @@
       "direction": "away",
       "reversals": 1,
       "minutes_before_start": 77.46,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 276,
+      "first_away_price": -344,
+      "latest_home_price": 331,
+      "latest_away_price": -424
     },
     {
       "event_id": "31fc89cbf3846e545e8e41a543a71d24",
@@ -7053,7 +7367,11 @@
       "direction": "away",
       "reversals": 1,
       "minutes_before_start": 51.99,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -180,
+      "first_away_price": 152,
+      "latest_home_price": -156,
+      "latest_away_price": 132
     },
     {
       "event_id": "29988f1011d7738962e13e0a0beb693f",
@@ -7070,7 +7388,11 @@
       "direction": "away",
       "reversals": 1,
       "minutes_before_start": 10.44,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 385,
+      "first_away_price": -500,
+      "latest_home_price": 480,
+      "latest_away_price": -650
     },
     {
       "event_id": "cb06267ae037a883ae6f71078d6e2aaa",
@@ -7087,7 +7409,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 604.4,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 144,
+      "first_away_price": -172,
+      "latest_home_price": 166,
+      "latest_away_price": -198
     },
     {
       "event_id": "a5d2d9c68b7446860de658aa4bc33c5b",
@@ -7104,7 +7430,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 457.91,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 268,
+      "first_away_price": -333,
+      "latest_home_price": 319,
+      "latest_away_price": -405
     },
     {
       "event_id": "8a40b260e8fa0d67c1f2bc2b39a24982",
@@ -7121,7 +7451,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 95.13,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 119,
+      "first_away_price": -141,
+      "latest_home_price": 136,
+      "latest_away_price": -162
     },
     {
       "event_id": "2a76b31e02d1416de069a995589515fc",
@@ -7138,7 +7472,11 @@
       "direction": "away",
       "reversals": 1,
       "minutes_before_start": 47.96,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -132,
+      "first_away_price": 112,
+      "latest_home_price": -116,
+      "latest_away_price": -102
     },
     {
       "event_id": "j0nltZe9grJvJRq0DZSH",
@@ -7155,7 +7493,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 403.99,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 112,
+      "first_away_price": -132,
+      "latest_home_price": -102,
+      "latest_away_price": -116
     },
     {
       "event_id": "863ae1092be42c6b563b2c4f099a3eb3",
@@ -7172,7 +7514,11 @@
       "direction": "away",
       "reversals": 1,
       "minutes_before_start": 85.53,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -440,
+      "first_away_price": 340,
+      "latest_home_price": -360,
+      "latest_away_price": 285
     },
     {
       "event_id": "70vqXKvHbVeOB1RzzBYa",
@@ -7189,7 +7535,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 1510.25,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -142,
+      "first_away_price": 120,
+      "latest_home_price": -125,
+      "latest_away_price": 105
     },
     {
       "event_id": "b9778d0e3a26167eb49901dcae7eeb98",
@@ -7206,7 +7556,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 47.22,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 190,
+      "first_away_price": -230,
+      "latest_home_price": 166,
+      "latest_away_price": -198
     },
     {
       "event_id": "nTecBATraCSUy5c61gzV",
@@ -7223,7 +7577,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 695.83,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 166,
+      "first_away_price": -198,
+      "latest_home_price": 190,
+      "latest_away_price": -230
     },
     {
       "event_id": "d24eb5492983d6e28be3b96df396fa12",
@@ -7240,7 +7598,11 @@
       "direction": "away",
       "reversals": 2,
       "minutes_before_start": 11.62,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 610,
+      "first_away_price": -900,
+      "latest_home_price": 810,
+      "latest_away_price": -1340
     },
     {
       "event_id": "2QOip6CJrTjvFMvu2SzP",
@@ -7257,7 +7619,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 23.21,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 279,
+      "first_away_price": -348,
+      "latest_home_price": 328,
+      "latest_away_price": -419
     },
     {
       "event_id": "f41d186dc7a7dcf01adab32579a82ca3",
@@ -7274,7 +7640,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 115.53,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -215,
+      "first_away_price": 180,
+      "latest_home_price": -250,
+      "latest_away_price": 205
     },
     {
       "event_id": "c5b6599e8e4949749798dcdadceb68d4",
@@ -7291,7 +7661,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 697.91,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -330,
+      "first_away_price": 265,
+      "latest_home_price": -390,
+      "latest_away_price": 310
     },
     {
       "event_id": "GdMLvvjBUrZuWw8DP7Yd",
@@ -7308,7 +7682,11 @@
       "direction": "home",
       "reversals": 1,
       "minutes_before_start": 113.21,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 315,
+      "first_away_price": -400,
+      "latest_home_price": 270,
+      "latest_away_price": -335
     },
     {
       "event_id": "c04e54e9e028676cd8b23259bb4364ff",
@@ -7325,7 +7703,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 25.53,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 520,
+      "first_away_price": -720,
+      "latest_home_price": 660,
+      "latest_away_price": -950
     },
     {
       "event_id": "kF6oVG1eYadvoZIoaPTO",
@@ -7342,7 +7724,11 @@
       "direction": "away",
       "reversals": 1,
       "minutes_before_start": 36.36,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -290,
+      "first_away_price": 235,
+      "latest_home_price": -250,
+      "latest_away_price": 205
     },
     {
       "event_id": "1fae7f34ec6035dffa74feb148ee26c7",
@@ -7359,7 +7745,9 @@
       "direction": "home",
       "reversals": 1,
       "minutes_before_start": 185.13,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "latest_home_price": -650,
+      "latest_away_price": 473
     },
     {
       "event_id": "7aCkmW1Bas9hKySiqWLL",
@@ -7376,7 +7764,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 255.62,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 168,
+      "first_away_price": -200,
+      "latest_home_price": 190,
+      "latest_away_price": -230
     },
     {
       "event_id": "e8559eaac12af915cfe6597644620c13",
@@ -7393,7 +7785,11 @@
       "direction": "away",
       "reversals": 1,
       "minutes_before_start": 106.24,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 210,
+      "first_away_price": -258,
+      "latest_home_price": 240,
+      "latest_away_price": -298
     },
     {
       "event_id": "d47417c3b1a2cd427cce74c9d00f1046",
@@ -7410,7 +7806,11 @@
       "direction": "away",
       "reversals": 1,
       "minutes_before_start": 16.0,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 185,
+      "first_away_price": -225,
+      "latest_home_price": 210,
+      "latest_away_price": -258
     },
     {
       "event_id": "5e4708fadda49a3c06fd7ac50414020e",
@@ -7427,7 +7827,11 @@
       "direction": "home",
       "reversals": 2,
       "minutes_before_start": 137.46,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 157,
+      "first_away_price": -188,
+      "latest_home_price": 140,
+      "latest_away_price": -166
     },
     {
       "event_id": "1dd700c1205f0c7287e5df99c7a17822",
@@ -7444,7 +7848,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 54.58,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -155,
+      "first_away_price": 130,
+      "latest_home_price": -174,
+      "latest_away_price": 146
     },
     {
       "event_id": "6faeaee3bdf2a167eb67f93c44d3ef37",
@@ -7461,7 +7869,11 @@
       "direction": "home",
       "reversals": 1,
       "minutes_before_start": 261.96,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -486,
+      "first_away_price": 373,
+      "latest_home_price": -598,
+      "latest_away_price": 443
     },
     {
       "event_id": "a51c350318d7570c2b74af08eedb9fcd",
@@ -7478,7 +7890,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 215.13,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 426,
+      "first_away_price": -569,
+      "latest_home_price": 361,
+      "latest_away_price": -468
     },
     {
       "event_id": "af8d920f175d73f12933c64ae296573f",
@@ -7495,7 +7911,11 @@
       "direction": "away",
       "reversals": 4,
       "minutes_before_start": 53.18,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 190,
+      "first_away_price": -230,
+      "latest_home_price": 215,
+      "latest_away_price": -260
     },
     {
       "event_id": "fdf3b77f50b2fad3988193af5ef4b00e",
@@ -7512,7 +7932,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 261.96,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 160,
+      "first_away_price": -191,
+      "latest_home_price": 179,
+      "latest_away_price": -216
     },
     {
       "event_id": "iYk6LNf95xVdkjW53MEz",
@@ -7529,7 +7953,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 36.36,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -222,
+      "first_away_price": 184,
+      "latest_home_price": -197,
+      "latest_away_price": 164
     },
     {
       "event_id": "0a808d8f7afab3c0e249ca284c470806",
@@ -7546,7 +7974,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 225.86,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -650,
+      "first_away_price": 470,
+      "latest_home_price": -522,
+      "latest_away_price": 396
     },
     {
       "event_id": "df7f8fce0b1c11db5140d60e1e126eb3",
@@ -7563,7 +7995,11 @@
       "direction": "away",
       "reversals": 2,
       "minutes_before_start": 255.86,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -390,
+      "first_away_price": 310,
+      "latest_home_price": -335,
+      "latest_away_price": 270
     },
     {
       "event_id": "AAsVwXJZKnTVv20ieD1L",
@@ -7580,7 +8016,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 665.83,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -200,
+      "first_away_price": 168,
+      "latest_home_price": -225,
+      "latest_away_price": 188
     },
     {
       "event_id": "095441822e3b9b1b84bff9e482b9057a",
@@ -7597,7 +8037,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 376.21,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -168,
+      "first_away_price": 142,
+      "latest_home_price": -188,
+      "latest_away_price": 158
     },
     {
       "event_id": "a51c350318d7570c2b74af08eedb9fcd",
@@ -7614,7 +8058,11 @@
       "direction": "home",
       "reversals": 1,
       "minutes_before_start": 215.13,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 420,
+      "first_away_price": -560,
+      "latest_home_price": 360,
+      "latest_away_price": -460
     },
     {
       "event_id": "fe9664deb3e21a28b10a3de39adfb82a",
@@ -7631,7 +8079,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 24.58,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -1350,
+      "first_away_price": 810,
+      "latest_home_price": -950,
+      "latest_away_price": 640
     },
     {
       "event_id": "f3f429e773bfb2340ba2bb90f2b9dd1e",
@@ -7648,7 +8100,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 64.27,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -250,
+      "first_away_price": 205,
+      "latest_home_price": -220,
+      "latest_away_price": 184
     },
     {
       "event_id": "64df299b882ea19ad5f8cb0ed5516a6f",
@@ -7665,7 +8121,9 @@
       "direction": "away",
       "reversals": 1,
       "minutes_before_start": 17.22,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "latest_home_price": 235,
+      "latest_away_price": -290
     },
     {
       "event_id": "iIHyUVBCPvy1DyAFhyks",
@@ -7682,7 +8140,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 156.36,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 210,
+      "first_away_price": -255,
+      "latest_home_price": 235,
+      "latest_away_price": -290
     },
     {
       "event_id": "f2a1271ffcfd7c85f51640ebff3b7ddd",
@@ -7699,7 +8161,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 17.71,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -420,
+      "first_away_price": 330,
+      "latest_home_price": -360,
+      "latest_away_price": 290
     },
     {
       "event_id": "31fc89cbf3846e545e8e41a543a71d24",
@@ -7716,7 +8182,11 @@
       "direction": "away",
       "reversals": 2,
       "minutes_before_start": 51.99,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -180,
+      "first_away_price": 150,
+      "latest_home_price": -162,
+      "latest_away_price": 136
     },
     {
       "event_id": "VAht06ByC7hs5p3qVcC6",
@@ -7733,7 +8203,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 261.54,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 329,
+      "first_away_price": -420,
+      "latest_home_price": 378,
+      "latest_away_price": -494
     },
     {
       "event_id": "c5b6599e8e4949749798dcdadceb68d4",
@@ -7750,7 +8224,11 @@
       "direction": "home",
       "reversals": 1,
       "minutes_before_start": 697.91,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -352,
+      "first_away_price": 282,
+      "latest_home_price": -408,
+      "latest_away_price": 320
     },
     {
       "event_id": "6579d9162df09172d12f48eecc5220fb",
@@ -7767,7 +8245,11 @@
       "direction": "away",
       "reversals": 2,
       "minutes_before_start": 255.86,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -220,
+      "first_away_price": 184,
+      "latest_home_price": -198,
+      "latest_away_price": 166
     },
     {
       "event_id": "fd33c09c84ab4c2fe6955d59f8dc5dd2",
@@ -7818,7 +8300,9 @@
       "direction": "away",
       "reversals": 1,
       "minutes_before_start": 34.82,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "latest_home_price": -105,
+      "latest_away_price": -115
     },
     {
       "event_id": "dXW4D8qAZoq6G8cD4lr7",
@@ -7835,7 +8319,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 261.54,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 105,
+      "first_away_price": -124,
+      "latest_home_price": -104,
+      "latest_away_price": -113
     },
     {
       "event_id": "7ea5547b35ef782963e4f384d3414dfa",
@@ -7852,7 +8340,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 787.91,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 255,
+      "first_away_price": -316,
+      "latest_home_price": 286,
+      "latest_away_price": -358
     },
     {
       "event_id": "ee45341df802cfb42dd48f1ad60c8b81",
@@ -7869,7 +8361,11 @@
       "direction": "home",
       "reversals": 1,
       "minutes_before_start": 231.96,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -253,
+      "first_away_price": 208,
+      "latest_home_price": -283,
+      "latest_away_price": 231
     },
     {
       "event_id": "df7f8fce0b1c11db5140d60e1e126eb3",
@@ -7886,7 +8382,11 @@
       "direction": "away",
       "reversals": 1,
       "minutes_before_start": 255.86,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -395,
+      "first_away_price": 310,
+      "latest_home_price": -344,
+      "latest_away_price": 276
     },
     {
       "event_id": "C8msr3REC7p9Unntf9Ql",
@@ -7903,7 +8403,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 45.54,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 554,
+      "first_away_price": -790,
+      "latest_home_price": 470,
+      "latest_away_price": -650
     },
     {
       "event_id": "f41d186dc7a7dcf01adab32579a82ca3",
@@ -7920,7 +8424,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 115.53,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -237,
+      "first_away_price": 196,
+      "latest_home_price": -264,
+      "latest_away_price": 217
     },
     {
       "event_id": "d04acca7f0f369fc53bf04cd3357cb0d",
@@ -7937,7 +8445,11 @@
       "direction": "away",
       "reversals": 1,
       "minutes_before_start": 125.13,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -1500,
+      "first_away_price": 870,
+      "latest_home_price": -1100,
+      "latest_away_price": 700
     },
     {
       "event_id": "2QOip6CJrTjvFMvu2SzP",
@@ -7954,7 +8466,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 23.21,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 285,
+      "first_away_price": -355,
+      "latest_home_price": 320,
+      "latest_away_price": -405
     },
     {
       "event_id": "UNDR4rNd350uVPOj5lsc",
@@ -7971,7 +8487,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 815.83,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 144,
+      "first_away_price": -172,
+      "latest_home_price": 158,
+      "latest_away_price": -188
     },
     {
       "event_id": "98eae523edadc7d4d42ab37222eb2c88",
@@ -7988,7 +8508,11 @@
       "direction": "away",
       "reversals": 2,
       "minutes_before_start": 727.91,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 473,
+      "first_away_price": -650,
+      "latest_home_price": 552,
+      "latest_away_price": -790
     },
     {
       "event_id": "Sk80aOQhIGWVFdi4BqLD",
@@ -8005,7 +8529,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 225.62,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 136,
+      "first_away_price": -162,
+      "latest_home_price": 125,
+      "latest_away_price": -148
     },
     {
       "event_id": "fd33c09c84ab4c2fe6955d59f8dc5dd2",
@@ -8039,7 +8567,11 @@
       "direction": "home",
       "reversals": 5,
       "minutes_before_start": 255.86,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -375,
+      "first_away_price": 295,
+      "latest_home_price": -423,
+      "latest_away_price": 331
     },
     {
       "event_id": "6faeaee3bdf2a167eb67f93c44d3ef37",
@@ -8056,7 +8588,11 @@
       "direction": "home",
       "reversals": 3,
       "minutes_before_start": 261.96,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -480,
+      "first_away_price": 370,
+      "latest_home_price": -560,
+      "latest_away_price": 420
     },
     {
       "event_id": "6907851d65a9d0046d4c6c2f4ffb5e80",
@@ -8073,7 +8609,11 @@
       "direction": "away",
       "reversals": 3,
       "minutes_before_start": 255.86,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -480,
+      "first_away_price": 370,
+      "latest_home_price": -420,
+      "latest_away_price": 330
     },
     {
       "event_id": "7nudLtebdZwJQTykoZp0",
@@ -8090,7 +8630,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 23.21,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 105,
+      "first_away_price": -125,
+      "latest_home_price": 114,
+      "latest_away_price": -135
     },
     {
       "event_id": "e9545a3084389f5f3429e19fea891124",
@@ -8107,7 +8651,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 376.21,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -155,
+      "first_away_price": 131,
+      "latest_home_price": -143,
+      "latest_away_price": 121
     },
     {
       "event_id": "83d77fe350d56a036fd7a3404e78249a",
@@ -8124,7 +8672,11 @@
       "direction": "home",
       "reversals": 2,
       "minutes_before_start": 11.62,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -144,
+      "first_away_price": 122,
+      "latest_home_price": -156,
+      "latest_away_price": 132
     },
     {
       "event_id": "BGOE4sI3LmHglWz4njIh",
@@ -8141,7 +8693,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 285.62,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 134,
+      "first_away_price": -158,
+      "latest_home_price": 124,
+      "latest_away_price": -146
     },
     {
       "event_id": "d04acca7f0f369fc53bf04cd3357cb0d",
@@ -8158,7 +8714,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 125.13,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -1580,
+      "first_away_price": 900,
+      "latest_home_price": -1180,
+      "latest_away_price": 740
     },
     {
       "event_id": "myJAqwt05IG5WOzz5kyn",
@@ -8175,7 +8735,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 725.83,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -510,
+      "first_away_price": 390,
+      "latest_home_price": -590,
+      "latest_away_price": 440
     },
     {
       "event_id": "af8d920f175d73f12933c64ae296573f",
@@ -8192,7 +8756,11 @@
       "direction": "away",
       "reversals": 3,
       "minutes_before_start": 53.18,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 199,
+      "first_away_price": -241,
+      "latest_home_price": 217,
+      "latest_away_price": -264
     },
     {
       "event_id": "095441822e3b9b1b84bff9e482b9057a",
@@ -8209,7 +8777,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 376.21,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -166,
+      "first_away_price": 140,
+      "latest_home_price": -180,
+      "latest_away_price": 151
     },
     {
       "event_id": "UN8dz5pgcgxaEzArW5Q8",
@@ -8226,7 +8798,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 83.21,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -340,
+      "first_away_price": 275,
+      "latest_home_price": -310,
+      "latest_away_price": 250
     },
     {
       "event_id": "3469f522ffcacb13f88e6cd297adc110",
@@ -8243,7 +8819,11 @@
       "direction": "away",
       "reversals": 2,
       "minutes_before_start": 133.37,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -255,
+      "first_away_price": 205,
+      "latest_home_price": -230,
+      "latest_away_price": 190
     },
     {
       "event_id": "e9545a3084389f5f3429e19fea891124",
@@ -8260,7 +8840,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 376.21,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -164,
+      "first_away_price": 138,
+      "latest_home_price": -152,
+      "latest_away_price": 128
     },
     {
       "event_id": "4f6688e4d1818bd8bb3e65352c7a0406",
@@ -8277,7 +8861,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 225.86,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -850,
+      "first_away_price": 575,
+      "latest_home_price": -1040,
+      "latest_away_price": 670
     },
     {
       "event_id": "067d97a124c10ea2d206546384500c5e",
@@ -8294,7 +8882,11 @@
       "direction": "home",
       "reversals": 1,
       "minutes_before_start": 84.59,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 100,
+      "first_away_price": -120,
+      "latest_home_price": -108,
+      "latest_away_price": -112
     },
     {
       "event_id": "y5NnRaq6vz71DINYfrM3",
@@ -8311,7 +8903,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 695.83,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -246,
+      "first_away_price": 203,
+      "latest_home_price": -269,
+      "latest_away_price": 220
     },
     {
       "event_id": "21792501482fecfaacd3a4a24776c9e6",
@@ -8328,7 +8924,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 25.53,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 146,
+      "first_away_price": -174,
+      "latest_home_price": 136,
+      "latest_away_price": -161
     },
     {
       "event_id": "58b860d500be69ebf853926aa1ac8271",
@@ -8345,7 +8945,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 95.13,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -126,
+      "first_away_price": 106,
+      "latest_home_price": -135,
+      "latest_away_price": 114
     },
     {
       "event_id": "ee45341df802cfb42dd48f1ad60c8b81",
@@ -8362,7 +8966,11 @@
       "direction": "home",
       "reversals": 3,
       "minutes_before_start": 231.96,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -240,
+      "first_away_price": 198,
+      "latest_home_price": -260,
+      "latest_away_price": 215
     },
     {
       "event_id": "76416359b5453c01968e94702a375f16",
@@ -8379,7 +8987,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 35.13,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -368,
+      "first_away_price": 293,
+      "latest_home_price": -410,
+      "latest_away_price": 322
     },
     {
       "event_id": "nTecBATraCSUy5c61gzV",
@@ -8396,7 +9008,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 695.83,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 168,
+      "first_away_price": -201,
+      "latest_home_price": 181,
+      "latest_away_price": -218
     },
     {
       "event_id": "fd33c09c84ab4c2fe6955d59f8dc5dd2",
@@ -8430,7 +9046,11 @@
       "direction": "away",
       "reversals": 3,
       "minutes_before_start": 11.62,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 730,
+      "first_away_price": -1150,
+      "latest_home_price": 870,
+      "latest_away_price": -1500
     },
     {
       "event_id": "3469f522ffcacb13f88e6cd297adc110",
@@ -8447,7 +9067,11 @@
       "direction": "away",
       "reversals": 3,
       "minutes_before_start": 133.37,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -258,
+      "first_away_price": 212,
+      "latest_home_price": -237,
+      "latest_away_price": 196
     },
     {
       "event_id": "60431a347feac3f1c7ed925b8b769ec5",
@@ -8481,7 +9105,11 @@
       "direction": "away",
       "reversals": 1,
       "minutes_before_start": 403.99,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -720,
+      "first_away_price": 520,
+      "latest_home_price": -620,
+      "latest_away_price": 460
     },
     {
       "event_id": "423255883d0e6c5d1a94a533b90e935b",
@@ -8498,7 +9126,11 @@
       "direction": "away",
       "reversals": 1,
       "minutes_before_start": 85.53,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 140,
+      "first_away_price": -166,
+      "latest_home_price": 150,
+      "latest_away_price": -179
     },
     {
       "event_id": "6d7e1e0af6d568f4435d35a1763a3622",
@@ -8515,7 +9147,11 @@
       "direction": "away",
       "reversals": 5,
       "minutes_before_start": 85.53,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 265,
+      "first_away_price": -330,
+      "latest_home_price": 290,
+      "latest_away_price": -360
     },
     {
       "event_id": "TDewvJKGAJVXJ1ZpVAAR",
@@ -8532,7 +9168,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 403.99,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 228,
+      "first_away_price": -279,
+      "latest_home_price": 247,
+      "latest_away_price": -304
     },
     {
       "event_id": "Bvqi2PKKuzCJzxYGeUfU",
@@ -8549,7 +9189,11 @@
       "direction": "home",
       "reversals": 1,
       "minutes_before_start": 156.36,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -484,
+      "first_away_price": 371,
+      "latest_home_price": -545,
+      "latest_away_price": 411
     },
     {
       "event_id": "98eae523edadc7d4d42ab37222eb2c88",
@@ -8566,7 +9210,11 @@
       "direction": "away",
       "reversals": 1,
       "minutes_before_start": 727.91,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 480,
+      "first_away_price": -650,
+      "latest_home_price": 540,
+      "latest_away_price": -770
     },
     {
       "event_id": "fc3e945a5be88d3f933456bc512c956d",
@@ -8583,7 +9231,11 @@
       "direction": "away",
       "reversals": 2,
       "minutes_before_start": 42.78,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -175,
+      "first_away_price": 145,
+      "latest_home_price": -162,
+      "latest_away_price": 136
     },
     {
       "event_id": "MkeoQuI6mutTqPUONP8O",
@@ -8600,7 +9252,11 @@
       "direction": "away",
       "reversals": 1,
       "minutes_before_start": 220.25,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -330,
+      "first_away_price": 265,
+      "latest_home_price": -300,
+      "latest_away_price": 245
     },
     {
       "event_id": "70vqXKvHbVeOB1RzzBYa",
@@ -8617,7 +9273,11 @@
       "direction": "away",
       "reversals": 1,
       "minutes_before_start": 1510.25,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -138,
+      "first_away_price": 118,
+      "latest_home_price": -130,
+      "latest_away_price": 110
     },
     {
       "event_id": "dXW4D8qAZoq6G8cD4lr7",
@@ -8634,7 +9294,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 261.54,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 100,
+      "first_away_price": -118,
+      "latest_home_price": -106,
+      "latest_away_price": -110
     },
     {
       "event_id": "9ac02cb22adf276b325b1e9c9c6c588e",
@@ -8651,7 +9315,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 810.3,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 350,
+      "first_away_price": -450,
+      "latest_home_price": 320,
+      "latest_away_price": -405
     },
     {
       "event_id": "4f6688e4d1818bd8bb3e65352c7a0406",
@@ -8668,7 +9336,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 225.86,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -900,
+      "first_away_price": 610,
+      "latest_home_price": -1100,
+      "latest_away_price": 700
     },
     {
       "event_id": "Sk80aOQhIGWVFdi4BqLD",
@@ -8685,7 +9357,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 225.62,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 134,
+      "first_away_price": -158,
+      "latest_home_price": 126,
+      "latest_away_price": -148
     },
     {
       "event_id": "036a93ca33d6261c21d4bfa6e0d02568",
@@ -8702,7 +9378,11 @@
       "direction": "away",
       "reversals": 1,
       "minutes_before_start": 17.22,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -900,
+      "first_away_price": 610,
+      "latest_home_price": -770,
+      "latest_away_price": 540
     },
     {
       "event_id": "Issu2jy5OkvrgKhn5IV0",
@@ -8719,7 +9399,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 23.21,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 188,
+      "first_away_price": -225,
+      "latest_home_price": 176,
+      "latest_away_price": -210
     },
     {
       "event_id": "shgGHQY1b2mp1kRSxMIf",
@@ -8736,7 +9420,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 255.62,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -620,
+      "first_away_price": 455,
+      "latest_home_price": -549,
+      "latest_away_price": 413
     },
     {
       "event_id": "50bdc20ea9ea3c88d4bfa261b9b2307e",
@@ -8753,7 +9441,11 @@
       "direction": "away",
       "reversals": 1,
       "minutes_before_start": 41.37,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -217,
+      "first_away_price": 180,
+      "latest_home_price": -203,
+      "latest_away_price": 169
     },
     {
       "event_id": "3689d555c9a1c81e3d300375b4c80530",
@@ -8770,7 +9462,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 720.3,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -1200,
+      "first_away_price": 750,
+      "latest_home_price": -1500,
+      "latest_away_price": 870
     },
     {
       "event_id": "47cc511bb5ce50f715e3625ce5ef77ee",
@@ -8804,7 +9500,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 28.05,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 170,
+      "first_away_price": -205,
+      "latest_home_price": 160,
+      "latest_away_price": -192
     },
     {
       "event_id": "JAmMvOI9cXWrPV42meXv",
@@ -8821,7 +9521,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 639.37,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 108,
+      "first_away_price": -126,
+      "latest_home_price": 114,
+      "latest_away_price": -134
     },
     {
       "event_id": "47cc511bb5ce50f715e3625ce5ef77ee",
@@ -8872,7 +9576,11 @@
       "direction": "home",
       "reversals": 1,
       "minutes_before_start": 85.53,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -520,
+      "first_away_price": 390,
+      "latest_home_price": -575,
+      "latest_away_price": 425
     },
     {
       "event_id": "CAP9fEQevONdESUaleN1",
@@ -8889,7 +9597,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 403.99,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -800,
+      "first_away_price": 558,
+      "latest_home_price": -700,
+      "latest_away_price": 505
     },
     {
       "event_id": "cc7f8bc2a4554b89f2a35abad3a633ef",
@@ -8906,7 +9618,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 17.71,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -134,
+      "first_away_price": 114,
+      "latest_home_price": -142,
+      "latest_away_price": 120
     },
     {
       "event_id": "f4e4165c2b9e53531629f6d0ab982b13",
@@ -8923,7 +9639,11 @@
       "direction": "away",
       "reversals": 1,
       "minutes_before_start": 10.56,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -142,
+      "first_away_price": 120,
+      "latest_home_price": -134,
+      "latest_away_price": 114
     },
     {
       "event_id": "hNUHJSvDAFiUk9AN6JXX",
@@ -8940,7 +9660,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 725.83,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -143,
+      "first_away_price": 120,
+      "latest_home_price": -135,
+      "latest_away_price": 114
     },
     {
       "event_id": "tVlXBFL8nkNbJC9HXfwu",
@@ -8957,7 +9681,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 845.83,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -126,
+      "first_away_price": 108,
+      "latest_home_price": -120,
+      "latest_away_price": 102
     },
     {
       "event_id": "6669b911691463c669a5c10574742e8e",
@@ -8974,7 +9702,11 @@
       "direction": "away",
       "reversals": 1,
       "minutes_before_start": 35.13,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 230,
+      "first_away_price": -280,
+      "latest_home_price": 245,
+      "latest_away_price": -300
     },
     {
       "event_id": "VFOvtNU5AbIejhb6XSaT",
@@ -8991,7 +9723,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 267.99,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -215,
+      "first_away_price": 180,
+      "latest_home_price": -230,
+      "latest_away_price": 190
     },
     {
       "event_id": "ellMVxZg9L84npHrtWFF",
@@ -9008,7 +9744,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 845.83,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -1040,
+      "first_away_price": 670,
+      "latest_home_price": -890,
+      "latest_away_price": 600
     },
     {
       "event_id": "f3f429e773bfb2340ba2bb90f2b9dd1e",
@@ -9025,7 +9765,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 64.27,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -244,
+      "first_away_price": 201,
+      "latest_home_price": -229,
+      "latest_away_price": 190
     },
     {
       "event_id": "110e33c79c5ec8c0377702aff685f83b",
@@ -9059,7 +9803,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 17.71,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -135,
+      "first_away_price": 114,
+      "latest_home_price": -142,
+      "latest_away_price": 120
     },
     {
       "event_id": "vIdiQ7QpCnPFNAfVmODU",
@@ -9076,7 +9824,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 126.36,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 114,
+      "first_away_price": -135,
+      "latest_home_price": 120,
+      "latest_away_price": -142
     },
     {
       "event_id": "6hxgqVxD1ORXp37yOT2H",
@@ -9093,7 +9845,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 50.08,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -136,
+      "first_away_price": 116,
+      "latest_home_price": -130,
+      "latest_away_price": 110
     },
     {
       "event_id": "AAsVwXJZKnTVv20ieD1L",
@@ -9110,7 +9866,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 665.83,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -218,
+      "first_away_price": 181,
+      "latest_home_price": -230,
+      "latest_away_price": 191
     },
     {
       "event_id": "myJAqwt05IG5WOzz5kyn",
@@ -9127,7 +9887,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 725.83,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -499,
+      "first_away_price": 382,
+      "latest_home_price": -546,
+      "latest_away_price": 411
     },
     {
       "event_id": "76416359b5453c01968e94702a375f16",
@@ -9144,7 +9908,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 35.13,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -390,
+      "first_away_price": 310,
+      "latest_home_price": -420,
+      "latest_away_price": 330
     },
     {
       "event_id": "b123d92eb8046e43fabf95a33a676634",
@@ -9161,7 +9929,9 @@
       "direction": "home",
       "reversals": 3,
       "minutes_before_start": 202.36,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -110,
+      "first_away_price": -106
     },
     {
       "event_id": "Issu2jy5OkvrgKhn5IV0",
@@ -9178,7 +9948,11 @@
       "direction": "home",
       "reversals": 1,
       "minutes_before_start": 23.21,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 172,
+      "first_away_price": -206,
+      "latest_home_price": 164,
+      "latest_away_price": -196
     },
     {
       "event_id": "8a40b260e8fa0d67c1f2bc2b39a24982",
@@ -9195,7 +9969,11 @@
       "direction": "away",
       "reversals": 1,
       "minutes_before_start": 95.13,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 134,
+      "first_away_price": -158,
+      "latest_home_price": 140,
+      "latest_away_price": -166
     },
     {
       "event_id": "f4e4165c2b9e53531629f6d0ab982b13",
@@ -9212,7 +9990,11 @@
       "direction": "home",
       "reversals": 2,
       "minutes_before_start": 10.56,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -130,
+      "first_away_price": 110,
+      "latest_home_price": -136,
+      "latest_away_price": 115
     },
     {
       "event_id": "78ab42ddb22b68903fd53a384d0fc616",
@@ -9229,7 +10011,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 870.3,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 181,
+      "first_away_price": -218,
+      "latest_home_price": 190,
+      "latest_away_price": -229
     },
     {
       "event_id": "c6d62b9457cbd8517860e222f1d4f953",
@@ -9246,7 +10032,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 77.71,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -162,
+      "first_away_price": 136,
+      "latest_home_price": -170,
+      "latest_away_price": 142
     },
     {
       "event_id": "47cc511bb5ce50f715e3625ce5ef77ee",
@@ -9280,7 +10070,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 810.3,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 331,
+      "first_away_price": -423,
+      "latest_home_price": 312,
+      "latest_away_price": -395
     },
     {
       "event_id": "47cc511bb5ce50f715e3625ce5ef77ee",
@@ -9365,7 +10159,11 @@
       "direction": "away",
       "reversals": 3,
       "minutes_before_start": 137.46,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 139,
+      "first_away_price": -165,
+      "latest_home_price": 145,
+      "latest_away_price": -173
     },
     {
       "event_id": "80ffc963f864f3d4fcefa82fd02b7d7b",
@@ -9382,7 +10180,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 95.13,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 216,
+      "first_away_price": -263,
+      "latest_home_price": 227,
+      "latest_away_price": -277
     },
     {
       "event_id": "BOSZg7p5c9SZZrafcZBm",
@@ -9399,7 +10201,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 1570.25,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -430,
+      "first_away_price": 340,
+      "latest_home_price": -405,
+      "latest_away_price": 320
     },
     {
       "event_id": "62a92e31b546d31ba57caf792815bf65",
@@ -9416,7 +10222,11 @@
       "direction": "home",
       "reversals": 1,
       "minutes_before_start": 137.46,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -255,
+      "first_away_price": 210,
+      "latest_home_price": -270,
+      "latest_away_price": 220
     },
     {
       "event_id": "y5NnRaq6vz71DINYfrM3",
@@ -9433,7 +10243,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 695.83,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -255,
+      "first_away_price": 210,
+      "latest_home_price": -270,
+      "latest_away_price": 220
     },
     {
       "event_id": "B8Kg6YVbG0LphWhTRzMe",
@@ -9450,7 +10264,11 @@
       "direction": "home",
       "reversals": 1,
       "minutes_before_start": 267.99,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -1500,
+      "first_away_price": 870,
+      "latest_home_price": -1800,
+      "latest_away_price": 980
     },
     {
       "event_id": "5773e80d52d3fba36b11be38ded62790",
@@ -9467,7 +10285,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 604.4,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -1100,
+      "first_away_price": 700,
+      "latest_home_price": -950,
+      "latest_away_price": 640
     },
     {
       "event_id": "FpAfajwEIdliK1vgERiO",
@@ -9484,7 +10306,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 319.91,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -680,
+      "first_away_price": 492,
+      "latest_home_price": -620,
+      "latest_away_price": 458
     },
     {
       "event_id": "0a12a55607db0bd7eeafee050c45988e",
@@ -9501,7 +10327,11 @@
       "direction": "home",
       "reversals": 3,
       "minutes_before_start": 195.86,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -168,
+      "first_away_price": 142,
+      "latest_home_price": -176,
+      "latest_away_price": 148
     },
     {
       "event_id": "j0nltZe9grJvJRq0DZSH",
@@ -9518,7 +10348,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 403.99,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 103,
+      "first_away_price": -122,
+      "latest_home_price": -101,
+      "latest_away_price": -117
     },
     {
       "event_id": "B8Kg6YVbG0LphWhTRzMe",
@@ -9535,7 +10369,11 @@
       "direction": "home",
       "reversals": 1,
       "minutes_before_start": 267.99,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -1440,
+      "first_away_price": 850,
+      "latest_home_price": -1740,
+      "latest_away_price": 950
     },
     {
       "event_id": "c3a424e24d426af94a693e06a33e3037",
@@ -9552,7 +10390,11 @@
       "direction": "home",
       "reversals": 2,
       "minutes_before_start": 47.22,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -320,
+      "first_away_price": 250,
+      "latest_home_price": -330,
+      "latest_away_price": 265
     },
     {
       "event_id": "7ugmOV11uFXrEFsicgl2",
@@ -9569,7 +10411,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 403.99,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -205,
+      "first_away_price": 171,
+      "latest_home_price": -196,
+      "latest_away_price": 164
     },
     {
       "event_id": "110e33c79c5ec8c0377702aff685f83b",
@@ -9603,7 +10449,11 @@
       "direction": "away",
       "reversals": 3,
       "minutes_before_start": 85.53,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 285,
+      "first_away_price": -360,
+      "latest_home_price": 300,
+      "latest_away_price": -380
     },
     {
       "event_id": "af2f084075391e55ba2a596e7846bb40",
@@ -9637,7 +10487,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 319.91,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -650,
+      "first_away_price": 480,
+      "latest_home_price": -600,
+      "latest_away_price": 450
     },
     {
       "event_id": "6cb4c8feeadd57aa6ab46ebdee60818a",
@@ -9654,7 +10508,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 544.4,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 430,
+      "first_away_price": -590,
+      "latest_home_price": 460,
+      "latest_away_price": -620
     },
     {
       "event_id": "6cb4c8feeadd57aa6ab46ebdee60818a",
@@ -9671,7 +10529,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 544.4,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 417,
+      "first_away_price": -556,
+      "latest_home_price": 443,
+      "latest_away_price": -597
     },
     {
       "event_id": "cfa503c66cd505776a910921875ef7dd",
@@ -9688,7 +10550,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 750.3,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 102,
+      "first_away_price": -120,
+      "latest_home_price": -102,
+      "latest_away_price": -116
     },
     {
       "event_id": "cfa503c66cd505776a910921875ef7dd",
@@ -9705,7 +10571,11 @@
       "direction": "away",
       "reversals": 1,
       "minutes_before_start": 750.3,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -109,
+      "first_away_price": -109,
+      "latest_home_price": -105,
+      "latest_away_price": -113
     },
     {
       "event_id": "IxzlYoFIZwRtfdlQWnbI",
@@ -9722,7 +10592,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 255.62,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -510,
+      "first_away_price": 390,
+      "latest_home_price": -480,
+      "latest_away_price": 370
     },
     {
       "event_id": "qmdj5FDhtvuS6hen6nbW",
@@ -9739,7 +10613,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 695.83,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -310,
+      "first_away_price": 250,
+      "latest_home_price": -295,
+      "latest_away_price": 240
     },
     {
       "event_id": "62a92e31b546d31ba57caf792815bf65",
@@ -9756,7 +10634,11 @@
       "direction": "home",
       "reversals": 1,
       "minutes_before_start": 137.46,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -246,
+      "first_away_price": 203,
+      "latest_home_price": -257,
+      "latest_away_price": 211
     },
     {
       "event_id": "Bvqi2PKKuzCJzxYGeUfU",
@@ -9773,7 +10655,11 @@
       "direction": "home",
       "reversals": 1,
       "minutes_before_start": 156.36,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -490,
+      "first_away_price": 380,
+      "latest_home_price": -520,
+      "latest_away_price": 400
     },
     {
       "event_id": "5773e80d52d3fba36b11be38ded62790",
@@ -9790,7 +10676,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 604.4,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -840,
+      "first_away_price": 580,
+      "latest_home_price": -930,
+      "latest_away_price": 620
     },
     {
       "event_id": "IxzlYoFIZwRtfdlQWnbI",
@@ -9807,7 +10697,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 255.62,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -494,
+      "first_away_price": 378,
+      "latest_home_price": -467,
+      "latest_away_price": 360
     },
     {
       "event_id": "60431a347feac3f1c7ed925b8b769ec5",
@@ -9858,7 +10752,11 @@
       "direction": "home",
       "reversals": 5,
       "minutes_before_start": 24.58,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -174,
+      "first_away_price": 144,
+      "latest_home_price": -178,
+      "latest_away_price": 150
     },
     {
       "event_id": "60431a347feac3f1c7ed925b8b769ec5",
@@ -9892,7 +10790,11 @@
       "direction": "home",
       "reversals": 1,
       "minutes_before_start": 107.46,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 118,
+      "first_away_price": -138,
+      "latest_home_price": 114,
+      "latest_away_price": -134
     },
     {
       "event_id": "e6769c813dd625b622df94c14a562ce2",
@@ -9926,7 +10828,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 103.37,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -640,
+      "first_away_price": 466,
+      "latest_home_price": -597,
+      "latest_away_price": 443
     },
     {
       "event_id": "71e24359951927c356bd8c852fb867dd",
@@ -9977,7 +10883,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 720.3,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -1180,
+      "first_away_price": 740,
+      "latest_home_price": -1080,
+      "latest_away_price": 690
     },
     {
       "event_id": "af2f084075391e55ba2a596e7846bb40",
@@ -10028,7 +10938,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 405.62,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -800,
+      "first_away_price": 560,
+      "latest_home_price": -750,
+      "latest_away_price": 530
     },
     {
       "event_id": "MkeoQuI6mutTqPUONP8O",
@@ -10045,7 +10959,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 220.25,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -322,
+      "first_away_price": 260,
+      "latest_home_price": -310,
+      "latest_away_price": 251
     },
     {
       "event_id": "93cdd8e4ade5697cfccf42ee42c4d207",
@@ -10113,7 +11031,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 195.86,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -185,
+      "first_away_price": 154,
+      "latest_home_price": -179,
+      "latest_away_price": 150
     },
     {
       "event_id": "d6cb49b0ae478270e74d0e7ce7082e57",
@@ -10130,7 +11052,11 @@
       "direction": "away",
       "reversals": 4,
       "minutes_before_start": 24.58,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -185,
+      "first_away_price": 154,
+      "latest_home_price": -179,
+      "latest_away_price": 150
     },
     {
       "event_id": "29988f1011d7738962e13e0a0beb693f",
@@ -10147,7 +11073,11 @@
       "direction": "away",
       "reversals": 3,
       "minutes_before_start": 10.44,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 450,
+      "first_away_price": -610,
+      "latest_home_price": 470,
+      "latest_away_price": -650
     },
     {
       "event_id": "5e4708fadda49a3c06fd7ac50414020e",
@@ -10164,7 +11094,11 @@
       "direction": "home",
       "reversals": 2,
       "minutes_before_start": 137.46,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 142,
+      "first_away_price": -168,
+      "latest_home_price": 138,
+      "latest_away_price": -164
     },
     {
       "event_id": "5AbGhgZxXtEBbYa3nnpH",
@@ -10181,7 +11115,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 405.62,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 385,
+      "first_away_price": -500,
+      "latest_home_price": 370,
+      "latest_away_price": -480
     },
     {
       "event_id": "7ea5547b35ef782963e4f384d3414dfa",
@@ -10198,7 +11136,11 @@
       "direction": "away",
       "reversals": 3,
       "minutes_before_start": 787.91,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 280,
+      "first_away_price": -350,
+      "latest_home_price": 290,
+      "latest_away_price": -360
     },
     {
       "event_id": "86684f64a8ec8385537a36c3b3768935",
@@ -10215,7 +11157,11 @@
       "direction": "away",
       "reversals": 4,
       "minutes_before_start": 137.46,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 146,
+      "first_away_price": -174,
+      "latest_home_price": 150,
+      "latest_away_price": -178
     },
     {
       "event_id": "5997ee5c9fbdc53f9c86732b02f58158",
@@ -10232,7 +11178,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 17.71,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 220,
+      "first_away_price": -270,
+      "latest_home_price": 215,
+      "latest_away_price": -260
     },
     {
       "event_id": "ellMVxZg9L84npHrtWFF",
@@ -10249,7 +11199,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 845.83,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -950,
+      "first_away_price": 640,
+      "latest_home_price": -900,
+      "latest_away_price": 610
     },
     {
       "event_id": "50bdc20ea9ea3c88d4bfa261b9b2307e",
@@ -10266,7 +11220,11 @@
       "direction": "home",
       "reversals": 2,
       "minutes_before_start": 41.37,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -186,
+      "first_away_price": 156,
+      "latest_home_price": -190,
+      "latest_away_price": 160
     },
     {
       "event_id": "2a76b31e02d1416de069a995589515fc",
@@ -10283,7 +11241,11 @@
       "direction": "home",
       "reversals": 2,
       "minutes_before_start": 47.96,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -118,
+      "first_away_price": 100,
+      "latest_home_price": -121,
+      "latest_away_price": 102
     },
     {
       "event_id": "0b5966b7b96eb844618eea8f215a0c71",
@@ -10300,7 +11262,11 @@
       "direction": "away",
       "reversals": 1,
       "minutes_before_start": 133.37,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -205,
+      "first_away_price": 172,
+      "latest_home_price": -200,
+      "latest_away_price": 168
     },
     {
       "event_id": "TeNnxcd68WiO1wNW4Fhy",
@@ -10317,7 +11283,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 50.08,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -430,
+      "first_away_price": 340,
+      "latest_home_price": -450,
+      "latest_away_price": 350
     },
     {
       "event_id": "60431a347feac3f1c7ed925b8b769ec5",
@@ -10368,7 +11338,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 185.13,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -770,
+      "first_away_price": 540,
+      "latest_home_price": -720,
+      "latest_away_price": 520
     },
     {
       "event_id": "a0f5d89a4fc51e52edd0e70d1e4cbaf2",
@@ -10385,7 +11359,9 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 17.22,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "latest_home_price": -210,
+      "latest_away_price": 176
     },
     {
       "event_id": "7ugmOV11uFXrEFsicgl2",
@@ -10402,7 +11378,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 403.99,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -194,
+      "first_away_price": 162,
+      "latest_home_price": -198,
+      "latest_away_price": 166
     },
     {
       "event_id": "60431a347feac3f1c7ed925b8b769ec5",
@@ -10436,7 +11416,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 4.27,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -210,
+      "first_away_price": 176,
+      "latest_home_price": -215,
+      "latest_away_price": 180
     },
     {
       "event_id": "C8msr3REC7p9Unntf9Ql",
@@ -10453,7 +11437,11 @@
       "direction": "home",
       "reversals": 1,
       "minutes_before_start": 45.54,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 520,
+      "first_away_price": -720,
+      "latest_home_price": 500,
+      "latest_away_price": -700
     },
     {
       "event_id": "80ffc963f864f3d4fcefa82fd02b7d7b",
@@ -10470,7 +11458,11 @@
       "direction": "home",
       "reversals": 1,
       "minutes_before_start": 95.13,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 215,
+      "first_away_price": -260,
+      "latest_home_price": 210,
+      "latest_away_price": -255
     },
     {
       "event_id": "45ebc54751ef3e435192eaeb0470acfb",
@@ -10487,7 +11479,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 34.82,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -108,
+      "first_away_price": -108,
+      "latest_home_price": -106,
+      "latest_away_price": -110
     },
     {
       "event_id": "e6769c813dd625b622df94c14a562ce2",
@@ -10555,7 +11551,9 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 202.36,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -110,
+      "first_away_price": -110
     },
     {
       "event_id": "d47417c3b1a2cd427cce74c9d00f1046",
@@ -10572,7 +11570,11 @@
       "direction": "away",
       "reversals": 2,
       "minutes_before_start": 16.0,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 194,
+      "first_away_price": -235,
+      "latest_home_price": 198,
+      "latest_away_price": -240
     },
     {
       "event_id": "0N4dyCi9911qPRE4DYsy",
@@ -10589,7 +11591,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 100.25,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 360,
+      "first_away_price": -460,
+      "latest_home_price": 350,
+      "latest_away_price": -450
     },
     {
       "event_id": "6fff70f4bf196dba25060a5775a03b54",
@@ -10640,7 +11646,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 285.62,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 265,
+      "first_away_price": -330,
+      "latest_home_price": 260,
+      "latest_away_price": -320
     },
     {
       "event_id": "6fff70f4bf196dba25060a5775a03b54",
@@ -10674,7 +11684,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 60.15,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 144,
+      "first_away_price": -172,
+      "latest_home_price": 142,
+      "latest_away_price": -168
     },
     {
       "event_id": "0b5966b7b96eb844618eea8f215a0c71",
@@ -10691,7 +11705,11 @@
       "direction": "away",
       "reversals": 1,
       "minutes_before_start": 133.37,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -207,
+      "first_away_price": 172,
+      "latest_home_price": -203,
+      "latest_away_price": 169
     },
     {
       "event_id": "758ca94b2abd151c0593b182254dab32",
@@ -10708,7 +11726,11 @@
       "direction": "away",
       "reversals": 2,
       "minutes_before_start": 667.91,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -590,
+      "first_away_price": 430,
+      "latest_home_price": -560,
+      "latest_away_price": 420
     },
     {
       "event_id": "223b2883b9b05a67329ef246384b85f1",
@@ -10742,7 +11764,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 403.99,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 235,
+      "first_away_price": -290,
+      "latest_home_price": 240,
+      "latest_away_price": -295
     },
     {
       "event_id": "110e33c79c5ec8c0377702aff685f83b",
@@ -10776,7 +11802,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 789.37,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -142,
+      "first_away_price": 120,
+      "latest_home_price": -144,
+      "latest_away_price": 122
     },
     {
       "event_id": "hNUHJSvDAFiUk9AN6JXX",
@@ -10793,7 +11823,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 725.83,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -144,
+      "first_away_price": 122,
+      "latest_home_price": -146,
+      "latest_away_price": 124
     },
     {
       "event_id": "vIdiQ7QpCnPFNAfVmODU",
@@ -10810,7 +11844,11 @@
       "direction": "away",
       "reversals": 1,
       "minutes_before_start": 126.36,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 122,
+      "first_away_price": -144,
+      "latest_home_price": 124,
+      "latest_away_price": -146
     },
     {
       "event_id": "fd33c09c84ab4c2fe6955d59f8dc5dd2",
@@ -10844,7 +11882,11 @@
       "direction": "home",
       "reversals": 2,
       "minutes_before_start": 85.53,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -550,
+      "first_away_price": 410,
+      "latest_home_price": -560,
+      "latest_away_price": 420
     },
     {
       "event_id": "83ca338f605b5664b7b1da34c19a0222",
@@ -10861,7 +11903,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 77.71,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 270,
+      "first_away_price": -335,
+      "latest_home_price": 275,
+      "latest_away_price": -340
     },
     {
       "event_id": "78ab42ddb22b68903fd53a384d0fc616",
@@ -10878,7 +11924,11 @@
       "direction": "away",
       "reversals": 0,
       "minutes_before_start": 870.3,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 188,
+      "first_away_price": -225,
+      "latest_home_price": 190,
+      "latest_away_price": -230
     },
     {
       "event_id": "87d2b814c3f0d3691e9cebbf2de76295",
@@ -10895,7 +11945,11 @@
       "direction": "away",
       "reversals": 1,
       "minutes_before_start": 103.37,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -600,
+      "first_away_price": 450,
+      "latest_home_price": -590,
+      "latest_away_price": 440
     },
     {
       "event_id": "164cc0396837d5ff433215ffd3279283",
@@ -10929,7 +11983,11 @@
       "direction": "home",
       "reversals": 1,
       "minutes_before_start": 85.53,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 148,
+      "first_away_price": -176,
+      "latest_home_price": 146,
+      "latest_away_price": -174
     },
     {
       "event_id": "782d6ce7f65b592ad1c43d2f4e53cc82",
@@ -10946,7 +12004,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 77.71,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 150,
+      "first_away_price": -178,
+      "latest_home_price": 148,
+      "latest_away_price": -176
     },
     {
       "event_id": "85e6e4e2404ef7268659739997758da1",
@@ -11014,7 +12076,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 25.53,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 750,
+      "first_away_price": -1200,
+      "latest_home_price": 740,
+      "latest_away_price": -1180
     },
     {
       "event_id": "tVlXBFL8nkNbJC9HXfwu",
@@ -11031,7 +12097,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 845.83,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -119,
+      "first_away_price": 100,
+      "latest_home_price": -119,
+      "latest_away_price": 101
     },
     {
       "event_id": "71e24359951927c356bd8c852fb867dd",
@@ -11065,7 +12135,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 4.27,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -222,
+      "first_away_price": 184,
+      "latest_home_price": -223,
+      "latest_away_price": 185
     },
     {
       "event_id": "758ca94b2abd151c0593b182254dab32",
@@ -11082,7 +12156,11 @@
       "direction": "home",
       "reversals": 1,
       "minutes_before_start": 667.91,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -569,
+      "first_away_price": 426,
+      "latest_home_price": -574,
+      "latest_away_price": 429
     },
     {
       "event_id": "cmJIho0qoq84JvHTFZ1S",
@@ -11099,7 +12177,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 405.62,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -790,
+      "first_away_price": 554,
+      "latest_home_price": -800,
+      "latest_away_price": 558
     },
     {
       "event_id": "kF6oVG1eYadvoZIoaPTO",
@@ -11116,7 +12198,11 @@
       "direction": "away",
       "reversals": 1,
       "minutes_before_start": 36.36,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -265,
+      "first_away_price": 218,
+      "latest_home_price": -264,
+      "latest_away_price": 217
     },
     {
       "event_id": "ba667ca1b0b042f0661cb9d9af56c165",
@@ -11133,7 +12219,9 @@
       "direction": "home",
       "reversals": 3,
       "minutes_before_start": 322.36,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -295,
+      "first_away_price": 240
     },
     {
       "event_id": "iIHyUVBCPvy1DyAFhyks",
@@ -11150,7 +12238,11 @@
       "direction": "away",
       "reversals": 1,
       "minutes_before_start": 156.36,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 220,
+      "first_away_price": -269,
+      "latest_home_price": 221,
+      "latest_away_price": -269
     },
     {
       "event_id": "sWYtq3T5amL33wZm7UcR",
@@ -11167,7 +12259,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 285.62,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 271,
+      "first_away_price": -337,
+      "latest_home_price": 270,
+      "latest_away_price": -336
     },
     {
       "event_id": "83d77fe350d56a036fd7a3404e78249a",
@@ -11184,7 +12280,9 @@
       "direction": "away",
       "reversals": 2,
       "minutes_before_start": 11.62,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "latest_home_price": -154,
+      "latest_away_price": 130
     },
     {
       "event_id": "0N4dyCi9911qPRE4DYsy",
@@ -11201,7 +12299,11 @@
       "direction": "home",
       "reversals": 0,
       "minutes_before_start": 100.25,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 351,
+      "first_away_price": -453,
+      "latest_home_price": 351,
+      "latest_away_price": -452
     },
     {
       "event_id": "067d97a124c10ea2d206546384500c5e",
@@ -11218,7 +12320,11 @@
       "direction": "flat",
       "reversals": 2,
       "minutes_before_start": 84.59,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -104,
+      "first_away_price": -112,
+      "latest_home_price": -104,
+      "latest_away_price": -112
     },
     {
       "event_id": "0a808d8f7afab3c0e249ca284c470806",
@@ -11235,7 +12341,11 @@
       "direction": "flat",
       "reversals": 2,
       "minutes_before_start": 225.86,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -500,
+      "first_away_price": 385,
+      "latest_home_price": -500,
+      "latest_away_price": 385
     },
     {
       "event_id": "0d34c898f6cbb990077ae9f0a2773513",
@@ -11456,7 +12566,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 607.91,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -185,
+      "first_away_price": 155,
+      "latest_home_price": -185,
+      "latest_away_price": 155
     },
     {
       "event_id": "1cb12166c3eda270d40cc65b9b34459a",
@@ -11473,7 +12587,11 @@
       "direction": "flat",
       "reversals": 2,
       "minutes_before_start": 103.37,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -500,
+      "first_away_price": 385,
+      "latest_home_price": -500,
+      "latest_away_price": 385
     },
     {
       "event_id": "1dd700c1205f0c7287e5df99c7a17822",
@@ -11490,7 +12608,11 @@
       "direction": "flat",
       "reversals": 3,
       "minutes_before_start": 54.58,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -166,
+      "first_away_price": 140,
+      "latest_home_price": -166,
+      "latest_away_price": 140
     },
     {
       "event_id": "21792501482fecfaacd3a4a24776c9e6",
@@ -11507,7 +12629,11 @@
       "direction": "flat",
       "reversals": 1,
       "minutes_before_start": 25.53,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 140,
+      "first_away_price": -166,
+      "latest_home_price": 140,
+      "latest_away_price": -166
     },
     {
       "event_id": "223b2883b9b05a67329ef246384b85f1",
@@ -11626,7 +12752,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 95.13,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -134,
+      "first_away_price": 114,
+      "latest_home_price": -134,
+      "latest_away_price": 114
     },
     {
       "event_id": "5997ee5c9fbdc53f9c86732b02f58158",
@@ -11643,7 +12773,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 17.71,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 225,
+      "first_away_price": -278,
+      "latest_home_price": 225,
+      "latest_away_price": -278
     },
     {
       "event_id": "5AbGhgZxXtEBbYa3nnpH",
@@ -11660,7 +12794,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 405.62,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 371,
+      "first_away_price": -484,
+      "latest_home_price": 371,
+      "latest_away_price": -484
     },
     {
       "event_id": "60431a347feac3f1c7ed925b8b769ec5",
@@ -11745,7 +12883,9 @@
       "direction": "home",
       "reversals": 1,
       "minutes_before_start": 17.22,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "latest_home_price": 250,
+      "latest_away_price": -310
     },
     {
       "event_id": "67550840fbe9bb9c550d3d4958e259ea",
@@ -11762,7 +12902,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 47.71,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -192,
+      "first_away_price": 160,
+      "latest_home_price": -192,
+      "latest_away_price": 160
     },
     {
       "event_id": "67550840fbe9bb9c550d3d4958e259ea",
@@ -11779,7 +12923,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 47.71,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -194,
+      "first_away_price": 162,
+      "latest_home_price": -194,
+      "latest_away_price": 162
     },
     {
       "event_id": "6fff70f4bf196dba25060a5775a03b54",
@@ -11864,7 +13012,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 50.08,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -135,
+      "first_away_price": 114,
+      "latest_home_price": -135,
+      "latest_away_price": 114
     },
     {
       "event_id": "71e24359951927c356bd8c852fb867dd",
@@ -12000,7 +13152,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 77.71,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 150,
+      "first_away_price": -180,
+      "latest_home_price": 150,
+      "latest_away_price": -180
     },
     {
       "event_id": "7b9e02686c886a54c9a91dd3f3879326",
@@ -12017,7 +13173,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 77.71,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 225,
+      "first_away_price": -278,
+      "latest_home_price": 225,
+      "latest_away_price": -278
     },
     {
       "event_id": "7b9e02686c886a54c9a91dd3f3879326",
@@ -12034,7 +13194,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 77.71,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 220,
+      "first_away_price": -270,
+      "latest_home_price": 220,
+      "latest_away_price": -270
     },
     {
       "event_id": "7f5287957f506fbf705e198215fa952b",
@@ -12051,7 +13215,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 17.71,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -290,
+      "first_away_price": 235,
+      "latest_home_price": -290,
+      "latest_away_price": 235
     },
     {
       "event_id": "7f5287957f506fbf705e198215fa952b",
@@ -12068,7 +13236,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 17.71,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -290,
+      "first_away_price": 235,
+      "latest_home_price": -290,
+      "latest_away_price": 235
     },
     {
       "event_id": "83ca338f605b5664b7b1da34c19a0222",
@@ -12085,7 +13257,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 77.71,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 270,
+      "first_away_price": -340,
+      "latest_home_price": 270,
+      "latest_away_price": -340
     },
     {
       "event_id": "85e6e4e2404ef7268659739997758da1",
@@ -12204,7 +13380,11 @@
       "direction": "flat",
       "reversals": 1,
       "minutes_before_start": 40.25,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 110,
+      "first_away_price": -130,
+      "latest_home_price": 110,
+      "latest_away_price": -130
     },
     {
       "event_id": "86WeNM55ZylhAfMEAgpS",
@@ -12221,7 +13401,11 @@
       "direction": "flat",
       "reversals": 1,
       "minutes_before_start": 40.25,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 112,
+      "first_away_price": -132,
+      "latest_home_price": 112,
+      "latest_away_price": -132
     },
     {
       "event_id": "8e0fdbf07b1f288b00ec5b370f6c1e2d",
@@ -12238,7 +13422,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 25.53,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 750,
+      "first_away_price": -1200,
+      "latest_home_price": 750,
+      "latest_away_price": -1200
     },
     {
       "event_id": "93cdd8e4ade5697cfccf42ee42c4d207",
@@ -12323,7 +13511,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 285.62,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 131,
+      "first_away_price": -155,
+      "latest_home_price": 131,
+      "latest_away_price": -155
     },
     {
       "event_id": "BOSZg7p5c9SZZrafcZBm",
@@ -12340,7 +13532,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 1570.25,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -406,
+      "first_away_price": 319,
+      "latest_home_price": -406,
+      "latest_away_price": 319
     },
     {
       "event_id": "JAmMvOI9cXWrPV42meXv",
@@ -12357,7 +13553,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 639.37,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 110,
+      "first_away_price": -130,
+      "latest_home_price": 110,
+      "latest_away_price": -130
     },
     {
       "event_id": "TeNnxcd68WiO1wNW4Fhy",
@@ -12374,7 +13574,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 50.08,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -437,
+      "first_away_price": 340,
+      "latest_home_price": -437,
+      "latest_away_price": 340
     },
     {
       "event_id": "UNDR4rNd350uVPOj5lsc",
@@ -12391,7 +13595,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 815.83,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 151,
+      "first_away_price": -180,
+      "latest_home_price": 151,
+      "latest_away_price": -180
     },
     {
       "event_id": "V5acJrxsETpR7gK33aYo",
@@ -12408,7 +13616,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 20.08,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 120,
+      "first_away_price": -142,
+      "latest_home_price": 120,
+      "latest_away_price": -142
     },
     {
       "event_id": "V5acJrxsETpR7gK33aYo",
@@ -12425,7 +13637,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 20.08,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 120,
+      "first_away_price": -142,
+      "latest_home_price": 120,
+      "latest_away_price": -142
     },
     {
       "event_id": "af2f084075391e55ba2a596e7846bb40",
@@ -12510,7 +13726,9 @@
       "direction": "away",
       "reversals": 1,
       "minutes_before_start": 322.36,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -290,
+      "first_away_price": 235
     },
     {
       "event_id": "c6d62b9457cbd8517860e222f1d4f953",
@@ -12527,7 +13745,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 77.71,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -166,
+      "first_away_price": 140,
+      "latest_home_price": -166,
+      "latest_away_price": 140
     },
     {
       "event_id": "cb06267ae037a883ae6f71078d6e2aaa",
@@ -12544,7 +13766,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 604.4,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 160,
+      "first_away_price": -191,
+      "latest_home_price": 160,
+      "latest_away_price": -191
     },
     {
       "event_id": "d3d91c40111aca301d41c9cdb9d64608",
@@ -12561,7 +13787,11 @@
       "direction": "flat",
       "reversals": 1,
       "minutes_before_start": 41.37,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 124,
+      "first_away_price": -148,
+      "latest_home_price": 124,
+      "latest_away_price": -148
     },
     {
       "event_id": "d3d91c40111aca301d41c9cdb9d64608",
@@ -12578,7 +13808,11 @@
       "direction": "flat",
       "reversals": 2,
       "minutes_before_start": 41.37,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": 122,
+      "first_away_price": -144,
+      "latest_home_price": 122,
+      "latest_away_price": -144
     },
     {
       "event_id": "e6769c813dd625b622df94c14a562ce2",
@@ -12697,7 +13931,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 17.71,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -395,
+      "first_away_price": 310,
+      "latest_home_price": -395,
+      "latest_away_price": 310
     },
     {
       "event_id": "fc3e945a5be88d3f933456bc512c956d",
@@ -12714,7 +13952,11 @@
       "direction": "flat",
       "reversals": 1,
       "minutes_before_start": 42.78,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -168,
+      "first_away_price": 142,
+      "latest_home_price": -168,
+      "latest_away_price": 142
     },
     {
       "event_id": "fd33c09c84ab4c2fe6955d59f8dc5dd2",
@@ -12816,7 +14058,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 230.08,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -299,
+      "first_away_price": 243,
+      "latest_home_price": -299,
+      "latest_away_price": 243
     },
     {
       "event_id": "jc3XOiVKBZeBqyGu2xXV",
@@ -12833,7 +14079,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 230.08,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -295,
+      "first_away_price": 240,
+      "latest_home_price": -295,
+      "latest_away_price": 240
     },
     {
       "event_id": "mPJ2zIZJxG854MfndGyH",
@@ -12850,7 +14100,11 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 789.37,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -139,
+      "first_away_price": 117,
+      "latest_home_price": -139,
+      "latest_away_price": 117
     },
     {
       "event_id": "qmdj5FDhtvuS6hen6nbW",
@@ -12867,13 +14121,17 @@
       "direction": "flat",
       "reversals": 0,
       "minutes_before_start": 695.83,
-      "is_verified_closing_line": false
+      "is_verified_closing_line": false,
+      "first_home_price": -291,
+      "first_away_price": 237,
+      "latest_home_price": -291,
+      "latest_away_price": 237
     }
   ],
   "outcome_audit": {
-    "graded_events": 153,
+    "graded_events": 154,
     "correct": 80,
-    "hit_rate": 0.5228758169934641,
+    "hit_rate": 0.5194805194805194,
     "status": "descriptive_not_out_of_sample"
   },
   "current_slate": [
@@ -12930,7 +14188,7 @@
         "projected_total": 228.69016507072635,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T03:31:26.697706+00:00",
+        "cutoff": "2026-11-25T14:23:16.714885+00:00",
         "bet_eligible": false
       },
       "schedule_source": "ESPN scoreboard",
@@ -13024,7 +14282,7 @@
         "projected_total": 230.98574151104268,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:10:41.703237+00:00",
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
         "bet_eligible": false
       }
     },
@@ -13048,7 +14306,7 @@
         "projected_total": 230.7596763759638,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T03:31:26.697706+00:00",
+        "cutoff": "2026-11-25T14:23:16.714885+00:00",
         "bet_eligible": false
       },
       "schedule_source": "ESPN scoreboard",
@@ -13107,7 +14365,7 @@
         "projected_total": 224.13301304325861,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T03:31:26.697706+00:00",
+        "cutoff": "2026-11-25T14:23:16.714885+00:00",
         "bet_eligible": false
       },
       "schedule_source": "ESPN scoreboard",
@@ -13118,7 +14376,7 @@
       "home": "Portland Trail Blazers",
       "away": "San Antonio Spurs",
       "event_start": "2026-11-26T03:00:00+00:00",
-      "bookmakers": 1,
+      "bookmakers": 2,
       "median_change_pp": null,
       "score_simulation": {
         "status": "INDEPENDENT_SCORE_RESEARCH_ONLY",
@@ -13133,7 +14391,7 @@
         "projected_total": 225.31210002091038,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T03:31:26.697706+00:00",
+        "cutoff": "2026-11-25T14:23:16.714885+00:00",
         "bet_eligible": false
       },
       "schedule_source": "ESPN scoreboard",
@@ -13161,7 +14419,7 @@
         "projected_total": 229.08080971979086,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:10:41.703237+00:00",
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
         "bet_eligible": false
       }
     },
@@ -13187,7 +14445,7 @@
         "projected_total": 227.19307018967183,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:10:41.703237+00:00",
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
         "bet_eligible": false
       }
     },
@@ -13213,7 +14471,7 @@
         "projected_total": 231.56674148334105,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:10:41.703237+00:00",
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
         "bet_eligible": false
       }
     },
@@ -13239,7 +14497,7 @@
         "projected_total": 226.9722422602754,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:10:41.703237+00:00",
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
         "bet_eligible": false
       }
     },
@@ -13265,7 +14523,7 @@
         "projected_total": 221.56514502762693,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:10:41.703237+00:00",
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
         "bet_eligible": false
       }
     },
@@ -13291,7 +14549,7 @@
         "projected_total": 228.5117290518534,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:10:41.703237+00:00",
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
         "bet_eligible": false
       }
     },
@@ -13317,7 +14575,7 @@
         "projected_total": 228.35479362399914,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:10:41.703237+00:00",
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
         "bet_eligible": false
       }
     },
@@ -13343,7 +14601,7 @@
         "projected_total": 227.28184285159293,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:10:41.703237+00:00",
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
         "bet_eligible": false
       }
     },
@@ -13369,7 +14627,7 @@
         "projected_total": 232.6964203701631,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:10:41.703237+00:00",
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
         "bet_eligible": false
       }
     },
@@ -13395,7 +14653,7 @@
         "projected_total": 232.03063230611056,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:10:41.703237+00:00",
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
         "bet_eligible": false
       }
     },
@@ -13421,7 +14679,7 @@
         "projected_total": 223.62856091267756,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:10:41.703237+00:00",
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
         "bet_eligible": false
       }
     },
@@ -13447,7 +14705,7 @@
         "projected_total": 227.1711659200031,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:10:41.703237+00:00",
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
         "bet_eligible": false
       }
     },
@@ -13473,7 +14731,7 @@
         "projected_total": 222.89127112354143,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:10:41.703237+00:00",
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
         "bet_eligible": false
       }
     },
@@ -13499,7 +14757,7 @@
         "projected_total": 236.20508509868276,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:10:41.703237+00:00",
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
         "bet_eligible": false
       }
     },
@@ -13525,7 +14783,7 @@
         "projected_total": 229.39008327682083,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:10:41.703237+00:00",
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
         "bet_eligible": false
       }
     },
@@ -13551,7 +14809,7 @@
         "projected_total": 231.45391547589125,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:10:41.703237+00:00",
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
         "bet_eligible": false
       }
     },
@@ -13577,7 +14835,7 @@
         "projected_total": 240.35820976251784,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:10:41.703237+00:00",
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
         "bet_eligible": false
       }
     },
@@ -13603,7 +14861,7 @@
         "projected_total": 231.356326674299,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:10:41.703237+00:00",
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
         "bet_eligible": false
       }
     },
@@ -13629,7 +14887,7 @@
         "projected_total": 219.71311392605844,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:10:41.703237+00:00",
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
         "bet_eligible": false
       }
     },
@@ -13655,7 +14913,7 @@
         "projected_total": 227.15250572810848,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:10:41.703237+00:00",
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
         "bet_eligible": false
       }
     },
@@ -13681,7 +14939,7 @@
         "projected_total": 224.62336137839722,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:10:41.703237+00:00",
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
         "bet_eligible": false
       }
     },
@@ -13707,7 +14965,7 @@
         "projected_total": 221.8750103186078,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:10:41.703237+00:00",
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
         "bet_eligible": false
       }
     },
@@ -13733,7 +14991,7 @@
         "projected_total": 230.86724938796692,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:10:41.703237+00:00",
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
         "bet_eligible": false
       }
     },
@@ -13759,7 +15017,7 @@
         "projected_total": 230.88822835811368,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:10:41.703237+00:00",
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
         "bet_eligible": false
       }
     },
@@ -13785,7 +15043,7 @@
         "projected_total": 225.14485747794998,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:10:41.703237+00:00",
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
         "bet_eligible": false
       }
     },
@@ -13811,7 +15069,7 @@
         "projected_total": 224.62843726774324,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:10:41.703237+00:00",
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
         "bet_eligible": false
       }
     },
@@ -13837,7 +15095,7 @@
         "projected_total": 222.573812892371,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:10:41.703237+00:00",
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
         "bet_eligible": false
       }
     },
@@ -13863,7 +15121,7 @@
         "projected_total": 230.9885285288041,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:10:41.703237+00:00",
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
         "bet_eligible": false
       }
     },
@@ -13889,7 +15147,7 @@
         "projected_total": 229.00035340032315,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:10:41.703237+00:00",
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
         "bet_eligible": false
       }
     },
@@ -13915,7 +15173,7 @@
         "projected_total": 229.48034019648313,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:10:41.703237+00:00",
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
         "bet_eligible": false
       }
     },
@@ -13941,7 +15199,7 @@
         "projected_total": 221.91467643842984,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:10:41.703237+00:00",
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
         "bet_eligible": false
       }
     },
@@ -13967,7 +15225,7 @@
         "projected_total": 228.3451624063668,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:10:41.703237+00:00",
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
         "bet_eligible": false
       }
     },
@@ -13993,7 +15251,7 @@
         "projected_total": 231.46516849146286,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:10:41.703237+00:00",
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
         "bet_eligible": false
       }
     },
@@ -14019,7 +15277,7 @@
         "projected_total": 233.4543395134539,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:10:41.703237+00:00",
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
         "bet_eligible": false
       }
     },
@@ -14045,7 +15303,7 @@
         "projected_total": 233.02402699182772,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:10:41.703237+00:00",
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
         "bet_eligible": false
       }
     },
@@ -14071,7 +15329,7 @@
         "projected_total": 236.78939347064357,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:10:41.703237+00:00",
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
         "bet_eligible": false
       }
     },
@@ -14097,7 +15355,7 @@
         "projected_total": 227.72710792945642,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:10:41.703237+00:00",
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
         "bet_eligible": false
       }
     },
@@ -14123,7 +15381,7 @@
         "projected_total": 226.76241326154238,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:10:41.703237+00:00",
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
         "bet_eligible": false
       }
     },
@@ -14149,7 +15407,7 @@
         "projected_total": 227.85949229748977,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:10:41.703237+00:00",
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
         "bet_eligible": false
       }
     },
@@ -14175,7 +15433,7 @@
         "projected_total": 225.01371573378142,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:10:41.703237+00:00",
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
         "bet_eligible": false
       }
     },
@@ -14201,7 +15459,241 @@
         "projected_total": 224.31337778298996,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-25T04:10:41.703237+00:00",
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
+        "bet_eligible": false
+      }
+    },
+    {
+      "event_id": "espn-401910076",
+      "home": "Detroit Pistons",
+      "away": "Memphis Grizzlies",
+      "event_start": "2026-12-03T00:00:00+00:00",
+      "bookmakers": 0,
+      "median_change_pp": null,
+      "schedule_source": "ESPN scoreboard",
+      "odds_status": "UNAVAILABLE",
+      "score_simulation": {
+        "status": "INDEPENDENT_SCORE_RESEARCH_ONLY",
+        "trials": 10000,
+        "sample_quality": "STANDARD",
+        "history_policy": "Recency weighted prior 550 days, up to 30 games per team",
+        "home_win_probability": 0.5311,
+        "away_win_probability": 0.4689,
+        "tie_probability": 0.0,
+        "projected_away_score": 113.85754033256927,
+        "projected_home_score": 115.25928010998011,
+        "projected_total": 229.1168204425494,
+        "away_games": 30,
+        "home_games": 30,
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
+        "bet_eligible": false
+      }
+    },
+    {
+      "event_id": "espn-401910077",
+      "home": "Philadelphia 76ers",
+      "away": "Denver Nuggets",
+      "event_start": "2026-12-03T00:00:00+00:00",
+      "bookmakers": 0,
+      "median_change_pp": null,
+      "schedule_source": "ESPN scoreboard",
+      "odds_status": "UNAVAILABLE",
+      "score_simulation": {
+        "status": "INDEPENDENT_SCORE_RESEARCH_ONLY",
+        "trials": 10000,
+        "sample_quality": "STANDARD",
+        "history_policy": "Recency weighted prior 550 days, up to 30 games per team",
+        "home_win_probability": 0.4598,
+        "away_win_probability": 0.5402,
+        "tie_probability": 0.0,
+        "projected_away_score": 118.73075985950412,
+        "projected_home_score": 116.81935544727042,
+        "projected_total": 235.55011530677456,
+        "away_games": 30,
+        "home_games": 30,
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
+        "bet_eligible": false
+      }
+    },
+    {
+      "event_id": "espn-401910078",
+      "home": "Boston Celtics",
+      "away": "Charlotte Hornets",
+      "event_start": "2026-12-03T00:30:00+00:00",
+      "bookmakers": 0,
+      "median_change_pp": null,
+      "schedule_source": "ESPN scoreboard",
+      "odds_status": "UNAVAILABLE",
+      "score_simulation": {
+        "status": "INDEPENDENT_SCORE_RESEARCH_ONLY",
+        "trials": 10000,
+        "sample_quality": "STANDARD",
+        "history_policy": "Recency weighted prior 550 days, up to 30 games per team",
+        "home_win_probability": 0.6458,
+        "away_win_probability": 0.3542,
+        "tie_probability": 0.0,
+        "projected_away_score": 104.07504193863079,
+        "projected_home_score": 110.68421802157921,
+        "projected_total": 214.75925996021002,
+        "away_games": 30,
+        "home_games": 30,
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
+        "bet_eligible": false
+      }
+    },
+    {
+      "event_id": "espn-401910079",
+      "home": "Dallas Mavericks",
+      "away": "Orlando Magic",
+      "event_start": "2026-12-03T01:00:00+00:00",
+      "bookmakers": 0,
+      "median_change_pp": null,
+      "schedule_source": "ESPN scoreboard",
+      "odds_status": "UNAVAILABLE",
+      "score_simulation": {
+        "status": "INDEPENDENT_SCORE_RESEARCH_ONLY",
+        "trials": 10000,
+        "sample_quality": "STANDARD",
+        "history_policy": "Recency weighted prior 550 days, up to 30 games per team",
+        "home_win_probability": 0.5014,
+        "away_win_probability": 0.4986,
+        "tie_probability": 0.0,
+        "projected_away_score": 113.5405294747739,
+        "projected_home_score": 113.66399370146016,
+        "projected_total": 227.20452317623406,
+        "away_games": 30,
+        "home_games": 30,
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
+        "bet_eligible": false
+      }
+    },
+    {
+      "event_id": "espn-401910080",
+      "home": "Milwaukee Bucks",
+      "away": "New York Knicks",
+      "event_start": "2026-12-03T01:00:00+00:00",
+      "bookmakers": 0,
+      "median_change_pp": null,
+      "schedule_source": "ESPN scoreboard",
+      "odds_status": "UNAVAILABLE",
+      "score_simulation": {
+        "status": "INDEPENDENT_SCORE_RESEARCH_ONLY",
+        "trials": 10000,
+        "sample_quality": "STANDARD",
+        "history_policy": "Recency weighted prior 550 days, up to 30 games per team",
+        "home_win_probability": 0.3235,
+        "away_win_probability": 0.6765,
+        "tie_probability": 0.0,
+        "projected_away_score": 114.95625680331884,
+        "projected_home_score": 107.08313100938861,
+        "projected_total": 222.03938781270745,
+        "away_games": 30,
+        "home_games": 30,
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
+        "bet_eligible": false
+      }
+    },
+    {
+      "event_id": "espn-401910081",
+      "home": "New Orleans Pelicans",
+      "away": "Los Angeles Lakers",
+      "event_start": "2026-12-03T01:00:00+00:00",
+      "bookmakers": 0,
+      "median_change_pp": null,
+      "schedule_source": "ESPN scoreboard",
+      "odds_status": "UNAVAILABLE",
+      "score_simulation": {
+        "status": "INDEPENDENT_SCORE_RESEARCH_ONLY",
+        "trials": 10000,
+        "sample_quality": "STANDARD",
+        "history_policy": "Recency weighted prior 550 days, up to 30 games per team",
+        "home_win_probability": 0.3485,
+        "away_win_probability": 0.6515,
+        "tie_probability": 0.0,
+        "projected_away_score": 120.09385564519644,
+        "projected_home_score": 112.51952975931773,
+        "projected_total": 232.61338540451416,
+        "away_games": 30,
+        "home_games": 30,
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
+        "bet_eligible": false
+      }
+    },
+    {
+      "event_id": "espn-401910082",
+      "home": "Oklahoma City Thunder",
+      "away": "Brooklyn Nets",
+      "event_start": "2026-12-03T01:00:00+00:00",
+      "bookmakers": 0,
+      "median_change_pp": null,
+      "schedule_source": "ESPN scoreboard",
+      "odds_status": "UNAVAILABLE",
+      "score_simulation": {
+        "status": "INDEPENDENT_SCORE_RESEARCH_ONLY",
+        "trials": 10000,
+        "sample_quality": "STANDARD",
+        "history_policy": "Recency weighted prior 550 days, up to 30 games per team",
+        "home_win_probability": 0.649,
+        "away_win_probability": 0.351,
+        "tie_probability": 0.0,
+        "projected_away_score": 111.02244920579102,
+        "projected_home_score": 118.36483991908466,
+        "projected_total": 229.38728912487568,
+        "away_games": 30,
+        "home_games": 30,
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
+        "bet_eligible": false
+      }
+    },
+    {
+      "event_id": "espn-401910083",
+      "home": "Phoenix Suns",
+      "away": "Sacramento Kings",
+      "event_start": "2026-12-03T02:00:00+00:00",
+      "bookmakers": 0,
+      "median_change_pp": null,
+      "schedule_source": "ESPN scoreboard",
+      "odds_status": "UNAVAILABLE",
+      "score_simulation": {
+        "status": "INDEPENDENT_SCORE_RESEARCH_ONLY",
+        "trials": 10000,
+        "sample_quality": "STANDARD",
+        "history_policy": "Recency weighted prior 550 days, up to 30 games per team",
+        "home_win_probability": 0.6581,
+        "away_win_probability": 0.3419,
+        "tie_probability": 0.0,
+        "projected_away_score": 110.08161001682427,
+        "projected_home_score": 116.69935887712664,
+        "projected_total": 226.78096889395093,
+        "away_games": 30,
+        "home_games": 30,
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
+        "bet_eligible": false
+      }
+    },
+    {
+      "event_id": "espn-401910084",
+      "home": "LA Clippers",
+      "away": "Minnesota Timberwolves",
+      "event_start": "2026-12-03T03:30:00+00:00",
+      "bookmakers": 0,
+      "median_change_pp": null,
+      "schedule_source": "ESPN scoreboard",
+      "odds_status": "UNAVAILABLE",
+      "score_simulation": {
+        "status": "INDEPENDENT_SCORE_RESEARCH_ONLY",
+        "trials": 10000,
+        "sample_quality": "STANDARD",
+        "history_policy": "Recency weighted prior 550 days, up to 30 games per team",
+        "home_win_probability": 0.3462,
+        "away_win_probability": 0.6538,
+        "tie_probability": 0.0,
+        "projected_away_score": 116.15168452317218,
+        "projected_home_score": 109.4118009820742,
+        "projected_total": 225.56348550524638,
+        "away_games": 30,
+        "home_games": 30,
+        "cutoff": "2026-11-25T20:30:37.471621+00:00",
         "bet_eligible": false
       }
     }
@@ -14210,23 +15702,23 @@
   "predictive_benchmark": {
     "status": "RESEARCH_ONLY",
     "train_events": 117,
-    "holdout_events": 52,
+    "holdout_events": 54,
     "holdout_start": "2026-11-15T01:10:00+00:00",
     "movement_coefficient": -4.0,
-    "market_brier": 0.24479000675427456,
-    "movement_brier": 0.24628494103680817,
-    "first_observed_brier": 0.24676496544299537,
+    "market_brier": 0.24040475407509276,
+    "movement_brier": 0.2418327469460739,
+    "first_observed_brier": 0.24228930497175744,
     "bet_eligible": false
   },
   "combined_benchmark": {
     "status": "RESEARCH_ONLY",
     "train_events": 117,
-    "holdout_events": 52,
+    "holdout_events": 54,
     "independent_weight": 0.0,
     "movement_coefficient": -1.25,
-    "combined_brier": 0.24749053938973775,
-    "market_brier": 0.24479000675427456,
-    "independent_brier": 0.2418835044230769,
+    "combined_brier": 0.24298372686325426,
+    "market_brier": 0.24040475407509276,
+    "independent_brier": 0.23828190148148146,
     "bet_eligible": false
   },
   "core_market_movements": [
@@ -14602,9 +16094,9 @@
     "market_brier": 0.19937422184210704
   },
   "coverage": {
-    "fixtures": 50,
+    "fixtures": 59,
     "with_odds": 8,
-    "with_score_simulation": 50,
+    "with_score_simulation": 59,
     "with_existing_projection": 0,
     "with_movement": 4
   }
