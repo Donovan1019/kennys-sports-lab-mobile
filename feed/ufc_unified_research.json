@@ -8,10 +8,10 @@
     "scheduled_rounds_verified": 0,
     "fighter_status_verified": 0,
     "odds_verified": 0,
-    "paired_historical_round_rows": 8,
+    "paired_historical_round_rows": 9,
     "paired_elo_available": 7,
     "count_simulations_available": 0,
-    "historical_per_round_available": 20,
+    "historical_per_round_available": 22,
     "point_in_time_calibration_certified": false,
     "model_ev_verified": 0,
     "bet_eligible": false
@@ -679,29 +679,135 @@
         "verified_strength_of_schedule": false
       },
       "sparse_data_probability": {
-        "red": 0.5,
-        "blue": 0.5,
+        "red": 0.5162,
+        "blue": 0.4838,
         "red_uncertainty_interval": [
-          0.01,
-          0.99
+          0.1837,
+          0.8486
         ],
-        "status": "NEUTRAL_PRIOR"
+        "status": "UNCALIBRATED_RESEARCH"
       },
       "count_simulation": {
         "Mateusz R\u0119becki": {
           "status": "UNAVAILABLE",
-          "reason": "Verified scheduled rounds or historical count rates missing"
+          "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
+          "historical_per_round": {
+            "sig_landed": 25.91,
+            "sig_attempted": 52.41,
+            "td_landed": 0.91,
+            "td_attempted": 1.82
+          },
+          "duration_scenarios": {
+            "3": {
+              "status": "HYPOTHETICAL_RESEARCH_ONLY",
+              "count_means": {
+                "sig_landed": 64.65,
+                "sig_attempted": 130.34,
+                "takedowns_landed": 2.25,
+                "takedowns_attempted": 4.49
+              },
+              "hazard_sensitivity": {
+                "low_finish_hazard": 0.08,
+                "high_finish_hazard": 0.3,
+                "sig_landed_mean_range": [
+                  55.8,
+                  72.65
+                ],
+                "takedowns_landed_mean_range": [
+                  1.93,
+                  2.5
+                ]
+              },
+              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
+            },
+            "5": {
+              "status": "HYPOTHETICAL_RESEARCH_ONLY",
+              "count_means": {
+                "sig_landed": 91.28,
+                "sig_attempted": 184.01,
+                "takedowns_landed": 3.14,
+                "takedowns_attempted": 6.44
+              },
+              "hazard_sensitivity": {
+                "low_finish_hazard": 0.08,
+                "high_finish_hazard": 0.3,
+                "sig_landed_mean_range": [
+                  72.33,
+                  112.29
+                ],
+                "takedowns_landed_mean_range": [
+                  2.5,
+                  3.86
+                ]
+              },
+              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
+            }
+          },
+          "scenario_warning": "Unverified fight length; hypothetical 3/5-round counts are not predictions or bet-eligible"
         },
         "Elves Brener": {
           "status": "UNAVAILABLE",
-          "reason": "Verified scheduled rounds or historical count rates missing"
+          "reason": "Scheduled rounds UNVERIFIED; showing historical per-round rates only, not full-fight simulation",
+          "historical_per_round": {
+            "sig_landed": 22.71,
+            "sig_attempted": 46.82,
+            "td_landed": 0.29,
+            "td_attempted": 1.76
+          },
+          "duration_scenarios": {
+            "3": {
+              "status": "HYPOTHETICAL_RESEARCH_ONLY",
+              "count_means": {
+                "sig_landed": 55.72,
+                "sig_attempted": 114.42,
+                "takedowns_landed": 0.77,
+                "takedowns_attempted": 4.45
+              },
+              "hazard_sensitivity": {
+                "low_finish_hazard": 0.08,
+                "high_finish_hazard": 0.3,
+                "sig_landed_mean_range": [
+                  49.64,
+                  63.74
+                ],
+                "takedowns_landed_mean_range": [
+                  0.68,
+                  0.83
+                ]
+              },
+              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
+            },
+            "5": {
+              "status": "HYPOTHETICAL_RESEARCH_ONLY",
+              "count_means": {
+                "sig_landed": 77.91,
+                "sig_attempted": 160.22,
+                "takedowns_landed": 1.05,
+                "takedowns_attempted": 6.12
+              },
+              "hazard_sensitivity": {
+                "low_finish_hazard": 0.08,
+                "high_finish_hazard": 0.3,
+                "sig_landed_mean_range": [
+                  62.81,
+                  95.72
+                ],
+                "takedowns_landed_mean_range": [
+                  0.78,
+                  1.19
+                ]
+              },
+              "hazard_warning": "Illustrative 8%-30% per-round finish hazards, not empirically calibrated"
+            }
+          },
+          "scenario_warning": "Unverified fight length; hypothetical 3/5-round counts are not predictions or bet-eligible"
         }
       },
       "input_evidence": {
         "scheduled_rounds_verified": false,
         "fighter_status_verified": false,
         "odds_verified": false,
-        "paired_historical_round_rows": 0,
+        "paired_historical_round_rows": 17,
         "opponent_quality_verified": false
       },
       "calibration": {
