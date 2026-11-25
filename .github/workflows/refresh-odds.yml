@@ -129,7 +129,19 @@ jobs:
           if ! git diff --cached --quiet; then
             git commit -m "Update public odds snapshot"
             for attempt in 1 2 3 4 5; do
-              git pull --rebase origin main
+              if ! git pull --rebase origin main; then
+                conflicts=$(git diff --name-only --diff-filter=U)
+                if [ "$conflicts" != 'feed/model_market_decisions.json' ]; then
+                  git rebase --abort
+                  exit 1
+                fi
+                git checkout --ours -- feed/model_market_decisions.json
+                git add feed/model_market_decisions.json
+                GIT_EDITOR=true git rebase --continue || { git rebase --abort; exit 1; }
+                python -m scripts.build_model_market_decisions
+                git add feed/model_market_decisions.json
+                if ! git diff --cached --quiet; then git commit -m 'Regenerate market comparisons after concurrent update'; fi
+              fi
               if git push origin HEAD:main; then exit 0; fi
               sleep $((attempt * 2))
             done
