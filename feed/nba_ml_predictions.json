@@ -1,7 +1,7 @@
 {
   "status": "validated",
   "sport": "basketball_nba",
-  "generated_at": "2026-11-24T17:45:37.856140+00:00",
+  "generated_at": "2026-11-25T02:30:28.072722+00:00",
   "calibration_passed": true,
   "model_version": "elo-walkforward-v1-holdout-audit",
   "validation_report": {
@@ -24,30 +24,6 @@
   },
   "training_cutoff": "2026-11-24T03:00Z",
   "predictions": [
-    {
-      "event_id": "86WeNM55ZylhAfMEAgpS",
-      "team": "Orlando Magic",
-      "date_et": "2026-11-24",
-      "win_probability": 0.441654
-    },
-    {
-      "event_id": "86WeNM55ZylhAfMEAgpS",
-      "team": "Detroit Pistons",
-      "date_et": "2026-11-24",
-      "win_probability": 0.558346
-    },
-    {
-      "event_id": "0N4dyCi9911qPRE4DYsy",
-      "team": "Washington Wizards",
-      "date_et": "2026-11-24",
-      "win_probability": 0.202719
-    },
-    {
-      "event_id": "0N4dyCi9911qPRE4DYsy",
-      "team": "Boston Celtics",
-      "date_et": "2026-11-24",
-      "win_probability": 0.797281
-    },
     {
       "event_id": "MkeoQuI6mutTqPUONP8O",
       "team": "Denver Nuggets",
@@ -73,6 +49,18 @@
       "win_probability": 0.324479
     },
     {
+      "event_id": "FM2jeJCmEuFz6uNZZGCW",
+      "team": "Charlotte Hornets",
+      "date_et": "2026-11-25",
+      "win_probability": 0.727902
+    },
+    {
+      "event_id": "FM2jeJCmEuFz6uNZZGCW",
+      "team": "Chicago Bulls",
+      "date_et": "2026-11-25",
+      "win_probability": 0.272098
+    },
+    {
       "event_id": "70vqXKvHbVeOB1RzzBYa",
       "team": "Oklahoma City Thunder",
       "date_et": "2026-11-25",
@@ -95,6 +83,18 @@
       "team": "Cleveland Cavaliers",
       "date_et": "2026-11-25",
       "win_probability": 0.323243
+    },
+    {
+      "event_id": "VWHBb6jRy0y6u48KlHKU",
+      "team": "Milwaukee Bucks",
+      "date_et": "2026-11-25",
+      "win_probability": 0.654502
+    },
+    {
+      "event_id": "VWHBb6jRy0y6u48KlHKU",
+      "team": "Brooklyn Nets",
+      "date_et": "2026-11-25",
+      "win_probability": 0.345498
     },
     {
       "event_id": "BOSZg7p5c9SZZrafcZBm",
