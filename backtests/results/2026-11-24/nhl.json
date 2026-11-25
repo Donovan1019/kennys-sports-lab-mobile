@@ -1,0 +1,20 @@
+{
+  "sport": "NHL",
+  "date": "2026-11-24",
+  "games": [
+    {
+      "event_id": "401892780",
+      "event": "Vegas Golden Knights at Edmonton Oilers",
+      "commence_time": "2026-11-25T01:00Z",
+      "home": "Edmonton Oilers",
+      "away": "Vegas Golden Knights",
+      "home_score": 3,
+      "away_score": 5,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261124&limit=100"
+    }
+  ],
+  "source_url": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261124&limit=100"
+}

@@ -1,6 +1,6 @@
 {
   "date": "2026-11-24",
-  "generated_at": "2026-11-24T22:21:15.872939+00:00",
+  "generated_at": "2026-11-25T21:38:02.646504+00:00",
   "sports": {
     "NFL": {
       "status": "OUTCOMES_UNVERIFIED",
@@ -14,15 +14,40 @@
       "pending": 78
     },
     "NBA": {
-      "status": "OUTCOMES_UNVERIFIED",
+      "status": "PARTIALLY_SETTLED_MONEYLINES",
       "saved_quotes": 0,
       "eligible_predictions": 24,
       "research_only_predictions": 24,
       "bet_eligible_predictions": 0,
       "blocked_predictions": [],
-      "graded": 0,
-      "settled": [],
-      "pending": 24
+      "graded": 4,
+      "settled": [
+        {
+          "event": "Boston Celtics @ Washington Wizards",
+          "market": "h2h",
+          "selection": "Washington Wizards",
+          "outcome": "loss"
+        },
+        {
+          "event": "Boston Celtics @ Washington Wizards",
+          "market": "h2h",
+          "selection": "Boston Celtics",
+          "outcome": "win"
+        },
+        {
+          "event": "Dallas Mavericks @ Denver Nuggets",
+          "market": "h2h",
+          "selection": "Denver Nuggets",
+          "outcome": "loss"
+        },
+        {
+          "event": "Dallas Mavericks @ Denver Nuggets",
+          "market": "h2h",
+          "selection": "Dallas Mavericks",
+          "outcome": "win"
+        }
+      ],
+      "pending": 20
     },
     "NHL": {
       "status": "PARTIALLY_SETTLED_MONEYLINES",
@@ -31,7 +56,7 @@
       "research_only_predictions": 210,
       "bet_eligible_predictions": 0,
       "blocked_predictions": [],
-      "graded": 14,
+      "graded": 18,
       "settled": [
         {
           "event": "Columbus Blue Jackets @ New Jersey Devils",
@@ -116,15 +141,39 @@
           "market": "h2h",
           "selection": "Minnesota Wild",
           "outcome": "win"
+        },
+        {
+          "event": "Vegas Golden Knights @ Edmonton Oilers",
+          "market": "h2h",
+          "selection": "Edmonton Oilers",
+          "outcome": "loss"
+        },
+        {
+          "event": "Vegas Golden Knights @ Edmonton Oilers",
+          "market": "h2h",
+          "selection": "Vegas Golden Knights",
+          "outcome": "win"
+        },
+        {
+          "event": "Vegas Golden Knights @ Edmonton Oilers",
+          "market": "h2h",
+          "selection": "Edmonton Oilers",
+          "outcome": "loss"
+        },
+        {
+          "event": "Vegas Golden Knights @ Edmonton Oilers",
+          "market": "h2h",
+          "selection": "Vegas Golden Knights",
+          "outcome": "win"
         }
       ],
-      "pending": 196
+      "pending": 192
     }
   },
   "summary": {
-    "verified_picks": 14,
-    "wins": 7,
-    "losses": 7,
+    "verified_picks": 22,
+    "wins": 11,
+    "losses": 11,
     "pushes": 0,
     "roi": null,
     "hit_rate": 0.5

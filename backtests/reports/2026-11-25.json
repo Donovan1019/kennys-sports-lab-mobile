@@ -1,0 +1,85 @@
+{
+  "date": "2026-11-25",
+  "generated_at": "2026-11-25T21:38:02.806501+00:00",
+  "sports": {
+    "NFL": {
+      "status": "OUTCOMES_UNVERIFIED",
+      "saved_quotes": 0,
+      "eligible_predictions": 78,
+      "research_only_predictions": 78,
+      "bet_eligible_predictions": 0,
+      "blocked_predictions": [],
+      "graded": 0,
+      "settled": [],
+      "pending": 78
+    },
+    "NBA": {
+      "status": "PARTIALLY_SETTLED_MONEYLINES",
+      "saved_quotes": 0,
+      "eligible_predictions": 24,
+      "research_only_predictions": 24,
+      "bet_eligible_predictions": 0,
+      "blocked_predictions": [],
+      "graded": 4,
+      "settled": [
+        {
+          "event": "Boston Celtics @ Washington Wizards",
+          "market": "h2h",
+          "selection": "Washington Wizards",
+          "outcome": "loss"
+        },
+        {
+          "event": "Boston Celtics @ Washington Wizards",
+          "market": "h2h",
+          "selection": "Boston Celtics",
+          "outcome": "win"
+        },
+        {
+          "event": "Dallas Mavericks @ Denver Nuggets",
+          "market": "h2h",
+          "selection": "Denver Nuggets",
+          "outcome": "loss"
+        },
+        {
+          "event": "Dallas Mavericks @ Denver Nuggets",
+          "market": "h2h",
+          "selection": "Dallas Mavericks",
+          "outcome": "win"
+        }
+      ],
+      "pending": 20
+    },
+    "NHL": {
+      "status": "PARTIALLY_SETTLED_MONEYLINES",
+      "saved_quotes": 0,
+      "eligible_predictions": 224,
+      "research_only_predictions": 224,
+      "bet_eligible_predictions": 0,
+      "blocked_predictions": [],
+      "graded": 2,
+      "settled": [
+        {
+          "event": "Vegas Golden Knights @ Edmonton Oilers",
+          "market": "h2h",
+          "selection": "Edmonton Oilers",
+          "outcome": "loss"
+        },
+        {
+          "event": "Vegas Golden Knights @ Edmonton Oilers",
+          "market": "h2h",
+          "selection": "Vegas Golden Knights",
+          "outcome": "win"
+        }
+      ],
+      "pending": 222
+    }
+  },
+  "summary": {
+    "verified_picks": 6,
+    "wins": 3,
+    "losses": 3,
+    "pushes": 0,
+    "roi": null,
+    "hit_rate": 0.5
+  }
+}

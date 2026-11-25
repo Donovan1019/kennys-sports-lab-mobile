@@ -1,0 +1,46 @@
+{
+  "sport": "NBA",
+  "date": "2026-11-24",
+  "games": [
+    {
+      "event_id": "401909314",
+      "event": "Detroit Pistons at Orlando Magic",
+      "commence_time": "2026-11-25T00:00Z",
+      "home": "Orlando Magic",
+      "away": "Detroit Pistons",
+      "home_score": 86,
+      "away_score": 104,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261124&limit=100"
+    },
+    {
+      "event_id": "401909315",
+      "event": "Boston Celtics at Washington Wizards",
+      "commence_time": "2026-11-25T01:00Z",
+      "home": "Washington Wizards",
+      "away": "Boston Celtics",
+      "home_score": 116,
+      "away_score": 131,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261124&limit=100"
+    },
+    {
+      "event_id": "401909316",
+      "event": "Dallas Mavericks at Denver Nuggets",
+      "commence_time": "2026-11-25T03:00Z",
+      "home": "Denver Nuggets",
+      "away": "Dallas Mavericks",
+      "home_score": 101,
+      "away_score": 120,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261124&limit=100"
+    }
+  ],
+  "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261124&limit=100"
+}
