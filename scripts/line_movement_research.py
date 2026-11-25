@@ -35,6 +35,11 @@ def movement(archive, ledger=None, now=None):
         if not all(r.get(k) for k in ("event_id","bookmaker","home","away")):continue
         groups[(r["event_id"],r["bookmaker"],r["away"],r["home"])].append((stamp,p))
     changes=[]
+    raw_quotes=defaultdict(set)
+    for q in archive.get("quotes",[]):
+        a,b=q.get("first_price"),q.get("second_price")
+        if q.get("market")=="h2h" and all(type(v) in (int,float) and 100<=abs(v)<float("inf") for v in (a,b)):
+            raw_quotes[(q.get("event_id"),q.get("bookmaker"),q.get("away"),q.get("home"),parse(q.get("captured_at")),q.get("home_no_vig"))].add((a,b))
     for (event,book,away,home),rows in groups.items():
         rows.sort()
         if len({t for t,_ in rows}) != len(set(rows)):
@@ -46,6 +51,14 @@ def movement(archive, ledger=None, now=None):
         delta=last[1]-first[1]
         steps=[b[1]-a[1] for a,b in zip(rows,rows[1:]) if a[1]!=b[1]]
         changes.append({"event_id":event,"bookmaker":book,"away":away,"home":home,"first_captured_at":first[0].isoformat(),"latest_captured_at":last[0].isoformat(),"first_home_no_vig":first[1],"latest_home_no_vig":last[1],"home_probability_change_pp":round(100*(last[1]-first[1]),3),"event_start":next(iter(starts[event])).isoformat(),"observations":len(rows),"direction":"home" if delta>0 else "away" if delta<0 else "flat","reversals":sum(a*b<0 for a,b in zip(steps,steps[1:])),"minutes_before_start":round((next(iter(starts[event]))-last[0]).total_seconds()/60,2),"is_verified_closing_line":False})
+    for row in changes:
+        for prefix in ("first","latest"):
+            key=(row["event_id"],row["bookmaker"],row["away"],row["home"],parse(row[prefix+"_captured_at"]),row[prefix+"_home_no_vig"])
+            prices=raw_quotes.get(key,set())
+            if len(prices)==1:
+                a,b=next(iter(prices))
+                row[prefix+"_home_price"]=a
+                row[prefix+"_away_price"]=b
     events=defaultdict(list)
     for row in changes:events[row["event_id"]].append(row)
     consensus=[]
