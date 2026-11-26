@@ -1136,8 +1136,8 @@
       "home_support": 0,
       "away_support": 2,
       "prediction": null,
-      "outcome": null,
-      "movement_correct": null,
+      "outcome": "home",
+      "movement_correct": false,
       "score_simulation": {
         "status": "INDEPENDENT_SCORE_RESEARCH_ONLY",
         "trials": 10000,
@@ -1167,8 +1167,8 @@
       "home_support": 0,
       "away_support": 2,
       "prediction": null,
-      "outcome": null,
-      "movement_correct": null,
+      "outcome": "away",
+      "movement_correct": true,
       "score_simulation": {
         "status": "INDEPENDENT_SCORE_RESEARCH_ONLY",
         "trials": 10000,
@@ -1198,8 +1198,8 @@
       "home_support": 0,
       "away_support": 2,
       "prediction": null,
-      "outcome": null,
-      "movement_correct": null,
+      "outcome": "home",
+      "movement_correct": false,
       "score_simulation": {
         "status": "INDEPENDENT_SCORE_RESEARCH_ONLY",
         "trials": 10000,
@@ -1229,8 +1229,8 @@
       "home_support": 1,
       "away_support": 1,
       "prediction": null,
-      "outcome": null,
-      "movement_correct": null,
+      "outcome": "home",
+      "movement_correct": false,
       "score_simulation": {
         "status": "INDEPENDENT_SCORE_RESEARCH_ONLY",
         "trials": 10000,
@@ -5600,8 +5600,8 @@
       "home_support": 0,
       "away_support": 1,
       "prediction": null,
-      "outcome": null,
-      "movement_correct": null,
+      "outcome": "away",
+      "movement_correct": true,
       "score_simulation": {
         "status": "INDEPENDENT_SCORE_RESEARCH_ONLY",
         "trials": 10000,
@@ -5631,8 +5631,8 @@
       "home_support": 0,
       "away_support": 1,
       "prediction": null,
-      "outcome": null,
-      "movement_correct": null,
+      "outcome": "away",
+      "movement_correct": true,
       "score_simulation": {
         "status": "INDEPENDENT_SCORE_RESEARCH_ONLY",
         "trials": 10000,
@@ -14421,9 +14421,9 @@
     }
   ],
   "outcome_audit": {
-    "graded_events": 155,
-    "correct": 81,
-    "hit_rate": 0.5225806451612903,
+    "graded_events": 161,
+    "correct": 84,
+    "hit_rate": 0.5217391304347826,
     "status": "descriptive_not_out_of_sample"
   },
   "current_slate": [
@@ -14441,15 +14441,15 @@
         "trials": 10000,
         "sample_quality": "STANDARD",
         "history_policy": "Recency weighted prior 550 days, up to 30 games per team",
-        "home_win_probability": 0.549,
-        "away_win_probability": 0.451,
+        "home_win_probability": 0.5524,
+        "away_win_probability": 0.4476,
         "tie_probability": 0.0,
-        "projected_away_score": 113.49778732532288,
-        "projected_home_score": 115.58302239446799,
-        "projected_total": 229.08080971979086,
+        "projected_away_score": 112.91987858138013,
+        "projected_home_score": 115.14793212910637,
+        "projected_total": 228.0678107104865,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -14475,7 +14475,7 @@
         "projected_total": 226.04294336158492,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -14493,15 +14493,15 @@
         "trials": 10000,
         "sample_quality": "STANDARD",
         "history_policy": "Recency weighted prior 550 days, up to 30 games per team",
-        "home_win_probability": 0.448,
-        "away_win_probability": 0.552,
+        "home_win_probability": 0.4448,
+        "away_win_probability": 0.5552,
         "tie_probability": 0.0,
-        "projected_away_score": 116.9226624788248,
-        "projected_home_score": 114.64407900451624,
-        "projected_total": 231.56674148334105,
+        "projected_away_score": 116.66403604764058,
+        "projected_home_score": 114.23169203523408,
+        "projected_total": 230.89572808287465,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -14527,7 +14527,7 @@
         "projected_total": 226.9722422602754,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -14553,7 +14553,7 @@
         "projected_total": 222.6597368957688,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -14579,7 +14579,7 @@
         "projected_total": 228.5117290518534,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -14605,7 +14605,7 @@
         "projected_total": 227.91032829718532,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -14631,7 +14631,7 @@
         "projected_total": 227.28184285159293,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -14657,7 +14657,7 @@
         "projected_total": 231.99796480211936,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -14683,7 +14683,7 @@
         "projected_total": 232.03063230611056,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -14709,7 +14709,7 @@
         "projected_total": 223.62856091267756,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -14735,7 +14735,7 @@
         "projected_total": 226.28919214818714,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -14761,7 +14761,7 @@
         "projected_total": 222.89127112354143,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -14787,7 +14787,7 @@
         "projected_total": 236.20508509868276,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -14813,7 +14813,7 @@
         "projected_total": 229.39008327682083,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -14831,15 +14831,15 @@
         "trials": 10000,
         "sample_quality": "STANDARD",
         "history_policy": "Recency weighted prior 550 days, up to 30 games per team",
-        "home_win_probability": 0.5779,
-        "away_win_probability": 0.4221,
+        "home_win_probability": 0.5761,
+        "away_win_probability": 0.4239,
         "tie_probability": 0.0,
-        "projected_away_score": 114.03073511030492,
-        "projected_home_score": 117.42318036558635,
-        "projected_total": 231.45391547589125,
+        "projected_away_score": 113.77193097443936,
+        "projected_home_score": 117.01072155189867,
+        "projected_total": 230.78265252633804,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -14857,15 +14857,15 @@
         "trials": 10000,
         "sample_quality": "STANDARD",
         "history_policy": "Recency weighted prior 550 days, up to 30 games per team",
-        "home_win_probability": 0.5001,
-        "away_win_probability": 0.4999,
+        "home_win_probability": 0.5031,
+        "away_win_probability": 0.4969,
         "tie_probability": 0.0,
-        "projected_away_score": 120.2276537750152,
-        "projected_home_score": 120.13055598750265,
-        "projected_total": 240.35820976251784,
+        "projected_away_score": 119.64894322774533,
+        "projected_home_score": 119.69559205036987,
+        "projected_total": 239.34453527811522,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -14891,7 +14891,7 @@
         "projected_total": 231.356326674299,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -14917,7 +14917,7 @@
         "projected_total": 220.8127477969648,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -14943,7 +14943,7 @@
         "projected_total": 227.15250572810848,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -14969,7 +14969,7 @@
         "projected_total": 222.1558408531294,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -14995,7 +14995,7 @@
         "projected_total": 221.8750103186078,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -15021,7 +15021,7 @@
         "projected_total": 230.1717184048362,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -15047,7 +15047,7 @@
         "projected_total": 230.88822835811368,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -15073,7 +15073,7 @@
         "projected_total": 225.14485747794998,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -15099,7 +15099,7 @@
         "projected_total": 224.62843726774324,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -15125,7 +15125,7 @@
         "projected_total": 223.02473252899665,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -15151,7 +15151,7 @@
         "projected_total": 229.13719420421236,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -15177,7 +15177,7 @@
         "projected_total": 229.00035340032315,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -15203,7 +15203,7 @@
         "projected_total": 229.48034019648313,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -15229,7 +15229,7 @@
         "projected_total": 222.5687942794714,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -15255,7 +15255,7 @@
         "projected_total": 228.3451624063668,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -15281,7 +15281,7 @@
         "projected_total": 231.46516849146286,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -15307,7 +15307,7 @@
         "projected_total": 233.4543395134539,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -15325,15 +15325,15 @@
         "trials": 10000,
         "sample_quality": "STANDARD",
         "history_policy": "Recency weighted prior 550 days, up to 30 games per team",
-        "home_win_probability": 0.4963,
-        "away_win_probability": 0.5037,
+        "home_win_probability": 0.5002,
+        "away_win_probability": 0.4998,
         "tie_probability": 0.0,
-        "projected_away_score": 116.61303061485008,
-        "projected_home_score": 116.41099637697765,
-        "projected_total": 233.02402699182772,
+        "projected_away_score": 116.19864565950765,
+        "projected_home_score": 116.15236081059733,
+        "projected_total": 232.35100647010498,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -15351,15 +15351,15 @@
         "trials": 10000,
         "sample_quality": "STANDARD",
         "history_policy": "Recency weighted prior 550 days, up to 30 games per team",
-        "home_win_probability": 0.4776,
-        "away_win_probability": 0.5224,
+        "home_win_probability": 0.4742,
+        "away_win_probability": 0.5258,
         "tie_probability": 0.0,
-        "projected_away_score": 118.99266805433858,
-        "projected_home_score": 117.79672541630501,
-        "projected_total": 236.78939347064357,
+        "projected_away_score": 118.55783765839455,
+        "projected_home_score": 117.21786450861607,
+        "projected_total": 235.77570216701062,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -15385,7 +15385,7 @@
         "projected_total": 227.72710792945642,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -15411,7 +15411,7 @@
         "projected_total": 226.76241326154238,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -15437,7 +15437,7 @@
         "projected_total": 227.85949229748977,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -15463,7 +15463,7 @@
         "projected_total": 225.01371573378142,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -15489,7 +15489,7 @@
         "projected_total": 224.31337778298996,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -15515,7 +15515,7 @@
         "projected_total": 227.9718871052798,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -15533,15 +15533,15 @@
         "trials": 10000,
         "sample_quality": "STANDARD",
         "history_policy": "Recency weighted prior 550 days, up to 30 games per team",
-        "home_win_probability": 0.4765,
-        "away_win_probability": 0.5235,
+        "home_win_probability": 0.4804,
+        "away_win_probability": 0.5196,
         "tie_probability": 0.0,
-        "projected_away_score": 117.98393050323388,
-        "projected_home_score": 116.87321267989047,
-        "projected_total": 234.85714318312435,
+        "projected_away_score": 117.57228111467211,
+        "projected_home_score": 116.6147846279671,
+        "projected_total": 234.1870657426392,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -15567,7 +15567,7 @@
         "projected_total": 215.85648458503462,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -15593,7 +15593,7 @@
         "projected_total": 225.43496417475538,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -15619,7 +15619,7 @@
         "projected_total": 222.03938781270745,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -15645,7 +15645,7 @@
         "projected_total": 232.61338540451416,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -15671,7 +15671,7 @@
         "projected_total": 229.38728912487568,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -15697,7 +15697,7 @@
         "projected_total": 226.78096889395093,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     },
@@ -15723,7 +15723,137 @@
         "projected_total": 225.56348550524638,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-26T03:32:32.325869+00:00",
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
+        "bet_eligible": false
+      }
+    },
+    {
+      "event_id": "espn-401910085",
+      "home": "Atlanta Hawks",
+      "away": "Indiana Pacers",
+      "event_start": "2026-12-04T00:00:00+00:00",
+      "bookmakers": 0,
+      "median_change_pp": null,
+      "schedule_source": "ESPN scoreboard",
+      "odds_status": "UNAVAILABLE",
+      "score_simulation": {
+        "status": "INDEPENDENT_SCORE_RESEARCH_ONLY",
+        "trials": 10000,
+        "sample_quality": "STANDARD",
+        "history_policy": "Recency weighted prior 550 days, up to 30 games per team",
+        "home_win_probability": 0.5765,
+        "away_win_probability": 0.4235,
+        "tie_probability": 0.0,
+        "projected_away_score": 113.60922890902324,
+        "projected_home_score": 116.91331632075719,
+        "projected_total": 230.52254522978043,
+        "away_games": 30,
+        "home_games": 30,
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
+        "bet_eligible": false
+      }
+    },
+    {
+      "event_id": "espn-401910086",
+      "home": "Miami Heat",
+      "away": "Washington Wizards",
+      "event_start": "2026-12-04T00:30:00+00:00",
+      "bookmakers": 0,
+      "median_change_pp": null,
+      "schedule_source": "ESPN scoreboard",
+      "odds_status": "UNAVAILABLE",
+      "score_simulation": {
+        "status": "INDEPENDENT_SCORE_RESEARCH_ONLY",
+        "trials": 10000,
+        "sample_quality": "STANDARD",
+        "history_policy": "Recency weighted prior 550 days, up to 30 games per team",
+        "home_win_probability": 0.5825,
+        "away_win_probability": 0.4175,
+        "tie_probability": 0.0,
+        "projected_away_score": 116.00096563463632,
+        "projected_home_score": 120.36405508038551,
+        "projected_total": 236.36502071502184,
+        "away_games": 30,
+        "home_games": 30,
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
+        "bet_eligible": false
+      }
+    },
+    {
+      "event_id": "espn-401910087",
+      "home": "Chicago Bulls",
+      "away": "Cleveland Cavaliers",
+      "event_start": "2026-12-04T01:00:00+00:00",
+      "bookmakers": 0,
+      "median_change_pp": null,
+      "schedule_source": "ESPN scoreboard",
+      "odds_status": "UNAVAILABLE",
+      "score_simulation": {
+        "status": "INDEPENDENT_SCORE_RESEARCH_ONLY",
+        "trials": 10000,
+        "sample_quality": "STANDARD",
+        "history_policy": "Recency weighted prior 550 days, up to 30 games per team",
+        "home_win_probability": 0.4205,
+        "away_win_probability": 0.5795,
+        "tie_probability": 0.0,
+        "projected_away_score": 121.28525963976203,
+        "projected_home_score": 117.852124836364,
+        "projected_total": 239.13738447612602,
+        "away_games": 30,
+        "home_games": 30,
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
+        "bet_eligible": false
+      }
+    },
+    {
+      "event_id": "espn-401910088",
+      "home": "San Antonio Spurs",
+      "away": "Toronto Raptors",
+      "event_start": "2026-12-04T01:00:00+00:00",
+      "bookmakers": 0,
+      "median_change_pp": null,
+      "schedule_source": "ESPN scoreboard",
+      "odds_status": "UNAVAILABLE",
+      "score_simulation": {
+        "status": "INDEPENDENT_SCORE_RESEARCH_ONLY",
+        "trials": 10000,
+        "sample_quality": "STANDARD",
+        "history_policy": "Recency weighted prior 550 days, up to 30 games per team",
+        "home_win_probability": 0.64,
+        "away_win_probability": 0.36,
+        "tie_probability": 0.0,
+        "projected_away_score": 109.18192255426666,
+        "projected_home_score": 115.27158618818198,
+        "projected_total": 224.45350874244866,
+        "away_games": 30,
+        "home_games": 30,
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
+        "bet_eligible": false
+      }
+    },
+    {
+      "event_id": "espn-401910089",
+      "home": "Portland Trail Blazers",
+      "away": "Utah Jazz",
+      "event_start": "2026-12-04T03:00:00+00:00",
+      "bookmakers": 0,
+      "median_change_pp": null,
+      "schedule_source": "ESPN scoreboard",
+      "odds_status": "UNAVAILABLE",
+      "score_simulation": {
+        "status": "INDEPENDENT_SCORE_RESEARCH_ONLY",
+        "trials": 10000,
+        "sample_quality": "STANDARD",
+        "history_policy": "Recency weighted prior 550 days, up to 30 games per team",
+        "home_win_probability": 0.6528,
+        "away_win_probability": 0.3472,
+        "tie_probability": 0.0,
+        "projected_away_score": 109.54688122577633,
+        "projected_home_score": 116.70356046079652,
+        "projected_total": 226.25044168657286,
+        "away_games": 30,
+        "home_games": 30,
+        "cutoff": "2026-11-26T20:15:42.272754+00:00",
         "bet_eligible": false
       }
     }
@@ -15731,24 +15861,24 @@
   "schedule_status": "OK",
   "predictive_benchmark": {
     "status": "RESEARCH_ONLY",
-    "train_events": 120,
-    "holdout_events": 52,
-    "holdout_start": "2026-11-18T00:30:00+00:00",
+    "train_events": 124,
+    "holdout_events": 54,
+    "holdout_start": "2026-11-19T00:00:00+00:00",
     "movement_coefficient": -4.0,
-    "market_brier": 0.2340405336312667,
-    "movement_brier": 0.23721368705818494,
-    "first_observed_brier": 0.237884777664168,
+    "market_brier": 0.2299891990456245,
+    "movement_brier": 0.23198848952015808,
+    "first_observed_brier": 0.23258404623361958,
     "bet_eligible": false
   },
   "combined_benchmark": {
     "status": "RESEARCH_ONLY",
-    "train_events": 120,
-    "holdout_events": 52,
+    "train_events": 124,
+    "holdout_events": 54,
     "independent_weight": 0.0,
     "movement_coefficient": -1.5,
-    "combined_brier": 0.24031900414877433,
-    "market_brier": 0.2340405336312667,
-    "independent_brier": 0.23201650961538461,
+    "combined_brier": 0.23452678758705278,
+    "market_brier": 0.2299891990456245,
+    "independent_brier": 0.2311142814814815,
     "bet_eligible": false
   },
   "core_market_movements": [
@@ -16124,9 +16254,9 @@
     "market_brier": 0.19937422184210704
   },
   "coverage": {
-    "fixtures": 50,
+    "fixtures": 55,
     "with_odds": 0,
-    "with_score_simulation": 50,
+    "with_score_simulation": 55,
     "with_existing_projection": 0,
     "with_movement": 0
   }
