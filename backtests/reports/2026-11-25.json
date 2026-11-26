@@ -1,17 +1,30 @@
 {
   "date": "2026-11-25",
-  "generated_at": "2026-11-26T04:08:10.922558+00:00",
+  "generated_at": "2026-11-26T21:27:14.844687+00:00",
   "sports": {
     "NFL": {
-      "status": "OUTCOMES_UNVERIFIED",
+      "status": "PARTIALLY_SETTLED_MONEYLINES",
       "saved_quotes": 0,
       "eligible_predictions": 78,
       "research_only_predictions": 78,
       "bet_eligible_predictions": 0,
       "blocked_predictions": [],
-      "graded": 0,
-      "settled": [],
-      "pending": 78
+      "graded": 2,
+      "settled": [
+        {
+          "event": "Green Bay Packers @ Los Angeles Rams",
+          "market": "h2h",
+          "selection": "Los Angeles Rams",
+          "outcome": "win"
+        },
+        {
+          "event": "Green Bay Packers @ Los Angeles Rams",
+          "market": "h2h",
+          "selection": "Green Bay Packers",
+          "outcome": "loss"
+        }
+      ],
+      "pending": 76
     },
     "NBA": {
       "status": "PARTIALLY_SETTLED_MONEYLINES",
@@ -20,7 +33,7 @@
       "research_only_predictions": 24,
       "bet_eligible_predictions": 0,
       "blocked_predictions": [],
-      "graded": 8,
+      "graded": 10,
       "settled": [
         {
           "event": "Boston Celtics @ Washington Wizards",
@@ -69,9 +82,21 @@
           "market": "h2h",
           "selection": "Minnesota Timberwolves",
           "outcome": "win"
+        },
+        {
+          "event": "San Antonio Spurs @ Portland Trail Blazers",
+          "market": "h2h",
+          "selection": "Portland Trail Blazers",
+          "outcome": "win"
+        },
+        {
+          "event": "San Antonio Spurs @ Portland Trail Blazers",
+          "market": "h2h",
+          "selection": "San Antonio Spurs",
+          "outcome": "loss"
         }
       ],
-      "pending": 16
+      "pending": 14
     },
     "NHL": {
       "status": "PARTIALLY_SETTLED_MONEYLINES",
@@ -80,7 +105,7 @@
       "research_only_predictions": 224,
       "bet_eligible_predictions": 0,
       "blocked_predictions": [],
-      "graded": 42,
+      "graded": 52,
       "settled": [
         {
           "event": "Vegas Golden Knights @ Edmonton Oilers",
@@ -227,6 +252,42 @@
           "outcome": "win"
         },
         {
+          "event": "Montreal Canadiens @ Colorado Avalanche",
+          "market": "h2h",
+          "selection": "Colorado Avalanche",
+          "outcome": "win"
+        },
+        {
+          "event": "Montreal Canadiens @ Colorado Avalanche",
+          "market": "h2h",
+          "selection": "Montreal Canadiens",
+          "outcome": "loss"
+        },
+        {
+          "event": "Chicago Blackhawks @ Seattle Kraken",
+          "market": "h2h",
+          "selection": "Seattle Kraken",
+          "outcome": "loss"
+        },
+        {
+          "event": "Chicago Blackhawks @ Seattle Kraken",
+          "market": "h2h",
+          "selection": "Chicago Blackhawks",
+          "outcome": "win"
+        },
+        {
+          "event": "San Jose Sharks @ Anaheim Ducks",
+          "market": "h2h",
+          "selection": "Anaheim Ducks",
+          "outcome": "win"
+        },
+        {
+          "event": "San Jose Sharks @ Anaheim Ducks",
+          "market": "h2h",
+          "selection": "San Jose Sharks",
+          "outcome": "loss"
+        },
+        {
           "event": "Winnipeg Jets @ Boston Bruins",
           "market": "h2h",
           "selection": "Boston Bruins",
@@ -333,15 +394,39 @@
           "market": "h2h",
           "selection": "Nashville Predators",
           "outcome": "win"
+        },
+        {
+          "event": "Montreal Canadiens @ Colorado Avalanche",
+          "market": "h2h",
+          "selection": "Colorado Avalanche",
+          "outcome": "win"
+        },
+        {
+          "event": "Montreal Canadiens @ Colorado Avalanche",
+          "market": "h2h",
+          "selection": "Montreal Canadiens",
+          "outcome": "loss"
+        },
+        {
+          "event": "San Jose Sharks @ Anaheim Ducks",
+          "market": "h2h",
+          "selection": "Anaheim Ducks",
+          "outcome": "win"
+        },
+        {
+          "event": "San Jose Sharks @ Anaheim Ducks",
+          "market": "h2h",
+          "selection": "San Jose Sharks",
+          "outcome": "loss"
         }
       ],
-      "pending": 182
+      "pending": 172
     }
   },
   "summary": {
-    "verified_picks": 50,
-    "wins": 25,
-    "losses": 25,
+    "verified_picks": 64,
+    "wins": 32,
+    "losses": 32,
     "pushes": 0,
     "roi": null,
     "hit_rate": 0.5

@@ -92,6 +92,32 @@
       "completed": true,
       "source": "ESPN scoreboard",
       "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261125&limit=100"
+    },
+    {
+      "event_id": "401909324",
+      "event": "Sacramento Kings at Golden State Warriors",
+      "commence_time": "2026-11-26T03:00Z",
+      "home": "Golden State Warriors",
+      "away": "Sacramento Kings",
+      "home_score": 129,
+      "away_score": 110,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261125&limit=100"
+    },
+    {
+      "event_id": "401909325",
+      "event": "San Antonio Spurs at Portland Trail Blazers",
+      "commence_time": "2026-11-26T03:00Z",
+      "home": "Portland Trail Blazers",
+      "away": "San Antonio Spurs",
+      "home_score": 116,
+      "away_score": 111,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261125&limit=100"
     }
   ],
   "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261125&limit=100"
