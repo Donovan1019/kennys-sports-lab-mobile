@@ -1,0 +1,928 @@
+{
+  "fetched_at": "2026-11-27T23:19:53.286431+00:00",
+  "games": [
+    {
+      "event_id": "401873087",
+      "kickoff": "2026-11-29T18:00Z",
+      "stadium": "Paycor Stadium",
+      "venue_id": "3874",
+      "teams": {
+        "home": "CIN",
+        "away": "NO"
+      },
+      "status": "reported",
+      "roof_status": "unconfirmed",
+      "latitude": 39.0954645,
+      "longitude": -84.5160488,
+      "indoor_designation": false,
+      "hourly": [
+        {
+          "time_utc": "2026-11-29T17:00Z",
+          "temperature_2m": 50.5,
+          "relative_humidity_2m": 85,
+          "precipitation_probability": 70,
+          "precipitation": 0.0,
+          "wind_speed_10m": 12.2,
+          "wind_gusts_10m": 32.5,
+          "wind_direction_10m": 175,
+          "weather_code": 3
+        },
+        {
+          "time_utc": "2026-11-29T18:00Z",
+          "temperature_2m": 52.5,
+          "relative_humidity_2m": 86,
+          "precipitation_probability": 70,
+          "precipitation": 0.006,
+          "wind_speed_10m": 12.4,
+          "wind_gusts_10m": 35.0,
+          "wind_direction_10m": 181,
+          "weather_code": 3
+        },
+        {
+          "time_utc": "2026-11-29T19:00Z",
+          "temperature_2m": 54.6,
+          "relative_humidity_2m": 83,
+          "precipitation_probability": 100,
+          "precipitation": 0.0,
+          "wind_speed_10m": 12.5,
+          "wind_gusts_10m": 36.0,
+          "wind_direction_10m": 178,
+          "weather_code": 3
+        },
+        {
+          "time_utc": "2026-11-29T20:00Z",
+          "temperature_2m": 55.1,
+          "relative_humidity_2m": 86,
+          "precipitation_probability": 100,
+          "precipitation": 0.0,
+          "wind_speed_10m": 13.6,
+          "wind_gusts_10m": 37.1,
+          "wind_direction_10m": 180,
+          "weather_code": 3
+        },
+        {
+          "time_utc": "2026-11-29T21:00Z",
+          "temperature_2m": 54.7,
+          "relative_humidity_2m": 87,
+          "precipitation_probability": 100,
+          "precipitation": 0.008,
+          "wind_speed_10m": 14.4,
+          "wind_gusts_10m": 40.5,
+          "wind_direction_10m": 175,
+          "weather_code": 51
+        },
+        {
+          "time_utc": "2026-11-29T22:00Z",
+          "temperature_2m": 54.5,
+          "relative_humidity_2m": 92,
+          "precipitation_probability": 100,
+          "precipitation": 0.079,
+          "wind_speed_10m": 12.5,
+          "wind_gusts_10m": 37.1,
+          "wind_direction_10m": 191,
+          "weather_code": 80
+        }
+      ],
+      "source": "Open-Meteo",
+      "units": {
+        "time": "iso8601",
+        "temperature_2m": "\u00b0F",
+        "relative_humidity_2m": "%",
+        "precipitation_probability": "%",
+        "precipitation": "inch",
+        "wind_speed_10m": "mp/h",
+        "wind_gusts_10m": "mp/h",
+        "wind_direction_10m": "\u00b0",
+        "weather_code": "wmo code"
+      }
+    },
+    {
+      "event_id": "401873088",
+      "kickoff": "2026-11-29T18:00Z",
+      "stadium": "Lucas Oil Stadium",
+      "venue_id": "3812",
+      "teams": {
+        "home": "IND",
+        "away": "NYG"
+      },
+      "status": "reported",
+      "roof_status": "unconfirmed",
+      "latitude": 39.7590621,
+      "longitude": -86.1638376,
+      "indoor_designation": true,
+      "hourly": [
+        {
+          "time_utc": "2026-11-29T17:00Z",
+          "temperature_2m": 46.1,
+          "relative_humidity_2m": 96,
+          "precipitation_probability": 98,
+          "precipitation": 0.077,
+          "wind_speed_10m": 8.1,
+          "wind_gusts_10m": 22.6,
+          "wind_direction_10m": 162,
+          "weather_code": 61
+        },
+        {
+          "time_utc": "2026-11-29T18:00Z",
+          "temperature_2m": 46.5,
+          "relative_humidity_2m": 98,
+          "precipitation_probability": 98,
+          "precipitation": 0.198,
+          "wind_speed_10m": 7.2,
+          "wind_gusts_10m": 23.7,
+          "wind_direction_10m": 162,
+          "weather_code": 63
+        },
+        {
+          "time_utc": "2026-11-29T19:00Z",
+          "temperature_2m": 47.1,
+          "relative_humidity_2m": 97,
+          "precipitation_probability": 99,
+          "precipitation": 0.161,
+          "wind_speed_10m": 6.9,
+          "wind_gusts_10m": 26.6,
+          "wind_direction_10m": 165,
+          "weather_code": 63
+        },
+        {
+          "time_utc": "2026-11-29T20:00Z",
+          "temperature_2m": 47.5,
+          "relative_humidity_2m": 99,
+          "precipitation_probability": 99,
+          "precipitation": 0.138,
+          "wind_speed_10m": 4.3,
+          "wind_gusts_10m": 9.4,
+          "wind_direction_10m": 133,
+          "weather_code": 63
+        },
+        {
+          "time_utc": "2026-11-29T21:00Z",
+          "temperature_2m": 47.6,
+          "relative_humidity_2m": 99,
+          "precipitation_probability": 99,
+          "precipitation": 0.382,
+          "wind_speed_10m": 0.8,
+          "wind_gusts_10m": 1.8,
+          "wind_direction_10m": 124,
+          "weather_code": 65
+        },
+        {
+          "time_utc": "2026-11-29T22:00Z",
+          "temperature_2m": 47.6,
+          "relative_humidity_2m": 99,
+          "precipitation_probability": 99,
+          "precipitation": 0.071,
+          "wind_speed_10m": 5.2,
+          "wind_gusts_10m": 11.6,
+          "wind_direction_10m": 5,
+          "weather_code": 61
+        }
+      ],
+      "source": "Open-Meteo",
+      "units": {
+        "time": "iso8601",
+        "temperature_2m": "\u00b0F",
+        "relative_humidity_2m": "%",
+        "precipitation_probability": "%",
+        "precipitation": "inch",
+        "wind_speed_10m": "mp/h",
+        "wind_gusts_10m": "mp/h",
+        "wind_direction_10m": "\u00b0",
+        "weather_code": "wmo code"
+      }
+    },
+    {
+      "event_id": "401873089",
+      "kickoff": "2026-11-29T18:00Z",
+      "stadium": "Hard Rock Stadium",
+      "venue_id": "3948",
+      "teams": {
+        "home": "MIA",
+        "away": "NYJ"
+      },
+      "status": "reported",
+      "roof_status": "unconfirmed",
+      "latitude": 25.9579032,
+      "longitude": -80.2388497,
+      "indoor_designation": false,
+      "hourly": [
+        {
+          "time_utc": "2026-11-29T17:00Z",
+          "temperature_2m": 73.6,
+          "relative_humidity_2m": 79,
+          "precipitation_probability": 1,
+          "precipitation": 0.0,
+          "wind_speed_10m": 5.6,
+          "wind_gusts_10m": 7.2,
+          "wind_direction_10m": 217,
+          "weather_code": 3
+        },
+        {
+          "time_utc": "2026-11-29T18:00Z",
+          "temperature_2m": 75.6,
+          "relative_humidity_2m": 76,
+          "precipitation_probability": 1,
+          "precipitation": 0.0,
+          "wind_speed_10m": 8.2,
+          "wind_gusts_10m": 10.1,
+          "wind_direction_10m": 168,
+          "weather_code": 3
+        },
+        {
+          "time_utc": "2026-11-29T19:00Z",
+          "temperature_2m": 77.8,
+          "relative_humidity_2m": 70,
+          "precipitation_probability": 7,
+          "precipitation": 0.0,
+          "wind_speed_10m": 9.2,
+          "wind_gusts_10m": 11.4,
+          "wind_direction_10m": 135,
+          "weather_code": 3
+        },
+        {
+          "time_utc": "2026-11-29T20:00Z",
+          "temperature_2m": 78.0,
+          "relative_humidity_2m": 71,
+          "precipitation_probability": 7,
+          "precipitation": 0.0,
+          "wind_speed_10m": 9.2,
+          "wind_gusts_10m": 11.6,
+          "wind_direction_10m": 137,
+          "weather_code": 3
+        },
+        {
+          "time_utc": "2026-11-29T21:00Z",
+          "temperature_2m": 78.1,
+          "relative_humidity_2m": 72,
+          "precipitation_probability": 7,
+          "precipitation": 0.0,
+          "wind_speed_10m": 8.5,
+          "wind_gusts_10m": 10.7,
+          "wind_direction_10m": 137,
+          "weather_code": 3
+        },
+        {
+          "time_utc": "2026-11-29T22:00Z",
+          "temperature_2m": 77.7,
+          "relative_humidity_2m": 75,
+          "precipitation_probability": 7,
+          "precipitation": 0.0,
+          "wind_speed_10m": 6.8,
+          "wind_gusts_10m": 8.3,
+          "wind_direction_10m": 134,
+          "weather_code": 3
+        }
+      ],
+      "source": "Open-Meteo",
+      "units": {
+        "time": "iso8601",
+        "temperature_2m": "\u00b0F",
+        "relative_humidity_2m": "%",
+        "precipitation_probability": "%",
+        "precipitation": "inch",
+        "wind_speed_10m": "mp/h",
+        "wind_gusts_10m": "mp/h",
+        "wind_direction_10m": "\u00b0",
+        "weather_code": "wmo code"
+      }
+    },
+    {
+      "event_id": "401873084",
+      "kickoff": "2026-11-29T18:00Z",
+      "stadium": "U.S. Bank Stadium",
+      "venue_id": "5239",
+      "teams": {
+        "home": "MIN",
+        "away": "ATL"
+      },
+      "status": "unavailable",
+      "roof_status": "unconfirmed",
+      "reason": "Exact stadium coordinates unavailable"
+    },
+    {
+      "event_id": "401873090",
+      "kickoff": "2026-11-29T18:00Z",
+      "stadium": "EverBank Stadium",
+      "venue_id": "3712",
+      "teams": {
+        "home": "JAX",
+        "away": "TEN"
+      },
+      "status": "reported",
+      "roof_status": "unconfirmed",
+      "latitude": 30.3239811,
+      "longitude": -81.6373046,
+      "indoor_designation": false,
+      "hourly": [
+        {
+          "time_utc": "2026-11-29T17:00Z",
+          "temperature_2m": 64.4,
+          "relative_humidity_2m": 77,
+          "precipitation_probability": 3,
+          "precipitation": 0.0,
+          "wind_speed_10m": 5.3,
+          "wind_gusts_10m": 10.4,
+          "wind_direction_10m": 168,
+          "weather_code": 3
+        },
+        {
+          "time_utc": "2026-11-29T18:00Z",
+          "temperature_2m": 68.1,
+          "relative_humidity_2m": 61,
+          "precipitation_probability": 3,
+          "precipitation": 0.0,
+          "wind_speed_10m": 6.8,
+          "wind_gusts_10m": 11.4,
+          "wind_direction_10m": 175,
+          "weather_code": 3
+        },
+        {
+          "time_utc": "2026-11-29T19:00Z",
+          "temperature_2m": 70.1,
+          "relative_humidity_2m": 51,
+          "precipitation_probability": 4,
+          "precipitation": 0.0,
+          "wind_speed_10m": 6.5,
+          "wind_gusts_10m": 11.0,
+          "wind_direction_10m": 188,
+          "weather_code": 3
+        },
+        {
+          "time_utc": "2026-11-29T20:00Z",
+          "temperature_2m": 71.7,
+          "relative_humidity_2m": 50,
+          "precipitation_probability": 4,
+          "precipitation": 0.0,
+          "wind_speed_10m": 6.8,
+          "wind_gusts_10m": 11.2,
+          "wind_direction_10m": 189,
+          "weather_code": 3
+        },
+        {
+          "time_utc": "2026-11-29T21:00Z",
+          "temperature_2m": 71.3,
+          "relative_humidity_2m": 52,
+          "precipitation_probability": 4,
+          "precipitation": 0.0,
+          "wind_speed_10m": 6.6,
+          "wind_gusts_10m": 11.2,
+          "wind_direction_10m": 204,
+          "weather_code": 3
+        },
+        {
+          "time_utc": "2026-11-29T22:00Z",
+          "temperature_2m": 69.6,
+          "relative_humidity_2m": 56,
+          "precipitation_probability": 4,
+          "precipitation": 0.0,
+          "wind_speed_10m": 4.5,
+          "wind_gusts_10m": 8.7,
+          "wind_direction_10m": 186,
+          "weather_code": 3
+        }
+      ],
+      "source": "Open-Meteo",
+      "units": {
+        "time": "iso8601",
+        "temperature_2m": "\u00b0F",
+        "relative_humidity_2m": "%",
+        "precipitation_probability": "%",
+        "precipitation": "inch",
+        "wind_speed_10m": "mp/h",
+        "wind_gusts_10m": "mp/h",
+        "wind_direction_10m": "\u00b0",
+        "weather_code": "wmo code"
+      }
+    },
+    {
+      "event_id": "401873085",
+      "kickoff": "2026-11-29T18:00Z",
+      "stadium": "Reliant Stadium",
+      "venue_id": "3891",
+      "teams": {
+        "home": "HOU",
+        "away": "BAL"
+      },
+      "status": "reported",
+      "roof_status": "unconfirmed",
+      "latitude": 29.6848581,
+      "longitude": -95.4108015,
+      "indoor_designation": true,
+      "hourly": [
+        {
+          "time_utc": "2026-11-29T17:00Z",
+          "temperature_2m": 64.5,
+          "relative_humidity_2m": 44,
+          "precipitation_probability": 6,
+          "precipitation": 0.0,
+          "wind_speed_10m": 16.3,
+          "wind_gusts_10m": 25.1,
+          "wind_direction_10m": 335,
+          "weather_code": 3
+        },
+        {
+          "time_utc": "2026-11-29T18:00Z",
+          "temperature_2m": 66.2,
+          "relative_humidity_2m": 39,
+          "precipitation_probability": 6,
+          "precipitation": 0.0,
+          "wind_speed_10m": 17.2,
+          "wind_gusts_10m": 24.4,
+          "wind_direction_10m": 332,
+          "weather_code": 3
+        },
+        {
+          "time_utc": "2026-11-29T19:00Z",
+          "temperature_2m": 67.5,
+          "relative_humidity_2m": 36,
+          "precipitation_probability": 0,
+          "precipitation": 0.0,
+          "wind_speed_10m": 17.5,
+          "wind_gusts_10m": 24.2,
+          "wind_direction_10m": 329,
+          "weather_code": 3
+        },
+        {
+          "time_utc": "2026-11-29T20:00Z",
+          "temperature_2m": 67.5,
+          "relative_humidity_2m": 33,
+          "precipitation_probability": 0,
+          "precipitation": 0.0,
+          "wind_speed_10m": 17.8,
+          "wind_gusts_10m": 25.1,
+          "wind_direction_10m": 333,
+          "weather_code": 3
+        },
+        {
+          "time_utc": "2026-11-29T21:00Z",
+          "temperature_2m": 67.1,
+          "relative_humidity_2m": 32,
+          "precipitation_probability": 0,
+          "precipitation": 0.0,
+          "wind_speed_10m": 17.7,
+          "wind_gusts_10m": 25.3,
+          "wind_direction_10m": 338,
+          "weather_code": 3
+        },
+        {
+          "time_utc": "2026-11-29T22:00Z",
+          "temperature_2m": 66.3,
+          "relative_humidity_2m": 31,
+          "precipitation_probability": 0,
+          "precipitation": 0.0,
+          "wind_speed_10m": 15.1,
+          "wind_gusts_10m": 25.7,
+          "wind_direction_10m": 341,
+          "weather_code": 3
+        }
+      ],
+      "source": "Open-Meteo",
+      "units": {
+        "time": "iso8601",
+        "temperature_2m": "\u00b0F",
+        "relative_humidity_2m": "%",
+        "precipitation_probability": "%",
+        "precipitation": "inch",
+        "wind_speed_10m": "mp/h",
+        "wind_gusts_10m": "mp/h",
+        "wind_direction_10m": "\u00b0",
+        "weather_code": "wmo code"
+      }
+    },
+    {
+      "event_id": "401873093",
+      "kickoff": "2026-11-29T21:05Z",
+      "stadium": "SoFi Stadium",
+      "venue_id": "7065",
+      "teams": {
+        "home": "LAC",
+        "away": "NE"
+      },
+      "status": "reported",
+      "roof_status": "unconfirmed",
+      "latitude": 33.9534074,
+      "longitude": -118.3390098,
+      "indoor_designation": false,
+      "hourly": [
+        {
+          "time_utc": "2026-11-29T21:00Z",
+          "temperature_2m": 71.6,
+          "relative_humidity_2m": 61,
+          "precipitation_probability": 0,
+          "precipitation": 0.0,
+          "wind_speed_10m": 6.2,
+          "wind_gusts_10m": 4.5,
+          "wind_direction_10m": 201,
+          "weather_code": 3
+        },
+        {
+          "time_utc": "2026-11-29T22:00Z",
+          "temperature_2m": 71.4,
+          "relative_humidity_2m": 61,
+          "precipitation_probability": 0,
+          "precipitation": 0.0,
+          "wind_speed_10m": 7.8,
+          "wind_gusts_10m": 5.1,
+          "wind_direction_10m": 217,
+          "weather_code": 0
+        },
+        {
+          "time_utc": "2026-11-29T23:00Z",
+          "temperature_2m": 70.6,
+          "relative_humidity_2m": 62,
+          "precipitation_probability": 0,
+          "precipitation": 0.0,
+          "wind_speed_10m": 8.1,
+          "wind_gusts_10m": 5.4,
+          "wind_direction_10m": 219,
+          "weather_code": 0
+        },
+        {
+          "time_utc": "2026-11-30T00:00Z",
+          "temperature_2m": 69.6,
+          "relative_humidity_2m": 64,
+          "precipitation_probability": 0,
+          "precipitation": 0.0,
+          "wind_speed_10m": 7.6,
+          "wind_gusts_10m": 5.8,
+          "wind_direction_10m": 227,
+          "weather_code": 0
+        },
+        {
+          "time_utc": "2026-11-30T01:00Z",
+          "temperature_2m": 68.6,
+          "relative_humidity_2m": 67,
+          "precipitation_probability": 8,
+          "precipitation": 0.0,
+          "wind_speed_10m": 7.4,
+          "wind_gusts_10m": 6.3,
+          "wind_direction_10m": 237,
+          "weather_code": 0
+        }
+      ],
+      "source": "Open-Meteo",
+      "units": {
+        "time": "iso8601",
+        "temperature_2m": "\u00b0F",
+        "relative_humidity_2m": "%",
+        "precipitation_probability": "%",
+        "precipitation": "inch",
+        "wind_speed_10m": "mp/h",
+        "wind_gusts_10m": "mp/h",
+        "wind_direction_10m": "\u00b0",
+        "weather_code": "wmo code"
+      }
+    },
+    {
+      "event_id": "401873092",
+      "kickoff": "2026-11-29T21:25Z",
+      "stadium": "State Farm Stadium",
+      "venue_id": "3970",
+      "teams": {
+        "home": "ARI",
+        "away": "WSH"
+      },
+      "status": "reported",
+      "roof_status": "unconfirmed",
+      "latitude": 33.5270393,
+      "longitude": -112.2617088,
+      "indoor_designation": true,
+      "hourly": [
+        {
+          "time_utc": "2026-11-29T21:00Z",
+          "temperature_2m": 73.9,
+          "relative_humidity_2m": 18,
+          "precipitation_probability": 0,
+          "precipitation": 0.0,
+          "wind_speed_10m": 6.1,
+          "wind_gusts_10m": 7.4,
+          "wind_direction_10m": 126,
+          "weather_code": 3
+        },
+        {
+          "time_utc": "2026-11-29T22:00Z",
+          "temperature_2m": 74.6,
+          "relative_humidity_2m": 17,
+          "precipitation_probability": 0,
+          "precipitation": 0.0,
+          "wind_speed_10m": 5.7,
+          "wind_gusts_10m": 6.7,
+          "wind_direction_10m": 135,
+          "weather_code": 3
+        },
+        {
+          "time_utc": "2026-11-29T23:00Z",
+          "temperature_2m": 74.6,
+          "relative_humidity_2m": 17,
+          "precipitation_probability": 0,
+          "precipitation": 0.0,
+          "wind_speed_10m": 5.4,
+          "wind_gusts_10m": 6.3,
+          "wind_direction_10m": 142,
+          "weather_code": 3
+        },
+        {
+          "time_utc": "2026-11-30T00:00Z",
+          "temperature_2m": 73.5,
+          "relative_humidity_2m": 18,
+          "precipitation_probability": 0,
+          "precipitation": 0.0,
+          "wind_speed_10m": 3.4,
+          "wind_gusts_10m": 2.9,
+          "wind_direction_10m": 143,
+          "weather_code": 3
+        },
+        {
+          "time_utc": "2026-11-30T01:00Z",
+          "temperature_2m": 72.3,
+          "relative_humidity_2m": 19,
+          "precipitation_probability": 0,
+          "precipitation": 0.0,
+          "wind_speed_10m": 0.5,
+          "wind_gusts_10m": 0.9,
+          "wind_direction_10m": 117,
+          "weather_code": 3
+        }
+      ],
+      "source": "Open-Meteo",
+      "units": {
+        "time": "iso8601",
+        "temperature_2m": "\u00b0F",
+        "relative_humidity_2m": "%",
+        "precipitation_probability": "%",
+        "precipitation": "inch",
+        "wind_speed_10m": "mp/h",
+        "wind_gusts_10m": "mp/h",
+        "wind_direction_10m": "\u00b0",
+        "weather_code": "wmo code"
+      }
+    },
+    {
+      "event_id": "401873091",
+      "kickoff": "2026-11-29T21:25Z",
+      "stadium": "Levi's Stadium",
+      "venue_id": "4738",
+      "teams": {
+        "home": "SF",
+        "away": "SEA"
+      },
+      "status": "unavailable",
+      "roof_status": "unconfirmed",
+      "reason": "Exact stadium coordinates unavailable"
+    },
+    {
+      "event_id": "401873086",
+      "kickoff": "2026-11-30T01:20Z",
+      "stadium": "Huntington Bank Field",
+      "venue_id": "3679",
+      "teams": {
+        "home": "CLE",
+        "away": "LV"
+      },
+      "status": "reported",
+      "roof_status": "unconfirmed",
+      "latitude": 41.5060559,
+      "longitude": -81.6997118,
+      "indoor_designation": false,
+      "hourly": [
+        {
+          "time_utc": "2026-11-30T01:00Z",
+          "temperature_2m": 49.0,
+          "relative_humidity_2m": 90,
+          "precipitation_probability": 100,
+          "precipitation": 0.051,
+          "wind_speed_10m": 12.7,
+          "wind_gusts_10m": 29.8,
+          "wind_direction_10m": 172,
+          "weather_code": 61
+        },
+        {
+          "time_utc": "2026-11-30T02:00Z",
+          "temperature_2m": 49.4,
+          "relative_humidity_2m": 90,
+          "precipitation_probability": 100,
+          "precipitation": 0.016,
+          "wind_speed_10m": 12.5,
+          "wind_gusts_10m": 31.5,
+          "wind_direction_10m": 170,
+          "weather_code": 51
+        },
+        {
+          "time_utc": "2026-11-30T03:00Z",
+          "temperature_2m": 50.5,
+          "relative_humidity_2m": 88,
+          "precipitation_probability": 100,
+          "precipitation": 0.012,
+          "wind_speed_10m": 13.6,
+          "wind_gusts_10m": 33.1,
+          "wind_direction_10m": 181,
+          "weather_code": 51
+        },
+        {
+          "time_utc": "2026-11-30T04:00Z",
+          "temperature_2m": 50.7,
+          "relative_humidity_2m": 89,
+          "precipitation_probability": 100,
+          "precipitation": 0.055,
+          "wind_speed_10m": 15.3,
+          "wind_gusts_10m": 35.6,
+          "wind_direction_10m": 187,
+          "weather_code": 61
+        },
+        {
+          "time_utc": "2026-11-30T05:00Z",
+          "temperature_2m": 50.8,
+          "relative_humidity_2m": 93,
+          "precipitation_probability": 100,
+          "precipitation": 0.118,
+          "wind_speed_10m": 11.9,
+          "wind_gusts_10m": 24.2,
+          "wind_direction_10m": 226,
+          "weather_code": 81
+        }
+      ],
+      "source": "Open-Meteo",
+      "units": {
+        "time": "iso8601",
+        "temperature_2m": "\u00b0F",
+        "relative_humidity_2m": "%",
+        "precipitation_probability": "%",
+        "precipitation": "inch",
+        "wind_speed_10m": "mp/h",
+        "wind_gusts_10m": "mp/h",
+        "wind_direction_10m": "\u00b0",
+        "weather_code": "wmo code"
+      }
+    },
+    {
+      "event_id": "401873094",
+      "kickoff": "2026-12-01T01:15Z",
+      "stadium": "Raymond James Stadium",
+      "venue_id": "3886",
+      "teams": {
+        "home": "TB",
+        "away": "CAR"
+      },
+      "status": "reported",
+      "roof_status": "unconfirmed",
+      "latitude": 27.9759793,
+      "longitude": -82.5033545,
+      "indoor_designation": false,
+      "hourly": [
+        {
+          "time_utc": "2026-12-01T01:00Z",
+          "temperature_2m": 69.2,
+          "relative_humidity_2m": 94,
+          "precipitation_probability": 34,
+          "precipitation": 0.0,
+          "wind_speed_10m": 4.5,
+          "wind_gusts_10m": 5.8,
+          "wind_direction_10m": 3,
+          "weather_code": 3
+        },
+        {
+          "time_utc": "2026-12-01T02:00Z",
+          "temperature_2m": 68.7,
+          "relative_humidity_2m": 94,
+          "precipitation_probability": 34,
+          "precipitation": 0.008,
+          "wind_speed_10m": 5.2,
+          "wind_gusts_10m": 7.6,
+          "wind_direction_10m": 20,
+          "weather_code": 51
+        },
+        {
+          "time_utc": "2026-12-01T03:00Z",
+          "temperature_2m": 67.5,
+          "relative_humidity_2m": 93,
+          "precipitation_probability": 34,
+          "precipitation": 0.012,
+          "wind_speed_10m": 6.8,
+          "wind_gusts_10m": 9.4,
+          "wind_direction_10m": 38,
+          "weather_code": 51
+        },
+        {
+          "time_utc": "2026-12-01T04:00Z",
+          "temperature_2m": 66.8,
+          "relative_humidity_2m": 92,
+          "precipitation_probability": 34,
+          "precipitation": 0.004,
+          "wind_speed_10m": 7.7,
+          "wind_gusts_10m": 11.2,
+          "wind_direction_10m": 38,
+          "weather_code": 51
+        },
+        {
+          "time_utc": "2026-12-01T05:00Z",
+          "temperature_2m": 66.6,
+          "relative_humidity_2m": 92,
+          "precipitation_probability": 34,
+          "precipitation": 0.016,
+          "wind_speed_10m": 7.0,
+          "wind_gusts_10m": 11.4,
+          "wind_direction_10m": 48,
+          "weather_code": 51
+        }
+      ],
+      "source": "Open-Meteo",
+      "units": {
+        "time": "iso8601",
+        "temperature_2m": "\u00b0F",
+        "relative_humidity_2m": "%",
+        "precipitation_probability": "%",
+        "precipitation": "inch",
+        "wind_speed_10m": "mp/h",
+        "wind_gusts_10m": "mp/h",
+        "wind_direction_10m": "\u00b0",
+        "weather_code": "wmo code"
+      }
+    },
+    {
+      "event_id": "401873096",
+      "kickoff": "2026-12-04T01:15Z",
+      "stadium": "SoFi Stadium",
+      "venue_id": "7065",
+      "teams": {
+        "home": "LAR",
+        "away": "KC"
+      },
+      "status": "reported",
+      "roof_status": "unconfirmed",
+      "latitude": 33.9534074,
+      "longitude": -118.3390098,
+      "indoor_designation": false,
+      "hourly": [
+        {
+          "time_utc": "2026-12-04T01:00Z",
+          "temperature_2m": 66.1,
+          "relative_humidity_2m": 45,
+          "precipitation_probability": 22,
+          "precipitation": 0.0,
+          "wind_speed_10m": 4.2,
+          "wind_gusts_10m": 3.1,
+          "wind_direction_10m": 245,
+          "weather_code": 3
+        },
+        {
+          "time_utc": "2026-12-04T02:00Z",
+          "temperature_2m": 65.4,
+          "relative_humidity_2m": 49,
+          "precipitation_probability": 22,
+          "precipitation": 0.0,
+          "wind_speed_10m": 4.1,
+          "wind_gusts_10m": 4.5,
+          "wind_direction_10m": 248,
+          "weather_code": 3
+        },
+        {
+          "time_utc": "2026-12-04T03:00Z",
+          "temperature_2m": 64.9,
+          "relative_humidity_2m": 51,
+          "precipitation_probability": 22,
+          "precipitation": 0.0,
+          "wind_speed_10m": 3.5,
+          "wind_gusts_10m": 4.9,
+          "wind_direction_10m": 252,
+          "weather_code": 3
+        },
+        {
+          "time_utc": "2026-12-04T04:00Z",
+          "temperature_2m": 64.6,
+          "relative_humidity_2m": 52,
+          "precipitation_probability": 22,
+          "precipitation": 0.0,
+          "wind_speed_10m": 2.6,
+          "wind_gusts_10m": 4.0,
+          "wind_direction_10m": 255,
+          "weather_code": 3
+        },
+        {
+          "time_utc": "2026-12-04T05:00Z",
+          "temperature_2m": 64.5,
+          "relative_humidity_2m": 53,
+          "precipitation_probability": 22,
+          "precipitation": 0.0,
+          "wind_speed_10m": 1.3,
+          "wind_gusts_10m": 2.5,
+          "wind_direction_10m": 270,
+          "weather_code": 3
+        }
+      ],
+      "source": "Open-Meteo",
+      "units": {
+        "time": "iso8601",
+        "temperature_2m": "\u00b0F",
+        "relative_humidity_2m": "%",
+        "precipitation_probability": "%",
+        "precipitation": "inch",
+        "wind_speed_10m": "mp/h",
+        "wind_gusts_10m": "mp/h",
+        "wind_direction_10m": "\u00b0",
+        "weather_code": "wmo code"
+      }
+    }
+  ],
+  "coverage": 10,
+  "expected": 11
+}
