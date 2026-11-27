@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-27T20:13:02.626Z",
+  "generated_at": "2026-11-27T20:14:28.041Z",
   "status": "RESEARCH_ONLY",
   "betting_eligible": false,
   "games_examined": 22,
@@ -10,5 +10,69 @@
     "Fewer than five complete same-game samples": 81
   },
   "source": "PropLine private processing + existing NFL joint simulator",
-  "samples": []
+  "samples": [
+    {
+      "event": "New Orleans Saints @ Cincinnati Bengals",
+      "kickoff": "2026-11-29T18:00:00Z",
+      "legs": [
+        {
+          "player": "Joe Burrow",
+          "market": "player_pass_tds",
+          "selection": "Over",
+          "point": 2.5
+        },
+        {
+          "player": "Tee Higgins",
+          "market": "player_receptions",
+          "selection": "Over",
+          "point": 4.5
+        }
+      ],
+      "joint_rate": 0.49,
+      "trials": 2000,
+      "paired_events": 14
+    },
+    {
+      "event": "New Orleans Saints @ Cincinnati Bengals",
+      "kickoff": "2026-11-29T18:00:00Z",
+      "legs": [
+        {
+          "player": "Tyler Shough",
+          "market": "player_pass_yds",
+          "selection": "Over",
+          "point": 233.5
+        },
+        {
+          "player": "Chris Olave",
+          "market": "player_reception_yds",
+          "selection": "Over",
+          "point": 70.5
+        }
+      ],
+      "joint_rate": 0.4385,
+      "trials": 2000,
+      "paired_events": 18
+    },
+    {
+      "event": "New Orleans Saints @ Cincinnati Bengals",
+      "kickoff": "2026-11-29T18:00:00Z",
+      "legs": [
+        {
+          "player": "Joe Burrow",
+          "market": "player_pass_tds",
+          "selection": "Over",
+          "point": 2.5
+        },
+        {
+          "player": "Tee Higgins",
+          "market": "player_reception_yds",
+          "selection": "Over",
+          "point": 65.5
+        }
+      ],
+      "joint_rate": 0.434,
+      "trials": 2000,
+      "paired_events": 14
+    }
+  ]
 }
