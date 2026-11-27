@@ -1,12 +1,14 @@
 {
-  "generated_at": "2026-11-16T02:40:41.990Z",
+  "generated_at": "2026-11-27T20:11:03.200Z",
   "status": "RESEARCH_ONLY",
   "betting_eligible": false,
-  "source": "verified historical player logs + timestamped published DK/FD quotes",
-  "games_examined": 0,
-  "combinations_examined": 0,
-  "simulated": 0,
-  "blocked": 0,
-  "reasons": {},
+  "games_examined": 22,
+  "combinations_examined": 200,
+  "simulated": 119,
+  "blocked": 81,
+  "reasons": {
+    "Fewer than five complete same-game samples": 81
+  },
+  "source": "PropLine private processing + existing NFL joint simulator",
   "samples": []
 }
