@@ -50,7 +50,11 @@ jobs:
           if test -f feed/armchairlogan_weather.json; then git add feed/armchairlogan_weather.json; fi
           git diff --cached --quiet || git commit -m 'Refresh ArmchairLogan published forecasts'
           for attempt in 1 2 3 4 5; do
-            git pull --rebase origin main || exit 1
+            if ! git pull --rebase -X ours origin main; then
+              git rebase --abort || true
+              sleep $((attempt * 3))
+              continue
+            fi
             if git push origin HEAD:main; then exit 0; fi
             sleep $((attempt * 3))
           done
