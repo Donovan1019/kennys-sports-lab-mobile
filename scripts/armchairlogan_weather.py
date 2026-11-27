@@ -20,6 +20,11 @@ def collect(e):
         detail=get('https://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event='+e['id'])
         venue=detail.get('gameInfo',{}).get('venue',v)
         loc=venue.get('address',{}); coord=venue.get('coordinates') or v.get('coordinates')
+        fixed={"U.S. Bank Stadium":(44.97355,-93.25745,"fixed"),"Levi's Stadium":(37.40299,-121.97006,"open")}
+        if name in fixed:
+            a,b,roof=fixed[name]
+            coord={'latitude':a,'longitude':b}
+            row.update(roof_status=roof,coordinate_source='OpenStreetMap stadium footprint')
         if not coord:
             # Geocode the named venue, never substitute a city centroid.
             q=urllib.parse.urlencode({'q':name+', '+loc.get('city','')+', '+loc.get('state',''),'format':'jsonv2','limit':3})
