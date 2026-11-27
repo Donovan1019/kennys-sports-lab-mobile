@@ -7,7 +7,12 @@ def dt(s): return datetime.datetime.fromisoformat(s.replace('Z','+00:00'))
 games=json.load(open('feed/armchairlogan_state.json'))['games']
 upcoming=[g for g in games if g.get('kickoff') and now<=dt(g['kickoff'])<=now+datetime.timedelta(days=7)]
 dates=now.strftime('%Y%m%d')+'-'+(now+datetime.timedelta(days=7)).strftime('%Y%m%d')
-events=get('https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates='+dates+'&limit=100')['events']
+events_by_id={}
+for day in range(8):
+    date=(now+datetime.timedelta(days=day)).strftime('%Y%m%d')
+    for event in get('https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates='+date)['events']:
+        events_by_id[event['id']]=event
+events=list(events_by_id.values())
 def collect(e):
     c=e['competitions'][0]; v=c['venue']; kickoff=dt(c['date']); name=v['fullName']
     row={'event_id':e['id'],'kickoff':c['date'],'stadium':name,'venue_id':v.get('id'),'teams':{x['homeAway']:x['team']['abbreviation'] for x in c['competitors']},'status':'unavailable','roof_status':'unconfirmed'}
