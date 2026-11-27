@@ -1,0 +1,40 @@
+name: PropLine NFL private validation
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/propline-nfl-private.yml'
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    env:
+      PROPLINE_API_KEY: ${{ secrets.PROPLINE_API_KEY }}
+    steps:
+      - name: Validate NFL provider without publishing raw data
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import urllib.request, urllib.parse, json, os, sys
+          key=os.environ.get("PROPLINE_API_KEY")
+          if not key: sys.exit("Missing provider secret")
+          markets="player_pass_yds,player_pass_tds,player_rush_yds,player_reception_yds,player_receptions,player_anytime_td"
+          url="https://api.prop-line.com/v1/sports/football_nfl/odds?"+urllib.parse.urlencode({"apiKey":key,"markets":markets,"bookmakers":"draftkings,fanduel","oddsFormat":"american"})
+          try:
+              with urllib.request.urlopen(url,timeout=40) as r:
+                  data=json.load(r)
+          except Exception as e:
+              sys.exit("Provider request failed: "+type(e).__name__+" "+str(getattr(e,"code","")))
+          if not isinstance(data,list): sys.exit("Unexpected response schema")
+          counts={}
+          for event in data:
+              for book in event.get("bookmakers",[]):
+                  if book.get("key") not in ("draftkings","fanduel"): continue
+                  for market in book.get("markets",[]):
+                      if market.get("key") not in markets.split(","): continue
+                      k=book["key"]+"/"+market["key"]
+                      counts[k]=counts.get(k,0)+len(market.get("outcomes",[]))
+          print("Events:",len(data),"Market coverage:",json.dumps(counts))
+          if not any(counts.values()): sys.exit("No supported player props")
+          PY
