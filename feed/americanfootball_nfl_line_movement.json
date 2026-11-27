@@ -1141,8 +1141,8 @@
       "home_support": 0,
       "away_support": 2,
       "prediction": null,
-      "outcome": null,
-      "movement_correct": null,
+      "outcome": "home",
+      "movement_correct": false,
       "score_simulation": {
         "status": "INDEPENDENT_SCORE_RESEARCH_ONLY",
         "trials": 10000,
@@ -8060,9 +8060,9 @@
     }
   ],
   "outcome_audit": {
-    "graded_events": 53,
+    "graded_events": 54,
     "correct": 31,
-    "hit_rate": 0.5849056603773585,
+    "hit_rate": 0.5740740740740741,
     "status": "descriptive_not_out_of_sample"
   },
   "current_slate": [
@@ -8088,7 +8088,7 @@
         "projected_total": 46.99937859717188,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-27T20:03:13.064606+00:00",
+        "cutoff": "2026-11-27T23:29:58.767202+00:00",
         "bet_eligible": false
       }
     },
@@ -8114,7 +8114,7 @@
         "projected_total": 45.060425310347,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-27T20:03:13.064606+00:00",
+        "cutoff": "2026-11-27T23:29:58.767202+00:00",
         "bet_eligible": false
       }
     },
@@ -8140,7 +8140,7 @@
         "projected_total": 42.98575087022404,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-27T20:03:13.064606+00:00",
+        "cutoff": "2026-11-27T23:29:58.767202+00:00",
         "bet_eligible": false
       }
     },
@@ -8166,7 +8166,7 @@
         "projected_total": 40.08027383507335,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-27T20:03:13.064606+00:00",
+        "cutoff": "2026-11-27T23:29:58.767202+00:00",
         "bet_eligible": false
       }
     },
@@ -8192,7 +8192,7 @@
         "projected_total": 47.23729217414496,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-27T20:03:13.064606+00:00",
+        "cutoff": "2026-11-27T23:29:58.767202+00:00",
         "bet_eligible": false
       }
     },
@@ -8218,7 +8218,7 @@
         "projected_total": 45.47601777204844,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-27T20:03:13.064606+00:00",
+        "cutoff": "2026-11-27T23:29:58.767202+00:00",
         "bet_eligible": false
       }
     },
@@ -8244,7 +8244,7 @@
         "projected_total": 43.794304303783456,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-27T20:03:13.064606+00:00",
+        "cutoff": "2026-11-27T23:29:58.767202+00:00",
         "bet_eligible": false
       }
     },
@@ -8270,7 +8270,7 @@
         "projected_total": 47.069100991842056,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-27T20:03:13.064606+00:00",
+        "cutoff": "2026-11-27T23:29:58.767202+00:00",
         "bet_eligible": false
       }
     },
@@ -8296,7 +8296,7 @@
         "projected_total": 45.07172948154163,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-27T20:03:13.064606+00:00",
+        "cutoff": "2026-11-27T23:29:58.767202+00:00",
         "bet_eligible": false
       }
     },
@@ -8322,7 +8322,7 @@
         "projected_total": 44.5740599176759,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-27T20:03:13.064606+00:00",
+        "cutoff": "2026-11-27T23:29:58.767202+00:00",
         "bet_eligible": false
       }
     },
@@ -8348,7 +8348,7 @@
         "projected_total": 45.38238302538223,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-27T20:03:13.064606+00:00",
+        "cutoff": "2026-11-27T23:29:58.767202+00:00",
         "bet_eligible": false
       }
     },
@@ -8374,7 +8374,7 @@
         "projected_total": 42.766671832697035,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-27T20:03:13.064606+00:00",
+        "cutoff": "2026-11-27T23:29:58.767202+00:00",
         "bet_eligible": false
       }
     }
@@ -8383,7 +8383,7 @@
   "predictive_benchmark": {
     "status": "UNAVAILABLE",
     "reason": "At least 100 settled events required",
-    "settled_events": 72
+    "settled_events": 73
   },
   "combined_benchmark": {
     "status": "UNAVAILABLE",
