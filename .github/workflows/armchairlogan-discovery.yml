@@ -22,11 +22,16 @@ jobs:
           out={'last_update':d['last_update'],'games':[{k:g.get(k) for k in keys} for g in d['games']]}
           json.dump(out,open('feed/armchairlogan_state.json','w'),indent=2)
           PY
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Archive Kenny pregame projections
+        run: node scripts/armchairlogan_archive.cjs
       - name: Publish snapshot
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add feed/armchairlogan_state.json
+          git add feed/armchairlogan_state.json feed/armchairlogan_kenny_archive.json
           git diff --cached --quiet || git commit -m 'Refresh ArmchairLogan published forecasts'
           git pull --rebase origin main
           git push origin HEAD:main
