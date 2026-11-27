@@ -33,9 +33,10 @@ for(const [game,rows] of grouped){
   const result=joint(stats,legs,{trials:2000,seed:game+'|'+i+'|'+j});
   if(result.status==='BLOCKED'){blocked(result.reason||'simulator blocked');continue}
   report.simulated++;
-  if(report.samples.length<12)report.samples.push({event_id:a.event_id,bookmaker:a.bookmaker,legs,simulation_status:result.status,paired_events:result.paired_events,betting_eligible:false,official_combined_price_available:false});
+  report.samples.push({event_id:a.event_id,event:a.event,kickoff:a.commence_time,bookmaker:a.bookmaker,legs,joint_rate:result.joint_rate,trials:result.trials,simulation_status:result.status,paired_events:result.paired_events,betting_eligible:false,official_combined_price_available:false});
  }
 }
+report.samples=report.samples.sort((a,b)=>b.joint_rate-a.joint_rate||b.paired_events-a.paired_events).filter((a,i,all)=>all.findIndex(b=>b.event_id===a.event_id&&JSON.stringify(b.legs)===JSON.stringify(a.legs))===i).slice(0,3);
 const dest=path.join(root,'feed/nfl_sgp_research_audit.json');
 fs.writeFileSync(dest,JSON.stringify(report,null,2)+'\n');
 console.log('NFL SGP research audit:',JSON.stringify({games:report.games_examined,examined:report.combinations_examined,simulated:report.simulated,blocked:report.blocked}));
