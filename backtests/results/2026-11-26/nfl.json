@@ -27,6 +27,19 @@
       "completed": true,
       "source": "ESPN scoreboard",
       "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=20261126&limit=100"
+    },
+    {
+      "event_id": "401873082",
+      "event": "Kansas City Chiefs at Buffalo Bills",
+      "commence_time": "2026-11-27T01:20Z",
+      "home": "Buffalo Bills",
+      "away": "Kansas City Chiefs",
+      "home_score": 13,
+      "away_score": 10,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=20261126&limit=100"
     }
   ],
   "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=20261126&limit=100"

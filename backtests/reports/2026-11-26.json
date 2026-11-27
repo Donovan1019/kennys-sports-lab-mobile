@@ -1,6 +1,6 @@
 {
   "date": "2026-11-26",
-  "generated_at": "2026-11-27T04:12:27.336790+00:00",
+  "generated_at": "2026-11-27T21:10:08.048675+00:00",
   "sports": {
     "NFL": {
       "status": "PARTIALLY_SETTLED_MONEYLINES",
@@ -9,7 +9,7 @@
       "research_only_predictions": 78,
       "bet_eligible_predictions": 0,
       "blocked_predictions": [],
-      "graded": 6,
+      "graded": 8,
       "settled": [
         {
           "event": "Green Bay Packers @ Los Angeles Rams",
@@ -46,9 +46,21 @@
           "market": "h2h",
           "selection": "Philadelphia Eagles",
           "outcome": "win"
+        },
+        {
+          "event": "Kansas City Chiefs @ Buffalo Bills",
+          "market": "h2h",
+          "selection": "Buffalo Bills",
+          "outcome": "win"
+        },
+        {
+          "event": "Kansas City Chiefs @ Buffalo Bills",
+          "market": "h2h",
+          "selection": "Kansas City Chiefs",
+          "outcome": "loss"
         }
       ],
-      "pending": 72
+      "pending": 70
     },
     "NBA": {
       "status": "PARTIALLY_SETTLED_MONEYLINES",
@@ -105,7 +117,7 @@
       "research_only_predictions": 270,
       "bet_eligible_predictions": 0,
       "blocked_predictions": [],
-      "graded": 28,
+      "graded": 40,
       "settled": [
         {
           "event": "Winnipeg Jets @ Boston Bruins",
@@ -274,15 +286,87 @@
           "market": "h2h",
           "selection": "San Jose Sharks",
           "outcome": "loss"
+        },
+        {
+          "event": "Toronto Maple Leafs @ Boston Bruins",
+          "market": "h2h",
+          "selection": "Boston Bruins",
+          "outcome": "loss"
+        },
+        {
+          "event": "Toronto Maple Leafs @ Boston Bruins",
+          "market": "h2h",
+          "selection": "Toronto Maple Leafs",
+          "outcome": "win"
+        },
+        {
+          "event": "Calgary Flames @ New Jersey Devils",
+          "market": "h2h",
+          "selection": "New Jersey Devils",
+          "outcome": "win"
+        },
+        {
+          "event": "Calgary Flames @ New Jersey Devils",
+          "market": "h2h",
+          "selection": "Calgary Flames",
+          "outcome": "loss"
+        },
+        {
+          "event": "Utah Mammoth @ Nashville Predators",
+          "market": "h2h",
+          "selection": "Nashville Predators",
+          "outcome": "loss"
+        },
+        {
+          "event": "Utah Mammoth @ Nashville Predators",
+          "market": "h2h",
+          "selection": "Utah Mammoth",
+          "outcome": "win"
+        },
+        {
+          "event": "Toronto Maple Leafs @ Boston Bruins",
+          "market": "h2h",
+          "selection": "Boston Bruins",
+          "outcome": "loss"
+        },
+        {
+          "event": "Toronto Maple Leafs @ Boston Bruins",
+          "market": "h2h",
+          "selection": "Toronto Maple Leafs",
+          "outcome": "win"
+        },
+        {
+          "event": "Calgary Flames @ New Jersey Devils",
+          "market": "h2h",
+          "selection": "New Jersey Devils",
+          "outcome": "win"
+        },
+        {
+          "event": "Calgary Flames @ New Jersey Devils",
+          "market": "h2h",
+          "selection": "Calgary Flames",
+          "outcome": "loss"
+        },
+        {
+          "event": "Utah Mammoth @ Nashville Predators",
+          "market": "h2h",
+          "selection": "Nashville Predators",
+          "outcome": "loss"
+        },
+        {
+          "event": "Utah Mammoth @ Nashville Predators",
+          "market": "h2h",
+          "selection": "Utah Mammoth",
+          "outcome": "win"
         }
       ],
-      "pending": 242
+      "pending": 230
     }
   },
   "summary": {
-    "verified_picks": 40,
-    "wins": 20,
-    "losses": 20,
+    "verified_picks": 54,
+    "wins": 27,
+    "losses": 27,
     "pushes": 0,
     "roi": null,
     "hit_rate": 0.5

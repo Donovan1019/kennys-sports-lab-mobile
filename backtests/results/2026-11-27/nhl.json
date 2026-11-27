@@ -1,0 +1,46 @@
+{
+  "sport": "NHL",
+  "date": "2026-11-27",
+  "games": [
+    {
+      "event_id": "401892795",
+      "event": "Toronto Maple Leafs at Boston Bruins",
+      "commence_time": "2026-11-27T18:00Z",
+      "home": "Boston Bruins",
+      "away": "Toronto Maple Leafs",
+      "home_score": 1,
+      "away_score": 3,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261127&limit=100"
+    },
+    {
+      "event_id": "401892796",
+      "event": "Calgary Flames at New Jersey Devils",
+      "commence_time": "2026-11-27T18:00Z",
+      "home": "New Jersey Devils",
+      "away": "Calgary Flames",
+      "home_score": 5,
+      "away_score": 3,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261127&limit=100"
+    },
+    {
+      "event_id": "401892797",
+      "event": "Utah Mammoth at Nashville Predators",
+      "commence_time": "2026-11-27T18:00Z",
+      "home": "Nashville Predators",
+      "away": "Utah Mammoth",
+      "home_score": 5,
+      "away_score": 6,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261127&limit=100"
+    }
+  ],
+  "source_url": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates=20261127&limit=100"
+}

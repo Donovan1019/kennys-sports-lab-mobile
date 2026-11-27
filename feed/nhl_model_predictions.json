@@ -1,294 +1,8 @@
 {
-  "generated_at": "2026-11-27T04:12:26.227704+00:00",
+  "generated_at": "2026-11-27T21:10:07.021594+00:00",
   "sport": "NHL",
   "model_version": "baseline-score-v1-uncalibrated",
   "predictions": [
-    {
-      "event": "Toronto Maple Leafs @ Boston Bruins",
-      "event_id": "espn-401892795",
-      "commence_time": "2026-11-27T18:00Z",
-      "market": "h2h",
-      "selection": "Boston Bruins",
-      "model_probability": 0.644147,
-      "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
-      "model_source": "historical_scoring_only",
-      "bet_eligible": false,
-      "research_only": true
-    },
-    {
-      "event": "Toronto Maple Leafs @ Boston Bruins",
-      "event_id": "espn-401892795",
-      "commence_time": "2026-11-27T18:00Z",
-      "market": "h2h",
-      "selection": "Toronto Maple Leafs",
-      "model_probability": 0.355853,
-      "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
-      "model_source": "historical_scoring_only",
-      "bet_eligible": false,
-      "research_only": true
-    },
-    {
-      "event": "Calgary Flames @ New Jersey Devils",
-      "event_id": "espn-401892796",
-      "commence_time": "2026-11-27T18:00Z",
-      "market": "h2h",
-      "selection": "New Jersey Devils",
-      "model_probability": 0.624077,
-      "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
-      "model_source": "historical_scoring_only",
-      "bet_eligible": false,
-      "research_only": true
-    },
-    {
-      "event": "Calgary Flames @ New Jersey Devils",
-      "event_id": "espn-401892796",
-      "commence_time": "2026-11-27T18:00Z",
-      "market": "h2h",
-      "selection": "Calgary Flames",
-      "model_probability": 0.375923,
-      "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
-      "model_source": "historical_scoring_only",
-      "bet_eligible": false,
-      "research_only": true
-    },
-    {
-      "event": "Utah Mammoth @ Nashville Predators",
-      "event_id": "espn-401892797",
-      "commence_time": "2026-11-27T18:00Z",
-      "market": "h2h",
-      "selection": "Nashville Predators",
-      "model_probability": 0.608228,
-      "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
-      "model_source": "historical_scoring_only",
-      "bet_eligible": false,
-      "research_only": true
-    },
-    {
-      "event": "Utah Mammoth @ Nashville Predators",
-      "event_id": "espn-401892797",
-      "commence_time": "2026-11-27T18:00Z",
-      "market": "h2h",
-      "selection": "Utah Mammoth",
-      "model_probability": 0.391772,
-      "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
-      "model_source": "historical_scoring_only",
-      "bet_eligible": false,
-      "research_only": true
-    },
-    {
-      "event": "Dallas Stars @ St. Louis Blues",
-      "event_id": "espn-401892798",
-      "commence_time": "2026-11-27T19:00Z",
-      "market": "h2h",
-      "selection": "St. Louis Blues",
-      "model_probability": 0.515764,
-      "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
-      "model_source": "historical_scoring_only",
-      "bet_eligible": false,
-      "research_only": true
-    },
-    {
-      "event": "Dallas Stars @ St. Louis Blues",
-      "event_id": "espn-401892798",
-      "commence_time": "2026-11-27T19:00Z",
-      "market": "h2h",
-      "selection": "Dallas Stars",
-      "model_probability": 0.484236,
-      "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
-      "model_source": "historical_scoring_only",
-      "bet_eligible": false,
-      "research_only": true
-    },
-    {
-      "event": "Ottawa Senators @ Tampa Bay Lightning",
-      "event_id": "espn-401892799",
-      "commence_time": "2026-11-27T20:00Z",
-      "market": "h2h",
-      "selection": "Tampa Bay Lightning",
-      "model_probability": 0.510248,
-      "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
-      "model_source": "historical_scoring_only",
-      "bet_eligible": false,
-      "research_only": true
-    },
-    {
-      "event": "Ottawa Senators @ Tampa Bay Lightning",
-      "event_id": "espn-401892799",
-      "commence_time": "2026-11-27T20:00Z",
-      "market": "h2h",
-      "selection": "Ottawa Senators",
-      "model_probability": 0.489752,
-      "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
-      "model_source": "historical_scoring_only",
-      "bet_eligible": false,
-      "research_only": true
-    },
-    {
-      "event": "Vancouver Canucks @ Philadelphia Flyers",
-      "event_id": "espn-401892800",
-      "commence_time": "2026-11-27T20:00Z",
-      "market": "h2h",
-      "selection": "Philadelphia Flyers",
-      "model_probability": 0.601379,
-      "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
-      "model_source": "historical_scoring_only",
-      "bet_eligible": false,
-      "research_only": true
-    },
-    {
-      "event": "Vancouver Canucks @ Philadelphia Flyers",
-      "event_id": "espn-401892800",
-      "commence_time": "2026-11-27T20:00Z",
-      "market": "h2h",
-      "selection": "Vancouver Canucks",
-      "model_probability": 0.398621,
-      "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
-      "model_source": "historical_scoring_only",
-      "bet_eligible": false,
-      "research_only": true
-    },
-    {
-      "event": "Florida Panthers @ Washington Capitals",
-      "event_id": "espn-401892801",
-      "commence_time": "2026-11-27T20:00Z",
-      "market": "h2h",
-      "selection": "Washington Capitals",
-      "model_probability": 0.380431,
-      "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
-      "model_source": "historical_scoring_only",
-      "bet_eligible": false,
-      "research_only": true
-    },
-    {
-      "event": "Florida Panthers @ Washington Capitals",
-      "event_id": "espn-401892801",
-      "commence_time": "2026-11-27T20:00Z",
-      "market": "h2h",
-      "selection": "Florida Panthers",
-      "model_probability": 0.619569,
-      "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
-      "model_source": "historical_scoring_only",
-      "bet_eligible": false,
-      "research_only": true
-    },
-    {
-      "event": "Detroit Red Wings @ Columbus Blue Jackets",
-      "event_id": "espn-401892802",
-      "commence_time": "2026-11-27T20:00Z",
-      "market": "h2h",
-      "selection": "Columbus Blue Jackets",
-      "model_probability": 0.52014,
-      "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
-      "model_source": "historical_scoring_only",
-      "bet_eligible": false,
-      "research_only": true
-    },
-    {
-      "event": "Detroit Red Wings @ Columbus Blue Jackets",
-      "event_id": "espn-401892802",
-      "commence_time": "2026-11-27T20:00Z",
-      "market": "h2h",
-      "selection": "Detroit Red Wings",
-      "model_probability": 0.47986,
-      "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
-      "model_source": "historical_scoring_only",
-      "bet_eligible": false,
-      "research_only": true
-    },
-    {
-      "event": "Colorado Avalanche @ Minnesota Wild",
-      "event_id": "espn-401892803",
-      "commence_time": "2026-11-27T21:00Z",
-      "market": "h2h",
-      "selection": "Minnesota Wild",
-      "model_probability": 0.561081,
-      "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
-      "model_source": "historical_scoring_only",
-      "bet_eligible": false,
-      "research_only": true
-    },
-    {
-      "event": "Colorado Avalanche @ Minnesota Wild",
-      "event_id": "espn-401892803",
-      "commence_time": "2026-11-27T21:00Z",
-      "market": "h2h",
-      "selection": "Colorado Avalanche",
-      "model_probability": 0.438919,
-      "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
-      "model_source": "historical_scoring_only",
-      "bet_eligible": false,
-      "research_only": true
-    },
-    {
-      "event": "Los Angeles Kings @ Anaheim Ducks",
-      "event_id": "espn-401892804",
-      "commence_time": "2026-11-27T21:00Z",
-      "market": "h2h",
-      "selection": "Anaheim Ducks",
-      "model_probability": 0.555231,
-      "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
-      "model_source": "historical_scoring_only",
-      "bet_eligible": false,
-      "research_only": true
-    },
-    {
-      "event": "Los Angeles Kings @ Anaheim Ducks",
-      "event_id": "espn-401892804",
-      "commence_time": "2026-11-27T21:00Z",
-      "market": "h2h",
-      "selection": "Los Angeles Kings",
-      "model_probability": 0.444769,
-      "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
-      "model_source": "historical_scoring_only",
-      "bet_eligible": false,
-      "research_only": true
-    },
-    {
-      "event": "Vegas Golden Knights @ San Jose Sharks",
-      "event_id": "espn-401892805",
-      "commence_time": "2026-11-27T21:00Z",
-      "market": "h2h",
-      "selection": "San Jose Sharks",
-      "model_probability": 0.328996,
-      "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
-      "model_source": "historical_scoring_only",
-      "bet_eligible": false,
-      "research_only": true
-    },
-    {
-      "event": "Vegas Golden Knights @ San Jose Sharks",
-      "event_id": "espn-401892805",
-      "commence_time": "2026-11-27T21:00Z",
-      "market": "h2h",
-      "selection": "Vegas Golden Knights",
-      "model_probability": 0.671004,
-      "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
-      "model_source": "historical_scoring_only",
-      "bet_eligible": false,
-      "research_only": true
-    },
     {
       "event": "New York Rangers @ Chicago Blackhawks",
       "event_id": "espn-401892806",
@@ -297,7 +11,7 @@
       "selection": "Chicago Blackhawks",
       "model_probability": 0.428121,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -310,7 +24,7 @@
       "selection": "New York Rangers",
       "model_probability": 0.571879,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -323,7 +37,7 @@
       "selection": "New York Islanders",
       "model_probability": 0.418578,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -336,7 +50,7 @@
       "selection": "Winnipeg Jets",
       "model_probability": 0.581422,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -349,7 +63,7 @@
       "selection": "Buffalo Sabres",
       "model_probability": 0.627821,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -362,7 +76,7 @@
       "selection": "Pittsburgh Penguins",
       "model_probability": 0.372179,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -375,7 +89,7 @@
       "selection": "Edmonton Oilers",
       "model_probability": 0.568321,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -388,7 +102,7 @@
       "selection": "Seattle Kraken",
       "model_probability": 0.431679,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -401,7 +115,7 @@
       "selection": "Vegas Golden Knights",
       "model_probability": 0.584636,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -414,7 +128,7 @@
       "selection": "Montreal Canadiens",
       "model_probability": 0.415364,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -427,7 +141,7 @@
       "selection": "Florida Panthers",
       "model_probability": 0.463782,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -440,7 +154,7 @@
       "selection": "Tampa Bay Lightning",
       "model_probability": 0.536218,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -453,7 +167,7 @@
       "selection": "Detroit Red Wings",
       "model_probability": 0.357655,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -466,7 +180,7 @@
       "selection": "Nashville Predators",
       "model_probability": 0.642345,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -479,7 +193,7 @@
       "selection": "New Jersey Devils",
       "model_probability": 0.437188,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -492,7 +206,7 @@
       "selection": "Winnipeg Jets",
       "model_probability": 0.562812,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -505,7 +219,7 @@
       "selection": "New York Rangers",
       "model_probability": 0.58348,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -518,7 +232,7 @@
       "selection": "Calgary Flames",
       "model_probability": 0.41652,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -531,7 +245,7 @@
       "selection": "Pittsburgh Penguins",
       "model_probability": 0.51734,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -544,7 +258,7 @@
       "selection": "Toronto Maple Leafs",
       "model_probability": 0.48266,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -557,7 +271,7 @@
       "selection": "Carolina Hurricanes",
       "model_probability": 0.629647,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -570,7 +284,7 @@
       "selection": "Ottawa Senators",
       "model_probability": 0.370353,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -583,7 +297,7 @@
       "selection": "St. Louis Blues",
       "model_probability": 0.601379,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -596,7 +310,7 @@
       "selection": "Washington Capitals",
       "model_probability": 0.398621,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -609,7 +323,7 @@
       "selection": "Philadelphia Flyers",
       "model_probability": 0.401676,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -622,7 +336,7 @@
       "selection": "New York Islanders",
       "model_probability": 0.598324,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -635,7 +349,7 @@
       "selection": "Dallas Stars",
       "model_probability": 0.531504,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -648,7 +362,7 @@
       "selection": "Utah Mammoth",
       "model_probability": 0.468496,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -661,7 +375,7 @@
       "selection": "Colorado Avalanche",
       "model_probability": 0.724839,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -674,7 +388,7 @@
       "selection": "San Jose Sharks",
       "model_probability": 0.275161,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -687,7 +401,7 @@
       "selection": "Los Angeles Kings",
       "model_probability": 0.444769,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -700,7 +414,7 @@
       "selection": "Anaheim Ducks",
       "model_probability": 0.555231,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -713,7 +427,7 @@
       "selection": "Seattle Kraken",
       "model_probability": 0.431679,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -726,7 +440,7 @@
       "selection": "Edmonton Oilers",
       "model_probability": 0.568321,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -739,7 +453,7 @@
       "selection": "Chicago Blackhawks",
       "model_probability": 0.307147,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -752,7 +466,7 @@
       "selection": "Minnesota Wild",
       "model_probability": 0.692853,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -765,7 +479,7 @@
       "selection": "Boston Bruins",
       "model_probability": 0.646353,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -778,7 +492,7 @@
       "selection": "Vancouver Canucks",
       "model_probability": 0.353647,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -791,7 +505,7 @@
       "selection": "Nashville Predators",
       "model_probability": 0.51734,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -804,7 +518,7 @@
       "selection": "Ottawa Senators",
       "model_probability": 0.48266,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -817,7 +531,7 @@
       "selection": "New York Rangers",
       "model_probability": 0.340673,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -830,7 +544,7 @@
       "selection": "Carolina Hurricanes",
       "model_probability": 0.659327,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -843,7 +557,7 @@
       "selection": "Pittsburgh Penguins",
       "model_probability": 0.417806,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -856,7 +570,7 @@
       "selection": "Columbus Blue Jackets",
       "model_probability": 0.582194,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -869,7 +583,7 @@
       "selection": "Toronto Maple Leafs",
       "model_probability": 0.400912,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -882,7 +596,7 @@
       "selection": "Philadelphia Flyers",
       "model_probability": 0.599088,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -895,7 +609,7 @@
       "selection": "Winnipeg Jets",
       "model_probability": 0.671719,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -908,7 +622,7 @@
       "selection": "Chicago Blackhawks",
       "model_probability": 0.328281,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -921,7 +635,7 @@
       "selection": "Utah Mammoth",
       "model_probability": 0.519046,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -934,7 +648,7 @@
       "selection": "Montreal Canadiens",
       "model_probability": 0.480954,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -947,7 +661,7 @@
       "selection": "Detroit Red Wings",
       "model_probability": 0.487738,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -960,7 +674,7 @@
       "selection": "Calgary Flames",
       "model_probability": 0.512262,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -973,7 +687,7 @@
       "selection": "New York Islanders",
       "model_probability": 0.51734,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -986,7 +700,7 @@
       "selection": "Florida Panthers",
       "model_probability": 0.48266,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -999,7 +713,7 @@
       "selection": "Washington Capitals",
       "model_probability": 0.562812,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -1012,7 +726,7 @@
       "selection": "Vancouver Canucks",
       "model_probability": 0.437188,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -1025,7 +739,7 @@
       "selection": "New Jersey Devils",
       "model_probability": 0.70319,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -1038,7 +752,7 @@
       "selection": "San Jose Sharks",
       "model_probability": 0.29681,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -1051,7 +765,7 @@
       "selection": "Boston Bruins",
       "model_probability": 0.404566,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -1064,7 +778,7 @@
       "selection": "Colorado Avalanche",
       "model_probability": 0.595434,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -1077,7 +791,7 @@
       "selection": "Edmonton Oilers",
       "model_probability": 0.514451,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -1090,7 +804,7 @@
       "selection": "Buffalo Sabres",
       "model_probability": 0.485549,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -1103,7 +817,7 @@
       "selection": "Seattle Kraken",
       "model_probability": 0.445962,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -1116,7 +830,7 @@
       "selection": "Dallas Stars",
       "model_probability": 0.554038,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -1129,7 +843,7 @@
       "selection": "Anaheim Ducks",
       "model_probability": 0.380306,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -1142,7 +856,7 @@
       "selection": "Minnesota Wild",
       "model_probability": 0.619694,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -1155,7 +869,7 @@
       "selection": "Los Angeles Kings",
       "model_probability": 0.446201,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -1168,7 +882,7 @@
       "selection": "Vegas Golden Knights",
       "model_probability": 0.553799,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -1181,7 +895,7 @@
       "selection": "Montreal Canadiens",
       "model_probability": 0.380306,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -1194,7 +908,7 @@
       "selection": "Tampa Bay Lightning",
       "model_probability": 0.619694,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -1207,7 +921,7 @@
       "selection": "St. Louis Blues",
       "model_probability": 0.642673,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -1220,7 +934,7 @@
       "selection": "Pittsburgh Penguins",
       "model_probability": 0.357327,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -1233,7 +947,7 @@
       "selection": "Utah Mammoth",
       "model_probability": 0.339064,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -1246,7 +960,7 @@
       "selection": "Winnipeg Jets",
       "model_probability": 0.660936,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -1259,7 +973,7 @@
       "selection": "Toronto Maple Leafs",
       "model_probability": 0.324007,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -1272,7 +986,7 @@
       "selection": "Florida Panthers",
       "model_probability": 0.675993,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -1285,7 +999,7 @@
       "selection": "Ottawa Senators",
       "model_probability": 0.489752,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -1298,7 +1012,7 @@
       "selection": "New Jersey Devils",
       "model_probability": 0.510248,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -1311,7 +1025,7 @@
       "selection": "Detroit Red Wings",
       "model_probability": 0.340673,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -1324,7 +1038,7 @@
       "selection": "Colorado Avalanche",
       "model_probability": 0.659327,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -1337,7 +1051,7 @@
       "selection": "New York Rangers",
       "model_probability": 0.665745,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -1350,7 +1064,7 @@
       "selection": "San Jose Sharks",
       "model_probability": 0.334255,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -1363,7 +1077,7 @@
       "selection": "Carolina Hurricanes",
       "model_probability": 0.726303,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -1376,7 +1090,7 @@
       "selection": "Columbus Blue Jackets",
       "model_probability": 0.273697,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -1389,7 +1103,7 @@
       "selection": "Philadelphia Flyers",
       "model_probability": 0.401676,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -1402,7 +1116,7 @@
       "selection": "New York Islanders",
       "model_probability": 0.598324,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -1415,7 +1129,7 @@
       "selection": "Nashville Predators",
       "model_probability": 0.619569,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -1428,7 +1142,7 @@
       "selection": "Chicago Blackhawks",
       "model_probability": 0.380431,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -1441,7 +1155,7 @@
       "selection": "Calgary Flames",
       "model_probability": 0.444986,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -1454,7 +1168,7 @@
       "selection": "Buffalo Sabres",
       "model_probability": 0.555014,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -1467,7 +1181,7 @@
       "selection": "Edmonton Oilers",
       "model_probability": 0.600107,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -1480,7 +1194,7 @@
       "selection": "Washington Capitals",
       "model_probability": 0.399893,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -1493,7 +1207,7 @@
       "selection": "Seattle Kraken",
       "model_probability": 0.445962,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -1506,7 +1220,7 @@
       "selection": "Dallas Stars",
       "model_probability": 0.554038,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -1519,7 +1233,7 @@
       "selection": "Vegas Golden Knights",
       "model_probability": 0.565925,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -1532,7 +1246,7 @@
       "selection": "Utah Mammoth",
       "model_probability": 0.434075,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -1545,7 +1259,7 @@
       "selection": "Los Angeles Kings",
       "model_probability": 0.328678,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
@@ -1558,7 +1272,111 @@
       "selection": "Minnesota Wild",
       "model_probability": 0.671322,
       "model_version": "baseline-score-v1-uncalibrated",
-      "prediction_created_at": "2026-11-27T04:12:26.227704+00:00",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "San Jose Sharks @ New York Islanders",
+      "event_id": "espn-401892855",
+      "commence_time": "2026-12-05T00:00Z",
+      "market": "h2h",
+      "selection": "New York Islanders",
+      "model_probability": 0.686575,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "San Jose Sharks @ New York Islanders",
+      "event_id": "espn-401892855",
+      "commence_time": "2026-12-05T00:00Z",
+      "market": "h2h",
+      "selection": "San Jose Sharks",
+      "model_probability": 0.313425,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Chicago Blackhawks @ St. Louis Blues",
+      "event_id": "espn-401892856",
+      "commence_time": "2026-12-05T01:00Z",
+      "market": "h2h",
+      "selection": "St. Louis Blues",
+      "model_probability": 0.558916,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Chicago Blackhawks @ St. Louis Blues",
+      "event_id": "espn-401892856",
+      "commence_time": "2026-12-05T01:00Z",
+      "market": "h2h",
+      "selection": "Chicago Blackhawks",
+      "model_probability": 0.441084,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Buffalo Sabres @ Vancouver Canucks",
+      "event_id": "espn-401892857",
+      "commence_time": "2026-12-05T02:00Z",
+      "market": "h2h",
+      "selection": "Vancouver Canucks",
+      "model_probability": 0.353647,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Buffalo Sabres @ Vancouver Canucks",
+      "event_id": "espn-401892857",
+      "commence_time": "2026-12-05T02:00Z",
+      "market": "h2h",
+      "selection": "Buffalo Sabres",
+      "model_probability": 0.646353,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Seattle Kraken @ Anaheim Ducks",
+      "event_id": "espn-401892858",
+      "commence_time": "2026-12-05T03:00Z",
+      "market": "h2h",
+      "selection": "Anaheim Ducks",
+      "model_probability": 0.589574,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
+      "model_source": "historical_scoring_only",
+      "bet_eligible": false,
+      "research_only": true
+    },
+    {
+      "event": "Seattle Kraken @ Anaheim Ducks",
+      "event_id": "espn-401892858",
+      "commence_time": "2026-12-05T03:00Z",
+      "market": "h2h",
+      "selection": "Seattle Kraken",
+      "model_probability": 0.410426,
+      "model_version": "baseline-score-v1-uncalibrated",
+      "prediction_created_at": "2026-11-27T21:10:07.021594+00:00",
       "model_source": "historical_scoring_only",
       "bet_eligible": false,
       "research_only": true
