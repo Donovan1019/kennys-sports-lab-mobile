@@ -7,7 +7,7 @@ on:
     paths:
       - '.github/workflows/propline-nfl-private.yml'
 permissions:
-  contents: read
+  contents: write
 jobs:
   validate:
     runs-on: ubuntu-latest
@@ -61,3 +61,23 @@ jobs:
         run: node scripts/export_nfl_prop_forecasts.cjs
       - name: Audit existing NFL SGP research
         run: node scripts/audit_nfl_sgp_research.cjs
+      - name: Publish aggregate model diagnostics only
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("feed/nfl_sgp_research_audit.json")
+          d=json.loads(p.read_text())
+          safe={k:d[k] for k in ("generated_at","status","betting_eligible","games_examined","combinations_examined","simulated","blocked","reasons") if k in d}
+          safe["source"]="PropLine private processing + existing NFL joint simulator"
+          safe["samples"]=[]
+          p.write_text(json.dumps(safe,indent=2)+"\n")
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add feed/nfl_sgp_research_audit.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Publish aggregate NFL SGP simulation diagnostics"
+          git restore --worktree feed/nfl_props.json
+          git pull --rebase origin main
+          git push origin HEAD:main
