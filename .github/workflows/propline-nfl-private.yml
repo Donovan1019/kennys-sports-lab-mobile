@@ -1,5 +1,7 @@
 name: PropLine NFL private validation
 on:
+  schedule:
+    - cron: '0 15,20 * * *'
   workflow_dispatch:
   push:
     paths:
@@ -12,6 +14,7 @@ jobs:
     env:
       PROPLINE_API_KEY: ${{ secrets.PROPLINE_API_KEY }}
     steps:
+      - uses: actions/checkout@v4
       - name: Validate NFL provider without publishing raw data
         shell: bash
         run: |
@@ -37,4 +40,24 @@ jobs:
                       counts[k]=counts.get(k,0)+len(market.get("outcomes",[]))
           print("Events:",len(data),"Market coverage:",json.dumps(counts))
           if not any(counts.values()): sys.exit("No supported player props")
+          from scripts.fetch_nfl_props import eligible_events, extract, MARKETS, BOOKS, SPORT
+          from datetime import datetime, timezone
+          from pathlib import Path
+          now=datetime.now(timezone.utc)
+          events=eligible_events(data,now)
+          rows=[]
+          for event in events:
+              for row in extract(event,event):
+                  try:
+                      ts=datetime.fromisoformat(row["updated_at"].replace("Z","+00:00"))
+                      if 0 <= (now-ts).total_seconds() <= 3600: rows.append(row)
+                  except (ValueError,TypeError,AttributeError): pass
+          if not rows: sys.exit("No fresh upcoming player props")
+          schedule=[{"event_id":e["id"],"event":e["away_team"]+" @ "+e["home_team"],"commence_time":e["commence_time"]} for e in events]
+          Path("feed/nfl_props.json").write_text(json.dumps({"source":"propline","sport":SPORT,"fetched_at":now.isoformat(),"markets_requested":list(MARKETS),"books":list(BOOKS),"schedule_games":schedule,"odds":rows}))
+          print("Fresh normalized selections:",len(rows))
           PY
+      - name: Run existing NFL projection engine privately
+        run: node scripts/export_nfl_prop_forecasts.cjs
+      - name: Audit existing NFL SGP research
+        run: node scripts/audit_nfl_sgp_research.cjs
