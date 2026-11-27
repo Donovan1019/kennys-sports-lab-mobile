@@ -1,6 +1,10 @@
 name: ArmchairLogan forecast sync
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - scripts/armchairlogan_weather.py
+      - .github/workflows/armchairlogan-discovery.yml
   schedule:
     - cron: '23 */4 * * *'
 permissions:
@@ -31,11 +35,16 @@ jobs:
         continue-on-error: true
         timeout-minutes: 10
         run: python scripts/armchairlogan_availability.py
+      - name: Collect stadium weather forecasts
+        continue-on-error: true
+        timeout-minutes: 12
+        run: python scripts/armchairlogan_weather.py
       - name: Publish snapshot
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add feed/armchairlogan_state.json feed/armchairlogan_kenny_archive.json feed/armchairlogan_availability.json
+          if test -f feed/armchairlogan_weather.json; then git add feed/armchairlogan_weather.json; fi
           git diff --cached --quiet || git commit -m 'Refresh ArmchairLogan published forecasts'
           git pull --rebase origin main
           git push origin HEAD:main
