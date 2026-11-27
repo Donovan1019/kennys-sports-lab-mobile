@@ -7,6 +7,9 @@ on:
       - .github/workflows/armchairlogan-discovery.yml
   schedule:
     - cron: '23 */4 * * *'
+concurrency:
+  group: armchairlogan-sync
+  cancel-in-progress: false
 permissions:
   contents: write
 jobs:
@@ -46,5 +49,9 @@ jobs:
           git add feed/armchairlogan_state.json feed/armchairlogan_kenny_archive.json feed/armchairlogan_availability.json
           if test -f feed/armchairlogan_weather.json; then git add feed/armchairlogan_weather.json; fi
           git diff --cached --quiet || git commit -m 'Refresh ArmchairLogan published forecasts'
-          git pull --rebase origin main
-          git push origin HEAD:main
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main || exit 1
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 3))
+          done
+          exit 1
