@@ -1079,8 +1079,8 @@
       "home_support": 2,
       "away_support": 0,
       "prediction": null,
-      "outcome": null,
-      "movement_correct": null,
+      "outcome": "away",
+      "movement_correct": false,
       "score_simulation": {
         "status": "INDEPENDENT_SCORE_RESEARCH_ONLY",
         "trials": 10000,
@@ -1110,8 +1110,8 @@
       "home_support": 2,
       "away_support": 0,
       "prediction": null,
-      "outcome": null,
-      "movement_correct": null,
+      "outcome": "away",
+      "movement_correct": false,
       "score_simulation": {
         "status": "INDEPENDENT_SCORE_RESEARCH_ONLY",
         "trials": 10000,
@@ -8060,38 +8060,12 @@
     }
   ],
   "outcome_audit": {
-    "graded_events": 51,
+    "graded_events": 53,
     "correct": 31,
-    "hit_rate": 0.6078431372549019,
+    "hit_rate": 0.5849056603773585,
     "status": "descriptive_not_out_of_sample"
   },
   "current_slate": [
-    {
-      "event_id": "espn-401873083",
-      "home": "Pittsburgh Steelers",
-      "away": "Denver Broncos",
-      "event_start": "2026-11-27T20:00:00+00:00",
-      "bookmakers": 0,
-      "median_change_pp": null,
-      "schedule_source": "ESPN scoreboard",
-      "odds_status": "UNAVAILABLE",
-      "score_simulation": {
-        "status": "INDEPENDENT_SCORE_RESEARCH_ONLY",
-        "trials": 10000,
-        "sample_quality": "STANDARD",
-        "history_policy": "Recency weighted prior 550 days, up to 30 games per team",
-        "home_win_probability": 0.4332,
-        "away_win_probability": 0.5668,
-        "tie_probability": 0.0,
-        "projected_away_score": 22.36388513363556,
-        "projected_home_score": 20.34122888920623,
-        "projected_total": 42.70511402284179,
-        "away_games": 30,
-        "home_games": 30,
-        "cutoff": "2026-11-27T03:38:13.221696+00:00",
-        "bet_eligible": false
-      }
-    },
     {
       "event_id": "espn-401873087",
       "home": "Cincinnati Bengals",
@@ -8114,7 +8088,7 @@
         "projected_total": 46.99937859717188,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-27T03:38:13.221696+00:00",
+        "cutoff": "2026-11-27T20:03:13.064606+00:00",
         "bet_eligible": false
       }
     },
@@ -8140,7 +8114,7 @@
         "projected_total": 45.060425310347,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-27T03:38:13.221696+00:00",
+        "cutoff": "2026-11-27T20:03:13.064606+00:00",
         "bet_eligible": false
       }
     },
@@ -8166,7 +8140,7 @@
         "projected_total": 42.98575087022404,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-27T03:38:13.221696+00:00",
+        "cutoff": "2026-11-27T20:03:13.064606+00:00",
         "bet_eligible": false
       }
     },
@@ -8192,7 +8166,7 @@
         "projected_total": 40.08027383507335,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-27T03:38:13.221696+00:00",
+        "cutoff": "2026-11-27T20:03:13.064606+00:00",
         "bet_eligible": false
       }
     },
@@ -8218,7 +8192,7 @@
         "projected_total": 47.23729217414496,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-27T03:38:13.221696+00:00",
+        "cutoff": "2026-11-27T20:03:13.064606+00:00",
         "bet_eligible": false
       }
     },
@@ -8244,7 +8218,7 @@
         "projected_total": 45.47601777204844,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-27T03:38:13.221696+00:00",
+        "cutoff": "2026-11-27T20:03:13.064606+00:00",
         "bet_eligible": false
       }
     },
@@ -8270,7 +8244,7 @@
         "projected_total": 43.794304303783456,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-27T03:38:13.221696+00:00",
+        "cutoff": "2026-11-27T20:03:13.064606+00:00",
         "bet_eligible": false
       }
     },
@@ -8296,7 +8270,7 @@
         "projected_total": 47.069100991842056,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-27T03:38:13.221696+00:00",
+        "cutoff": "2026-11-27T20:03:13.064606+00:00",
         "bet_eligible": false
       }
     },
@@ -8322,7 +8296,7 @@
         "projected_total": 45.07172948154163,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-27T03:38:13.221696+00:00",
+        "cutoff": "2026-11-27T20:03:13.064606+00:00",
         "bet_eligible": false
       }
     },
@@ -8348,7 +8322,7 @@
         "projected_total": 44.5740599176759,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-27T03:38:13.221696+00:00",
+        "cutoff": "2026-11-27T20:03:13.064606+00:00",
         "bet_eligible": false
       }
     },
@@ -8374,7 +8348,7 @@
         "projected_total": 45.38238302538223,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-27T03:38:13.221696+00:00",
+        "cutoff": "2026-11-27T20:03:13.064606+00:00",
         "bet_eligible": false
       }
     },
@@ -8400,7 +8374,7 @@
         "projected_total": 42.766671832697035,
         "away_games": 30,
         "home_games": 30,
-        "cutoff": "2026-11-27T03:38:13.221696+00:00",
+        "cutoff": "2026-11-27T20:03:13.064606+00:00",
         "bet_eligible": false
       }
     }
@@ -8409,11 +8383,11 @@
   "predictive_benchmark": {
     "status": "UNAVAILABLE",
     "reason": "At least 100 settled events required",
-    "settled_events": 70
+    "settled_events": 72
   },
   "combined_benchmark": {
     "status": "UNAVAILABLE",
-    "matched_events": 27,
+    "matched_events": 29,
     "reason": "100 settled independent score simulations required"
   },
   "core_market_movements": [
@@ -9257,9 +9231,9 @@
     "market_brier": 0.2152184679605
   },
   "coverage": {
-    "fixtures": 13,
+    "fixtures": 12,
     "with_odds": 0,
-    "with_score_simulation": 13,
+    "with_score_simulation": 12,
     "with_existing_projection": 0,
     "with_movement": 0
   }
