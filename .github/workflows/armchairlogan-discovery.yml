@@ -28,6 +28,8 @@ jobs:
       - name: Archive Kenny pregame projections
         run: node scripts/armchairlogan_archive.cjs
       - name: Collect injury and depth chart reports
+        continue-on-error: true
+        timeout-minutes: 10
         run: python scripts/armchairlogan_availability.py
       - name: Publish snapshot
         run: |
