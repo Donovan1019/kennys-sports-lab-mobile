@@ -70,7 +70,7 @@ jobs:
           d=json.loads(p.read_text())
           safe={k:d[k] for k in ("generated_at","status","betting_eligible","games_examined","combinations_examined","simulated","blocked","reasons") if k in d}
           safe["source"]="PropLine private processing + existing NFL joint simulator"
-          safe["samples"]=[]
+          safe["samples"]=[{k:x[k] for k in ("event","kickoff","legs","joint_rate","trials","paired_events") if k in x} for x in d.get("samples",[])[:3]]
           p.write_text(json.dumps(safe,indent=2)+"\n")
           PY
           git config user.name "github-actions[bot]"
