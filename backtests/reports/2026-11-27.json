@@ -1,0 +1,60 @@
+{
+  "date": "2026-11-27",
+  "generated_at": "2026-11-27T04:12:27.470263+00:00",
+  "sports": {
+    "NFL": {
+      "status": "PARTIALLY_SETTLED_MONEYLINES",
+      "saved_quotes": 0,
+      "eligible_predictions": 74,
+      "research_only_predictions": 74,
+      "bet_eligible_predictions": 0,
+      "blocked_predictions": [],
+      "graded": 2,
+      "settled": [
+        {
+          "event": "Philadelphia Eagles @ Dallas Cowboys",
+          "market": "h2h",
+          "selection": "Dallas Cowboys",
+          "outcome": "loss"
+        },
+        {
+          "event": "Philadelphia Eagles @ Dallas Cowboys",
+          "market": "h2h",
+          "selection": "Philadelphia Eagles",
+          "outcome": "win"
+        }
+      ],
+      "pending": 72
+    },
+    "NBA": {
+      "status": "OUTCOMES_UNVERIFIED",
+      "saved_quotes": 0,
+      "eligible_predictions": 14,
+      "research_only_predictions": 14,
+      "bet_eligible_predictions": 0,
+      "blocked_predictions": [],
+      "graded": 0,
+      "settled": [],
+      "pending": 14
+    },
+    "NHL": {
+      "status": "OUTCOMES_UNVERIFIED",
+      "saved_quotes": 0,
+      "eligible_predictions": 172,
+      "research_only_predictions": 172,
+      "bet_eligible_predictions": 0,
+      "blocked_predictions": [],
+      "graded": 0,
+      "settled": [],
+      "pending": 172
+    }
+  },
+  "summary": {
+    "verified_picks": 2,
+    "wins": 1,
+    "losses": 1,
+    "pushes": 0,
+    "roi": null,
+    "hit_rate": 0.5
+  }
+}

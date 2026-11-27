@@ -1,6 +1,6 @@
 {
   "date": "2026-11-26",
-  "generated_at": "2026-11-26T21:27:14.976450+00:00",
+  "generated_at": "2026-11-27T04:12:27.336790+00:00",
   "sports": {
     "NFL": {
       "status": "PARTIALLY_SETTLED_MONEYLINES",
@@ -9,7 +9,7 @@
       "research_only_predictions": 78,
       "bet_eligible_predictions": 0,
       "blocked_predictions": [],
-      "graded": 2,
+      "graded": 6,
       "settled": [
         {
           "event": "Green Bay Packers @ Los Angeles Rams",
@@ -22,9 +22,33 @@
           "market": "h2h",
           "selection": "Green Bay Packers",
           "outcome": "loss"
+        },
+        {
+          "event": "Chicago Bears @ Detroit Lions",
+          "market": "h2h",
+          "selection": "Detroit Lions",
+          "outcome": "loss"
+        },
+        {
+          "event": "Chicago Bears @ Detroit Lions",
+          "market": "h2h",
+          "selection": "Chicago Bears",
+          "outcome": "win"
+        },
+        {
+          "event": "Philadelphia Eagles @ Dallas Cowboys",
+          "market": "h2h",
+          "selection": "Dallas Cowboys",
+          "outcome": "loss"
+        },
+        {
+          "event": "Philadelphia Eagles @ Dallas Cowboys",
+          "market": "h2h",
+          "selection": "Philadelphia Eagles",
+          "outcome": "win"
         }
       ],
-      "pending": 76
+      "pending": 72
     },
     "NBA": {
       "status": "PARTIALLY_SETTLED_MONEYLINES",
@@ -256,9 +280,9 @@
     }
   },
   "summary": {
-    "verified_picks": 36,
-    "wins": 18,
-    "losses": 18,
+    "verified_picks": 40,
+    "wins": 20,
+    "losses": 20,
     "pushes": 0,
     "roi": null,
     "hit_rate": 0.5
