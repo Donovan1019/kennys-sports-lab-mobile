@@ -6,6 +6,7 @@ on:
       - scripts/armchairlogan_weather.py
       - scripts/armchairlogan_efficiency.py
       - scripts/armchairlogan_history.py
+      - scripts/gematria_backtest.py
       - .github/workflows/armchairlogan-discovery.yml
   schedule:
     - cron: '23 */4 * * *'
@@ -50,6 +51,8 @@ jobs:
         run: python scripts/armchairlogan_efficiency.py
       - name: Collect historical matchup results
         run: python scripts/armchairlogan_history.py
+      - name: Evaluate Gematria baseline
+        run: python scripts/gematria_backtest.py
       - name: Publish snapshot
         run: |
           git config user.name 'github-actions[bot]'
@@ -58,6 +61,7 @@ jobs:
           if test -f feed/armchairlogan_weather.json; then git add feed/armchairlogan_weather.json; fi
           if test -f feed/armchairlogan_efficiency.json; then git add feed/armchairlogan_efficiency.json; fi
           if test -f feed/armchairlogan_history.json; then git add feed/armchairlogan_history.json; fi
+          git add feed/gematria_backtest.json
           git diff --cached --quiet || git commit -m 'Refresh ArmchairLogan published forecasts'
           for attempt in 1 2 3 4 5; do
             if ! git pull --rebase -X ours origin main; then
