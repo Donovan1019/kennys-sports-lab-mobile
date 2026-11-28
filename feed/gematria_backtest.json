@@ -1,0 +1,17 @@
+{
+  "source": "https://raw.githubusercontent.com/nflverse/nfldata/master/data/games.csv",
+  "generated_at": "2026-11-28T09:06:20.128863+00:00",
+  "rule": "Team-name calendar exact-match count only; ties abstain; excludes tied games. Retrospective holdout, not prospective validation.",
+  "results": {
+    "2024 onward holdout": {
+      "games": 24,
+      "correct": 11,
+      "home_baseline": 16
+    },
+    "2020-2023 development": {
+      "games": 45,
+      "correct": 23,
+      "home_baseline": 23
+    }
+  }
+}
