@@ -12,6 +12,8 @@ for x in rows:
     if x.get('away_coach') and x.get('home_coach'):
         coaches.append([x['gameday'],aliases.get(x['away_team'],x['away_team']),aliases.get(x['home_team'],x['home_team']),x['away_coach'],x['home_coach'],int(float(x['away_score'])),int(float(x['home_score']))])
 assert len(games)>6000
+assert len(coaches)>5000, 'Historical coaching coverage insufficient; columns: '+str(list(rows[0]))
+print('Historical coaching games:',len(coaches))
 games.sort(reverse=True)
 with open('feed/armchairlogan_history.json','w') as f:json.dump({'source':url,'fetched_at':now.isoformat(),'start':min(x[0] for x in games),'games':games,'coaches':sorted(coaches,reverse=True)},f,separators=(',',':'))
 print('Historical games:',len(games))
