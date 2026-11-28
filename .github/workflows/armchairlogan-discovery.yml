@@ -47,6 +47,9 @@ jobs:
         continue-on-error: true
         timeout-minutes: 8
         run: python scripts/armchairlogan_efficiency.py
+      - name: Collect historical matchup results
+        continue-on-error: true
+        run: python scripts/armchairlogan_history.py
       - name: Publish snapshot
         run: |
           git config user.name 'github-actions[bot]'
@@ -54,6 +57,7 @@ jobs:
           git add feed/armchairlogan_state.json feed/armchairlogan_kenny_archive.json feed/armchairlogan_availability.json
           if test -f feed/armchairlogan_weather.json; then git add feed/armchairlogan_weather.json; fi
           if test -f feed/armchairlogan_efficiency.json; then git add feed/armchairlogan_efficiency.json; fi
+          if test -f feed/armchairlogan_history.json; then git add feed/armchairlogan_history.json; fi
           git diff --cached --quiet || git commit -m 'Refresh ArmchairLogan published forecasts'
           for attempt in 1 2 3 4 5; do
             if ! git pull --rebase -X ours origin main; then
