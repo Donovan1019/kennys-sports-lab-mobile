@@ -1,0 +1,583 @@
+{
+  "source": "https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2026.csv.gz",
+  "fetched_at": "2026-11-28T08:22:31.149455+00:00",
+  "season": 2026,
+  "teams": {
+    "ARI": {
+      "off": {
+        "plays": 689,
+        "epa_per_play": -0.051867176809371834,
+        "success_rate": 0.42670537010159654,
+        "explosive_rate": 0.05660377358490566,
+        "red_zone_epa": -0.13502863743944715,
+        "qb_hit_or_sack_rate": 0.17972350230414746
+      },
+      "def": {
+        "plays": 676,
+        "epa_per_play": 0.11546659705981656,
+        "success_rate": 0.45857988165680474,
+        "explosive_rate": 0.09615384615384616,
+        "red_zone_epa": 0.1668929211663048,
+        "qb_hit_or_sack_rate": 0.1440922190201729
+      }
+    },
+    "LAC": {
+      "off": {
+        "plays": 608,
+        "epa_per_play": -0.13503177729644833,
+        "success_rate": 0.39144736842105265,
+        "explosive_rate": 0.08552631578947369,
+        "red_zone_epa": -0.0017607718318172873,
+        "qb_hit_or_sack_rate": 0.21875
+      },
+      "def": {
+        "plays": 597,
+        "epa_per_play": 0.04500651004323355,
+        "success_rate": 0.45058626465661644,
+        "explosive_rate": 0.09212730318257957,
+        "red_zone_epa": 0.05981413304147745,
+        "qb_hit_or_sack_rate": 0.16352201257861634
+      }
+    },
+    "PIT": {
+      "off": {
+        "plays": 668,
+        "epa_per_play": -0.02768229141935775,
+        "success_rate": 0.40718562874251496,
+        "explosive_rate": 0.09281437125748503,
+        "red_zone_epa": -0.1430667283295537,
+        "qb_hit_or_sack_rate": 0.15571776155717762
+      },
+      "def": {
+        "plays": 666,
+        "epa_per_play": -0.056043412376418765,
+        "success_rate": 0.4159159159159159,
+        "explosive_rate": 0.08408408408408409,
+        "red_zone_epa": -0.1514567426522289,
+        "qb_hit_or_sack_rate": 0.15144230769230768
+      }
+    },
+    "ATL": {
+      "off": {
+        "plays": 591,
+        "epa_per_play": -0.07307721675817455,
+        "success_rate": 0.42978003384094754,
+        "explosive_rate": 0.10152284263959391,
+        "red_zone_epa": 0.020279618602038866,
+        "qb_hit_or_sack_rate": 0.09375
+      },
+      "def": {
+        "plays": 636,
+        "epa_per_play": 0.03714439315603165,
+        "success_rate": 0.45754716981132076,
+        "explosive_rate": 0.10377358490566038,
+        "red_zone_epa": 0.20839876019838754,
+        "qb_hit_or_sack_rate": 0.17647058823529413
+      }
+    },
+    "IND": {
+      "off": {
+        "plays": 676,
+        "epa_per_play": -0.1142712301150913,
+        "success_rate": 0.41272189349112426,
+        "explosive_rate": 0.08579881656804733,
+        "red_zone_epa": 0.024529264139627777,
+        "qb_hit_or_sack_rate": 0.18586387434554974
+      },
+      "def": {
+        "plays": 650,
+        "epa_per_play": 0.047352074714680246,
+        "success_rate": 0.42923076923076925,
+        "explosive_rate": 0.11076923076923077,
+        "red_zone_epa": 0.0315953818141972,
+        "qb_hit_or_sack_rate": 0.14697406340057637
+      }
+    },
+    "BAL": {
+      "off": {
+        "plays": 654,
+        "epa_per_play": 0.0014302227579378207,
+        "success_rate": 0.45565749235474007,
+        "explosive_rate": 0.10091743119266056,
+        "red_zone_epa": 0.08785600815512885,
+        "qb_hit_or_sack_rate": 0.18156424581005587
+      },
+      "def": {
+        "plays": 674,
+        "epa_per_play": 0.0273225235992386,
+        "success_rate": 0.4540059347181009,
+        "explosive_rate": 0.08605341246290801,
+        "red_zone_epa": 0.12447652369612808,
+        "qb_hit_or_sack_rate": 0.18333333333333332
+      }
+    },
+    "BUF": {
+      "off": {
+        "plays": 696,
+        "epa_per_play": 0.1063982797440628,
+        "success_rate": 0.4813218390804598,
+        "explosive_rate": 0.12643678160919541,
+        "red_zone_epa": 0.02449022125995988,
+        "qb_hit_or_sack_rate": 0.14814814814814814
+      },
+      "def": {
+        "plays": 677,
+        "epa_per_play": -0.029671292388900906,
+        "success_rate": 0.44165435745937964,
+        "explosive_rate": 0.0915805022156573,
+        "red_zone_epa": 0.06934031375401008,
+        "qb_hit_or_sack_rate": 0.2102803738317757
+      }
+    },
+    "HOU": {
+      "off": {
+        "plays": 616,
+        "epa_per_play": 0.052355989999680864,
+        "success_rate": 0.42694805194805197,
+        "explosive_rate": 0.1038961038961039,
+        "red_zone_epa": 0.09049866348135023,
+        "qb_hit_or_sack_rate": 0.12054794520547946
+      },
+      "def": {
+        "plays": 626,
+        "epa_per_play": -0.01512274322964614,
+        "success_rate": 0.40894568690095845,
+        "explosive_rate": 0.09105431309904154,
+        "red_zone_epa": 0.06774269371376443,
+        "qb_hit_or_sack_rate": 0.1732283464566929
+      }
+    },
+    "CHI": {
+      "off": {
+        "plays": 753,
+        "epa_per_play": 0.04185268604937185,
+        "success_rate": 0.46879150066401065,
+        "explosive_rate": 0.09296148738379814,
+        "red_zone_epa": 0.10397385847312482,
+        "qb_hit_or_sack_rate": 0.13861386138613863
+      },
+      "def": {
+        "plays": 611,
+        "epa_per_play": -0.021391126970154318,
+        "success_rate": 0.42225859247135844,
+        "explosive_rate": 0.09819967266775777,
+        "red_zone_epa": 0.11742410749129795,
+        "qb_hit_or_sack_rate": 0.1711229946524064
+      }
+    },
+    "CAR": {
+      "off": {
+        "plays": 656,
+        "epa_per_play": 0.03413782307005321,
+        "success_rate": 0.4329268292682927,
+        "explosive_rate": 0.0975609756097561,
+        "red_zone_epa": 0.06940413521368438,
+        "qb_hit_or_sack_rate": 0.16790123456790124
+      },
+      "def": {
+        "plays": 640,
+        "epa_per_play": 0.014699129461222362,
+        "success_rate": 0.43125,
+        "explosive_rate": 0.08125,
+        "red_zone_epa": 0.2815139090273331,
+        "qb_hit_or_sack_rate": 0.12195121951219512
+      }
+    },
+    "CLE": {
+      "off": {
+        "plays": 613,
+        "epa_per_play": -0.050707454360130404,
+        "success_rate": 0.4192495921696574,
+        "explosive_rate": 0.08156606851549755,
+        "red_zone_epa": -0.14078876580580868,
+        "qb_hit_or_sack_rate": 0.22404371584699453
+      },
+      "def": {
+        "plays": 630,
+        "epa_per_play": -0.012904345162806589,
+        "success_rate": 0.42063492063492064,
+        "explosive_rate": 0.1111111111111111,
+        "red_zone_epa": 0.013136393365249537,
+        "qb_hit_or_sack_rate": 0.16066481994459833
+      }
+    },
+    "JAX": {
+      "off": {
+        "plays": 602,
+        "epa_per_play": 0.1155965483345995,
+        "success_rate": 0.47674418604651164,
+        "explosive_rate": 0.10299003322259136,
+        "red_zone_epa": 0.11005650815411448,
+        "qb_hit_or_sack_rate": 0.15644171779141106
+      },
+      "def": {
+        "plays": 585,
+        "epa_per_play": -0.09865862016270555,
+        "success_rate": 0.41025641025641024,
+        "explosive_rate": 0.0735042735042735,
+        "red_zone_epa": -0.3920206588917524,
+        "qb_hit_or_sack_rate": 0.1568627450980392
+      }
+    },
+    "DAL": {
+      "off": {
+        "plays": 793,
+        "epa_per_play": 0.13071505292223456,
+        "success_rate": 0.4930643127364439,
+        "explosive_rate": 0.08953341740226986,
+        "red_zone_epa": 0.22500584186351785,
+        "qb_hit_or_sack_rate": 0.14861995753715498
+      },
+      "def": {
+        "plays": 747,
+        "epa_per_play": 0.11239273549706214,
+        "success_rate": 0.4819277108433735,
+        "explosive_rate": 0.10977242302543508,
+        "red_zone_epa": 0.11936671780113493,
+        "qb_hit_or_sack_rate": 0.15217391304347827
+      }
+    },
+    "NYG": {
+      "off": {
+        "plays": 644,
+        "epa_per_play": -0.0013126405260325794,
+        "success_rate": 0.41770186335403725,
+        "explosive_rate": 0.09006211180124224,
+        "red_zone_epa": 0.12919833564251915,
+        "qb_hit_or_sack_rate": 0.17567567567567569
+      },
+      "def": {
+        "plays": 608,
+        "epa_per_play": -0.014110026187318235,
+        "success_rate": 0.4292763157894737,
+        "explosive_rate": 0.09210526315789473,
+        "red_zone_epa": 0.046766393966356054,
+        "qb_hit_or_sack_rate": 0.14124293785310735
+      }
+    },
+    "DEN": {
+      "off": {
+        "plays": 654,
+        "epa_per_play": -0.027190489496404267,
+        "success_rate": 0.3929663608562691,
+        "explosive_rate": 0.0672782874617737,
+        "red_zone_epa": 0.10452237806357369,
+        "qb_hit_or_sack_rate": 0.09973753280839895
+      },
+      "def": {
+        "plays": 721,
+        "epa_per_play": -0.006492724361441876,
+        "success_rate": 0.4091539528432732,
+        "explosive_rate": 0.09153952843273232,
+        "red_zone_epa": -0.004302171716193929,
+        "qb_hit_or_sack_rate": 0.2127659574468085
+      }
+    },
+    "KC": {
+      "off": {
+        "plays": 667,
+        "epa_per_play": 0.12746243020693024,
+        "success_rate": 0.4917541229385307,
+        "explosive_rate": 0.11094452773613193,
+        "red_zone_epa": 0.14101843222972207,
+        "qb_hit_or_sack_rate": 0.17585301837270342
+      },
+      "def": {
+        "plays": 689,
+        "epa_per_play": -0.08520042144851306,
+        "success_rate": 0.40783744557329465,
+        "explosive_rate": 0.0783744557329463,
+        "red_zone_epa": -0.30730090056645964,
+        "qb_hit_or_sack_rate": 0.13520408163265307
+      }
+    },
+    "MIN": {
+      "off": {
+        "plays": 576,
+        "epa_per_play": -0.09053363323621072,
+        "success_rate": 0.4045138888888889,
+        "explosive_rate": 0.08680555555555555,
+        "red_zone_epa": -0.18727797025415366,
+        "qb_hit_or_sack_rate": 0.1656441717791411
+      },
+      "def": {
+        "plays": 585,
+        "epa_per_play": -0.0767596931578115,
+        "success_rate": 0.39316239316239315,
+        "explosive_rate": 0.08547008547008547,
+        "red_zone_epa": -0.2528563457645989,
+        "qb_hit_or_sack_rate": 0.2599388379204893
+      }
+    },
+    "GB": {
+      "off": {
+        "plays": 653,
+        "epa_per_play": 0.0006000880856003109,
+        "success_rate": 0.4119448698315467,
+        "explosive_rate": 0.09800918836140889,
+        "red_zone_epa": -0.07196558924841094,
+        "qb_hit_or_sack_rate": 0.16901408450704225
+      },
+      "def": {
+        "plays": 727,
+        "epa_per_play": -0.02922211399466216,
+        "success_rate": 0.45254470426409904,
+        "explosive_rate": 0.07702888583218707,
+        "red_zone_epa": 0.045410538277633195,
+        "qb_hit_or_sack_rate": 0.1529126213592233
+      }
+    },
+    "MIA": {
+      "off": {
+        "plays": 564,
+        "epa_per_play": -0.07928263408957024,
+        "success_rate": 0.374113475177305,
+        "explosive_rate": 0.09929078014184398,
+        "red_zone_epa": -0.06145634847817332,
+        "qb_hit_or_sack_rate": 0.18032786885245902
+      },
+      "def": {
+        "plays": 584,
+        "epa_per_play": 0.06915289943408237,
+        "success_rate": 0.4863013698630137,
+        "explosive_rate": 0.10445205479452055,
+        "red_zone_epa": 0.1536857333125154,
+        "qb_hit_or_sack_rate": 0.1568627450980392
+      }
+    },
+    "LV": {
+      "off": {
+        "plays": 674,
+        "epa_per_play": -0.0055062270884769044,
+        "success_rate": 0.42433234421364985,
+        "explosive_rate": 0.07418397626112759,
+        "red_zone_epa": -0.0483455360201562,
+        "qb_hit_or_sack_rate": 0.1859903381642512
+      },
+      "def": {
+        "plays": 678,
+        "epa_per_play": 0.0959025211148386,
+        "success_rate": 0.5073746312684366,
+        "explosive_rate": 0.11651917404129794,
+        "red_zone_epa": 0.23031426156946955,
+        "qb_hit_or_sack_rate": 0.16901408450704225
+      }
+    },
+    "SEA": {
+      "off": {
+        "plays": 611,
+        "epa_per_play": -0.013139293999291528,
+        "success_rate": 0.4369885433715221,
+        "explosive_rate": 0.09001636661211129,
+        "red_zone_epa": -0.04046553294948232,
+        "qb_hit_or_sack_rate": 0.18654434250764526
+      },
+      "def": {
+        "plays": 585,
+        "epa_per_play": -0.07828570142478275,
+        "success_rate": 0.38290598290598293,
+        "explosive_rate": 0.0547008547008547,
+        "red_zone_epa": 0.2648462833907095,
+        "qb_hit_or_sack_rate": 0.2155688622754491
+      }
+    },
+    "NE": {
+      "off": {
+        "plays": 601,
+        "epa_per_play": 0.01884429153231103,
+        "success_rate": 0.4525790349417637,
+        "explosive_rate": 0.11148086522462562,
+        "red_zone_epa": 0.023505044623450884,
+        "qb_hit_or_sack_rate": 0.16119402985074627
+      },
+      "def": {
+        "plays": 600,
+        "epa_per_play": 0.05746530282947976,
+        "success_rate": 0.45166666666666666,
+        "explosive_rate": 0.105,
+        "red_zone_epa": 0.003533144016776425,
+        "qb_hit_or_sack_rate": 0.1676300578034682
+      }
+    },
+    "DET": {
+      "off": {
+        "plays": 706,
+        "epa_per_play": 0.13565863827413221,
+        "success_rate": 0.5084985835694051,
+        "explosive_rate": 0.11473087818696884,
+        "red_zone_epa": 0.1843469284714018,
+        "qb_hit_or_sack_rate": 0.16539440203562342
+      },
+      "def": {
+        "plays": 710,
+        "epa_per_play": 0.06450800331999955,
+        "success_rate": 0.46338028169014084,
+        "explosive_rate": 0.09859154929577464,
+        "red_zone_epa": 0.11668581320344618,
+        "qb_hit_or_sack_rate": 0.17685589519650655
+      }
+    },
+    "NO": {
+      "off": {
+        "plays": 660,
+        "epa_per_play": -0.040344206789906564,
+        "success_rate": 0.42272727272727273,
+        "explosive_rate": 0.06515151515151515,
+        "red_zone_epa": 0.10618705527152954,
+        "qb_hit_or_sack_rate": 0.16183574879227053
+      },
+      "def": {
+        "plays": 629,
+        "epa_per_play": 0.03222399218335727,
+        "success_rate": 0.4594594594594595,
+        "explosive_rate": 0.10333863275039745,
+        "red_zone_epa": -0.12578958026748635,
+        "qb_hit_or_sack_rate": 0.15588235294117647
+      }
+    },
+    "NYJ": {
+      "off": {
+        "plays": 652,
+        "epa_per_play": 0.015304546551019958,
+        "success_rate": 0.4708588957055215,
+        "explosive_rate": 0.09355828220858896,
+        "red_zone_epa": -0.09538678331473954,
+        "qb_hit_or_sack_rate": 0.1793478260869565
+      },
+      "def": {
+        "plays": 671,
+        "epa_per_play": 0.07346067297300725,
+        "success_rate": 0.488822652757079,
+        "explosive_rate": 0.09687034277198212,
+        "red_zone_epa": 0.22567926459136375,
+        "qb_hit_or_sack_rate": 0.17008797653958943
+      }
+    },
+    "TEN": {
+      "off": {
+        "plays": 571,
+        "epa_per_play": -0.05009048675588123,
+        "success_rate": 0.4500875656742557,
+        "explosive_rate": 0.07705779334500876,
+        "red_zone_epa": -0.10329869459585792,
+        "qb_hit_or_sack_rate": 0.1394658753709199
+      },
+      "def": {
+        "plays": 657,
+        "epa_per_play": 0.12117619643880359,
+        "success_rate": 0.4977168949771689,
+        "explosive_rate": 0.1080669710806697,
+        "red_zone_epa": 0.17548988799522341,
+        "qb_hit_or_sack_rate": 0.14127423822714683
+      }
+    },
+    "LA": {
+      "off": {
+        "plays": 737,
+        "epa_per_play": 0.07516649604926762,
+        "success_rate": 0.4993215739484396,
+        "explosive_rate": 0.08819538670284939,
+        "red_zone_epa": 0.2678390786482191,
+        "qb_hit_or_sack_rate": 0.14320388349514562
+      },
+      "def": {
+        "plays": 626,
+        "epa_per_play": -0.10146337865457919,
+        "success_rate": 0.3993610223642173,
+        "explosive_rate": 0.07987220447284345,
+        "red_zone_epa": -0.057709342000043205,
+        "qb_hit_or_sack_rate": 0.12602739726027398
+      }
+    },
+    "SF": {
+      "off": {
+        "plays": 580,
+        "epa_per_play": 0.2093188558502621,
+        "success_rate": 0.5362068965517242,
+        "explosive_rate": 0.12758620689655173,
+        "red_zone_epa": 0.48994826219371396,
+        "qb_hit_or_sack_rate": 0.12786885245901639
+      },
+      "def": {
+        "plays": 623,
+        "epa_per_play": -0.028467551027236474,
+        "success_rate": 0.43980738362760835,
+        "explosive_rate": 0.05457463884430177,
+        "red_zone_epa": -0.06798204628037352,
+        "qb_hit_or_sack_rate": 0.15463917525773196
+      }
+    },
+    "TB": {
+      "off": {
+        "plays": 620,
+        "epa_per_play": -0.06641448638773961,
+        "success_rate": 0.4161290322580645,
+        "explosive_rate": 0.0935483870967742,
+        "red_zone_epa": 0.025943539561161397,
+        "qb_hit_or_sack_rate": 0.16831683168316833
+      },
+      "def": {
+        "plays": 571,
+        "epa_per_play": -0.08073139682820614,
+        "success_rate": 0.43257443082311736,
+        "explosive_rate": 0.07530647985989491,
+        "red_zone_epa": -0.009684201367190457,
+        "qb_hit_or_sack_rate": 0.13068181818181818
+      }
+    },
+    "CIN": {
+      "off": {
+        "plays": 603,
+        "epa_per_play": 0.14878236903992503,
+        "success_rate": 0.5107794361525705,
+        "explosive_rate": 0.0912106135986733,
+        "red_zone_epa": 0.28839091163081754,
+        "qb_hit_or_sack_rate": 0.1708542713567839
+      },
+      "def": {
+        "plays": 612,
+        "epa_per_play": 0.01578298090055189,
+        "success_rate": 0.46078431372549017,
+        "explosive_rate": 0.11274509803921569,
+        "red_zone_epa": -0.21701128389093613,
+        "qb_hit_or_sack_rate": 0.15803814713896458
+      }
+    },
+    "WAS": {
+      "off": {
+        "plays": 618,
+        "epa_per_play": -0.0038923622837580044,
+        "success_rate": 0.43042071197411,
+        "explosive_rate": 0.09546925566343042,
+        "red_zone_epa": 0.006446730792014286,
+        "qb_hit_or_sack_rate": 0.17183098591549295
+      },
+      "def": {
+        "plays": 635,
+        "epa_per_play": 0.03486227082339871,
+        "success_rate": 0.4692913385826772,
+        "explosive_rate": 0.08346456692913386,
+        "red_zone_epa": 0.2862929087810765,
+        "qb_hit_or_sack_rate": 0.1556122448979592
+      }
+    },
+    "PHI": {
+      "off": {
+        "plays": 647,
+        "epa_per_play": -0.09079540500845645,
+        "success_rate": 0.36321483771251933,
+        "explosive_rate": 0.06646058732612056,
+        "red_zone_epa": 0.04047184696751142,
+        "qb_hit_or_sack_rate": 0.1751269035532995
+      },
+      "def": {
+        "plays": 727,
+        "epa_per_play": 0.06885387406407079,
+        "success_rate": 0.4346629986244842,
+        "explosive_rate": 0.09903713892709766,
+        "red_zone_epa": 0.18745869987825267,
+        "qb_hit_or_sack_rate": 0.13316582914572864
+      }
+    }
+  }
+}
