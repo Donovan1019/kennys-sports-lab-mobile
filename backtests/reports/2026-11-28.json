@@ -1,0 +1,97 @@
+{
+  "date": "2026-11-28",
+  "generated_at": "2026-11-28T03:52:57.768577+00:00",
+  "sports": {
+    "NFL": {
+      "status": "OUTCOMES_UNVERIFIED",
+      "saved_quotes": 0,
+      "eligible_predictions": 70,
+      "research_only_predictions": 70,
+      "bet_eligible_predictions": 0,
+      "blocked_predictions": [],
+      "graded": 0,
+      "settled": [],
+      "pending": 70
+    },
+    "NBA": {
+      "status": "PARTIALLY_SETTLED_MONEYLINES",
+      "saved_quotes": 0,
+      "eligible_predictions": 14,
+      "research_only_predictions": 14,
+      "bet_eligible_predictions": 0,
+      "blocked_predictions": [],
+      "graded": 2,
+      "settled": [
+        {
+          "event": "Miami Heat @ New York Knicks",
+          "market": "h2h",
+          "selection": "New York Knicks",
+          "outcome": "loss"
+        },
+        {
+          "event": "Miami Heat @ New York Knicks",
+          "market": "h2h",
+          "selection": "Miami Heat",
+          "outcome": "win"
+        }
+      ],
+      "pending": 12
+    },
+    "NHL": {
+      "status": "PARTIALLY_SETTLED_MONEYLINES",
+      "saved_quotes": 0,
+      "eligible_predictions": 202,
+      "research_only_predictions": 202,
+      "bet_eligible_predictions": 0,
+      "blocked_predictions": [],
+      "graded": 6,
+      "settled": [
+        {
+          "event": "New York Rangers @ Chicago Blackhawks",
+          "market": "h2h",
+          "selection": "Chicago Blackhawks",
+          "outcome": "win"
+        },
+        {
+          "event": "New York Rangers @ Chicago Blackhawks",
+          "market": "h2h",
+          "selection": "New York Rangers",
+          "outcome": "loss"
+        },
+        {
+          "event": "Winnipeg Jets @ New York Islanders",
+          "market": "h2h",
+          "selection": "New York Islanders",
+          "outcome": "loss"
+        },
+        {
+          "event": "Winnipeg Jets @ New York Islanders",
+          "market": "h2h",
+          "selection": "Winnipeg Jets",
+          "outcome": "win"
+        },
+        {
+          "event": "Seattle Kraken @ Edmonton Oilers",
+          "market": "h2h",
+          "selection": "Edmonton Oilers",
+          "outcome": "loss"
+        },
+        {
+          "event": "Seattle Kraken @ Edmonton Oilers",
+          "market": "h2h",
+          "selection": "Seattle Kraken",
+          "outcome": "win"
+        }
+      ],
+      "pending": 196
+    }
+  },
+  "summary": {
+    "verified_picks": 8,
+    "wins": 4,
+    "losses": 4,
+    "pushes": 0,
+    "roi": null,
+    "hit_rate": 0.5
+  }
+}

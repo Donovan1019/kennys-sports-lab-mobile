@@ -1,6 +1,6 @@
 {
   "date": "2026-11-27",
-  "generated_at": "2026-11-27T21:10:08.200394+00:00",
+  "generated_at": "2026-11-28T03:52:57.613565+00:00",
   "sports": {
     "NFL": {
       "status": "PARTIALLY_SETTLED_MONEYLINES",
@@ -9,7 +9,7 @@
       "research_only_predictions": 94,
       "bet_eligible_predictions": 0,
       "blocked_predictions": [],
-      "graded": 4,
+      "graded": 6,
       "settled": [
         {
           "event": "Philadelphia Eagles @ Dallas Cowboys",
@@ -34,20 +34,45 @@
           "market": "h2h",
           "selection": "Kansas City Chiefs",
           "outcome": "loss"
+        },
+        {
+          "event": "Denver Broncos @ Pittsburgh Steelers",
+          "market": "h2h",
+          "selection": "Pittsburgh Steelers",
+          "outcome": "win"
+        },
+        {
+          "event": "Denver Broncos @ Pittsburgh Steelers",
+          "market": "h2h",
+          "selection": "Denver Broncos",
+          "outcome": "loss"
         }
       ],
-      "pending": 90
+      "pending": 88
     },
     "NBA": {
-      "status": "OUTCOMES_UNVERIFIED",
+      "status": "PARTIALLY_SETTLED_MONEYLINES",
       "saved_quotes": 0,
       "eligible_predictions": 14,
       "research_only_predictions": 14,
       "bet_eligible_predictions": 0,
       "blocked_predictions": [],
-      "graded": 0,
-      "settled": [],
-      "pending": 14
+      "graded": 2,
+      "settled": [
+        {
+          "event": "Miami Heat @ New York Knicks",
+          "market": "h2h",
+          "selection": "New York Knicks",
+          "outcome": "loss"
+        },
+        {
+          "event": "Miami Heat @ New York Knicks",
+          "market": "h2h",
+          "selection": "Miami Heat",
+          "outcome": "win"
+        }
+      ],
+      "pending": 12
     },
     "NHL": {
       "status": "PARTIALLY_SETTLED_MONEYLINES",
@@ -56,7 +81,7 @@
       "research_only_predictions": 180,
       "bet_eligible_predictions": 0,
       "blocked_predictions": [],
-      "graded": 10,
+      "graded": 42,
       "settled": [
         {
           "event": "Toronto Maple Leafs @ Boston Bruins",
@@ -95,6 +120,138 @@
           "outcome": "win"
         },
         {
+          "event": "Dallas Stars @ St. Louis Blues",
+          "market": "h2h",
+          "selection": "St. Louis Blues",
+          "outcome": "win"
+        },
+        {
+          "event": "Dallas Stars @ St. Louis Blues",
+          "market": "h2h",
+          "selection": "Dallas Stars",
+          "outcome": "loss"
+        },
+        {
+          "event": "Ottawa Senators @ Tampa Bay Lightning",
+          "market": "h2h",
+          "selection": "Tampa Bay Lightning",
+          "outcome": "loss"
+        },
+        {
+          "event": "Ottawa Senators @ Tampa Bay Lightning",
+          "market": "h2h",
+          "selection": "Ottawa Senators",
+          "outcome": "win"
+        },
+        {
+          "event": "Vancouver Canucks @ Philadelphia Flyers",
+          "market": "h2h",
+          "selection": "Philadelphia Flyers",
+          "outcome": "win"
+        },
+        {
+          "event": "Vancouver Canucks @ Philadelphia Flyers",
+          "market": "h2h",
+          "selection": "Vancouver Canucks",
+          "outcome": "loss"
+        },
+        {
+          "event": "Florida Panthers @ Washington Capitals",
+          "market": "h2h",
+          "selection": "Washington Capitals",
+          "outcome": "loss"
+        },
+        {
+          "event": "Florida Panthers @ Washington Capitals",
+          "market": "h2h",
+          "selection": "Florida Panthers",
+          "outcome": "win"
+        },
+        {
+          "event": "Detroit Red Wings @ Columbus Blue Jackets",
+          "market": "h2h",
+          "selection": "Columbus Blue Jackets",
+          "outcome": "loss"
+        },
+        {
+          "event": "Detroit Red Wings @ Columbus Blue Jackets",
+          "market": "h2h",
+          "selection": "Detroit Red Wings",
+          "outcome": "win"
+        },
+        {
+          "event": "Colorado Avalanche @ Minnesota Wild",
+          "market": "h2h",
+          "selection": "Minnesota Wild",
+          "outcome": "loss"
+        },
+        {
+          "event": "Colorado Avalanche @ Minnesota Wild",
+          "market": "h2h",
+          "selection": "Colorado Avalanche",
+          "outcome": "win"
+        },
+        {
+          "event": "Los Angeles Kings @ Anaheim Ducks",
+          "market": "h2h",
+          "selection": "Anaheim Ducks",
+          "outcome": "loss"
+        },
+        {
+          "event": "Los Angeles Kings @ Anaheim Ducks",
+          "market": "h2h",
+          "selection": "Los Angeles Kings",
+          "outcome": "win"
+        },
+        {
+          "event": "Vegas Golden Knights @ San Jose Sharks",
+          "market": "h2h",
+          "selection": "San Jose Sharks",
+          "outcome": "win"
+        },
+        {
+          "event": "Vegas Golden Knights @ San Jose Sharks",
+          "market": "h2h",
+          "selection": "Vegas Golden Knights",
+          "outcome": "loss"
+        },
+        {
+          "event": "New York Rangers @ Chicago Blackhawks",
+          "market": "h2h",
+          "selection": "Chicago Blackhawks",
+          "outcome": "win"
+        },
+        {
+          "event": "New York Rangers @ Chicago Blackhawks",
+          "market": "h2h",
+          "selection": "New York Rangers",
+          "outcome": "loss"
+        },
+        {
+          "event": "Winnipeg Jets @ New York Islanders",
+          "market": "h2h",
+          "selection": "New York Islanders",
+          "outcome": "loss"
+        },
+        {
+          "event": "Winnipeg Jets @ New York Islanders",
+          "market": "h2h",
+          "selection": "Winnipeg Jets",
+          "outcome": "win"
+        },
+        {
+          "event": "Seattle Kraken @ Edmonton Oilers",
+          "market": "h2h",
+          "selection": "Edmonton Oilers",
+          "outcome": "loss"
+        },
+        {
+          "event": "Seattle Kraken @ Edmonton Oilers",
+          "market": "h2h",
+          "selection": "Seattle Kraken",
+          "outcome": "win"
+        },
+        {
           "event": "Toronto Maple Leafs @ Boston Bruins",
           "market": "h2h",
           "selection": "Boston Bruins",
@@ -117,15 +274,75 @@
           "market": "h2h",
           "selection": "Calgary Flames",
           "outcome": "loss"
+        },
+        {
+          "event": "Florida Panthers @ Washington Capitals",
+          "market": "h2h",
+          "selection": "Washington Capitals",
+          "outcome": "loss"
+        },
+        {
+          "event": "Florida Panthers @ Washington Capitals",
+          "market": "h2h",
+          "selection": "Florida Panthers",
+          "outcome": "win"
+        },
+        {
+          "event": "Detroit Red Wings @ Columbus Blue Jackets",
+          "market": "h2h",
+          "selection": "Columbus Blue Jackets",
+          "outcome": "loss"
+        },
+        {
+          "event": "Detroit Red Wings @ Columbus Blue Jackets",
+          "market": "h2h",
+          "selection": "Detroit Red Wings",
+          "outcome": "win"
+        },
+        {
+          "event": "Colorado Avalanche @ Minnesota Wild",
+          "market": "h2h",
+          "selection": "Minnesota Wild",
+          "outcome": "loss"
+        },
+        {
+          "event": "Colorado Avalanche @ Minnesota Wild",
+          "market": "h2h",
+          "selection": "Colorado Avalanche",
+          "outcome": "win"
+        },
+        {
+          "event": "Vegas Golden Knights @ San Jose Sharks",
+          "market": "h2h",
+          "selection": "San Jose Sharks",
+          "outcome": "win"
+        },
+        {
+          "event": "Vegas Golden Knights @ San Jose Sharks",
+          "market": "h2h",
+          "selection": "Vegas Golden Knights",
+          "outcome": "loss"
+        },
+        {
+          "event": "New York Rangers @ Chicago Blackhawks",
+          "market": "h2h",
+          "selection": "Chicago Blackhawks",
+          "outcome": "win"
+        },
+        {
+          "event": "New York Rangers @ Chicago Blackhawks",
+          "market": "h2h",
+          "selection": "New York Rangers",
+          "outcome": "loss"
         }
       ],
-      "pending": 170
+      "pending": 138
     }
   },
   "summary": {
-    "verified_picks": 14,
-    "wins": 7,
-    "losses": 7,
+    "verified_picks": 50,
+    "wins": 25,
+    "losses": 25,
     "pushes": 0,
     "roi": null,
     "hit_rate": 0.5

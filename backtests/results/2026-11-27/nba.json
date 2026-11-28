@@ -1,0 +1,85 @@
+{
+  "sport": "NBA",
+  "date": "2026-11-27",
+  "games": [
+    {
+      "event_id": "401909326",
+      "event": "Miami Heat at New York Knicks",
+      "commence_time": "2026-11-28T00:00Z",
+      "home": "New York Knicks",
+      "away": "Miami Heat",
+      "home_score": 105,
+      "away_score": 108,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261127&limit=100"
+    },
+    {
+      "event_id": "401909327",
+      "event": "Milwaukee Bucks at Detroit Pistons",
+      "commence_time": "2026-11-28T00:30Z",
+      "home": "Detroit Pistons",
+      "away": "Milwaukee Bucks",
+      "home_score": 113,
+      "away_score": 98,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261127&limit=100"
+    },
+    {
+      "event_id": "401909328",
+      "event": "Philadelphia 76ers at Indiana Pacers",
+      "commence_time": "2026-11-28T00:30Z",
+      "home": "Indiana Pacers",
+      "away": "Philadelphia 76ers",
+      "home_score": 87,
+      "away_score": 111,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261127&limit=100"
+    },
+    {
+      "event_id": "401909329",
+      "event": "Brooklyn Nets at Toronto Raptors",
+      "commence_time": "2026-11-28T00:30Z",
+      "home": "Toronto Raptors",
+      "away": "Brooklyn Nets",
+      "home_score": 124,
+      "away_score": 100,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261127&limit=100"
+    },
+    {
+      "event_id": "401909330",
+      "event": "Atlanta Hawks at Boston Celtics",
+      "commence_time": "2026-11-28T01:00Z",
+      "home": "Boston Celtics",
+      "away": "Atlanta Hawks",
+      "home_score": 86,
+      "away_score": 87,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261127&limit=100"
+    },
+    {
+      "event_id": "401909331",
+      "event": "Memphis Grizzlies at Minnesota Timberwolves",
+      "commence_time": "2026-11-28T01:30Z",
+      "home": "Minnesota Timberwolves",
+      "away": "Memphis Grizzlies",
+      "home_score": 109,
+      "away_score": 114,
+      "status": "STATUS_FINAL",
+      "completed": true,
+      "source": "ESPN scoreboard",
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261127&limit=100"
+    }
+  ],
+  "source_url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20261127&limit=100"
+}
